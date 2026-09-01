@@ -7,20 +7,14 @@ Chào Trường! Toàn bộ các tài liệu, hồ sơ kỹ thuật, dữ liệu
 
 ### 📂 1. DANH MỤC HỒ SƠ & BÁO CÁO REVIEW 1 TRONG WORKSPACE CỦA BẠN:
 
-- 📘 **Bản thảo Luận văn**:
+- 📘 **Bản thảo Luận văn Review 1**:
   - [`docs/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/01_Introduction.md): Toàn văn Chương 1 (Introduction & Threat Model).
   - [`docs/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/02_Literature_Review.md): Toàn văn Chương 2 (Literature Review & SOTA Survey).
-  - [`docs/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md): Hồ sơ kỹ thuật 606 dòng cho Review 1.
+  - [`docs/thesis/chapters/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/README.md): Lộ trình biên soạn 6 chương theo chuẩn FPT IAP491.
+  - [`docs/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md): Hồ sơ kỹ thuật Problem Definition & Threat Model.
   - [`docs/thesis/Review1_Presentation_Slides_Outline.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/Review1_Presentation_Slides_Outline.md): Dàn ý 9 slide thuyết trình 15 phút.
   - [`docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md): Tóm tắt quy chế và tiêu chí chấm điểm FPT IAP491.
-  - [`docs/thesis/FINAL_THESIS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FINAL_THESIS.md): Bản biên dịch toàn văn 6 chương hiện tại.
-
-- 📅 **Biên bản họp & Báo cáo tiến độ**:
-  - [`Meeting/Meeting 1_29_08_26.md`](file:///d:/Work/Do-an/workspaces/truongnv/Meeting/Meeting%201_29_08_26.md): Biên bản họp với GVHD (Meeting 1).
-  - [`Meeting/Meeting 2_01_09_26.md`](file:///d:/Work/Do-an/workspaces/truongnv/Meeting/Meeting%202_01_09_26.md): Biên bản họp sàng lọc 10 bài báo (Meeting 2).
-  - [`Meeting/Meeting_1_TODO_List_30_08_to_06_09_2026.md`](file:///d:/Work/Do-an/workspaces/truongnv/Meeting/Meeting_1_TODO_List_30_08_to_06_09_2026.md): Kế hoạch hành động 1 tuần chi tiết.
-  - [`Meeting/PROCESS_REPORT_CHECKLIST.md`](file:///d:/Work/Do-an/workspaces/truongnv/Meeting/PROCESS_REPORT_CHECKLIST.md): Markdown checklist phân công 4 thành viên.
-  - [`Meeting/PI_GUARD_PROCESS_REPORT.xlsx`](file:///d:/Work/Do-an/workspaces/truongnv/Meeting/PI_GUARD_PROCESS_REPORT.xlsx): Bảng Excel theo dõi tiến độ tuần.
+  - [`docs/thesis/FINAL_THESIS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FINAL_THESIS.md): Bản biên dịch toàn văn các chương Review 1.
 
 - 📚 **Tài liệu tham khảo & Nghiên cứu**:
   - [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truongnv/References/REFERENCES_LOG.md): Bảng ma trận 17 bài báo IEEE (100% >= 2022).
