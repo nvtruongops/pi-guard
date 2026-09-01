@@ -3,12 +3,10 @@
 
 > [!IMPORTANT]
 > **QUY TẮC QUẢN LÝ DỮ LIỆU (DATA GOVERNANCE)**:
-> 1. Thư mục `data/` cấp gốc này lưu trữ **DỮ LIỆU CHUẨN ĐÃ ĐƯỢC LÀM SẠCH, KHỬ TRÙNG LẶP VÀ CHIA CỤM GROUP-AWARE CHÍNH THỨC**.
-> 2. Các file dữ liệu lớn (`.csv`, `.parquet`, `.jsonl`) được cấu hình trong `.gitignore` để không làm nặng Git repository.
-> 3. Để tải và tạo dữ liệu chuẩn cho cả nhóm, chạy script:
->    ```powershell
->    python scripts/download_dataset.py
->    ```
+> 1. Thư mục `data/` cấp gốc này lưu trữ **DỮ LIỆU CHUẨN ĐÃ ĐƯỢC CHỐT VÀ XUẤT BẢN CHÍNH THỨC** sau các kỳ đánh giá milestone.
+> 2. **Trạng thái hiện tại (Review 1)**: Đang ở chế độ HOLD. Toàn bộ hoạt động thử nghiệm, thu thập mẫu và phân loại dữ liệu diễn ra độc lập trong các workspace cá nhân (`workspaces/<member>/data/`).
+> 3. **Cột mốc xuất bản dữ liệu (Review 2 — Tuần 7–8)**: Sau khi nhóm chốt các nguồn benchmark và pipeline tiền xử lý, Trưởng nhóm (`nvtruongops`) sẽ chính thức merge dữ liệu chuẩn ra cây thư mục gốc `data/`.
+> 4. Các file dữ liệu lớn (`.csv`, `.parquet`, `.jsonl`) được cấu hình trong `.gitignore` để không làm nặng Git repository.
 
 ---
 
