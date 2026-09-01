@@ -1,4 +1,4 @@
-﻿{
+{
   "mcpServers": {
     "arxiv": {
       "command": "arxiv-mcp-server",
@@ -40,6 +40,15 @@
         "@modelcontextprotocol/server-sequential-thinking"
       ],
       "description": "Multi-step structured reasoning and analysis"
+    },
+    "officecli": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@officecli/officecli",
+        "mcp"
+      ],
+      "description": "OfficeCLI MCP server for reading, editing, and automating Office documents (.docx, .xlsx, .pptx)"
     }
   }
 }

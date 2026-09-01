@@ -22,7 +22,7 @@ src/
 ├── evaluation/                    # Bộ đo lường chuẩn: F1, Precision, Recall, FPR, Latency
 ├── policy/                        # Bộ quy tắc định tuyến bảo vệ (3-Tier Layered Defense)
 ├── api/                           # Dịch vụ FastAPI Middleware & LLM Proxy (/v1/chat)
-├── dashboard/                     # Giao diện Streamlit giám sát & test thời gian thực
+├── dashboard/                     # Giao diện Streamlit giám sát & kiểm thử trực quan
 ├── llm/                           # Kết nối Target LLM Cloud APIs (Groq, OpenAI, Gemini)
 └── utils/                         # Logging, cấu hình, metrics tracker & helpers
 ```

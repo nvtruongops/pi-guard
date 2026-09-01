@@ -66,7 +66,7 @@ Mặc dù có chung nền tảng nghiên cứu về bảo mật LLM, **Tencent A
                                  ▼                            ▼
                  ┌──────────────────────────────┐     ┌──────────────────────────────┐
                  │    Tencent AI-Infra-Guard    │     │           PI-Guard           │
-                 │ (Red Teaming Scanner Suite)  │     │ (Real-time Guardrail Shield) │
+                 │ (Red Teaming Scanner Suite)  │     │ (Inline Low-Latency Guardrail)│
                  └──────────────────────────────┘     └──────────────────────────────┘
 ```
 
@@ -74,9 +74,9 @@ Mặc dù có chung nền tảng nghiên cứu về bảo mật LLM, **Tencent A
 
 | Tiêu chí | Tencent AI-Infra-Guard (2026) | Đồ Án PI-Guard (FPT Capstone) | Ý nghĩa khác biệt |
 | :--- | :--- | :--- | :--- |
-| **Mục tiêu Hệ thống** | **Offensive Red Teaming & Scanner**: Chủ động tấn công, quét tìm lỗ hổng của toàn bộ hệ sinh thái AI. | **Defensive Guardrail Middleware**: Tấm khiên phòng ngự nội tuyến, bảo vệ ứng dụng LLM trước các prompt độc hại. | Tencent là công cụ kiểm thử xâm nhập (Red Team); PI-Guard là hệ thống phòng thủ thời gian thực (Blue Team). |
-| **Thời điểm Vận hành** | **Offline / Scheduled Scan**: Chạy định kỳ hoặc trước khi triển khai hệ thống (mỗi lần quét có thể kéo dài hàng chục phút). | **Online / Inline Real-time**: Chạy liên tục trên luồng request người dùng gửi tới ứng dụng LLM. | PI-Guard yêu cầu khắt khe về tính ổn định và tính sẵn sàng 24/7. |
-| **Yêu cầu Độ trễ (Latency)** | Chấp nhận độ trễ lớn (từ vài giây đến 10-30 phút cho các đợt multi-turn dialogue simulation). | **Siêu nhanh (Real-time)**: P95 Latency < 30ms, P50 < 10ms để không làm chậm trải nghiệm chat của người dùng. | Điểm khác biệt sống còn của giải pháp bảo mật cổng vào. |
+| **Mục tiêu Hệ thống** | **Offensive Red Teaming & Scanner**: Chủ động tấn công, quét tìm lỗ hổng của toàn bộ hệ sinh thái AI. | **Defensive Guardrail Middleware**: Tấm khiên phòng ngự nội tuyến, bảo vệ ứng dụng LLM trước các prompt độc hại. | Tencent là công cụ kiểm thử xâm nhập (Red Team); PI-Guard là hệ thống phòng thủ trực tuyến (Blue Team). |
+| **Thời điểm Vận hành** | **Offline / Scheduled Scan**: Chạy định kỳ hoặc trước khi triển khai hệ thống (mỗi lần quét có thể kéo dài hàng chục phút). | **Online / Inline Inspection**: Chạy liên tục trên luồng request người dùng gửi tới ứng dụng LLM. | PI-Guard yêu cầu khắt khe về tính ổn định và tính sẵn sàng 24/7. |
+| **Yêu cầu Độ trễ (Latency)** | Chấp nhận độ trễ lớn (từ vài giây đến 10-30 phút cho các đợt multi-turn dialogue simulation). | **Độ trễ thấp (Low-Latency)**: P95 Latency < 30ms, P50 < 10ms để không làm chậm trải nghiệm chat của người dùng. | Điểm khác biệt sống còn của giải pháp bảo mật cổng vào. |
 | **Phạm vi Nghiên cứu (Scope)** | **Rất rộng (4 tầng)**: Quét cổng mạng, cấu hình Docker/K8s, audit mã nguồn MCP tool, đến red teaming. | **Tập trung & Chuyên sâu (2 Key Attacks)**: Chuyên biệt hóa giải quyết **Prompt Injection** và **Jailbreak** trên tầng Prompt Input. | Đồ án bám sát tên đề tài, phạm vi khả thi, không bị dàn trải sang an ninh mạng hay code audit. |
 | **Cơ chế Mô hình** | Sử dụng LLM lớn làm Judge và Simulator (tốn chi phí token và tài nguyên lớn). | Huấn luyện **Mô hình Nhỏ Chuyên Dụng (Small Specialized Classifier)**: TF-IDF + Fine-tuned DeBERTa-v3 (chạy local/ONNX). | PI-Guard độc lập, chi phí vận hành thấp, bảo mật dữ liệu không gửi prompt ra API ngoài. |
 | **Chỉ số Quyết định** | **Attack Success Rate (ASR)**: Tỷ lệ tấn công thành công vào hệ thống mục tiêu. | **Trade-off Security vs Usability**: Cân bằng F1-score cao (>95%) với **FPR cực thấp (<1.5%)** trên câu hỏi an toàn. | Tencent chỉ cần biết có hack được không; PI-Guard phải đảm bảo không phá vỡ trải nghiệm người dùng bình thường. |
@@ -90,7 +90,7 @@ Mặc dù có chung nền tảng nghiên cứu về bảo mật LLM, **Tencent A
   - Trích dẫn mô hình phân tầng của Tencent (2026) để xây dựng mục *Threat Modeling & Attack Surface*.
   - Định vị PI-Guard là giải pháp phòng thủ chuyên sâu tầng Input Guardrail.
 - **Chương 2 (Literature Review & Related Work)**:
-  - So sánh các công cụ Red Teaming hiện đại (Tencent AI-Infra-Guard, Garak, PyRIT) với các giải pháp Guardrail thời gian thực (PI-Guard, Llama Guard, ProtectAI, NeMo Guardrails).
+  - So sánh các công cụ Red Teaming hiện đại (Tencent AI-Infra-Guard, Garak, PyRIT) với các giải pháp Guardrail trực tuyến (PI-Guard, Llama Guard, ProtectAI, NeMo Guardrails).
 - **Chương 3 (System Architecture & Methodology)**:
   - Kế thừa nguyên lý *Layer-Paradigm Matching* để lập luận cho thiết kế Hybrid (TF-IDF + DeBERTa-v3).
 - **Chương 4 (Experimental Evaluation & Robustness Testing)**:

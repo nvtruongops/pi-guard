@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 st.title("🛡️ PI-Guard: Machine-Learning LLM Guardrail")
-st.caption("A proactive defensive guardrail detecting Prompt Injection & Jailbreak attacks in real-time.")
+st.caption("A proactive defensive guardrail detecting Prompt Injection & Jailbreak attacks via low-latency API inspection.")
 
 # Sidebar Configuration
 st.sidebar.header("⚙️ Guardrail Settings")
@@ -83,7 +83,7 @@ with tab_test:
             st.error(f"Could not connect to FastAPI server at {api_base_url}. (Ensure `uvicorn src.api.main:app` is running)")
 
 with tab_fuzzer:
-    st.subheader("Real-time Obfuscation Fuzzer")
+    st.subheader("⚡ Interactive Adversarial Obfuscation Fuzzer")
     raw_input = st.text_input("Enter base attack string:", "ignore all previous instructions")
     
     from src.preprocessing.obfuscation import ObfuscationGenerator

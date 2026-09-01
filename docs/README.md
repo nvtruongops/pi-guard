@@ -11,8 +11,9 @@
 
 ### 📂 CẤU TRÚC PHÂN CẤP THƯ MỤC:
 
-| Thư mục con | Mục đích & Nội dung | Ghi chú & Quyền hạn |
+| Thư mục con / Tài liệu | Mục đích & Nội dung | Ghi chú & Quyền hạn |
 | :--- | :--- | :--- |
+| [`docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md) | 🏆 Tóm tắt quy chuẩn, cơ chế tính điểm & rubrics 6 Báo cáo IAP491 | Tài liệu tra cứu chung cho cả 4 thành viên |
 | [`docs/fpt_capstone_guide/`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/) | Tài liệu, biểu mẫu, rubrics hướng dẫn đồ án nội bộ FPT | **BẤT BIẾN / READ-ONLY** (Đã ignore khỏi Git) |
 | [`docs/thesis/`](file:///d:/Work/Do-an/docs/thesis/) | Nơi lưu Luận văn chính thức (`FINAL_THESIS.md`) và 6 chương đã chốt | Chỉ cập nhật khi nhóm họp chốt milestone |
 | [`docs/research/`](file:///d:/Work/Do-an/docs/research/) | Các bài tổng hợp nghiên cứu SOTA chính thức của nhóm | Đưa vào sau khi phản biện tuần |

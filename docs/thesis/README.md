@@ -2,30 +2,27 @@
 ## 🎓 FPT University Capstone Project Thesis (IAP491)
 
 > [!WARNING]
-> **LƯU Ý QUAN TRỌNG**:
-> - Thư mục này là **NƠI LƯU TRỮ BẢN BÁO CÁO VÀ CÁC CHƯƠNG LUẬN VĂN ĐÃ ĐƯỢC CẢ NHÓM HỌP DUYỆT CHỐT**.
-> - Hiện tại, toàn bộ các bản thảo đang soạn thảo cho **Review 1** nằm tại không gian làm việc của Trưởng nhóm:  
+> **TRẠNG THÁI HIỆN TẠI: [ON HOLD — CHỜ NGHIỆM THU REVIEW 1]**
+> - Thư mục `docs/thesis/` cấp gốc này là **NƠI LƯU TRỮ BẢN BÁO CÁO VÀ CÁC CHƯƠNG LUẬN VĂN ĐÃ ĐƯỢC CẢ NHÓM HỌP DUYỆT CHỐT**.
+> - Hiện tại dự án đang trong giai đoạn **Review 1 (Tuần 1 – Tuần 4)**, toàn bộ các bản thảo đang được Trưởng nhóm chủ trì soạn thảo và quản lý tại:  
 >   👉 [`workspaces/truong_data_eng/docs/thesis/`](file:///d:/Work/Do-an/workspaces/truong_data_eng/docs/thesis/)
-> - Sau khi nhóm họp tổng kết và chốt bản chính thức, các chương sẽ được đưa vào đây và chạy lệnh:
->   ```powershell
->   python scripts/compile_thesis.py
->   ```
+> - Thư mục này được **TẠM GIỮ (ON HOLD)** cho đến khi cả nhóm họp tổng kết, chốt bản Final Report Review 1 và đồng bộ chính thức ra đây.
 
 ---
 
-### 📂 CẤU TRÚC CHUẨN KHI NGHIỆM THU:
+### 📂 CẤU TRÚC KẾ HOẠCH BÀN GIAO:
 
 ```
 docs/thesis/
-├── README.md                      # Hướng dẫn quy chuẩn tài liệu luận văn
-├── FINAL_THESIS.md                # Bản Master toàn văn 6 chương (Biên dịch tự động)
-├── Review1_Presentation_Slides_Outline.md  # Dàn ý slide thuyết trình Review 1
-├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt tiêu chí chấm
-└── chapters/                      # 6 Chương luận văn chuẩn hóa (Được nạp tuần tự)
-    ├── 01_Introduction.md         # Chương 1: Bối cảnh & Phát biểu bài toán (Report No.1)
-    ├── 02_Literature_Review.md    # Chương 2: Khảo sát nghiên cứu & SOTA (Report No.2)
-    ├── 03_Methodology.md          # Chương 3: Phương pháp luận & Baseline ML (Report No.3)
-    ├── 04_Experimental_and_Results.md # Chương 4: Thực nghiệm & Kết quả (Report No.4)
-    ├── 05_Discussion.md           # Chương 5: Thảo luận, Giới hạn & Robustness (Report No.5)
-    └── 06_Conclusion_and_Future_Work.md # Chương 6: Kết luận & Hướng phát triển (Report No.6)
+├── README.md                      # Trạng thái [ON HOLD] & Hướng dẫn quy chuẩn
+├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # 🏆 Tổng hợp Quy chuẩn & Rubrics chấm điểm IAP491
+├── FINAL_THESIS.md                # Bản Master toàn văn 6 chương (Sẽ biên dịch sau khi chốt)
+└── chapters/                      # Thư mục chờ nhận 6 Chương chuẩn hóa
+    ├── 01_Introduction.md         # (Đang soạn thảo tại workspaces/truong_data_eng/)
+    ├── 02_Literature_Review.md    # (Đang soạn thảo tại workspaces/truong_data_eng/)
+    ├── 03_Methodology.md          # (Kế hoạch Review 2)
+    ├── 04_Experimental_and_Results.md # (Kế hoạch Hội Đồng 1)
+    ├── 05_Discussion.md           # (Kế hoạch Hội Đồng Final)
+    └── 06_Conclusion_and_Future_Work.md # (Kế hoạch Hội Đồng Final)
 ```
+

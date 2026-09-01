@@ -26,10 +26,10 @@
 │      │                                 │ (Tuần 8 - 10)   │ lượng hóa INT8 ONNX Engine  │
 ├──────┼─────────────────────────────────┼─────────────────┼─────────────────────────────┤
 │ 04   │ `04_ablation.ipynb`             │ 🏛️ Hội Đồng 1   │ Nghiên cứu triệt tiêu: đo   │
-│      │                                 │ (Tuần 10 - 11)  │ vai trò Base64 & 3L Defense │
+│      │                                 │ (Tuần 11 - 12)  │ vai trò Base64 & 3L Defense │
 ├──────┼─────────────────────────────────┼─────────────────┼─────────────────────────────┤
 │ 05   │ `05_error_analysis.ipynb`       │ 🎓 Hội Đồng     │ Phân tích ca chặn nhầm FPR  │
-│      │                                 │ Final (Tuần 13) │ & lọt lưới False Negatives  │
+│      │                                 │ Final (Tuần 14) │ & lọt lưới False Negatives  │
 └──────┴─────────────────────────────────┴─────────────────┴─────────────────────────────┘
 ```
 

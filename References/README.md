@@ -2,9 +2,10 @@
 ## 📚 17 Verified IEEE/ACM/ArXiv Papers (100% >= 2022)
 
 > [!NOTE]
-> Thư mục này lưu trữ toàn bộ 17 bài báo khoa học đỉnh cao (Full-text PDFs) làm nền tảng lý thuyết vững chắc cho đề tài PI-Guard.
-> Bảng tra cứu chi tiết đối sánh mã bài báo với từng module trong dự án nằm tại:  
-> 👉 [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/References/REFERENCES_LOG.md)
+> Thư mục này lưu trữ danh mục 17 bài báo khoa học chuẩn IEEE (100% >= 2022) làm nền tảng lý thuyết cho đề tài PI-Guard.
+> Toàn bộ 17 bài báo full-text PDF và bảng tra cứu chi tiết đang được Trưởng nhóm quản lý trực tiếp tại:  
+> 👉 [`workspaces/truong_data_eng/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truong_data_eng/References/REFERENCES_LOG.md)
+
 
 ---
 
@@ -27,3 +28,21 @@
 15. **Ouyang et al. (2022)**: *Training language models to follow instructions with human feedback (InstructGPT).* (NeurIPS).
 16. **Zhao et al. (2023)**: *A Survey of Large Language Models.* (IEEE TKDE).
 17. **Tencent AI Research (2026)**: *AI Infrastructure Guard: Multi-Layer Agentic Red-Teaming and Low-Latency Input Firewalls for Enterprise LLM Systems.* (IEEE S&P / AI Security).
+
+---
+
+### 🔍 DANH MỤC 10 BÀI BÁO ĐƯỢC SÀNG LỌC TẠI MEETING 2 (01/09/2026):
+Chi tiết biên bản: [`Meeting/Meeting 2_01_09_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%202_01_09_26.md)
+
+| # | Bài Báo / Nguồn | Tác giả & Năm | Quyết Định Sàng Lọc | Ứng Dụng Trong Đồ Án |
+| :---: | :--- | :--- | :---: | :--- |
+| 1 | **RAP-ID** (ACL Findings 2026) | Du et al. (2026) | **IN-SCOPE** | Cơ sở lý thuyết Pre-fill pass dynamics (DL, CG, PC) |
+| 2 | **BIPIA** (ACM KDD '25) | Yi et al. (2025) | **IN-SCOPE** | Benchmark Indirect Prompt Injection đa tác vụ |
+| 3 | **Indirect Injection** (ACM AISEC 2023) | Greshake et al. (2023) | **IN-SCOPE** | Cơ sở file upload / RAG bản chất là prompt injection |
+| 4 | **Jailbroken** (NeurIPS 2023) | Wei et al. (2023) | ❌ **OUT-OF-SCOPE** | Loại bỏ do can thiệp RLHF/Safety Training bên trong LLM |
+| 5 | **GCG Attack** (arXiv:2307.15043) | Zou et al. (2023) | **PARTIAL** | Giữ lại các mẫu đối kháng (adversarial suffixes) làm test set |
+| 6 | **Jailbreak Study** (ACL Findings 2024) | ACL (2024) | **IN-SCOPE** | Bảng phân loại tấn công & cơ chế phòng vệ Chapter 2 |
+| 7 | **Jailbreak Survey** (arXiv:2407.04295) | Survey (2024) | **IN-SCOPE** | Khảo sát Black-box defenses đặt ngoài API |
+| 8 | **Do-Not-Answer** (arXiv:2308.13387) | Wang et al. (2023) | **IN-SCOPE** | Luận cứ khoa học: Mô hình nhỏ < 600M (DeBERTa) sánh ngang GPT-4 |
+| 9 | **Vulnerabilities Survey** (arXiv:2406.00240) | Survey (2024) | **IN-SCOPE** | 3 chiến thuật Jailbreak & 3 kỹ thuật Black-box defense |
+| 10 | **JailGuard** (ACM TOSEM 2025) | TOSEM (2025) | **PARTIAL** | Thuật toán Targeted Mutators (Algorithm 1) cho test set Robustness |

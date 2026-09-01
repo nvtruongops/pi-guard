@@ -31,7 +31,23 @@ All 4 members work hands-on across the entire pipeline in parallel workspaces (`
 1. **Parallel Full-Stack Hands-on**: Every member explores data collection, baseline training, transformer fine-tuning, adversarial testing, and API integration to build deep, end-to-end expertise.
 2. **Weekly Convergence Sessions**: The team compares experimental metrics (F1, FPR, Latency), selects the champion models for `src/`, and co-authors thesis chapters.
 3. **Council Defense Mastery**: Every member understands the full ecosystem end-to-end, preventing knowledge silos and enabling confident defense before the FPT Committee.
-4. **Leader Governance**: Student 1 (Nguyễn Văn Trường) supervises overall project direction, code merges, and milestone submissions.
+4. **Leader Governance**: Student 1 (Nguyễn Văn Trường / `nvtruongops`) supervises overall project direction, code merges, and milestone submissions.
+
+---
+
+## 🔒 Strict Workspace Boundary & Commit Audit Rules
+
+1. **Member Boundary Isolation**:
+   - Members (Đức, Việt, Phương) MUST ONLY create/edit files inside their designated workspace folder:
+     - `workspaces/duc_baseline_ml/`
+     - `workspaces/viet_transformer_robustness/`
+     - `workspaces/phuong_api_dashboard/`
+   - Direct edits to common directories (`src/`, `docs/`, `Meeting/`, `reports/`, `models/`, `data/`) by non-leader members are strictly prohibited.
+2. **Leader Sole Merge Authorization**:
+   - Only the Leader (`nvtruongops`) is authorized to merge champion artifacts from `workspaces/` into root production directories during weekly convergence sessions.
+3. **Automated Commit Audit Enforcement**:
+   - All commits and PRs must pass `python scripts/audit_workspace_boundaries.py`.
+   - Pre-commit hook (`scripts/audit_workspace_boundaries.py --install-hook`) must be installed on all member environments.
 
 ---
 

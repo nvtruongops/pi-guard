@@ -57,7 +57,7 @@
 ### Slide 5: Khảo Sát SOTA Guardrails & Kiến Trúc Bảo Vệ 3 Lớp (Chapter 2 — Đức trình bày)
 - **Khảo sát 3 trường phái Guardrail trong thực tế (Literature Review)**:
   - *Regex/Keyword Rules*: Nhanh (<1ms) nhưng quá giòn (*brittle*), bị bypass hoàn toàn bởi `1gn0r3` và Base64.
-  - *LLM-as-a-Judge (Llama Guard 3 8B, NeMo)*: Quá nặng (>16GB VRAM GPU, Latency >500ms, không khả thi cho real-time API).
+  - *LLM-as-a-Judge (Llama Guard 3 8B, NeMo)*: Quá nặng (>16GB VRAM GPU, Latency >500ms, không khả thi cho chốt chặn API có lưu lượng lớn).
   - *Transformer Encoders (ProtectAI, PI-Guard)*: Cân bằng tối ưu giữa độ chính xác ngữ nghĩa và tốc độ.
 - **Chiến lược Phòng thủ 3 Lớp Tiêu Chuẩn (Defense-in-Depth)**:
   - *Lớp 1 (PI-Guard Input Guardrail - Trọng tâm đồ án)*: Tiền xử lý + Hybrid ML Classifier + Policy Engine.
@@ -111,11 +111,11 @@
 
 ### Slide 9: Ranh Giới Scope, 4 Cột Mốc Quyết Định & Phân Công Nhiệm Vụ (Phương trình bày)
 - **Ranh giới Scope (In-Scope vs. Out-of-Scope)**:
-  - *In-Scope*: 2 trục cốt lõi Prompt Injection & Jailbreak trên chuỗi văn bản; Test độ bền với Leetspeak, Base64; Real-time API Middleware.
+  - *In-Scope*: 2 trục cốt lõi Prompt Injection & Jailbreak trên chuỗi văn bản; Test độ bền với Leetspeak, Base64; FastAPI Middleware trực tuyến (Low-latency).
   - *Out-of-Scope*: Tấn công đa phương thức (Ảnh/Audio), tấn công hạ tầng mạng DDoS, trích xuất trọng số GPU, dựng hệ thống RAG Database.
 - **4 Cột Mốc Bảo Vệ Đồ Án Quyết Định**:
-  - 🎯 **Cột mốc 1: REVIEW 1 (GVHD - Tuần 3-4)**: Báo cáo toàn diện **Chapter 1 (Introduction) + Chapter 2 (Literature Review)**.
-  - 🎯 **Cột mốc 2: REVIEW 2 (GVHD - Tuần 7)**: Báo cáo **Chapter 3 (Methodology, Group-Aware Split & Baseline ML)**.
-  - 🏛️ **Cột mốc 3: BÁO CÁO HỘI ĐỒNG 1 (Hội đồng Giữa kỳ - Tuần 11-12)**: Báo cáo **Chapter 4 (Transformer DeBERTa-v3, ONNX INT8, FastAPI Prototype & Streamlit Demo)**.
-  - 🎓 **Cột mốc 4: BÁO CÁO HỘI ĐỒNG FINAL (Hội đồng Tốt nghiệp - Tuần 14-15)**: Toàn văn Luận văn 6 Chương hoàn chỉnh, Quét Turnitin (< 20%) & Bảo vệ Tốt nghiệp chính thức.
+  - 🎯 **Cột mốc 1: REVIEW 1 (GVHD - Tuần 3-4 / 28/09 – 04/10)**: Báo cáo toàn diện **Chapter 1 (Introduction) + Chapter 2 (Literature Review)**.
+  - 🎯 **Cột mốc 2: REVIEW 2 (GVHD - Tuần 8 / 26/10 – 01/11)**: Báo cáo **Chapter 3 (Methodology, Group-Aware Split, Baseline ML & Cập nhật Docs)**.
+  - 🏛️ **Cột mốc 3: BÁO CÁO HỘI ĐỒNG 1 (Hội đồng Giữa kỳ - Tuần 13 / 30/11 – 06/12)**: Báo cáo **Chapter 4 (Transformer DeBERTa-v3, ONNX INT8, FastAPI Prototype & Streamlit Demo)**.
+  - 🎓 **Cột mốc 4: BÁO CÁO HỘI ĐỒNG FINAL (Hội đồng Tốt nghiệp - Tuần 15 / 14/12 – 20/12)**: Toàn văn Luận văn 6 Chương hoàn chỉnh, Quét Turnitin (< 20%) & Bảo vệ Tốt nghiệp chính thức.
 - **Phân công 4 thành viên**: Trường (Leader - Ch.1 & Ch.2), Đức (Ch.3), Việt (Ch.4), Phương (Ch.5 & Ch.6).

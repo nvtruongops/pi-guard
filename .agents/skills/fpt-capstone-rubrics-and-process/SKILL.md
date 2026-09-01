@@ -22,8 +22,8 @@ $$\text{Final Project Mark} = (\text{Process Mark } [6 \text{ Reports}] \times 5
 ### Process Mark Weights (Continuous Assessment by Supervisor):
 1. **Report No.1: Introduction** — **10%** (Due: Week 3)
 2. **Report No.2: Literature Review** — **25%** (Due: Week 4)
-3. **Report No.3: Methodology** — **20%** (Due: Week 7)
-4. **Report No.4: Experimental and Results** — **25%** (Due: Week 9)
+3. **Report No.3: Methodology** — **20%** (Due: Week 8)
+4. **Report No.4: Experimental and Results** — **25%** (Due: Week 10)
 5. **Report No.5: Discussion** — **15%** (Due: Week 13)
 6. **Report No.6: Conclusion and Future Work** — **5%** (Due: Week 13)
 
@@ -35,9 +35,9 @@ $$\text{Final Project Mark} = (\text{Process Mark } [6 \text{ Reports}] \times 5
 | :--- | :--- | :--- |
 | **Week 1** | Form team & Finalize Topic Register | Supervisor approval on [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) |
 | **Week 3-4** | 🎯 **REVIEW 1 (GVHD)**: Problem Definition & Lit Review | Báo cáo toàn diện **Chapter 1 & Chapter 2** (Threat Model NIST, SOTA, 3 RQs, 4 Demo) |
-| **Week 7** | 🎯 **REVIEW 2 (GVHD)**: Methodology & Baseline ML | Báo cáo **Chapter 3** (Dataset curation, Group-Aware Split, TF-IDF + Baseline ML results) |
-| **Week 11-12** | 🏛️ **BÁO CÁO HỘI ĐỒNG 1 (Hội đồng Giữa kỳ)** | Báo cáo **Chapter 4** (DeBERTa-v3 Fine-tuning, ONNX INT8, FastAPI Prototype & Streamlit Demo) |
-| **Week 13** | Submit **Report No.5** (Discussion) & **Report No.6** (Conclusion) | Đánh giá bảo mật, Trade-off FPR, Limitations, Future work |
+| **Week 7-8** | 🎯 **REVIEW 2 (GVHD - Tuần 8)**: Methodology, Baseline ML & Cập nhật Docs | Soạn thảo, cập nhật docs & Báo cáo **Chapter 3** (Dataset curation, Group-Aware Split, TF-IDF + Baseline ML results) |
+| **Week 13** | 🏛️ **BÁO CÁO HỘI ĐỒNG 1 (Hội đồng Giữa kỳ)** | Báo cáo **Chapter 4** (DeBERTa-v3 Fine-tuning, ONNX INT8, FastAPI Prototype & Streamlit Demo) |
+| **Week 13-14** | Submit **Report No.5** (Discussion) & **Report No.6** (Conclusion) | Đánh giá bảo mật, Trade-off FPR, Limitations, Future work |
 | **Week 14** | Complete Final Thesis Compilation | Turnitin plagiarism check (< 20%), Supervisor sign-off |
 | **Week 15** | 🎓 **BÁO CÁO HỘI ĐỒNG FINAL (Bảo vệ Tốt nghiệp)** | Thuyết trình bảo vệ toàn diện 6 Chương trước Hội đồng chấm Tốt nghiệp chính thức |
 

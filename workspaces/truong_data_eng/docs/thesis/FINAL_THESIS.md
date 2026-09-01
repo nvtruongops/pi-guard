@@ -49,16 +49,16 @@ Vấn đề cốt lõi của các mô hình Transformer hiện nay bắt nguồn
 
 1. **Lẫn lộn giữa Lệnh và Dữ liệu (Instruction/Data Ambiguity)**: Trong cơ chế Self-Attention của Transformer, System Instruction (chỉ thị điều khiển) và User Input (dữ liệu đầu vào) bị ghép chung thành một chuỗi token phẳng ($X = S \mathbin{\Vert} U$). Mô hình không có cơ chế phân tách phần cứng hay quyền hạn (Privilege Separation) giữa dữ liệu và câu lệnh.
 2. **Sự thất bại của các bộ lọc từ khóa tĩnh (Keyword Blacklist Failure)**: Các bộ quy tắc Regex/Blacklist thông thường dễ dàng bị kẻ tấn công vô hiệu hóa thông qua các kỹ thuật đột biến cú pháp: chèn ký tự leetspeak (`1gn0r3`), phân tách khoảng trắng (`i g n o r e`), mã hóa Base64/Cipher [[17]](#ref17), hoặc bọc trong các kịch bản nhập vai phức tạp (DAN / Roleplay Jailbreak) [[12]](#ref12), [[15]](#ref15).
-3. **Nghịch lý của giải pháp LLM-as-a-Judge**: Việc sử dụng một LLM lớn khác (ví dụ: Llama Guard 3 8B) để kiểm tra prompt gây ra độ trễ quá lớn (>500ms đến 1.5s), tiêu tốn tài nguyên phần cứng (>16GB VRAM GPU) và chi phí vận hành API quá cao, không khả thi cho môi trường sản xuất thời gian thực [[9]](#ref9), [[10]](#ref10).
+3. **Nghịch lý của giải pháp LLM-as-a-Judge**: Việc sử dụng một LLM lớn khác (ví dụ: Llama Guard 3 8B) để kiểm tra prompt gây ra độ trễ quá lớn (>500ms đến 1.5s), tiêu tốn tài nguyên phần cứng (>16GB VRAM GPU) và chi phí vận hành API quá cao, không khả thi cho môi trường sản xuất có lưu lượng truy cập lớn [[9]](#ref9), [[10]](#ref10).
 
-Do đó, bài toán cấp thiết đặt ra là: **Cần xây dựng một cơ chế Guardrail chuyên biệt sử dụng Machine Learning / Transformer nhỏ gọn, đặt ngay tại cổng API, có khả năng phân loại ngữ nghĩa sâu với độ trễ siêu thấp (P95 < 30ms trên CPU), tỷ lệ chặn nhầm cực thấp (FPR < 1.5%), và có độ bền cao trước các kỹ thuật lẩn tránh cú pháp (Leetspeak, Base64, Spacing).**
+Do đó, bài toán cấp thiết đặt ra là: **Cần xây dựng một cơ chế Guardrail chuyên biệt sử dụng Machine Learning / Transformer nhỏ gọn, đặt ngay tại cổng API, có khả năng phân loại ngữ nghĩa sâu với độ trễ thấp (P95 < 30ms trên CPU), tỷ lệ chặn nhầm cực thấp (FPR < 1.5%), và có độ bền cao trước các kỹ thuật lẩn tránh cú pháp (Leetspeak, Base64, Spacing).**
 
 ---
 
 ## 1.3. Research Objectives & Research Questions (Mục Tiêu & 3 Câu Hỏi Nghiên Cứu)
 
 ### 1.3.1. Mục Tiêu Tổng Quát:
-Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-Guard** — Lớp phòng thủ Guardrail thời gian thực dạng API Middleware đặt trước các ứng dụng LLM để phát hiện và ngăn chặn hai vector tấn công chính: **Prompt Injection** và **Jailbreak**.
+Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-Guard** — Lớp phòng thủ Guardrail dạng API Middleware trực tuyến đặt trước các ứng dụng LLM để phát hiện và ngăn chặn hai vector tấn công chính: **Prompt Injection** và **Jailbreak**.
 
 ### 1.3.2. Các Mục Tiêu Cụ Thể (Specific Deliverables):
 1. **Bộ dữ liệu chuẩn hóa**: Xây dựng tập dữ liệu đa nguồn (Deepset, Gandalf, In-The-Wild, Benign) áp dụng thuật toán *Group-Aware Splitting* chống rò rỉ dữ liệu.
@@ -95,7 +95,7 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 - **Chỉ số đo lường**: $\text{ARR} = \frac{F_1^{\text{Adversarial}}}{F_1^{\text{Clean}}} \ge 0.95$, $\text{ASR} < 5\%$, $\Delta F_1 = |F_1^{\text{Clean}} - F_1^{\text{Adv}}| < 5\%$.
 
 #### 📌 RQ3 — Cân Bằng An Toàn, Khống Chế Tỷ Lệ Chặn Nhầm & Bảo Toàn Ranh Giới Khi Lượng Hóa:
-- **Câu hỏi**: *Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và quá trình lượng hóa động INT8 cùng kiến trúc proxy bất đồng bộ có thể bảo toàn ranh giới quyết định an toàn trong khi đạt độ trễ thời gian thực (P95 < 30ms trên CPU) mà không tạo ra điểm nghẽn từ chối dịch vụ (DoS)?*
+- **Câu hỏi**: *Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và quá trình lượng hóa động INT8 cùng kiến trúc proxy bất đồng bộ có thể bảo toàn ranh giới quyết định an toàn trong khi duy trì độ trễ thấp tối ưu (P95 < 30ms trên CPU) mà không tạo ra điểm nghẽn từ chối dịch vụ (DoS)?*
 - **Chỉ số đo lường**: $\text{FPR} < 1.5\%$ (kỳ vọng $< 1.1\%$), $\Delta \text{Decision Boundary (KL)} < 0.05$, $\Delta F_1^{\text{Quant}} < 0.3\%$, $\text{P95 Latency} < 30\text{ms}$ trên CPU.
 
 ---
@@ -110,7 +110,7 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 
 ### 1.4.2. Ý Nghĩa Khoa Học & Thực Tiễn Của PI-Guard
 - **Khoa học**: Chứng minh tính ưu việt của cơ chế *Disentangled Attention* trong nhận diện trật tự đảo câu, giải quyết bài toán chống rò rỉ dữ liệu qua *Group-Aware Splitting*, và chứng minh tính hiệu quả của *Character n-grams* trong kháng nhiễu Leetspeak.
-- **Thực tiễn**: Đóng gói thành giải pháp Plug-and-Play (FastAPI Middleware) chi phí $0, độ trễ <15ms trên CPU, đánh chặn 100% tấn công trước khi chạm vào LLM.
+- **Thực tiễn**: Đóng gói thành giải pháp Plug-and-Play (FastAPI Middleware) chi phí $0, độ trễ thấp <30ms trên CPU, đánh chặn các đòn tấn công trước khi chạm vào LLM.
 
 ---
 
@@ -122,7 +122,7 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 │  - 2 Bài toán cốt lõi: Prompt Injection (Direct/Indirect) & Jailbreak    │
 │  - Chuỗi văn bản đầu vào: English Text Prompts (Tiêu chuẩn nghiên cứu)   │
 │  - Kỹ thuật lẩn tránh cú pháp: Leetspeak, Base64, Spacing (Test độ bền)  │
-│  - Thời gian thực (Real-time): P95 Latency < 30ms trên CPU thông thường  │
+│  - Độ trễ thấp (Low-latency): P95 Latency < 30ms trên CPU thông thường   │
 │  - An toàn vận hành: False Positive Rate (FPR) < 1.5% trên tập Benign    │
 │  - Kiến trúc: Hybrid TF-IDF Baseline + Fine-tuned DeBERTa-v3 + ONNX INT8 │
 └──────────────────────────────────────────────────────────────────────────┘
@@ -260,7 +260,7 @@ Các giải pháp bảo vệ ứng dụng LLM hiện nay được chia thành 3 
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **Kích thước mô hình** | 0 MB | ~8,000M (8B) | API Đám mây | 86M | **86M (Tối ưu INT8 < 150MB)** |
 | **Hạ tầng triển khai** | CPU / RAM cực nhẹ | GPU VRAM > 16GB | Máy chủ ngoài | CPU / GPU nhẹ | **CPU phổ thông (Commodity CPU)** |
-| **Độ trễ suy luận (P95)** | **< 1 ms** | **> 500 ms - 1.5s** | ~200 ms - 400 ms | ~45 ms | **~12.8 ms (Thời gian thực)** |
+| **Độ trễ suy luận (P95)** | **< 1 ms** | **> 500 ms - 1.5s** | ~200 ms - 400 ms | ~45 ms | **< 30 ms (Độ trễ thấp)** |
 | **Chi phí vận hành API** | $0 | Rất đắt (Token compute) | Trả phí theo API | Thấp | **$0 (Tự host độc lập)** |
 | **Phát hiện Prompt Injection** | Kém (<40%) | Tốt (~94%) | Yếu (~60% - chủ yếu lọc Toxic) | Rất tốt (~97%) | **Xuất sắc (> 98.5% Macro F1)** |
 | **Kháng nhiễu Leetspeak/Base64** | Hoàn toàn thất bại | Trung bình (Bị lừa bởi Ciphers) | Thất bại trước Base64 | Trung bình | **Bền vững ($\Delta F_1 < 5\%$, có Decoder)** |
@@ -306,8 +306,8 @@ Từ kết quả khảo sát các công trình quốc tế, nhóm xác định *
    - Thiết kế cơ chế kết hợp giữa bộ lọc cú pháp siêu nhanh (**Word + Character n-grams TF-IDF** $\sim 3\text{ms}$) và bộ phân loại ngữ nghĩa sâu (**Fine-tuned DeBERTa-v3** $\sim 12.8\text{ms}$).
    - Tích hợp tầng tiền xử lý chuẩn hóa Unicode NFKC và bộ giải mã Heuristic Base64 tự động để kháng các kỹ thuật lẩn tránh đối kháng, cam kết độ suy giảm hiệu năng $\Delta F_1 < 5\%$.
 
-3. **Đóng góp 3 (Tối ưu hóa sản xuất — Lượng hóa động ONNX INT8)**:
-   - Áp dụng kỹ thuật Post-Training Dynamic INT8 Quantization sang ONNX Runtime, giảm dung lượng bộ nhớ $> 70\%$ ($< 150\text{MB}$), đạt độ trễ thời gian thực $\text{P95} < 30\text{ms}$ trên CPU thông thường mà độ suy giảm chính xác $< 0.3\%$.
+3. **Đóng góp 3 (Tối ưu hóa triển khai — Suy luận độ trễ thấp trên CPU)**:
+   - Tích hợp kỹ thuật Post-Training Dynamic INT8 Quantization sang ONNX Runtime, tối ưu hóa suy luận độ trễ thấp ($\text{P95} < 30\text{ms}$ trên CPU thông thường) với mức suy giảm chính xác tối thiểu ($< 0.3\%$), giúp bảo vệ hệ thống trước nguy cơ tắc nghẽn dịch vụ mà không đòi hỏi phần cứng GPU đắt tiền.
 
 4. **Đóng góp 4 (Giải pháp triển khai — Model-Agnostic API Middleware & Demo)**:
    - Đóng gói toàn bộ hệ thống thành **Asynchronous FastAPI Middleware** và giao diện **Streamlit Testing Dashboard** với ma trận 4 kịch bản demo ($2 \times 2$), chứng minh khả năng bảo vệ đồng nhất cho cả 5 mô hình LLM tiêu chuẩn qua Cloud API (GPT-4o-mini, Gemini 1.5 Flash, LLaMA-3.1, Mistral, Qwen), giảm tỷ lệ tấn công ASR từ $35.5\% - 78.4\%$ xuống $0.0\%$.
@@ -326,12 +326,12 @@ Các luận điểm trong Chương 2 được bảo chứng bởi 17 tài liệu
 
 # CHAPTER 3: METHODOLOGY
 
-> ⏳ **Trạng thái**: *Chưa thực hiện (Dự kiến hoàn thành: Tuần 7 — Report No. 3 & Review 2)*  
+> ⏳ **Trạng thái**: *Chưa thực hiện (Dự kiến thực hiện: Tuần 7 - 8 — Soạn thảo, Cập nhật Docs & Bảo vệ Review 2 Tuần 8 - Report No.3)*  
 > 👥 **Thành viên phụ trách**: Nguyễn Quí Đức & Nguyễn Văn Trường (Leader)  
 
 ---
 
-*(Nội dung sẽ được cập nhật trong Tuần 7 theo lộ trình FPT IAP491)*
+*(Nội dung sẽ được cập nhật và hoàn thiện trong Tuần 7 - 8 theo lộ trình FPT IAP491)*
 
 
 ---
