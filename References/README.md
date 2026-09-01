@@ -4,7 +4,7 @@
 > [!NOTE]
 > Thư mục này lưu trữ danh mục 17 bài báo khoa học chuẩn IEEE (100% >= 2022) làm nền tảng lý thuyết cho đề tài PI-Guard.
 > Toàn bộ 17 bài báo full-text PDF và bảng tra cứu chi tiết đang được Trưởng nhóm quản lý trực tiếp tại:  
-> 👉 [`workspaces/truong_data_eng/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truong_data_eng/References/REFERENCES_LOG.md)
+> 👉 [`workspaces/truongnv/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truongnv/References/REFERENCES_LOG.md)
 
 
 ---

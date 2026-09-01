@@ -8,7 +8,7 @@ def compile_thesis():
     
     chapter_files = sorted(glob.glob(os.path.join(chapters_dir, '[0-9]*.md')))
     if not chapter_files:
-        alt_chapters_dir = r'D:\Work\Do-an\workspaces\truong_data_eng\docs\thesis\chapters'
+        alt_chapters_dir = r'D:\Work\Do-an\workspaces\truongnv\docs\thesis\chapters'
         chapter_files = sorted(glob.glob(os.path.join(alt_chapters_dir, '[0-9]*.md')))
     
     header_content = """# MINISTRY OF EDUCATION AND TRAINING
@@ -47,7 +47,7 @@ def compile_thesis():
             
     # Append References if available
     ref_candidates = [
-        r'D:\Work\Do-an\workspaces\truong_data_eng\References\REFERENCES_LOG.md',
+        r'D:\Work\Do-an\workspaces\truongnv\References\REFERENCES_LOG.md',
         r'D:\Work\Do-an\References\REFERENCES_LOG.md'
     ]
     ref_file = next((p for p in ref_candidates if os.path.exists(p)), None)
@@ -59,8 +59,7 @@ def compile_thesis():
 
             
     output_files = [
-        output_file,
-        r'D:\Work\Do-an\workspaces\truong_data_eng\docs\thesis\FINAL_THESIS.md'
+        r'D:\Work\Do-an\workspaces\truongnv\docs\thesis\FINAL_THESIS.md'
     ]
     for out in output_files:
         os.makedirs(os.path.dirname(out), exist_ok=True)

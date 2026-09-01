@@ -253,16 +253,16 @@ def generate_report():
     tasks = [
         ('T01', 'Tuần 1 (07/09 - 13/09)', 'Họp GVHD định hướng bài toán (Meeting 1_29_08) & Sàng lọc 10 papers khoa học (Meeting 2_01_09)', 'Hoàn thành', 'Cả 4 thành viên', 'Biên bản Meeting 1 & Meeting 2.md', '13/09/2026'),
         ('T02', 'Tuần 1 (07/09 - 13/09)', 'Thu thập & thẩm định 17 papers chuẩn IEEE >= 2022 theo CAPSTONE REGISTER', 'Hoàn thành', 'Trường (Leader)', 'References/ & REFERENCES_LOG.md', '13/09/2026'),
-        ('T03', 'Tuần 2 (14/09 - 20/09)', 'Soạn thảo Chapter 1: Background & Problem Statement (Lỗ hổng Von Neumann NLP)', 'Đang thực hiện', 'Trường', 'workspaces/truong_data_eng/docs/', '16/09/2026'),
-        ('T04', 'Tuần 2 (14/09 - 20/09)', 'Phân loại Threat Taxonomy (Direct/Indirect Injection vs Jailbreak theo OWASP)', 'Đang thực hiện', 'Trường & Đức', 'workspaces/truong_data_eng/docs/', '17/09/2026'),
-        ('T05', 'Tuần 2 (14/09 - 20/09)', 'Xây dựng Threat Model (NIST AI 100-2e2025) & Attack Surface (/v1/chat)', 'Đang thực hiện', 'Đức', 'workspaces/duc_baseline_ml/', '18/09/2026'),
-        ('T06', 'Tuần 2 (14/09 - 20/09)', 'Thiết kế Kiến trúc bảo vệ 3 lớp & Cơ chế phòng thủ độ bền Robustness', 'Đang thực hiện', 'Đức', 'workspaces/duc_baseline_ml/', '19/09/2026'),
-        ('T07', 'Tuần 2 (14/09 - 20/09)', 'Soạn thảo 3 Câu hỏi nghiên cứu IEEE (RQ1-RQ3), 3 Gaps & 4 Đóng góp mới', 'Đang thực hiện', 'Phương', 'workspaces/phuong_api_dashboard/', '20/09/2026'),
-        ('T08', 'Tuần 3 (21/09 - 27/09)', 'Khảo sát SOTA Guardrails, Model Selection Matrix & Benchmark 5 Target LLMs', 'Đang thực hiện', 'Việt', 'workspaces/viet_transformer_robustness/', '23/09/2026'),
-        ('T09', 'Tuần 3 (21/09 - 27/09)', 'Thiết kế & kiểm thử Ma trận 4 Kịch bản Demo (2x2: Vulnerable vs Protected)', 'Đang thực hiện', 'Việt & Phương', 'workspaces/viet_transformer_robustness/', '25/09/2026'),
-        ('T10', 'Tuần 3 (21/09 - 27/09)', 'Hoàn thiện toàn văn Report No.1: Introduction (Chapter 1 — 10% Process Mark)', 'Đang thực hiện', 'Trường (Leader)', 'workspaces/truong_data_eng/docs/', '26/09/2026'),
-        ('T11', 'Tuần 3 (21/09 - 27/09)', 'Hoàn thiện toàn văn Report No.2: Literature Review (Chapter 2 — 25% Process Mark)', 'Đang thực hiện', 'Trường & Phương', 'workspaces/truong_data_eng/docs/', '27/09/2026'),
-        ('T12', 'Tuần 3 (21/09 - 27/09)', 'Thiết kế dàn ý slide 9 trang Review 1 Presentation Slides (Bao gồm 2 Chương)', 'Đang thực hiện', 'Phương', 'workspaces/truong_data_eng/docs/', '27/09/2026'),
+        ('T03', 'Tuần 2 (14/09 - 20/09)', 'Soạn thảo Chapter 1: Background & Problem Statement (Lỗ hổng Von Neumann NLP)', 'Đang thực hiện', 'Trường', 'workspaces/truongnv/docs/', '16/09/2026'),
+        ('T04', 'Tuần 2 (14/09 - 20/09)', 'Phân loại Threat Taxonomy (Direct/Indirect Injection vs Jailbreak theo OWASP)', 'Đang thực hiện', 'Trường & Đức', 'workspaces/truongnv/docs/', '17/09/2026'),
+        ('T05', 'Tuần 2 (14/09 - 20/09)', 'Xây dựng Threat Model (NIST AI 100-2e2025) & Attack Surface (/v1/chat)', 'Đang thực hiện', 'Đức', 'workspaces/ducnq/', '18/09/2026'),
+        ('T06', 'Tuần 2 (14/09 - 20/09)', 'Thiết kế Kiến trúc bảo vệ 3 lớp & Cơ chế phòng thủ độ bền Robustness', 'Đang thực hiện', 'Đức', 'workspaces/ducnq/', '19/09/2026'),
+        ('T07', 'Tuần 2 (14/09 - 20/09)', 'Soạn thảo 3 Câu hỏi nghiên cứu IEEE (RQ1-RQ3), 3 Gaps & 4 Đóng góp mới', 'Đang thực hiện', 'Phương', 'workspaces/phuongddd/', '20/09/2026'),
+        ('T08', 'Tuần 3 (21/09 - 27/09)', 'Khảo sát SOTA Guardrails, Model Selection Matrix & Benchmark 5 Target LLMs', 'Đang thực hiện', 'Việt', 'workspaces/vietpmh/', '23/09/2026'),
+        ('T09', 'Tuần 3 (21/09 - 27/09)', 'Thiết kế & kiểm thử Ma trận 4 Kịch bản Demo (2x2: Vulnerable vs Protected)', 'Đang thực hiện', 'Việt & Phương', 'workspaces/vietpmh/', '25/09/2026'),
+        ('T10', 'Tuần 3 (21/09 - 27/09)', 'Hoàn thiện toàn văn Report No.1: Introduction (Chapter 1 — 10% Process Mark)', 'Đang thực hiện', 'Trường (Leader)', 'workspaces/truongnv/docs/', '26/09/2026'),
+        ('T11', 'Tuần 3 (21/09 - 27/09)', 'Hoàn thiện toàn văn Report No.2: Literature Review (Chapter 2 — 25% Process Mark)', 'Đang thực hiện', 'Trường & Phương', 'workspaces/truongnv/docs/', '27/09/2026'),
+        ('T12', 'Tuần 3 (21/09 - 27/09)', 'Thiết kế dàn ý slide 9 trang Review 1 Presentation Slides (Bao gồm 2 Chương)', 'Đang thực hiện', 'Phương', 'workspaces/truongnv/docs/', '27/09/2026'),
         ('T13', 'Tuần 4 (28/09 - 04/10)', 'Thiết kế slide PowerPoint (.pptx) & Tập dượt thuyết trình 15 phút (2 Chương)', 'Chưa bắt đầu', 'Cả 4 thành viên', 'Slide PPTX Review 1', '02/10/2026'),
         ('T14', 'Tuần 4 (28/09 - 04/10)', 'Họp tổng kết tuần, cập nhật Process Report Excel & Nộp Report 1 & 2 cho GVHD', 'Chưa bắt đầu', 'Trường (Leader)', 'PI_GUARD_PROCESS_REPORT.xlsx', '03/10/2026'),
         ('T15', 'Tuần 4 (28/09 - 04/10)', 'CỘT MỐC 1 — BẢO VỆ REVIEW 1 TRƯỚC GVHD (CHAPTERS 1 & 2)', 'Chưa bắt đầu', 'Cả 4 thành viên', 'Biên bản nghiệm thu Review 1', '04/10/2026'),
@@ -334,7 +334,7 @@ def generate_report():
     out_paths = [
         os.path.join(workspace_root, 'reports', 'PI_GUARD_PROCESS_REPORT.xlsx'),
         os.path.join(workspace_root, 'Meeting', 'PI_GUARD_PROCESS_REPORT.xlsx'),
-        os.path.join(workspace_root, 'workspaces', 'truong_data_eng', 'Meeting', 'PI_GUARD_PROCESS_REPORT.xlsx')
+        os.path.join(workspace_root, 'workspaces', 'truongnv', 'Meeting', 'PI_GUARD_PROCESS_REPORT.xlsx')
     ]
     for p in out_paths:
         os.makedirs(os.path.dirname(p), exist_ok=True)

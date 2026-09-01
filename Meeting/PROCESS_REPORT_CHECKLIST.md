@@ -23,7 +23,7 @@
 
 #### Tuần 1 (07/09/2026 – 13/09/2026): Khởi Động, Đăng Ký Đề Tài & Sàng Lọc Papers
 - [x] **T01**: Họp với Giáo viên hướng dẫn (GVHD) xác định mục tiêu ban đầu (Biên bản [`Meeting/Meeting 1_29_08_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%201_29_08_26.md)) & Họp nhóm sàng lọc 10 papers khoa học theo Register (Biên bản [`Meeting/Meeting 2_01_09_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%202_01_09_26.md)). — *Phụ trách: Cả 4 thành viên*
-- [x] **T02**: Khảo sát tài liệu nghiên cứu, thu thập và thẩm định 17 papers chuẩn IEEE >= 2022 vào [`References/`](file:///d:/Work/Do-an/References/) và [`workspaces/truong_data_eng/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truong_data_eng/References/REFERENCES_LOG.md). — *Phụ trách: Trường (Leader)*
+- [x] **T02**: Khảo sát tài liệu nghiên cứu, thu thập và thẩm định 17 papers chuẩn IEEE >= 2022 vào [`References/`](file:///d:/Work/Do-an/References/) và [`workspaces/truongnv/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truongnv/References/REFERENCES_LOG.md). — *Phụ trách: Trường (Leader)*
 - [x] **T03**: Thiết lập môi trường Python 3.11, Git repo, và cài đặt các thư viện lõi. — *Phụ trách: Cả 4 thành viên*
 
 #### Tuần 2 (14/09/2026 – 20/09/2026): Bối Cảnh, Threat Model & Attack Surface (Chapter 1)

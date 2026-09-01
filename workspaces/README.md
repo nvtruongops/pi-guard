@@ -17,10 +17,10 @@ d:/Work/Do-an/
 ├── experiments/                   # [CHUNG] Kết quả đo đạc chính thức nhúng vào Luận văn (runs, metrics, plots)
 │
 └── workspaces/                    # [RIÊNG] Không gian thử nghiệm nháp cá nhân của 4 bạn
-    ├── truong_data_eng/           # • Trường: Thử nghiệm cào data, thuật toán split, EDA nháp
-    ├── duc_baseline_ml/           # • Đức: Thử nghiệm trích xuất TF-IDF, so sánh mô hình ML nháp
-    ├── viet_transformer_robustness/ # • Việt: Thử nghiệm fine-tune DeBERTa, nén INT8, test payload nháp
-    └── phuong_api_dashboard/      # • Phương: Thử nghiệm dựng API endpoint, UI Streamlit nháp
+    ├── truongnv/                  # • Trường (Leader): Thử nghiệm cào data, thuật toán split, EDA nháp & điều phối
+    ├── ducnq/                     # • Đức: Thử nghiệm trích xuất TF-IDF, so sánh mô hình ML nháp
+    ├── vietpmh/                   # • Việt: Thử nghiệm fine-tune DeBERTa, nén INT8, test payload nháp
+    └── phuongddd/                 # • Phương: Thử nghiệm dựng API endpoint, UI Streamlit nháp
 ```
 
 ### 💡 NGUYÊN TẮC: "NHÁP TẠI WORKSPACES — CHUẨN HÓA VÀO SRC & NOTEBOOKS CHUNG"

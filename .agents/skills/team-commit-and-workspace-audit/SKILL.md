@@ -15,9 +15,9 @@ Skill này cung cấp cơ chế và công cụ tự động để **kiểm toán
 
 ### Quy Tắc 1: Phân Quyền Theo Workspace Cá Nhân
 - Mỗi thành viên (Đức, Việt, Phương) chỉ được phép tạo, sửa, xóa file trong đúng thư mục workspace của mình:
-  - `workspaces/duc_baseline_ml/` $\rightarrow$ Chỉ `ducnq`
-  - `workspaces/viet_transformer_robustness/` $\rightarrow$ Chỉ `vietpmh`
-  - `workspaces/phuong_api_dashboard/` $\rightarrow$ Chỉ `phuongddd`
+  - `workspaces/ducnq/` $\rightarrow$ Chỉ `ducnq`
+  - `workspaces/vietpmh/` $\rightarrow$ Chỉ `vietpmh`
+  - `workspaces/phuongddd/` $\rightarrow$ Chỉ `phuongddd`
 - Bất kỳ commit nào của thành viên chứa file nằm ngoài thư mục workspace của họ (ví dụ sửa trực tiếp `src/`, `docs/`, `Meeting/`, `reports/`, `models/`, `data/`) đều bị đánh dấu là **🚨 VIOLATION: WORKSPACE_BOUNDARY_VIOLATION**.
 
 ### Quy Tắc 2: Độc Quyền Quản Trị Của Leader (Trường)

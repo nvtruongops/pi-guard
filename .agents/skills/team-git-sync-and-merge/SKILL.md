@@ -17,12 +17,12 @@ Skill này quy định và tự động hóa quy trình làm việc Git chuẩn 
 
 ## 👥 1. Ma Trận Phân Quyền Nhánh & Thư Mục Git
 
-| Thành viên | Git Username / Identifiers | Nhánh Git Cá Nhân | Thư Mục Được Phép Chỉnh Sửa | Quyền Merge vào `main` & Thư Mục Chung |
+| Member | Git Username / Identifiers | Nhánh Git Cá Nhân | Thư Mục Được Phép Chỉnh Sửa | Quyền Merge vào `main` & Thư Mục Chung |
 | :--- | :--- | :--- | :--- | :---: |
-| **Nguyễn Văn Trường (Leader)** | `nvtruongops`, `truongnv` | `main`, `lead/truong-*` | `workspaces/truong_data_eng/` + **Toàn bộ repo** | ✅ **TOÀN QUYỀN DUYỆT & MERGE** |
-| **Nguyễn Quí Đức** | `ducnq`, `duc_baseline_ml` | `feat/duc-baseline-ml` | `workspaces/duc_baseline_ml/` | ❌ *Chỉ gửi PR từ workspace* |
-| **Phạm Minh Hoàng Việt** | `vietpmh`, `viet_transformer` | `feat/viet-transformer` | `workspaces/viet_transformer_robustness/` | ❌ *Chỉ gửi PR từ workspace* |
-| **Đỗ Đoàn Duy Phương** | `phuongddd`, `phuong_dashboard` | `feat/phuong-api-ui` | `workspaces/phuong_api_dashboard/` | ❌ *Chỉ gửi PR từ workspace* |
+| **Nguyễn Văn Trường (Leader)** | `nvtruongops`, `truongnv` | `main`, `lead/truong-*` | `workspaces/truongnv/` + **Toàn bộ repo** | ✅ **TOÀN QUYỀN DUYỆT & MERGE** |
+| **Nguyễn Quí Đức** | `ducnq`, `duc_baseline_ml` | `feat/duc-baseline-ml` | `workspaces/ducnq/` | ❌ *Chỉ gửi PR từ workspace* |
+| **Phạm Minh Hoàng Việt** | `vietpmh`, `viet_transformer` | `feat/viet-transformer` | `workspaces/vietpmh/` | ❌ *Chỉ gửi PR từ workspace* |
+| **Đỗ Đoàn Duy Phương** | `phuongddd`, `phuong_dashboard` | `feat/phuong-api-ui` | `workspaces/phuongddd/` | ❌ *Chỉ gửi PR từ workspace* |
 
 > [!CAUTION]
 > **QUY TẮC BẤT DI BẤT DỊCH (TEAM GOVERNANCE INVARIANT)**:
@@ -42,9 +42,9 @@ git rebase origin/main
 ```
 
 ### Bước 2: Làm việc strictly trong workspace của mình
-- Đức: Chỉ tạo/sửa code trong `workspaces/duc_baseline_ml/`
-- Việt: Chỉ tạo/sửa code trong `workspaces/viet_transformer_robustness/`
-- Phương: Chỉ tạo/sửa code trong `workspaces/phuong_api_dashboard/`
+- Đức: Chỉ tạo/sửa code trong `workspaces/ducnq/`
+- Việt: Chỉ tạo/sửa code trong `workspaces/vietpmh/`
+- Phương: Chỉ tạo/sửa code trong `workspaces/phuongddd/`
 
 ### Bước 3: Chạy script kiểm toán ranh giới trước khi commit (Pre-commit Audit)
 Trước khi `git commit`, thành viên bắt buộc chạy kiểm tra:
@@ -75,7 +75,7 @@ python scripts/audit_workspace_boundaries.py --commit-range origin/main..origin/
 ```
 
 ### Bước 2: Chọn lọc Artifact xuất sắc nhất (Champion Code / Models)
-- Đánh giá mã nguồn trong `workspaces/duc_baseline_ml/`, `workspaces/viet_transformer_robustness/`, `workspaces/phuong_api_dashboard/`.
+- Đánh giá mã nguồn trong `workspaces/ducnq/`, `workspaces/vietpmh/`, `workspaces/phuongddd/`.
 - Sao chép và chuẩn hóa các module đạt chuẩn sang cây thư mục chính:
   - Baseline ML tốt nhất $\rightarrow$ `src/models/`
   - Preprocessing / Obfuscation $\rightarrow$ `src/preprocessing/`

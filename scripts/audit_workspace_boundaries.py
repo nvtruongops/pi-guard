@@ -8,9 +8,9 @@ Tool kiểm toán phạm vi không gian làm việc (Workspace Boundary Audit) c
 Quy tắc bất biến:
 1. Thành viên nhóm (Đức, Việt, Phương) CHỈ được phép tạo, chỉnh sửa, xóa file trong thư mục
    workspace được phân công tương ứng:
-   - Nguyễn Quí Đức:         workspaces/duc_baseline_ml/
-   - Phạm Minh Hoàng Việt:   workspaces/viet_transformer_robustness/
-   - Đỗ Đoàn Duy Phương:     workspaces/phuong_api_dashboard/
+   - Nguyễn Quí Đức:         workspaces/ducnq/
+   - Phạm Minh Hoàng Việt:   workspaces/vietpmh/
+   - Đỗ Đoàn Duy Phương:     workspaces/phuongddd/
 2. CHỈ DUY NHẤT Trưởng nhóm (Leader: nvtruongops / Nguyễn Văn Trường) mới có quyền chỉnh sửa
    các thư mục chung ngoài workspaces/ (src/, docs/, Meeting/, reports/, data/, models/, scripts/, .agents/, etc.)
    để phục vụ quá trình nghiệm thu, đồng quy tri thức (Knowledge Convergence).
@@ -43,19 +43,19 @@ MEMBERS_MAP = {
         'name': 'Nguyễn Quí Đức',
         'mssv': 'SE182087',
         'identifiers': ['ducnq', 'nguyen qui duc', 'nguyễn quí đức', 'duc_baseline_ml', 'ducnqse182087@fpt.edu.vn'],
-        'allowed_prefix': 'workspaces/duc_baseline_ml/'
+        'allowed_prefix': 'workspaces/ducnq/'
     },
     'viet': {
         'name': 'Phạm Minh Hoàng Việt',
         'mssv': 'SE181851',
         'identifiers': ['vietpmh', 'pham minh hoang viet', 'phạm minh hoàng việt', 'viet_transformer_robustness', 'vietpmhse181851@fpt.edu.vn'],
-        'allowed_prefix': 'workspaces/viet_transformer_robustness/'
+        'allowed_prefix': 'workspaces/vietpmh/'
     },
     'phuong': {
         'name': 'Đỗ Đoàn Duy Phương',
         'mssv': 'SE180235',
         'identifiers': ['phuongddd', 'do doan duy phuong', 'đỗ đoàn duy phương', 'phuong_api_dashboard', 'phuongdddse180235@fpt.edu.vn'],
-        'allowed_prefix': 'workspaces/phuong_api_dashboard/'
+        'allowed_prefix': 'workspaces/phuongddd/'
     },
     'truong': {
         'name': 'Nguyễn Văn Trường (Leader)',

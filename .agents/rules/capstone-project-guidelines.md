@@ -39,9 +39,9 @@ All 4 members work hands-on across the entire pipeline in parallel workspaces (`
 
 1. **Member Boundary Isolation**:
    - Members (Đức, Việt, Phương) MUST ONLY create/edit files inside their designated workspace folder:
-     - `workspaces/duc_baseline_ml/`
-     - `workspaces/viet_transformer_robustness/`
-     - `workspaces/phuong_api_dashboard/`
+     - `workspaces/ducnq/`
+     - `workspaces/vietpmh/`
+     - `workspaces/phuongddd/`
    - Direct edits to common directories (`src/`, `docs/`, `Meeting/`, `reports/`, `models/`, `data/`) by non-leader members are strictly prohibited.
 2. **Leader Sole Merge Authorization**:
    - Only the Leader (`nvtruongops`) is authorized to merge champion artifacts from `workspaces/` into root production directories during weekly convergence sessions.

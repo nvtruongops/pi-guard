@@ -61,10 +61,10 @@ Instead of a siloed assembly-line, all 4 members explore the entire pipeline han
 
 | Member | Primary Lead Module | Workspace Directory | Git Feature Branch |
 | :--- | :--- | :--- | :--- |
-| **Nguyễn Văn Trường (Leader / `nvtruongops`)** | Architecture & Data Engineering | `workspaces/truong_data_eng/` | `main`, `lead/truong-*` |
-| **Nguyễn Quí Đức** | Classical ML Baseline & Methodology | `workspaces/duc_baseline_ml/` | `feat/duc-baseline-ml` |
-| **Phạm Minh Hoàng Việt** | Transformer Fine-Tuning & Quantization | `workspaces/viet_transformer_robustness/` | `feat/viet-transformer` |
-| **Đỗ Đoàn Duy Phương** | FastAPI Middleware, Dashboard & Thesis | `workspaces/phuong_api_dashboard/` | `feat/phuong-api-ui` |
+| **Nguyễn Văn Trường (Leader / `nvtruongops`)** | Architecture & Data Engineering | `workspaces/truongnv/` | `main`, `lead/truong-*` |
+| **Nguyễn Quí Đức** | Classical ML Baseline & Methodology | `workspaces/ducnq/` | `feat/duc-baseline-ml` |
+| **Phạm Minh Hoàng Việt** | Transformer Fine-Tuning & Quantization | `workspaces/vietpmh/` | `feat/viet-transformer` |
+| **Đỗ Đoàn Duy Phương** | FastAPI Middleware, Dashboard & Thesis | `workspaces/phuongddd/` | `feat/phuong-api-ui` |
 
 ---
 

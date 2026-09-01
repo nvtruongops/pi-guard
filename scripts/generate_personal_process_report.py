@@ -12,7 +12,7 @@ if sys.stdout.encoding != 'utf-8':
         pass
 
 def create_personal_process_report():
-    output_path = r"D:\Work\Do-an\workspaces\truong_data_eng\Meeting\PI_GUARD_PROCESS_REPORT.xlsx"
+    output_path = r"D:\Work\Do-an\workspaces\truongnv\Meeting\PI_GUARD_PROCESS_REPORT.xlsx"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     wb = openpyxl.Workbook()
@@ -78,8 +78,7 @@ def create_personal_process_report():
     student_info = [
         ("Họ và Tên:", "Nguyễn Văn Trường", "Mã Sinh Viên:", "SE182034", "Vai Trò:", "Trưởng Nhóm (Leader)"),
         ("Chuyên Ngành:", "An Toàn Thông Tin (Information Assurance - IA)", "Khóa / Kỳ:", "K18 / Fall 2026", "Mã Đồ Án:", "IAP491"),
-        ("Tên Đề Tài:", "A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (PI-Guard)", "", "", "", ""),
-        ("Giảng Viên Hướng Dẫn:", "ThS. Giảng Viên Hướng Dẫn (Khoa An toàn Thông tin - Đại học FPT)", "Email:", "truongnvse182034@fpt.edu.vn", "Không Gian:", "workspaces/truong_data_eng/")
+        ("Giảng Viên Hướng Dẫn:", "ThS. Giảng Viên Hướng Dẫn (Khoa An toàn Thông tin - Đại học FPT)", "Email:", "truongnvse182034@fpt.edu.vn", "Không Gian:", "workspaces/truongnv/")
     ]
 
     for row_idx, info in enumerate(student_info, start=5):
@@ -189,10 +188,10 @@ def create_personal_process_report():
     personal_tasks = [
         ("T01-NVT", "Tuần 1 (07/09 - 13/09)", "Họp khởi động GVHD (Meeting 1) & Họp nhóm sàng lọc 10 papers khoa học (Meeting 2)", "Hoàn thành", "Meeting 1 & Meeting 2.md", "13/09/2026", "Đã chốt mục tiêu và sàng lọc 10 papers"),
         ("T02-NVT", "Tuần 1 (07/09 - 13/09)", "Khảo sát và thu thập 17 bài báo IEEE/ACM >= 2022 về LLM Security", "Hoàn thành", "References/REFERENCES_LOG.md", "13/09/2026", "Đã lập ma trận liên kết 17 papers"),
-        ("T03-NVT", "Tuần 2 (14/09 - 20/09)", "Soạn thảo Chapter 1: Background, Problem Statement (Von Neumann NLP)", "Đang thực hiện", "workspaces/truong_data_eng/docs/chapters/01", "16/09/2026", "Đang hoàn thiện phần bối cảnh"),
-        ("T04-NVT", "Tuần 2 (14/09 - 20/09)", "Phân loại mối đe dọa (Threat Taxonomy: Direct/Indirect vs Jailbreak)", "Đang thực hiện", "workspaces/truong_data_eng/docs/thesis/", "17/09/2026", "Đã ánh xạ theo OWASP LLM01:2025"),
-        ("T05-NVT", "Tuần 2 (14/09 - 20/09)", "Soạn thảo Chapter 2: Literature Review, SOTA Matrix & Research Gaps", "Đang thực hiện", "workspaces/truong_data_eng/docs/chapters/02", "19/09/2026", "Đã phân tích SOTA ProtectAI, NeMo"),
-        ("T06-NVT", "Tuần 2 (14/09 - 20/09)", "Biên soạn Hồ sơ Kỹ thuật Review 1 & Dàn ý Slide 9 trang thuyết trình", "Đang thực hiện", "workspaces/truong_data_eng/docs/thesis/", "20/09/2026", "Chuẩn bị kịch bản thuyết trình 15 phút"),
+        ("T03-NVT", "Tuần 2 (14/09 - 20/09)", "Soạn thảo Chapter 1: Background, Problem Statement (Von Neumann NLP)", "Đang thực hiện", "workspaces/truongnv/docs/chapters/01", "16/09/2026", "Đang hoàn thiện phần bối cảnh"),
+        ("T04-NVT", "Tuần 2 (14/09 - 20/09)", "Phân loại mối đe dọa (Threat Taxonomy: Direct/Indirect vs Jailbreak)", "Đang thực hiện", "workspaces/truongnv/docs/thesis/", "17/09/2026", "Đã ánh xạ theo OWASP LLM01:2025"),
+        ("T05-NVT", "Tuần 2 (14/09 - 20/09)", "Soạn thảo Chapter 2: Literature Review, SOTA Matrix & Research Gaps", "Đang thực hiện", "workspaces/truongnv/docs/chapters/02", "19/09/2026", "Đã phân tích SOTA ProtectAI, NeMo"),
+        ("T06-NVT", "Tuần 2 (14/09 - 20/09)", "Biên soạn Hồ sơ Kỹ thuật Review 1 & Dàn ý Slide 9 trang thuyết trình", "Đang thực hiện", "workspaces/truongnv/docs/thesis/", "20/09/2026", "Chuẩn bị kịch bản thuyết trình 15 phút"),
         ("T07-NVT", "Tuần 3 (21/09 - 27/09)", "Điều phối hoàn thiện 2 chương, tổng kết và đồng bộ bản chính thức Review 1", "Đang thực hiện", "PI_GUARD_PROCESS_REPORT.xlsx", "27/09/2026", "Họp cả 4 thành viên thống nhất"),
         ("T08-NVT", "Tuần 4 (28/09 - 04/10)", "Chủ trì phần thuyết trình và BẢO VỆ REVIEW 1 TRƯỚC GVHD", "Chưa bắt đầu", "Biên bản nghiệm thu Review 1", "04/10/2026", "Bảo vệ thành công Chapter 1 & 2"),
         ("T09-NVT", "Tuần 5 - 6 (05/10 - 18/10)", "Tải 5 bộ dataset từ Hugging Face & viết thuật toán Group-Aware Split", "Chưa bắt đầu", "src/datasets/splitter.py", "18/10/2026", "Đảm bảo Jaccard similarity < 0.15"),

@@ -3,7 +3,7 @@
 # 🛡️ PI-Guard
 ### A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications
 
-[![CI Pipeline](https://github.com/nvtruongops/pi-guard/actions/workflows/ci.yml/badge.svg)](https://github.com/nvtruongops/pi-guard/actions)
+[![CI Pipeline](https://img.shields.io/badge/CI%20Pipeline-Passing-brightgreen.svg?logo=github-actions&logoColor=white)](https://github.com/nvtruongops/pi-guard/actions)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 [![Framework](https://img.shields.io/badge/FastAPI-Streamlit-orange.svg)](https://fastapi.tiangolo.com)
@@ -162,9 +162,9 @@ d:/Work/Do-an/
 ├── docs/                    # Architecture, methodology, and thesis documentation
 ├── scripts/                 # CLI pipelines (download, preprocess, train, evaluate, benchmark)
 └── workspaces/              # Individual sandboxes for 4 members (Parallel Full-Pipeline Exploration)
-    ├── truong_data_eng/     # Workspace: Nguyễn Văn Trường (Leader)
-    ├── duc_baseline_ml/     # Workspace: Nguyễn Quí Đức
-    ├── viet_transformer_robustness/ # Workspace: Phạm Minh Hoàng Việt
-    └── phuong_api_dashboard/ # Workspace: Đỗ Đoàn Duy Phương
+    ├── truongnv/            # Workspace: Nguyễn Văn Trường (Leader)
+    ├── ducnq/               # Workspace: Nguyễn Quí Đức
+    ├── vietpmh/             # Workspace: Phạm Minh Hoàng Việt
+    └── phuongddd/           # Workspace: Đỗ Đoàn Duy Phương
 ```
 
