@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Model checkpoints & weights
+models/**/*.bin
+models/**/*.safetensors
+models/**/*.pt
+models/**/*.onnx
+models/**/*.joblib
+!models/**/.gitkeep
+
+# Data artifacts (downloaded or generated during Step 1)
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/splits/*
+!data/splits/.gitkeep
+data/augmentation/*
+!data/augmentation/.gitkeep
+data/manifests/*.json
+!data/manifests/.gitkeep
+tests/adversarial/*.jsonl
+tests/adversarial/**/*.jsonl
+!tests/adversarial/**/.gitkeep
+
+# Environment & Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# IDE & OS
+.vscode/*
+!.vscode/mcp.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Test & Coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Experiment artifacts (cache/logs)
+experiments/**/wandb/
+experiments/**/lightning_logs/
+reports/experiment_reports/*.json
+!reports/**/.gitkeep
+
+# Internal University Documents & References (Confidential / Non-public)
+docs/fpt_capstone_guide/
+docs/fpt_capstone_guide/**
+**/fpt_capstone_guide/
+**/fpt_capstone_guide/**
+
+

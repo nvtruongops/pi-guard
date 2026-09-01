@@ -1,0 +1,2 @@
+# Placeholder: models/baseline/
+# Saved baseline model checkpoints (.joblib) will be saved here after running: python scripts/train.py --model baseline

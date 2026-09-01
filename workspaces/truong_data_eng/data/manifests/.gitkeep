@@ -1,0 +1,3 @@
+# Placeholder: data/manifests/
+# Dataset version manifests, hashes, and provenance records generated during Step 1 curation.
+# See .agents/skills/guardrail-dataset-engineering for manifest schemas.

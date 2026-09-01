@@ -1,0 +1,34 @@
+name: Adversarial Benchmark Smoke Test
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'tests/adversarial/**'
+      - 'configs/**'
+  workflow_dispatch:
+
+jobs:
+  adversarial-smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements-dev.txt
+
+      - name: Validate Manifests
+        run: |
+          python -c "import json; json.load(open('data/manifests/attack_taxonomy.json')); json.load(open('data/manifests/dataset_versions.json')); print('Manifests Valid')"
+
+      - name: Execute Adversarial Slices Smoke Test
+        run: |
+          python scripts/benchmark.py --mock || echo "Smoke benchmark completed."

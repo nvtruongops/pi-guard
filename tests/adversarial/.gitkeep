@@ -1,0 +1,3 @@
+# Placeholder: tests/adversarial/
+# Adversarial test slices (.jsonl) for direct injection, indirect injection, jailbreak, obfuscation, base64.
+# Populated during evaluation experiments. Refer to .agents/skills/guardrail-evaluation-metrics for schemas.

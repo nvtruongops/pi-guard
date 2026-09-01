@@ -1,0 +1,16 @@
+# CODEOWNERS for PI-Guard Capstone Project (FPT University IAP491)
+# PARADIGM: Collective Code Ownership (Sở Hữu Mã Nguồn Tập Thể)
+# Cả 4 thành viên (Trường, Đức, Việt, Phương) ĐỒNG SỞ HỮU và CÙNG REVIEW TOÀN BỘ REPO.
+# Bất kỳ ai sửa Data, Model, API hay Luận văn -> Cả 4 người đều nhận thông báo để cùng đọc, cùng học và cùng duyệt!
+
+# Toàn bộ mã nguồn, dữ liệu, tài liệu, kiểm thử và báo cáo thuộc quyền đồng sở hữu của 4 bạn
+*                                       @truongnv-se182034 @ducnq-se182087 @vietpmh-se181851 @phuongddd-se180235
+/src/                                   @truongnv-se182034 @ducnq-se182087 @vietpmh-se181851 @phuongddd-se180235
+/docs/                                  @truongnv-se182034 @ducnq-se182087 @vietpmh-se181851 @phuongddd-se180235
+/data/                                  @truongnv-se182034 @ducnq-se182087 @vietpmh-se181851 @phuongddd-se180235
+/notebooks/                             @truongnv-se182034 @ducnq-se182087 @vietpmh-se181851 @phuongddd-se180235
+/tests/                                 @truongnv-se182034 @ducnq-se182087 @vietpmh-se181851 @phuongddd-se180235
+/Meeting/                               @truongnv-se182034 @ducnq-se182087 @vietpmh-se181851 @phuongddd-se180235
+/reports/                               @truongnv-se182034 @ducnq-se182087 @vietpmh-se181851 @phuongddd-se180235
+/References/                            @truongnv-se182034 @ducnq-se182087 @vietpmh-se181851 @phuongddd-se180235
+/workspaces/                            @truongnv-se182034 @ducnq-se182087 @vietpmh-se181851 @phuongddd-se180235

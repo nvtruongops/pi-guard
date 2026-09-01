@@ -1,0 +1,3 @@
+# Placeholder: data/raw/
+# Raw datasets will be downloaded here during Step 1 (Dataset Engineering)
+# Run: python scripts/download_dataset.py

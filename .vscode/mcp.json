@@ -1,0 +1,45 @@
+﻿{
+  "mcpServers": {
+    "arxiv": {
+      "command": "arxiv-mcp-server",
+      "description": "Academic literature search, abstract extraction, citation graph, and deep research on arXiv"
+    },
+    "jupyter": {
+      "command": "mcp-server-jupyter",
+      "description": "Jupyter Notebook MCP server for creating, editing, and executing Python notebook cells with network access"
+    },
+    "duckduckgo-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@ericthered926/duckduckgo-mcp-server"
+      ],
+      "description": "Internet and web search access for retrieving latest information, documentation, and research papers"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp",
+        "--headless"
+      ],
+      "description": "Browser automation and web scraping MCP server for fetching online pages"
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "description": "Knowledge Graph Memory for project context and decisions"
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "description": "Multi-step structured reasoning and analysis"
+    }
+  }
+}
