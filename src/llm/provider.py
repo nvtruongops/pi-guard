@@ -1,15 +1,14 @@
 import os
-import json
-import httpx
 from abc import ABC, abstractmethod
-from typing import Optional, Dict, Any, List
+
+import httpx
 
 
 class BaseLLMProvider(ABC):
     """Abstract interface for API-driven downstream LLM backends behind PI-Guard."""
 
     @abstractmethod
-    async def generate(self, prompt: str, system_prompt: Optional[str] = None) -> str:
+    async def generate(self, prompt: str, system_prompt: str | None = None) -> str:
         """Generates a response from the downstream target LLM via Cloud API."""
         pass
 
@@ -20,21 +19,21 @@ class MockLLMProvider(BaseLLMProvider):
     def __init__(self, model_name: str = "mock-llm-v1"):
         self.model_name = model_name
 
-    async def generate(self, prompt: str, system_prompt: Optional[str] = None) -> str:
+    async def generate(self, prompt: str, system_prompt: str | None = None) -> str:
         return f"[{self.model_name} Safe Response] Successfully generated response for: '{prompt[:45]}...'"
 
 
 class OpenAILLMProvider(BaseLLMProvider):
     """Cloud OpenAI API Provider (supports gpt-4o-mini, gpt-4o, gpt-3.5-turbo)."""
 
-    def __init__(self, model_name: str = "gpt-4o-mini", api_key: Optional[str] = None, base_url: str = "https://api.openai.com/v1"):
+    def __init__(self, model_name: str = "gpt-4o-mini", api_key: str | None = None, base_url: str = "https://api.openai.com/v1"):
         self.model_name = model_name
         self.api_key = api_key or os.getenv("OPENAI_API_KEY", "")
         self.base_url = base_url
 
-    async def generate(self, prompt: str, system_prompt: Optional[str] = None) -> str:
+    async def generate(self, prompt: str, system_prompt: str | None = None) -> str:
         if not self.api_key:
-            return f"[OpenAI Error]: Missing OPENAI_API_KEY in environment."
+            return "[OpenAI Error]: Missing OPENAI_API_KEY in environment."
 
         messages = []
         if system_prompt:
@@ -63,14 +62,14 @@ class OpenAILLMProvider(BaseLLMProvider):
 class GeminiLLMProvider(BaseLLMProvider):
     """Google Gemini Cloud API Provider (supports gemini-1.5-flash, gemini-1.5-pro)."""
 
-    def __init__(self, model_name: str = "gemini-1.5-flash", api_key: Optional[str] = None):
+    def __init__(self, model_name: str = "gemini-1.5-flash", api_key: str | None = None):
         self.model_name = model_name
         self.api_key = api_key or os.getenv("GEMINI_API_KEY", "")
         self.endpoint_url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model_name}:generateContent"
 
-    async def generate(self, prompt: str, system_prompt: Optional[str] = None) -> str:
+    async def generate(self, prompt: str, system_prompt: str | None = None) -> str:
         if not self.api_key:
-            return f"[Gemini Error]: Missing GEMINI_API_KEY in environment."
+            return "[Gemini Error]: Missing GEMINI_API_KEY in environment."
 
         contents = []
         if system_prompt:
@@ -99,14 +98,14 @@ class GeminiLLMProvider(BaseLLMProvider):
 class GroqCloudLLMProvider(BaseLLMProvider):
     """Ultra-fast Serverless API Provider via Groq / OpenAI-compatible Cloud (supports Llama-3.1-8b, Mistral-7b, Qwen-2.5-7b)."""
 
-    def __init__(self, model_name: str = "llama-3.1-8b-instant", api_key: Optional[str] = None, base_url: str = "https://api.groq.com/openai/v1"):
+    def __init__(self, model_name: str = "llama-3.1-8b-instant", api_key: str | None = None, base_url: str = "https://api.groq.com/openai/v1"):
         self.model_name = model_name
         self.api_key = api_key or os.getenv("GROQ_API_KEY", "") or os.getenv("OPENAI_API_KEY", "")
         self.base_url = base_url
 
-    async def generate(self, prompt: str, system_prompt: Optional[str] = None) -> str:
+    async def generate(self, prompt: str, system_prompt: str | None = None) -> str:
         if not self.api_key:
-            return f"[Groq/Cloud Error]: Missing GROQ_API_KEY in environment."
+            return "[Groq/Cloud Error]: Missing GROQ_API_KEY in environment."
 
         messages = []
         if system_prompt:
@@ -132,7 +131,7 @@ class GroqCloudLLMProvider(BaseLLMProvider):
             return f"[Cloud API Error on {self.model_name}]: {str(e)}"
 
 
-def get_llm_provider(provider_type: str = "mock", model_name: Optional[str] = None) -> BaseLLMProvider:
+def get_llm_provider(provider_type: str = "mock", model_name: str | None = None) -> BaseLLMProvider:
     """Factory to instantiate pure API-driven LLM providers without local GPU overhead."""
     provider_type = provider_type.lower()
     if provider_type == "openai":

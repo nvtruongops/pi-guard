@@ -1,9 +1,10 @@
 import re
 import unicodedata
 
+
 class TextCleaner:
     """Standard text normalization for Prompt Injection detection."""
-    
+
     @staticmethod
     def normalize(text: str) -> str:
         if not isinstance(text, str):

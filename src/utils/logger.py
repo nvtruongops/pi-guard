@@ -1,6 +1,7 @@
 import logging
 import sys
 
+
 def get_logger(name: str = "pi_guard", level: str = "INFO") -> logging.Logger:
     """Configures and returns a structured logger."""
     logger = logging.getLogger(name)

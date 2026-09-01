@@ -1,14 +1,16 @@
-from typing import Dict, Any, Optional, List
+from typing import Any
+
 from src.policy.thresholds import GuardrailAction, PolicyConfig
 
+
 class PolicyDecision:
-    def __init__(self, action: GuardrailAction, risk_score: float, reason: str, metadata: Optional[Dict[str, Any]] = None):
+    def __init__(self, action: GuardrailAction, risk_score: float, reason: str, metadata: dict[str, Any] | None = None):
         self.action = action
         self.risk_score = risk_score
         self.reason = reason
         self.metadata = metadata or {}
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "action": self.action.value,
             "risk_score": self.risk_score,
@@ -20,9 +22,9 @@ class PolicyDecision:
 class PolicyEngine:
     """Decoupled decision engine converting raw classifier probability into actionable security decisions."""
 
-    def __init__(self, config: Optional[PolicyConfig] = None):
+    def __init__(self, config: PolicyConfig | None = None):
         self.config = config or PolicyConfig()
-        self.allowlist_phrases: List[str] = [
+        self.allowlist_phrases: list[str] = [
             "how to prevent prompt injection",
             "explain what a jailbreak is in security",
             "what is deberta-v3",

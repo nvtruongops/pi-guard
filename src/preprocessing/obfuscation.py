@@ -1,10 +1,11 @@
 import base64
-import random
 import codecs
+import random
+
 
 class ObfuscationGenerator:
     """Generates synthetic adversarial obfuscation perturbations for robustness evaluation."""
-    
+
     LEET_MAP = {
         'a': '4', 'A': '4',
         'e': '3', 'E': '3',

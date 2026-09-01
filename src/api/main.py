@@ -1,15 +1,17 @@
-from fastapi import FastAPI, HTTPException
-from contextlib import asynccontextmanager
 import os
+from contextlib import asynccontextmanager
 
-from src.api.schemas import GuardrailCheckRequest, GuardrailCheckResponse
+from fastapi import FastAPI, HTTPException
+
 from src.api.middleware import GuardrailMiddleware
-from src.models.classifier import TfidfBaselineClassifier, DummyClassifier
+from src.api.schemas import GuardrailCheckRequest, GuardrailCheckResponse
+from src.llm.provider import (
+    MockLLMProvider,
+)
+from src.models.classifier import DummyClassifier, TfidfBaselineClassifier
 from src.policy.policy_engine import PolicyEngine
-from src.policy.thresholds import PolicyConfig, GuardrailAction
-from src.llm.provider import get_llm_provider, MockLLMProvider, OpenAILLMProvider, GeminiLLMProvider, GroqCloudLLMProvider
+from src.policy.thresholds import GuardrailAction, PolicyConfig
 from src.utils.logger import get_logger
-
 
 logger = get_logger("pi_guard.api")
 middleware_instance: GuardrailMiddleware = None
@@ -18,7 +20,7 @@ middleware_instance: GuardrailMiddleware = None
 async def lifespan(app: FastAPI):
     global middleware_instance
     logger.info("Initializing PI-Guard Service...")
-    
+
     # Initialize Classifier
     model_path = os.getenv("BASELINE_MODEL_PATH", "models/baseline/baseline_tfidf.joblib")
     if os.path.exists(model_path):

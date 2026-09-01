@@ -1,17 +1,20 @@
 import time
-from typing import List, Callable, Dict, Any
+from collections.abc import Callable
+from typing import Any
+
 import numpy as np
+
 
 class LatencyProfiler:
     """Measures inference latency percentiles (P50, P95, P99) for guardrail classifiers."""
 
     @staticmethod
     def profile(
-        predict_fn: Callable[[List[str]], Any],
-        sample_texts: List[str],
+        predict_fn: Callable[[list[str]], Any],
+        sample_texts: list[str],
         warmup_runs: int = 20,
         benchmark_runs: int = 100
-    ) -> Dict[str, float]:
+    ) -> dict[str, float]:
         # 1. Warmup runs
         for i in range(warmup_runs):
             sample = sample_texts[i % len(sample_texts)]

@@ -1,15 +1,16 @@
-from abc import ABC, abstractmethod
-from typing import List, Dict, Any, Union
 import os
 import re
+from abc import ABC, abstractmethod
+
 import joblib
 import numpy as np
 
+
 class BaseGuardrailClassifier(ABC):
     """Abstract base class for all Guardrail classifiers."""
-    
+
     @abstractmethod
-    def predict_score(self, texts: Union[str, List[str]]) -> List[float]:
+    def predict_score(self, texts: str | list[str]) -> list[float]:
         """Returns the probability score (0.0 to 1.0) of being malicious for each input text."""
         pass
 
@@ -21,7 +22,7 @@ class BaseGuardrailClassifier(ABC):
 
 class TfidfBaselineClassifier(BaseGuardrailClassifier):
     """Classical ML baseline combining character and word n-grams with a linear classifier."""
-    
+
     def __init__(self, model_path: str = None):
         self.model = None
         if model_path and os.path.exists(model_path):
@@ -30,12 +31,12 @@ class TfidfBaselineClassifier(BaseGuardrailClassifier):
     def load(self, path: str) -> None:
         self.model = joblib.load(path)
 
-    def predict_score(self, texts: Union[str, List[str]]) -> List[float]:
+    def predict_score(self, texts: str | list[str]) -> list[float]:
         if isinstance(texts, str):
             texts = [texts]
         if self.model is None:
             return [0.05 for _ in texts]
-            
+
         if hasattr(self.model, "predict_proba"):
             probs = self.model.predict_proba(texts)
             return [float(p[1]) for p in probs]
@@ -49,14 +50,14 @@ class TfidfBaselineClassifier(BaseGuardrailClassifier):
 
 class DummyClassifier(BaseGuardrailClassifier):
     """Fast dummy classifier for testing, CI pipelines, and unit tests."""
-    
+
     def __init__(self, default_score: float = 0.10):
         self.default_score = default_score
-        
+
     def load(self, path: str) -> None:
         pass
-        
-    def predict_score(self, texts: Union[str, List[str]]) -> List[float]:
+
+    def predict_score(self, texts: str | list[str]) -> list[float]:
         if isinstance(texts, str):
             texts = [texts]
         scores = []

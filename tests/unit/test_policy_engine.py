@@ -1,6 +1,6 @@
-import pytest
 from src.policy.policy_engine import PolicyEngine
-from src.policy.thresholds import PolicyConfig, GuardrailAction
+from src.policy.thresholds import GuardrailAction, PolicyConfig
+
 
 def test_policy_allow():
     config = PolicyConfig(block_threshold=0.80, review_threshold=0.50)

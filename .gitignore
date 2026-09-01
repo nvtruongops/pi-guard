@@ -32,8 +32,6 @@ data/splits/*
 !data/splits/.gitkeep
 data/augmentation/*
 !data/augmentation/.gitkeep
-data/manifests/*.json
-!data/manifests/.gitkeep
 tests/adversarial/*.jsonl
 tests/adversarial/**/*.jsonl
 !tests/adversarial/**/.gitkeep

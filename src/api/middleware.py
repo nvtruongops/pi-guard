@@ -1,9 +1,10 @@
 import time
-from typing import Tuple, Optional
-from src.models.classifier import BaseGuardrailClassifier
-from src.policy.policy_engine import PolicyEngine, PolicyDecision
-from src.policy.thresholds import GuardrailAction
+
 from src.llm.provider import BaseLLMProvider
+from src.models.classifier import BaseGuardrailClassifier
+from src.policy.policy_engine import PolicyDecision, PolicyEngine
+from src.policy.thresholds import GuardrailAction
+
 
 class GuardrailMiddleware:
     """Orchestrates Classifier scoring, Policy Engine decisions, and downstream LLM forwarding."""
@@ -21,8 +22,8 @@ class GuardrailMiddleware:
     async def process_prompt(
         self,
         prompt: str,
-        system_prompt: Optional[str] = None
-    ) -> Tuple[PolicyDecision, Optional[str], float]:
+        system_prompt: str | None = None
+    ) -> tuple[PolicyDecision, str | None, float]:
         """Executes the full defensive inspection pipeline and returns (decision, llm_response, latency_ms)."""
         start_time = time.perf_counter()
 

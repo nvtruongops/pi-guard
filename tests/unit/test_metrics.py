@@ -1,5 +1,5 @@
-import pytest
 from src.evaluation.metrics import EvaluationMetrics
+
 
 def test_evaluation_metrics_computation():
     y_true = [0, 0, 1, 1, 0]

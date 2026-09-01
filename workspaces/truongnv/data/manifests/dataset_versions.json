@@ -1,0 +1,61 @@
+{
+  "version": "1.0.0",
+  "project": "PI-Guard",
+  "manifest_date": "2026-09-01",
+  "datasets": [
+    {
+      "name": "deepset/prompt-injections",
+      "source_url": "https://huggingface.co/datasets/deepset/prompt-injections",
+      "domain": "academic_benchmark",
+      "label_classes": ["benign", "injection"],
+      "split_strategy": "group_aware_deduplication",
+      "expected_samples": 660,
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "Lakera/gandalf_ignore_instructions",
+      "source_url": "https://huggingface.co/datasets/Lakera/gandalf_ignore_instructions",
+      "domain": "crowdsourced_game_attacks",
+      "label_classes": ["injection"],
+      "split_strategy": "group_aware_deduplication",
+      "expected_samples": 550,
+      "license": "MIT"
+    },
+    {
+      "name": "TrustAIRLab/in-the-wild-jailbreak-prompts",
+      "source_url": "https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts",
+      "domain": "in_the_wild_community_jailbreaks",
+      "label_classes": ["jailbreak"],
+      "split_strategy": "group_aware_deduplication",
+      "expected_samples": 1200,
+      "license": "CC-BY-4.0"
+    },
+    {
+      "name": "Open-Orca/OpenOrca",
+      "source_url": "https://huggingface.co/datasets/Open-Orca/OpenOrca",
+      "domain": "everyday_benign_instruction_queries",
+      "label_classes": ["benign"],
+      "split_strategy": "stratified_random_sample",
+      "expected_samples": 25000,
+      "license": "MIT"
+    },
+    {
+      "name": "BIPIA_Indirect_Injection",
+      "source_url": "https://github.com/microsoft/BIPIA",
+      "domain": "indirect_prompt_injection_rag_eval",
+      "label_classes": ["indirect_injection"],
+      "split_strategy": "test_set_only",
+      "expected_samples": 800,
+      "license": "MIT"
+    },
+    {
+      "name": "Do-Not-Answer",
+      "source_url": "https://github.com/Libr-AI/do-not-answer",
+      "domain": "safety_risk_benchmark_prompts",
+      "label_classes": ["jailbreak_harmful"],
+      "split_strategy": "test_set_only",
+      "expected_samples": 936,
+      "license": "CC-BY-NC-4.0"
+    }
+  ]
+}

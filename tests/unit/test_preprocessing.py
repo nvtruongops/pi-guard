@@ -1,6 +1,6 @@
-import pytest
 from src.preprocessing.cleaner import TextCleaner
 from src.preprocessing.obfuscation import ObfuscationGenerator
+
 
 def test_text_cleaner_normalize():
     raw_text = "  Hello   world \n\n\n\n Test  "

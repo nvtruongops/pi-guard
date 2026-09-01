@@ -1,22 +1,28 @@
-from typing import Dict, Any, List, Optional
+from typing import Any
+
 import numpy as np
 from sklearn.metrics import (
-    accuracy_score, precision_score, recall_score,
-    f1_score, roc_auc_score, confusion_matrix
+    accuracy_score,
+    confusion_matrix,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
 )
+
 
 class EvaluationMetrics:
     """Standardized metric calculation and error analysis for PI-Guard models."""
 
     @staticmethod
     def compute_all(
-        y_true: List[int],
-        y_pred: List[int],
-        y_probs: Optional[List[float]] = None
-    ) -> Dict[str, Any]:
+        y_true: list[int],
+        y_pred: list[int],
+        y_probs: list[float] | None = None
+    ) -> dict[str, Any]:
         y_t = np.array(y_true)
         y_p = np.array(y_pred)
-        
+
         tn, fp, fn, tp = confusion_matrix(y_t, y_p).ravel()
         fpr = fp / (fp + tn) if (fp + tn) > 0 else 0.0
 
