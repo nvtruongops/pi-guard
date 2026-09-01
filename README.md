@@ -3,7 +3,7 @@
 # 🛡️ PI-Guard
 ### A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications
 
-[![CI Pipeline](https://github.com/your-org/pi-guard/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/pi-guard/actions)
+[![CI Pipeline](https://github.com/nvtruongops/pi-guard/actions/workflows/ci.yml/badge.svg)](https://github.com/nvtruongops/pi-guard/actions)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 [![Framework](https://img.shields.io/badge/FastAPI-Streamlit-orange.svg)](https://fastapi.tiangolo.com)
@@ -93,7 +93,7 @@ Curated from public benchmarks on Hugging Face and deduplicated with **Group-Awa
 ### 1. Installation
 ```bash
 # Clone repository
-git clone https://github.com/your-org/pi-guard.git
+git clone https://github.com/nvtruongops/pi-guard.git
 cd pi-guard
 
 # Install dependencies
