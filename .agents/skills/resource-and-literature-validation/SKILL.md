@@ -123,3 +123,53 @@ Mỗi khi agent hoặc thành viên nhóm muốn thêm một bài báo hoặc vi
 | **NIST Computer Security Resource Center** | Tiêu chuẩn an ninh AI & phân loại tấn công đối kháng | [https://csrc.nist.gov](https://csrc.nist.gov) |
 | **Cambridge Computer Lab Technical Reports** | Báo cáo kỹ thuật gốc của các nhà khoa học máy tính Cambridge | [https://www.cl.cam.ac.uk/techreports/](https://www.cl.cam.ac.uk/techreports/) |
 | **Stanford NLP Book (Manning et al.)** | Giáo trình kinh điển về Xử lý ngôn ngữ tự nhiên & IR | [https://nlp.stanford.edu/IR-book/](https://nlp.stanford.edu/IR-book/) |
+
+---
+
+## 🔬 5. Academic Grounding & Citation Anchor Specification
+
+### A. Tiêu Chuẩn Viết Tài Liệu Nghiên Cứu & Chuyên Đề (100% Grounded)
+Mọi tài liệu kỹ thuật, chuyên đề nghiên cứu (`docs/research/`, `docs/attack_study/`, `docs/model_study/`, `docs/thesis/`) bắt buộc phải tuân thủ:
+1. **Khẳng định kỹ thuật phải có nguồn bảo chứng**: Trích dẫn rõ tác giả, năm và mã trích dẫn nội trang dạng `[[N]](#refN)`. Không đưa ra các tuyên bố chung chung hoặc suy đoán thiếu tài liệu kiểm chứng.
+2. **Khối References chuẩn mực ở cuối mỗi trang**:
+   Mọi trang có sử dụng trích dẫn `[[N]](#refN)` bắt buộc phải có mục References chứa neo HTML `<a id="refN"></a>` tương ứng trên chính trang đó:
+   ```markdown
+   ---
+   ## References (Tài Liệu Tham Khảo Học Thuật Chuẩn IEEE)
+
+   <a id="ref1"></a>**[1]** W. X. Zhao et al., "A Survey of Large Language Models," *arXiv preprint arXiv:2303.18223*, 2023. Link: [https://arxiv.org/abs/2303.18223](https://arxiv.org/abs/2303.18223).
+   <a id="ref2"></a>**[2]** L. Ouyang et al., "Training language models to follow instructions with human feedback," in *NeurIPS 2022*. Link: [https://arxiv.org/abs/2203.02155](https://arxiv.org/abs/2203.02155).
+   ```
+3. **Quy tắc giải quyết cảnh báo MkDocs**: Neo `<a id="refN"></a>` phải nằm trên cùng một file markdown với liên kết `[[N]](#refN)` để loại bỏ hoàn toàn cảnh báo `contains a link '#refN', but there is no such anchor on this page` khi build.
+
+### B. Bảng Quy Chuẩn Định Dạng Liên Kết & Xử Lý Paywalled DOI
+| Loại Tài Nguyên | Cách Định Dạng Chuẩn Trong Markdown | Lý Do Kỹ Thuật |
+| :--- | :--- | :--- |
+| **arXiv Preprint / OpenAlex PDF** | `[https://arxiv.org/abs/xxxx.yyyyy](https://arxiv.org/abs/xxxx.yyyyy)` | Link mở trực tiếp, crawler HTTP 200/302 luôn hợp lệ |
+| **DOI Tường Phí (ACM, Emerald, IEEE)** | Ghi DOI dạng inline code: `(DOI: 10.xxxx/yyyy)` kèm link Open-Access PDF bên cạnh | Tránh bị Cloudflare WAF chặn trả về HTTP 403 khi kiểm tra tự động |
+| **Video Bài Giảng (YouTube)** | `[https://www.youtube.com/watch?v=...](https://www.youtube.com/watch?v=...)` | Đã qua kiểm định `youtube.com/oembed` (video công khai, tồn tại) |
+| **Tiêu Chuẩn / Báo Cáo Tổ Chức** | `[https://csrc.nist.gov/...](https://csrc.nist.gov/...)` hoặc `[https://owasp.org/...](https://owasp.org/...)` | Nguồn uy tín quốc tế, giao thức HTTPS mở không chặn bot |
+
+### C. Lệnh Kiểm Toán Đa Luồng Toàn Workspace Trước Khi Commit
+```bash
+python -c "
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
+from pathlib import Path
+from scripts.verify_resource_url import audit_markdown_file
+
+base_dir = Path('workspaces/truongnv')
+all_files = list(base_dir.rglob('*.md'))
+failed = []
+for f in sorted(all_files):
+    for r in audit_markdown_file(f):
+        if not r['is_valid']:
+            failed.append((str(f), r['url'], r['note']))
+if failed:
+    print(f'❌ Phát hiện {len(failed)} link lỗi!')
+    sys.exit(1)
+else:
+    print('🎉 100% URLs đạt chuẩn Zero Dead Links!')
+"
+```
+

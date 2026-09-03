@@ -16,7 +16,7 @@ This skill guides research, taxonomy classification, and literature review for t
 
 ## 1. Local References Archive & Application Log (100% >= 2022)
 
-All 16 core academic papers are downloaded and cataloged in [`References/`](file:///d:/Work/Do-an/References/). Always refer to [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/References/REFERENCES_LOG.md) for full metadata, BibTeX citations, and thesis/slide mapping:
+All 17 core academic papers are downloaded and cataloged in [`References/`](file:///d:/Work/Do-an/References/). Always refer to [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/References/REFERENCES_LOG.md) for full metadata, BibTeX citations, and thesis/slide mapping:
 
 | File PDF (`References/`) | Authors & Year | Publication Venue | Role & Applied Section |
 | :--- | :--- | :---: | :--- |
@@ -36,6 +36,7 @@ All 16 core academic papers are downloaded and cataloged in [`References/`](file
 | [`Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`](file:///d:/Work/Do-an/References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf) | Robey et al. (2023) | *arXiv 2023* | Randomized Smoothing Defense Comparison (Ch. 4) |
 | [`Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf) | Jain et al. (2023) | *arXiv 2023* | **KEY 1**: Baseline Defenses & Simple Classifier Benchmarks (Ch. 3, 4) |
 | [`Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`](file:///d:/Work/Do-an/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf) | Yao et al. (2022) | *NeurIPS 2022* | **KEY 3**: INT8 Post-Training Quantization (PTQ) for Transformers (Ch. 3, 4) |
+| [`Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`](file:///d:/Work/Do-an/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf) | Yuan et al. (2024) | *ICLR 2024* | **CIPHER KEY**: GPT-4 Safety Failure under Cipher & Obfuscation (Ch. 1, 4) |
 
 ---
 
@@ -101,3 +102,21 @@ python scripts/verify_resource_url.py --file "path/to/document.md"
 2. **ACL Anthology**: Kho mở chính thức của hiệp hội ACL, EMNLP, NAACL ([https://aclanthology.org](https://aclanthology.org)).
 3. **OpenAlex & Semantic Scholar**: Cung cấp API mở trích xuất URL PDF mở từ kho lưu trữ của các trường đại học tác giả (`institutional repositories`).
 4. **Giáo trình & Technical Reports**: Khi bài báo gốc từ những năm 1970–1990 bị paywall (như Karen Spärck Jones 1972), bổ sung tài liệu kỹ thuật của trường tác giả (Cambridge Computer Lab Technical Reports) hoặc giáo trình kinh điển của Stanford/MIT.
+
+---
+
+## 4. Mandatory Academic Grounding Invariant & On-Page Anchor Standards
+
+### A. Quy Chuẩn Cơ Sở Học Thuật (Zero Unsupported Claims)
+Mọi bài viết nghiên cứu, chuyên đề kỹ thuật (`docs/attack_study/`, `docs/model_study/`, `docs/research/`, `docs/thesis/`) bắt buộc:
+1. **Không phát biểu suông hoặc suy diễn vô căn cứ**: Mọi nhận định kỹ thuật (ví dụ: nguyên nhân Causal LM chưa bị Prompt Injection trước 2022, cơ chế Disentangled Attention tách biệt nội dung/vị trí, hay tính bền vững của Character n-grams trước Leetspeak) PHẢI gắn liền với trích dẫn cụ thể (tác giả, năm, công trình khoa học).
+2. **Ánh xạ vào Danh mục 17 Công trình cốt lõi**: Đối chiếu với [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/References/REFERENCES_LOG.md) và gắn link arXiv mở tương ứng.
+
+### B. Chuẩn Hóa Neo Trích Dẫn Nội Trang (On-Page Anchor Integrity)
+1. **Cú pháp trích dẫn**: Trích dẫn trong văn bản dùng định dạng `[[N]](#refN)` (ví dụ: `Perez & Ribeiro (2022) [[3]](#ref3)`).
+2. **Neo định vị**: Khối References ở cuối trang bắt buộc phải chứa thẻ neo `<a id="refN"></a>` tương ứng trên cùng file:
+   ```markdown
+   <a id="ref3"></a>**[3]** F. Perez and I. Ribeiro, "Ignore This Title and Hack This Paper: Towards Automated Adversarial Prompting," in *NeurIPS Workshops*, 2022. Link: [https://arxiv.org/abs/2206.05600](https://arxiv.org/abs/2206.05600).
+   ```
+3. **Mục đích**: Bảo đảm cổng tài liệu MkDocs Material biên dịch 100% sạch, không sinh bất kỳ cảnh báo missing anchor nào.
+
