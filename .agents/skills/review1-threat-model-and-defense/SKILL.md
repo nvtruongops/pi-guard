@@ -89,7 +89,7 @@ This skill guides the PI-Guard capstone project team (**Nguyễn Văn Trường,
 
 ## 🛡️ 3. THREAT MODEL, ATTACK SURFACE & KIẾN TRÚC PHÒNG THỦ 3 LỚP
 
-Dựa trên tiêu chuẩn **NIST AI 100-2e2025** [[7]](https://csrc.nist.gov/pubs/ai/100/2/e2025/final), **OWASP LLM01:2025** [[8]](https://genai.owasp.org/llm-top-10/), và **Tencent AI-Infra-Guard (2026)** [[6]](file:///d:/Work/Do-an/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf):
+Dựa trên tiêu chuẩn **NIST AI 100-2e2025** [[7]](https://csrc.nist.gov/pubs/ai/100/2/e2025/final), **OWASP LLM01:2025** [[8]](https://owasp.org/www-project-top-10-for-large-language-model-applications/), và **Tencent AI-Infra-Guard (2026)** [[6]](file:///d:/Work/Do-an/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf):
 
 ```
 [ Attacker: Người dùng độc hại / Chuỗi văn bản ngoài ]

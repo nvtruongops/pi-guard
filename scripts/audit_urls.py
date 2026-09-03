@@ -2,13 +2,15 @@
 Script audit và kiểm tra song song toàn bộ URL trong toàn bộ repository.
 Kiểm tra tính khả dụng: HTTP status, YouTube video validity, Open-access status.
 """
+import json
 import re
-import sys
-from pathlib import Path
-import urllib.request
-import urllib.error
 import ssl
+import sys
+import urllib.error
+import urllib.parse
+import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
 
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
@@ -41,15 +43,18 @@ def find_markdown_files():
 
 def extract_urls(file_path):
     try:
-        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+        with open(file_path, encoding="utf-8", errors="ignore") as f:
             content = f.read()
     except Exception:
         return []
-    
+
     found = URL_REGEX.findall(content)
     clean = []
     for u in found:
-        u = u.rstrip(".,;:")
+        u = u.rstrip(".,;:`)'\"")
+        # Bỏ qua các URL mẫu / template placeholder
+        if "..." in u or "xxxx" in u or "yyyy" in u or "<" in u or ">" in u:
+            continue
         clean.append(u)
     return clean
 
@@ -57,21 +62,23 @@ def check_url(url):
     """Kiểm tra URL trả về tuple: (url, is_ok, status_code, message)"""
     if "127.0.0.1" in url or "localhost" in url:
         return (url, True, 200, "Localhost (Bỏ qua)")
-    
+
+    # YouTube check qua oEmbed API chính thức
+    if "youtube.com/watch" in url or "youtu.be/" in url:
+        oembed = f"https://www.youtube.com/oembed?url={urllib.parse.quote(url)}&format=json"
+        req = urllib.request.Request(oembed, headers=HEADERS)
+        try:
+            with urllib.request.urlopen(req, timeout=8, context=ctx) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                return (url, True, 200, f"YouTube OK: '{data.get('title')}'")
+        except Exception as e:
+            return (url, False, 404, f"YouTube: Video không tồn tại hoặc đã bị xóa ({e})")
+
     req = urllib.request.Request(url, headers=HEADERS)
     try:
         with urllib.request.urlopen(req, timeout=8, context=ctx) as resp:
             status = resp.status
             content_type = resp.headers.get("Content-Type", "")
-            
-            # YouTube check
-            if "youtube.com" in url or "youtu.be" in url:
-                html = resp.read(200000).decode("utf-8", errors="ignore")
-                if "Video unavailable" in html or "This video isn't available anymore" in html or '"playabilityStatus":{"status":"ERROR"' in html or '"playabilityStatus":{"status":"UNPLAYABLE"' in html:
-                    return (url, False, status, "YouTube: Video không khả dụng (Unavailable)")
-                if "This video is private" in html:
-                    return (url, False, status, "YouTube: Video riêng tư (Private)")
-            
             return (url, True, status, f"OK ({content_type.split(';')[0]})")
     except urllib.error.HTTPError as e:
         if e.code == 403:
@@ -86,19 +93,19 @@ def main():
     print("🔍 [AUDIT] Đang quét toàn bộ file markdown trong repo...", flush=True)
     md_files = find_markdown_files()
     print(f"📄 Tìm thấy {len(md_files)} file Markdown.", flush=True)
-    
+
     url_to_files = {}
     for mf in md_files:
         urls = extract_urls(mf)
         for u in urls:
             url_to_files.setdefault(u, []).append(mf.relative_to(ROOT_DIR))
-            
+
     unique_urls = sorted(url_to_files.keys())
     print(f"🔗 Tìm thấy {len(unique_urls)} URL duy nhất. Bắt đầu kiểm tra song song (15 workers)...\n", flush=True)
-    
+
     results = []
     broken = []
-    
+
     with ThreadPoolExecutor(max_workers=15) as executor:
         futures = {executor.submit(check_url, u): u for u in unique_urls}
         count = 0
@@ -110,12 +117,12 @@ def main():
             print(f"[{count}/{len(unique_urls)}] {icon} {url} -> {msg}", flush=True)
             if not is_ok:
                 broken.append((url, code, msg, url_to_files[url]))
-                
+
     print("\n" + "="*85, flush=True)
     print(f"📊 BÁO CÁO TỔNG HỢP: {len(unique_urls)} URLs | Hoạt động: {len(unique_urls)-len(broken)} | Lỗi/Cần xử lý: {len(broken)}", flush=True)
     print("="*85, flush=True)
-    
-    for u, code, msg, files in broken:
+
+    for u, _code, msg, files in broken:
         print(f"\n❌ URL: {u}", flush=True)
         print(f"   Lý do: {msg}", flush=True)
         print("   File bị ảnh hưởng:", flush=True)

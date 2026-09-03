@@ -97,7 +97,7 @@ python scripts/verify_resource_url.py --file "path/to/document.md"
 ```
 
 ### C. Nguồn Truy Cập Học Thuật Mở Tin Cậy (Free & Open Access)
-1. **arXiv.org**: Cổng preprint hàng đầu thế giới cho AI/ML (`https://arxiv.org/abs/...` hoặc `https://arxiv.org/pdf/...`).
-2. **ACL Anthology**: Kho mở chính thức của hiệp hội ACL, EMNLP, NAACL (`https://aclanthology.org/...`).
+1. **arXiv.org**: Cổng preprint hàng đầu thế giới cho AI/ML ([https://arxiv.org](https://arxiv.org)).
+2. **ACL Anthology**: Kho mở chính thức của hiệp hội ACL, EMNLP, NAACL ([https://aclanthology.org](https://aclanthology.org)).
 3. **OpenAlex & Semantic Scholar**: Cung cấp API mở trích xuất URL PDF mở từ kho lưu trữ của các trường đại học tác giả (`institutional repositories`).
 4. **Giáo trình & Technical Reports**: Khi bài báo gốc từ những năm 1970–1990 bị paywall (như Karen Spärck Jones 1972), bổ sung tài liệu kỹ thuật của trường tác giả (Cambridge Computer Lab Technical Reports) hoặc giáo trình kinh điển của Stanford/MIT.
