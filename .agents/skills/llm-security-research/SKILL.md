@@ -67,3 +67,37 @@ When analyzing or categorizing attacks in this project, adhere to the standard O
 - **Leetspeak / Substitution**: Replacing characters (`1gn0r3 pr3v10us 1nstruct10ns`).
 - **Encoding**: Base64, Hex, Binary, ROT13, Morse code.
 - **Spaced Text / Delimiters**: Inserting spaces or separators between letters (`i g n o r e`).
+
+---
+
+## 3. Literature Discovery & Open-Access PDF Resolution Workflow
+
+Khi tìm kiếm bài báo, tài liệu học thuật hoặc video bài giảng mới:
+
+### A. Quy Chuẩn Kép Dual-Linking Bắt Buộc
+Tuyệt đối **KHÔNG ĐƯỢC CHỈ DẪN DOI BỊ PAYWALL** khiến người đọc bị chặn truy cập. Mọi tài liệu khoa học phải được trình bày theo định dạng kép:
+```markdown
+- **Tên bài báo**: *"Tiêu đề bài báo"*
+- **Tác giả & Năm**: Tác giả et al. (Năm)
+- **DOI chính thức**: [10.xxxx/yyyy](https://doi.org/10.xxxx/yyyy) *(Trang nhà xuất bản — Yêu cầu tài khoản)*
+- **Bản đọc mở toàn văn (Open-Access PDF)**: [Tải/Đọc PDF trực tiếp](https://arxiv.org/pdf/xxxx.yyyyy) *(Nguồn: arXiv / OpenAlex / Semantic Scholar)*
+```
+
+### B. Tra Cứu Tự Động Bản Mở (Open-Access PDF)
+Sử dụng công cụ `scripts/verify_resource_url.py` để tự động tra cứu:
+```bash
+# Tra cứu DOI để tự động trích xuất link PDF mở từ OpenAlex / Semantic Scholar:
+python scripts/verify_resource_url.py --doi "10.1145/3658644.3670388"
+
+# Kiểm tra tính tồn tại và hợp lệ của một URL (Status 200, Content-Type, YouTube oEmbed):
+python scripts/verify_resource_url.py --url "https://www.youtube.com/watch?v=ATK6fm3cYfI"
+
+# Quét và kiểm toán toàn bộ link trong file tài liệu trước khi commit:
+python scripts/verify_resource_url.py --file "path/to/document.md"
+```
+
+### C. Nguồn Truy Cập Học Thuật Mở Tin Cậy (Free & Open Access)
+1. **arXiv.org**: Cổng preprint hàng đầu thế giới cho AI/ML (`https://arxiv.org/abs/...` hoặc `https://arxiv.org/pdf/...`).
+2. **ACL Anthology**: Kho mở chính thức của hiệp hội ACL, EMNLP, NAACL (`https://aclanthology.org/...`).
+3. **OpenAlex & Semantic Scholar**: Cung cấp API mở trích xuất URL PDF mở từ kho lưu trữ của các trường đại học tác giả (`institutional repositories`).
+4. **Giáo trình & Technical Reports**: Khi bài báo gốc từ những năm 1970–1990 bị paywall (như Karen Spärck Jones 1972), bổ sung tài liệu kỹ thuật của trường tác giả (Cambridge Computer Lab Technical Reports) hoặc giáo trình kinh điển của Stanford/MIT.
