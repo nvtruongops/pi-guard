@@ -57,7 +57,12 @@ def sanitize_content(content: str) -> str:
     content = re.sub(r"\(file:///[^)]+\)", r"(#)", content)
 
     # Chuẩn hóa callout kiểu GitHub (> [!NOTE]) thành MkDocs Admonition (!!! note)
-    # MkDocs Material hỗ trợ cả 2 qua extension pymdownx.details / admonition
+    # Sửa lỗi ký tự gạch chéo ngược \_ trong link URL
+    content = re.sub(r"https?://[^\s\)]+", lambda m: m.group(0).replace(r"\_", "_"), content)
+    # Chuẩn hóa link OWASP và ACM
+    content = content.replace("https://genai.owasp.org/llm-top-10/", "https://owasp.org/www-project-top-10-for-large-language-model-applications/")
+    content = content.replace("https://dl.acm.org/doi/epdf/10.1145/3724393", "https://doi.org/10.1145/3724393")
+
     return content
 
 def copy_doc(src_path: Path, dest_path: Path, title_prefix: str = ""):

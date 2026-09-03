@@ -7,8 +7,12 @@
 1. **Karen Spärck Jones (1972) — Nguồn Gốc Lịch Sử Của IDF**:
    - **Tên bài báo**: *"A statistical interpretation of term specificity and its application in retrieval"*.
    - **Tạp chí**: *Journal of Documentation*, Vol. 28, No. 1, pp. 11–21.
-   - **DOI**: [10.1108/eb026526](https://doi.org/10.1108/eb026526)
-   - **Ý nghĩa**: Đặt nền móng cho trọng số IDF trong toàn bộ ngành Khoa học Máy tính.
+   - **DOI chính thức**: [10.1108/eb026526](https://doi.org/10.1108/eb026526) *(Nhà xuất bản Emerald Insight — Yêu cầu tài khoản thư viện đại học)*.
+   - **Bản đọc mở & Giáo trình chuẩn (Open-Access References)**:
+     - 📖 **Giáo trình Stanford NLP & IR (Manning, Raghavan, Schütze)**: [Chapter 6: Scoring, Term Weighting and the Vector Space Model (PDF)](https://nlp.stanford.edu/IR-book/pdf/06vect.pdf) — *Trình bày và chứng minh toán học chi tiết công thức TF-IDF và cơ sở lý thuyết của Karen Spärck Jones*.
+     - 📄 **Báo cáo kỹ thuật Đại học Cambridge (Robertson & Spärck Jones)**: [Technical Report UCAM-CL-TR-356 (PDF)](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf) — *Tài liệu nghiên cứu gốc của Phòng thí nghiệm Máy tính Cambridge giải thích sâu về trọng số IDF và BM25*.
+     - 🌐 **Hồ sơ trích dẫn khoa học**: [Karen Spärck Jones (1972) trên Semantic Scholar](https://www.semanticscholar.org/paper/4f09e6ec1b7d4390d23881852fd7240994abeb58).
+   - **Ý nghĩa**: Đặt nền móng cho trọng số IDF trong toàn bộ ngành Khoa học Máy tính và NLP.
 
 2. **Neel Jain et al. (University of Maryland, 2023) — TF-IDF Chống Tấn Công LLM**:
    - **Tên bài báo**: *"Baseline Defenses for Adversarial Attacks on Large Language Models"*.
@@ -34,27 +38,27 @@
 
 ---
 
-## 🎥 3. TUYỂN TẬP VIDEO BÀI GIẢNG TRỰC QUAN (YOUTUBE)
+## 🎥 3. TUYỂN TẬP VIDEO BÀI GIẢNG TRỰC QUAN ĐÃ KIỂM ĐỊNH (100% HOẠT ĐỘNG)
 
 1. **Codebasics (NLP Playlist - Tập 6)**:
-   - **Tiêu đề**: *Text Representation Using TF-IDF (Intuition + Code)*
-   - **Link video**: [https://www.youtube.com/watch?v=kR5t6H1T4H4](https://www.youtube.com/watch?v=kR5t6H1T4H4)
+   - **Tiêu đề**: *Text Representation Using TF-IDF: NLP Tutorial For Beginners - S2 E6*
+   - **Link video**: [https://www.youtube.com/watch?v=ATK6fm3cYfI](https://www.youtube.com/watch?v=ATK6fm3cYfI)
    - **Thời lượng**: ~20 phút.
-   - **Điểm hay**: Giải thích trực quan bằng bảng tính Excel cách tính TF, IDF và viết code Scikit-learn.
+   - **Điểm hay**: Giải thích trực quan bằng bảng tính Excel cách tính TF, IDF và viết code Scikit-learn với bộ dữ liệu thực tế.
 
-2. **Datamlistic**:
-   - **Tiêu đề**: *Term Frequency Inverse Document Frequency (TF-IDF) Explained*
-   - **Link video**: [https://www.youtube.com/watch?v=38D1n7HhN_s](https://www.youtube.com/watch?v=38D1n7HhN_s)
-   - **Thời lượng**: ~8 phút.
-   - **Điểm hay**: Cực kỳ cô đọng, đi thẳng vào bản chất công thức toán học và sự khác biệt giữa từ hiếm và từ phổ biến.
-
-3. **Adrian Dolinay**:
-   - **Tiêu đề**: *NLP with Python: Term Frequency-Inverse Document Frequency (tf-idf) from Scratch*
-   - **Link video**: [https://www.youtube.com/watch?v=f95i3B201_g](https://www.youtube.com/watch?v=f95i3B201_g)
+2. **Krish Naik**:
+   - **Tiêu đề**: *Natural Language Processing | TF-IDF Intuition | Text Preprocessing*
+   - **Link video**: [https://www.youtube.com/watch?v=D2V1okCEsiE](https://www.youtube.com/watch?v=D2V1okCEsiE)
    - **Thời lượng**: ~15 phút.
-   - **Điểm hay**: Hướng dẫn tự code thuật toán TF-IDF từ đầu bằng Python thuần không dùng thư viện ngoài.
+   - **Điểm hay**: Đi thẳng vào bản chất công thức toán học TF, IDF và phân tích lý do tại sao từ hiếm có trọng số cao hơn từ phổ biến.
 
-4. **StatQuest with Josh Starmer (Toán Học & Thuật Toán Tuyến Tính)**:
-   - [Logistic Regression Details Pt.1: Coefficients and Odds](https://www.youtube.com/watch?v=yIYKR4sgzI8) — *Hiểu sâu về hàm Sigmoid và Log-Odds*.
-   - [Support Vector Machines (SVM) Clearly Explained](https://www.youtube.com/watch?v=efR1C6CvhmE) — *Hiểu về siêu phẳng phân chia và Margin cực đại*.
-   - [ROC and AUC Curves Clearly Explained](https://www.youtube.com/watch?v=4jRBRDbJemM) — *Cách vẽ và đánh giá đường cong ROC-AUC*.
+3. **StatQuest with Josh Starmer (Không Gian Vector & Word Embedding)**:
+   - **Tiêu đề**: *Word Embedding and Word2Vec, Clearly Explained!!!*
+   - **Link video**: [https://www.youtube.com/watch?v=viZrOnJclY0](https://www.youtube.com/watch?v=viZrOnJclY0)
+   - **Thời lượng**: ~16 phút.
+   - **Điểm hay**: Giúp hiểu rõ bước chuyển dịch từ biểu diễn tần suất từ (TF-IDF bag-of-words) sang không gian embedding ngữ nghĩa.
+
+4. **StatQuest with Josh Starmer (Toán Học & Thuật Toán Tuyến Tính Baseline)**:
+   - [Logistic Regression Details Pt.1: Coefficients and Odds](https://www.youtube.com/watch?v=yIYKR4sgzI8) — *Hiểu sâu về hàm Sigmoid và Log-Odds trong bài toán phân loại nhị phân*.
+   - [Support Vector Machines (SVM) Clearly Explained](https://www.youtube.com/watch?v=efR1C6CvhmE) — *Hiểu về siêu phẳng phân chia (Hyperplane) và Margin cực đại*.
+   - [ROC and AUC Curves Clearly Explained](https://www.youtube.com/watch?v=4jRBRDbJemM) — *Cách vẽ và đánh giá đường cong ROC-AUC phục vụ đo lường False Positive Rate (FPR)*.

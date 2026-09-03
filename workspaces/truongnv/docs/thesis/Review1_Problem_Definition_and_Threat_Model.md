@@ -622,7 +622,7 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 
 <a id="ref8"></a>**[8]** OWASP GenAI Security Project, "OWASP Top 10 for Large Language Model Applications and Generative AI," _Open Worldwide Application Security Project_, Version 2.0, 2025.
 
-- 🔗 **Online URL**: [https://genai.owasp.org/llm-top-10/](https://genai.owasp.org/llm-top-10/)
+- 🔗 **Online URL**: [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
 
 <a id="ref9"></a>**[9]** H. Inan et al., "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations," _Meta AI Technical Report_, arXiv preprint arXiv:2312.06674, Dec. 2023.
 
