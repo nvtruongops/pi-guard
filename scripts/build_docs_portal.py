@@ -84,113 +84,42 @@ def copy_doc(src_path: Path, dest_path: Path, title_prefix: str = ""):
         return False
 
 def create_homepage():
-    """Tạo trang chủ (index.md) với thiết kế trực quan, hiện đại, rich visuals."""
-    index_content = """# PI-Guard Documentation Portal
+    """Tạo trang chủ (index.md) chuẩn mực, tối giản, thuần Markdown."""
+    index_content = """# 🛡️ PI-Guard: LLM Security Guardrail
 
-<div class="hero-container">
-  <div class="hero-badge">🎓 FPT UNIVERSITY • CAPSTONE PROJECT IAP491</div>
-  <h1 class="hero-title">PI-GUARD: LLM SECURITY GUARDRAIL</h1>
-  <p class="hero-subtitle">
-    Hệ thống phòng thủ máy học 2 tầng (Two-Tier ML Guardrail) đặt trước các ứng dụng Large Language Model (LLM) nhằm phát hiện và ngăn chặn tấn công <strong>Prompt Injection</strong> và <strong>Jailbreak</strong> với độ trễ thấp và tỷ lệ cảnh báo sai tối thiểu.
-  </p>
-  <div class="hero-actions">
-    <a href="work/sprint_1_todo_list/" class="btn-primary">📋 Kế Hoạch Sprint Tuần</a>
-    <a href="models/two_tier_architecture/" class="btn-secondary">⚡ Kiến Trúc 2 Tầng</a>
-    <a href="thesis/review1_threat_model/" class="btn-secondary">🛡️ Hồ Sơ Review 1</a>
-  </div>
-</div>
-
-<div class="metrics-grid">
-  <div class="metric-card">
-    <div class="metric-icon">⚡</div>
-    <div class="metric-value">Two-Tier</div>
-    <div class="metric-label">Phòng thủ Cú pháp & Ngữ nghĩa</div>
-  </div>
-  <div class="metric-card">
-    <div class="metric-icon">⏱️</div>
-    <div class="metric-value">&lt; 15 ms</div>
-    <div class="metric-label">Mục tiêu Độ trễ P95 (ONNX INT8)</div>
-  </div>
-  <div class="metric-card">
-    <div class="metric-icon">📚</div>
-    <div class="metric-value">18 Papers</div>
-    <div class="metric-label">Tài liệu tham khảo IEEE (2022-2026)</div>
-  </div>
-  <div class="metric-card">
-    <div class="metric-icon">👥</div>
-    <div class="metric-value">4 Members</div>
-    <div class="metric-label">Đội ngũ An toàn Thông tin FPT</div>
-  </div>
-</div>
-
-## 📂 Danh Mục Tài Liệu Trọng Tâm
-
-<div class="portal-grid">
-  <a href="work/sprint_1_todo_list/" class="portal-card">
-    <div class="portal-card-header">
-      <span class="portal-card-tag tag-work">QUẢN LÝ CÔNG VIỆC</span>
-    </div>
-    <h3 class="portal-card-title">📋 Tiến Độ & Kế Hoạch Sprint</h3>
-    <p class="portal-card-desc">
-      Biên bản họp tuần với GVHD, bảng phân rã nhiệm vụ chi tiết theo ngày (Daily Timeline), ma trận trách nhiệm RACI và checklist tự kiểm toán Process Report.
-    </p>
-    <div class="portal-card-footer">Xem chi tiết &rarr;</div>
-  </a>
-
-  <a href="models/two_tier_architecture/" class="portal-card">
-    <div class="portal-card-header">
-      <span class="portal-card-tag tag-ai">MÔ HÌNH MÁY HỌC</span>
-    </div>
-    <h3 class="portal-card-title">🧠 Kiến Trúc Phòng Thủ 2 Tầng</h3>
-    <p class="portal-card-desc">
-      Toán học & cách triển khai Tier 1 (TF-IDF + Linear Classifier độ trễ &lt; 5ms) kết hợp Tier 2 (DeBERTa-v3 Disentangled Attention) lượng hóa ONNX INT8.
-    </p>
-    <div class="portal-card-footer">Xem chi tiết &rarr;</div>
-  </a>
-
-  <a href="thesis/review1_threat_model/" class="portal-card">
-    <div class="portal-card-header">
-      <span class="portal-card-tag tag-thesis">LUẬN VĂN & REVIEW 1</span>
-    </div>
-    <h3 class="portal-card-title">🛡️ Threat Model & Defense</h3>
-    <p class="portal-card-desc">
-      Hồ sơ bảo vệ Review 1: Phát biểu bài toán, mô hình đe dọa (NIST AI 100-2e2025), hệ thống 3 câu hỏi nghiên cứu IEEE (RQ1-RQ3) và slide thuyết trình.
-    </p>
-    <div class="portal-card-footer">Xem chi tiết &rarr;</div>
-  </a>
-
-  <a href="references/references_log/" class="portal-card">
-    <div class="portal-card-header">
-      <span class="portal-card-tag tag-ref">TÀI LIỆU KHOA HỌC</span>
-    </div>
-    <h3 class="portal-card-title">📚 18 Bài Báo IEEE Đỉnh Cao</h3>
-    <p class="portal-card-desc">
-      Nhật ký 18 công trình nghiên cứu hàng đầu thế giới (100% từ năm 2022-2026) kèm liên kết DOI/arXiv và ma trận ánh xạ vào 6 chương của luận văn.
-    </p>
-    <div class="portal-card-footer">Xem chi tiết &rarr;</div>
-  </a>
-</div>
+> **Đồ án Khóa luận Tốt nghiệp Đại học FPT** — Chuyên ngành An toàn Thông tin (Information Assurance)<br>
+> **Mã đề tài**: `IAP491_FA26_PI_GUARD` | **Năm học**: 2026<br>
+> **Chủ đề**: A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications
 
 ---
 
-## 🌟 Sơ Đồ Luồng Phòng Thủ 2 Tầng (Two-Tier Guardrail Pipeline)
+## 🎯 Giới Thiệu & Mục Tiêu Đề Tài
+
+**PI-Guard** là hệ thống bảo vệ (guardrail) trung gian đặt trước các ứng dụng mô hình ngôn ngữ lớn (LLM), hoạt động theo cơ chế **hai tầng bảo vệ (Two-Tier Architecture)**:
+
+1. **Tier 1 (Bộ lọc Cú pháp - Syntactic Baseline)**: Sử dụng phương pháp vector hóa TF-IDF kết hợp mô hình phân loại tuyến tính siêu nhẹ (Linear Classifier) nhằm nhận diện các mẫu prompt injection phổ biến với độ trễ cực thấp (**< 5 ms**).
+2. **Tier 2 (Bộ lọc Ngữ nghĩa Sâu - Semantic Transformer)**: Sử dụng Transformer tiên tiến (**DeBERTa-v3**) với cơ chế Disentangled Attention, được lượng hóa qua **ONNX Runtime INT8** nhằm phát hiện các biến thể tấn công tinh vi, jailbreak ẩn ngữ cảnh với độ trễ mục tiêu **P95 < 15 ms**.
+
+---
+
+## 🌟 Sơ Đồ Luồng Phòng Thủ 2 Tầng (Mermaid)
 
 ```mermaid
 flowchart TD
     UserPrompt(["📥 User Prompt"]) --> P1["⚙️ Tiền xử lý & Chuẩn hóa Unicode"]
     P1 --> T1{"⚡ Tier 1: TF-IDF Syntactic Gate"}
 
-    T1 -- "Nguy hiểm rõ ràng (Score >= 0.85)" --> Block1["🚫 CHẶN NGAY LẬP TỨC (Latency < 5ms)"]
-    T1 -- "Lành tính tuyệt đối (Score <= 0.15)" --> Pass1["✅ Chuyển thẳng đến Target LLM"]
-    T1 -- "Vùng nghi vấn (0.15 < Score < 0.85)" --> T2["🧠 Tier 2: DeBERTa-v3 Semantic Analysis"]
+    T1 -- "Nguy hiểm (Score >= 0.85)" --> Block1["🚫 Chặn ngay (< 5ms)"]
+    T1 -- "Lành tính (Score <= 0.15)" --> Pass1["✅ Cho phép chuyển đến LLM"]
+    T1 -- "Nghi vấn (0.15 < Score < 0.85)" --> T2["🧠 Tier 2: DeBERTa-v3 Semantic Gate"]
 
-    T2 -- "Phát hiện Prompt Injection / Jailbreak" --> Block2["🚫 CHẶN TẤN CÔNG NGỮ NGHĨA"]
-    T2 -- "Lành tính an toàn" --> Pass2["✅ CHẤP THUẬN CHO PHÉP"]
+    T2 -- "Phát hiện Injection / Jailbreak" --> Block2["🚫 Chặn tấn công ngữ nghĩa"]
+    T2 -- "Lành tính an toàn" --> Pass2["✅ Chấp thuận cho phép"]
 
     Pass1 --> LLM["🤖 Target LLM (GPT-4o / Claude 3.5 / Gemini)"]
     Pass2 --> LLM
     LLM --> OutFilter["🔍 Output Security Guardrail"]
-    OutFilter --> SafeResponse(["📤 Safe Response To User"])
+    OutFilter --> SafeResponse(["📤 Phản hồi an toàn đến người dùng"])
 
     style Block1 fill:#ff4d4f,color:#fff,stroke:#333,stroke-width:2px;
     style Block2 fill:#ff4d4f,color:#fff,stroke:#333,stroke-width:2px;
@@ -202,24 +131,36 @@ flowchart TD
 
 ---
 
-## 👥 Đội Ngũ Thực Hiện Đề Tài (Capstone Team)
+## 📋 Mục Lục Tài Liệu Toàn Dự Án
 
-| STT | Thành Viên | Mã Sinh Viên | Vai Trò & Phân Công Trọng Tâm |
+| Khu vực tài liệu | Nội dung trọng tâm | Đường dẫn tra cứu |
+| :--- | :--- | :--- |
+| **Quản Lý Công Việc** | Lộ trình IAP491, Biên bản họp 1 & 2, Kế hoạch Sprint tuần, Ma trận RACI | [Xem Kế Hoạch Sprint](work/sprint_1_todo_list.md) |
+| **Mô Hình & Nghiên Cứu** | Toán học TF-IDF, Transformer DeBERTa-v3, Phối hợp 2 tầng, Khảo sát SOTA | [Khám Phá Mô Hình](models/two_tier_architecture.md) |
+| **Luận Văn & Review 1** | Hồ sơ Threat Model (NIST), Hệ thống 3 câu hỏi IEEE (RQ1-RQ3), Dàn ý slide | [Xem Hồ Sơ Review 1](thesis/review1_threat_model.md) |
+| **Tài Liệu Tham Khảo** | Nhật ký 18 bài báo khoa học chuẩn IEEE (2022–2026) kèm DOI | [Xem Thư Viện Bài Báo](references/references_log.md) |
+| **Đội Ngũ & Quy Chế** | Quy chuẩn Workspace Boundary, Kiểm toán Commit tự động | [Xem Hướng Dẫn Nhóm](dev/team_governance.md) |
+
+---
+
+## 👥 Đội Ngũ Thực Hiện Đề Tài
+
+| STT | Thành Viên | Mã Sinh Viên | Vai Trò & Trọng Tâm Chuyên Môn |
 | :---: | :--- | :---: | :--- |
-| 1 | **Nguyễn Văn Trường (Leader)** | `SE182034` | **Kiến trúc Hệ thống & Kỹ thuật Dữ liệu** — Điều phối chung, Data Curation, Threat Model, Merge Code |
-| 2 | **Nguyễn Quí Đức** | `SE182087` | **Mô hình Máy học Baseline** — TF-IDF Vectorizer, Linear Classifier, Attack Surface, Robustness |
-| 3 | **Phạm Minh Hoàng Việt** | `SE181851` | **Transformer & Tối ưu hóa** — DeBERTa-v3 Fine-tuning, INT8 Quantization ONNX, Target LLM Benchmark |
-| 4 | **Đỗ Đoàn Duy Phương** | `SE180235` | **API Middleware & Luận văn** — FastAPI Proxy, Streamlit Dashboard, Báo cáo Chapter 1-2 & Slide PPT |
+| 1 | **Nguyễn Văn Trường (Leader)** | `SE182034` | **Kiến trúc & Kỹ thuật Dữ liệu** — Điều phối chung, Dataset Curation, Threat Model |
+| 2 | **Nguyễn Quí Đức** | `SE182087` | **Mô hình ML Baseline** — TF-IDF Vectorizer, Linear Classifier, Attack Surface |
+| 3 | **Phạm Minh Hoàng Việt** | `SE181851` | **Transformer & Tối ưu hóa** — DeBERTa-v3 Fine-tuning, INT8 ONNX, Robustness |
+| 4 | **Đỗ Đoàn Duy Phương** | `SE180235` | **API Middleware & Luận văn** — FastAPI Proxy, Streamlit Dashboard, Báo cáo & Slide |
 
-**Giảng viên hướng dẫn (Supervisor)**: Đại học FPT — Khoa An toàn Thông tin (Information Assurance).
+**Giảng viên hướng dẫn**: Đại học FPT — Khoa An toàn Thông tin (Information Assurance).
 """
     dest = SITE_DOCS_DIR / "index.md"
     with open(dest, "w", encoding="utf-8") as f:
         f.write(index_content)
-    print("✅ [HOMEPAGE] Đã sinh trang chủ index.md thành công.")
+    print("✅ [HOMEPAGE] Đã sinh trang chủ index.md tối giản thành công.")
 
 def create_static_assets():
-    """Tạo các file hỗ trợ MathJax và Custom CSS."""
+    """Tạo các file hỗ trợ MathJax và Custom CSS tối giản."""
     mathjax_js = """window.MathJax = {
   tex: {
     inlineMath: [["\\\\(", "\\\\)"]],
@@ -240,238 +181,25 @@ document$.subscribe(() => {
     with open(SITE_DOCS_DIR / "javascripts" / "mathjax.js", "w", encoding="utf-8") as f:
         f.write(mathjax_js)
 
-    extra_css = """:root {
-  --md-primary-fg-color: #3f51b5;
-  --md-accent-fg-color: #7b1fa2;
-}
-
-/* ===== HERO CONTAINER ===== */
-.hero-container {
-  background: linear-gradient(135deg, rgba(63, 81, 181, 0.1) 0%, rgba(123, 31, 162, 0.12) 100%);
-  border: 1px solid rgba(63, 81, 181, 0.25);
-  border-radius: 16px;
-  padding: 2.5rem 2rem;
-  margin: 1.5rem 0 2rem 0;
-  text-align: center;
-  box-shadow: 0 8px 32px rgba(63, 81, 181, 0.08);
-}
-
-.hero-badge {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 0.35rem 1rem;
-  border-radius: 999px;
-  background: rgba(63, 81, 181, 0.15);
-  color: var(--md-primary-fg-color);
-  margin-bottom: 1rem;
-  border: 1px solid rgba(63, 81, 181, 0.3);
-}
-
-.hero-title {
-  font-size: 2.2rem !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.02em;
-  margin: 0.5rem 0 1rem 0 !important;
-  background: linear-gradient(135deg, #1a237e 0%, #4a148c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-[data-md-color-scheme="slate"] .hero-title {
-  background: linear-gradient(135deg, #7986cb 0%, #ce93d8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero-subtitle {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  max-width: 800px;
-  margin: 0 auto 1.8rem auto;
-  color: var(--md-default-fg-color--light);
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1.4rem;
-  background: #3f51b5;
-  color: #ffffff !important;
-  font-weight: 600;
-  border-radius: 8px;
-  text-decoration: none !important;
-  box-shadow: 0 4px 14px rgba(63, 81, 181, 0.35);
-  transition: all 0.2s ease;
-}
-
-.btn-primary:hover {
-  background: #303f9f;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(63, 81, 181, 0.45);
-}
-
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 1.4rem;
-  background: var(--md-default-bg-color);
-  color: var(--md-default-fg-color) !important;
-  font-weight: 600;
-  border-radius: 8px;
-  border: 1px solid var(--md-default-fg-color--lighter);
-  text-decoration: none !important;
-  transition: all 0.2s ease;
-}
-
-.btn-secondary:hover {
-  border-color: #3f51b5;
-  color: #3f51b5 !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* ===== METRICS GRID ===== */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2.5rem;
-}
-
-.metric-card {
-  background: var(--md-default-bg-color);
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 12px;
-  padding: 1.2rem 1rem;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s ease;
-}
-
-.metric-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(63, 81, 181, 0.4);
-}
-
-.metric-icon {
-  font-size: 1.6rem;
-  margin-bottom: 0.3rem;
-}
-
-.metric-value {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #3f51b5;
-}
-
-[data-md-color-scheme="slate"] .metric-value {
-  color: #9fa8da;
-}
-
-.metric-label {
-  font-size: 0.8rem;
-  color: var(--md-default-fg-color--light);
-  margin-top: 0.2rem;
-}
-
-/* ===== PORTAL FEATURE CARDS ===== */
-.portal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin: 1.5rem 0 2.5rem 0;
-}
-
-.portal-card {
-  background: var(--md-default-bg-color);
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 14px;
-  padding: 1.5rem;
-  text-decoration: none !important;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.portal-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(63, 81, 181, 0.15);
-  border-color: #3f51b5;
-}
-
-.portal-card-header {
-  margin-bottom: 0.75rem;
-}
-
-.portal-card-tag {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-}
-
-.tag-work { background: rgba(33, 150, 243, 0.12); color: #1976d2; }
-.tag-ai { background: rgba(156, 39, 176, 0.12); color: #7b1fa2; }
-.tag-thesis { background: rgba(76, 175, 80, 0.12); color: #388e3c; }
-.tag-ref { background: rgba(255, 152, 0, 0.12); color: #f57c00; }
-
-.portal-card-title {
-  font-size: 1.15rem !important;
-  font-weight: 700 !important;
-  margin: 0 0 0.5rem 0 !important;
-  color: var(--md-default-fg-color) !important;
-}
-
-.portal-card-desc {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: var(--md-default-fg-color--light);
-  margin-bottom: 1.2rem;
-  flex-grow: 1;
-}
-
-.portal-card-footer {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #3f51b5;
-  display: flex;
-  align-items: center;
-}
-
-/* ===== TABLE STYLING ===== */
+    extra_css = """/* Tối giản bảng biểu và kiểu dáng chuẩn */
 .md-typeset table:not([class]) {
-  border-radius: 10px;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 .md-typeset table:not([class]) th {
   background-color: rgba(63, 81, 181, 0.08);
-  color: #1a237e;
   font-weight: 700;
 }
 
 [data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
   background-color: rgba(63, 81, 181, 0.2);
-  color: #c5cae9;
 }
 """
     with open(SITE_DOCS_DIR / "stylesheets" / "extra.css", "w", encoding="utf-8") as f:
         f.write(extra_css)
-    print("✅ [ASSETS] Đã sinh MathJax script và custom CSS.")
+    print("✅ [ASSETS] Đã sinh MathJax script và custom CSS tối giản.")
 
 def aggregate_all():
     """Thu thập toàn bộ tài nguyên vào site_docs/."""
