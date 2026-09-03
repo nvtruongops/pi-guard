@@ -32,17 +32,19 @@
 ---
 
 ### 🔍 DANH MỤC 10 BÀI BÁO ĐƯỢC SÀNG LỌC TẠI MEETING 2 (01/09/2026):
-Chi tiết biên bản: [`Meeting/Meeting 2_01_09_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%202_01_09_26.md)
+Chi tiết biên bản: [`Meeting/Meeting 2_01_09_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%202_01_09_26.md)  
+Phân bổ không gian làm việc thành viên: [`workspaces/vietpmh/References/`](file:///d:/Work/Do-an/workspaces/vietpmh/References/), [`workspaces/phuongddd/References/`](file:///d:/Work/Do-an/workspaces/phuongddd/References/), [`workspaces/ducnq/References/`](file:///d:/Work/Do-an/workspaces/ducnq/References/).
 
-| # | Bài Báo / Nguồn | Tác giả & Năm | Quyết Định Sàng Lọc | Ứng Dụng Trong Đồ Án |
-| :---: | :--- | :--- | :---: | :--- |
-| 1 | **RAP-ID** (ACL Findings 2026) | Du et al. (2026) | **IN-SCOPE** | Cơ sở lý thuyết Pre-fill pass dynamics (DL, CG, PC) |
-| 2 | **BIPIA** (ACM KDD '25) | Yi et al. (2025) | **IN-SCOPE** | Benchmark Indirect Prompt Injection đa tác vụ |
-| 3 | **Indirect Injection** (ACM AISEC 2023) | Greshake et al. (2023) | **IN-SCOPE** | Cơ sở file upload / RAG bản chất là prompt injection |
-| 4 | **Jailbroken** (NeurIPS 2023) | Wei et al. (2023) | ❌ **OUT-OF-SCOPE** | Loại bỏ do can thiệp RLHF/Safety Training bên trong LLM |
-| 5 | **GCG Attack** (arXiv:2307.15043) | Zou et al. (2023) | **PARTIAL** | Giữ lại các mẫu đối kháng (adversarial suffixes) làm test set |
-| 6 | **Jailbreak Study** (ACL Findings 2024) | ACL (2024) | **IN-SCOPE** | Bảng phân loại tấn công & cơ chế phòng vệ Chapter 2 |
-| 7 | **Jailbreak Survey** (arXiv:2407.04295) | Survey (2024) | **IN-SCOPE** | Khảo sát Black-box defenses đặt ngoài API |
-| 8 | **Do-Not-Answer** (arXiv:2308.13387) | Wang et al. (2023) | **IN-SCOPE** | Luận cứ khoa học: Mô hình nhỏ < 600M (DeBERTa) sánh ngang GPT-4 |
-| 9 | **Vulnerabilities Survey** (arXiv:2406.00240) | Survey (2024) | **IN-SCOPE** | 3 chiến thuật Jailbreak & 3 kỹ thuật Black-box defense |
-| 10 | **JailGuard** (ACM TOSEM 2025) | TOSEM (2025) | **PARTIAL** | Thuật toán Targeted Mutators (Algorithm 1) cho test set Robustness |
+| # | Bài Báo / Nguồn | Tác giả & Năm | File PDF Cục Bộ | Quyết Định Sàng Lọc | Ứng Dụng Trong Đồ Án |
+| :---: | :--- | :--- | :--- | :---: | :--- |
+| 1 | **RAP-ID** (ACL Findings 2026) | Du et al. (2026) | [`Viet_2026_RAP_ID_Robust_Alignment_Preservation_Injection_Defense.pdf`](file:///d:/Work/Do-an/References/Viet_2026_RAP_ID_Robust_Alignment_Preservation_Injection_Defense.pdf) | **IN-SCOPE** | Cơ sở lý thuyết Pre-fill pass dynamics (DL, CG, PC) |
+| 2 | **BIPIA** (ACM KDD '25) | Yi et al. (2025) | [`Viet_2024_BIPIA_Benchmarking_Indirect_Prompt_Injection_Attacks.pdf`](file:///d:/Work/Do-an/References/Viet_2024_BIPIA_Benchmarking_Indirect_Prompt_Injection_Attacks.pdf) | **IN-SCOPE** | Benchmark Indirect Prompt Injection đa tác vụ |
+| 3 | **Indirect Injection** (ACM AISEC 2023) | Greshake et al. (2023) | [`Greshake_2023_Indirect_Prompt_Injection.pdf`](file:///d:/Work/Do-an/References/Greshake_2023_Indirect_Prompt_Injection.pdf) | **IN-SCOPE** | Cơ sở file upload / RAG bản chất là prompt injection |
+| 4 | **Jailbroken** (NeurIPS 2023) | Wei et al. (2023) | [`Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf) | ❌ **OUT-OF-SCOPE** | Loại bỏ do can thiệp RLHF/Safety Training bên trong LLM |
+| 5 | **GCG Attack** (arXiv:2307.15043) | Zou et al. (2023) | [`Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf`](file:///d:/Work/Do-an/References/Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf) | **PARTIAL** | Giữ lại các mẫu đối kháng (adversarial suffixes) làm test set |
+| 6 | **Jailbreak Study** (ACL Findings 2024) | ACL (2024) | [`Phuong_2024_ACL_Comprehensive_Study_Jailbreak_Attack_Defense.pdf`](file:///d:/Work/Do-an/References/Phuong_2024_ACL_Comprehensive_Study_Jailbreak_Attack_Defense.pdf) | **IN-SCOPE** | Bảng phân loại tấn công & cơ chế phòng vệ Chapter 2 |
+| 7 | **Jailbreak Survey** (arXiv:2407.04295) | Survey (2024) | [`Phuong_2024_Survey_Jailbreak_Attacks_Defenses_LLMs.pdf`](file:///d:/Work/Do-an/References/Phuong_2024_Survey_Jailbreak_Attacks_Defenses_LLMs.pdf) | **IN-SCOPE** | Khảo sát Black-box defenses đặt ngoài API |
+| 8 | **Do-Not-Answer** (arXiv:2308.13387) | Wang et al. (2023) | [`Phuong_2023_Do_Not_Answer_Dataset_Evaluating_Safeguards.pdf`](file:///d:/Work/Do-an/References/Phuong_2023_Do_Not_Answer_Dataset_Evaluating_Safeguards.pdf) | **IN-SCOPE** | Luận cứ khoa học: Mô hình nhỏ < 600M (DeBERTa) sánh ngang GPT-4 |
+| 9 | **Vulnerabilities Survey** (arXiv:2406.00240) | Survey (2024) | [`Phuong_2024_Exploring_Vulnerabilities_Protections_LLMs_Survey.pdf`](file:///d:/Work/Do-an/References/Phuong_2024_Exploring_Vulnerabilities_Protections_LLMs_Survey.pdf) | **IN-SCOPE** | 3 chiến thuật Jailbreak & 3 kỹ thuật Black-box defense |
+| 10 | **JailGuard** (ACM TOSEM 2025) | TOSEM (2025) | [`Duc_2025_JailGuard_Universal_Detection_Framework_TOSEM.pdf`](file:///d:/Work/Do-an/References/Duc_2025_JailGuard_Universal_Detection_Framework_TOSEM.pdf) | **PARTIAL** | Thuật toán Targeted Mutators (Algorithm 1) cho test set Robustness |
+

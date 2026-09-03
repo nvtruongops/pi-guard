@@ -13,3 +13,8 @@ Chào Việt! Đây là không gian làm việc nháp (Sandbox) riêng của b�
 - `scratch_quantize.py`: Thử nghiệm script nén ONNX INT8 và đo latency P95 trên CPU.
 - `scratch_evasion_test.py`: Thử nghiệm các payload Base64/Cipher độc hại.
 - Khi code đã chạy ổn định $\rightarrow$ Chuyển vào [`src/models/classifier.py`](file:///d:/Work/Do-an/src/models/classifier.py), [`src/preprocessing/obfuscation.py`](file:///d:/Work/Do-an/src/preprocessing/obfuscation.py) và [`notebooks/03_transformer_training.ipynb`](file:///d:/Work/Do-an/notebooks/03_transformer_training.ipynb).
+
+### 📚 Tài liệu nghiên cứu cục bộ:
+- [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/vietpmh/References/REFERENCES_LOG.md): Nhật ký 4 bài báo khoa học thẩm định trong Meeting 2 (RAP-ID, BIPIA, DeBERTaV3, ZeroQuant).
+- Thư mục lưu trữ PDF: [`References/`](file:///d:/Work/Do-an/workspaces/vietpmh/References/).
+

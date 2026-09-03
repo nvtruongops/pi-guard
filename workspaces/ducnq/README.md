@@ -12,3 +12,8 @@ Chào Đức! Đây là không gian làm việc nháp (Sandbox) riêng của b�
 - `scratch_tfidf.py`: Thử nghiệm các tham số TF-IDF (`max_features`, `ngram_range`).
 - `notes_model_comparison.md`: So sánh tốc độ và độ chính xác giữa LinearSVC và Logistic Regression.
 - Khi code đã chạy ổn định $\rightarrow$ Chuyển vào [`src/models/baseline/`](file:///d:/Work/Do-an/src/models/baseline/) và [`notebooks/02_baseline.ipynb`](file:///d:/Work/Do-an/notebooks/02_baseline.ipynb).
+
+### 📚 Tài liệu nghiên cứu cục bộ:
+- [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/ducnq/References/REFERENCES_LOG.md): Nhật ký 3 bài báo khoa học thẩm định trong Meeting 2 (JailGuard TOSEM 2025, Jain 2023 Baseline Defenses, SmoothLLM).
+- Thư mục lưu trữ PDF: [`References/`](file:///d:/Work/Do-an/workspaces/ducnq/References/).
+

@@ -13,3 +13,8 @@ Chào Phương! Đây là không gian làm việc nháp (Sandbox) riêng của b
 - `scratch_app.py`: Thử nghiệm giao diện Streamlit UI nháp.
 - `scratch_api.py`: Thử nghiệm endpoint FastAPI và streaming token.
 - Khi code đã chạy ổn định $\rightarrow$ Chuyển vào [`src/api/`](file:///d:/Work/Do-an/src/api/) và [`src/dashboard/`](file:///d:/Work/Do-an/src/dashboard/).
+
+### 📚 Tài liệu nghiên cứu cục bộ:
+- [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/phuongddd/References/REFERENCES_LOG.md): Nhật ký 7 bài báo khoa học thẩm định trong Meeting 2 (Greshake, Wei, Zou GCG, ACL Findings 2024, Survey 2407.04295, Do-Not-Answer, Survey 2406.00240).
+- Thư mục lưu trữ PDF: [`References/`](file:///d:/Work/Do-an/workspaces/phuongddd/References/).
+
