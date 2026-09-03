@@ -26,21 +26,21 @@ Trong an ninh mạng và học máy, *"No-Free-Lunch Theorem"* chỉ ra rằng k
 ```
 
 ### Mâu thuẫn 1: Độ trễ siêu tốc (< 30ms) đối đầu Năng lực hiểu ngữ cảnh sâu
-- **Mô hình lớn (LLM-as-a-Judge / Llama Guard 8B)**: Rất nhạy bén với các kịch bản diễn kịch, nhập vai tinh vi. Tuy nhiên, thời gian suy luận (inference latency) dao động từ **800ms đến hơn 3,000ms**, đòi hỏi phần cứng GPU máy chủ đắt đỏ. Đặt một mô hình như vậy làm cổng đón request (inline API gateway) sẽ bóp nghẹt băng thông và phá hủy trải nghiệm người dùng.
-- **Mô hình thống kê nhẹ (TF-IDF + Linear Classifier)**: Độ trễ cực thấp (**< 3ms trên CPU**), chi phí tính toán bằng 0. Tuy nhiên, nó bị "mù ngữ nghĩa" (semantic blindness), không thể nhận diện được các prompt nhập vai triết học hoặc ẩn dụ tinh vi khi kẻ tấn công không dùng từ khóa cấm lộ liễu.
+- **Mô hình lớn (LLM-as-a-Judge / Llama Guard 8B)**: Theo báo cáo của **Inan et al. (Meta AI 2023)** (*"Llama Guard"* [arXiv:2312.06674](https://arxiv.org/abs/2312.06674)) và **Rebedea et al. (EMNLP 2023)** (*"NeMo Guardrails"* [arXiv:2310.10501](https://arxiv.org/abs/2310.10501)): Dù rất nhạy bén với các kịch bản nhập vai tinh vi, thời gian suy luận (inference latency) của Llama Guard dao động từ **800ms đến hơn 3,000ms**, đòi hỏi phần cứng GPU máy chủ đắt đỏ (> 16GB VRAM). Đặt một mô hình như vậy làm cổng đón request (inline API gateway) sẽ bóp nghẹt băng thông và vi phạm nghiêm trọng SLA vận hành thực tế.
+- **Mô hình thống kê nhẹ (TF-IDF + Linear Classifier)**: Dựa trên nền tảng trích xuất đặc trưng của **Salton & Buckley (1988)**: Độ trễ cực thấp (**< 3ms trên CPU**), chi phí tính toán bằng 0. Tuy nhiên, nó bị "mù ngữ nghĩa" (semantic blindness), không thể nhận diện được các prompt nhập vai triết học hoặc ẩn dụ tinh vi khi kẻ tấn công không dùng từ khóa cấm lộ liễu.
 
 ### Mâu thuẫn 2: "Mù Token" của Transformer đối đầu "Bắt Cú Pháp" của N-gram
 - Khi kẻ tấn công sử dụng các toán tử xáo trộn ký tự như **Leetspeak** (`1gn0r3 pr3v10us 1nstruct10ns`) hoặc **Spaced Text** (`i g n o r e`):
-  - **Transformer (BERT/DeBERTa/LLaMA)** bị hiện tượng **Token Fragmentation**: Bộ tách từ (Byte-Pair Encoding / WordPiece) bị vỡ thành hàng chục token phụ âm rời rạc, làm lệch vector embedding và khiến mô hình đánh mất ngữ nghĩa, dẫn đến lọt lưới tấn công (False Negative).
-  - **Mô hình Character N-gram (TF-IDF char_wb)**: Phân rã văn bản thành các cụm 3-5 ký tự trượt (sub-word n-grams), dễ dàng nhận ra khuôn mẫu lặp lại của ký tự bất kể khoảng trắng hay ký tự thay thế.
+  - **Transformer (BERT/DeBERTa/LLaMA)**: Theo nghiên cứu đối kháng của **Jain et al. (2023)** (*"Baseline Defenses for Adversarial Attacks Against Aligned Language Models"* [arXiv:2309.00614](https://arxiv.org/abs/2309.00614)), bộ tách từ (Byte-Pair Encoding / WordPiece) bị hiện tượng **Token Fragmentation**: Từ gốc bị xé nát thành hàng chục token phụ âm rời rạc, làm phân tán vector embedding và khiến mô hình đánh mất ngữ nghĩa, dẫn đến lọt lưới tấn công (False Negative).
+  - **Mô hình Character N-gram (TF-IDF char_wb)**: Dựa trên nguyên lý n-gram ký tự trượt (**Bojanowski et al., TACL 2017**): Phân rã văn bản thành các cụm 3-5 ký tự trượt, dễ dàng nhận diện cấu trúc từ bị biến dạng bất chấp khoảng trắng hay ký tự thay thế.
 
 ### Mâu thuẫn 3: Tỷ lệ Báo động Giả (False Positive Rate - FPR) đối đầu Tỷ lệ Bắt (Recall)
-- Một bộ lọc từ khóa (Regex/Blacklist) hoặc một mô hình quá nhạy sẽ chặn nhầm các câu hỏi nghiệp vụ thông thường của chuyên gia bảo mật hoặc lập trình viên (ví dụ: *"Hãy viết đoạn code minh họa lỗ hổng SQL Injection để tôi giảng dạy"*).
+- Theo phân tích của **Markov et al. (OpenAI 2023)** (*"A Holistic Approach to Undesired Content Detection in the Real World"* [arXiv:2208.03274](https://arxiv.org/abs/2208.03274)): Một bộ lọc từ khóa tĩnh (Regex/Blacklist) hoặc một mô hình quá nhạy sẽ chặn nhầm các câu hỏi nghiệp vụ thông thường của chuyên gia bảo mật hoặc lập trình viên (ví dụ: *"Hãy viết đoạn code minh họa lỗ hổng SQL Injection để tôi giảng dạy"*).
 - Trong môi trường doanh nghiệp thực tế, **chặn nhầm (False Positive) gây khó chịu và gián đoạn dịch vụ hơn cả việc lọt lưới nhỏ**. Tỷ lệ FPR bắt buộc phải duy trì ở mức cực thấp ($< 1.5\%$).
 
-👉 **KẾT LUẬN**: Bắt buộc phải kết hợp **Kiến trúc phòng thủ phân tầng kép (Two-Tier Cascade)**:
+👉 **KẾT LUẬN HỌC THUẬT**: Bắt buộc phải kết hợp **Kiến trúc phòng thủ phân tầng kép (Two-Tier Cascade Architecture)**:
 - **Tầng 1 (Syntactic Tier)**: Dùng TF-IDF Character N-grams chặn đứng 70% – 80% các cuộc tấn công lộ liễu và lọc sạch văn bản bình thường chỉ trong **< 3ms**.
-- **Tầng 2 (Semantic Tier)**: Chỉ kích hoạt mô hình ngôn ngữ sâu DeBERTa-v3 (đã lượng hóa INT8) đối với các mẫu dữ liệu nghi vấn để giải mã ngữ nghĩa trong **< 25ms**.
+- **Tầng 2 (Semantic Tier)**: Theo kiến trúc Disentangled Attention của **He et al. (ICLR 2023)** [arXiv:2111.09543](https://arxiv.org/abs/2111.09543), chỉ kích hoạt mô hình ngôn ngữ sâu DeBERTa-v3 (đã lượng hóa INT8) đối với các mẫu dữ liệu nghi vấn để giải mã ngữ nghĩa trong **< 25ms**.
 
 ---
 

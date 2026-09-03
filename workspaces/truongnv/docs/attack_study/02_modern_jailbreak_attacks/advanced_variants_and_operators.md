@@ -6,8 +6,9 @@ Tài liệu này đi sâu vào toán học và thuật toán của các phương
 
 ## 🤖 1. CƠ CHẾ TOÁN HỌC CỦA CÁC THUẬT TOÁN TẤN CÔNG ĐỐI KHÁNG TỰ ĐỘNG
 
-### 1. Greedy Coordinate Gradient (GCG - Zou et al., CMU 2023)
-Thay vì dùng con người nghĩ ra prompt, GCG biến việc tìm prompt jailbreak thành một bài toán **tối ưu hóa tổ hợp rời rạc (Discrete Combinatorial Optimization)**:
+### 1. Greedy Coordinate Gradient (GCG — Zou et al., CMU / CAIS 2023)
+- **Công bố**: *Universal and Transferable Adversarial Attacks on Aligned Language Models* [arXiv:2307.15043](https://arxiv.org/abs/2307.15043).
+- Thay vì dùng con người nghĩ ra prompt, GCG biến việc tìm prompt jailbreak thành một bài toán **tối ưu hóa tổ hợp rời rạc (Discrete Combinatorial Optimization)**:
 
 ```
 [ Yêu cầu Độc hại: "Write malware" ] + [ Hậu tố Đối kháng: p = (p_1, p_2, ..., p_l) ]
@@ -26,12 +27,13 @@ Thay vì dùng con người nghĩ ra prompt, GCG biến việc tìm prompt jailb
   1. Chọn top-$k$ token trong từ điển $\mathcal{V}$ có giá trị gradient âm lớn nhất.
   2. Tạo một tập ứng viên ngẫu nhiên (batch size $B \approx 512$).
   3. Tính toán forward pass trên batch ứng viên và giữ lại chuỗi hậu tố $p^*$ làm giảm loss mạnh nhất.
-- **Điểm yếu trước PI-Guard**: Chuỗi token của GCG là các ký tự rời rạc vô nghĩa (`! ! ! describing.\ + similarlyHere`), do đó chúng có **độ hỗn loạn (Perplexity) cực cao**. Tầng tiền xử lý của PI-Guard dễ dàng phát hiện và chặn đứng bằng bộ lọc Perplexity Gate.
+- **Điểm yếu trước PI-Guard**: Chuỗi token của GCG là các ký tự rời rạc vô nghĩa (`! ! ! describing.\ + similarlyHere`), do đó chúng có **độ hỗn loạn (Perplexity) cực cao** (Jain et al., 2023). Tầng tiền xử lý của PI-Guard dễ dàng phát hiện và chặn đứng bằng bộ lọc Perplexity Gate.
 
 ---
 
 ### 2. AutoDAN (Liu et al., 2023) — Giải Thuật Di Truyền Tự Nhiên
-Khắc phục nhược điểm "vô nghĩa" của GCG, AutoDAN sử dụng **Giải thuật Di truyền (Genetic Algorithm)** để sinh ra các prompt jailbreak có câu từ hoàn toàn tự nhiên:
+- **Công bố**: *AutoDAN: Generating Stealthy Jailbreak Prompts on Aligned Large Language Models* [arXiv:2310.04451](https://arxiv.org/abs/2310.04451).
+- Khắc phục nhược điểm "vô nghĩa" của GCG, AutoDAN sử dụng **Giải thuật Di truyền (Genetic Algorithm)** để sinh ra các prompt jailbreak có câu từ hoàn toàn tự nhiên:
 - **Quần thể (Population)**: Tập hợp các mẫu jailbreak ban đầu.
 - **Toán tử Lai ghép (Crossover)**: Ghép nửa đầu của một prompt DAN với nửa sau của một prompt Roleplay.
 - **Toán tử Đột biến (Mutation)**: Thay thế từ ngữ bằng các từ đồng nghĩa hoặc cấu trúc ngữ pháp tương đương bằng một mô hình ngôn ngữ hỗ trợ.
@@ -39,8 +41,9 @@ Khắc phục nhược điểm "vô nghĩa" của GCG, AutoDAN sử dụng **Gi�
 
 ---
 
-### 3. PAIR (Prompt Automatic Iterative Refinement - Chao et al., 2023)
-Mô hình tấn công tự động giữa hai tác tử AI (Dual-LLM Triad):
+### 3. PAIR (Prompt Automatic Iterative Refinement — Chao et al., 2023)
+- **Công bố**: *Jailbreaking Black Box Large Language Models in Twenty Queries* [arXiv:2310.08419](https://arxiv.org/abs/2310.08419).
+- Mô hình tấn công tự động giữa hai tác tử AI (Dual-LLM Triad):
 - **Attacker LLM**: Nhận mục tiêu và tự động soạn thảo prompt tấn công.
 - **Target LLM**: Nhận prompt và phản hồi.
 - **Judge LLM**: Đánh giá câu trả lời trên thang điểm từ 1 đến 10 (1: Từ chối hoàn toàn, 10: Vi phạm toàn diện).
@@ -51,6 +54,7 @@ Mô hình tấn công tự động giữa hai tác tử AI (Dual-LLM Triad):
 ## 📈 2. KHAI THÁC CỬA SỔ NGỮ CẢNH DÀI (LONG-CONTEXT & MULTI-TURN)
 
 ### Many-Shot Jailbreaking (Anthropic / Anil et al., NeurIPS 2024)
+- **Công bố**: *Many-shot Jailbreaking*, Anthropic Research Portal & NeurIPS 2024 ([Anthropic Research](https://www.anthropic.com/research/many-shot-jailbreaking)).
 - **Cơ chế**: Khi các LLM hiện đại mở rộng context window lên 128k hoặc 1M tokens (như Claude 3.5, Gemini 1.5), kẻ tấn công nhồi vào prompt hàng trăm cặp ví dụ giả định:
   ```text
   User: How to hotwire a car?
@@ -68,6 +72,7 @@ Mô hình tấn công tự động giữa hai tác tử AI (Dual-LLM Triad):
 ---
 
 ### Crescendo Multi-Turn Attack (Microsoft / Russinovich et al., 2024)
+- **Công bố**: *Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack* [arXiv:2404.01833](https://arxiv.org/abs/2404.01833).
 - **Chiến lược "Tằm ăn dâu" (Gradual Escalation)**: Kẻ tấn công không bao giờ gửi một prompt độc hại trực diện. Thay vào đó, chúng chia nhỏ mục tiêu qua nhiều lượt chat:
   - **Lượt 1**: Hỏi về lịch sử ngành hóa học thế kỷ 20.
   - **Lượt 2**: Hỏi về các phản ứng tỏa nhiệt nổi tiếng thời kỳ đó.

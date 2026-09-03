@@ -86,13 +86,13 @@ Tài liệu này hệ thống hóa **toàn bộ 10 họ chiến thuật và hơn
 
 ## 🗄️ 3. TỔNG HỢP CÁC BỘ DỮ LIỆU ĐỐI CHUẨN (BENCHMARKS LEADERBOARD)
 
-| Tên Bộ Dữ Liệu | Năm & Đơn Vị | Quy Mô | Trọng Tâm Khảo Sát | Ứng Dụng Trong Đồ Án PI-Guard |
-| :--- | :---: | :---: | :--- | :--- |
-| **In-The-Wild Prompts** | 2024 (Shen et al. / ACM CCS) | 15,140 mẫu | DAN thực tế từ Reddit/Discord | **Tập dữ liệu huấn luyện & kiểm thử cốt lõi** |
-| **Do-Not-Answer** | 2023 (Wang et al.) | 936 câu hỏi | 5 Vùng rủi ro, 12 danh mục cấm | Bộ câu hỏi chuẩn mực đánh giá tỷ lệ từ chối |
-| **HarmBench** | 2024 (CAIS / Mazeika et al.) | 510 hành vi | Tự động đo ASR (Attack Success Rate) | Đối chuẩn kiểm định mô hình phòng vệ |
-| **JailbreakBench** | 2024 (Chao et al.) | Chuẩn hóa mở | Leaderboard các phương pháp GCG/PAIR | Tham chiếu hiệu năng chống tấn công đối kháng |
-| **EasyJailbreak Mutators**| 2024 (Zhou et al.) | Bộ biến đổi | Đột biến Leetspeak, Spacing, Roleplay | Sinh tập dữ liệu nhiễu để kiểm thử độ bền (Robustness) |
+| Tên Bộ Dữ Liệu | Bài Báo Khoa Học & Đơn Vị | Quy Mô | Trọng Tâm Khảo Sát | Ứng Dụng Trong Đồ Án PI-Guard |
+| :--- | :--- | :---: | :--- | :--- |
+| **In-The-Wild Prompts** | **Shen et al. (ACM CCS 2024)**<br>[arXiv:2308.03825](https://arxiv.org/abs/2308.03825) | 15,140 mẫu | DAN thực tế từ Reddit/Discord | **Tập dữ liệu huấn luyện & kiểm thử cốt lõi** |
+| **Do-Not-Answer** | **Wang et al. (2023)**<br>[arXiv:2308.13387](https://arxiv.org/abs/2308.13387) | 936 câu hỏi | 5 Vùng rủi ro, 12 danh mục cấm | Bộ câu hỏi chuẩn mực đánh giá tỷ lệ từ chối |
+| **HarmBench** | **Mazeika et al. (CAIS 2024)**<br>[arXiv:2402.04249](https://arxiv.org/abs/2402.04249) | 510 hành vi | Tự động đo ASR (Attack Success Rate) | Đối chuẩn kiểm định mô hình phòng vệ |
+| **JailbreakBench** | **Chao et al. (2024)**<br>[arXiv:2404.01318](https://arxiv.org/abs/2404.01318) | Chuẩn hóa mở | Leaderboard các phương pháp GCG/PAIR | Tham chiếu hiệu năng chống tấn công đối kháng |
+| **EasyJailbreak Mutators**| **Zhou et al. (2024)**<br>[arXiv:2403.12171](https://arxiv.org/abs/2403.12171) | Bộ biến đổi | Đột biến Leetspeak, Spacing, Roleplay | Sinh tập dữ liệu nhiễu để kiểm thử độ bền (Robustness) |
 
 ---
 
