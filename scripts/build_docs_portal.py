@@ -32,7 +32,7 @@ def clean_and_prepare_dir():
     SITE_DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
     # Tạo các thư mục con theo kiến trúc thông tin (IA)
-    for sub in ["work", "models", "attacks", "research", "thesis", "references", "dev", "javascripts", "stylesheets"]:
+    for sub in ["work", "models", "attacks", "robustness", "research", "thesis", "references", "dev", "javascripts", "stylesheets"]:
         (SITE_DOCS_DIR / sub).mkdir(parents=True, exist_ok=True)
     print(f"📁 [INIT] Đã khởi tạo cấu trúc thư mục tại: {SITE_DOCS_DIR}")
 
@@ -142,6 +142,7 @@ flowchart TD
 | :--- | :--- | :--- |
 | **Quản Lý Công Việc** | Lộ trình IAP491, Biên bản họp 1 & 2, Kế hoạch Sprint tuần, Ma trận RACI | [Xem Kế Hoạch Sprint](work/sprint_1_todo_list.md) |
 | **Chuyên Đề Tấn Công** | Lịch sử tiến hóa (2022–2026), Ranh giới In/Out-scope, Prompt Injection & 4 trường phái Jailbreak (DAN, Roleplay, VM, Cipher) | [Khám Phá Chuyên Đề Tấn Công](attacks/history_and_evolution.md) |
+| **Độ Bền & Lẩn Tránh (Robustness)** | Cơ chế phân mảnh BPE, Leetspeak, Base64 Unmasking, Character n-grams TF-IDF, Đột biến EasyJailbreak | [Khám Phá Chuyên Đề Robustness](robustness/theory_and_evasion_mechanisms.md) |
 | **Mô Hình & Nghiên Cứu** | Toán học TF-IDF, Transformer DeBERTa-v3, Phối hợp 2 tầng, Khảo sát SOTA | [Khám Phá Mô Hình](models/two_tier_architecture.md) |
 | **Luận Văn & Review 1** | Hồ sơ Threat Model (NIST), Hệ thống 3 câu hỏi IEEE (RQ1-RQ3), Dàn ý slide | [Xem Hồ Sơ Review 1](thesis/review1_threat_model.md) |
 | **Tài Liệu Tham Khảo** | Nhật ký 18 bài báo khoa học chuẩn IEEE (2022–2026) kèm DOI | [Xem Thư Viện Bài Báo](references/references_log.md) |
@@ -263,6 +264,16 @@ def aggregate_all():
              SITE_DOCS_DIR / "attacks" / "jb_advanced_variants_and_operators.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "resources_and_papers.md",
              SITE_DOCS_DIR / "attacks" / "jb_resources_and_papers.md")
+
+    # 2.6. Chuyên Đề Robustness & Evasion Study
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "01_theory_and_evasion_mechanisms.md",
+             SITE_DOCS_DIR / "robustness" / "theory_and_evasion_mechanisms.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "02_defense_architecture_and_mitigation.md",
+             SITE_DOCS_DIR / "robustness" / "defense_architecture_and_mitigation.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "03_benchmarks_metrics_and_tradeoffs.md",
+             SITE_DOCS_DIR / "robustness" / "benchmarks_metrics_and_tradeoffs.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "04_resources_and_papers.md",
+             SITE_DOCS_DIR / "robustness" / "resources_and_papers.md")
 
     # Research
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "State_of_the_Art_Guardrail_and_Jailbreak_Benchmarks_Analysis.md",

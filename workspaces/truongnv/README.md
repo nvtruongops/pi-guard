@@ -21,6 +21,12 @@ Chào Trường! Toàn bộ các tài liệu, hồ sơ kỹ thuật, dữ liệu
   - [`docs/attack_study/01_prompt_injection/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/attack_study/01_prompt_injection/): Cơ chế ranh giới phẳng ($X = S \mathbin{\Vert} U$) & Toàn bộ 13 biến thể Direct / Indirect Injection.
   - [`docs/attack_study/02_modern_jailbreak_attacks/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/attack_study/02_modern_jailbreak_attacks/): 4 trường phái cốt lõi (DAN, Roleplay, VM, Cipher), Master Taxonomy 10 họ Jailbreak và 26 Toán tử Tencent.
 
+- 🧱 **Chuyên Đề Nghiên Cứu Độ Bền & Lẩn Tránh (Robustness Study Suite — 100% Academic Grounding)**:
+  - [`docs/robustness_study/01_theory_and_evasion_mechanisms.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/robustness_study/01_theory_and_evasion_mechanisms.md): Cơ sở lý thuyết, lỗ hổng phân mảnh token (BPE/WordPiece) và 3 kỹ thuật cốt lõi (Leetspeak, Base64, Spacing).
+  - [`docs/robustness_study/02_defense_architecture_and_mitigation.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/robustness_study/02_defense_architecture_and_mitigation.md): Kiến trúc phòng thủ 3 tầng (Tầng 0: Tiền xử lý & Khử nhiễu, Tầng 1: Character n-grams TF-IDF, Tầng 2: DeBERTa-v3 tăng cường đối kháng).
+  - [`docs/robustness_study/03_benchmarks_metrics_and_tradeoffs.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/robustness_study/03_benchmarks_metrics_and_tradeoffs.md): Hệ thống tiêu chí định lượng ($\Delta F_1$, ASR, FPR, Latency), bảng đối sánh thực nghiệm và phân tích đánh đổi.
+  - [`docs/robustness_study/04_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/robustness_study/04_resources_and_papers.md): Tài liệu học thuật chuẩn mực, video bài giảng YouTube oEmbed và hướng dẫn chạy mã nguồn thực nghiệm.
+
 - 🔬 **Chuyên Đề Mô Hình & Toán Học (Model Study Suite — 100% Academic Grounding)**:
   - [`docs/model_study/01_tfidf_syntactic_baseline/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/model_study/01_tfidf_syntactic_baseline/): Cơ sở toán học TF-IDF, Character n-grams (`char_wb`), Luhn (1958), Spärck Jones (1972) và Jain et al. (2023).
   - [`docs/model_study/02_deberta_v3_semantic_classifier/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/model_study/02_deberta_v3_semantic_classifier/): Toán học Disentangled Attention (He et al., ICLR 2023) và Lượng hóa động ONNX INT8 (Yao et al., NeurIPS 2022).
