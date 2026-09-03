@@ -85,48 +85,95 @@ def copy_doc(src_path: Path, dest_path: Path, title_prefix: str = ""):
 
 def create_homepage():
     """Tạo trang chủ (index.md) với thiết kế trực quan, hiện đại, rich visuals."""
-    index_content = """# 🛡️ PI-Guard Documentation Portal
-## Hệ Thống Phòng Thủ Máy Học Phát Hiện Tấn Công Prompt Injection & Jailbreak Cho Các Ứng Dụng LLM
+    index_content = """# PI-Guard Documentation Portal
 
-<div class="grid cards" markdown>
+<div class="hero-container">
+  <div class="hero-badge">🎓 FPT UNIVERSITY • CAPSTONE PROJECT IAP491</div>
+  <h1 class="hero-title">PI-GUARD: LLM SECURITY GUARDRAIL</h1>
+  <p class="hero-subtitle">
+    Hệ thống phòng thủ máy học 2 tầng (Two-Tier ML Guardrail) đặt trước các ứng dụng Large Language Model (LLM) nhằm phát hiện và ngăn chặn tấn công <strong>Prompt Injection</strong> và <strong>Jailbreak</strong> với độ trễ thấp và tỷ lệ cảnh báo sai tối thiểu.
+  </p>
+  <div class="hero-actions">
+    <a href="work/sprint_1_todo_list/" class="btn-primary">📋 Kế Hoạch Sprint Tuần</a>
+    <a href="models/two_tier_architecture/" class="btn-secondary">⚡ Kiến Trúc 2 Tầng</a>
+    <a href="thesis/review1_threat_model/" class="btn-secondary">🛡️ Hồ Sơ Review 1</a>
+  </div>
+</div>
 
--   :material-shield-check:{ .lg .middle } __Kiến Trúc 2 Tầng (Two-Tier Defense)__
+<div class="metrics-grid">
+  <div class="metric-card">
+    <div class="metric-icon">⚡</div>
+    <div class="metric-value">Two-Tier</div>
+    <div class="metric-label">Phòng thủ Cú pháp & Ngữ nghĩa</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-icon">⏱️</div>
+    <div class="metric-value">&lt; 15 ms</div>
+    <div class="metric-label">Mục tiêu Độ trễ P95 (ONNX INT8)</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-icon">📚</div>
+    <div class="metric-value">18 Papers</div>
+    <div class="metric-label">Tài liệu tham khảo IEEE (2022-2026)</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-icon">👥</div>
+    <div class="metric-value">4 Members</div>
+    <div class="metric-label">Đội ngũ An toàn Thông tin FPT</div>
+  </div>
+</div>
 
-    ---
+## 📂 Danh Mục Tài Liệu Trọng Tâm
 
-    Kết hợp bộ lọc cú pháp siêu tốc **Tier 1 (TF-IDF + Linear Classifier)** độ trễ < 5ms với mô hình ngữ nghĩa sâu **Tier 2 (DeBERTa-v3)** phát hiện tấn công tiềm ẩn.
+<div class="portal-grid">
+  <a href="work/sprint_1_todo_list/" class="portal-card">
+    <div class="portal-card-header">
+      <span class="portal-card-tag tag-work">QUẢN LÝ CÔNG VIỆC</span>
+    </div>
+    <h3 class="portal-card-title">📋 Tiến Độ & Kế Hoạch Sprint</h3>
+    <p class="portal-card-desc">
+      Biên bản họp tuần với GVHD, bảng phân rã nhiệm vụ chi tiết theo ngày (Daily Timeline), ma trận trách nhiệm RACI và checklist tự kiểm toán Process Report.
+    </p>
+    <div class="portal-card-footer">Xem chi tiết &rarr;</div>
+  </a>
 
-    [:octicons-arrow-right-24: Khám phá mô hình](models/two_tier_architecture.md)
+  <a href="models/two_tier_architecture/" class="portal-card">
+    <div class="portal-card-header">
+      <span class="portal-card-tag tag-ai">MÔ HÌNH MÁY HỌC</span>
+    </div>
+    <h3 class="portal-card-title">🧠 Kiến Trúc Phòng Thủ 2 Tầng</h3>
+    <p class="portal-card-desc">
+      Toán học & cách triển khai Tier 1 (TF-IDF + Linear Classifier độ trễ &lt; 5ms) kết hợp Tier 2 (DeBERTa-v3 Disentangled Attention) lượng hóa ONNX INT8.
+    </p>
+    <div class="portal-card-footer">Xem chi tiết &rarr;</div>
+  </a>
 
--   :material-calendar-clock:{ .lg .middle } __Quản Lý Công Việc & Tiến Độ Tuần__
+  <a href="thesis/review1_threat_model/" class="portal-card">
+    <div class="portal-card-header">
+      <span class="portal-card-tag tag-thesis">LUẬN VĂN & REVIEW 1</span>
+    </div>
+    <h3 class="portal-card-title">🛡️ Threat Model & Defense</h3>
+    <p class="portal-card-desc">
+      Hồ sơ bảo vệ Review 1: Phát biểu bài toán, mô hình đe dọa (NIST AI 100-2e2025), hệ thống 3 câu hỏi nghiên cứu IEEE (RQ1-RQ3) và slide thuyết trình.
+    </p>
+    <div class="portal-card-footer">Xem chi tiết &rarr;</div>
+  </a>
 
-    ---
-
-    Biên bản họp tuần, phân bổ nhiệm vụ chi tiết theo ngày (Daily TODOs), ma trận trách nhiệm RACI và checklist kiểm toán Process Report chuẩn FPT.
-
-    [:octicons-arrow-right-24: Xem kế hoạch Sprint](work/sprint_1_todo_list.md)
-
--   :material-book-education:{ .lg .middle } __Luận Văn & Hồ Sơ Review 1__
-
-    ---
-
-    Hồ sơ bảo vệ Review 1: Phát biểu bài toán, Mô hình đe dọa (NIST AI 100-2e2025), Hệ thống 3 câu hỏi nghiên cứu IEEE (RQ1-RQ3) và Slide thuyết trình.
-
-    [:octicons-arrow-right-24: Đọc hồ sơ Review 1](thesis/review1_threat_model.md)
-
--   :material-database-search:{ .lg .middle } __Khảo Sát SOTA & 18 Bài Báo IEEE__
-
-    ---
-
-    Đối chuẩn chuyên sâu với ProtectAI DeBERTa, Meta Llama Guard, NVIDIA NeMo Guardrails và nhật ký 18 bài báo khoa học xuất bản 2022-2026.
-
-    [:octicons-arrow-right-24: Tra cứu thư viện bài báo](references/references_log.md)
-
+  <a href="references/references_log/" class="portal-card">
+    <div class="portal-card-header">
+      <span class="portal-card-tag tag-ref">TÀI LIỆU KHOA HỌC</span>
+    </div>
+    <h3 class="portal-card-title">📚 18 Bài Báo IEEE Đỉnh Cao</h3>
+    <p class="portal-card-desc">
+      Nhật ký 18 công trình nghiên cứu hàng đầu thế giới (100% từ năm 2022-2026) kèm liên kết DOI/arXiv và ma trận ánh xạ vào 6 chương của luận văn.
+    </p>
+    <div class="portal-card-footer">Xem chi tiết &rarr;</div>
+  </a>
 </div>
 
 ---
 
-### 🌟 Sơ Đồ Kiến Trúc Luồng Phòng Thủ PI-Guard (Mermaid)
+## 🌟 Sơ Đồ Luồng Phòng Thủ 2 Tầng (Two-Tier Guardrail Pipeline)
 
 ```mermaid
 flowchart TD
@@ -155,7 +202,7 @@ flowchart TD
 
 ---
 
-### 👥 Đội Ngũ Thực Hiện Đề Tài (Capstone Project Team)
+## 👥 Đội Ngũ Thực Hiện Đề Tài (Capstone Team)
 
 | STT | Thành Viên | Mã Sinh Viên | Vai Trò & Phân Công Trọng Tâm |
 | :---: | :--- | :---: | :--- |
@@ -165,15 +212,6 @@ flowchart TD
 | 4 | **Đỗ Đoàn Duy Phương** | `SE180235` | **API Middleware & Luận văn** — FastAPI Proxy, Streamlit Dashboard, Báo cáo Chapter 1-2 & Slide PPT |
 
 **Giảng viên hướng dẫn (Supervisor)**: Đại học FPT — Khoa An toàn Thông tin (Information Assurance).
-
----
-
-### 📊 Chỉ Số Tiến Độ & Quy Chuẩn Thực Hiện
-
-- **Mã Đồ Án**: `IAP491_FA26_PI_GUARD`
-- **Mục tiêu Review 1**: Hoàn thành 100% Chapter 1 (Introduction), Chapter 2 (Literature Review), Threat Model & Slide thuyết trình.
-- **Tài liệu tham khảo**: 18 bài báo khoa học chuẩn IEEE/ACM (100% từ năm 2022 đến 2026).
-- **Mã nguồn**: Quản trị nghiêm ngặt theo mô hình Workspace Boundary (`workspaces/<member>/`) với kiểm toán commit tự động.
 """
     dest = SITE_DOCS_DIR / "index.md"
     with open(dest, "w", encoding="utf-8") as f:
@@ -207,29 +245,228 @@ document$.subscribe(() => {
   --md-accent-fg-color: #7b1fa2;
 }
 
-/* Thẻ card và bo tròn */
-.md-typeset .grid.cards > ul > li {
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* ===== HERO CONTAINER ===== */
+.hero-container {
+  background: linear-gradient(135deg, rgba(63, 81, 181, 0.1) 0%, rgba(123, 31, 162, 0.12) 100%);
+  border: 1px solid rgba(63, 81, 181, 0.25);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  margin: 1.5rem 0 2rem 0;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(63, 81, 181, 0.08);
 }
 
-.md-typeset .grid.cards > ul > li:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(63, 81, 181, 0.15);
+.hero-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  background: rgba(63, 81, 181, 0.15);
+  color: var(--md-primary-fg-color);
+  margin-bottom: 1rem;
+  border: 1px solid rgba(63, 81, 181, 0.3);
 }
 
-/* Table đẹp hơn */
-.md-typeset table:not([class]) {
+.hero-title {
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+  margin: 0.5rem 0 1rem 0 !important;
+  background: linear-gradient(135deg, #1a237e 0%, #4a148c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-md-color-scheme="slate"] .hero-title {
+  background: linear-gradient(135deg, #7986cb 0%, #ce93d8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 1.8rem auto;
+  color: var(--md-default-fg-color--light);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background: #3f51b5;
+  color: #ffffff !important;
+  font-weight: 600;
   border-radius: 8px;
-  overflow: hidden;
+  text-decoration: none !important;
+  box-shadow: 0 4px 14px rgba(63, 81, 181, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #303f9f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(63, 81, 181, 0.45);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color) !important;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  border-color: #3f51b5;
+  color: #3f51b5 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== METRICS GRID ===== */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.metric-card {
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 12px;
+  padding: 1.2rem 1rem;
+  text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(63, 81, 181, 0.4);
+}
+
+.metric-icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.metric-value {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #3f51b5;
+}
+
+[data-md-color-scheme="slate"] .metric-value {
+  color: #9fa8da;
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  color: var(--md-default-fg-color--light);
+  margin-top: 0.2rem;
+}
+
+/* ===== PORTAL FEATURE CARDS ===== */
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 2.5rem 0;
+}
+
+.portal-card {
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-decoration: none !important;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.portal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(63, 81, 181, 0.15);
+  border-color: #3f51b5;
+}
+
+.portal-card-header {
+  margin-bottom: 0.75rem;
+}
+
+.portal-card-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.tag-work { background: rgba(33, 150, 243, 0.12); color: #1976d2; }
+.tag-ai { background: rgba(156, 39, 176, 0.12); color: #7b1fa2; }
+.tag-thesis { background: rgba(76, 175, 80, 0.12); color: #388e3c; }
+.tag-ref { background: rgba(255, 152, 0, 0.12); color: #f57c00; }
+
+.portal-card-title {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 0.5rem 0 !important;
+  color: var(--md-default-fg-color) !important;
+}
+
+.portal-card-desc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--md-default-fg-color--light);
+  margin-bottom: 1.2rem;
+  flex-grow: 1;
+}
+
+.portal-card-footer {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #3f51b5;
+  display: flex;
+  align-items: center;
+}
+
+/* ===== TABLE STYLING ===== */
+.md-typeset table:not([class]) {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
 .md-typeset table:not([class]) th {
   background-color: rgba(63, 81, 181, 0.08);
   color: #1a237e;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+  background-color: rgba(63, 81, 181, 0.2);
+  color: #c5cae9;
 }
 """
     with open(SITE_DOCS_DIR / "stylesheets" / "extra.css", "w", encoding="utf-8") as f:
