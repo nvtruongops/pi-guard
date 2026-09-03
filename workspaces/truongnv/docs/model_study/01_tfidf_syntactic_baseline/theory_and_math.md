@@ -4,10 +4,10 @@
 
 ## 📜 1. LỊCH SỬ PHÁT TRIỂN & BỐI CẢNH KHOA HỌC
 
-- **Năm 1958**: Nhà khoa học **Hans Peter Luhn** (IBM) công bố bài báo *"The Automatic Creation of Literature Abstracts"*, đề xuất khái niệm **Term Frequency (TF)**: Tần suất lặp lại của một từ trong văn bản phản ánh mức độ quan trọng của từ đó đối với chủ đề của văn bản.
-- **Năm 1972**: Nhà khoa học máy tính người Anh **Karen Spärck Jones** công bố công trình lịch sử *"A Statistical Interpretation of Term Specificity and Its Application in Retrieval"* (Journal of Documentation). Bà chứng minh rằng: Một từ xuất hiện trong quá nhiều văn bản khác nhau (như "the", "is", "a") thì khả năng phân biệt ngữ nghĩa của nó gần như bằng 0. Từ đó, công thức **Inverse Document Frequency (IDF)** ra đời.
+- **Năm 1958**: Nhà khoa học **Hans Peter Luhn** (IBM) công bố bài báo *"The Automatic Creation of Literature Abstracts"* ([IBM J. Res. Dev., 1958](https://doi.org/10.1147/rd.22.0159)), đề xuất khái niệm **Term Frequency (TF)**: Tần suất lặp lại của một từ trong văn bản phản ánh mức độ quan trọng của từ đó đối với chủ đề của văn bản.
+- **Năm 1972**: Nhà khoa học máy tính người Anh **Karen Spärck Jones** công bố công trình lịch sử *"A Statistical Interpretation of Term Specificity and Its Application in Retrieval"* (*Journal of Documentation*). Bản nghiên cứu mở được hệ thống hóa trong [Cambridge Technical Report UCAM-CL-TR-356 (PDF)](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf) và [Stanford NLP IR Book Ch. 6 (PDF)](https://nlp.stanford.edu/IR-book/pdf/06vect.pdf). Bà chứng minh rằng: Một từ xuất hiện trong quá nhiều văn bản khác nhau (như "the", "is", "a") thì khả năng phân biệt ngữ nghĩa của nó gần như bằng 0. Từ đó, công thức **Inverse Document Frequency (IDF)** ra đời.
 - **Thập niên 1980 - 2010**: TF-IDF kết hợp với Không gian Vector (Vector Space Model của Gerard Salton) trở thành tiêu chuẩn vàng trong tìm kiếm thông tin (Information Retrieval) và lọc thư rác (Spam / Phishing Filtering).
-- **Kỷ nguyên AI 2023 - 2026**: Các nghiên cứu đối kháng hiện đại (**Neel Jain et al., 2023; MoJE, 2024; Hackett et al., 2025**) phát hiện ra rằng: Dù các mô hình Deep Learning (BERT, GPT) rất mạnh, chúng lại có điểm mù chết người là **phân tách từ con (Subword/BPE)**. Khi bị tấn công phân mảnh ký tự (Leetspeak, Spacing), mô hình Transformer bị qua mặt. Ngược lại, **TF-IDF Character n-grams (`char_wb`)** bóc tách các lát cắt ký tự liên tiếp lại đánh chặn được trên 90% biến thể tấn công chỉ trong **~3.2ms trên CPU**.
+- **Kỷ nguyên AI 2023 - 2026**: Các nghiên cứu đối kháng hiện đại (**Neel Jain et al., 2023** [arXiv:2309.00614](https://arxiv.org/abs/2309.00614); **Cornacchia et al. - MoJE, 2024** [arXiv:2409.17699](https://arxiv.org/abs/2409.17699)) phát hiện ra rằng: Dù các mô hình Deep Learning (BERT, GPT) rất mạnh, chúng lại có điểm mù chết người là **phân tách từ con (Subword/BPE)**. Khi bị tấn công phân mảnh ký tự (Leetspeak, Spacing), mô hình Transformer bị qua mặt. Ngược lại, **TF-IDF Character n-grams (`char_wb`)** theo nguyên lý của **Bojanowski et al. (TACL 2017)** [arXiv:1607.04606](https://arxiv.org/abs/1607.04606) bóc tách các lát cắt ký tự liên tiếp lại đánh chặn được trên 90% biến thể tấn công chỉ trong **~3.2ms trên CPU**.
 
 ---
 
@@ -98,3 +98,13 @@ $$\text{Prompt: "Please } \mathbf{1gn0r3} \text{ all previous rules"}$$
 - **Hàm mục tiêu Hinge Loss có điều chuẩn**:
   $$\min_{\mathbf{w}, b} \frac{1}{2} \|\mathbf{w}\|_2^2 + C \sum_{i=1}^m \max\left(0, 1 - y_i (\mathbf{w}^T \mathbf{x}_i + b)\right)$$
 - **Đặc tính**: Tìm siêu phẳng phân tách có khoảng cách lề (Margin) lớn nhất, tạo ranh giới quyết định cực kỳ dứt khoát cho các mẫu tấn công rõ ràng.
+
+---
+
+## 📚 5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
+
+1. **Hans Peter Luhn (1958)**: *"The Automatic Creation of Literature Abstracts"*, *IBM Journal of Research and Development*, Vol. 2, No. 2, pp. 159–165. DOI: [10.1147/rd.22.0159](https://doi.org/10.1147/rd.22.0159).
+2. **Karen Spärck Jones (1972)**: *"A Statistical Interpretation of Term Specificity and Its Application in Retrieval"*, *Journal of Documentation*, Vol. 28, No. 1, pp. 11–21. Giáo trình mở: [Cambridge TR-356 (PDF)](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf) & [Stanford IR Ch. 6 (PDF)](https://nlp.stanford.edu/IR-book/pdf/06vect.pdf).
+3. **Piotr Bojanowski, Edouard Grave, Armand Joulin, and Tomas Mikolov (2017)**: *"Enriching Word Vectors with Subword Information"*, *Transactions of the Association for Computational Linguistics (TACL)*, Vol. 5, pp. 135–146. arXiv: [1607.04606](https://arxiv.org/abs/1607.04606).
+4. **Neel Jain et al. (2023)**: *"Baseline Defenses for Adversarial Attacks Against Aligned Language Models"*, arXiv preprint. arXiv: [2309.00614](https://arxiv.org/abs/2309.00614).
+5. **Giandomenico Cornacchia et al. (2024)**: *"MoJE: Mixture of Jailbreak Experts, Naive Tabular Classifiers as Guard for Prompt Attacks"*, arXiv preprint. arXiv: [2409.17699](https://arxiv.org/abs/2409.17699).

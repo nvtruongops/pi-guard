@@ -38,3 +38,13 @@ Dưới đây là bảng phân tích định lượng giữa việc sử dụng 
    - Deep Learning rất giỏi hiểu ẩn ý nhưng ngây thơ trước nhiễu hạt ký tự.
    - Thống kê n-grams rất nhạy với nhiễu ký tự nhưng không hiểu ngữ pháp.
    - **Sự kết hợp kép biến điểm yếu của mô hình này thành lợi thế bù đắp của mô hình kia**.
+
+---
+
+## 📚 3. CƠ SỞ KHOA HỌC & TÀI LIỆU THAM KHẢO (ACADEMIC REFERENCES)
+
+1. **Neel Jain et al. (2023)**: *"Baseline Defenses for Adversarial Attacks Against Aligned Language Models"*, arXiv preprint. arXiv: [2309.00614](https://arxiv.org/abs/2309.00614).
+2. **Pengcheng He, Jianfeng Gao, and Weizhu Chen (2023)**: *"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing"*, in *Proceedings of ICLR 2023*. arXiv: [2111.09543](https://arxiv.org/abs/2111.09543).
+3. **Hakan Inan et al. (Meta AI, 2023)**: *"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations"*, arXiv preprint. arXiv: [2312.06674](https://arxiv.org/abs/2312.06674).
+4. **Todor Markov et al. (OpenAI, 2023)**: *"A Holistic Approach to Undesired Content Detection in the Real World"*, in *Proceedings of AAAI HCOMP 2023*. arXiv: [2208.03274](https://arxiv.org/abs/2208.03274).
+5. **Zhewei Yao et al. (2022)**: *"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers"*, in *Advances in Neural Information Processing Systems (NeurIPS 2022)*. arXiv: [2206.01861](https://arxiv.org/abs/2206.01861).

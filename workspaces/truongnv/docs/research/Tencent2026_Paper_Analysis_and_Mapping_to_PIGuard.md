@@ -3,7 +3,8 @@
 > **Tài liệu tham khảo chính**: `References/Tencent2026_AI-Infra-Guard_MultiLayer_Agent_RedTeaming.pdf`  
 > **Tiêu đề gốc**: *Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming*  
 > **Tác giả**: Tencent Zhuque Lab (Yong Yang, Xing Zheng, Huiyu Wu, Huangsheng Cheng, Xiaorong Shi, et al.)  
-> **Thời gian công bố**: 30 Tháng 6, 2026 (arXiv:2606.31227v1 [cs.CR]) — 42 trang.
+> **Thời gian công bố**: 30 Tháng 6, 2026 ([arXiv:2606.31227](https://arxiv.org/abs/2606.31227) [cs.CR]) — 42 trang.  
+> **Toàn văn bài báo**: [https://arxiv.org/abs/2606.31227](https://arxiv.org/abs/2606.31227) | [Local PDF](file:///d:/Work/Do-an/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf)
 
 ---
 
@@ -103,6 +104,7 @@ Mặc dù có chung nền tảng nghiên cứu về bảo mật LLM, **Tencent A
   title   = {Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming},
   author  = {Yong Yang and Xing Zheng and Huiyu Wu and Huangsheng Cheng and Xiaorong Shi and Jing Guo and Bo Yang and Yi Zhou and Xiangfan Wu and Zonghao Ying},
   journal = {arXiv preprint arXiv:2606.31227v1},
+  url     = {https://arxiv.org/abs/2606.31227},
   year    = {2026},
   institution = {Tencent Zhuque Lab}
 }

@@ -32,7 +32,7 @@ def clean_and_prepare_dir():
     SITE_DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
     # Tạo các thư mục con theo kiến trúc thông tin (IA)
-    for sub in ["work", "models", "research", "thesis", "references", "dev", "javascripts", "stylesheets"]:
+    for sub in ["work", "models", "attacks", "research", "thesis", "references", "dev", "javascripts", "stylesheets"]:
         (SITE_DOCS_DIR / sub).mkdir(parents=True, exist_ok=True)
     print(f"📁 [INIT] Đã khởi tạo cấu trúc thư mục tại: {SITE_DOCS_DIR}")
 

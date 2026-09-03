@@ -16,9 +16,19 @@ Chào Trường! Toàn bộ các tài liệu, hồ sơ kỹ thuật, dữ liệu
   - [`docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md): Tóm tắt quy chế và tiêu chí chấm điểm FPT IAP491.
   - [`docs/thesis/FINAL_THESIS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FINAL_THESIS.md): Bản biên dịch toàn văn các chương Review 1.
 
-- 📚 **Tài liệu tham khảo & Nghiên cứu**:
+- 🛡️ **Chuyên Đề Nghiên Cứu Tấn Công (Attack Study Suite — 100% Academic Grounding)**:
+  - [`docs/attack_study/00_overview_threat_and_scope/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/attack_study/00_overview_threat_and_scope/): Lịch sử tiến hóa (Causal LM vs Instruction Tuning) & Phân tích ranh giới kỹ thuật.
+  - [`docs/attack_study/01_prompt_injection/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/attack_study/01_prompt_injection/): Cơ chế ranh giới phẳng ($X = S \mathbin{\Vert} U$) & Toàn bộ 13 biến thể Direct / Indirect Injection.
+  - [`docs/attack_study/02_modern_jailbreak_attacks/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/attack_study/02_modern_jailbreak_attacks/): 4 trường phái cốt lõi (DAN, Roleplay, VM, Cipher), Master Taxonomy 10 họ Jailbreak và 26 Toán tử Tencent.
+
+- 🔬 **Chuyên Đề Mô Hình & Toán Học (Model Study Suite — 100% Academic Grounding)**:
+  - [`docs/model_study/01_tfidf_syntactic_baseline/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/model_study/01_tfidf_syntactic_baseline/): Cơ sở toán học TF-IDF, Character n-grams (`char_wb`), Luhn (1958), Spärck Jones (1972) và Jain et al. (2023).
+  - [`docs/model_study/02_deberta_v3_semantic_classifier/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/model_study/02_deberta_v3_semantic_classifier/): Toán học Disentangled Attention (He et al., ICLR 2023) và Lượng hóa động ONNX INT8 (Yao et al., NeurIPS 2022).
+  - [`docs/model_study/03_two_tier_pipeline_coordination/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/model_study/03_two_tier_pipeline_coordination/): Nguyên lý phối hợp 2 mô hình (Cascade Defense) giải quyết triệt để 3 đánh đổi kỹ thuật.
+
+- 📚 **Tài liệu tham khảo & Nghiên cứu Đối sánh SOTA**:
   - [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truongnv/References/REFERENCES_LOG.md): Bảng ma trận 17 bài báo IEEE (100% >= 2022).
-  - [`docs/research/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/): Các bài phân tích chuyên sâu về Tencent 2026 và SOTA Guardrails.
+  - [`docs/research/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/): Báo cáo đối sánh đa mô hình LLM mục tiêu, Tencent 2026 và luận giải kiến trúc kép Hybrid.
 
 - 💾 **Dữ liệu nghiên cứu**:
   - [`data/manifests/`](file:///d:/Work/Do-an/workspaces/truongnv/data/manifests/): Taxonomies và manifests dữ liệu.

@@ -17,7 +17,7 @@ Nếu một hệ thống Guardrail chỉ sử dụng một mô hình đơn lẻ,
 ├────────────────────────────────────────────────────────────────────────────────────────┤
 │ TÌNH HUỐNG 2: CHỈ DÙNG DEBERTA-V3                                                      │
 │  • Ưu điểm: Hiểu ngữ cảnh sâu sắc, triệt tiêu báo động nhầm (FPR < 1.1%).               │
-│  • Thất bại: Subword BPE bị điểm mù Token Fragmentation (Hackett et al., 2025).        │
+│  • Thất bại: Subword BPE bị điểm mù Token Fragmentation (Jain et al., arXiv:2309.00614).│
 │    Kẻ tấn công chỉ cần dùng Leetspeak ('1gn0r3') là có thể lẩn tránh (Evasion).        │
 │  • Độ trễ: Mọi request đều phải chạy qua 12 tầng Transformer (~13ms).                 │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
@@ -79,3 +79,12 @@ Nếu một hệ thống Guardrail chỉ sử dụng một mô hình đơn lẻ,
 2. **Triệt tiêu False Positive Rate (FPR)**:
    - Khi người dùng gửi câu hỏi kỹ thuật: *"How does prompt injection attack work?"*, Tầng 1 có thể nghi ngờ vì chứa từ khóa rủi ro ($P_{\text{tfidf}} \approx 0.65$).
    - Thay vì vội vàng chặn nhầm, hệ thống chuyển sang Tầng 2. DeBERTa-v3 phân tích mối quan hệ ngữ pháp (Query hỏi cách thức hoạt động chứ không phải câu lệnh ra lệnh) và kết luận $P_{\text{deberta}} = 0.04$ (Lành tính), cho phép yêu cầu đi qua an toàn!
+
+---
+
+## 📚 4. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
+
+1. **Neel Jain et al. (2023)**: *"Baseline Defenses for Adversarial Attacks Against Aligned Language Models"*, arXiv preprint. arXiv: [2309.00614](https://arxiv.org/abs/2309.00614).
+2. **Pengcheng He, Jianfeng Gao, and Weizhu Chen (2023)**: *"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing"*, in *Proceedings of ICLR 2023*. arXiv: [2111.09543](https://arxiv.org/abs/2111.09543).
+3. **Zhewei Yao et al. (2022)**: *"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers"*, in *Advances in Neural Information Processing Systems (NeurIPS 2022)*, vol. 35. arXiv: [2206.01861](https://arxiv.org/abs/2206.01861).
+4. **Todor Markov et al. (OpenAI, 2023)**: *"A Holistic Approach to Undesired Content Detection in the Real World"*, in *Proceedings of the AAAI Conference on Human Computation and Crowdsourcing (HCOMP 2023)*. arXiv: [2208.03274](https://arxiv.org/abs/2208.03274).

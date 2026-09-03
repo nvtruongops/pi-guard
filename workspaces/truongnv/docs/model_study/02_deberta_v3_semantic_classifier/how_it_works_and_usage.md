@@ -140,3 +140,12 @@ def classify_prompt_semantic(prompt: str) -> dict:
         "benign_probability": float(probs[0][0])
     }
 ```
+
+---
+
+## 📚 5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
+
+1. **Pengcheng He, Jianfeng Gao, and Weizhu Chen (2023)**: *"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing"*, in *Proceedings of ICLR 2023*. arXiv: [2111.09543](https://arxiv.org/abs/2111.09543).
+2. **Zhewei Yao et al. (2022)**: *"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers"*, in *Advances in Neural Information Processing Systems (NeurIPS 2022)*. arXiv: [2206.01861](https://arxiv.org/abs/2206.01861).
+3. **Hakan Inan et al. (Meta AI, 2023)**: *"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations"*, arXiv preprint. arXiv: [2312.06674](https://arxiv.org/abs/2312.06674).
+4. **ONNX Runtime Developers**: *"Quantization in ONNX Runtime"*, Official Documentation. Link: [onnxruntime.ai](https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html).

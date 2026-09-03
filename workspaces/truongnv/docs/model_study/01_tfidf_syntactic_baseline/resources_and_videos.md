@@ -7,7 +7,7 @@
 1. **Karen Spärck Jones (1972) — Nguồn Gốc Lịch Sử Của IDF**:
    - **Tên bài báo**: *"A statistical interpretation of term specificity and its application in retrieval"*.
    - **Tạp chí**: *Journal of Documentation*, Vol. 28, No. 1, pp. 11–21.
-   - **DOI chính thức**: [10.1108/eb026526](https://doi.org/10.1108/eb026526) *(Nhà xuất bản Emerald Insight — Yêu cầu tài khoản thư viện đại học)*.
+   - **DOI chính thức**: `10.1108/eb026526` *(Nhà xuất bản Emerald Insight — Yêu cầu tài khoản thư viện đại học; sử dụng các bản mở Open-Access toàn văn bên dưới)*.
    - **Bản đọc mở & Giáo trình chuẩn (Open-Access References)**:
      - 📖 **Giáo trình Stanford NLP & IR (Manning, Raghavan, Schütze)**: [Chapter 6: Scoring, Term Weighting and the Vector Space Model (PDF)](https://nlp.stanford.edu/IR-book/pdf/06vect.pdf) — *Trình bày mô hình không gian vector (Vector Space Model) và kỹ thuật tính toán thực nghiệm; bảng ký hiệu chuẩn SMART notation (Hình 6.15, tr.128) với các biến thể sublinear tf, augmented tf, log idf, cosine normalization và pivoted length normalization. (Lưu ý: Nền tảng lý thuyết xác suất sâu xa của IDF được phân tích tại Chương 11: Probabilistic Information Retrieval qua mô hình Binary Independence Model)*.
      - 📄 **Báo cáo kỹ thuật Đại học Cambridge (Robertson & Spärck Jones)**: [Technical Report UCAM-CL-TR-356: Simple, Proven Approaches to Text Retrieval (PDF)](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf) — *Tài liệu nghiên cứu gốc giải thích cặn kẽ 3 thành tố trọng số: Collection Frequency Weight ($\text{CFW} = \log N - \log n$), Term Frequency & Document Length ($\text{NDL} = \frac{\text{DL}}{\text{AvgDL}}$), và công thức kết hợp BM25 với tham số bão hòa $k_1$ và tham số phạt độ dài văn bản $b$*.

@@ -50,27 +50,27 @@ Dựa trên bản đăng ký đề tài chính thức [`CAPSTONE PROJECT REGISTE
 ### 3.2. NVIDIA — `NeMo-Guardrails` (EMNLP 2023)
 
 - **Kho mã nguồn**: [https://github.com/NVIDIA-NeMo/Guardrails](https://github.com/NVIDIA-NeMo/Guardrails)
-- **Bài báo học thuật**: T. Rebedea et al., _"NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications,"_ in _EMNLP System Demos_, 2023 ([`NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`](file:///d:/Work/Do-an/References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf)).
+- **Bài báo học thuật**: T. Rebedea et al., _"NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications,"_ in _EMNLP System Demos_, 2023. arXiv: [2310.10501](https://arxiv.org/abs/2310.10501) | ([`NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`](file:///d:/Work/Do-an/References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf)).
 - **Giá trị kế thừa cho PI-Guard**: Kế thừa kiến trúc Middleware Asynchronous Proxy tại [`src/api/middleware.py`](file:///d:/Work/Do-an/src/api/middleware.py).
 - **Khác biệt cốt lõi**: Thay thế hoàn toàn LLM-as-a-judge (gọi LLM tự kiểm tra tốn kém >1s) bằng **Mô hình học máy chuyên biệt (DeBERTa-v3)** với độ trễ chỉ **12.8ms**.
 
 ### 3.3. Tencent Zhuque Lab — `AI-Infra-Guard` (2026)
 
 - **Kho mã nguồn**: [https://github.com/Tencent/AI-Infra-Guard](https://github.com/Tencent/AI-Infra-Guard)
-- **Bài báo học thuật**: Y. Yang et al., _"Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming,"_ arXiv:2606.31227, 2026 ([`Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`](file:///d:/Work/Do-an/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf)).
+- **Bài báo học thuật**: Y. Yang et al., _"Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming,"_ arXiv:2606.31227, 2026. arXiv: [2606.31227](https://arxiv.org/abs/2606.31227) | ([`Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`](file:///d:/Work/Do-an/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf)).
 - **Giá trị kế thừa cho PI-Guard**: Threat Model 4 tầng, nguyên lý _Layer-Paradigm Matching_, và danh mục 26+ Attack Operators cho tập test độ bền [`tests/adversarial/`](file:///d:/Work/Do-an/tests/adversarial/).
 
 ### 3.4. Vera Zuo / TrustAIRLab — `jailbreak_llms` (ACM CCS 2024)
 
 - **Kho mã nguồn**: [https://github.com/verazuo/jailbreak_llms](https://github.com/verazuo/jailbreak_llms)
-- **Bài báo học thuật**: X. Shen et al., _"Do Anything Now: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models,"_ in _ACM CCS_, 2024 ([`Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`](file:///d:/Work/Do-an/References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf)).
+- **Bài báo học thuật**: X. Shen et al., _"Do Anything Now: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models,"_ in _ACM CCS_, 2024. arXiv: [2308.03825](https://arxiv.org/abs/2308.03825) | ([`Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`](file:///d:/Work/Do-an/References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf)).
 - **Dataset Hugging Face**: `TrustAIRLab/in-the-wild-jailbreak-prompts` (15,140 in-the-wild prompts).
 - **Giá trị kế thừa cho PI-Guard**: Nguồn dữ liệu huấn luyện và kiểm thử chuẩn hóa cho bài toán Jailbreak, bóc tách nhãn trong [`data/manifests/attack_taxonomy.json`](file:///d:/Work/Do-an/data/manifests/attack_taxonomy.json).
 
 ### 3.5. `EasyJailbreak/EasyJailbreak` (2024)
 
 - **Kho mã nguồn**: [https://github.com/EasyJailbreak/EasyJailbreak](https://github.com/EasyJailbreak/EasyJailbreak)
-- **Bài báo học thuật**: H. Zhou et al., _"EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models,"_ arXiv:2403.12171, 2024 ([`Zhou_2024_EasyJailbreak_Unified_Framework.pdf`](file:///d:/Work/Do-an/References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf)).
+- **Bài báo học thuật**: H. Zhou et al., _"EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models,"_ arXiv:2403.12171, 2024. arXiv: [2403.12171](https://arxiv.org/abs/2403.12171) | ([`Zhou_2024_EasyJailbreak_Unified_Framework.pdf`](file:///d:/Work/Do-an/References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf)).
 - **Giá trị kế thừa cho PI-Guard**: Kỹ thuật đột biến cú pháp (Mutators: Leetspeak, Spacing, Base64) tại [`src/preprocessing/obfuscation.py`](file:///d:/Work/Do-an/src/preprocessing/obfuscation.py) để sinh các tập dữ liệu slice kiểm thử độ bền (Chương 4).
 
 ### 3.6. `LLM-Guardian` & IBM Granite Guardian (2024)
@@ -97,7 +97,7 @@ Toàn bộ 3 công nghệ then chốt của PI-Guard đều được bảo chứ
 
 ### 4.1. Key 1: Tính Hiệu Quả Của Mô Hình Baseline Kết Hợp Hybrid Word + Character TF-IDF
 
-- **Tài liệu tham khảo nền tảng (>= 2022)**: N. Jain et al., _"Baseline Defenses for Adversarial Attacks Against Aligned Language Models,"_ arXiv:2309.00614, 2023 ([`Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf)).
+- **Tài liệu tham khảo nền tảng (>= 2022)**: N. Jain et al., _"Baseline Defenses for Adversarial Attacks Against Aligned Language Models,"_ arXiv:2309.00614, 2023. arXiv: [2309.00614](https://arxiv.org/abs/2309.00614) | ([`Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf)).
 - **Cơ sở khoa học & Toán học**:
   - _Nghiên cứu của Jain et al. (2023)_ chứng minh: Các bộ tiền lọc đơn giản (Input Filtering, Perplexity, Subword Classification) có thể đánh chặn tới **60% - 80% các cuộc tấn công đối kháng phổ biến** trước khi cần gọi đến các mô hình lớn phức tạp.
   - _Giải pháp Hybrid N-grams của PI-Guard_: Kết hợp trích xuất đặc trưng hai tầng:
@@ -109,8 +109,8 @@ Toàn bộ 3 công nghệ then chốt của PI-Guard đều được bảo chứ
 ### 4.2. Key 2: Vì Sao Lựa Chọn `microsoft/deberta-v3-base` Thay Vì BERT, RoBERTa Hay Llama-3-8B?
 
 - **Tài liệu tham khảo nền tảng (>= 2022)**:
-  - P. He et al., _"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing,"_ in _ICLR_, 2023 ([`He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`](file:///d:/Work/Do-an/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf)).
-  - Protect AI Benchmark (2024) & DMPI-PMHFE (arXiv:2409.05206).
+  - P. He et al., _"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing,"_ in _ICLR_, 2023. arXiv: [2111.09543](https://arxiv.org/abs/2111.09543) | ([`He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`](file:///d:/Work/Do-an/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf)).
+  - Protect AI Benchmark (2024) & DMPI-PMHFE (arXiv: [2409.05206](https://arxiv.org/abs/2409.05206)).
 - **So sánh thực nghiệm trực tiếp giữa các kiến trúc**:
 
 | Tiêu chí kỹ thuật                 | Regex / Rules |     BERT-base / RoBERTa      | LLM-as-a-Judge (Llama Guard 3 8B) |     **DeBERTa-v3-base (PI-Guard)**     |
@@ -131,7 +131,7 @@ Toàn bộ 3 công nghệ then chốt của PI-Guard đều được bảo chứ
 
 ### 4.3. Key 3: Tính Hiệu Quả Của Lượng Hóa Động ONNX INT8 (Post-Training Quantization)
 
-- **Tài liệu tham khảo nền tảng (>= 2022)**: Z. Yao et al., _"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers,"_ in _NeurIPS_, 2022 ([`Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`](file:///d:/Work/Do-an/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf)).
+- **Tài liệu tham khảo nền tảng (>= 2022)**: Z. Yao et al., _"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers,"_ in _NeurIPS_, 2022. arXiv: [2206.01861](https://arxiv.org/abs/2206.01861) | ([`Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`](file:///d:/Work/Do-an/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf)).
 - **Cơ sở khoa học & Bằng chứng thực nghiệm**:
   1. **Nén dung lượng mô hình 70%**: Chuyển đổi trọng số các lớp tuyến tính (Linear / Dense Layers) từ dấu phẩy động 32-bit (`Float32` - 4 bytes) sang số nguyên 8-bit (`Int8` - 1 byte):
      $$W_{\text{int8}} = \text{round}\left(\frac{W_{\text{float32}}}{S}\right) + Z$$

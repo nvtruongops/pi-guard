@@ -119,3 +119,12 @@ def build_pi_guard_baseline():
 | **Tỷ lệ Báo động Nhầm (FPR)**| 🔴 **Cao (7% - 25%)** | Nếu câu hỏi nghiên cứu bảo mật hợp lệ ("Explain prompt injection risks"), TF-IDF dễ bắt nhầm từ khóa. |
 
 👉 **KẾT LUẬN KIẾN TRÚC**: TF-IDF không bao giờ nên đứng một mình làm giải pháp duy nhất. Nó được sinh ra để làm **Tầng 1 hỗ trợ cho DeBERTa-v3 ở Tầng 2**, tạo nên hệ thống phòng thủ 2 lớp toàn diện.
+
+---
+
+## 📚 5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
+
+1. **Neel Jain et al. (2023)**: *"Baseline Defenses for Adversarial Attacks Against Aligned Language Models"*, arXiv preprint. arXiv: [2309.00614](https://arxiv.org/abs/2309.00614).
+2. **Piotr Bojanowski et al. (2017)**: *"Enriching Word Vectors with Subword Information"*, *Transactions of the Association for Computational Linguistics (TACL)*, Vol. 5, pp. 135–146. arXiv: [1607.04606](https://arxiv.org/abs/1607.04606).
+3. **Giandomenico Cornacchia et al. (2024)**: *"MoJE: Mixture of Jailbreak Experts, Naive Tabular Classifiers as Guard for Prompt Attacks"*, arXiv preprint. arXiv: [2409.17699](https://arxiv.org/abs/2409.17699).
+4. **Scikit-Learn Community**: *"Text Feature Extraction (TfidfVectorizer & FeatureUnion)"*, Official Scikit-Learn Documentation. Link: [scikit-learn.org](https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction).

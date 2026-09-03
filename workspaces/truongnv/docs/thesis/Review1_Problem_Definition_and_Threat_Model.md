@@ -657,7 +657,7 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 <a id="ref15"></a>**[15]** X. Shen et al., ""Do Anything Now": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in _Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (CCS)_, pp. 4028–4042, 2024.
 
 - 📖 **Local PDF**: [`References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`](file:///d:/Work/Do-an/References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf)
-- 🔗 **Online URL**: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825) (DOI: [10.1145/3658644.3670388](https://doi.org/10.1145/3658644.3670388))
+- 🔗 **Online URL**: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825) (DOI: `10.1145/3658644.3670388`)
 
 <a id="ref16"></a>**[16]** H. Zhou et al., "EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models," arXiv preprint arXiv:2403.12171, 2024.
 

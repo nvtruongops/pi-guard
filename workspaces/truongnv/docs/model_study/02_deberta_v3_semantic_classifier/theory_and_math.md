@@ -18,20 +18,20 @@
 │    • Hạn chế: Xử lý tuần tự từng từ trái sang phải, điểm nghẽn bộ nhớ đường dài        │
 │      (Vanishing Gradient) và không thể tính toán song song trên GPU.                   │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 3. KỶ NGUYÊN TRANSFORMER & BERT (2017 - 2018): Vaswani et al., Devlin et al.           │
-│    • Bước ngoặt: Cơ chế Self-Attention tính toán song song toàn câu.                    │
-│    • Hạn chế của BERT: Cộng gộp vector từ và vector vị trí tuyệt đối từ tầng 0:        │
+│ 3. KỶ NGUYÊN TRANSFORMER & BERT (2017 - 2018): Vaswani et al. (NeurIPS 2017), Devlin et al. (NAACL 2019) │
+│    • Bước ngoặt: Cơ chế Self-Attention tính toán song song toàn câu [arXiv:1706.03762].  │
+│    • Hạn chế của BERT [arXiv:1810.04805]: Cộng gộp vector từ và vector vị trí tuyệt đối từ tầng 0: │
 │      X = E_content + E_position -> Làm nhiễu loạn tương quan vị trí tương đối.         │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
 │ 4. KỶ NGUYÊN TỐI ƯU HÓA (2019 - 2020): RoBERTa, ELECTRA                                │
-│    • RoBERTa (Liu et al., 2019): Bỏ task NSP, tăng kích thước batch, dữ liệu lớn hơn.  │
-│    • ELECTRA (Clark et al., 2020): Đổi từ Masked LM sang Replaced Token Detection (RTD)│
+│    • RoBERTa (Liu et al., 2019 [arXiv:1907.11692]): Bỏ task NSP, batch size lớn.       │
+│    • ELECTRA (Clark et al., ICLR 2020 [arXiv:2003.10555]): Replaced Token Detection    │
 │      giúp tăng hiệu quả mẫu (Sample Efficiency) lên gấp nhiều lần.                     │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 5. ĐỈNH CAO DEBERTA-V3 (He, Gao, Chen - Microsoft Research, ICLR 2023):                │
+│ 5. ĐỈNH CAO DEBERTA-V3 (He, Gao, Chen - Microsoft Research, ICLR 2023 [arXiv:2111.09543]): │
 │    • Sáng tạo 1: Disentangled Attention (Tách biệt hoàn toàn Content và Position).    │
 │    • Sáng tạo 2: Enhanced Mask Decoder (EMD) đưa vị trí tuyệt đối vào tầng giải mã.    │
-│    • Sáng tạo 3: Kết hợp huấn luyện RTD với Gradient-Disentangled Embedding Sharing.    │
+│    • Sáng tạo 3: Huấn luyện RTD với Gradient-Disentangled Embedding Sharing.           │
 │    • Thành tựu: Vượt qua con người trên SuperGLUE benchmark (90.3 vs 89.8).            │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -103,3 +103,14 @@ $$q = \text{clip}\left( \text{round}\left(\frac{x}{S}\right) + Z, -128, 127 \rig
 - **Zero Point ($Z$)**: Điểm biểu diễn giá trị thực 0.0.
 
 Khi chạy trên CPU với ONNX Runtime, tập lệnh **AVX-512 VNNI** thực hiện phép nhân ma trận số nguyên 8-bit nhanh gấp 4 lần, đưa thời gian suy luận từ 48ms xuống **~12.8ms trên CPU x86 tiêu chuẩn**.
+
+---
+
+## 📚 5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
+
+1. **Ashish Vaswani et al. (2017)**: *"Attention Is All You Need"*, in *Advances in Neural Information Processing Systems (NeurIPS 2017)*, vol. 30. arXiv: [1706.03762](https://arxiv.org/abs/1706.03762).
+2. **Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova (2019)**: *"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"*, in *Proceedings of NAACL-HLT 2019*, pp. 4171–4186. arXiv: [1810.04805](https://arxiv.org/abs/1810.04805).
+3. **Yinhan Liu et al. (2019)**: *"RoBERTa: A Robustly Optimized BERT Pretraining Approach"*, arXiv preprint. arXiv: [1907.11692](https://arxiv.org/abs/1907.11692).
+4. **Kevin Clark, Minh-Thang Luong, Quoc V. Le, and Christopher D. Manning (2020)**: *"ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators"*, in *Proceedings of the 8th International Conference on Learning Representations (ICLR 2020)*. arXiv: [2003.10555](https://arxiv.org/abs/2003.10555).
+5. **Pengcheng He, Jianfeng Gao, and Weizhu Chen (2023)**: *"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing"*, in *Proceedings of the 11th International Conference on Learning Representations (ICLR 2023)*. arXiv: [2111.09543](https://arxiv.org/abs/2111.09543).
+6. **Zhewei Yao et al. (2022)**: *"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers"*, in *Advances in Neural Information Processing Systems (NeurIPS 2022)*, vol. 35. arXiv: [2206.01861](https://arxiv.org/abs/2206.01861).
