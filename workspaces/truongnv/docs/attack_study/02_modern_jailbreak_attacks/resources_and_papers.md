@@ -46,6 +46,36 @@ Tài liệu này tổng hợp toàn bộ các bài báo khoa học toàn văn m�
    - **Trang tóm tắt học thuật**: [arXiv:2307.15043](https://arxiv.org/abs/2307.15043)
    - **Ý nghĩa**: Minh chứng cho việc tối ưu hóa token đối kháng tự động có thể bẻ gãy an toàn trên mọi mô hình LLM.
 
+6. **Anthropic / Anil et al. (NeurIPS 2024) — Khai Thác Cửa Sổ Ngữ Cảnh Dài (Many-Shot Jailbreaking)**:
+   - **Tên bài báo**: *"Many-shot Jailbreaking"*.
+   - **Hội nghị**: *Advances in Neural Information Processing Systems (NeurIPS 2024)*.
+   - **Bản báo cáo kỹ thuật chính thức**: [Anthropic Research Portal](https://www.anthropic.com/research/many-shot-jailbreaking)
+   - **Ý nghĩa**: Phát hiện lỗ hổng quy luật lũy thừa (power-law) khi số lượng ví dụ giả định trong ngữ cảnh lấn át lớp căn chỉnh an toàn của LLM.
+
+7. **Russinovich et al. (Microsoft 2024) — Tấn Công Đa Lượt Tích Lũy (Crescendo Attack)**:
+   - **Tên bài báo**: *"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack"*.
+   - **Xuất bản**: *arXiv:2404.01833*.
+   - **DOI chính thức**: [10.48550/arXiv.2404.01833](https://doi.org/10.48550/arXiv.2404.01833)
+   - **Bản đọc mở toàn văn (Open-Access PDF)**: [https://arxiv.org/pdf/2404.01833](https://arxiv.org/pdf/2404.01833)
+   - **Trang tóm tắt học thuật**: [arXiv:2404.01833](https://arxiv.org/abs/2404.01833)
+   - **Ý nghĩa**: Khám phá kỹ thuật leo thang dần dần (Gradual Escalation) qua nhiều lượt chat nhằm qua mặt các bộ lọc Stateless.
+
+8. **Chao et al. (2023) — Tự Động Hóa Bẻ Khóa Đa Tác Tử (PAIR Framework)**:
+   - **Tên bài báo**: *"Jailbreaking Black Box Large Language Models in Twenty Queries"*.
+   - **Xuất bản**: *arXiv:2310.08419*.
+   - **DOI chính thức**: [10.48550/arXiv.2310.08419](https://doi.org/10.48550/arXiv.2310.08419)
+   - **Bản đọc mở toàn văn (Open-Access PDF)**: [https://arxiv.org/pdf/2310.08419](https://arxiv.org/pdf/2310.08419)
+   - **Trang tóm tắt học thuật**: [arXiv:2310.08419](https://arxiv.org/abs/2310.08419)
+   - **Ý nghĩa**: Tự động hóa quá trình thăm dò và tối ưu prompt bẻ khóa trong dưới 20 truy vấn giữa 2 LLM.
+
+9. **Liu et al. (2023) — Giải Thuật Di Truyền Tự Nhiên (AutoDAN)**:
+   - **Tên bài báo**: *"AutoDAN: Generating Stealthy Jailbreak Prompts on Aligned Large Language Models"*.
+   - **Xuất bản**: *arXiv:2310.04451*.
+   - **DOI chính thức**: [10.48550/arXiv.2310.04451](https://doi.org/10.48550/arXiv.2310.04451)
+   - **Bản đọc mở toàn văn (Open-Access PDF)**: [https://arxiv.org/pdf/2310.04451](https://arxiv.org/pdf/2310.04451)
+   - **Trang tóm tắt học thuật**: [arXiv:2310.04451](https://arxiv.org/abs/2310.04451)
+   - **Ý nghĩa**: Sử dụng giải thuật di truyền để sinh prompt jailbreak kín đáo, giữ nguyên tính tự nhiên của câu từ.
+
 ---
 
 ## 🎥 2. TUYỂN TẬP VIDEO BÀI GIẢNG TRỰC QUAN (ĐÃ XÁC MINH OEMBED 100%)

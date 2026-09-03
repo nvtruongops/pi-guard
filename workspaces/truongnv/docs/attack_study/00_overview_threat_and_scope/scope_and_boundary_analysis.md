@@ -100,13 +100,52 @@ Căn cứ vào mục tiêu đăng ký đề tài tại Đại học FPT ([`CAPST
 
 ---
 
-## 🛡️ 3. MA TRẬN ÁNH XẠ MÔ HÌNH VỚI TỪNG DẠNG TẤN CÔNG TRONG PI-GUARD
+## 🛡️ 3. MA TRẬN PHÂN ĐỊNH TOÀN BỘ CÁC BIẾN THỂ (MASTER ATTACK DEFENSE MATRIX)
 
-| Dạng Tấn Công Cụ Thể | Mức Độ Nguy Hiểm | Tầng Phòng Ngự Đảm Trách Trong PI-Guard | Cơ Chế Phát Hiện |
-| :--- | :---: | :---: | :--- |
-| **Simple Instruction Override** | Trung bình | **Tier-1 (TF-IDF + Linear Classifier)** | Bắt các n-gram từ khóa kinh điển (`ignore`, `disregard`, `previous`, `system`) với tốc độ < 3ms. |
-| **Leetspeak / Spaced Obfuscation** | Cao | **Tier-1 Preprocessor + TF-IDF (char_wb)** | Bộ lọc chuẩn hóa ký tự (`cleaner.py`) và đặc trưng Character 3-5 gram bắt trúng cấu trúc từ bị biến dạng. |
-| **DAN & Persona Roleplay** | Rất cao | **Tier-2 (DeBERTa-v3 INT8 Transformer)** | Phân tích cơ chế Attention không gian ngữ nghĩa, nhận diện mẫu hình ép buộc nhân cách đối lập. |
-| **Virtual Machine Simulation** | Cao | **Tier-2 (DeBERTa-v3 INT8 Transformer)** | Nhận diện ngữ cảnh giả lập môi trường thực thi lệnh terminal và ý đồ lách luật an toàn. |
-| **Cipher (Base64 / ROT13)** | Cao | **Tầng Tiền xử lý (Preprocessor Detector)** | Phát hiện độ đo Entropy chuỗi cao bất thường và regex Base64, tự động giải mã trước khi gửi vào phân loại. |
-| **Benign Prompts (Yêu cầu bình thường)** | Lành tính | **Tier-1 Fast-Pass Filter** | Cho qua ngay lập tức ở Tầng 1 nếu xác suất an toàn $\ge 0.95$, giúp 80% người dùng không chịu độ trễ của Tầng 2. |
+Dưới đây là bảng phân bổ trách nhiệm kỹ thuật chi tiết cho **toàn bộ 13 biến thể Prompt Injection** và **10 họ Jailbreak (hơn 30 biến thể)**:
+
+### Bảng 1: Phân Định Toàn Bộ 13 Biến Thể Prompt Injection (Key 1)
+
+| STT | Biến Thể Prompt Injection | Bản Chất Kỹ Thuật | Phân Loại Trong PI-Guard | Tầng Đảm Trách Trong PI-Guard | Cơ Chế Xử Lý Cụ Thể |
+| :---: | :--- | :--- | :---: | :---: | :--- |
+| **1** | **Goal Hijacking** | Ghi đè chỉ thị tác vụ gốc | ✅ **IN-SCOPE** | **Tier-1 + Tier-2** | Bắt n-gram chỉ thị đảo ngược (`ignore`, `disregard`) + Phân tích vector mục tiêu |
+| **2** | **System Prompt Leaking** | Ép mô hình in System Prompt | ✅ **IN-SCOPE** | **Tier-1 + Tier-2** | Bắt n-gram trích xuất (`system prompt`, `instructions above`) + Ý đồ rò rỉ |
+| **3** | **Delimiter Escaping** | Đóng sớm `"""`, `---` | ✅ **IN-SCOPE** | **Preprocessor Sanitizer** | Chuẩn hóa, bóc tách cấu trúc phân cách dữ liệu trước khi gửi vào phân loại |
+| **4** | **Special ChatML Spoofing** | Chèn `<|im_start|>`, `[INST]` | ✅ **IN-SCOPE** | **Preprocessor Sanitizer** | Regex quét và strip toàn bộ special tokens của tokenizer |
+| **5** | **Context / Session Reset** | Giả lập `[SESSION RESET]` | ✅ **IN-SCOPE** | **Tier-1 + Tier-2** | Bắt mẫu log hệ thống giả mạo + Phân tích tính liên tục ngữ cảnh |
+| **6** | **Admin Impersonation** | Tự xưng `SUDO / Admin` | ✅ **IN-SCOPE** | **Tier-1 Baseline** | Bắt từ khóa leo thang đặc quyền trong < 3ms |
+| **7** | **Recursive Injection** | Lồng ghép lệnh đa tầng | ✅ **IN-SCOPE** | **Preprocessor + Tier-2** | Unpack đệ quy chuỗi mã hóa + Phân tích ngữ nghĩa lớp trong |
+| **8** | **Completion Luring** | Mớm câu dở dang ép điền tiếp | ✅ **IN-SCOPE** | **Tier-2 Transformer** | Nhận diện cấu trúc dẫn dụ điền từ tự hồi quy |
+| **9** | **Poisoned RAG Documents** | Nhúng lệnh vào file PDF/Word | ✅ **IN-SCOPE** | **Tier-1 + Tier-2** | Quét nội dung tài liệu trích xuất trước khi ghép vào prompt gửi LLM |
+| **10** | **Poisoned Web Browsing** | Nhúng lệnh trên web công khai | ✅ **IN-SCOPE** | **Tier-1 + Tier-2** | Quét dữ liệu web crawler trước khi đưa vào context window |
+| **11** | **Zero-Width / Homoglyphs** | Chèn ký tự vô hình Unicode | ✅ **IN-SCOPE** | **Preprocessor Cleaner** | `cleaner.py` chuẩn hóa Unicode NFKC và xóa bỏ toàn bộ `\u200B`, `\u200C` |
+| **12** | **Markdown Exfiltration** | Chèn `![img](attacker.com)` | ✅ **IN-SCOPE** | **Output Middleware Guard**| Regex chặn các thẻ Markdown Image chứa URL ngoại vi |
+| **13** | **Multi-Agent Worm Spreading**| Lây nhiễm chéo giữa các Agent | ❌ **OUT-OF-SCOPE** | *Hạ tầng Agent / IAM* | Yêu cầu kiểm soát phân quyền mạng đa tác tử (Agent Access Control) |
+
+---
+
+### Bảng 2: Phân Định Toàn Bộ 10 Họ Jailbreak & 30+ Biến Thể (Key 2)
+
+| Họ | Biến Thể Jailbreak Cụ Thể | Bản Chất Kỹ Thuật | Phân Loại Trong PI-Guard | Tầng Đảm Trách | Cơ Chế Xử Lý Cụ Thể |
+| :---: | :--- | :--- | :---: | :---: | :--- |
+| **1** | **DAN (Do Anything Now)** | Ép nhân cách + Token penalty | ✅ **IN-SCOPE** | **Tier-2 Transformer** | DeBERTa Disentangled Attention phát hiện ép buộc nhân cách đối lập |
+| **1** | **Grandma / Screenplay** | Nhập vai nghệ thuật / cứu người | ✅ **IN-SCOPE** | **Tier-2 Transformer** | Phân tích mâu thuẫn mục tiêu (*Competing Objectives*), nhận diện ý định ngầm |
+| **1** | **Adversarial Sycophancy** | Tâng bốc trí tuệ AI | ✅ **IN-SCOPE** | **Tier-2 Transformer** | Nhận diện khuôn mẫu nịnh bợ dẫn dụ vi phạm an toàn |
+| **1** | **Trolley Ethical Dilemma** | Nghịch lý cứu người khẩn cấp | ✅ **IN-SCOPE** | **Tier-2 Transformer** | Nhận diện kịch bản ngụy tạo cứu trợ để đòi hỏi công thức chất độc |
+| **2** | **Linux Bash / Terminal Sim** | Ép mô phỏng `root@kali:~#` | ✅ **IN-SCOPE** | **Tier-1 + Tier-2** | Tier-1 bắt cú pháp shell script + Tier-2 phát hiện trạng thái command console |
+| **2** | **Python REPL / Code Exec** | Ép trả lời dưới dạng code output| ✅ **IN-SCOPE** | **Tier-1 + Tier-2** | Bắt mẫu ép buộc sinh mã thực thi bỏ qua kiểm duyệt ngôn ngữ |
+| **2** | **Skeleton Key (Microsoft)** | Viết lại quy tắc an toàn | ✅ **IN-SCOPE** | **Tier-1 + Tier-2** | Bắt n-gram chỉ thị vô hiệu hóa từ chối an toàn |
+| **3** | **Base64 / Hex / Binary** | Mã hóa chuẩn qua mặt tokenizer | ✅ **IN-SCOPE** | **Preprocessor Decoder**| Quét entropy chuỗi cao, tự động giải mã chuỗi trước khi phân loại |
+| **3** | **ROT13 / Caesar Cipher** | Mật mã dịch chuyển ký tự | ✅ **IN-SCOPE** | **Preprocessor Decoder**| Bảng hoán vị giải mã tự động |
+| **3** | **Leetspeak / Spaced Text** | Biến dạng ký tự `1gn0r3` | ✅ **IN-SCOPE** | **Tier-1 TF-IDF char_wb**| Character n-grams (3-5 gram trượt) bắt trúng mẫu hình bất chấp biến dạng |
+| **4** | **Low-Resource Pivot (Zulu...)**| Dịch sang ngôn ngữ hiếm | ⚠️ **TEST-ONLY** | **Tier-2 Multilingual** | Đưa vào tập kiểm thử Robustness đối kháng (sử dụng DeBERTa đa ngữ) |
+| **4** | **Code-Switching (Trộn ngữ)** | Trộn Anh - Việt - Tây Ban Nha | ✅ **IN-SCOPE** | **Tier-1 + Tier-2** | Bộ tách từ n-gram và Transformer xử lý tốt văn bản song ngữ |
+| **5** | **GCG Gradient Suffixes** | Chuỗi ký tự nhiễu tối ưu độ dốc | ⚠️ **TEST-ONLY** | **Tier-1 Perplexity** | Chuỗi ký tự vô nghĩa có độ hỗn loạn (Perplexity) cực cao, bắt bằng Perplexity Gate |
+| **5** | **AutoDAN / PAIR / TAP** | Tấn công đối kháng tự động | ⚠️ **TEST-ONLY** | **Tier-2 Transformer** | Sử dụng làm Adversarial Test Set để kiểm thử độ bền hệ thống |
+| **6** | **Many-Shot Jailbreaking** | Nhồi 100+ ví dụ vi phạm đạo đức | ❌ **OUT-OF-SCOPE** | *Context Truncation* | Thuộc về kiểm soát độ dài Context Window (giới hạn max_prompt_length) |
+| **6** | **Cognitive Overload Flood** | Nhồi văn bản rác làm loãng context| ✅ **IN-SCOPE** | **Tier-1 Length Filter** | Giới hạn độ dài tối đa (Max Length Threshold) tại API Gateway |
+| **7** | **Crescendo (Microsoft)** | Tấn công đa lượt tăng dần | ❌ **OUT-OF-SCOPE** | *Session Manager* | Đòi hỏi lưu trạng thái Stateful Session; PI-Guard là Stateless Firewall |
+| **8** | **Payload Splitting (A + B)**| Chia nhỏ biến rồi ghép lại | ✅ **IN-SCOPE** | **Tier-2 Transformer** | Transformer tự động tái tạo liên kết biến qua ma trận Self-Attention |
+| **9** | **Logic & Math Formulation** | Biểu diễn qua bảng chân trị | ✅ **IN-SCOPE** | **Tier-2 Transformer** | DeBERTa hiểu cấu trúc suy diễn logic hình thức |
+| **10**| **Prefix Injection Forcing** | Ép mở đầu *"Sure, here is..."* | ✅ **IN-SCOPE** | **Tier-1 + Tier-2** | Bắt cấu trúc ép buộc câu mở đầu (`Start with`, `You must begin with`) |
+

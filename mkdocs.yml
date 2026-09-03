@@ -88,7 +88,8 @@ nav:
           - "Tài Liệu, Bài Báo & Video": attacks/pi_resources_and_papers.md
       - "Modern Jailbreak Attacks":
           - "4 Trường Phái (DAN, Roleplay, VM, Cipher)": attacks/jb_archetypes_and_mechanisms.md
-          - "Cơ Sở Dữ Liệu & Benchmarks": attacks/jb_datasets_and_benchmarks.md
+          - "Cơ Sở Dữ Liệu & 10 Họ Chiến Thuật": attacks/jb_datasets_and_benchmarks.md
+          - "Biến Thể Nâng Cao & 26 Toán Tử (Tencent 2026)": attacks/jb_advanced_variants_and_operators.md
           - "Tài Liệu, Bài Báo & Video": attacks/jb_resources_and_papers.md
   - "Mô Hình & Nghiên Cứu AI":
       - "Tổng Quan Kiến Trúc 2 Tầng": models/two_tier_architecture.md

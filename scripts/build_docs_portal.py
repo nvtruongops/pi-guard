@@ -259,6 +259,8 @@ def aggregate_all():
              SITE_DOCS_DIR / "attacks" / "jb_archetypes_and_mechanisms.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "datasets_benchmarks_and_taxonomy.md",
              SITE_DOCS_DIR / "attacks" / "jb_datasets_and_benchmarks.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "advanced_variants_and_operators.md",
+             SITE_DOCS_DIR / "attacks" / "jb_advanced_variants_and_operators.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "resources_and_papers.md",
              SITE_DOCS_DIR / "attacks" / "jb_resources_and_papers.md")
 
