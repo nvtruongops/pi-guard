@@ -1,4 +1,4 @@
-﻿{
+{
   "mcpServers": {
     "arxiv": {
       "command": "arxiv-mcp-server",
@@ -40,6 +40,23 @@
         "@modelcontextprotocol/server-sequential-thinking"
       ],
       "description": "Multi-step structured reasoning and analysis"
+    },
+    "scholar-feed": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "scholar-feed-mcp"
+      ],
+      "description": "Scholarly paper search across 600k+ CS/AI/ML papers, citation lineage tracking, full text extraction, and BibTeX retrieval"
+    },
+    "officecli": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@officecli/officecli",
+        "mcp"
+      ],
+      "description": "OfficeCLI MCP server for reading, editing, and automating Office documents (.docx, .xlsx, .pptx)"
     }
   }
 }

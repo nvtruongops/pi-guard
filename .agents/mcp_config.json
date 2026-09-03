@@ -49,6 +49,14 @@
         "mcp"
       ],
       "description": "OfficeCLI MCP server for reading, editing, and automating Office documents (.docx, .xlsx, .pptx)"
+    },
+    "scholar-feed": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "scholar-feed-mcp"
+      ],
+      "description": "Scholarly paper search across 600k+ CS/AI/ML papers, citation lineage tracking, full text extraction, and BibTeX retrieval"
     }
   }
 }
