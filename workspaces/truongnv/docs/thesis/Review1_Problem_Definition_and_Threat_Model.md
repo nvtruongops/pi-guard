@@ -261,6 +261,9 @@ Bảng phân tích đối sánh 3 chiều bản chất kỹ thuật theo chuẩn
 
 # SECTION 3: THREAT MODELING, ATTACKERS & REAL-WORLD DAMAGE ASSESSMENT
 
+> 📖 **Chuyên Khảo Nghiên Cứu Sâu**: Toàn bộ mô hình toán học, phân tích STRIDE / DREAD định lượng, 3 hồ sơ Attacker và 4 điểm chạm Attack Surface được trình bày chi tiết tại:  
+> 🔗 [`docs/threat_and_defense_study/01_threat_model_and_attack_surface.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/01_threat_model_and_attack_surface.md)
+
 Threat Model của PI-Guard được xây dựng dựa trên tiêu chuẩn **NIST AI 100-2e2025** [[7]](#ref7), **OWASP Top 10 for LLM (LLM01:2025)** [[8]](#ref8), và nghiên cứu mới nhất của **Tencent Zhuque Lab (2026)** [[6]](#ref6).
 
 ```
@@ -305,6 +308,11 @@ Threat Model của PI-Guard được xây dựng dựa trên tiêu chuẩn **NIS
 ---
 
 # SECTION 4: 3-TIER LAYERED DEFENSE, 2-PHASE ARCHITECTURE & ROBUSTNESS DESIGN
+
+> 📖 **Chuyên Khảo Nghiên Cứu Sâu**: Toàn bộ cơ chế kỹ thuật 3 lớp bảo vệ (Saltzer & Schroeder Complete Mediation, Unicode Sanitizer, Heuristic Base64, XML Boundary Isolation, Canary Token Verification), ma trận đối sánh 6 phương pháp và mã nguồn Python mẫu được phân tích chi tiết tại:  
+> 🔗 [`docs/threat_and_defense_study/02_multi_layer_defense_architecture.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/02_multi_layer_defense_architecture.md)  
+> 🔗 [`docs/threat_and_defense_study/03_comparative_matrix_and_tradeoffs.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/03_comparative_matrix_and_tradeoffs.md)  
+> 🔗 [`docs/threat_and_defense_study/04_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/04_resources_and_papers.md)  
 
 ## 4.1. Cấu Trúc Phòng Thủ 3 Lớp Tiêu Chuẩn (Standard 3-Tier Defense)
 

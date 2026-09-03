@@ -91,6 +91,11 @@ nav:
           - "Cơ Sở Dữ Liệu & 10 Họ Chiến Thuật": attacks/jb_datasets_and_benchmarks.md
           - "Biến Thể Nâng Cao & 26 Toán Tử (Tencent 2026)": attacks/jb_advanced_variants_and_operators.md
           - "Tài Liệu, Bài Báo & Video": attacks/jb_resources_and_papers.md
+  - "Chuyên Đề Threat Model & Phòng Thủ Đa Tầng":
+      - "Mô Hình Hóa Đe Dọa & Bề Mặt Tấn Công": threat_defense/threat_model_and_attack_surface.md
+      - "Kiến Trúc Phòng Thủ 3 Lớp (Defense-in-Depth)": threat_defense/multi_layer_defense_architecture.md
+      - "Ma Trận Đối Sánh & Phân Tích Đánh Đổi": threat_defense/comparative_matrix_and_tradeoffs.md
+      - "Tài Liệu Học Thuật, Video & Mã Nguồn Mẫu": threat_defense/resources_and_papers.md
   - "Chuyên Đề Robustness & Evasion":
       - "Cơ Sở Lý Thuyết & Phân Mảnh Token": robustness/theory_and_evasion_mechanisms.md
       - "Kiến Trúc Phòng Thủ Đa Tầng": robustness/defense_architecture_and_mitigation.md
