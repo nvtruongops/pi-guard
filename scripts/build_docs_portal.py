@@ -141,6 +141,7 @@ flowchart TD
 | Khu vực tài liệu | Nội dung trọng tâm | Đường dẫn tra cứu |
 | :--- | :--- | :--- |
 | **Quản Lý Công Việc** | Lộ trình IAP491, Biên bản họp 1 & 2, Kế hoạch Sprint tuần, Ma trận RACI | [Xem Kế Hoạch Sprint](work/sprint_1_todo_list.md) |
+| **Chuyên Đề Tấn Công** | Lịch sử tiến hóa (2022–2026), Ranh giới In/Out-scope, Prompt Injection & 4 trường phái Jailbreak (DAN, Roleplay, VM, Cipher) | [Khám Phá Chuyên Đề Tấn Công](attacks/history_and_evolution.md) |
 | **Mô Hình & Nghiên Cứu** | Toán học TF-IDF, Transformer DeBERTa-v3, Phối hợp 2 tầng, Khảo sát SOTA | [Khám Phá Mô Hình](models/two_tier_architecture.md) |
 | **Luận Văn & Review 1** | Hồ sơ Threat Model (NIST), Hệ thống 3 câu hỏi IEEE (RQ1-RQ3), Dàn ý slide | [Xem Hồ Sơ Review 1](thesis/review1_threat_model.md) |
 | **Tài Liệu Tham Khảo** | Nhật ký 18 bài báo khoa học chuẩn IEEE (2022–2026) kèm DOI | [Xem Thư Viện Bài Báo](references/references_log.md) |
@@ -242,6 +243,24 @@ def aggregate_all():
              SITE_DOCS_DIR / "models" / "deberta_usage.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "resources_and_videos.md",
              SITE_DOCS_DIR / "models" / "deberta_resources.md")
+
+    # 2.5. Chuyên Đề Tấn Công (Attack Study)
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "00_overview_threat_and_scope" / "history_and_evolution.md",
+             SITE_DOCS_DIR / "attacks" / "history_and_evolution.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "00_overview_threat_and_scope" / "scope_and_boundary_analysis.md",
+             SITE_DOCS_DIR / "attacks" / "scope_and_boundary_analysis.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "01_prompt_injection" / "how_it_works_and_mechanisms.md",
+             SITE_DOCS_DIR / "attacks" / "pi_how_it_works.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "01_prompt_injection" / "taxonomy_and_variants.md",
+             SITE_DOCS_DIR / "attacks" / "pi_taxonomy_and_variants.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "01_prompt_injection" / "resources_and_papers.md",
+             SITE_DOCS_DIR / "attacks" / "pi_resources_and_papers.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "archetypes_and_mechanisms.md",
+             SITE_DOCS_DIR / "attacks" / "jb_archetypes_and_mechanisms.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "datasets_benchmarks_and_taxonomy.md",
+             SITE_DOCS_DIR / "attacks" / "jb_datasets_and_benchmarks.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "resources_and_papers.md",
+             SITE_DOCS_DIR / "attacks" / "jb_resources_and_papers.md")
 
     # Research
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "State_of_the_Art_Guardrail_and_Jailbreak_Benchmarks_Analysis.md",

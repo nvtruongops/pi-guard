@@ -78,6 +78,18 @@ nav:
           - "Biên Bản Họp 2 (01/09/2026)": work/meeting_2.md
       - "Kế Hoạch Sprint & Phân Công RACI": work/sprint_1_todo_list.md
       - "Kiểm Toán Báo Cáo Tiến Độ": work/process_report_checklist.md
+  - "Chuyên Đề Tấn Công (Attack Study)":
+      - "Tổng Quan & Ranh Giới Đề Tài":
+          - "Biên Niên Sử Tiến Hóa (2022-2026)": attacks/history_and_evolution.md
+          - "Phân Tích Ranh Giới In/Out-Scope": attacks/scope_and_boundary_analysis.md
+      - "Prompt Injection (OWASP LLM01)":
+          - "Bản Chất & Cơ Chế Hoạt Động": attacks/pi_how_it_works.md
+          - "Phân Loại & Các Biến Thể": attacks/pi_taxonomy_and_variants.md
+          - "Tài Liệu, Bài Báo & Video": attacks/pi_resources_and_papers.md
+      - "Modern Jailbreak Attacks":
+          - "4 Trường Phái (DAN, Roleplay, VM, Cipher)": attacks/jb_archetypes_and_mechanisms.md
+          - "Cơ Sở Dữ Liệu & Benchmarks": attacks/jb_datasets_and_benchmarks.md
+          - "Tài Liệu, Bài Báo & Video": attacks/jb_resources_and_papers.md
   - "Mô Hình & Nghiên Cứu AI":
       - "Tổng Quan Kiến Trúc 2 Tầng": models/two_tier_architecture.md
       - "Tier 1: Syntactic Baseline (TF-IDF)":
