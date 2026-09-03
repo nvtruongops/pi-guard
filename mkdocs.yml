@@ -1,0 +1,112 @@
+site_name: "PI-Guard: LLM Security Guardrail"
+site_description: "A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications"
+site_author: "PI-Guard Capstone Team (FPT University)"
+site_url: "https://nvtruongops.github.io/pi-guard/"
+repo_url: "https://github.com/nvtruongops/pi-guard"
+repo_name: "nvtruongops/pi-guard"
+
+docs_dir: "site_docs"
+site_dir: "site"
+
+theme:
+  name: material
+  language: en
+  palette:
+    # Mode sáng (Default Light)
+    - scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Chuyển sang Dark Mode
+    # Mode tối (Dark Mode)
+    - scheme: slate
+      primary: indigo
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: Chuyển sang Light Mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - tables
+  - attr_list
+  - def_list
+  - footnotes
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - "Trang Chủ": index.md
+  - "Quản Lý Công Việc & Tiến Độ":
+      - "Lộ Trình & Tiêu Chuẩn FPT": work/fpt_guidelines_and_rubrics.md
+      - "Biên Bản Họp Nhóm":
+          - "Biên Bản Họp 1 (29/08/2026)": work/meeting_1.md
+          - "Biên Bản Họp 2 (01/09/2026)": work/meeting_2.md
+      - "Kế Hoạch Sprint & Phân Công RACI": work/sprint_1_todo_list.md
+      - "Kiểm Toán Báo Cáo Tiến Độ": work/process_report_checklist.md
+  - "Mô Hình & Nghiên Cứu AI":
+      - "Tổng Quan Kiến Trúc 2 Tầng": models/two_tier_architecture.md
+      - "Tier 1: Syntactic Baseline (TF-IDF)":
+          - "Lý Thuyết & Toán Học": models/tfidf_theory_and_math.md
+          - "Hướng Dẫn & Sử Dụng": models/tfidf_usage.md
+          - "Tài Liệu & Video Tham Khảo": models/tfidf_resources.md
+      - "Tier 2: Deep Transformer (DeBERTa-v3)":
+          - "Lý Thuyết & Disentangled Attention": models/deberta_theory_and_math.md
+          - "Hướng Dẫn Fine-Tuning & ONNX": models/deberta_usage.md
+          - "Tài Liệu & Video Tham Khảo": models/deberta_resources.md
+      - "Phối Hợp 2 Tầng & Latency Tradeoffs": models/two_tier_tradeoffs.md
+      - "Khảo Sát Các Guardrail SOTA": research/sota_guardrail_benchmarks.md
+      - "Khảo Sát 5 Target LLM APIs": research/target_llm_vulnerabilities.md
+      - "Phân Tích Bài Báo Tencent 2026": research/tencent2026_paper_analysis.md
+      - "Luận Giải Kiến Trúc Kết Hợp": research/why_dual_model_architecture.md
+  - "Luận Văn & Báo Cáo Milestone":
+      - "Đăng Ký Đề Tài (Register)": thesis/capstone_register.md
+      - "Review 1: Threat Model & Defense": thesis/review1_threat_model.md
+      - "Review 1: Slide Thuyết Trình": thesis/review1_slides_outline.md
+      - "Chương 1: Giới Thiệu (Introduction)": thesis/chapter_01_introduction.md
+      - "Chương 2: Tổng Quan Tài Liệu (Literature Review)": thesis/chapter_02_literature_review.md
+      - "Luận Văn Tổng Hợp Đầy Đủ": thesis/final_thesis.md
+  - "Thư Viện Bài Báo Khoa Học":
+      - "Nhật Ký 18 Bài Báo IEEE (>= 2022)": references/references_log.md
+  - "Đội Ngũ & Hướng Dẫn":
+      - "Phân Quyền Git & Workspace Rules": dev/team_governance.md
+      - "Quy Chuẩn Đóng Góp (Contributing)": dev/contributing_guide.md
+      - "Tổng Quan Không Gian Thành Viên": dev/workspaces_overview.md
+      - "Kiến Trúc Source Code": dev/src_architecture.md

@@ -68,4 +68,10 @@ docs/fpt_capstone_guide/**
 **/fpt_capstone_guide/
 **/fpt_capstone_guide/**
 
+# MkDocs Documentation Portal Build Artifacts
+site_docs/
+site/
+.cache/
+
+
 
