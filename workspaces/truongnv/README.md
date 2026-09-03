@@ -13,7 +13,7 @@ Chào Trường! Toàn bộ các tài liệu, hồ sơ kỹ thuật, dữ liệu
   - [`docs/thesis/chapters/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/README.md): Lộ trình biên soạn 6 chương theo chuẩn FPT IAP491.
   - [`docs/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md): Hồ sơ kỹ thuật Problem Definition & Threat Model.
   - [`docs/thesis/Review1_Presentation_Slides_Outline.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/Review1_Presentation_Slides_Outline.md): Dàn ý 9 slide thuyết trình 15 phút.
-  - [`docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md): Tóm tắt quy chế và tiêu chí chấm điểm FPT IAP491.
+  - [`docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md): *(Dùng chung toàn nhóm)* Tóm tắt quy chế và tiêu chí chấm điểm FPT IAP491.
   - [`docs/thesis/FINAL_THESIS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FINAL_THESIS.md): Bản biên dịch toàn văn các chương Review 1.
 
 - 🛡️ **Chuyên Đề Nghiên Cứu Tấn Công (Attack Study Suite — 100% Academic Grounding)**:
