@@ -39,9 +39,18 @@ def clean_and_prepare_dir():
 def sanitize_content(content: str) -> str:
     """
     Chuẩn hóa nội dung markdown:
+    - Loại bỏ triệt để mọi liên kết hoặc đề cập đến tài liệu bảo mật nội bộ (docs/fpt_capstone_guide).
     - Chuyển đổi file:// link tuyệt đối Windows thành link markdown tương đối hoặc link code.
     - Chuẩn hóa Math block và Callouts.
     """
+    # Lọc bỏ các dòng chứa tài liệu bảo mật nội bộ
+    sanitized_lines = []
+    for line in content.splitlines():
+        if "fpt_capstone_guide" in line or "SP26IA04" in line:
+            continue
+        sanitized_lines.append(line)
+    content = "\n".join(sanitized_lines)
+
     # Thay thế file:///d:/Work/Do-an/... hoặc file:///D:/Work/Do-an/...
     content = re.sub(r"\[([^\]]+)\]\(file:///[dD]:/Work/Do-an/([^)]+)\)", r"[\1](\2)", content)
     # Thay thế file:///... còn lại

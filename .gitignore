@@ -72,6 +72,8 @@ docs/fpt_capstone_guide/**
 site_docs/
 site/
 .cache/
+.playwright-mcp/
+
 
 
 

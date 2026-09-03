@@ -1,7 +1,7 @@
 # HƯỚNG DẪN & TIÊU CHÍ ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP FPT UNIVERSITY
 ## Quy Chuẩn IAP491 (Research-Based Thesis) Cho Ngành An Toàn Thông Tin
 
-> **Tài liệu gốc tham chiếu**: [`docs/fpt_capstone_guide/IAP491_CP_StudentsGuideForm for Research Based Thesis.docx`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/IAP491_CP_StudentsGuideForm%20for%20Research%20Based%20Thesis.docx)  
+> **Tài liệu tham chiếu**: Quy định và biểu mẫu chuẩn Khóa luận tốt nghiệp IAP491 (Research-Based Thesis), Đại học FPT.  
 > **Áp dụng cho**: Đồ án **PI-Guard** (Information Assurance - FPT University)  
 > **Cập nhật ngày**: 2026-09-01  
 
@@ -120,16 +120,3 @@ PHỤ LỤC (Appendices - Code snippets, API documentation, Prompt samples)
 | **Phạm Minh Hoàng Việt** | Transformer Fine-Tuning (DeBERTa-v3), Lượng hóa ONNX & Robustness | **Report No.4** (Experimental & Results - Training & Adversarial Tests) |
 | **Đỗ Đoàn Duy Phương** | FastAPI Guardrail Middleware, Streamlit Dashboard & Viết Luận văn | **Report No.5** (Discussion) + **Report No.6** (Conclusion & Slide Deck) |
 
----
-
-## 📑 5. BẢN ĐỒ TÀI LIỆU THAM KHẢO CỦA TRƯỜNG (`docs/fpt_capstone_guide/`)
-
-Toàn bộ tài liệu gốc của Trường đã được tích hợp trực tiếp vào repo:
-
-| Thư mục / File | Mô tả nội dung | Vị trí áp dụng |
-| :--- | :--- | :--- |
-| [`IAP491_CP_StudentsGuideForm for Research Based Thesis.docx`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/IAP491_CP_StudentsGuideForm%20for%20Research%20Based%20Thesis.docx) | Mẫu chuẩn văn bản luận văn nghiên cứu IA | Dùng làm khung chuẩn cho toàn bộ tài liệu luận văn |
-| [`Tham Khảo/SP26IA04_GSP04_FINAL_THESIS.pdf`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/Tham%20Kh%E1%BA%A3o/SP26IA04_GSP04_FINAL_THESIS.pdf) | Luận văn mẫu của nhóm khóa trước đạt điểm cao | Mẫu trình bày học thuật, bảng biểu, trích dẫn |
-| [`Tham Khảo/SP26IA04_GSP04_CAPSTONE_PROJECT_PRESENTATION.pptx`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/Tham%20Kh%E1%BA%A3o/SP26IA04_GSP04_CAPSTONE_PROJECT_PRESENTATION.pptx) | Mẫu slide thuyết trình PowerPoint bảo vệ tốt nghiệp | Mẫu thiết kế slide cho Review 1 - Review 4 |
-| [`Tham Khảo/SP26IA04_GSP04_PROCESS_REPORT.xlsx`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/Tham%20Kh%E1%BA%A3o/SP26IA04_GSP04_PROCESS_REPORT.xlsx) | Bảng theo dõi tiến độ hàng tuần nộp cho GVHD | Dùng để cập nhật nhật ký làm việc của 4 thành viên |
-| [`Viết Báo/Paper_2.pdf`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/Vi%E1%BA%BFt%20B%C3%A1o/Paper_2.pdf) | Mẫu bài báo khoa học chuẩn IEEE/ACM | Dùng nếu nhóm viết bài báo khoa học xuất bản hội nghị |
