@@ -48,12 +48,16 @@ def extract_urls(file_path):
     except Exception:
         return []
 
-    found = URL_REGEX.findall(content)
+    # Bỏ qua các khối code block và inline code
+    content_no_code = re.sub(r"```[\s\S]*?```", "", content)
+    content_no_code = re.sub(r"`[^`]*`", "", content_no_code)
+
+    found = URL_REGEX.findall(content_no_code)
     clean = []
     for u in found:
         u = u.rstrip(".,;:`)'\"")
         # Bỏ qua các URL mẫu / template placeholder
-        if "..." in u or "xxxx" in u or "yyyy" in u or "<" in u or ">" in u:
+        if any(x in u for x in ["...", "xxxx", "yyyy", "{", "}", "<", ">"]):
             continue
         clean.append(u)
     return clean

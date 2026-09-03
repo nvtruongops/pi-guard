@@ -56,6 +56,7 @@ The workspace has 7 integrated MCP servers:
 - [`fpt-capstone-rubrics-and-process`](file:///d:/Work/Do-an/.agents/skills/fpt-capstone-rubrics-and-process/SKILL.md): FPT IAP491 milestone tracking, weekly process reports (PROCESS_REPORT.xlsx), and grading rubrics.
 - [`team-git-sync-and-merge`](file:///d:/Work/Do-an/.agents/skills/team-git-sync-and-merge/SKILL.md): Quy trình Git phân nhánh, đồng bộ không xung đột và độc quyền merge vào cây thư mục chính dành cho Leader.
 - [`team-commit-and-workspace-audit`](file:///d:/Work/Do-an/.agents/skills/team-commit-and-workspace-audit/SKILL.md): Công cụ tự động kiểm toán commit/PR, phát hiện và ngăn chặn vi phạm chỉnh sửa ngoài `workspaces/`.
+- [`resource-and-literature-validation`](file:///d:/Work/Do-an/.agents/skills/resource-and-literature-validation/SKILL.md): Tiêu chuẩn và công cụ kiểm định URL, video YouTube oEmbed và tự động tra cứu Open-Access PDF từ DOI chống paywall.
 
 ---
 

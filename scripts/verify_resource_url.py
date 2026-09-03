@@ -162,10 +162,22 @@ def audit_markdown_file(file_path: Path) -> list:
         return []
 
     content = file_path.read_text(encoding="utf-8", errors="ignore")
-    # Lấy tất cả URL trong markdown: [text](url) hoặc <url> hoặc https://...
-    urls = re.findall(r'\[(?:[^\]]+)\]\((https?://[^\s\)]+)\)', content)
-    bare_urls = re.findall(r'(?<!\()(https?://[a-zA-Z0-9\.\-\_\/\?\=\&\%\#]+)', content)
-    all_urls = sorted(list(set(urls + bare_urls)))
+    # Loại bỏ code block và inline code để không quét các URL template / ví dụ kỹ thuật
+    content_no_code = re.sub(r'```[\s\S]*?```', '', content)
+    content_no_code = re.sub(r'`[^`]*`', '', content_no_code)
+
+    # Lấy tất cả URL trong markdown ngoài code block
+    urls = re.findall(r'\[(?:[^\]]+)\]\((https?://[^\s\)]+)\)', content_no_code)
+    bare_urls = re.findall(r'(?<!\()(https?://[a-zA-Z0-9\.\-\_\/\?\=\&\%\#]+)', content_no_code)
+    all_raw = list(set(urls + bare_urls))
+    clean_urls = []
+    for u in all_raw:
+        u = u.rstrip(".,;:`)'\"")
+        # Bỏ qua các URL mẫu / template placeholder
+        if any(x in u for x in ["...", "xxxx", "yyyy", "{", "}", "<", ">"]):
+            continue
+        clean_urls.append(u)
+    all_urls = sorted(clean_urls)
 
     print(f"\n📄 Đang kiểm tra file: {file_path}")
     print(f"🔗 Tìm thấy {len(all_urls)} URLs. Bắt đầu kiểm tra song song...")
