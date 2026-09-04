@@ -201,7 +201,7 @@ graph LR
 | **Vị trí địa lý** | **Trước LLM (Gateway Ingress)** | **Bên trong Ngữ cảnh LLM** | **Sau LLM (Gateway Egress)** |
 | **Bảo vệ System Prompt?** | ✅ **100% Tuyệt đối** (Chặn trước khi chạm LLM) | ⚠️ Một phần (Vẫn có nguy cơ bị ghi đè) | ❌ Không (System Prompt đã bị đọc, chỉ cứu vãn đầu ra) |
 | **Tiết kiệm chi phí Token?** | ✅ **Rất cao** (Loại bỏ request độc hại từ sớm) | ❌ Tốn kém (Phải trả tiền token cho LLM xử lý) | ❌ Tốn kém nhất (Đã trả đủ tiền sinh toàn bộ câu trả lời) |
-| **Độ trễ bổ sung (Latency)** | ⚡ **Siêu thấp (P95 < 18ms trên CPU)** | ⏳ Không đáng kể (nhưng tốn thời gian sinh token) | ⚡ Rất thấp (< 2ms qua regex) |
+| **Độ trễ bổ sung (Latency)** | ⚡ **Siêu thấp (Mục tiêu P95 < 30ms trên CPU)** | ⏳ Không đáng kể (nhưng tốn thời gian sinh token) | ⚡ Rất thấp (< 2ms qua regex) |
 | **Chống Evasion (Leetspeak/Base64)?**| ✅ **Rất mạnh** (Nhờ Char n-grams + Normalizer) | ❌ Yếu (LLM dễ bị lừa bởi vai diễn và cipher) | ⚠️ Trung bình (Chỉ bắt được chuỗi kết quả rõ ràng) |
 
 > **KẾT LUẬN CHIẾN LƯỢC**:  

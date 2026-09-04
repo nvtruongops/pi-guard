@@ -68,16 +68,16 @@ Căn cứ theo bản đăng ký đề tài [`CAPSTONE PROJECT REGISTER.md`](file
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
-│               BẢNG CAM KẾT CHỈ SỐ THỰC NGHIỆM ĐỒ ÁN TỐT NGHIỆP PI-GUARD                │
+│               BẢNG CAM KẾT CHỈ SỐ MỤC TIÊU THIẾT KẾ ĐỒ ÁN PI-GUARD                     │
 ├────────────────────────────────────────┬───────────────────────┬───────────────────────┤
-│ Chỉ Số Đo Lường Định Lượng             │ Ngưỡng Đạt Chuẩn FPT  │ Kết Quả Thực Nghiệm   │
+│ Chỉ Số Đo Lường Định Lượng             │ Ngưỡng Đạt Chuẩn FPT  │ Mục Tiêu Thiết Kế     │
 ├────────────────────────────────────────┼───────────────────────┼───────────────────────┤
-│ 1. Macro F1-Score (Tập Test Tổng Hợp)  │ ≥ 0.90 (Kỳ vọng ≥0.95)│ 0.958 (Vượt chuẩn)    │
-│ 2. False Positive Rate (Tập Benign)    │ < 2.0% (Kỳ vọng <1.5%)│ 1.12% (Đạt chuẩn)     │
-│ 3. Attack Success Rate (ASR Đối Kháng) │ < 10% (Kỳ vọng <5%)   │ 4.20% (Đạt chuẩn)     │
-│ 4. Độ Suy Giảm F1 khi bị Evasion (ΔF1) │ < 10% (Kỳ vọng <5%)   │ 3.85% (Bảo toàn)      │
-│ 5. Độ Trễ P95 Gateway trên CPU (ms)    │ < 30ms                │ 14.8ms (Vượt chuẩn)   │
-│ 6. Dung Lượng Bộ Nhớ RAM Runtime       │ < 500MB               │ 133MB (Siêu nhẹ)      │
+│ 1. Macro F1-Score (Tập Test Tổng Hợp)  │ ≥ 0.90 (Kỳ vọng ≥0.95)│ Kỳ vọng ≥ 0.95        │
+│ 2. False Positive Rate (Tập Benign)    │ < 2.0% (Kỳ vọng <1.5%)│ Kỳ vọng < 1.5%        │
+│ 3. Attack Success Rate (ASR Đối Kháng) │ < 10% (Kỳ vọng <5%)   │ Kỳ vọng < 5.0%        │
+│ 4. Độ Suy Giảm F1 khi bị Evasion (ΔF1) │ < 10% (Kỳ vọng <5%)   │ Kỳ vọng < 5.0%        │
+│ 5. Độ Trễ P95 Gateway trên CPU (ms)    │ < 30ms                │ < 30ms trên CPU       │
+│ 6. Dung Lượng Bộ Nhớ RAM Runtime       │ < 500MB               │ < 150MB (ONNX INT8)   │
 └────────────────────────────────────────┴───────────────────────┴───────────────────────┘
 ```
 

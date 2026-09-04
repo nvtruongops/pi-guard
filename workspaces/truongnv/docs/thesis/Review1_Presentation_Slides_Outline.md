@@ -8,7 +8,7 @@
 **Phân bổ phần trình bày 4 thành viên (Báo cáo 2 Chương Luận văn)**:
 - **Nguyễn Văn Trường (Leader)**: Slide 1 - 3 *(Giới thiệu, Bối cảnh, Lỗ hổng Von Neumann, 4 Tầng Thiệt hại, Phân loại Taxonomy — Chapter 1)*
 - **Nguyễn Quí Đức**: Slide 4 - 5 *(Threat Model, Attack Surface, Khảo sát SOTA Guardrails, Kiến trúc bảo vệ 3 lớp & Robustness — Chapter 2)*
-- **Phạm Minh Hoàng Việt**: Slide 6 - 7 *(Model Selection Matrix, Benchmark 5 Target LLM qua Cloud API & Ma trận 4 Kịch bản Demo — Chapter 2)*
+- **Phạm Minh Hoàng Việt**: Slide 6 - 7 *(Khảo sát Y văn Lựa chọn Mô hình, Khảo sát Target LLMs & Kịch bản Minh họa Đề bài — Chapter 2)*
 - **Đỗ Đoàn Duy Phương**: Slide 8 - 9 *(3 Research Questions IEEE, 3 Research Gaps, 4 Đóng góp mới, Ranh giới Scope & Kế hoạch)*
 
 ---
@@ -72,29 +72,32 @@
 
 ---
 
-### Slide 6: Lựa Chọn Mô Hình & Khung Đánh Giá Đa LLM Mục Tiêu Qua API (Chapter 2 — Việt trình bày)
-- **Model Selection Matrix**:
-  - *PI-Guard đề xuất*: Hybrid TF-IDF + Fine-tuned DeBERTa-v3 ONNX INT8 -> **Độ trễ ~12.8ms trên CPU, nhẹ ~150MB, F1 > 0.98, FPR < 1.1%**.
-  - *Cơ chế Disentangled Attention* (He et al. ICLR 2023): Tách biệt Content và Relative Position giúp bắt chính xác câu lệnh đảo ngữ.
-- **Khung Đánh Giá Đa Mô Hình LLM Mục Tiêu Qua Cloud API (Không tốn GPU Local)**:
-  - PI-Guard là giải pháp độc lập (*Model-Agnostic*), bảo vệ đồng nhất cho cả 5 LLM tiêu chuẩn học thuật: **OpenAI GPT-4o-mini**, **Google Gemini 1.5 Flash**, **Meta LLaMA-3.1-8B**, **Mistral-7B**, và **Qwen-2.5-7B**.
-  - *Kết quả đối sánh ASR*: Khi không có defense, các mô hình bị bẻ khóa từ **$35.5\% - 78.4\%$**. Khi có PI-Guard, **ASR giảm triệt để về 0.0%**.
-- **Quy trình Huấn luyện & Tinh chỉnh của Nhóm**:
-  - *Baseline ML*: Huấn luyện từ đầu (*Train from scratch*) Logistic Regression / LinearSVC trên đặc trưng Word + Char TF-IDF.
-  - *Transformer*: Tinh chỉnh sâu (*Supervised Fine-Tuning*) `microsoft/deberta-v3-base` trên tập dữ liệu đã phân tách chống rò rỉ (*Group-Aware Split*).
-  - *Lượng hóa Production*: Lượng hóa *Dynamic INT8 Quantization* sang ONNX Runtime (Yao et al. NeurIPS 2022).
+### Slide 6: Khảo Sát Y Văn Lựa Chọn Mô Hình & Định Hướng Đa LLM API (Chapter 2 — Việt trình bày)
+- **Khảo Sát Y Văn & Luận Giải Lựa Chọn Mô Hình (Model Selection Rationale)**:
+  - *Căn cứ bản đăng ký đề tài (`CAPSTONE PROJECT REGISTER.md`)*: Kết hợp Classical ML Baseline (TF-IDF + linear classifier) và Deep Transformer (BERT/DeBERTa).
+  - *Cơ chế Disentangled Attention* (He et al. ICLR 2023): Tách biệt Content và Relative Position, bắt chính xác câu lệnh đảo ngữ và ghi đè chỉ thị mà BERT/RoBERTa không làm được.
+  - *Bảo chứng SOTA công nghiệp*: Meta AI (`Meta Prompt-Guard-86M`, 07/2024) và Protect AI đều chọn DeBERTa-v3 làm nền tảng guardrail phân loại prompt tối ưu nhất (<100M params).
+  - *Mục tiêu thiết kế định lượng (Design Targets)*: Hướng tới $F_1 \ge 0.95$, $\text{FPR} < 1.5\%$ trên benign, độ trễ $P95 < 30\text{ms}$ trên CPU thông qua lượng hóa động ONNX INT8 (Yao et al. NeurIPS 2022).
+- **Khảo Sát Y Văn Về Lỗ Hổng Của Các Target LLMs & Thiết Kế Khung Đánh Giá API (Chapter 4)**:
+  - *Khảo sát mức độ dễ tổn thương trong y văn*: Theo Zou et al. (GCG 2023), Zhou et al. (EasyJailbreak 2024), Wei et al. (2024), các mô hình dù có căn chỉnh an toàn nội tại (RLHF/DPO) vẫn có tỷ lệ bị bẻ khóa tự thân (ASR Baseline) rất cao từ **$35.5\% - 78.4\%$**.
+  - *Lựa chọn 5 Target LLMs làm đối tượng bảo vệ qua Cloud API*: **OpenAI GPT-4o-mini**, **Google Gemini 1.5 Flash**, **Meta LLaMA-3.1-8B**, **Mistral-7B**, và **Qwen-2.5-7B**.
+  - *Định hướng bảo vệ độc lập (Model-Agnostic)*: PI-Guard đóng vai trò tiền trạm, hướng tới mục tiêu giảm ASR xuống $< 5\%$ mà không tốn GPU cục bộ.
+- **Phương Pháp Luận Phát Triển Toàn Trình Song Song Của Toàn Đội**:
+  - Cả 4 thành viên cùng nghiên cứu, thử nghiệm độc lập trên cả 2 mô hình (TF-IDF Baseline và Transformer DeBERTa-v3) trong workspace cá nhân, đối chiếu số liệu chéo trước khi chốt artifact tối ưu cho hệ thống.
 
 ---
 
-### Slide 7: Ma Trận 4 Kịch Bản Demo Trực Quan (Chapter 2 — Việt trình bày)
-- **Ma trận Demo 2x2 (Bao quát 2 trục tấn công cốt lõi từ cùng 1 chuỗi User Input)**:
-  - **Trục 1: Prompt Injection (Ghi đè System Prompt / Lộ API Key)**:
-    - *Không Defense (Vulnerable)*: LLM bị ghi đè, lộ API key `ABC-SEC-998877` và system prompt.
-    - *Có PI-Guard (Protected)*: PI-Guard chấm Risk `0.964` -> Ra quyết định `BLOCK` (HTTP 403) trong `14.8ms`.
-  - **Trục 2: Jailbreak (Bẻ khóa An toàn / DAN Roleplay)**:
-    - *Không Defense (Vulnerable)*: LLM bị bẫy vai diễn DAN, sinh mã độc hại keylogger.
-    - *Có PI-Guard (Protected)*: PI-Guard nhận diện bẻ khóa, chấm Risk `0.942` -> Ra quyết định `BLOCK` (HTTP 403) trong `13.5ms`.
-- **Kết luận**: Một chuỗi `[ User Input ]` duy nhất được phân tích tự động để chặn đứng cả 2 dạng tấn công.
+### Slide 7: Kịch Bản Minh Họa Bài Toán Tấn Công & Cơ Chế Bảo Vệ Đề Xuất (Chapter 1 & 2 — Việt trình bày)
+- **Ma trận Kịch bản Minh họa Đề bài (Phân tích đối chiếu theo Yêu cầu số 5 của GVHD)**:
+  - Minh họa trực quan bản chất 2 dạng tấn công cốt lõi xuất phát từ cùng 1 chuỗi `User Input` độc hại:
+- **Trục 1: Prompt Injection (Ghi đè System Prompt / Khai thác dữ liệu nhạy cảm)**:
+  - *Kịch bản Không có Guardrail (Vulnerable)*: Kẻ tấn công gửi chuỗi override chỉ thị $\rightarrow$ LLM bị ghi đè ngữ cảnh, làm lộ Master API Key `ABC-SEC-998877` và nội dung System Prompt.
+  - *Cơ chế Bảo vệ Đề xuất (Proposed Protected)*: Lớp 1 (PI-Guard) phân tích vector ngữ nghĩa $\rightarrow$ Phát hiện mẫu ghi đè chỉ thị $\rightarrow$ Chặn đứng ngay tại cổng API, trả về HTTP 403 Forbidden kèm cấu trúc cảnh báo an toàn mà không chuyển tiếp request tới Target LLM.
+- **Trục 2: Jailbreak (Bẻ khóa An toàn bằng Nhập vai DAN)**:
+  - *Kịch bản Không có Guardrail (Vulnerable)*: Kẻ tấn công dùng kỹ thuật dàn cảnh hư cấu (*Hypothetical Roleplay*) ép LLM đóng vai DAN $\rightarrow$ LLM vượt qua bộ lọc an toàn tự thân, sinh mã độc hại keylogger.
+  - *Cơ chế Bảo vệ Đề xuất (Proposed Protected)*: Lớp 1 nhận diện đặc trưng tấn công bẻ khóa $\rightarrow$ Chặn tại cổng API, bảo vệ triệt để chính sách an toàn của ứng dụng.
+- **Ý nghĩa học thuật & thực tiễn**:
+  - Minh chứng rõ ràng yêu cầu cấp thiết của lớp Guardrail tiền trạm độc lập để ngăn ngừa rủi ro rò rỉ dữ liệu và vi phạm chính sách an toàn trước khi vào LLM.
 
 ---
 

@@ -86,9 +86,9 @@
 - [x] **P10**: Phân tích cơ chế ranh giới phẳng và phân loại toàn diện 13 biến thể Prompt Injection: [`docs/attack_study/01_prompt_injection/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/attack_study/01_prompt_injection/). — *Thực hiện: Cả 4 thành viên (Cùng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả)*
 - [x] **P11**: Nghiên cứu sâu cơ sở toán học TF-IDF, Character n-grams (`char_wb`), Luhn (1958), Spärck Jones (1972) và DeBERTa-v3 Disentangled Attention (He et al., 2023): [`docs/model_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/model_study/). — *Thực hiện: Cả 4 thành viên (Cùng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả)*
 
-#### 📌 Ngày 03/09/2026 (Thứ Năm): Xây Dựng Chuyên Đề Modern Jailbreak & Ma Trận 4 Kịch Bản Demo
+#### 📌 Ngày 03/09/2026 (Thứ Năm): Xây Dựng Chuyên Đề Modern Jailbreak & Kịch Bản Minh Họa Demo
 - [x] **P12**: Nghiên cứu 4 trường phái Jailbreak hiện đại (DAN, Roleplay, Virtual Machine, Cipher), 10 họ chiến thuật và 26 toán tử Tencent 2026: [`docs/attack_study/02_modern_jailbreak_attacks/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/attack_study/02_modern_jailbreak_attacks/). — *Thực hiện: Cả 4 thành viên (Cùng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả)*
-- [x] **P13**: Thiết kế & kiểm thử ma trận 4 kịch bản Demo ($2 \times 2$: Vulnerable vs Protected) đo đạc độ trễ P95 $< 18\text{ms}$ trên CPU. — *Thực hiện: Cả 4 thành viên (Cùng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả)*
+- [x] **P13**: Thiết kế kịch bản minh họa bài toán tấn công và cơ chế bảo vệ đề xuất (Vulnerable vs. Proposed Protected) cho Prompt Injection và Jailbreak theo đúng yêu cầu số 5 của GVHD. — *Thực hiện: Cả 4 thành viên (Cùng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả)*
 - [x] **P14**: Xây dựng bộ công cụ kiểm toán URL và tự động tra cứu Open-Access PDF từ DOI: [`scripts/verify_resource_url.py`](file:///d:/Work/Do-an/scripts/verify_resource_url.py). — *Thực hiện: Cả 4 thành viên (Trường làm đầu mối viết script)*
 
 #### 📌 Ngày 04/09/2026 (Thứ Sáu - Hôm Nay): Nghiên Cứu Độ Bền Robustness, Nâng Cấp Cleaner & Test Đối Kháng
@@ -138,13 +138,13 @@
 - [ ] **T06**: Rà soát, chuẩn hóa toàn văn [`docs/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/docs/thesis/chapters/02_Literature_Review.md) (**Report No.2** — 25% Điểm quá trình):
   - Khảo sát 3 nhóm giải pháp Guardrail (Regex, LLM-as-a-Judge Llama Guard 3, Small Transformer DeBERTa-v3).
   - 3 Khoảng trống nghiên cứu (Research Gaps) cốt lõi của chuyên ngành ATTT.
-  - Bảng đối sánh Model Selection Matrix và khảo sát 5 Target LLM APIs.
+  - Khảo sát y văn đối sánh các trường phái Guardrail (Model Selection Rationale) và khảo sát các dòng Target LLM phổ biến.
   - Phân tích phòng thủ độ bền trước Leetspeak, Base64 và Spacing tricks. — *Thực hiện: Cả 4 thành viên (Cùng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả)*
-- [ ] **T07**: Tổng duyệt kịch bản 4 bài toán Demo trên môi trường thực nghiệm. — *Thực hiện: Cả 4 thành viên (Cùng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả)*
+- [ ] **T07**: Hoàn thiện tài liệu 4 kịch bản minh họa bài toán và cơ chế bảo vệ đề xuất (Illustrative Demo Scenarios). — *Thực hiện: Cả 4 thành viên (Cùng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả)*
 
 #### Tuần 4 (28/09/2026 – 04/10/2026): CỘT MỐC 1 — BẢO VỆ REVIEW 1 CHÍNH THỨC TRƯỚC GVHD
 - [ ] **T08**: Nộp chính thức **Report No. 1 (Introduction)** và **Report No. 2 (Literature Review)** cho GVHD (Chiếm tổng cộng 35% Điểm đánh giá quá trình). — *Thực hiện: Cả 4 thành viên (Trường đại diện nhóm nộp)*
-- [ ] **T09**: **BẢO VỆ REVIEW 1 CHÍNH THỨC TRƯỚC GVHD**: Thuyết trình 15 phút, trình diễn 4 kịch bản demo và trả lời phản biện 10 phút. — *Thực hiện: Cả 4 thành viên (Cùng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả)*
+- [ ] **T09**: **BẢO VỆ REVIEW 1 CHÍNH THỨC TRƯỚC GVHD**: Thuyết trình 15 phút (trình bày Problem Statement, Threat Model, Literature Review, Model Selection Rationale, 4 kịch bản minh họa đề bài) và trả lời phản biện 10 phút. — *Thực hiện: Cả 4 thành viên (Cùng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả)*
 - [ ] **T10**: Tiếp thu ý kiến góp ý của GVHD tại buổi bảo vệ, cập nhật hoàn thiện toàn diện Chapter 1 & Chapter 2, cập nhật nhật ký tuần vào file Excel. — *Thực hiện: Cả 4 thành viên (Cùng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả)*
 
 ---
@@ -233,18 +233,18 @@
 
 Trước khi đóng tuần tiền đề vào ngày 06/09/2026 để bước vào học kỳ chính thức, cả nhóm cùng kiểm tra đủ 10 tiêu chí nghiệm thu theo phương châm **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**:
 
-| STT | Tiêu Chí Kiểm Toán Chất Lượng | Tiêu Chuẩn Nghiệm Thu Cụ Thể | Thực Hiện & Trách Nhiệm | Trạng Thái Thực Tế |
-| :---: | :--- | :--- | :---: | :---: |
-| 1 | **Problem Statement** | Nêu rõ bản chất Lỗ hổng Von Neumann trong Transformer ($X = S \mathbin{\Vert} U$). | Cả nhóm (Trường điều phối) | [x] **ĐẠT (PASS)** |
-| 2 | **Threat Taxonomy** | Bảng phân biệt 3 trục Direct Injection vs Indirect Injection vs Jailbreak theo OWASP LLM01:2025. | Cả nhóm (Trường điều phối) | [x] **ĐẠT (PASS)** |
-| 3 | **Threat Model & Surface** | Sơ đồ luồng tấn công NIST AI 100-2e2025; khóa chặt Attack Surface tại REST API `/v1/chat`. | Cả nhóm (Đức điều phối) | [x] **ĐẠT (PASS)** |
-| 4 | **3-Tier Layered Defense** | Thể hiện rõ Lớp 1 (Input Guardrail - trọng tâm đồ án), Lớp 2 (LLM), Lớp 3 (Output Sanitizer). | Cả nhóm (Đức điều phối) | [x] **ĐẠT (PASS)** |
-| 5 | **Robustness Design** | 3 tầng phòng thủ chống lẩn tránh cú pháp Leetspeak, Spacing tricks, Base64/Cipher. | Cả nhóm (Đức điều phối) | [x] **ĐẠT (PASS)** |
-| 6 | **Research Questions** | 3 RQs chuẩn IEEE và chuyên ngành ATTT (RQ1, RQ2, RQ3) gắn liền 3 Research Gaps. | Cả nhóm (Phương điều phối) | [x] **ĐẠT (PASS)** |
-| 7 | **Model Selection Matrix** | So sánh 4 hướng Guardrail + Lý do chọn 5 Target LLM Cloud API (kèm trích dẫn $\ge 2022$). | Cả nhóm (Việt điều phối) | [x] **ĐẠT (PASS)** |
-| 8 | **4 Demo Scenarios** | Ma trận $2 \times 2$ có đầy đủ prompt đầu vào, phản hồi vulnerable, JSON block và latency ms. | Cả nhóm (Việt điều phối) | [x] **ĐẠT (PASS)** |
-| 9 | **Slide PPTX Review 1** | Bộ slide hoàn chỉnh phân bổ 4 người trình bày trong 15 phút, thiết kế nhận diện FPT. | Cả nhóm (Phương điều phối) | [ ] *Đang thực hiện (05/09)* |
-| 10 | **Process Report & Nộp bài** | Cập nhật `PI_GUARD_PROCESS_REPORT.xlsx` và nộp Report No. 1 đúng hạn cho GVHD. | Cả nhóm (Trường điều phối) | [ ] *Đang thực hiện (06/09)* |
+| STT | Tiêu Chí Kiểm Toán Chất Lượng | Tiêu Chuẩn Nghiệm Thu Cụ Thể | Thành Viên Điều Phối | Trạng Thái Thực Tế |
+| :---: | :--- | :--- | :--- | :---: |
+| 1 | **Problem Statement** | Nêu rõ bản chất Lỗ hổng Von Neumann trong Transformer ($X = S \mathbin{\Vert} U$). | Trường điều phối | [x] **ĐẠT (PASS)** |
+| 2 | **Threat Taxonomy** | Bảng phân biệt 3 trục Direct Injection vs Indirect Injection vs Jailbreak theo OWASP LLM01:2025. | Trường điều phối | [x] **ĐẠT (PASS)** |
+| 3 | **Threat Model & Surface** | Sơ đồ luồng tấn công NIST AI 100-2e2025; khóa chặt Attack Surface tại REST API `/v1/chat`. | Đức điều phối | [x] **ĐẠT (PASS)** |
+| 4 | **3-Tier Layered Defense** | Thể hiện rõ Lớp 1 (Input Guardrail - trọng tâm đồ án), Lớp 2 (LLM), Lớp 3 (Output Sanitizer). | Đức điều phối | [x] **ĐẠT (PASS)** |
+| 5 | **Robustness Design** | 3 tầng phòng thủ chống lẩn tránh cú pháp Leetspeak, Spacing tricks, Base64/Cipher. | Đức điều phối | [x] **ĐẠT (PASS)** |
+| 6 | **Research Questions** | 3 RQs chuẩn IEEE và chuyên ngành ATTT (RQ1, RQ2, RQ3) gắn liền 3 Research Gaps. | Phương điều phối | [x] **ĐẠT (PASS)** |
+| 7 | **Model Selection Rationale** | Khảo sát y văn đối sánh các trường phái Guardrail + Luận giải cơ sở khoa học chọn mô hình theo CAPSTONE REGISTER (kèm trích dẫn $\ge 2022$). | Việt điều phối | [x] **ĐẠT (PASS)** |
+| 8 | **Illustrative Demo Scenarios** | Ma trận $2 \times 2$ minh họa bài toán tấn công và cơ chế bảo vệ đề xuất (Vulnerable vs. Proposed Protected) cho Injection & Jailbreak theo Yêu cầu 5 của GVHD. | Việt điều phối | [x] **ĐẠT (PASS)** |
+| 9 | **Slide PPTX Review 1** | Bộ slide hoàn chỉnh phân bổ 4 người trình bày trong 15 phút, thiết kế nhận diện FPT. | Phương điều phối | [ ] *Đang thực hiện (05/09)* |
+| 10 | **Process Report & Nộp bài** | Cập nhật `PI_GUARD_PROCESS_REPORT.xlsx` và nộp Report No. 1 đúng hạn cho GVHD. | Trường điều phối | [ ] *Đang thực hiện (06/09)* |
 
 ---
 *Tài liệu này là căn cứ pháp lý và quản trị nội bộ chính thức của nhóm PI-Guard, được xây dựng dựa trên biên bản họp `Meeting 1_29_08_26.md`, `Meeting 2_01_09_26.md` và tuân thủ 100% Quy chế Khóa luận Tốt nghiệp IAP491 Đại học FPT.*

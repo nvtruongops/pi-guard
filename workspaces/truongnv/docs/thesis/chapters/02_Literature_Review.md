@@ -149,14 +149,14 @@ Từ kết quả khảo sát các công trình quốc tế, nhóm xác định *
    - Xây dựng phương pháp luận **Group-Aware Splitting** dựa trên gom cụm khoảng cách ngữ nghĩa và chuỗi ký tự, đảm bảo toàn bộ các biến thể của cùng một mẫu tấn công chỉ thuộc tập Train hoặc Test, triệt tiêu hoàn toàn rò rỉ dữ liệu ($\text{Inter-cluster Jaccard} < 0.15$).
 
 2. **Đóng góp 2 (Kiến trúc mô hình — Phòng thủ đa tầng Hybrid)**:
-   - Thiết kế cơ chế kết hợp giữa bộ lọc cú pháp siêu nhanh (**Word + Character n-grams TF-IDF** $\sim 3\text{ms}$) và bộ phân loại ngữ nghĩa sâu (**Fine-tuned DeBERTa-v3** $\sim 12.8\text{ms}$).
-   - Tích hợp tầng tiền xử lý chuẩn hóa Unicode NFKC và bộ giải mã Heuristic Base64 tự động để kháng các kỹ thuật lẩn tránh đối kháng, cam kết độ suy giảm hiệu năng $\Delta F_1 < 5\%$.
+   - Thiết kế cơ chế kết hợp giữa bộ lọc cú pháp nhanh (**Word + Character n-grams TF-IDF**) và bộ phân loại ngữ nghĩa sâu (**Fine-tuned DeBERTa-v3**) hướng tới mục tiêu đáp ứng thời gian thực P95 < 30ms trên CPU.
+   - Tích hợp tầng tiền xử lý chuẩn hóa Unicode NFKC và bộ giải mã Heuristic Base64 tự động để kháng các kỹ thuật lẩn tránh đối kháng, cam kết mục tiêu độ suy giảm hiệu năng $\Delta F_1 < 5\%$.
 
 3. **Đóng góp 3 (Tối ưu hóa triển khai — Suy luận độ trễ thấp trên CPU)**:
    - Tích hợp kỹ thuật Post-Training Dynamic INT8 Quantization sang ONNX Runtime, tối ưu hóa suy luận độ trễ thấp ($\text{P95} < 30\text{ms}$ trên CPU thông thường) với mức suy giảm chính xác tối thiểu ($< 0.3\%$), giúp bảo vệ hệ thống trước nguy cơ tắc nghẽn dịch vụ mà không đòi hỏi phần cứng GPU đắt tiền.
 
-4. **Đóng góp 4 (Giải pháp triển khai — Model-Agnostic API Middleware & Demo)**:
-   - Đóng gói toàn bộ hệ thống thành **Asynchronous FastAPI Middleware** và giao diện **Streamlit Testing Dashboard** với ma trận 4 kịch bản demo ($2 \times 2$), chứng minh khả năng bảo vệ đồng nhất cho cả 5 mô hình LLM tiêu chuẩn qua Cloud API (GPT-4o-mini, Gemini 1.5 Flash, LLaMA-3.1, Mistral, Qwen), giảm tỷ lệ tấn công ASR từ $35.5\% - 78.4\%$ xuống $0.0\%$.
+4. **Đóng góp 4 (Giải pháp triển khai — Model-Agnostic API Middleware & Testbed)**:
+   - Định hướng đóng gói toàn bộ hệ thống thành **Asynchronous FastAPI Middleware** và giao diện **Streamlit Testing Dashboard** với ma trận 4 kịch bản minh họa ($2 \times 2$), thiết lập khung kiểm nghiệm bảo vệ độc lập (Model-Agnostic) cho cả 5 mô hình LLM tiêu chuẩn qua Cloud API (GPT-4o-mini, Gemini 1.5 Flash, LLaMA-3.1, Mistral, Qwen), hướng tới mục tiêu triệt tiêu các đòn tấn công phổ biến trong thực nghiệm.
 
 ---
 

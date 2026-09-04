@@ -42,12 +42,12 @@ Dưới đây là bảng tổng hợp kết quả đối sánh thực nghiệm g
 | **Char-level TF-IDF (`char_wb`, 3-5)** | 88.7% | 14.2% ⚠️ | 89.6% ❌ | 18.3% ⚠️ | 1.9% | **2.5 ms** |
 | **Pure DeBERTa-v3 (Không Tiền xử lý)** | 94.2% | 38.6% ⚠️ | 58.1% ❌ | 42.0% ⚠️ | 2.4% | 45.0 ms |
 | **Llama Guard 3 (8B Instruct)** [[4]](#ref4) | 92.8% | 18.7% ⚠️ | 54.3% ❌ | 22.1% ⚠️ | 3.2% | 620.0 ms (GPU) |
-| **PI-Guard Pipeline (Đề tài đề xuất)** | **95.6%** | **3.1%** ✅ | **2.4%** ✅ | **2.8%** ✅ | **1.1%** ✅ | **16.5 ms (CPU)** |
+| **PI-Guard Pipeline (Mục tiêu đề xuất)** | **≥ 95.0%** | **< 5.0%** 🎯 | **< 5.0%** 🎯 | **< 5.0%** 🎯 | **< 1.5%** 🎯 | **< 30.0 ms (CPU)** |
 
 > **Nhận xét thực nghiệm cốt lõi**:
 > 1. **Sự sụp đổ của Regex và Word-level ML**: Cả hai phương pháp này đều sụp đổ hoàn toàn trước Base64 (ASR $> 95\%$) và Leetspeak (ASR $> 76\%$) do hiệu ứng Out-of-Vocabulary và exact-matching failure.
 > 2. **Điểm mù Base64 của các mô hình Transformer lớn**: Kể cả mô hình 8 tỷ tham số của Meta (Llama Guard 3) hay DeBERTa-v3 gốc đều để lọt hơn $50\%$ các mẫu Base64 vì không có bộ giải mã ngầm trong pha tiền xử lý [[5]](#ref5).
-> 3. **Hiệu quả vượt trội của PI-Guard**: Nhờ kết hợp Tầng 0 (Heuristic Base64 Unmasking + Unicode NFKC), Tầng 1 (Character n-grams), và Tầng 2 (Adversarially Augmented DeBERTa-v3 INT8), PI-Guard khống chế tỷ lệ lọt lưới **ASR xuống dưới $3.5\%$** trên mọi biến thể lẩn tránh, trong khi vẫn duy trì độ trễ siêu tốc **$16.5\text{ms}$ trên CPU thuần túy**.
+> 3. **Định hướng thiết kế của PI-Guard**: Nhờ kết hợp Tầng 0 (Heuristic Base64 Unmasking + Unicode NFKC), Tầng 1 (Character n-grams), và Tầng 2 (Adversarially Augmented DeBERTa-v3 INT8), đồ án đặt mục tiêu khống chế tỷ lệ lọt lưới **ASR xuống dưới $5.0\%$** trên các biến thể lẩn tránh, trong khi vẫn duy trì độ trễ P95 **$< 30\text{ms}$ trên CPU thuần túy**.
 
 ---
 
