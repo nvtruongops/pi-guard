@@ -80,18 +80,19 @@ The workspace has 7 integrated MCP servers:
 
 ## 👥 Collaboration Paradigm: Parallel Full-Pipeline Exploration & Knowledge Convergence
 
-Instead of a siloed assembly-line, all 4 members explore the entire pipeline hands-on in parallel (`workspaces/<member>/`) and consolidate the best findings during weekly convergence meetings into `src/` and `docs/thesis/chapters/`:
+> **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  
+> Instead of a siloed assembly-line, all 4 members explore the entire pipeline hands-on in parallel (`workspaces/<member>/`) and consolidate the best findings during weekly convergence meetings into `src/` and `docs/thesis/chapters/`:
 
 - **All 4 members gain full-stack AI security experience** (Dataset Curation, Baseline ML, Transformer INT8, Adversarial Testing, FastAPI Middleware).
 - **Weekly Convergence Sessions**: The team compares experimental metrics (F1, FPR, Latency), selects the champion models/code for `src/`, and compiles thesis chapters seamlessly.
 - **Council Defense Preparedness**: Every member understands the full ecosystem end-to-end and can answer any committee question confidently.
 
-| Member | Primary Lead Module | Workspace Directory | Git Feature Branch |
+| Member | Full-Pipeline Sandbox & Focus Area | Workspace Directory | Git Feature Branch |
 | :--- | :--- | :--- | :--- |
-| **Nguyễn Văn Trường (Leader / `nvtruongops`)** | Architecture & Data Engineering | `workspaces/truongnv/` | `main`, `lead/truong-*` |
-| **Nguyễn Quí Đức** | Classical ML Baseline & Methodology | `workspaces/ducnq/` | `feat/duc-baseline-ml` |
-| **Phạm Minh Hoàng Việt** | Transformer Fine-Tuning & Quantization | `workspaces/vietpmh/` | `feat/viet-transformer` |
-| **Đỗ Đoàn Duy Phương** | FastAPI Middleware, Dashboard & Thesis | `workspaces/phuongddd/` | `feat/phuong-api-ui` |
+| **Nguyễn Văn Trường (Leader / `nvtruongops`)** | Architecture, Data Engineering & Repository Governance | `workspaces/truongnv/` | `main`, `lead/truong-*` |
+| **Nguyễn Quí Đức** | Classical ML Baseline, Feature Extraction & Methodology | `workspaces/ducnq/` | `feat/duc-baseline-ml` |
+| **Phạm Minh Hoàng Việt** | Transformer Fine-Tuning, Quantization & Robustness | `workspaces/vietpmh/` | `feat/viet-transformer` |
+| **Đỗ Đoàn Duy Phương** | FastAPI Middleware, Dashboard & Thesis Compilation | `workspaces/phuongddd/` | `feat/phuong-api-ui` |
 
 ---
 

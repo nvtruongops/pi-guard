@@ -77,14 +77,17 @@ Curated from public benchmarks on Hugging Face and deduplicated with **Group-Awa
 
 ---
 
-## 👥 Student Role Distribution (FPT University)
+## 👥 Collaborative Engineering Paradigm (FPT University)
 
-| Member | Student ID | Primary Responsibility | Core Modules |
+> **Team Philosophy**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  
+> All 4 members work hands-on across the entire pipeline in parallel (`workspaces/<member>/`), cross-review each other's code and experimental metrics, and converge weekly to select the champion models and documentation merged by the Leader.
+
+| Member | Student ID | Parallel Exploration | Focus & Focal Modules |
 | :--- | :--- | :--- | :--- |
-| **Nguyễn Văn Trường (Leader)** | SE182034 | Architecture & Dataset Engineering | `src/datasets/`, `data/manifests/`, `scripts/download_dataset.py` |
-| **Nguyễn Quí Đức** | SE182087 | Classical ML Baseline Pipeline | `src/models/classifier.py`, `notebooks/02_baseline.ipynb` |
-| **Phạm Minh Hoàng Việt** | SE181851 | Transformer Fine-Tuning & Robustness | `src/training/`, `tests/adversarial/`, `notebooks/03_transformer_training.ipynb` |
-| **Đỗ Đoàn Duy Phương** | SE180235 | FastAPI Guardrail, Dashboard & Thesis | `src/api/`, `src/dashboard/`, `src/policy/`, `docs/thesis/` |
+| **Nguyễn Văn Trường (Leader)** | SE182034 | Full-Pipeline (`workspaces/truongnv/`) | Architecture, Data Engineering & Repository Governance |
+| **Nguyễn Quí Đức** | SE182087 | Full-Pipeline (`workspaces/ducnq/`) | Classical ML Baseline, Feature Extraction & Threat Model |
+| **Phạm Minh Hoàng Việt** | SE181851 | Full-Pipeline (`workspaces/vietpmh/`) | Transformer Fine-Tuning, Quantization & Robustness Testing |
+| **Đỗ Đoàn Duy Phương** | SE180235 | Full-Pipeline (`workspaces/phuongddd/`) | FastAPI Middleware, Streamlit Dashboard & Thesis Compilation |
 
 ---
 

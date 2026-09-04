@@ -111,12 +111,16 @@ PHỤ LỤC (Appendices - Code snippets, API documentation, Prompt samples)
 
 ---
 
-## 👥 4. PHÂN CÔNG VAI TRÒ 4 THÀNH VIÊN THEO 6 BÁO CÁO FPT
+## 👥 4. MÔ HÌNH LÀM VIỆC & ĐỒNG QUY KẾT QUẢ 4 THÀNH VIÊN (AI CŨNG LÀM $\rightarrow$ THAM KHẢO NHAU $\rightarrow$ CHỐT KẾT QUẢ)
 
-| Thành viên | Trách nhiệm chính trong Đồ án | Phụ trách Báo Cáo Tiến Độ |
-| :--- | :--- | :--- |
-| **Nguyễn Văn Trường (Leader)** | Kiến trúc tổng thể, Thu thập Dataset & Group-Aware Split | **Report No.1** (Introduction) + **Report No.2** (Literature Review) |
-| **Nguyễn Quí Đức** | Classical ML Baseline (Word/Char TF-IDF, Logistic, SVC, XGBoost) | **Report No.3** (Methodology - Baseline ML & Feature Engineering) |
-| **Phạm Minh Hoàng Việt** | Transformer Fine-Tuning (DeBERTa-v3), Lượng hóa ONNX & Robustness | **Report No.4** (Experimental & Results - Training & Adversarial Tests) |
-| **Đỗ Đoàn Duy Phương** | FastAPI Guardrail Middleware, Streamlit Dashboard & Viết Luận văn | **Report No.5** (Discussion) + **Report No.6** (Conclusion & Slide Deck) |
+> [!IMPORTANT]
+> **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  
+> Tuyệt đối không chia việc thành các ốc đảo cô lập (siloed assembly-line). Tất cả 4 thành viên đều trực tiếp thực hiện toàn trình từ dữ liệu, mô hình baseline, transformer đến API và bảo vệ luận văn. Mọi thành viên đều có không gian làm việc nháp riêng để thử nghiệm độc lập, tham khảo code và đối chiếu số liệu của nhau trước khi họp chốt kết quả chung.
+
+| Thành viên | Không Gian Làm Việc | Trọng Tâm Đóng Góp Chuyên Sâu | Vai Trò Điều Phối Báo Cáo |
+| :--- | :--- | :--- | :--- |
+| **Nguyễn Văn Trường (Leader)** | `workspaces/truongnv/` | Kiến trúc tổng thể, Thu thập Dataset & Group-Aware Split | Điều phối chung & Chủ trì **Report No.1** (Intro) + **Report No.2** (Lit Review) |
+| **Nguyễn Quí Đức** | `workspaces/ducnq/` | Classical ML Baseline (Word/Char TF-IDF, Logistic, SVC, XGBoost) | Đối sánh ML & Chủ trì **Report No.3** (Methodology) |
+| **Phạm Minh Hoàng Việt** | `workspaces/vietpmh/` | Transformer Fine-Tuning (DeBERTa-v3), Lượng hóa ONNX & Robustness | Tối ưu Deep Learning & Chủ trì **Report No.4** (Experimental & Results) |
+| **Đỗ Đoàn Duy Phương** | `workspaces/phuongddd/` | FastAPI Guardrail Middleware, Streamlit Dashboard & Viết Luận văn | Tích hợp hệ thống & Chủ trì **Report No.5** (Discussion) + **Report No.6** (Conclusion) |
 

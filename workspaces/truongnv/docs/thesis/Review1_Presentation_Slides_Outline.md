@@ -3,7 +3,9 @@
 ### ĐỀ TÀI: PI-Guard — A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications
 
 **Thời lượng dự kiến**: 15 phút trình bày + 10 phút hỏi đáp Hội đồng  
-**Phân công thuyết trình 4 thành viên (Phụ trách 2 Chương Luận văn)**:
+> **Phương châm làm việc**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả** (Tất cả 4 thành viên đều trực tiếp thực hiện toàn trình từ dữ liệu, mô hình baseline, transformer đến API và bảo vệ luận văn; mỗi thành viên đại diện trình bày các phần trong slide và toàn đội sẵn sàng hỗ trợ phản biện mọi câu hỏi của Hội đồng).
+
+**Phân bổ phần trình bày 4 thành viên (Báo cáo 2 Chương Luận văn)**:
 - **Nguyễn Văn Trường (Leader)**: Slide 1 - 3 *(Giới thiệu, Bối cảnh, Lỗ hổng Von Neumann, 4 Tầng Thiệt hại, Phân loại Taxonomy — Chapter 1)*
 - **Nguyễn Quí Đức**: Slide 4 - 5 *(Threat Model, Attack Surface, Khảo sát SOTA Guardrails, Kiến trúc bảo vệ 3 lớp & Robustness — Chapter 2)*
 - **Phạm Minh Hoàng Việt**: Slide 6 - 7 *(Model Selection Matrix, Benchmark 5 Target LLM qua Cloud API & Ma trận 4 Kịch bản Demo — Chapter 2)*
@@ -15,11 +17,11 @@
 - **Tên đề tài**: *A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (PI-Guard)*
 - **Mã đề tài**: `IAP491_FA26_PI_GUARD`
 - **Giảng viên hướng dẫn**: [Tên Thầy/Cô Hướng dẫn]
-- **Nhóm sinh viên thực hiện**:
-  - Nguyễn Văn Trường (Leader - SE182034) — *Kiến trúc, Dataset & Phụ trách Report No.1, No.2*
-  - Nguyễn Quí Đức (SE182087) — *Mô hình Baseline Machine Learning & Report No.3*
-  - Phạm Minh Hoàng Việt (SE181851) — *Transformer, Robustness & Report No.4*
-  - Đỗ Đoàn Duy Phương (SE180235) — *FastAPI Middleware, Dashboard & Report No.5, No.6*
+- **Nhóm sinh viên thực hiện (Mô hình làm việc toàn trình)**:
+  - Nguyễn Văn Trường (Leader - SE182034) — *Kiến trúc & Điều phối toàn trình*
+  - Nguyễn Quí Đức (SE182087) — *Mô hình Baseline ML & Toàn trình*
+  - Phạm Minh Hoàng Việt (SE181851) — *Transformer, Robustness & Toàn trình*
+  - Đỗ Đoàn Duy Phương (SE180235) — *Hệ thống API, Dashboard & Toàn trình*
 - **Điểm nhấn mở đầu**: *"Kính thưa Hội đồng, báo cáo Review 1 của nhóm PI-Guard hôm nay bao gồm toàn diện 2 Chương đầu tiên của Khóa luận: Chapter 1 (Introduction) và Chapter 2 (Literature Review), giải quyết lỗ hổng bảo mật số 1 của ứng dụng Generative AI với độ trễ P95 < 30ms trên CPU."*
 
 ---

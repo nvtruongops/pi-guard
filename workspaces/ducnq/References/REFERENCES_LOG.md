@@ -1,5 +1,5 @@
 # NHẬT KÝ TÀI LIỆU NGHIÊN CỨU & KHẢO SÁT HỌC THUẬT (NGUYỄN QUÍ ĐỨC)
-## PHỤ TRÁCH: CLASSICAL ML BASELINE & METHODOLOGY
+## TẬP TRUNG TÀI LIỆU KHẢO SÁT & ĐỐI CHIẾU CÙNG NHÓM (AI CŨNG LÀM $\rightarrow$ THAM KHẢO NHAU $\rightarrow$ CHỐT KẾT QUẢ)
 
 **Thành viên**: Nguyễn Quí Đức (MSSV: `SE182087`)  
 **Mục tiêu chính**: Nghiên cứu mô hình lọc cú pháp siêu nhanh (TF-IDF + LinearSVC/LogisticRegression), thuật toán biến dị kiểm thử độ bền (Targeted Mutators từ JailGuard), và các kỹ thuật phòng thủ đối kháng nền tảng.  

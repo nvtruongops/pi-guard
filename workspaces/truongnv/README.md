@@ -1,7 +1,9 @@
 # WORKSPACE CÁ NHÂN — NGUYỄN VĂN TRƯỜNG (LEADER)
-## Không Gian Quản Lý Dữ Liệu, Hồ Sơ Kỹ Thuật & Bản Thảo Luận Văn Review 1
+## Không Gian Quản Lý Dữ Liệu, Hồ Sơ Kỹ Thuật & Đồng Quy Tri Thức Toàn Nhóm
 
-Chào Trường! Toàn bộ các tài liệu, hồ sơ kỹ thuật, dữ liệu và biên bản họp do bạn khởi tạo đã được chuyển và đồng bộ vào không gian làm việc này để bạn tiếp tục tinh chỉnh trước khi cả nhóm chốt bản Final Report Review 1.
+> [!IMPORTANT]
+> **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  
+> Cả 4 thành viên đều triển khai thử nghiệm toàn trình full-pipeline trong workspace cá nhân. Tại đây, Leader vừa trực tiếp làm kỹ thuật vừa đóng vai trò điều phối tiến độ, tổng hợp các kết quả thực nghiệm tối ưu của các thành viên sau các buổi họp đối chiếu để chốt và merge ra cây thư mục chung của dự án.
 
 ---
 

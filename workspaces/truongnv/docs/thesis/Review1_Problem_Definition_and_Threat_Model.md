@@ -18,12 +18,12 @@
 
 ---
 
-### Group Members:
+### Group Members (Collaborative Full-Pipeline Paradigm: "Ai cũng làm -> Tham khảo nhau -> Chốt kết quả"):
 
-1. **Nguyễn Văn Trường (Leader)** — Student ID: `SE182034` _(Architecture Design, Data Curation & Splitting)_
-2. **Nguyễn Quí Đức** — Student ID: `SE182087` _(Classical Machine Learning Baseline & Feature Engineering)_
-3. **Phạm Minh Hoàng Việt** — Student ID: `SE181851` _(Transformer Fine-Tuning & Robustness Stress Testing)_
-4. **Đỗ Đoàn Duy Phương** — Student ID: `SE180235` _(FastAPI Middleware, Streamlit Dashboard & Thesis Compilation)_
+1. **Nguyễn Văn Trường (Leader)** — Student ID: `SE182034` _(Architecture & Full-Pipeline Exploration)_
+2. **Nguyễn Quí Đức** — Student ID: `SE182087` _(Machine Learning & Full-Pipeline Exploration)_
+3. **Phạm Minh Hoàng Việt** — Student ID: `SE181851` _(Deep Learning & Full-Pipeline Exploration)_
+4. **Đỗ Đoàn Duy Phương** — Student ID: `SE180235` _(System Engineering & Full-Pipeline Exploration)_
 
 **Supervisor**: MSc. Supervisor / FPT University Department of Information Assurance
 

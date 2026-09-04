@@ -1,5 +1,5 @@
 # NHẬT KÝ TÀI LIỆU NGHIÊN CỨU & KHẢO SÁT HỌC THUẬT (PHẠM MINH HOÀNG VIỆT)
-## PHỤ TRÁCH: TRANSFORMER FINE-TUNING, ROBUSTNESS TESTING & QUANTIZATION
+## TẬP TRUNG TÀI LIỆU KHẢO SÁT & ĐỐI CHIẾU CÙNG NHÓM (AI CŨNG LÀM $\rightarrow$ THAM KHẢO NHAU $\rightarrow$ CHỐT KẾT QUẢ)
 
 **Thành viên**: Phạm Minh Hoàng Việt (MSSV: `SE181851`)  
 **Mục tiêu chính**: Nghiên cứu kiến trúc Transformer `microsoft/deberta-v3-base` (Disentangled Attention), kỹ thuật lượng hóa động ONNX INT8 Runtime (ZeroQuant), đánh giá độ bền trước tấn công gián tiếp (BIPIA) và cơ chế Attention Shift (RAP-ID).  

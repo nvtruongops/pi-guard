@@ -1,5 +1,5 @@
 # NHẬT KÝ TÀI LIỆU NGHIÊN CỨU & KHẢO SÁT HỌC THUẬT (ĐỖ ĐOÀN DUY PHƯƠNG)
-## PHỤ TRÁCH: FASTAPI MIDDLEWARE, STREAMLIT DASHBOARD & HỒ SƠ LUẬN VĂN
+## TẬP TRUNG TÀI LIỆU KHẢO SÁT & ĐỐI CHIẾU CÙNG NHÓM (AI CŨNG LÀM $\rightarrow$ THAM KHẢO NHAU $\rightarrow$ CHỐT KẾT QUẢ)
 
 **Thành viên**: Đỗ Đoàn Duy Phương (MSSV: `SE180235`)  
 **Mục tiêu chính**: Khảo sát toàn diện bối cảnh tấn công Jailbreak & Prompt Injection, xây dựng bộ phân loại chiến thuật đối kháng cho Chương 2 Luận văn, và tích hợp luồng xử lý trung gian bảo vệ API LLM.  

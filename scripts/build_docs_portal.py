@@ -152,12 +152,15 @@ flowchart TD
 
 ## 👥 Đội Ngũ Thực Hiện Đề Tài
 
-| STT | Thành Viên | Mã Sinh Viên | Vai Trò & Trọng Tâm Chuyên Môn |
+> **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  
+> Cả 4 thành viên đều trực tiếp thực hiện toàn trình (Full-Pipeline Hands-on) từ tiền xử lý dữ liệu, thử nghiệm Baseline ML, huấn luyện Transformer, đo đạc độ bền Evasion đến tích hợp API/Dashboard và bảo vệ Luận văn.
+
+| STT | Thành Viên | Mã Sinh Viên | Khám Phá Toàn Trình & Đầu Mối Điều Phối |
 | :---: | :--- | :---: | :--- |
-| 1 | **Nguyễn Văn Trường (Leader)** | `SE182034` | **Kiến trúc & Kỹ thuật Dữ liệu** — Điều phối chung, Dataset Curation, Threat Model |
-| 2 | **Nguyễn Quí Đức** | `SE182087` | **Mô hình ML Baseline** — TF-IDF Vectorizer, Linear Classifier, Attack Surface |
-| 3 | **Phạm Minh Hoàng Việt** | `SE181851` | **Transformer & Tối ưu hóa** — DeBERTa-v3 Fine-tuning, INT8 ONNX, Robustness |
-| 4 | **Đỗ Đoàn Duy Phương** | `SE180235` | **API Middleware & Luận văn** — FastAPI Proxy, Streamlit Dashboard, Báo cáo & Slide |
+| 1 | **Nguyễn Văn Trường (Leader)** | `SE182034` | **Toàn trình Full-Pipeline** — Điều phối chung, Chuẩn hóa dữ liệu & Kiến trúc |
+| 2 | **Nguyễn Quí Đức** | `SE182087` | **Toàn trình Full-Pipeline** — Đối sánh mô hình Baseline ML & Threat Model |
+| 3 | **Phạm Minh Hoàng Việt** | `SE181851` | **Toàn trình Full-Pipeline** — Tối ưu Transformer & Thực nghiệm Robustness |
+| 4 | **Đỗ Đoàn Duy Phương** | `SE180235` | **Toàn trình Full-Pipeline** — Tích hợp hệ thống API/Dashboard & Luận văn |
 
 **Giảng viên hướng dẫn**: Đại học FPT — Khoa An toàn Thông tin (Information Assurance).
 """
