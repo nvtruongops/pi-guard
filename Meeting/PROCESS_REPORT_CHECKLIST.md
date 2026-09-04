@@ -6,9 +6,8 @@
 **Thời gian khởi động & Sprint Tiền đề Review 1**: 29/08/2026 – 06/09/2026  
 **Thời gian học kỳ chính thức Fall 2026 (15 Tuần)**: 07/09/2026 – 20/12/2026  
 **File Excel chính thức**: [`Meeting/PI_GUARD_PROCESS_REPORT.xlsx`](file:///d:/Work/Do-an/Meeting/PI_GUARD_PROCESS_REPORT.xlsx)  
-**File Kế hoạch hành động Sprint 1**: [`Meeting/Meeting_1_TODO_List_30_08_to_06_09_2026.md`](file:///d:/Work/Do-an/Meeting/Meeting_1_TODO_List_30_08_to_06_09_2026.md)  
-**Biên bản Họp với GVHD (Meeting 1)**: [`Meeting/Meeting 1_29_08_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%201_29_08_26.md) *(29/08/2026)*  
-**Biên bản Họp Nhóm Sàng Lọc Papers (Meeting 2)**: [`Meeting/Meeting 2_01_09_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%202_01_09_26.md) *(01/09/2026)*  
+**Biên bản Họp với GVHD & Kế hoạch Sprint 1 (Meeting 1)**: [`Meeting/Meeting 1_29_08_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%201_29_08_26.md) *(29/08/2026)*  
+**Biên bản Họp Nhóm Sàng Lọc Papers & Nghiên Cứu Mô Hình (Meeting 2)**: [`Meeting/Meeting 2_01_09_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%202_01_09_26.md) *(01/09/2026)*  
 
 ---
 
@@ -59,7 +58,7 @@
 - [x] **P02**: Soạn thảo và lưu trữ biên bản cuộc họp: [`Meeting/Meeting 1_29_08_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%201_29_08_26.md). — *Phụ trách: Trường (Leader)*
 
 #### 📌 Ngày 30/08 – 31/08/2026 (Chủ Nhật – Thứ Hai): Lập Kế Hoạch Sprint & Thiết Lập Hệ Thống
-- [x] **P03**: Phân rã 8 yêu cầu của GVHD thành Kế hoạch hành động 8 ngày chi tiết: [`Meeting/Meeting_1_TODO_List_30_08_to_06_09_2026.md`](file:///d:/Work/Do-an/Meeting/Meeting_1_TODO_List_30_08_to_06_09_2026.md). — *Phụ trách: Trường (Leader)*
+- [x] **P03**: Phân rã 8 yêu cầu của GVHD thành Kế hoạch hành động Sprint 1 chi tiết được tích hợp trong: [`Meeting/Meeting 1_29_08_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%201_29_08_26.md). — *Phụ trách: Trường (Leader)*
 - [x] **P04**: Khởi tạo cấu trúc Git Repository, xây dựng 4 workspace cá nhân độc lập (`workspaces/<member>/`) để triển khai mô hình làm việc song song không xung đột. — *Phụ trách: Trường*
 - [x] **P05**: Viết công cụ tự động kiểm toán phân quyền và ranh giới thư mục: [`scripts/audit_workspace_boundaries.py`](file:///d:/Work/Do-an/scripts/audit_workspace_boundaries.py), cài đặt Git Pre-commit Hook. — *Phụ trách: Trường*
 - [x] **P06**: Rà soát bản đăng ký đề tài [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) và thiết lập quy tắc bảo vệ file bất biến. — *Phụ trách: Cả 4 thành viên*

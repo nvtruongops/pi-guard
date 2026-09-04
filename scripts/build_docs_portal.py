@@ -139,8 +139,7 @@ flowchart TD
 ## 📋 Mục Lục Tài Liệu Toàn Dự Án
 
 | Khu vực tài liệu | Nội dung trọng tâm | Đường dẫn tra cứu |
-| :--- | :--- | :--- |
-| **Quản Lý Công Việc** | Lộ trình IAP491, Biên bản họp 1 & 2, Kế hoạch Sprint tuần, Ma trận RACI | [Xem Kế Hoạch Sprint](work/sprint_1_todo_list.md) |
+| **Quản Lý Công Việc** | Lộ trình IAP491, Biên bản họp 1 & 2 kèm TODO Sprint, Ma trận RACI | [Xem Biên Bản Họp 1 & Kế Hoạch Sprint](work/meeting_1.md) |
 | **Chuyên Đề Tấn Công** | Lịch sử tiến hóa (2022–2026), Ranh giới In/Out-scope, Prompt Injection & 4 trường phái Jailbreak (DAN, Roleplay, VM, Cipher) | [Khám Phá Chuyên Đề Tấn Công](attacks/history_and_evolution.md) |
 | **Threat Model & Phòng Thủ Đa Tầng** | NIST AI 100-2e2025, STRIDE/DREAD, 3 Lớp bảo vệ (Saltzer & Schroeder), Canary Token | [Khám Phá Threat & Defense](threat_defense/threat_model_and_attack_surface.md) |
 | **Độ Bền & Lẩn Tránh (Robustness)** | Cơ chế phân mảnh BPE, Leetspeak, Base64 Unmasking, Character n-grams TF-IDF, Đột biến EasyJailbreak | [Khám Phá Chuyên Đề Robustness](robustness/theory_and_evasion_mechanisms.md) |
@@ -222,8 +221,6 @@ def aggregate_all():
              SITE_DOCS_DIR / "work" / "meeting_1.md")
     copy_doc(ROOT_DIR / "Meeting" / "Meeting 2_01_09_26.md",
              SITE_DOCS_DIR / "work" / "meeting_2.md")
-    copy_doc(ROOT_DIR / "Meeting" / "Meeting_1_TODO_List_30_08_to_06_09_2026.md",
-             SITE_DOCS_DIR / "work" / "sprint_1_todo_list.md")
     copy_doc(ROOT_DIR / "Meeting" / "PROCESS_REPORT_CHECKLIST.md",
              SITE_DOCS_DIR / "work" / "process_report_checklist.md")
 

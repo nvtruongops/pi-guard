@@ -12,6 +12,6 @@
 
 - [`PI_GUARD_PROCESS_REPORT.xlsx`](file:///d:/Work/Do-an/Meeting/PI_GUARD_PROCESS_REPORT.xlsx): Bảng Excel tự động tính toán tiến độ 4 thành viên và checklist 20 đầu việc.
 - [`PROCESS_REPORT_CHECKLIST.md`](file:///d:/Work/Do-an/Meeting/PROCESS_REPORT_CHECKLIST.md): Bản phân công chi tiết 4 thành viên theo từng tuần và từng cột mốc.
-- [`Meeting 1_29_08_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%201_29_08_26.md): Biên bản họp khởi động với GVHD ngày 29/08/2026.
-- [`Meeting_1_TODO_List_30_08_to_06_09_2026.md`](file:///d:/Work/Do-an/Meeting/Meeting_1_TODO_List_30_08_to_06_09_2026.md): Kế hoạch hành động chi tiết cho sprint Review 1.
-- [`Meeting 2_01_09_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%202_01_09_26.md): Biên bản họp Meeting 2 ngày 01/09/2026 — Khảo sát, đọc hiểu & sàng lọc 10 bài báo khoa học theo `CAPSTONE PROJECT REGISTER.md`.
+- [`Meeting 1_29_08_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%201_29_08_26.md): Biên bản họp khởi động với GVHD ngày 29/08/2026 kèm Danh sách kế hoạch hành động (Sprint 1 TODO List).
+- [`Meeting 2_01_09_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%202_01_09_26.md): Biên bản họp Meeting 2 ngày 01/09/2026 — Khảo sát, đọc hiểu & sàng lọc bài báo khoa học, lập TODO nghiên cứu 2 hướng mô hình (TF-IDF Baseline và DeBERTa-v3).
+
