@@ -130,10 +130,26 @@ streamlit run src.dashboard/app.py
 
 ---
 
-## 🧪 Testing & CI
+## 🧪 Local Quality Assurance & Validation Suite (Local-First QA)
+
+Dự án PI-Guard áp dụng mô hình **Kiểm định thuần Local (Local-First Validation)**, loại bỏ hoàn toàn phụ thuộc vào GitHub Actions cloud runners để tối ưu tốc độ, đảm bảo tính độc lập và phòng ngừa lỗi môi trường:
+
 ```bash
-# Run full unit and integration test suite
+# 1. Cài đặt Git Pre-commit Hook tự động (chặn commit vi phạm ranh giới & lỗi cú pháp)
+python scripts/validate_local.py --install-hook
+
+# 2. Kiểm định nhanh trước khi commit (Workspace Boundary + JSON Manifests + Ruff Lint + Benchmark Smoke Test)
+python scripts/validate_local.py
+
+# 3. Kiểm định toàn diện 100% (Bao gồm đầy đủ Pytest 16 bài tests + Biên dịch MkDocs Portal)
+python scripts/validate_local.py --all
+
+# 4. Chạy trực tiếp Pytest Suite (Unit, Integration & Adversarial Robustness)
 pytest tests/ -v --cov=src
+
+# 5. Xem Cổng tài liệu nội bộ trên máy cục bộ (Local MkDocs Server)
+python scripts/build_docs_portal.py
+mkdocs serve   # Truy cập tại: http://127.0.0.1:8000
 ```
 
 ---
@@ -143,7 +159,7 @@ pytest tests/ -v --cov=src
 ```
 d:/Work/Do-an/
 ├── .agents/                 # AI Pair Programming Environment (MCP, Skills, Rules)
-├── .github/workflows/       # GitHub Actions CI & Evaluation workflows
+├── .github/CODEOWNERS       # Collective Code Ownership & PR Review Governance
 ├── configs/                 # YAML configurations (data, training, evaluation, models)
 ├── data/                    # Datasets (raw, interim, processed, splits, manifests)
 ├── notebooks/               # 01_eda, 02_baseline, 03_transformer, 04_ablation, 05_errors
@@ -154,7 +170,6 @@ d:/Work/Do-an/
 │   ├── policy/              # 3-tier Decision Policy Engine & Thresholds
 │   ├── llm/                 # Downstream LLM Cloud API proxies (Groq, OpenAI, Gemini)
 │   ├── api/                 # FastAPI Guardrail Middleware & Endpoints
-
 │   ├── dashboard/           # Streamlit Monitoring UI
 │   └── evaluation/          # Metrics, FPR computation & Latency profiler
 ├── tests/
@@ -162,8 +177,8 @@ d:/Work/Do-an/
 │   ├── integration/         # API endpoint integration tests
 │   └── adversarial/         # Direct, indirect, jailbreak, leetspeak, base64 slices
 ├── reports/                 # Evaluation figures, tables, and metric reports
-├── docs/                    # Architecture, methodology, and thesis documentation
-├── scripts/                 # CLI pipelines (download, preprocess, train, evaluate, benchmark)
+├── docs/                    # Architecture, methodology, attack studies, and thesis documentation
+├── scripts/                 # Local QA suite (validate_local.py, audit_workspace_boundaries.py, build_docs_portal.py)
 └── workspaces/              # Individual sandboxes for 4 members (Parallel Full-Pipeline Exploration)
     ├── truongnv/            # Workspace: Nguyễn Văn Trường (Leader)
     ├── ducnq/               # Workspace: Nguyễn Quí Đức

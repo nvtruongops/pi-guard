@@ -344,20 +344,22 @@ def install_pre_commit_hook():
     
     # Nội dung pre-commit hook (chạy trên cả Windows shell và Linux/macOS bash)
     hook_content = """#!/bin/sh
-# PI-Guard Git Pre-commit Hook: Kiểm toán ranh giới Workspace trước khi commit
-echo "🛡️ [Pre-commit] Đang kiểm tra ranh giới Workspace và phân quyền Git..."
+# PI-Guard Local Quality Assurance Pre-commit Hook
+# Tự động kiểm tra ranh giới Workspace, file bất biến, cú pháp JSON và Linting trước khi commit.
 
-python scripts/audit_workspace_boundaries.py --mode staged
-AUDIT_EXIT=$?
+echo "🛡️ [Local-QA] Đang chạy kiểm định trước khi commit (Pre-commit Validation)..."
 
-if [ $AUDIT_EXIT -ne 0 ]; then
+python scripts/validate_local.py --mode pre-commit
+VALIDATION_EXIT=$?
+
+if [ $VALIDATION_EXIT -ne 0 ]; then
     echo ""
-    echo "❌ [Pre-commit Blocked] Commit bị hủy do phát hiện vi phạm phân quyền Workspace!"
-    echo "👉 Vui lòng xem hướng dẫn chi tiết ở trên để sửa trước khi commit lại."
+    echo "❌ [Pre-commit Blocked] Commit bị chặn do phát hiện lỗi vi phạm quy chuẩn dự án!"
+    echo "👉 Vui lòng đọc chi tiết lỗi ở trên và khắc phục trước khi commit lại."
     exit 1
 fi
 
-echo "✅ [Pre-commit Passed] Tất cả các file commit đều hợp lệ."
+echo "✅ [Pre-commit Passed] Tất cả các điều kiện kiểm định đều đạt chuẩn."
 exit 0
 """
 
@@ -371,7 +373,7 @@ exit 0
         pass
 
     print(f"✅ Đã cài đặt thành công Git Pre-commit Hook tại: {hook_file}")
-    print("   Từ bây giờ, Git sẽ tự động kiểm tra ranh giới workspace mỗi khi có thành viên thực hiện `git commit`.")
+    print("   Từ bây giờ, Git sẽ tự động chạy `python scripts/validate_local.py --mode pre-commit` mỗi khi có thành viên thực hiện `git commit`.")
     return 0
 
 if __name__ == '__main__':

@@ -76,8 +76,8 @@ trigger: always_on
 2. **Leader Sole Merge Authorization**:
    - Only the Leader (`nvtruongops`) is authorized to merge champion artifacts from `workspaces/` into root production directories during weekly convergence sessions.
 3. **Automated Commit Audit Enforcement**:
-   - All commits and PRs must pass `python scripts/audit_workspace_boundaries.py`.
-   - Pre-commit hook (`scripts/audit_workspace_boundaries.py --install-hook`) must be installed on all member environments.
+   - All commits and PRs must pass `python scripts/validate_local.py` or `python scripts/audit_workspace_boundaries.py`.
+   - Pre-commit hook (`scripts/validate_local.py --install-hook`) must be installed on all member environments.
 
 ---
 

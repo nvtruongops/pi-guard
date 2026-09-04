@@ -42,3 +42,35 @@ Trong đề tài **PI-Guard** (FPT University IAP491), nhóm áp dụng mô hìn
 ### 🛡️ 3. LỢI ÍCH SỐ 1 KHI BẢO VỆ TRƯỚC HỘI ĐỒNG:
 - **100% Thành viên đều hiểu toàn bộ hệ sinh thái**: Khi Thầy/Cô trong Hội đồng chỉ định bất kỳ ai trả lời về Data, Model hay API $\rightarrow$ Bạn đó đều đã từng tự tay làm thử và trả lời xuất sắc.
 - **Tính đoàn kết và làm chủ đồ án cao nhất**: Không có cảm giác "người gánh team, người đứng ngoài cuộc".
+
+---
+
+### ⚙️ 4. QUY TRÌNH KIỂM ĐỊNH CHẤT LƯỢNG THUẦN CỤC BỘ (LOCAL-FIRST VALIDATION)
+
+Để loại bỏ hoàn toàn sự phụ thuộc vào GitHub Actions, tiết kiệm hạn ngạch cloud runner và phòng ngừa lỗi môi trường, dự án PI-Guard thực hiện toàn bộ các bước kiểm tra chất lượng trên máy cục bộ trước khi commit hoặc merge:
+
+1. **Cài đặt Git Pre-commit Hook (Bắt buộc cho cả 4 bạn)**:
+   ```bash
+   python scripts/validate_local.py --install-hook
+   ```
+   *Tác dụng*: Tự động chặn ngay tại máy trạm nếu bạn vô tình sửa file ngoài workspace được giao, vi phạm file bất biến, hoặc commit manifest JSON bị lỗi cú pháp.
+
+2. **Chạy kiểm định nhanh trước khi commit**:
+   ```bash
+   python scripts/validate_local.py
+   ```
+   *Kiểm tra*: Ranh giới workspace, JSON manifests, Ruff linting, Adversarial benchmark smoke test (hoàn tất trong ~2 giây).
+
+3. **Chạy kiểm định toàn diện trước buổi họp Đồng Quy Tri Thức**:
+   ```bash
+   python scripts/validate_local.py --all
+   ```
+   *Kiểm tra*: 100% các bài test Pytest (unit, integration, adversarial) và biên dịch cổng tài liệu MkDocs.
+
+4. **Xem tài liệu và báo cáo cục bộ**:
+   ```bash
+   python scripts/build_docs_portal.py
+   mkdocs serve
+   ```
+   *Truy cập*: `http://127.0.0.1:8000` trên trình duyệt để duyệt tài liệu, sơ đồ kiến trúc và nhật ký nghiên cứu.
+
