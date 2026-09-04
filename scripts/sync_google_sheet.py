@@ -4,7 +4,6 @@ PI-Guard Google Sheets Synchronization Utility
 Tự động đồng bộ tiến độ giữa Google Sheets trực tuyến và các file cục bộ trong repo:
 - Google Sheet: https://docs.google.com/spreadsheets/d/1toBlihg3ycJq_0uOLbfHdD3NPMLCYWt1Az460sAfl2M/edit?gid=758037622
 - Local Excel: Meeting/PI_GUARD_PROCESS_REPORT.xlsx & reports/PI_GUARD_PROCESS_REPORT.xlsx
-- Local Markdown: Meeting/PROCESS_REPORT_CHECKLIST.md
 """
 
 import sys

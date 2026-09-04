@@ -76,7 +76,6 @@ nav:
       - "Biên Bản Họp Nhóm":
           - "Biên Bản Họp 1 & Kế Hoạch Sprint 1 (29/08/2026)": work/meeting_1.md
           - "Biên Bản Họp 2 & Nghiên Cứu Mô Hình (01/09/2026)": work/meeting_2.md
-      - "Kiểm Toán Báo Cáo Tiến Độ": work/process_report_checklist.md
   - "Chuyên Đề Tấn Công (Attack Study)":
       - "Tổng Quan & Ranh Giới Đề Tài":
           - "Biên Niên Sử Tiến Hóa (2022-2026)": attacks/history_and_evolution.md

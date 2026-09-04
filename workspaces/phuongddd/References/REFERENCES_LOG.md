@@ -22,7 +22,7 @@
 ---
 
 ## 🔬 II. KẾT QUẢ SÀNG LỌC & KẾ HOẠCH DỰ ÁN
-1. **Ranh giới đề tài rõ ràng**: Loại bỏ các nghiên cứu đòi hỏi can thiệp vào trọng số LLM (như paper của Wei et al.) hoặc tính toán gradient phức tạp thời gian thực (Zou et al.). Toàn bộ giải pháp tập trung vào **API Gateway Guardrail bất khả tri (Agnostic Guardrail)**.
+1. **Ranh giới đề tài rõ ràng**: Loại bỏ các nghiên cứu đòi hỏi can thiệp vào trọng số LLM (như paper của Wei et al.) hoặc tính toán gradient phức tạp ở runtime (Zou et al.). Toàn bộ giải pháp tập trung vào **API Gateway Guardrail bất khả tri (Agnostic Guardrail)**.
 2. **Chuẩn bị hồ sơ Review 1**:
    - Dùng các phát hiện từ Do-Not-Answer và ACL 2024 để bảo vệ luận điểm chọn DeBERTa-v3 + TF-IDF trước Hội đồng chấm.
    - Cập nhật các trích dẫn chuẩn IEEE vào Chương 1 & Chương 2 của Luận văn.

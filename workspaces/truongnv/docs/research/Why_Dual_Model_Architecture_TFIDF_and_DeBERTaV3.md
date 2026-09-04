@@ -1,4 +1,4 @@
-# TÀI LIỆU LUẬN GIẢI KHOA HỌC: TẠI SAO LỰA CHỌN KIẾN TRÚC KÉP HYBRID TF-IDF VÀ DEBERTA-V3 ONNX INT8 MÀ KHÔNG PHẢI MÔ HÌNH KHÁC?
+# TÀI LIỆU LUẬN GIẢI KHOA HỌC: TẠI SAO LỰA CHỌN KIẾN TRÚC PHÒNG THỦ KÉP HYBRID TF-IDF VÀ DEBERTA-V3 MÀ KHÔNG PHẢI MÔ HÌNH KHÁC?
 
 **Mã đề tài**: `IAP491_FA26_PI_GUARD`  
 **Tên đề tài**: *A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (PI-Guard)*  
@@ -14,7 +14,7 @@
 
 ## 🎯 CÂU HỎI BẢN LỀ CỦA HỘI ĐỒNG PHẢN BIỆN (RESEARCH DEFENSE QUESTION)
 
-> *"Tại sao nhóm nghiên cứu lại lựa chọn kiến trúc phòng thủ kép: Bộ chuẩn hóa & Lọc cú pháp (Hybrid Word/Char TF-IDF Baseline) kết hợp Bộ phân loại ngữ nghĩa sâu (DeBERTa-v3 ONNX INT8), mà không sử dụng các giải pháp phổ biến khác như Quy tắc Regex, BERT-base, RoBERTa hay mô hình LLM-as-a-Judge (ví dụ: Meta Llama Guard 3 8B, GPT-4o-mini)? Hai mô hình này chỉ đơn thuần sao chép lại từ Bản đăng ký đề tài (`CAPSTONE PROJECT REGISTER.md`) hay là kết quả của quá trình khảo sát SOTA thực chứng, và liệu chúng có thực sự thỏa mãn 4 tiêu chí cốt lõi của đồ án?"*
+> *"Tại sao nhóm nghiên cứu lại lựa chọn kiến trúc phòng thủ kép: Bộ chuẩn hóa & Lọc cú pháp (Hybrid Word/Char TF-IDF Baseline) kết hợp Bộ phân loại ngữ nghĩa sâu (DeBERTa-v3 Transformer), mà không sử dụng các giải pháp phổ biến khác như Quy tắc Regex, BERT-base, RoBERTa hay mô hình LLM-as-a-Judge (ví dụ: Meta Llama Guard 3 8B, GPT-4o-mini)? Hai mô hình này chỉ đơn thuần sao chép lại từ Bản đăng ký đề tài (`CAPSTONE PROJECT REGISTER.md`) hay là kết quả của quá trình khảo sát SOTA thực chứng, và liệu chúng có thực sự thỏa mãn các tiêu chí an ninh cốt lõi của đồ án?"*
 
 Tài liệu này cung cấp toàn bộ luận cứ khoa học, công thức toán học, bằng chứng thực nghiệm và cơ sở SOTA quốc tế giai đoạn 2022–2026 để trả lời thấu đáo câu hỏi trên.
 
@@ -31,7 +31,7 @@ Trong văn bản [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE
 👉 **Thực tế**: Trong Bản đăng ký, cụm từ `BERT/DeBERTa` chỉ là ví dụ liệt kê minh họa (`e.g.`), còn `TF-IDF` chỉ là công cụ cổ điển trong scikit-learn. Bản Register **hoàn toàn chưa chứng minh tại sao DeBERTa lại vượt trội BERT, chưa phân tích cơ chế Attention, và chưa giải thích được lý do tại sao bắt buộc phải có tầng Character n-grams để chống lẩn tránh cú pháp**.
 
 ### 2. Quá Trình Khảo Sát SOTA Thực Chứng Độc Lập
-Nhóm nghiên cứu không dừng lại ở bản đăng ký mà đã tiến hành khảo sát thực nghiệm đối sánh độc lập trên các hội nghị bảo mật và AI hàng đầu thế giới (NeurIPS, ICLR, ACL, ACM CCS, EMNLP, 2022–2026). Kết quả chỉ ra rằng: **Sự kết hợp giữa Hybrid Character/Word TF-IDF và DeBERTa-v3 ONNX INT8 là giải pháp tối ưu toán học và kỹ thuật duy nhất đáp ứng trọn vẹn cả 4 ràng buộc khắt khe của một Guardrail vận hành tại cổng API sản xuất**.
+Nhóm nghiên cứu không dừng lại ở bản đăng ký mà đã tiến hành khảo sát thực nghiệm đối sánh độc lập trên các hội nghị bảo mật và AI hàng đầu thế giới (NeurIPS, ICLR, ACL, ACM CCS, EMNLP, 2022–2026). Kết quả chỉ ra rằng: **Sự kết hợp giữa Hybrid Character/Word TF-IDF và DeBERTa-v3 (hỗ trợ bởi kỹ thuật lượng hóa nhẹ ONNX Runtime INT8 cho suy luận CPU) là giải pháp tối ưu toán học và an ninh duy nhất đáp ứng trọn vẹn cả 4 ràng buộc khắt khe của một Guardrail an ninh tại cổng API sản xuất**.
 
 ---
 

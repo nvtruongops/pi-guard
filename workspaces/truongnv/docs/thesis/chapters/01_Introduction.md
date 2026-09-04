@@ -42,7 +42,7 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 1. **Bộ dữ liệu chuẩn hóa**: Xây dựng tập dữ liệu đa nguồn (Deepset, Gandalf, In-The-Wild, Benign) áp dụng thuật toán *Group-Aware Splitting* chống rò rỉ dữ liệu.
 2. **Mô hình học máy kép**: Phát triển mô hình Baseline ML (Word/Char TF-IDF) và mô hình Transformer tinh chỉnh (`microsoft/deberta-v3-base` Disentangled Attention).
 3. **Độ bền trước lẩn tránh cú pháp**: Xây dựng cơ chế chuẩn hóa chuỗi và bộ kiểm thử độ bền (Adversarial Robustness Testing Suite) kháng Leetspeak, Base64, Spacing.
-4. **Lượng hóa tăng tốc**: Áp dụng Post-Training Dynamic INT8 Quantization (ONNX Runtime) để chạy mượt trên CPU thông thường.
+4. **Tối ưu hóa triển khai thực tế**: Ứng dụng kỹ thuật lượng hóa nhẹ (Post-Training Dynamic INT8 Quantization với ONNX Runtime) như một giải pháp phụ trợ kỹ thuật, đảm bảo Guardrail vận hành hiệu quả trên hạ tầng CPU tiêu chuẩn với độ trễ thấp.
 5. **Hạ tầng API & Dashboard**: Xây dựng Asynchronous Middleware (FastAPI) và Dashboard kiểm thử trực quan (Streamlit) với ma trận 4 kịch bản demo.
 
 ### 1.3.3. Hệ Thống 3 Câu Hỏi Nghiên Cứu Cốt Lõi (RQ1 - RQ3):

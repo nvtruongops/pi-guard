@@ -53,6 +53,28 @@ trigger: always_on
 
 ---
 
+## 📚 STRICT RULE: LITERATURE SCOPING & ARCHITECTURAL COMPATIBILITY INVARIANT (ZERO CITATION BLOAT)
+
+> [!IMPORTANT]
+> **QUY TẮC SÀNG LỌC TÀI LIỆU NGHIÊN CỨU & CHỐNG DÀN TRẢI TRÍCH DẪN**:
+> 1. **EXTERNAL GUARDRAIL SCOPE COMPATIBILITY**: Mọi công trình khoa học được trích dẫn làm cơ sở thiết kế hệ thống PHẢI tương thích với kiến trúc External Guardrail Proxy (phân loại prompt mức văn bản trước khi gọi LLM, không đòi hỏi can thiệp vào trọng số nội bộ hay KV-cache của LLM đích).
+> 2. **ZERO CITATION BLOAT**: Kiên quyết loại bỏ các bài báo khảo sát trùng lặp hoặc có phạm vi quá rộng/ngoài phạm vi đề tài (như tấn công phần cứng, backdoor, data poisoning).
+> 3. **LOCAL PDF AVAILABILITY**: Mọi tài liệu khoa học được phê duyệt sử dụng trong đồ án BẮT BUỘC phải có bản sao PDF lưu trữ cục bộ trong thư mục `References/` và `workspaces/<thành_viên>/References/`.
+
+---
+
+## ⏱️ STRICT RULE: PROHIBITION OF "THỜI GIAN THỰC" (REAL-TIME) TERMINOLOGY FOR LATENCY
+
+> [!IMPORTANT]
+> **QUY TẮC BẮT BUỘC VỀ THUẬT NGỮ ĐỘ TRỄ & HIỆU NĂNG**:
+> 1. **TUYỆT ĐỐI KHÔNG DÙNG CỤM TỪ "VẬN HÀNH THỜI GIAN THỰC" HOẶC "THỜI GIAN THỰC" (REAL-TIME)** để miêu tả độ trễ hay hiệu năng của Guardrail API, vì "thời gian thực" (Hard/Soft Real-Time System) là thuật ngữ kỹ thuật đặc thù cho các hệ thống điều khiển nhúng với cam kết microsecond nghiêm ngặt.
+> 2. **THUẬT NGỮ BẮT BUỘC SỬ DỤNG**:
+>    - **"Độ trễ thấp" / "Low-Latency"** (ví dụ: *P95 < 30ms trên CPU đa nhân*).
+>    - **"Bảo vệ trực tuyến" / "Inline Guardrail Proxy"**.
+>    - **"Thời gian đáp ứng nhanh" / "Độ trễ suy luận (Inference Latency)"**.
+
+---
+
 ## Parallel Full-Pipeline Exploration & Knowledge Convergence Paradigm
 
 > **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  

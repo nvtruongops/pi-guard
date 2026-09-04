@@ -120,3 +120,21 @@ Mọi bài viết nghiên cứu, chuyên đề kỹ thuật (`docs/attack_study/
    ```
 3. **Mục đích**: Bảo đảm cổng tài liệu MkDocs Material biên dịch 100% sạch, không sinh bất kỳ cảnh báo missing anchor nào.
 
+---
+
+## 5. Literature Scoping & Architectural Compatibility Checklist
+
+Trước khi thu thập, trích dẫn hoặc thêm bất kỳ bài báo nào vào đề tài, bắt buộc kiểm tra theo checklist 4 bước:
+
+1. **Kiểm tra tính tương thích kiến trúc (External Guardrail Compatibility)**:
+   - ✅ **HỢP LỆ (In-Scope)**: Bài báo nghiên cứu phân loại prompt đầu vào (Input Firewall / Guardrail), bộ lọc cú pháp, Transformer Encoder (BERT/DeBERTa), bộ dữ liệu benchmark (Do-Not-Answer, BIPIA), toán tử đột biến văn bản (JailGuard).
+   - ❌ **LOẠI BỎ (Out-of-Scope)**: Bài báo đòi hỏi can thiệp sâu vào trọng số nội bộ LLM, KV-cache, pre-fill pass (như RAP-ID) hoặc thất bại căn chỉnh RLHF bên trong LLM (như Wei et al.).
+2. **Chống dàn trải & Trùng lặp (Zero Citation Bloat)**:
+   - Ưu tiên công trình bình duyệt chính thức (ACM, IEEE, EMNLP, ICLR) thay vì các bản preprint khảo sát trùng lặp.
+   - Loại bỏ các bài báo khảo sát quá rộng bao gồm cả lỗ hổng phần cứng, data poisoning, backdoor.
+3. **Phân định rõ vai trò (Test Data vs. Realtime Algorithms)**:
+   - Nếu bài báo đề xuất tấn công tối ưu gradient white-box (như Zou et al. GCG), chỉ kế thừa tập mẫu chuỗi đối kháng đã sinh sẵn để làm test set độ bền; không đưa thuật toán tính gradient vào kiến trúc suy luận thời gian thực.
+4. **Lưu trữ bản PDF cục bộ (Local PDF Invariant)**:
+   - Tải và lưu trữ file PDF đầy đủ vào `References/` và `workspaces/<thành_viên>/References/`.
+
+

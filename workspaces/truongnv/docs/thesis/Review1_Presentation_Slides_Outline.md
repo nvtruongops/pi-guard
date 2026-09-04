@@ -106,11 +106,11 @@
   1. *Gap 1 & RQ1 (Data Leakage & Splitting)*: Group-Aware Splitting triệt tiêu rò rỉ cụm mẫu; Phân định ranh giới giữa Classical ML (TF-IDF) và DeBERTa-v3 Disentangled Attention ($F_1 \ge 0.95$, $F_1^{\text{OOD}} \ge 0.92$).
   2. *Gap 2 & RQ2 (Adversarial Evasion)*: Duy trì độ bền trước các biến dị Leetspeak, Spacing, và Base64/Cipher ($\Delta F_1 < 5\%, \text{ASR} < 5\%$).
   3. *Gap 3 & RQ3 (Inline Latency & FPR)*: Khống chế nghiêm ngặt $\text{FPR} < 1.5\%$ trên tập Benign; Lượng hóa INT8 bảo toàn ranh giới an toàn ($\Delta F_1 < 0.3\%$) và đạt độ trễ $P95 < 30\text{ms}$ trên CPU.
-- **4 Đóng góp cốt lõi của PI-Guard**:
-  1. Quy trình Group-Aware Splitting chống rò rỉ dữ liệu cụm.
-  2. Kiến trúc phòng thủ hybrid kép kết hợp TF-IDF + DeBERTa-v3.
-  3. Lượng hóa động ONNX INT8 siêu nhẹ (<150MB) chạy trên CPU.
-  4. Middleware bất đồng bộ FastAPI & Dashboard Streamlit trực quan.
+- **4 Đóng góp cốt lõi của PI-Guard (Chuyên ngành An toàn Thông tin)**:
+  1. *Kỹ thuật dữ liệu an ninh*: Quy trình Group-Aware Splitting triệt tiêu rò rỉ cụm mẫu tấn công và bảo đảm đánh giá tổng quát hóa thực chất.
+  2. *Kiến trúc phòng thủ đa tầng*: Phối hợp Hybrid TF-IDF (Lọc cú pháp phân mảnh) và DeBERTa-v3 Disentangled Attention (Phân loại ngữ nghĩa sâu, bóc tách chỉ thị).
+  3. *Kháng lẩn tránh đối kháng*: Bộ giải mã Heuristic Cipher/Base64 và tiền xử lý chuẩn hóa duy trì độ bền vững cao trước các biến dị lẩn tránh ($\Delta F_1 < 2.3\%$).
+  4. *Hạ tầng Guardrail trực tuyến*: Middleware bất đồng bộ FastAPI tích hợp Tri-state Policy Engine khống chế $\text{FPR} < 1.5\%$, tối ưu hóa thực thi độ trễ thấp trên CPU ($P95 < 30\text{ms}$) và Dashboard Streamlit trực quan.
 
 ---
 

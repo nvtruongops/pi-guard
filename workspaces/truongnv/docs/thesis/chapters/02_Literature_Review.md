@@ -30,23 +30,20 @@ Sự phát triển vượt bậc của các Mô hình Ngôn ngữ Lớn (LLMs) d
 └───────────────────────────┘        └───────────────────────────┘        └───────────────────────────┘
 ```
 
-#### A. Tấn công Prompt Injection Trực tiếp & Cơ chế Pre-fill Pass Dynamics
-Thuật ngữ *Prompt Injection* lần đầu tiên được định nghĩa chính thức trong công trình học thuật của **Perez & Ribeiro (2022)** [[3]](#ref3). Các tác giả đã chỉ ra rằng mô hình LLM không có khả năng phân biệt giữa chỉ thị gốc của lập trình viên (*System Instructions*) và dữ liệu đầu vào không tin cậy của người dùng (*User Inputs*). Khi nghiên cứu sâu vào cơ chế tính toán nội tại, nghiên cứu **RAP-ID (ACL Findings 2026)** đã chỉ ra 3 tín hiệu bất thường trong pha *Pre-fill Pass*:
-1. *Directive Likeness (DL)*: User Input mạo danh phong cách mệnh lệnh của System Instruction trong không gian embedding.
-2. *Counterfactual Gain (CG)*: Chuyển dịch trọng tâm tự chú ý (Attention Shift) từ token của hệ thống sang token của kẻ tấn công.
-3. *Policy Conflict (PC)*: Kích hoạt các khái niệm rủi ro tiềm ẩn (Latent Risk Concepts) đối kháng với quy tắc an toàn.
+#### A. Tấn công Prompt Injection Trực tiếp & Lỗ hổng Ranh giới Lệnh/Dữ liệu
+Thuật ngữ *Prompt Injection* lần đầu tiên được định nghĩa chính thức trong công trình học thuật của **Perez & Ribeiro (2022)** [[3]](#ref3). Các tác giả đã chỉ ra rằng mô hình LLM không có khả năng phân biệt giữa chỉ thị gốc của lập trình viên (*System Instructions*) và dữ liệu đầu vào không tin cậy của người dùng (*User Inputs*). Kẻ tấn công lợi dụng đặc tính này để chèn các câu lệnh ghi đè chỉ thị hệ thống (*Goal Hijacking*) hoặc ép mô hình tiết lộ câu lệnh ẩn (*System Prompt Extraction*).
 
 #### B. Tấn công Prompt Injection Gián tiếp & Chuẩn Đánh Giá BIPIA
 Nghiên cứu mang tính bước ngoặt của **Greshake et al. (ACM AISEC 2023)** [[4]](#ref4) đã mở rộng bề mặt tấn công sang các hệ sinh thái LLM tích hợp ngoài (RAG, Web Browsing, Email Processing, Plugins), chứng minh rằng *mọi tài liệu ngoài khi được LLM tiếp nhận đều mang bản chất là prompt*.
-Để đánh giá định lượng rủi ro này, công trình **BIPIA (Microsoft Research / ACM KDD 2025)** đã xây dựng bộ benchmark tiêu chuẩn đầu tiên cho Indirect Prompt Injection (IPI), chỉ ra sự cần thiết của 2 cơ chế phòng vệ: *Boundary Awareness* (phân định ranh giới ngữ cảnh) và *Explicit Reminders* (nhắc nhở an toàn).
+Để đánh giá định lượng rủi ro này, công trình **BIPIA (Microsoft Research / ACM KDD 2025)** đã xây dựng bộ benchmark tiêu chuẩn đầu tiên cho Indirect Prompt Injection (IPI), chứng minh sự cần thiết của các bộ lọc an toàn độc lập đặt trước ứng dụng.
 
-#### C. Tấn công Bẻ Khóa An Toàn (Jailbreak Attacks) & 3 Chiến Thuật Cốt Lõi
-Khảo sát toàn diện về an toàn LLM tại **arXiv:2406.00240** đã hệ thống hóa các đòn Jailbreak thành 3 chiến thuật chính:
-1. **Pretending (~98% trường hợp)**: Thay đổi ngữ cảnh hội thoại (nhập vai DAN - Do Anything Now, tình huống giả định) trong khi giữ nguyên ý định độc hại [[5]](#ref5), [[15]](#ref15).
-2. **Attention Shifting**: Phân tán sự chú ý của cơ chế Self-Attention sang các tác vụ phức tạp (dịch thuật, viết thơ, giải đố).
-3. **Privilege Escalation**: Đánh lừa mô hình cấp quyền quản trị (Sudo Mode, Developer Maintenance Override).
+#### C. Tấn công Bẻ Khóa An Toàn (Jailbreak Attacks) & Phân Loại Chiến Thuật
+Khảo sát toàn diện của **ACL Findings 2024 (Comprehensive Study)** đã hệ thống hóa các đòn Jailbreak thành các nhóm chiến thuật chính:
+1. **Pretending / Roleplay (~98% trường hợp)**: Thay đổi ngữ cảnh hội thoại (nhập vai DAN - Do Anything Now, tình huống giả định, nhân cách đối lập) trong khi giữ nguyên ý định độc hại [[5]](#ref5), [[15]](#ref15).
+2. **Attention Shifting & Cognitive Overload**: Phân tán sự chú ý của cơ chế Self-Attention sang các tác vụ phức tạp (dịch thuật đa ngôn ngữ, mã hóa mật mã, viết thơ, giải đố logic) [[17]](#ref17).
+3. **Privilege Escalation & Virtual Simulation**: Đánh lừa mô hình cấp quyền quản trị (Sudo Mode, Developer Mode Override, giả lập môi trường dòng lệnh Linux/Python) [[16]](#ref16).
 
-Ngoài ra, các nghiên cứu đối kháng tự động như **GCG (Zou et al., 2023)** [[13]](#ref13) và **MasterKey (Deng et al., 2023)** đã chứng minh khả năng tự động tạo payload vượt rào với tỷ lệ thành công cao, đồng thời giải thích lý do LLaMA-2 thường được chọn làm chuẩn đối sánh an toàn học thuật (nhờ tính mở của Gradients và căn chỉnh RLHF).
+Ngoài ra, nghiên cứu **Do-Not-Answer (EMNLP 2023)** đã cung cấp bộ dữ liệu đánh giá an toàn toàn diện và đưa ra luận điểm thực nghiệm quan trọng: *Mô hình ngôn ngữ nhỏ (< 600M tham số) khi được tinh chỉnh có thể phân loại an toàn hiệu quả tương đương LLM lớn*. Về mặt kiểm thử độ bền, nghiên cứu **JailGuard (ACM TOSEM 2025)** đã hệ thống hóa các toán tử đột biến đối kháng trên văn bản để kiểm tra khả năng chống lẩn tránh của bộ lọc. Bên cạnh đó, các mẫu hậu tố đối kháng sinh sẵn từ **Zou et al. (GCG 2023)** [[13]](#ref13) được sử dụng để kiểm thử khả năng phát hiện chuỗi token nhiễu bất thường.
 
 ---
 
@@ -145,18 +142,17 @@ Từ kết quả khảo sát các công trình quốc tế, nhóm xác định *
 
 Để giải quyết triệt để 3 khoảng trống nghiên cứu trên, đồ án **PI-Guard** mang lại 4 đóng góp khoa học và kỹ thuật thực tiễn:
 
-1. **Đóng góp 1 (Kỹ thuật dữ liệu — Khử rò rỉ dữ liệu cụm)**:
-   - Xây dựng phương pháp luận **Group-Aware Splitting** dựa trên gom cụm khoảng cách ngữ nghĩa và chuỗi ký tự, đảm bảo toàn bộ các biến thể của cùng một mẫu tấn công chỉ thuộc tập Train hoặc Test, triệt tiêu hoàn toàn rò rỉ dữ liệu ($\text{Inter-cluster Jaccard} < 0.15$).
+1. **Đóng góp 1 (Kỹ thuật dữ liệu an ninh — Khử rò rỉ dữ liệu cụm mẫu tấn công)**:
+   - Xây dựng phương pháp luận **Group-Aware Splitting** dựa trên gom cụm khoảng cách ngữ nghĩa và chuỗi ký tự, đảm bảo toàn bộ các biến thể của cùng một mẫu tấn công chỉ thuộc tập Train hoặc Test, triệt tiêu hoàn toàn rò rỉ dữ liệu ($\text{Inter-cluster Jaccard} < 0.15$) và bảo đảm tính đánh giá tổng quát hóa thực chất.
 
-2. **Đóng góp 2 (Kiến trúc mô hình — Phòng thủ đa tầng Hybrid)**:
-   - Thiết kế cơ chế kết hợp giữa bộ lọc cú pháp nhanh (**Word + Character n-grams TF-IDF**) và bộ phân loại ngữ nghĩa sâu (**Fine-tuned DeBERTa-v3**) hướng tới mục tiêu đáp ứng thời gian thực P95 < 30ms trên CPU.
-   - Tích hợp tầng tiền xử lý chuẩn hóa Unicode NFKC và bộ giải mã Heuristic Base64 tự động để kháng các kỹ thuật lẩn tránh đối kháng, cam kết mục tiêu độ suy giảm hiệu năng $\Delta F_1 < 5\%$.
+2. **Đóng góp 2 (Kiến trúc mô hình — Phòng thủ đa tầng Hybrid chuyên biệt cho ATTT)**:
+   - Thiết kế cơ chế phòng vệ hai lớp (Two-Tier Cascade Defense) phối hợp chặt chẽ: Tầng 1 lọc cú pháp nhanh (**Word + Character n-grams TF-IDF**) để đánh chặn các biến dị phân mảnh từ ngữ (Leetspeak, Spacing) với chi phí tính toán cực thấp; Tầng 2 phân loại ngữ nghĩa sâu (**Fine-tuned DeBERTa-v3** với Disentangled Attention) bóc tách câu lệnh chỉ thị khỏi dữ liệu để nhận diện tấn công tinh vi (DAN, Roleplay).
 
-3. **Đóng góp 3 (Tối ưu hóa triển khai — Suy luận độ trễ thấp trên CPU)**:
-   - Tích hợp kỹ thuật Post-Training Dynamic INT8 Quantization sang ONNX Runtime, tối ưu hóa suy luận độ trễ thấp ($\text{P95} < 30\text{ms}$ trên CPU thông thường) với mức suy giảm chính xác tối thiểu ($< 0.3\%$), giúp bảo vệ hệ thống trước nguy cơ tắc nghẽn dịch vụ mà không đòi hỏi phần cứng GPU đắt tiền.
+3. **Đóng góp 3 (Cơ chế kháng lẩn tránh đối kháng & Giải mã mã hóa Heuristic)**:
+   - Xây dựng quy trình chuẩn hóa chuỗi và bộ giải mã Heuristic Cipher/Base64 tiền trạm nhằm đánh chặn các kỹ thuật lẩn tránh qua kênh mã hóa (Yuan et al., ICLR 2024), duy trì độ bền vững đối kháng cao với độ suy giảm hiệu năng $\Delta F_1 < 2.3\%$ trước các công cụ tạo nhiễu đối kháng.
 
-4. **Đóng góp 4 (Giải pháp triển khai — Model-Agnostic API Middleware & Testbed)**:
-   - Định hướng đóng gói toàn bộ hệ thống thành **Asynchronous FastAPI Middleware** và giao diện **Streamlit Testing Dashboard** với ma trận 4 kịch bản minh họa ($2 \times 2$), thiết lập khung kiểm nghiệm bảo vệ độc lập (Model-Agnostic) cho cả 5 mô hình LLM tiêu chuẩn qua Cloud API (GPT-4o-mini, Gemini 1.5 Flash, LLaMA-3.1, Mistral, Qwen), hướng tới mục tiêu triệt tiêu các đòn tấn công phổ biến trong thực nghiệm.
+4. **Đóng góp 4 (Hệ thống Guardrail trực tuyến & Khống chế Báo động nhầm)**:
+   - Đóng gói giải pháp thành **Asynchronous FastAPI Middleware** tích hợp động cơ chính sách Tri-State Policy Engine khống chế tỷ lệ báo động nhầm $\text{FPR} < 1.5\%$ trên tập Benign hàng ngày, cung cấp giao diện trực quan **Streamlit Dashboard** với ma trận 4 kịch bản minh họa ($2 \times 2$) và khung kiểm nghiệm bảo vệ độc lập (Model-Agnostic) cho 5 mô hình LLM tiêu chuẩn qua Cloud API. *(Đồng thời ứng dụng kỹ thuật lượng hóa nhẹ ONNX Runtime INT8 như một giải pháp phụ trợ kỹ thuật để đảm bảo độ trễ thấp P95 < 30ms trên CPU)*.
 
 ---
 

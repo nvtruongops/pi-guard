@@ -46,7 +46,7 @@ graph TD
   - Thiết kế hàm mất mát có trọng số và thuật toán **Group-Aware Splitting** [[7]](#ref7) trên tập dữ liệu lành tính (Benign Datasets từ OpenAssistant & Alpaca).
   - Áp dụng cơ chế phân vùng 3 mức của Policy Engine: chỉ chặn cứng (`BLOCK`) khi điểm rủi ro $R \ge 0.70$, và đưa vào diện xem xét (`REVIEW`) với $0.35 \le R < 0.70$, cam kết khống chế tỷ lệ chặn nhầm $\text{FPR} < 1.5\%$.
 
-### 2. Đánh Đổi 2: Độ Phức Tạp Ngữ Nghĩa vs. Độ Trễ Thời Gian Thực (Latency Overhead)
+### 2. Đánh Đổi 2: Độ Phức Tạp Ngữ Nghĩa vs. Độ Trễ Xử Lý Trực Tuyến (Low-Latency Overhead)
 - **Vấn đề**: Các cuộc tấn công Jailbreak tinh vi (như DAN, Roleplay, Kịch bản đạo đức đối lập) đòi hỏi mô hình phải hiểu được ngữ nghĩa trừu tượng nhiều tầng. Tuy nhiên, nếu dùng LLM lớn (như Llama Guard 3 8B) làm chốt chặn, độ trễ phát sinh $> 850\text{ms}$ sẽ làm tăng gấp đôi thời gian phản hồi của ứng dụng, gây nghẽn nghiêm trọng khi hệ thống có hàng nghìn người dùng đồng thời.
 - **Giải pháp của PI-Guard — Cơ Chế Early-Exit 2 Tầng**:
   - **Tầng 1 (Fast Gate - TF-IDF Char n-grams)**: Tiếp nhận toàn bộ lưu lượng truy cập. Đối với các câu hỏi thông thường rõ ràng (chiếm khoảng $85\%$ traffic), mô hình tuyến tính đưa ra kết luận tức thì với độ trễ chỉ $\approx 2.5\text{ms}$.

@@ -39,7 +39,7 @@ The defense architecture adopts a hybrid multi-tiered approach: (1) a lightweigh
 
 The primary deliverables of this capstone project include a curated, deduplicated dataset with Group-Aware Splitting to eliminate data leakage, a high-throughput asynchronous FastAPI middleware, a 4-scenario live demonstration matrix ($2 \times 2$), an interactive Streamlit testing dashboard, and comprehensive empirical benchmarks targeting $F_1 \ge 0.95$, False Positive Rate (FPR) $< 1.5\%$, and P95 latency $< 30\text{ ms}$ on commodity CPU hardware.
 
-**Keywords**: _Large Language Models (LLMs)_, _Prompt Injection_, _Jailbreak Defense_, _Machine Learning Guardrail_, _DeBERTa-v3_, _Disentangled Attention_, _ONNX INT8 Quantization_, _Adversarial Robustness_, _False Positive Rate (FPR)_, _Asynchronous Middleware_.
+**Keywords**: _Large Language Models (LLMs)_, _Prompt Injection_, _Jailbreak Defense_, _Machine Learning Guardrail_, _DeBERTa-v3_, _Disentangled Attention_, _Multi-Tier Defense_, _Adversarial Robustness_, _False Positive Rate (FPR)_, _Asynchronous Middleware_.
 
 ---
 
@@ -107,7 +107,7 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 1. **Bộ dữ liệu chuẩn hóa**: Xây dựng tập dữ liệu đa nguồn (Deepset, Gandalf, In-The-Wild, Benign) áp dụng thuật toán _Group-Aware Splitting_ chống rò rỉ dữ liệu.
 2. **Mô hình học máy kép**: Phát triển mô hình Baseline ML (Word/Char TF-IDF) và mô hình Transformer tinh chỉnh (`microsoft/deberta-v3-base` Disentangled Attention).
 3. **Độ bền trước lẩn tránh cú pháp**: Xây dựng cơ chế chuẩn hóa chuỗi và bộ kiểm thử độ bền (Adversarial Robustness Testing Suite) kháng Leetspeak, Base64, Spacing.
-4. **Lượng hóa tăng tốc**: Áp dụng Post-Training Dynamic INT8 Quantization (ONNX Runtime) để chạy mượt trên CPU thông thường.
+4. **Tối ưu hóa triển khai thực tế**: Ứng dụng kỹ thuật lượng hóa nhẹ (Post-Training Dynamic INT8 Quantization với ONNX Runtime) như một giải pháp phụ trợ kỹ thuật, đảm bảo Guardrail vận hành hiệu quả trên hạ tầng CPU tiêu chuẩn với độ trễ thấp.
 5. **Hạ tầng API & Dashboard**: Xây dựng Asynchronous Middleware (FastAPI) và Dashboard kiểm thử trực quan (Streamlit) với ma trận 4 kịch bản demo.
 
 ### 1.3.3. Hệ Thống 3 Câu Hỏi Nghiên Cứu Cốt Lõi & Khoảng Trống Học Thuật:
@@ -494,13 +494,13 @@ Nhóm nghiên cứu khẳng định: **Đây là sự kết tinh của quá trì
    - Các nghiên cứu đối kháng mới nhất như **Hackett et al. (arXiv:2504.11168, 2025)** và **Jain et al. (Univ of Maryland, 2023)** đã chỉ ra một điểm mù nguy hiểm của các mô hình Transformer phân tách từ con (Subword/BPE): Khi kẻ tấn công dùng kỹ thuật phân mảnh token (*Token Fragmentation*) hoặc chèn ký tự leetspeak (`1gn0r3`), khoảng trắng (`i g n o r e`), bộ tách từ BPE bị vỡ vụn thành các token lạ, khiến mô hình Transformer lớn có thể bị lẩn tránh (Evasion).
    - Ngược lại, **Bộ lọc cú pháp Hybrid Character n-grams (`char_wb`, n in [3, 5])** bóc tách `1gn0r3` thành `['1gn', 'gn0', 'n0r', '0r3']`. Các vector con này trùng khớp cao với vector mẫu tấn công, cho phép đánh chặn ngay lập tức trên CPU với **0 MB VRAM**.
    - Tuy nhiên, nếu chỉ dùng một mình TF-IDF, tỷ lệ báo động nhầm (FPR) sẽ rất cao (từ 7% đến 33% theo các nghiên cứu độc lập) khi gặp các câu hỏi lập trình lành tính có chứa từ khóa nhạy cảm.
-   - Do đó, **Kiến trúc phòng thủ kết hợp 2 mô hình (TF-IDF Baseline lọc nhanh + DeBERTa-v3 ONNX INT8 phân loại sâu với mục tiêu thiết kế độ trễ P95 < 30ms trên CPU)** là sự phối hợp chặt chẽ: Tầng 1 lọc thô cú pháp nhanh, Tầng 2 phân loại ngữ nghĩa sâu, triệt tiêu báo động nhầm.
+   - Do đó, **Kiến trúc phòng thủ kết hợp 2 mô hình (TF-IDF Baseline lọc nhanh + DeBERTa-v3 phân loại sâu với mục tiêu thiết kế độ trễ P95 < 30ms trên CPU)** là sự phối hợp chặt chẽ: Tầng 1 lọc thô cú pháp nhanh, Tầng 2 phân loại ngữ nghĩa sâu, triệt tiêu báo động nhầm.
 
 ### 6.1.2. Ma Trận Đối So Sánh Các Trường Phái Guardrail & Luận Giải Lựa Chọn Mô Hình
 
-| Tiêu chí Đồ án PI-Guard | Mục tiêu Thiết Kế (Register & Proposal) | Regex / Rules Tĩnh (Y văn) | Classical TF-IDF Baseline (Y văn) | LLM-as-a-Judge Llama Guard (Y văn) | **PI-Guard Đề Xuất (TF-IDF + DeBERTa-v3 INT8)** | Đánh Giá Phù Hợp Mục Tiêu Đồ Án |
+| Tiêu chí Đồ án PI-Guard | Mục tiêu Thiết Kế (Register & Proposal) | Regex / Rules Tĩnh (Y văn) | Classical TF-IDF Baseline (Y văn) | LLM-as-a-Judge Llama Guard (Y văn) | **PI-Guard Đề Xuất (TF-IDF + DeBERTa-v3)** | Đánh Giá Phù Hợp Mục Tiêu Đồ Án |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **1. Độ trễ P95 (CPU Inference)** | **< 30 ms** (Zero GPU Production) | < 1 ms | ~3.2 ms | > 500 ms – 1.5s (Quá cao) | **Mục tiêu < 30 ms (INT8 ONNX)** | ✅ **PHÙ HỢP HOÀN TOÀN** (Tối ưu cho CPU tiêu chuẩn) |
+| **1. Độ trễ P95 (CPU Inference)** | **< 30 ms** (Zero GPU Production) | < 1 ms | ~3.2 ms | > 500 ms – 1.5s (Quá cao) | **Mục tiêu < 30 ms (ONNX INT8 CPU)** | ✅ **PHÙ HỢP HOÀN TOÀN** (Tối ưu cho CPU tiêu chuẩn) |
 | **2. Tỷ lệ Báo động nhầm (FPR)** | **< 1.5%** trên tập Benign hàng ngày | ~12.5% | 2.8% - 7.5% (Dễ bắt nhầm từ khóa) | ~2.1% | **Mục tiêu < 1.5% (Ngưỡng kép)** | ✅ **PHÙ HỢP HOÀN TOÀN** (Bảo toàn trải nghiệm người dùng) |
 | **3. Độ chính xác & F1-Score** | **F1 $\ge$ 0.95** | F1 < 0.50 | F1 ~ 0.918 | F1 ~ 0.945 | **Mục tiêu F1 $\ge$ 0.95** | ✅ **PHÙ HỢP HOÀN TOÀN** (Tiệm cận SOTA ProtectAI) |
 | **4. Độ bền Robustness (Evasion)** | Độ suy giảm $\Delta F_1 < 5\%$ | Giảm > 80% (Bị bypass dễ dàng) | Giảm ~8.5% (Kháng leetspeak/spacing) | Giảm ~15.2% (Bị bypass bởi Base64) | **Mục tiêu $\Delta F_1 < 5\%$** | ✅ **PHÙ HỢP HOÀN TOÀN** (Nhờ 3 tầng phòng thủ phối hợp) |
@@ -515,8 +515,8 @@ Nhóm nghiên cứu khẳng định: **Đây là sự kết tinh của quá trì
 2. **Mô hình Transformer (Supervised Fine-Tuning)**:
    - Tinh chỉnh trên nền tảng `microsoft/deberta-v3-base` [[11]](#ref11) (tương tự kiến trúc Meta Prompt Guard) với tập dữ liệu gộp đã xử lý chống rò rỉ dữ liệu (_Group-Aware Split_).
    - Tối ưu hóa: Hàm mất mát BCEWithLogitsLoss, AdamW optimizer ($lr = 2 \times 10^{-5}$), Warmup ratio = 0.1, Weight Decay = 0.01.
-3. **Lượng hóa động ONNX INT8 (Post-Training Quantization)**:
-   - Lượng hóa động theo nghiên cứu ZeroQuant (NeurIPS 2022) [[14]](#ref14), nén 70% dung lượng (từ ~500MB xuống ~140MB) và tăng tốc trên CPU mà không làm giảm F1 (<0.3% delta).
+3. **Tối ưu hóa thực thi trên CPU (Engineering Note)**:
+   - Ứng dụng kỹ thuật lượng hóa nhẹ Post-Training Dynamic INT8 Quantization sang ONNX Runtime theo nghiên cứu ZeroQuant (NeurIPS 2022) [[14]](#ref14) như một giải pháp phụ trợ kỹ thuật, giúp mô hình nén 70% dung lượng (từ ~500MB xuống ~140MB) và tăng tốc trên CPU mà không làm giảm F1 (<0.3% delta).
 
 ## 6.3. Khảo Sát Y Văn Về Lỗ Hổng Của Các Dòng LLM Phổ Biến & Thiết Kế Khung Thử Nghiệm API (Chapter 4)
 

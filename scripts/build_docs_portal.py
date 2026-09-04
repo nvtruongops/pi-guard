@@ -224,8 +224,6 @@ def aggregate_all():
              SITE_DOCS_DIR / "work" / "meeting_1.md")
     copy_doc(ROOT_DIR / "Meeting" / "Meeting 2_01_09_26.md",
              SITE_DOCS_DIR / "work" / "meeting_2.md")
-    copy_doc(ROOT_DIR / "Meeting" / "PROCESS_REPORT_CHECKLIST.md",
-             SITE_DOCS_DIR / "work" / "process_report_checklist.md")
 
     # 2. Mô hình & Nghiên cứu AI
     # Model Study

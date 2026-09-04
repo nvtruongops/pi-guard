@@ -8,6 +8,20 @@
 
 ---
 
+## ⚖️ KẾT LUẬN THẨM ĐỊNH: BÀI BÁO CÓ DÙNG ĐƯỢC CHO ĐỒ ÁN KHÔNG?
+
+> [!IMPORTANT]
+> **KẾT LUẬN DỨT KHOÁT VỀ ĐỊNH HƯỚNG MÔ HÌNH**:
+> 1. **Về việc lựa chọn mô hình**: **TUYỆT ĐỐI TUÂN THỦ 2 MÔ HÌNH ĐÃ ĐĂNG KÝ TRONG [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md)**:
+>    - **Mô hình 1 (Classical ML Baseline)**: TF-IDF (Word & Character n-grams) + Linear Classifier (`LogisticRegression` / `LinearSVC`).
+>    - **Mô hình 2 (Deep Learning Transformer)**: Fine-tuned Transformer Encoder (`microsoft/deberta-v3-base` / BERT) lượng hóa ONNX INT8.
+>    - ❌ **KHÔNG KẾ THỪA MÔ HÌNH TỪ TENCENT 2026** vì Tencent 2026 là hệ thống Red-Teaming dùng LLM-as-a-Judge (độ trễ cao >1-3s, tốn GPU/API), không phù hợp với mục tiêu Guardrail inline độ trễ thấp (**P95 < 30ms trên CPU**).
+> 2. **Về giá trị sử dụng của bài báo Tencent 2026**: **CÓ SỬ DỤNG ĐƯỢC**, nhưng **CHỈ SỬ DỤNG CHO 2 MỤC ĐÍCH HỌC THUẬT**:
+>    - ✅ **Threat Model & Attack Surface (Chương 1)**: Kế thừa mô hình phân lớp mối đe dọa để định vị PI-Guard là lớp bảo vệ *Input Guardrail Middleware*.
+>    - ✅ **Adversarial Robustness Testing (Chương 4)**: Kế thừa danh mục 26+ Toán tử Tấn công (Attack Operators - Appendix E) để làm bộ dữ liệu kiểm thử độ bền trước các đòn biến đổi cú pháp (Leetspeak, Base64, Spacing).
+
+---
+
 ## 1. Tóm Tắt Cốt Lõi Bài Báo Tencent (AI-Infra-Guard)
 
 Bài báo của Tencent Zhuque Lab giải quyết thách thức bảo mật ngày càng phức tạp của các hệ thống AI Agent và LLM. Bài báo đưa ra một luận điểm mang tính nền tảng:

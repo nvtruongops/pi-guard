@@ -16,7 +16,7 @@ Trong an ninh mạng và học máy, *"No-Free-Lunch Theorem"* chỉ ra rằng k
                  ┌───────────────────────┴───────────────────────┐
                  ▼                                               ▼
      [ ĐỘ TRỄ VẬN HÀNH ]                             [ NĂNG LỰC HIỂU NGỮ NGHĨA ]
-  (Latency < 30ms cho Real-time API)             (Semantic Understanding - Roleplay, DAN)
+  (Độ trễ thấp < 30ms cho Inline API)             (Semantic Understanding - Roleplay, DAN)
                  │                                               │
                  └───────────────────────┬───────────────────────┘
                                          │

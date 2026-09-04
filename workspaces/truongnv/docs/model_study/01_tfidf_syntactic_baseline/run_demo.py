@@ -63,7 +63,7 @@ def main():
         ("Truy vấn công việc thông thường:", "Calculate the compound interest for 5 years.")
     ]
 
-    print("\n[2] KIỂM THỬ THỜI GIAN THỰC & ĐỘ TRỄ SUY LUẬN (LATENCY BENCHMARK):")
+    print("\n[2] KIỂM THỬ ĐỘ TRỄ SUY LUẬN (INFERENCE LATENCY BENCHMARK):")
     print("-" * 70)
 
     for desc, prompt in test_cases:
