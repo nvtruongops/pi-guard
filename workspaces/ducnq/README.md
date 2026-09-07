@@ -19,6 +19,14 @@
 - Khi hoàn thiện thử nghiệm $\rightarrow$ Trao đổi cùng nhóm trong buổi họp tuần để Leader merge giải pháp tối ưu ra thư mục chung `Final-Report/` (`Final-Report/src/`, `Final-Report/notebooks/`, `Final-Report/thesis/`).
 
 ### 📚 Tài liệu nghiên cứu cục bộ:
-- [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/ducnq/References/REFERENCES_LOG.md): Nhật ký các bài báo khoa học thẩm định trong Meeting 2 và đối chiếu cùng nhóm.
-- Thư mục lưu trữ PDF: [`References/`](file:///d:/Work/Do-an/workspaces/ducnq/References/).
+- [`References/REFERENCES_LOG.md`](file:///d:/DoAn/pi-guard/workspaces/ducnq/References/REFERENCES_LOG.md): Nhật ký các bài báo khoa học thẩm định trong Meeting 2 và đối chiếu cùng nhóm.
+- Thư mục lưu trữ PDF: [`References/`](file:///d:/DoAn/pi-guard/workspaces/ducnq/References/).
 
+---
+
+### 🛡️ Tiến độ hoàn thành (Cột mốc 07/09/2026 — Sẵn sàng Meeting 3 & Báo cáo Tuần):
+- ✅ [`jailguard_mutators.py`](file:///d:/DoAn/pi-guard/workspaces/ducnq/jailguard_mutators.py): Bộ toán tử đột biến đối kháng JailGuard (Targeted Mutators theo Zhang et al., TOSEM 2025: Leetspeak, Spacing, Base64 Smuggling, Zero-Width, Homoglyphs, Chained Composite).
+- ✅ [`adversarial_robustness_suite.py`](file:///d:/DoAn/pi-guard/workspaces/ducnq/adversarial_robustness_suite.py): Khung kiểm thử đối kháng đa lát cắt (10 test slices) đo đạc TPR, FPR, Evasion Rate và độ suy giảm $\Delta F_1$.
+- ✅ [`scratch_baseline_robustness_eval.py`](file:///d:/DoAn/pi-guard/workspaces/ducnq/scratch_baseline_robustness_eval.py): Kịch bản thực nghiệm đối sánh giữa Word-level TF-IDF và Character Normalization Baseline.
+- ✅ [`test_adversarial_suite.py`](file:///d:/DoAn/pi-guard/workspaces/ducnq/test_adversarial_suite.py): Unit test toàn diện kiểm tra tính xác thực của bộ biến dị và tính toán số liệu.
+- ✅ [`notes_adversarial_robustness_07_09.md`](file:///d:/DoAn/pi-guard/workspaces/ducnq/notes_adversarial_robustness_07_09.md): Báo cáo thực nghiệm học thuật chuẩn bị cho Meeting 3 và luận văn Chapter 2 & Chapter 3.
