@@ -1,10 +1,38 @@
 # THƯ MỤC JUPYTER NOTEBOOKS THỰC NGHIỆM (REPRODUCIBLE EXPERIMENT ROADMAP)
-## 📓 Kế Hoạch 5 Notebooks Thực Nghiệm Tái Lập — Dự Án PI-Guard
+## 📓 Kế Hoạch 5 Notebooks Thực Nghiệm Tái Lập & Tài Nguyên Tương Ứng — Dự Án PI-Guard
 
 > [!NOTE]
 > **TRẠNG THÁI HIỆN TẠI (PHASE 1: REVIEW 1)**:
 > - Dự án hiện đang trong giai đoạn **Review 1 (Tuần 1 – Tuần 4)**: Tập trung vào *Xác định bài toán (Problem Statement)*, *Mô hình hóa mối đe dọa (Threat Modeling)* và *Khảo sát các giải pháp SOTA (Literature Review)*.
-> - Thư mục `notebooks/` này hiện **CHƯA CHẠY CODE** và sẽ được cả 4 thành viên phát triển tuần tự từ **Review 2 (Tuần 5)** và **Báo cáo Hội đồng 1 (Tuần 8 – 12)**.
+> - Các file notebooks chuẩn trong thư mục này sẽ được cả 4 thành viên phát triển và hoàn thiện tuần tự từ **Review 2 (Tuần 5)** và **Báo cáo Hội đồng 1 (Tuần 8 – 12)**.
+
+---
+
+### 📂 CẤU TRÚC THƯ MỤC TÀI NGUYÊN THỰC NGHIỆM (`notebooks/`)
+
+Để tinh gọn tầng gốc repository và gom toàn bộ tài nguyên huấn luyện / thực nghiệm vào một không gian khép kín, thư mục `notebooks/` quản lý trực tiếp 3 phân hệ tài nguyên phục vụ các thí nghiệm:
+
+```
+notebooks/
+├── README.md                      # Kế hoạch thực nghiệm và quy chế vận hành
+├── configs/                       # Cấu hình siêu tham số và pipeline thực nghiệm
+│   ├── data.yaml                  # Cấu hình nguồn dữ liệu, nhãn và group-aware split
+│   ├── evaluation.yaml            # Ngưỡng chặn an toàn, lát cắt đối kháng và latency budget
+│   ├── models.yaml                # Cấu hình kiến trúc Baseline và DeBERTa-v3
+│   └── training.yaml              # Hyperparameters huấn luyện (LR, epochs, batch size)
+├── data/                          # Kho dữ liệu thực nghiệm tái lập (Datasets)
+│   ├── augmentation/              # Dữ liệu tăng cường (Obfuscation, Leetspeak, DAN)
+│   ├── benchmarks/                # Dữ liệu đối chuẩn bảo mật SOTA
+│   ├── interim/                   # Dữ liệu trung gian sau tiền xử lý
+│   ├── manifests/                 # Tệp JSON manifest kiểm kê nguồn gốc dữ liệu
+│   ├── processed/                 # Dữ liệu sạch đã chuẩn hóa và loại bỏ trùng lặp
+│   ├── raw/                       # Dữ liệu thô tải từ Hugging Face
+│   └── splits/                    # Phân chia dữ liệu (train.csv, val.csv, test.csv)
+└── models/                        # Trọng số và artifact mô hình sau huấn luyện
+    ├── baseline/                  # Checkpoint TF-IDF + Logistic Regression/SVM (.joblib)
+    ├── onnx/                      # Mô hình lượng hóa INT8 ONNX Engine (P95 < 18.5ms)
+    └── transformer/               # Trọng số PyTorch DeBERTa-v3 fine-tuned
+```
 
 ---
 

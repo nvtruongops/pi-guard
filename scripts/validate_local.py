@@ -125,7 +125,7 @@ def step_validate_manifests(staged_only: bool = False) -> Tuple[bool, str]:
                     if p.exists():
                         manifest_files.append(p)
     else:
-        root_manifests = glob.glob(str(ROOT_DIR / "data" / "manifests" / "*.json"))
+        root_manifests = glob.glob(str(ROOT_DIR / "notebooks" / "data" / "manifests" / "*.json")) + glob.glob(str(ROOT_DIR / "data" / "manifests" / "*.json"))
         ws_manifests = glob.glob(str(ROOT_DIR / "workspaces" / "*" / "data" / "manifests" / "*.json"))
         manifest_files = [Path(f) for f in root_manifests + ws_manifests]
 

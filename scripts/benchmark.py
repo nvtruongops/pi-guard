@@ -14,11 +14,13 @@ from src.utils.logger import get_logger
 logger = get_logger("pi_guard.benchmark")
 
 def run_adversarial_benchmarks(
-    model_path: str = "models/baseline/baseline_tfidf.joblib",
+    model_path: str = "notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models") else "models/baseline/baseline_tfidf.joblib",
     adversarial_dir: str = "tests/adversarial",
     output_report: str = "reports/experiment_reports/adversarial_benchmark.json",
     use_mock: bool = False
 ):
+    if not os.path.exists(model_path) and os.path.exists(os.path.join("notebooks", model_path)):
+        model_path = os.path.join("notebooks", model_path)
     os.makedirs(os.path.dirname(output_report), exist_ok=True)
 
     if use_mock or not os.path.exists(model_path):

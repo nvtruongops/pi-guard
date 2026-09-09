@@ -18,10 +18,15 @@ from src.utils.logger import get_logger
 logger = get_logger("pi_guard.train")
 
 def train_baseline(
-    splits_dir: str = "data/splits",
-    config_path: str = "configs/training.yaml",
-    output_model_path: str = "models/baseline/baseline_tfidf.joblib"
+    splits_dir: str = "notebooks/data/splits" if os.path.exists("notebooks/data/splits") else "data/splits",
+    config_path: str = "notebooks/configs/training.yaml" if os.path.exists("notebooks/configs/training.yaml") else "configs/training.yaml",
+    output_model_path: str = "notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models") else "models/baseline/baseline_tfidf.joblib"
 ):
+    if not os.path.exists(splits_dir) and os.path.exists(os.path.join("notebooks", splits_dir)):
+        splits_dir = os.path.join("notebooks", splits_dir)
+    if not os.path.exists(os.path.dirname(output_model_path)) and os.path.exists(os.path.join("notebooks", os.path.dirname(output_model_path))):
+        output_model_path = os.path.join("notebooks", output_model_path)
+
     train_path = os.path.join(splits_dir, "train.csv")
     val_path = os.path.join(splits_dir, "val.csv")
 

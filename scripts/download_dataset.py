@@ -12,7 +12,12 @@ from src.utils.logger import get_logger
 
 logger = get_logger("pi_guard.download")
 
-def download_and_merge(config_path: str = "configs/data.yaml", output_path: str = "data/raw/combined_raw.csv"):
+def download_and_merge(
+    config_path: str = "notebooks/configs/data.yaml" if os.path.exists("notebooks/configs") else "configs/data.yaml",
+    output_path: str = "notebooks/data/raw/combined_raw.csv" if os.path.exists("notebooks/data") else "data/raw/combined_raw.csv"
+):
+    if not os.path.exists(os.path.dirname(output_path)) and os.path.exists(os.path.join("notebooks", os.path.dirname(output_path))):
+        output_path = os.path.join("notebooks", output_path)
     config = load_yaml_config(config_path)
     records = []
     

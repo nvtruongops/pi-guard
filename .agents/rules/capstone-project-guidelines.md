@@ -111,15 +111,17 @@ d:/Work/Do-an/
 │   ├── mcp_config.json          # Workspace MCP servers (arxiv, jupyter, search, playwright, memory)
 │   ├── rules/                   # Project guidelines & agent behavior rules
 │   └── skills/                  # Domain-specific Agent Skills
-├── data/                        # Datasets (raw, processed, splits, adversarial_tests)
-├── notebooks/                   # Jupyter Notebooks for exploration and training
+├── notebooks/                   # Jupyter Notebooks thực nghiệm tái lập & tài nguyên đi kèm
+│   ├── configs/                 # Cấu hình YAML (data, training, evaluation, models)
+│   ├── data/                    # Datasets (raw, interim, processed, splits, manifests)
+│   └── models/                  # Trọng số mô hình (.joblib, PyTorch checkpoints, ONNX)
 ├── src/
 │   ├── preprocessing/           # Cleaners, normalizers, and obfuscation generators
 │   ├── models/                  # ML baseline and Transformer inference wrappers
 │   ├── api/                     # FastAPI guardrail service and LLM proxy
 │   ├── dashboard/               # Streamlit interactive testing & metrics dashboard
 │   └── evaluation/              # Benchmark scripts, metrics calculators, and latency profiler
-├── models/                      # Saved trained models (.joblib, PyTorch checkpoints, ONNX)
+├── reports/                     # Báo cáo tiến độ, slides, figures & bảng biểu thực nghiệm
 ├── Meeting/                     # Meeting minutes and supervisor notes
 ├── References/                  # Academic papers, PDFs, and literature references
 ├── requirements.txt             # Python dependencies

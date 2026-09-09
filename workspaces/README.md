@@ -6,15 +6,13 @@ Khi bạn thử nghiệm thành công, kết quả chuẩn hóa sẽ được ch
 
 ```
 d:/Work/Do-an/
-├── data/                          # [CHUNG] Dữ liệu chuẩn thức của cả nhóm (raw, processed, splits)
+├── notebooks/                     # [CHUNG] Thực nghiệm tái lập (01_eda..05_errors, configs/, data/, models/)
+│   ├── configs/                   # Siêu tham số và cấu hình pipeline
+│   ├── data/                      # Dữ liệu chuẩn thức của cả nhóm (raw, processed, splits)
+│   └── models/                    # Trọng số mô hình sau huấn luyện (baseline, onnx, transformer)
 ├── src/                           # [CHUNG] Mã nguồn sản phẩm chính thức (API, Models, Preprocessing)
-├── notebooks/                     # [CHUNG] 5 Jupyter Notebooks chuẩn hóa, có thể chạy tái lập (Reproducible)
-│   ├── 01_dataset_analysis.ipynb
-│   ├── 02_baseline.ipynb
-│   ├── 03_transformer_training.ipynb
-│   ├── 04_ablation.ipynb
-│   └── 05_error_analysis.ipynb
-├── experiments/                   # [CHUNG] Kết quả đo đạc chính thức nhúng vào Luận văn (runs, metrics, plots)
+├── reports/                       # [CHUNG] Báo cáo tiến độ, slides, figures, tables & kết quả thực nghiệm
+├── References/                    # [CHUNG] 18 bài báo khoa học chuẩn (PDF) & REFERENCES_LOG.md
 │
 └── workspaces/                    # [RIÊNG] Không gian thử nghiệm nháp cá nhân của 4 bạn
     ├── truongnv/                  # • Trường (Leader): Thử nghiệm cào data, thuật toán split, EDA nháp & điều phối

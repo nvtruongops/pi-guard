@@ -160,9 +160,10 @@ mkdocs serve   # Truy cập tại: http://127.0.0.1:8000
 d:/Work/Do-an/
 ├── .agents/                 # AI Pair Programming Environment (MCP, Skills, Rules)
 ├── .github/CODEOWNERS       # Collective Code Ownership & PR Review Governance
-├── configs/                 # YAML configurations (data, training, evaluation, models)
-├── data/                    # Datasets (raw, interim, processed, splits, manifests)
-├── notebooks/               # 01_eda, 02_baseline, 03_transformer, 04_ablation, 05_errors
+├── notebooks/               # Thực nghiệm tái lập (01_eda..05_errors, configs/, data/, models/)
+│   ├── configs/             # YAML configurations (data, training, evaluation, models)
+│   ├── data/                # Datasets (raw, interim, processed, splits, manifests)
+│   └── models/              # Trained checkpoints (baseline, transformer, onnx)
 ├── src/
 │   ├── preprocessing/       # Normalization & synthetic obfuscation generators
 │   ├── datasets/            # Dataset loaders & group-aware splitters
@@ -177,6 +178,10 @@ d:/Work/Do-an/
 │   ├── integration/         # API endpoint integration tests
 │   └── adversarial/         # Direct, indirect, jailbreak, leetspeak, base64 slices
 ├── reports/                 # Evaluation figures, tables, and metric reports
+│   ├── figures/             # Visual assets organized by presentation (e.g. PI-GUARD-Present-109/)
+│   ├── tables/              # Markdown & LaTeX comparison tables
+│   └── experiment_reports/  # JSON benchmarks & ablation metrics
+├── References/              # 18 Verified academic research papers (PDF) & REFERENCES_LOG.md
 ├── docs/                    # Architecture, methodology, attack studies, and thesis documentation
 ├── scripts/                 # Local QA suite (validate_local.py, audit_workspace_boundaries.py, build_docs_portal.py)
 └── workspaces/              # Individual sandboxes for 4 members (Parallel Full-Pipeline Exploration)

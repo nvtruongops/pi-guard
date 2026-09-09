@@ -15,10 +15,15 @@ from src.utils.logger import get_logger
 logger = get_logger("pi_guard.preprocess")
 
 def preprocess_and_split(
-    input_path: str = "data/raw/combined_raw.csv",
-    splits_dir: str = "data/splits",
-    config_path: str = "configs/data.yaml"
+    input_path: str = "notebooks/data/raw/combined_raw.csv" if os.path.exists("notebooks/data/raw") else "data/raw/combined_raw.csv",
+    splits_dir: str = "notebooks/data/splits" if os.path.exists("notebooks/data/splits") else "data/splits",
+    config_path: str = "notebooks/configs/data.yaml" if os.path.exists("notebooks/configs/data.yaml") else "configs/data.yaml"
 ):
+    if not os.path.exists(input_path) and os.path.exists(os.path.join("notebooks", input_path)):
+        input_path = os.path.join("notebooks", input_path)
+    if not os.path.exists(splits_dir) and os.path.exists(os.path.join("notebooks", splits_dir)):
+        splits_dir = os.path.join("notebooks", splits_dir)
+
     if not os.path.exists(input_path):
         logger.error(f"Input file not found: {input_path}. Please run download_dataset.py first.")
         return

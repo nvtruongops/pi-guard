@@ -14,10 +14,15 @@ from src.utils.logger import get_logger
 logger = get_logger("pi_guard.evaluate")
 
 def evaluate_model(
-    model_path: str = "models/baseline/baseline_tfidf.joblib",
-    test_path: str = "data/splits/test.csv",
+    model_path: str = "notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models") else "models/baseline/baseline_tfidf.joblib",
+    test_path: str = "notebooks/data/splits/test.csv" if os.path.exists("notebooks/data/splits") else "data/splits/test.csv",
     output_report_path: str = "reports/experiment_reports/baseline_test_metrics.json"
 ):
+    if not os.path.exists(model_path) and os.path.exists(os.path.join("notebooks", model_path)):
+        model_path = os.path.join("notebooks", model_path)
+    if not os.path.exists(test_path) and os.path.exists(os.path.join("notebooks", test_path)):
+        test_path = os.path.join("notebooks", test_path)
+
     if not os.path.exists(model_path) or not os.path.exists(test_path):
         logger.error("Model or test split not found. Ensure training has completed.")
         return
