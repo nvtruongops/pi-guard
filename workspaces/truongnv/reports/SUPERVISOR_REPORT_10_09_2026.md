@@ -8,7 +8,6 @@
 > **TÀI LIỆU TRÌNH CHIẾU BÁO CÁO TIẾN ĐỘ VỚI GVHD**:
 > - File slide thuyết trình chính thức đã hoàn thiện và đồng bộ tại thư mục báo cáo chung: [`reports/PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/reports/PI-GUARD-Present-109.pptx) (22 slides, chuẩn 16:9, Dark Navy Aesthetic, 100% Academic Grounding).
 > - **LƯU Ý VỀ MỤC ĐÍCH SỬ DỤNG**: Bộ slide này được biên soạn chuyên biệt phục vụ **BUỔI GẶP BÁO CÁO TIẾN ĐỘ ĐỊNH KỲ VỚI GIÁO VIÊN HƯỚNG DẪN (GVHD) VÀO NGÀY 10/09/2026** nhằm báo cáo tiến độ khảo sát Y văn, cơ sở lý thuyết lựa chọn mô hình và kiến trúc đề xuất, đồng thời xin ý kiến góp ý, định hướng của Thầy trước khi bắt tay vào triển khai thực nghiệm.
-> - **ĐÂY KHÔNG PHẢI LÀ SLIDE BÁO CÁO REVIEW 1 TRƯỚC HỘI ĐỒNG**: Buổi bảo vệ Review 1 trước Hội đồng FPT University sẽ diễn ra ở cột mốc sau theo lịch đào tạo của Nhà trường. Slide báo cáo Review 1 chính thức sẽ được nhóm hoàn thiện và đóng gói riêng sau khi tiếp thu và hoàn thiện theo các góp ý của GVHD tại buổi gặp này.
 > - File tài liệu này đóng vai trò là đề cương chi tiết (Briefing & Speaking Script) phục vụ buổi báo cáo trực tiếp với GVHD vào ngày 10/09/2026.
 
 ---
@@ -187,7 +186,20 @@ Hệ thống slide được chia làm 3 phần nội dung logic chặt chẽ (Sl
 
 ---
 
-## 💡 III. BỘ CÂU HỎI THƯỜNG GẶP (FAQ) DỰ KIẾN TỪ GVHD & CÁCH TRẢ LỜI
+## 📚 III. TÀI LIỆU THAM KHẢO TRÍCH DẪN TRONG SLIDE (REFERENCES)
+
+- <a id="ref1"></a>**[1]** F. Perez and I. Ribeiro, *"Ignore Previous Prompt: Attack Techniques For Language Models,"* in *NeurIPS ML Safety Workshop*, 2022. [arXiv:2211.09527](https://arxiv.org/abs/2211.09527).
+- <a id="ref2"></a>**[2]** X. Shen, Z. Chen, M. Backes, Y. Shen, and Y. Zhang, *"\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models,"* in *Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (ACM CCS '24)*, 2024, pp. 4172–4186. DOI: 10.1145/3658644.3670390. [PDF Open-Access](https://arxiv.org/abs/2308.03825).
+- <a id="ref3"></a>**[3]** K. Greshake, S. Abdelnabi, S. Mishra, C. Endres, T. Holz, and M. Fritz, *"Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection,"* in *Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (ACM AISec '23)*, 2023, pp. 79–90. DOI: 10.1145/3605764.3623982. [PDF Open-Access](https://arxiv.org/abs/2302.12173).
+- <a id="ref4"></a>**[4]** Tencent Zhuque Lab, *"AI-Infra-Guard: Multi-Layer Attack Surface and Defense Framework for AI Agents,"* *Tencent Security Technical Report*, 2026. [arXiv:2606.31227](https://arxiv.org/abs/2606.31227).
+- <a id="ref5"></a>**[5]** N. Jain, A. Schwarzschild, Y. Wen, G. Thattai, J. Thickstun, and T. Goldstein, *"Baseline Defenses for Adversarial Attacks Against Aligned Language Models,"* *arXiv preprint arXiv:2309.00614*, 2023. [arXiv:2309.00614](https://arxiv.org/abs/2309.00614).
+- <a id="ref6"></a>**[6]** P. He, X. Liu, J. Gao, and W. Chen, *"DeBERTa: Decoding-enhanced BERT with Disentangled Attention,"* in *International Conference on Learning Representations (ICLR)*, 2021/2023. [arXiv:2006.03654](https://arxiv.org/abs/2006.03654).
+- <a id="ref7"></a>**[7]** Z. Yao, R. Y. Aminabadi, M. Zhang, X. Wu, C. Li, and Y. He, *"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers,"* in *Advances in Neural Information Processing Systems (NeurIPS)*, vol. 35, 2022, pp. 27168–27183. [arXiv:2206.01861](https://arxiv.org/abs/2206.01861).
+- <a id="ref8"></a>**[8]** J. H. Saltzer and M. D. Schroeder, *"The Protection of Information in Computer Systems,"* in *Proceedings of the IEEE*, vol. 63, no. 9, pp. 1278–1308, Sept. 1975. DOI: 10.1109/PROC.1975.9939. [IEEE Xplore Open-Access](https://web.mit.edu/Saltzer/www/publications/protection/).
+
+---
+
+## 💡 IV. BỘ CÂU HỎI THƯỜNG GẶP (FAQ) DỰ KIẾN TỪ GVHD & CÁCH TRẢ LỜI
 
 ### Câu 1: Tại sao không dùng luôn Llama Guard 3 hay NeMo Guardrails có sẵn của Meta/NVIDIA?
 > **Trả lời**: Llama Guard 3 là mô hình sinh generative 8B tham số, đòi hỏi tối thiểu GPU VRAM $>16\text{GB}$ và độ trễ suy luận dao động từ $500\text{ms} - 1.5\text{s}$ cho mỗi câu hỏi. Điều này tạo ra "điểm nghẽn chi phí và độ trễ" không thể chấp nhận được đối với các ứng dụng trực tuyến cần phản hồi tức thì. PI-Guard sử dụng kiến trúc phân loại Encoder (DeBERTa-v3) tối ưu hóa ONNX INT8, chạy trực tiếp trên CPU phổ thông với độ trễ P95 $< 22\text{ms}$ và chi phí phần cứng bằng $0$ (Zero-GPU).
@@ -200,16 +212,3 @@ Hệ thống slide được chia làm 3 phần nội dung logic chặt chẽ (Sl
 
 ### Câu 3: Làm thế nào để giải quyết vấn đề "Dương tính giả" (FPR) khi người dùng hỏi các câu hỏi an ninh mạng hợp lệ?
 > **Trả lời**: Mô hình Tầng 1 (TF-IDF) dựa trên từ khóa nên rất dễ báo động nhầm các câu hỏi như *"Hãy phân tích cơ chế SQL Injection"*. Tuy nhiên, trong kiến trúc PI-Guard, các câu hỏi rơi vào vùng phân vân ($0.15 < P < 0.85$) sẽ được đẩy lên Tầng 2 (DeBERTa-v3). Nhờ cơ chế Disentangled Attention (He et al. [[6]](#ref6)), DeBERTa-v3 hiểu rõ ngữ cảnh truy vấn học thuật chứ không phải câu lệnh chiếm quyền, từ đó hạ tỷ lệ FPR xuống dưới $1.0\%$.
-
----
-
-## 📚 IV. TÀI LIỆU THAM KHẢO TRÍCH DẪN TRONG SLIDE (REFERENCES)
-
-- <a id="ref1"></a>**[1]** F. Perez and I. Ribeiro, *"Ignore Previous Prompt: Attack Techniques For Language Models,"* in *NeurIPS ML Safety Workshop*, 2022. [arXiv:2211.09527](https://arxiv.org/abs/2211.09527).
-- <a id="ref2"></a>**[2]** X. Shen, Z. Chen, M. Backes, Y. Shen, and Y. Zhang, *"\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models,"* in *Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (ACM CCS '24)*, 2024, pp. 4172–4186. DOI: 10.1145/3658644.3670390. [PDF Open-Access](https://arxiv.org/abs/2308.03825).
-- <a id="ref3"></a>**[3]** K. Greshake, S. Abdelnabi, S. Mishra, C. Endres, T. Holz, and M. Fritz, *"Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection,"* in *Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (ACM AISec '23)*, 2023, pp. 79–90. DOI: 10.1145/3605764.3623982. [PDF Open-Access](https://arxiv.org/abs/2302.12173).
-- <a id="ref4"></a>**[4]** Tencent Zhuque Lab, *"AI-Infra-Guard: Multi-Layer Attack Surface and Defense Framework for AI Agents,"* *Tencent Security Technical Report*, 2026. [arXiv:2606.31227](https://arxiv.org/abs/2606.31227).
-- <a id="ref5"></a>**[5]** N. Jain, A. Schwarzschild, Y. Wen, G. Thattai, J. Thickstun, and T. Goldstein, *"Baseline Defenses for Adversarial Attacks Against Aligned Language Models,"* *arXiv preprint arXiv:2309.00614*, 2023. [arXiv:2309.00614](https://arxiv.org/abs/2309.00614).
-- <a id="ref6"></a>**[6]** P. He, X. Liu, J. Gao, and W. Chen, *"DeBERTa: Decoding-enhanced BERT with Disentangled Attention,"* in *International Conference on Learning Representations (ICLR)*, 2021/2023. [arXiv:2006.03654](https://arxiv.org/abs/2006.03654).
-- <a id="ref7"></a>**[7]** Z. Yao, R. Y. Aminabadi, M. Zhang, X. Wu, C. Li, and Y. He, *"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers,"* in *Advances in Neural Information Processing Systems (NeurIPS)*, vol. 35, 2022, pp. 27168–27183. [arXiv:2206.01861](https://arxiv.org/abs/2206.01861).
-- <a id="ref8"></a>**[8]** J. H. Saltzer and M. D. Schroeder, *"The Protection of Information in Computer Systems,"* in *Proceedings of the IEEE*, vol. 63, no. 9, pp. 1278–1308, Sept. 1975. DOI: 10.1109/PROC.1975.9939. [IEEE Xplore Open-Access](https://web.mit.edu/Saltzer/www/publications/protection/).

@@ -160,7 +160,7 @@ def generate_report():
             'nv2': 'Thực hiện Supervised Fine-Tuning Transformer và tối ưu hàm mất mát BCEWithLogitsLoss.',
             'nv3': 'Lượng hóa động ONNX INT8 Runtime để tối ưu độ trễ P95 < 30ms trên CPU.',
             'nv4': 'Phụ trách Report No.4 (Experimental and Results - Training & Adversarial Tests).',
-            'w1': 'Khảo sát Mô hình & Phản biện Slide:\n- Tham gia Meeting 1 (29/08), Meeting 2 (01/09) & Meeting 3 (08/09).\n- Thảo luận, phản biện đóng góp ý kiến kỹ thuật cho bộ slide do Trường & Đức biên soạn.\n- Khảo sát RAP-ID, BIPIA và cơ chế Disentangled Attention DeBERTa-v3.',
+            'w1': 'Khảo sát Mô hình & Rà soát Slide:\n- Tham gia Meeting 1 (29/08), Meeting 2 (01/09) & Meeting 3 (08/09).\n- Rà soát toàn bộ bộ slide do Trường & Đức chuẩn bị, thống nhất 100% và không có ý kiến bổ sung.\n- Khảo sát RAP-ID, BIPIA và cơ chế Disentangled Attention DeBERTa-v3.',
             'w2': 'Khảo sát Y văn Guardrail:\n- Đối sánh các trường phái Guardrail.\n- Khảo sát các dòng Target LLMs.\n- Soạn thảo luận giải chọn mô hình.',
             'w3': 'Kịch bản Minh họa Đề bài:\n- Thiết kế ma trận 4 Kịch bản Demo 2x2.\n- Xây dựng luồng tấn công vs đề xuất bảo vệ.\n- Chuẩn bị slide thuyết trình Review 1.',
             'w4': 'BẢO VỆ REVIEW 1 (GVHD):\n- Trình bày Luận giải mô hình & Demo đề bài.\n- Báo cáo cơ sở khoa học DeBERTa-v3.\n- Hoàn thành mốc Review 1.',
@@ -183,7 +183,7 @@ def generate_report():
             'nv2': 'Xây dựng giao diện Dashboard tương tác trực quan bằng Streamlit phục vụ kiểm thử.',
             'nv3': 'Định dạng và biên tập toàn văn Luận văn tốt nghiệp theo chuẩn FPT IAP491.',
             'nv4': 'Phụ trách Report No.5 (Discussion) & Report No.6 (Conclusion & Slide Deck).',
-            'w1': 'Khảo sát Y văn & Phản biện Slide:\n- Tham gia Meeting 1 (29/08), Meeting 2 (01/09) & Meeting 3 (08/09).\n- Thảo luận, phản biện đóng góp ý kiến kỹ thuật cho bộ slide do Trường & Đức biên soạn.\n- Khảo sát Do-Not-Answer và xây dựng cấu trúc 3 câu hỏi nghiên cứu IEEE (RQ1-RQ3).',
+            'w1': 'Khảo sát Y văn & Rà soát Slide:\n- Tham gia Meeting 1 (29/08), Meeting 2 (01/09) & Meeting 3 (08/09).\n- Rà soát toàn bộ bộ slide do Trường & Đức chuẩn bị, thống nhất 100% và không có ý kiến bổ sung.\n- Khảo sát Do-Not-Answer và xây dựng cấu trúc 3 câu hỏi nghiên cứu IEEE (RQ1-RQ3).',
             'w2': 'Research Questions & Gaps:\n- Soạn thảo 3 Câu hỏi IEEE (RQ1-RQ3).\n- Xác định 3 Gaps & 4 Đóng góp mới.\n- Định vị ranh giới In-scope/Out-of-scope.',
             'w3': 'Slide Outline Review 1:\n- Thiết kế bộ slide 9 trang Review 1.\n- Dựng demo UI mô phỏng 4 kịch bản.\n- Soạn kịch bản thuyết trình 15 phút.',
             'w4': 'BẢO VỆ REVIEW 1 (GVHD):\n- Trình bày RQ1-RQ3 & Đóng góp mới.\n- Điều phối trình chiếu slide Review 1.\n- Hoàn thành mốc Review 1.',
@@ -378,8 +378,8 @@ def generate_report():
             '08/09/2026',
             'Trực tuyến qua Discord',
             'Cả 4 thành viên (Trường, Đức, Việt, Phương)',
-            'Đánh giá kết quả nghiên cứu tuần 2 của 4 thành viên; chốt cấu trúc 3 phần và nội dung tạo slide thuyết trình phục vụ buổi gặp báo cáo tiến độ với GVHD ngày 10/09/2026.',
-            'Trường và Đức trực tiếp phụ trách tạo slide, biên soạn nội dung và hoàn thiện toàn bộ bộ Slide 22 trang (PI-GUARD-Present-109.pptx).\nĐầu ra: Meeting 3_08_09_26.md & reports/PI-GUARD-Present-109.pptx.',
+            'Đánh giá kết quả nghiên cứu và thống nhất slide báo cáo tiến độ gặp GVHD ngày 10/09/2026.',
+            'Trường và Đức trực tiếp tạo slide, biên soạn nội dung và hoàn thiện toàn bộ bộ Slide 22 trang (PI-GUARD-Present-109.pptx); Việt và Phương rà soát, thống nhất hoàn toàn và không có ý kiến bổ sung.\nĐầu ra: Meeting 3_08_09_26.md & reports/PI-GUARD-Present-109.pptx.',
             'Hoàn thành (100%)\nMeeting/Meeting 3_08_09_26.md\nreports/PI-GUARD-Present-109.pptx'
         )
     ]
