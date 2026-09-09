@@ -26,27 +26,26 @@ In the **OWASP Top 10 for LLM Applications (2025)**, Prompt Injection (LLM01) is
 > *"Can a hybrid semantic classifier (DeBERTa-v3 + Char/Word TF-IDF) detect diverse prompt injection and jailbreak attacks with a **False Positive Rate (FPR) < 1.5%** on benign prompts while maintaining **P95 inference latency < 30ms** in production environments?"*
 
 ### 4. What Datasets are Used?
-Curated from public benchmarks on Hugging Face and deduplicated with **Group-Aware Splitting** (clustering attack families to prevent data leakage):
-- `deepset/prompt-injections` (Standard benchmark)
-- `jayavibhav/prompt-injection` (Large-scale collection)
+Curated from public benchmarks on Hugging Face and deduplicated with **Group-Aware Splitting** (clustering attack families to prevent data leakage) as specified in [`CAPSTONE PROJECT REGISTER.md`](CAPSTONE%20PROJECT%20REGISTER.md):
+- `deepset/prompt-injections` (Standard benchmark of benign vs. injection prompts)
+- `jayavibhav/prompt-injection` (Large-scale labeled prompt injection collection)
+- `xTRam1/safe-guard-prompt-injection` (Benign vs. injection prompts for guardrail training)
 - `Lakera/gandalf_ignore_instructions` (Real-world Gandalf game user attacks)
 - `TrustAIRLab/in-the-wild-jailbreak-prompts` (Community in-the-wild jailbreaks)
-- `Open-Orca/OpenOrca` (High-quality negative/benign everyday instruction samples)
+- Benign everyday instruction & Q&A prompts from open datasets to balance the negative class.
 
 ### 5. What Models are Compared?
 1. **Classical ML Baseline**: Hybrid Word (1-3) & Char (3-5) n-gram TF-IDF + Logistic Regression / LinearSVC.
 2. **Fine-Tuned Transformer**: `microsoft/deberta-v3-base` with sequence classification head.
-3. **Quantized Production Engine**: DeBERTa-v3 with ONNX INT8 Dynamic Quantization.
+3. **Quantized Production Engine**: DeBERTa-v3 with ONNX INT8 Dynamic Quantization for low-latency CPU inference.
 4. **Reference SOTA**: `ProtectAI/deberta-v3-base-prompt-injection`.
 
-### 6. What are the Comparative Results?
-
-| Model Architecture | Accuracy (%) | Precision | Recall (TPR) | F1-Score | FPR on Benign (%) | P95 Latency (ms) |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **TF-IDF Baseline (Linear)** | 92.4% | 0.912 | 0.925 | 0.918 | 2.8% | **3.2 ms** |
-| **ProtectAI SOTA Baseline** | 97.2% | 0.968 | 0.972 | 0.970 | 1.4% | 29.1 ms |
-| **PI-Guard (DeBERTa-v3 Base)** | **98.1%** | **0.984** | **0.979** | **0.981** | **0.9%** | 28.5 ms |
-| **PI-Guard (ONNX INT8)** | **97.8%** | **0.980** | **0.975** | **0.977** | **1.1%** | **12.8 ms** |
+### 6. What are the Target Evaluation Metrics? (Benchmarking In Progress)
+In accordance with the approved [`CAPSTONE PROJECT REGISTER.md`](CAPSTONE%20PROJECT%20REGISTER.md), PI-Guard is evaluated across four core performance dimensions (full comparative empirical benchmarking scheduled for Review 2 / Milestone 2):
+1. **Detection Performance**: Accuracy, Precision, Recall, and F1-score on held-out test splits. Target F1-Score: **> 0.95**.
+2. **False Positive Rate (FPR) on Benign Prompts**: Minimizing false alarms on legitimate everyday user queries to prevent over-defense. Target FPR: **< 1.5%**.
+3. **Robustness Against Obfuscated Attacks**: Evaluating defense capabilities against evasion transformations (Leetspeak, Base64 encoding, character spacing tricks).
+4. **Low Inference Latency**: Ensuring minimal overhead for inline proxying before target LLMs. Target P95 Latency: **< 30 ms** on multi-core CPU via ONNX INT8.
 
 ---
 
@@ -80,20 +79,23 @@ Curated from public benchmarks on Hugging Face and deduplicated with **Group-Awa
 ## 👥 Collaborative Engineering Paradigm (FPT University)
 
 > **Team Philosophy**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  
-> All 4 members work hands-on across the entire pipeline in parallel (`workspaces/<member>/`), cross-review each other's code and experimental metrics, and converge weekly to select the champion models and documentation merged by the Leader.
+> All 4 members work hands-on across the entire pipeline in parallel sandbox workspaces (`workspaces/<member>/`), cross-review each other's code and experimental metrics, and converge weekly to select champion models and documentation merged by the Leader.
 
-| Member | Student ID | Parallel Exploration | Focus & Focal Modules |
-| :--- | :--- | :--- | :--- |
-| **Nguyễn Văn Trường (Leader)** | SE182034 | Full-Pipeline (`workspaces/truongnv/`) | Architecture, Data Engineering & Repository Governance |
-| **Nguyễn Quí Đức** | SE182087 | Full-Pipeline (`workspaces/ducnq/`) | Classical ML Baseline, Feature Extraction & Threat Model |
-| **Phạm Minh Hoàng Việt** | SE181851 | Full-Pipeline (`workspaces/vietpmh/`) | Transformer Fine-Tuning, Quantization & Robustness Testing |
-| **Đỗ Đoàn Duy Phương** | SE180235 | Full-Pipeline (`workspaces/phuongddd/`) | FastAPI Middleware, Streamlit Dashboard & Thesis Compilation |
+| Student | Full Name | Student Code | Role in Group | Workspace Sandbox |
+| :--- | :--- | :--- | :--- | :--- |
+| **Student 1** | Nguyễn Văn Trường | SE182034 | Leader | [`workspaces/truongnv/`](workspaces/truongnv/) |
+| **Student 2** | Nguyễn Quí Đức | SE182087 | Member | [`workspaces/ducnq/`](workspaces/ducnq/) |
+| **Student 3** | Phạm Minh Hoàng Việt | SE181851 | Member | [`workspaces/vietpmh/`](workspaces/vietpmh/) |
+| **Student 4** | Đỗ Đoàn Duy Phương | SE180235 | Member | [`workspaces/phuongddd/`](workspaces/phuongddd/) |
 
 ---
 
-## 🚀 Quick Start Guide
+## 🚀 Quick Start Guide (Coming Soon — Under Active Development)
 
-### 1. Installation & Environment Setup
+> [!NOTE]
+> The full automated dataset curation, transformer fine-tuning, and production deployment pipeline are currently under active development for **Review 2 (Methodology & Baseline)**. The commands below demonstrate the environment setup and developer preview tools available in the current milestone.
+
+### 1. Environment Setup (Developer Preview)
 ```bash
 # Clone repository
 git clone https://github.com/nvtruongops/pi-guard.git
@@ -108,27 +110,27 @@ pip install -r Final-Report/requirements-dev.txt
 cp Final-Report/.env.example .env
 ```
 
-### 2. Dataset Pipeline & Training
+### 2. Dataset Pipeline & Model Training (Coming Soon — Scheduled for Review 2)
+> [!TIP]
+> The complete end-to-end dataset engineering and model training pipelines are scheduled for Review 2 according to the project roadmap. The planned workflow includes:
+> - **Dataset Collection & Curation**: Merging Hugging Face datasets (`deepset`, `jayavibhav`, `xTRam1`, `Lakera`, `TrustAIRLab`) and benign instruction sets.
+> - **Group-Aware Splitting**: Clustering paraphrased attack families to prevent test-set data leakage.
+> - **Model Training**: Baseline TF-IDF (LinearSVC / LogisticRegression) and Transformer Fine-Tuning (`microsoft/deberta-v3-base`).
+
 ```bash
-# 1. Download & merge Hugging Face datasets
-python Final-Report/scripts/download_dataset.py
-
-# 2. Preprocess & group-aware split (prevents leakage)
-python Final-Report/scripts/preprocess.py
-
-# 3. Train Baseline ML model
-python Final-Report/scripts/train.py --model baseline
-
-# 4. Run Adversarial Robustness Benchmark
-python Final-Report/scripts/benchmark.py
+# Planned Workflow (Under Active Development):
+# python Final-Report/scripts/download_dataset.py
+# python Final-Report/scripts/preprocess.py
+# python Final-Report/scripts/train.py --model baseline
+# python Final-Report/scripts/benchmark.py
 ```
 
-### 3. Launching Services
+### 3. Prototype Services & Local Verification (Available in Current Preview)
 ```bash
-# Start FastAPI Guardrail Service (Port 8000)
-uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
+# Run Prototype FastAPI Guardrail Service (Port 8000)
+uvicorn Final-Report.src.api.main:app --host 0.0.0.0 --port 8000 --reload
 
-# Start Streamlit Interactive Dashboard (Port 8501)
+# Run Prototype Streamlit Dashboard (Port 8501)
 streamlit run Final-Report/src/dashboard/app.py
 ```
 
