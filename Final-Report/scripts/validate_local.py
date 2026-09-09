@@ -61,7 +61,6 @@ RESET = "\033[0m"
 # Danh mục file & folder bất biến tuyệt đối
 STRICT_IMMUTABLE_PATHS = [
     "CAPSTONE PROJECT REGISTER.md",
-    "Github-Page/fpt_capstone_guide/",
     "docs/fpt_capstone_guide/",
 ]
 

@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation Link Hygiene**: Removed hardcoded localhost (`http://127.0.0.1:8000`) references across `README.md`, `CONTRIBUTING.md`, and documentation portal build outputs in favor of clean CLI instructions and official GitHub Pages deployment links.
 - **Academic Metadata & Supervisor Alignment**: Standardized academic program to `IA`, term to `Fall 2026`, purged legacy `Location & Year: Hanoi, 2026`, and designated MSc. Trần Văn Ninh (`ninhtv2@fpt.edu.vn`) as official Supervisor across all thesis dossiers, report templates, meeting records, and documentation portals.
 - **Purged Git Feature Branch Column**: Removed the `Nhánh Git Feature` / `Git Feature Branch` column from member allocation and governance tables across `CONTRIBUTING.md`, `AGENTS.md`, and all generated documentation pages, focusing collaboration directly on sandboxed workspace directories.
+- **Sanitized Documentation Portal & Purged Internal Guidelines**: Completely removed internal university confidential materials (`fpt_capstone_guide`) from the public documentation portal directory (`Github-Page/`), relocating local copies strictly to gitignored `docs/fpt_capstone_guide/`, updated `mkdocs.yml`, `validate_local.py`, and `audit_workspace_boundaries.py` to ensure zero internal guidelines are exposed or tracked in Git.
 
 ---
 

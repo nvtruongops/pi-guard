@@ -68,7 +68,6 @@ MEMBERS_MAP = {
 # Danh mục các file & thư mục bất biến (Strictly Read-Only cho TẤT CẢ thành viên)
 STRICT_IMMUTABLE_PATHS = [
     'CAPSTONE PROJECT REGISTER.md',
-    'Github-Page/fpt_capstone_guide/',
     'docs/fpt_capstone_guide/'
 ]
 

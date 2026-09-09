@@ -4,7 +4,7 @@
 > [!IMPORTANT]
 > **QUY TẮC BẤT DI BẤT DỊCH (DOCUMENTATION INVARIANTS)**:
 > 1. Thư mục `Github-Page/` này là **NGUỒN DỮ LIỆU CHÍNH THỨC CỦA CỔNG TÀI LIỆU GITHUB PAGES** (biên dịch qua MkDocs Material).
-> 2. Thư mục nội bộ [`docs/fpt_capstone_guide/`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/) là **BẤT BIẾN / READ-ONLY TUYỆT ĐỐI**, không bao giờ được sửa đổi, xóa bỏ hay xuất bản công khai (đã được loại trừ khỏi build qua `exclude_docs` trong `mkdocs.yml`).
+> 2. Thư mục nội bộ [`docs/fpt_capstone_guide/`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/) là **BẤT BIẾN / READ-ONLY TUYỆT ĐỐI**, được lưu trữ cục bộ ngoài thư mục cổng tài liệu và được bảo vệ nghiêm ngặt qua `.gitignore`, tuyệt đối không bao giờ được đưa vào Git hay xuất bản công khai.
 > 3. Toàn bộ tài liệu Web UI trong các thư mục con chuyên đề được tự động thu thập, chuẩn hóa liên kết và biên dịch thông qua script `python scripts/build_docs_portal.py`.
 > 4. Mọi nghiên cứu và bản thảo cá nhân phải được thực hiện trong `workspaces/<tên_thành_viên>/docs/` trước khi họp chốt đồng quy tri thức.
 

@@ -9,7 +9,6 @@ docs_dir: "Github-Page"
 site_dir: "site"
 
 exclude_docs: |
-  fpt_capstone_guide/**
   README.md
   **/*.docx
   **/*.xlsx
