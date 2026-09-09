@@ -106,12 +106,12 @@ The workspace has 7 integrated MCP servers:
 - **Weekly Convergence Sessions**: The team compares experimental metrics (F1, FPR, Latency), selects the champion models/code for `Final-Report/src/`, and compiles thesis chapters seamlessly.
 - **Council Defense Preparedness**: Every member understands the full ecosystem end-to-end and can answer any committee question confidently.
 
-| Member | Full-Pipeline Sandbox & Focus Area | Workspace Directory | Git Feature Branch |
-| :--- | :--- | :--- | :--- |
-| **Nguyễn Văn Trường (Leader / `nvtruongops`)** | Architecture, Data Engineering & Repository Governance | `workspaces/truongnv/` | `main`, `lead/truong-*` |
-| **Nguyễn Quí Đức** | Classical ML Baseline, Feature Extraction & Methodology | `workspaces/ducnq/` | `feat/duc-baseline-ml` |
-| **Phạm Minh Hoàng Việt** | Transformer Fine-Tuning, Quantization & Robustness | `workspaces/vietpmh/` | `feat/viet-transformer` |
-| **Đỗ Đoàn Duy Phương** | FastAPI Middleware, Dashboard & Thesis Compilation | `workspaces/phuongddd/` | `feat/phuong-api-ui` |
+| Member | Full-Pipeline Sandbox & Focus Area | Workspace Directory |
+| :--- | :--- | :--- |
+| **Nguyễn Văn Trường (Leader / `nvtruongops`)** | Architecture, Data Engineering & Repository Governance | `workspaces/truongnv/` |
+| **Nguyễn Quí Đức** | Classical ML Baseline, Feature Extraction & Methodology | `workspaces/ducnq/` |
+| **Phạm Minh Hoàng Việt** | Transformer Fine-Tuning, Quantization & Robustness | `workspaces/vietpmh/` |
+| **Đỗ Đoàn Duy Phương** | FastAPI Middleware, Dashboard & Thesis Compilation | `workspaces/phuongddd/` |
 
 ---
 

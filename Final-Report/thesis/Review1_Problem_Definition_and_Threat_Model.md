@@ -24,7 +24,7 @@
 3. **Phạm Minh Hoàng Việt** — Student ID: `SE181851` _(Deep Learning & Full-Pipeline Exploration)_
 4. **Đỗ Đoàn Duy Phương** — Student ID: `SE180235` _(System Engineering & Full-Pipeline Exploration)_
 
-**Supervisor**: Trần Văn Ninh (ninhtv2@fpt.edu.vn)
+**Supervisor**: Trần Văn Ninh
 
 ---
 
@@ -56,10 +56,9 @@ The primary deliverables of this capstone project include a curated, deduplicate
 - [SECTION 4: 3-TIER LAYERED DEFENSE, 2-PHASE ARCHITECTURE & ROBUSTNESS DESIGN](#section-4-3-tier-layered-defense-2-phase-architecture-robustness-design)
 - [SECTION 5: 4-SCENARIO ILLUSTRATIVE PROBLEM & PROPOSED DEFENSE MATRIX](#section-5-4-scenario-illustrative-problem-proposed-defense-matrix)
 - [SECTION 6: LITERATURE REVIEW ON GUARDRAIL APPROACHES & MODEL SELECTION RATIONALE](#section-6-literature-review-on-guardrail-approaches-model-selection-rationale)
-  - [*Chuyên khảo Luận giải: Tại sao dùng TF-IDF Baseline & DeBERTa-v3?*](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md)
+  - [_Chuyên khảo Luận giải: Tại sao dùng TF-IDF Baseline & DeBERTa-v3?_](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md)
 - [SECTION 7: QUANTITATIVE TARGETS & EVALUATION METRICS](#section-7-quantitative-targets-evaluation-metrics)
 - [SECTION 8: VERIFIED ACADEMIC REFERENCES (100% >= 2022)](#section-8-verified-academic-references-100-2022)
-
 
 ---
 
@@ -312,7 +311,7 @@ Threat Model của PI-Guard được xây dựng dựa trên tiêu chuẩn **NIS
 > 📖 **Chuyên Khảo Nghiên Cứu Sâu**: Toàn bộ cơ chế kỹ thuật 3 lớp bảo vệ (Saltzer & Schroeder Complete Mediation, Unicode Sanitizer, Heuristic Base64, XML Boundary Isolation, Canary Token Verification), ma trận đối sánh 6 phương pháp và mã nguồn Python mẫu được phân tích chi tiết tại:  
 > 🔗 [`docs/threat_and_defense_study/02_multi_layer_defense_architecture.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/02_multi_layer_defense_architecture.md)  
 > 🔗 [`docs/threat_and_defense_study/03_comparative_matrix_and_tradeoffs.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/03_comparative_matrix_and_tradeoffs.md)  
-> 🔗 [`docs/threat_and_defense_study/04_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/04_resources_and_papers.md)  
+> 🔗 [`docs/threat_and_defense_study/04_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/04_resources_and_papers.md)
 
 ## 4.1. Cấu Trúc Phòng Thủ 3 Lớp Tiêu Chuẩn (Standard 3-Tier Defense)
 
@@ -483,7 +482,7 @@ Một câu hỏi mang tính bản lề trước Hội đồng khoa học: **"Hai
 Nhóm nghiên cứu khẳng định: **Đây là sự kết tinh của quá trình khảo sát SOTA độc lập, vượt xa khỏi phạm vi phác thảo ban đầu trong Bản đăng ký đề tài**:
 
 1. **Giới hạn trong Bản đăng ký đề tài ban đầu**:
-   - Trong `CAPSTONE PROJECT REGISTER.md`, giảng viên và nhóm chỉ đề xuất định hướng sơ bộ: *"ML/NLP classifiers, including classical baselines and fine-tuned transformer models (e.g., BERT/DeBERTa)"* và *"Feature Extraction: TF-IDF for the baseline; transformer embeddings for the fine-tuned model"*.
+   - Trong `CAPSTONE PROJECT REGISTER.md`, giảng viên và nhóm chỉ đề xuất định hướng sơ bộ: _"ML/NLP classifiers, including classical baselines and fine-tuned transformer models (e.g., BERT/DeBERTa)"_ và _"Feature Extraction: TF-IDF for the baseline; transformer embeddings for the fine-tuned model"_.
    - Lúc đó, `BERT/DeBERTa` chỉ là ví dụ minh họa (`e.g.`), còn TF-IDF chỉ là công cụ cổ điển từ thư viện scikit-learn.
 2. **Quá trình nghiên cứu SOTA độc lập của Nhóm**:
    - Khi tiến hành Literature Review chuyên sâu và khảo sát thực nghiệm trên các công trình quốc tế giai đoạn 2022–2026, nhóm đã phát hiện và xác nhận bằng chứng độc lập từ các tập đoàn và phòng thí nghiệm bảo mật hàng đầu thế giới:
@@ -491,23 +490,23 @@ Nhóm nghiên cứu khẳng định: **Đây là sự kết tinh của quá trì
      - **Bảo chứng từ Protect AI (`deberta-v3-base-prompt-injection-v2`, 2024)**: Nền tảng an ninh AI hàng đầu Protect AI cũng chọn `microsoft/deberta-v3-base` làm mô hình cốt lõi đạt F1 > 0.97 với hơn 100,000+ lượt tải/tháng trên Hugging Face.
      - **Nguyên lý Toán học & Attention (He et al., ICLR 2023)**: Khác biệt với BERT và RoBERTa vốn cộng gộp Content Vector và Absolute Position Vector ngay từ tầng đầu vào, **DeBERTa-v3 sử dụng Disentangled Attention** tách biệt hoàn toàn thành 2 vector riêng biệt. Tấn công Prompt Injection phụ thuộc mang tính quyết định vào **vị trí tương đối** của câu lệnh ghi đè (ở đầu hay cuối prompt). Cơ chế Disentangled Attention giúp DeBERTa-v3 phân biệt chính xác đâu là câu lệnh điều khiển hệ thống, đâu là dữ liệu người dùng mà BERT/RoBERTa không thể làm được.
 3. **Vì sao bắt buộc phải có Bộ lọc cú pháp (TF-IDF Baseline) hỗ trợ?**:
-   - Các nghiên cứu đối kháng mới nhất như **Hackett et al. (arXiv:2504.11168, 2025)** và **Jain et al. (Univ of Maryland, 2023)** đã chỉ ra một điểm mù nguy hiểm của các mô hình Transformer phân tách từ con (Subword/BPE): Khi kẻ tấn công dùng kỹ thuật phân mảnh token (*Token Fragmentation*) hoặc chèn ký tự leetspeak (`1gn0r3`), khoảng trắng (`i g n o r e`), bộ tách từ BPE bị vỡ vụn thành các token lạ, khiến mô hình Transformer lớn có thể bị lẩn tránh (Evasion).
+   - Các nghiên cứu đối kháng mới nhất như **Hackett et al. (arXiv:2504.11168, 2025)** và **Jain et al. (Univ of Maryland, 2023)** đã chỉ ra một điểm mù nguy hiểm của các mô hình Transformer phân tách từ con (Subword/BPE): Khi kẻ tấn công dùng kỹ thuật phân mảnh token (_Token Fragmentation_) hoặc chèn ký tự leetspeak (`1gn0r3`), khoảng trắng (`i g n o r e`), bộ tách từ BPE bị vỡ vụn thành các token lạ, khiến mô hình Transformer lớn có thể bị lẩn tránh (Evasion).
    - Ngược lại, **Bộ lọc cú pháp Hybrid Character n-grams (`char_wb`, n in [3, 5])** bóc tách `1gn0r3` thành `['1gn', 'gn0', 'n0r', '0r3']`. Các vector con này trùng khớp cao với vector mẫu tấn công, cho phép đánh chặn ngay lập tức trên CPU với **0 MB VRAM**.
    - Tuy nhiên, nếu chỉ dùng một mình TF-IDF, tỷ lệ báo động nhầm (FPR) sẽ rất cao (từ 7% đến 33% theo các nghiên cứu độc lập) khi gặp các câu hỏi lập trình lành tính có chứa từ khóa nhạy cảm.
    - Do đó, **Kiến trúc phòng thủ kết hợp 2 mô hình (TF-IDF Baseline lọc nhanh + DeBERTa-v3 phân loại sâu với mục tiêu thiết kế độ trễ P95 < 30ms trên CPU)** là sự phối hợp chặt chẽ: Tầng 1 lọc thô cú pháp nhanh, Tầng 2 phân loại ngữ nghĩa sâu, triệt tiêu báo động nhầm.
 
 ### 6.1.2. Ma Trận Đối So Sánh Các Trường Phái Guardrail & Luận Giải Lựa Chọn Mô Hình
 
-| Tiêu chí Đồ án PI-Guard | Mục tiêu Thiết Kế (Register & Proposal) | Regex / Rules Tĩnh (Y văn) | Classical TF-IDF Baseline (Y văn) | LLM-as-a-Judge Llama Guard (Y văn) | **PI-Guard Đề Xuất (TF-IDF + DeBERTa-v3)** | Đánh Giá Phù Hợp Mục Tiêu Đồ Án |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **1. Độ trễ P95 (CPU Inference)** | **< 30 ms** (Zero GPU Production) | < 1 ms | ~3.2 ms | > 500 ms – 1.5s (Quá cao) | **Mục tiêu < 30 ms (ONNX INT8 CPU)** | ✅ **PHÙ HỢP HOÀN TOÀN** (Tối ưu cho CPU tiêu chuẩn) |
-| **2. Tỷ lệ Báo động nhầm (FPR)** | **< 1.5%** trên tập Benign hàng ngày | ~12.5% | 2.8% - 7.5% (Dễ bắt nhầm từ khóa) | ~2.1% | **Mục tiêu < 1.5% (Ngưỡng kép)** | ✅ **PHÙ HỢP HOÀN TOÀN** (Bảo toàn trải nghiệm người dùng) |
-| **3. Độ chính xác & F1-Score** | **F1 $\ge$ 0.95** | F1 < 0.50 | F1 ~ 0.918 | F1 ~ 0.945 | **Mục tiêu F1 $\ge$ 0.95** | ✅ **PHÙ HỢP HOÀN TOÀN** (Tiệm cận SOTA ProtectAI) |
-| **4. Độ bền Robustness (Evasion)** | Độ suy giảm $\Delta F_1 < 5\%$ | Giảm > 80% (Bị bypass dễ dàng) | Giảm ~8.5% (Kháng leetspeak/spacing) | Giảm ~15.2% (Bị bypass bởi Base64) | **Mục tiêu $\Delta F_1 < 5\%$** | ✅ **PHÙ HỢP HOÀN TOÀN** (Nhờ 3 tầng phòng thủ phối hợp) |
+| Tiêu chí Đồ án PI-Guard            | Mục tiêu Thiết Kế (Register & Proposal) |   Regex / Rules Tĩnh (Y văn)   |  Classical TF-IDF Baseline (Y văn)   | LLM-as-a-Judge Llama Guard (Y văn) | **PI-Guard Đề Xuất (TF-IDF + DeBERTa-v3)** |              Đánh Giá Phù Hợp Mục Tiêu Đồ Án               |
+| :--------------------------------- | :-------------------------------------: | :----------------------------: | :----------------------------------: | :--------------------------------: | :----------------------------------------: | :--------------------------------------------------------: |
+| **1. Độ trễ P95 (CPU Inference)**  |    **< 30 ms** (Zero GPU Production)    |             < 1 ms             |               ~3.2 ms                |     > 500 ms – 1.5s (Quá cao)      |    **Mục tiêu < 30 ms (ONNX INT8 CPU)**    |    ✅ **PHÙ HỢP HOÀN TOÀN** (Tối ưu cho CPU tiêu chuẩn)    |
+| **2. Tỷ lệ Báo động nhầm (FPR)**   |  **< 1.5%** trên tập Benign hàng ngày   |             ~12.5%             |  2.8% - 7.5% (Dễ bắt nhầm từ khóa)   |               ~2.1%                |      **Mục tiêu < 1.5% (Ngưỡng kép)**      | ✅ **PHÙ HỢP HOÀN TOÀN** (Bảo toàn trải nghiệm người dùng) |
+| **3. Độ chính xác & F1-Score**     |            **F1 $\ge$ 0.95**            |           F1 < 0.50            |              F1 ~ 0.918              |             F1 ~ 0.945             |         **Mục tiêu F1 $\ge$ 0.95**         |     ✅ **PHÙ HỢP HOÀN TOÀN** (Tiệm cận SOTA ProtectAI)     |
+| **4. Độ bền Robustness (Evasion)** |     Độ suy giảm $\Delta F_1 < 5\%$      | Giảm > 80% (Bị bypass dễ dàng) | Giảm ~8.5% (Kháng leetspeak/spacing) | Giảm ~15.2% (Bị bypass bởi Base64) |      **Mục tiêu $\Delta F_1 < 5\%$**       |  ✅ **PHÙ HỢP HOÀN TOÀN** (Nhờ 3 tầng phòng thủ phối hợp)  |
 
 ## 6.2. Phương Pháp Phát Triển & Huấn Luyện Đề Xuất Cho Giai Đoạn Thực Nghiệm
 
-*(Ghi chú: Toàn bộ 4 thành viên cùng tham gia nghiên cứu, huấn luyện và đánh giá đối sánh chéo các mô hình trong workspace cá nhân theo đúng phương châm Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả).*
+_(Ghi chú: Toàn bộ 4 thành viên cùng tham gia nghiên cứu, huấn luyện và đánh giá đối sánh chéo các mô hình trong workspace cá nhân theo đúng phương châm Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả)._
 
 1. **Mô hình Baseline Machine Learning (Classical ML)**:
    - Trích xuất đặc trưng kết hợp (_Feature Union_): Word n-grams (1, 3) + Character n-grams (3, 5) theo bằng chứng từ Jain et al. (2023) [[13]](#ref13).
@@ -562,13 +561,13 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 
 ### 6.3.2. Khảo Sát Tỷ Lệ Dễ Tổn Thương Tự Thân (ASR Baseline) Trong Y Văn & Mục Tiêu Đề Xuất:
 
-| Downstream Target LLM (Gọi qua API) | Cơ chế căn chỉnh an toàn nội tại | ASR Baseline Tự Thân Theo Khảo Sát Y Văn (Không Guardrail) | Mục Tiêu Bảo Vệ Đề Xuất Của PI-Guard (Design Target Chapter 4) | Ý Nghĩa Thực Tiễn Của Guardrail Tiền Trạm |
-| :---------------------------------- | :------------------------------- | :--------------------------------------------------------: | :------------------------------------------------------------: | :----------------------------------------- |
-| **OpenAI GPT-4o-mini**              | RLHF + OpenAI Safety Moderator   | **38.0%** (Lọt Cipher / Base64 - Yuan et al. [[17]](#ref17))|           **Mục tiêu ASR < 5%** (Ngắt tại Lớp 1)                | Bảo vệ mô hình thương mại đóng trước mã hóa|
-| **Google Gemini 1.5 Flash**         | Google Constitutional AI Filters | **35.5%** (Lọt Roleplay gián tiếp - Zhou et al. [[16]](#ref16))|   **Mục tiêu ASR < 5%** (Ngắt tại Lớp 1)                | Tránh khai thác suy luận thông lượng cao   |
-| **Meta LLaMA-3.1-8B-Instruct**      | RLHF + DPO Safety Alignment      | **42.6%** (Lọt DAN & GCG Suffix - Zou et al. [[13]](#ref13))|   **Mục tiêu ASR < 5%** (Ngắt tại Lớp 1)                | Làm chuẩn đối sánh mã nguồn mở quốc tế     |
-| **Mistral-7B-Instruct-v0.3**        | Căn chỉnh an toàn mức độ nhẹ     | **78.4%** (Dễ bị Prompt Injection - Zhou et al. [[16]](#ref16))| **Mục tiêu ASR < 5%** (Ngắt tại Lớp 1)                | Khắc phục điểm yếu an toàn của mô hình mở  |
-| **Qwen-2.5-7B-Instruct**            | Căn chỉnh nội bộ tiêu chuẩn      | **64.2%** (Dễ bị Roleplay Jailbreak - Zhou et al. [[16]](#ref16))| **Mục tiêu ASR < 5%** (Ngắt tại Lớp 1)                | Bảo vệ trước tấn công đa ngữ & lẩn tránh   |
+| Downstream Target LLM (Gọi qua API) | Cơ chế căn chỉnh an toàn nội tại |    ASR Baseline Tự Thân Theo Khảo Sát Y Văn (Không Guardrail)     | Mục Tiêu Bảo Vệ Đề Xuất Của PI-Guard (Design Target Chapter 4) | Ý Nghĩa Thực Tiễn Của Guardrail Tiền Trạm   |
+| :---------------------------------- | :------------------------------- | :---------------------------------------------------------------: | :------------------------------------------------------------: | :------------------------------------------ |
+| **OpenAI GPT-4o-mini**              | RLHF + OpenAI Safety Moderator   |   **38.0%** (Lọt Cipher / Base64 - Yuan et al. [[17]](#ref17))    |             **Mục tiêu ASR < 5%** (Ngắt tại Lớp 1)             | Bảo vệ mô hình thương mại đóng trước mã hóa |
+| **Google Gemini 1.5 Flash**         | Google Constitutional AI Filters |  **35.5%** (Lọt Roleplay gián tiếp - Zhou et al. [[16]](#ref16))  |             **Mục tiêu ASR < 5%** (Ngắt tại Lớp 1)             | Tránh khai thác suy luận thông lượng cao    |
+| **Meta LLaMA-3.1-8B-Instruct**      | RLHF + DPO Safety Alignment      |   **42.6%** (Lọt DAN & GCG Suffix - Zou et al. [[13]](#ref13))    |             **Mục tiêu ASR < 5%** (Ngắt tại Lớp 1)             | Làm chuẩn đối sánh mã nguồn mở quốc tế      |
+| **Mistral-7B-Instruct-v0.3**        | Căn chỉnh an toàn mức độ nhẹ     |  **78.4%** (Dễ bị Prompt Injection - Zhou et al. [[16]](#ref16))  |             **Mục tiêu ASR < 5%** (Ngắt tại Lớp 1)             | Khắc phục điểm yếu an toàn của mô hình mở   |
+| **Qwen-2.5-7B-Instruct**            | Căn chỉnh nội bộ tiêu chuẩn      | **64.2%** (Dễ bị Roleplay Jailbreak - Zhou et al. [[16]](#ref16)) |             **Mục tiêu ASR < 5%** (Ngắt tại Lớp 1)             | Bảo vệ trước tấn công đa ngữ & lẩn tránh    |
 
 **Ý nghĩa khoa học & Định hướng thực nghiệm cho Chapter 4**:
 
@@ -581,13 +580,13 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 
 Đồ án PI-Guard cam kết đạt các chỉ tiêu định lượng nghiêm ngặt:
 
-| Chỉ số đánh giá                             |               Chỉ tiêu cam kết của PI-Guard               | Ý nghĩa trong vận hành thực tế                                                            |
-| :------------------------------------------ | :-------------------------------------------------------: | :---------------------------------------------------------------------------------------- |
-| **F1-Score (Tổng thể)**                     |             **$\ge 0.95$ (Kỳ vọng $> 0.98$)**             | Đảm bảo khả năng cân bằng giữa Precision và Recall trên cả 2 lớp                          |
-| **False Positive Rate (FPR)**               |             **$< 1.5\%$ (Kỳ vọng $< 1.1\%$)**             | Không chặn nhầm các câu hỏi hợp lệ của người dùng hàng ngày[[12]](#ref12)                 |
-| **Inference Latency (P95)**                 | **$< 30\text{ ms}$ trên CPU tiêu chuẩn**                  | Đảm bảo không làm nghẽn cổ chai thời gian phản hồi của ứng dụng AI                        |
-| **Độ bền với Leetspeak / Spacing / Base64** |                **F1 Degradation $< 5\%$**                 | Duy trì khả năng nhận diện khi payload bị làm nhiễu cú pháp[[13]](#ref13), [[17]](#ref17) |
-| **Mức nén bộ nhớ (RAM / Disk)**             |           **Giảm $> 65\%$ ($< 150\text{ MB}$)**           | Cho phép triển khai microservice nhẹ trên mọi hạ tầng Container / Edge[[14]](#ref14)      |
+| Chỉ số đánh giá                             |      Chỉ tiêu cam kết của PI-Guard       | Ý nghĩa trong vận hành thực tế                                                            |
+| :------------------------------------------ | :--------------------------------------: | :---------------------------------------------------------------------------------------- |
+| **F1-Score (Tổng thể)**                     |    **$\ge 0.95$ (Kỳ vọng $> 0.98$)**     | Đảm bảo khả năng cân bằng giữa Precision và Recall trên cả 2 lớp                          |
+| **False Positive Rate (FPR)**               |    **$< 1.5\%$ (Kỳ vọng $< 1.1\%$)**     | Không chặn nhầm các câu hỏi hợp lệ của người dùng hàng ngày[[12]](#ref12)                 |
+| **Inference Latency (P95)**                 | **$< 30\text{ ms}$ trên CPU tiêu chuẩn** | Đảm bảo không làm nghẽn cổ chai thời gian phản hồi của ứng dụng AI                        |
+| **Độ bền với Leetspeak / Spacing / Base64** |        **F1 Degradation $< 5\%$**        | Duy trì khả năng nhận diện khi payload bị làm nhiễu cú pháp[[13]](#ref13), [[17]](#ref17) |
+| **Mức nén bộ nhớ (RAM / Disk)**             |  **Giảm $> 65\%$ ($< 150\text{ MB}$)**   | Cho phép triển khai microservice nhẹ trên mọi hạ tầng Container / Edge[[14]](#ref14)      |
 
 ---
 

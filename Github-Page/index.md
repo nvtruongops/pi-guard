@@ -72,4 +72,4 @@ flowchart TD
 | 3 | **Phạm Minh Hoàng Việt** | `SE181851` | **Toàn trình Full-Pipeline** — Tối ưu Transformer & Thực nghiệm Robustness |
 | 4 | **Đỗ Đoàn Duy Phương** | `SE180235` | **Toàn trình Full-Pipeline** — Tích hợp hệ thống API/Dashboard & Luận văn |
 
-**Giảng viên hướng dẫn**: ThS. Trần Văn Ninh (ninhtv2@fpt.edu.vn) — Đại học FPT.
+**Giảng viên hướng dẫn**:  Trần Văn Ninh — Đại học FPT.

@@ -50,12 +50,12 @@ Trong đề tài **PI-Guard** (FPT University IAP491), nhóm áp dụng mô hìn
 
 Mỗi thành viên làm việc độc lập trong thư mục sandbox được chỉ định, chịu trách nhiệm toàn trình cho module chuyên sâu và chủ trì phần báo cáo tương ứng theo chuẩn học thuật FPT IAP491:
 
-| Thành Viên | MSSV | Trọng Tâm Chuyên Sâu | Vai Trò Chủ Trì Báo Cáo FPT (Continuous Assessment) | Workspace Cá Nhân | Nhánh Git Feature |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Nguyễn Văn Trường (Leader)** | SE182034 | Data Engineering, Kiến trúc Guardrail, Quản trị Repository & Đồng quy Tri thức | Chủ trì **Report No.1** (Intro) & **Report No.2** (Lit Review); Tổng duyệt toàn văn Luận văn & Điều phối Bảo vệ | **`workspaces/truongnv/`** | `main`, `lead/truong-*` |
-| **Nguyễn Quí Đức** | SE182087 | Classical ML Baseline (TF-IDF Word/Char), Trích xuất đặc trưng & Bề mặt tấn công | Phản biện Threat Model & Chủ trì **Report No.3** (Methodology & Baseline ML) | **`workspaces/ducnq/`** | `feat/duc-baseline-ml` |
-| **Phạm Minh Hoàng Việt** | SE181851 | Transformer DeBERTa-v3 Fine-tuning, Lượng hóa INT8 ONNX & Evasion Robustness | Phản biện Deep Learning & Chủ trì **Report No.4** (Experimental and Results) | **`workspaces/vietpmh/`** | `feat/viet-transformer` |
-| **Đỗ Đoàn Duy Phương** | SE180235 | FastAPI Guardrail Middleware Proxy, Streamlit Dashboard & Kịch bản Demo | Phản biện Attack Taxonomy & Chủ trì **Report No.5** (Discussion) & **Report No.6** (Conclusion and Future Work) | **`workspaces/phuongddd/`** | `feat/phuong-api-ui` |
+| Thành Viên | MSSV | Trọng Tâm Chuyên Sâu | Vai Trò Chủ Trì Báo Cáo FPT (Continuous Assessment) | Workspace Cá Nhân |
+| :--- | :--- | :--- | :--- | :--- |
+| **Nguyễn Văn Trường (Leader)** | SE182034 | Data Engineering, Kiến trúc Guardrail, Quản trị Repository & Đồng quy Tri thức | Chủ trì **Report No.1** (Intro) & **Report No.2** (Lit Review); Tổng duyệt toàn văn Luận văn & Điều phối Bảo vệ | **`workspaces/truongnv/`** |
+| **Nguyễn Quí Đức** | SE182087 | Classical ML Baseline (TF-IDF Word/Char), Trích xuất đặc trưng & Bề mặt tấn công | Phản biện Threat Model & Chủ trì **Report No.3** (Methodology & Baseline ML) | **`workspaces/ducnq/`** |
+| **Phạm Minh Hoàng Việt** | SE181851 | Transformer DeBERTa-v3 Fine-tuning, Lượng hóa INT8 ONNX & Evasion Robustness | Phản biện Deep Learning & Chủ trì **Report No.4** (Experimental and Results) | **`workspaces/vietpmh/`** |
+| **Đỗ Đoàn Duy Phương** | SE180235 | FastAPI Guardrail Middleware Proxy, Streamlit Dashboard & Kịch bản Demo | Phản biện Attack Taxonomy & Chủ trì **Report No.5** (Discussion) & **Report No.6** (Conclusion and Future Work) | **`workspaces/phuongddd/`** |
 
 ---
 

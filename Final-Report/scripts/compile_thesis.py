@@ -29,7 +29,7 @@ def compile_thesis():
 3. **Phạm Minh Hoàng Việt** — Student ID: `SE181851`
 4. **Đỗ Đoàn Duy Phương** — Student ID: `SE180235`
 
-**Supervisor**: Trần Văn Ninh (ninhtv2@fpt.edu.vn)  
+**Supervisor**: Trần Văn Ninh  
 
 ---
 
