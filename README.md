@@ -37,7 +37,7 @@ Curated from public benchmarks on Hugging Face and deduplicated with **Group-Awa
 ### 5. What Models are Compared?
 1. **Classical ML Baseline**: Hybrid Word (1-3) & Char (3-5) n-gram TF-IDF + Logistic Regression / LinearSVC.
 2. **Fine-Tuned Transformer**: `microsoft/deberta-v3-base` with sequence classification head.
-3. **Quantized Production Engine**: DeBERTa-v3 with ONNX INT8 Dynamic Quantization for low-latency CPU inference.
+3. **Quantized Inference Engine**: DeBERTa-v3 with ONNX INT8 Dynamic Quantization for low-latency CPU inference.
 4. **Reference SOTA**: `ProtectAI/deberta-v3-base-prompt-injection`.
 
 ### 6. What are the Target Evaluation Metrics? (Benchmarking In Progress)
@@ -195,10 +195,10 @@ The repository root structure is strictly organized into **three primary subsyst
 
 ```
 d:/Work/Do-an/
-├── Final-Report/                # [TIER 1: MASTER THESIS & OFFICIAL PRODUCTION DELIVERABLES]
+├── Final-Report/                # [TIER 1: MASTER THESIS & OFFICIAL CAPSTONE DELIVERABLES]
 │   ├── thesis/                  # Official Graduation Thesis dossier (Chapters 1-6 & References)
 │   ├── notebooks/               # Experimentation resources & 5 reproducible Jupyter Notebooks (configs/, data/, models/)
-│   ├── src/                     # Production source code framework (Production Scaffolding across 10 modules)
+│   ├── src/                     # Academic PoC source code framework (Scaffolding across 10 modules)
 │   ├── tests/                   # Automated test suite (Unit, Integration, and Adversarial Scaffolding)
 │   ├── Meeting/                 # Progress meeting minutes with Supervisor & internal team (Meetings 1, 2, 3)
 │   ├── References/              # Complete collection of 18 full-text academic PDFs & REFERENCES_LOG.md

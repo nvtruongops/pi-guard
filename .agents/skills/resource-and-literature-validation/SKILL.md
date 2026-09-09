@@ -14,7 +14,12 @@ Skill này cung cấp các tiêu chuẩn nghiêm ngặt, quy trình tra cứu t�
 
 ## 🎯 1. Các Nguyên Tắc Kiểm Định Cốt Lõi (Invariants)
 
-Mọi AI Agent và thành viên nhóm khi trích dẫn tài liệu hoặc bổ sung đường dẫn vào repo phải tuân thủ 4 nguyên tắc:
+Mọi AI Agent và thành viên nhóm khi trích dẫn tài liệu hoặc bổ sung đường dẫn vào repo phải tuân thủ 5 nguyên tắc:
+
+### Quy Tắc 0: LOCAL REFERENCES FIRST (Truy Lục Tài Liệu Cục Bộ Trước Tiên)
+- Trước khi tìm kiếm tài liệu mới qua MCP (`arxiv`, `openalex`, `semanticscholar`, `scholar-feed`) hoặc trên mạng, **BẮT BUỘC** phải tra cứu [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md).
+- Nếu vấn đề cần dẫn chứng đã được bảo chứng bởi một trong **18 bài báo cốt lõi đã lưu trữ sẵn trong `References/`**, bắt buộc phải tái sử dụng bài báo đó kèm neo trích dẫn `[[N]](#refN)`.
+- Tuyệt đối không thêm bài báo mới cho các chủ đề đã có sẵn tài liệu kiểm chứng để tránh dàn trải trích dẫn (Zero Citation Bloat).
 
 ### Quy Tắc 1: ZERO DEAD LINKS (Không Link Chết / Không Hallucinate)
 - Tuyệt đối **KHÔNG ĐƯỢC ĐƯA LINK SUY ĐOÁN** hoặc tự sinh vào tài liệu.

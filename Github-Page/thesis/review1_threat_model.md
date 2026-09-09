@@ -34,7 +34,7 @@ The rapid enterprise adoption of Large Language Models (LLMs) and generative AI 
 
 This research project, **PI-Guard**, designs, develops, and empirically evaluates an API-driven, low-latency Machine Learning Guardrail middleware placed in front of downstream LLM applications to proactively inspect, classify, and filter malicious prompts before they reach the target model.
 
-The defense architecture adopts a hybrid multi-tiered approach: (1) a lightweight classical Machine Learning baseline combining Word and Character n-gram TF-IDF for fast syntactic filtering (~3ms), and (2) a deeply fine-tuned `microsoft/deberta-v3-base` Transformer utilizing Disentangled Attention for complex semantic injection detection (~12.8ms). To resist adversarial obfuscations (Leetspeak, Base64, Spacing tricks), PI-Guard incorporates a normalization pipeline, subword representations, and heuristic cipher decoders. To ensure efficient CPU inference for production deployment, the Transformer is optimized via Post-Training Dynamic INT8 Quantization (ONNX Runtime), achieving a 70% memory reduction with negligible accuracy loss (<0.3%).
+The defense architecture adopts a hybrid multi-tiered approach: (1) a lightweight classical Machine Learning baseline combining Word and Character n-gram TF-IDF for fast syntactic filtering (~3ms), and (2) a deeply fine-tuned `microsoft/deberta-v3-base` Transformer utilizing Disentangled Attention for complex semantic injection detection (~12.8ms). To resist adversarial obfuscations (Leetspeak, Base64, Spacing tricks), PI-Guard incorporates a normalization pipeline, subword representations, and heuristic cipher decoders. To ensure efficient CPU inference for practical low-latency deployment, the Transformer is optimized via Post-Training Dynamic INT8 Quantization (ONNX Runtime), achieving a 70% memory reduction with negligible accuracy loss (<0.3%).
 
 The primary deliverables of this capstone project include a curated, deduplicated dataset with Group-Aware Splitting to eliminate data leakage, a high-throughput asynchronous FastAPI middleware, a 4-scenario live demonstration matrix ($2 \times 2$), an interactive Streamlit testing dashboard, and comprehensive empirical benchmarks targeting $F_1 \ge 0.95$, False Positive Rate (FPR) $< 1.5\%$, and P95 latency $< 30\text{ ms}$ on commodity CPU hardware.
 
@@ -438,7 +438,7 @@ Nhằm đáp ứng **Yêu cầu số 5 của Giảng viên Hướng dẫn** (thi
   }
   ```
 
-  _(Target LLM hoàn toàn không bị gọi, bí mật System Prompt và API Key được bảo toàn tuyệt đối, tiết kiệm 100% token)._
+  _(Target LLM hoàn toàn không bị gọi, bí mật System Prompt và API Key được bảo vệ an toàn từ tiền trạm, tiết kiệm chi phí token)._
 
 ### 5.2. Nhóm 2: Minh Họa Tấn Công Jailbreak (Bẻ Khóa An Toàn / DAN Roleplay)
 
@@ -499,7 +499,7 @@ Nhóm nghiên cứu khẳng định: **Đây là sự kết tinh của quá trì
 
 | Tiêu chí Đồ án PI-Guard            | Mục tiêu Thiết Kế (Register & Proposal) |   Regex / Rules Tĩnh (Y văn)   |  Classical TF-IDF Baseline (Y văn)   | LLM-as-a-Judge Llama Guard (Y văn) | **PI-Guard Đề Xuất (TF-IDF + DeBERTa-v3)** |              Đánh Giá Phù Hợp Mục Tiêu Đồ Án               |
 | :--------------------------------- | :-------------------------------------: | :----------------------------: | :----------------------------------: | :--------------------------------: | :----------------------------------------: | :--------------------------------------------------------: |
-| **1. Độ trễ P95 (CPU Inference)**  |    **< 30 ms** (Zero GPU Production)    |             < 1 ms             |               ~3.2 ms                |     > 500 ms – 1.5s (Quá cao)      |    **Mục tiêu < 30 ms (ONNX INT8 CPU)**    |    ✅ **PHÙ HỢP HOÀN TOÀN** (Tối ưu cho CPU tiêu chuẩn)    |
+| **1. Độ trễ P95 (CPU Inference)**  |  **< 30 ms** (Zero-GPU Commodity CPU)   |             < 1 ms             |               ~3.2 ms                |     > 500 ms – 1.5s (Quá cao)      |    **Mục tiêu < 30 ms (ONNX INT8 CPU)**    |    ✅ **PHÙ HỢP HOÀN TOÀN** (Tối ưu cho CPU tiêu chuẩn)    |
 | **2. Tỷ lệ Báo động nhầm (FPR)**   |  **< 1.5%** trên tập Benign hàng ngày   |             ~12.5%             |  2.8% - 7.5% (Dễ bắt nhầm từ khóa)   |               ~2.1%                |      **Mục tiêu < 1.5% (Ngưỡng kép)**      | ✅ **PHÙ HỢP HOÀN TOÀN** (Bảo toàn trải nghiệm người dùng) |
 | **3. Độ chính xác & F1-Score**     |            **F1 $\ge$ 0.95**            |           F1 < 0.50            |              F1 ~ 0.918              |             F1 ~ 0.945             |         **Mục tiêu F1 $\ge$ 0.95**         |     ✅ **PHÙ HỢP HOÀN TOÀN** (Tiệm cận SOTA ProtectAI)     |
 | **4. Độ bền Robustness (Evasion)** |     Độ suy giảm $\Delta F_1 < 5\%$      | Giảm > 80% (Bị bypass dễ dàng) | Giảm ~8.5% (Kháng leetspeak/spacing) | Giảm ~15.2% (Bị bypass bởi Base64) |      **Mục tiêu $\Delta F_1 < 5\%$**       |  ✅ **PHÙ HỢP HOÀN TOÀN** (Nhờ 3 tầng phòng thủ phối hợp)  |

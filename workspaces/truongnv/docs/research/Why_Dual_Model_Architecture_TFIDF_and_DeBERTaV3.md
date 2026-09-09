@@ -203,7 +203,7 @@ Khi đối chiếu kiến trúc kép của nhóm với 4 tiêu chí cam kết tr
 
 | Tiêu Chí Kỹ Thuật Đồ Án | Chỉ Tiêu Cam Kết (Proposal) | Kết Quả Đạt Được Của PI-Guard | Bằng Chứng / Cơ Sở Đo Đạc | Đánh Giá Mức Độ Đạt Chuẩn |
 | :--- | :---: | :---: | :--- | :---: |
-| **1. Độ trễ suy luận P95 trên CPU** | **< 30 ms** (Zero GPU Production) | **~12.8 ms (ONNX INT8)**<br>*(~3.2 ms với TF-IDF)* | Đo đạc qua `LatencyProfiler` ([`src/evaluation/latency.py`](file:///d:/Work/Do-an/src/evaluation/latency.py)) trên CPU Intel Core i7 8 nhân. Nhanh hơn 40 lần so với Llama Guard. | ✅ **VƯỢT CHỈ TIÊU (XUẤT SẮC)** |
+| **1. Độ trễ suy luận P95 trên CPU** | **< 30 ms** (Zero-GPU Commodity CPU) | **~12.8 ms (ONNX INT8)**<br>*(~3.2 ms với TF-IDF)* | Đo đạc qua `LatencyProfiler` ([`src/evaluation/latency.py`](file:///d:/Work/Do-an/src/evaluation/latency.py)) trên CPU Intel Core i7 8 nhân. Nhanh hơn 40 lần so với Llama Guard. | ✅ **VƯỢT CHỈ TIÊU (XUẤT SẮC)** |
 | **2. Tỷ lệ Báo động nhầm (FPR)** | **< 1.5%** trên tập Benign hợp lệ | **0.9% – 1.1%** | Đánh giá trên 25,000 mẫu `OpenOrca` và bộ truy vấn lập trình hàng ngày; DeBERTa-v3 hiểu rõ câu hỏi nghiên cứu bảo mật lành tính. | ✅ **ĐẠT CHỈ TIÊU (XUẤT SẮC)** |
 | **3. Độ chính xác & F1-Score** | **F1 $\ge$ 0.95** | **F1 = 0.977 – 0.981** | Đối chuẩn trực tiếp với SOTA ProtectAI (0.970) trên tập dữ liệu chuẩn hóa `Deepset`, `Gandalf` và `TrustAIRLab`. | ✅ **VƯỢT CHỈ TIÊU** |
 | **4. Độ bền đối kháng (Adversarial Robustness)** | Độ suy giảm $\Delta F_1 < 5\%$ khi bị nhiễu cú pháp | **$\Delta F_1 < 2.3\%$** | Kiểm thử qua bộ fuzzer mutators Leetspeak, Spacing, Delimiter wrap và Heuristic Base64 decoder. | ✅ **ĐẠT CHỈ TIÊU** |

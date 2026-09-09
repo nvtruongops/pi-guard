@@ -58,6 +58,16 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
+## 📖 STRICT RULE: LOCAL REFERENCES FIRST & LITERATURE REUSE PROTOCOL (ZERO REDUNDANT SEARCH)
+> [!IMPORTANT]
+> **MANDATORY INVARIANT: REUSE ARCHIVED LITERATURE BEFORE DISCOVERY**:
+> 1. **INSPECT REFERENCES_LOG.md FIRST**: Before calling any literature MCP tool (`arxiv`, `openalex`, `semanticscholar`, `scholar-feed`) or searching external web/databases for citations, all AI Agents and team members MUST first inspect [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md).
+> 2. **PRIORITIZE 18 CORE ARCHIVED PAPERS**: The repository already contains 18 approved, peer-reviewed academic papers covering all core topics (Direct/Indirect Prompt Injection, DAN Jailbreak, TF-IDF N-Grams, DeBERTa-v3, ONNX INT8 Quantization, Low FPR Economics, Adversarial Robustness, and Saltzer & Schroeder 1975). If a claim or topic is already covered, reuse the existing reference and anchor (`[[N]](#refN)`).
+> 3. **STRICT THRESHOLD FOR NEW LITERATURE**: External searches are permitted ONLY when researching a newly discovered attack variant or novel method genuinely not addressed in the 18 archived papers.
+> 4. **MANDATORY INGESTION PIPELINE**: Any newly accepted paper must be verified for Open-Access PDF, archived in `Final-Report/References/<filename>.pdf`, and indexed in `REFERENCES_LOG.md` with full metadata and BibTeX.
+
+---
+
 ## 🛡️ STRICT RULE: ACADEMIC TERMINOLOGY & DEFENSE BLACKLIST / WHITELIST PROTOCOL
 
 To prevent severe challenges and score deductions during committee defenses before the FPT Academic Council, all team members and AI Agents must strictly adhere to the following terminology blacklist/whitelist:

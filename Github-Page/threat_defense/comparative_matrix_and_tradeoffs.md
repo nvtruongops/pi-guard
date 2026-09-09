@@ -16,7 +16,7 @@
 | **Độ trễ P95 (Latency trên CPU)** | ⚡ $< 1\text{ms}$ | ⚡ $0\text{ms}$ | ⚡ $< 2\text{ms}$ | 🐢 $> 850\text{ms}$ (Cần GPU) | ⏳ $\approx 45\text{ms}$ | ⚡ **$< 15\text{ms}$ (CPU)** |
 | **Tài nguyên phần cứng** | $< 5\text{MB}$ RAM | $0\text{MB}$ | $< 10\text{MB}$ RAM | $> 16\text{GB}$ VRAM GPU | $\approx 550\text{MB}$ RAM | **$< 150\text{MB}$ RAM** |
 | **Chi phí Token phát sinh / 1M req** | $0 | $0 (nhưng tốn context) | $0 | $\approx \$150 - \$300$ | $0 | **$0 (Zero Token Cost)** |
-| **Bảo vệ System Prompt?** | ❌ Rất kém | ⚠️ Dễ bị Delimiter Escape | ❌ Không (System Prompt đã lộ) | ✅ Tốt | ✅ Tốt | ✅ **Tuyệt đối (Chặn từ Gateway)** |
+| **Bảo vệ System Prompt?** | ❌ Rất kém | ⚠️ Dễ bị Delimiter Escape | ❌ Không (System Prompt đã lộ) | ✅ Tốt | ✅ Tốt | ✅ **Hiệu quả cao (Đánh chặn từ Gateway)** |
 | **Kháng Leetspeak (`1gn0r3`)** | ❌ Thất bại hoàn toàn ($F_1 < 0.20$) | ❌ Bị đánh lừa | ⚠️ Bắt được từ rõ ràng | ✅ Tốt ($F_1 \approx 0.88$) | ⚠️ Suy giảm ($F_1 \approx 0.82$) | ✅ **Xuất sắc ($F_1 \ge 0.94$)** |
 | **Kháng Base64 / Cipher [[6]](#ref6)** | ❌ Thất bại hoàn toàn | ❌ Thất bại hoàn toàn | ❌ Thất bại hoàn toàn | ⚠️ Kém ($F_1 \approx 0.55$) | ⚠️ Kém ($F_1 \approx 0.60$) | ✅ **Xuất sắc ($F_1 \ge 0.93$)** |
 | **Tỷ lệ chặn nhầm (FPR trên Benign)** | ⚠️ Cao ($\approx 8.5\%$) | 0% | $< 0.5\%$ | ⚠️ Khá cao ($\approx 3.8\%$) | ⚠️ $\approx 2.4\%$ | ✅ **Rất thấp ($< 1.5\%$)** |
@@ -30,7 +30,7 @@ Khi triển khai hệ thống bảo mật trong môi trường sản xuất th�
 
 ```mermaid
 graph TD
-    Security["1. AN TOÀN TUYỆT ĐỐI<br/>(High Recall / ASR < 5%)"]
+    Security["1. MỨC ĐỘ AN NINH CAO<br/>(High Recall / ASR < 5%)"]
     Performance["2. HIỆU NĂNG SIÊU TỐC<br/>(Low Latency < 20ms / CPU)"]
     UX["3. TRẢI NGHIỆM NGƯỜI DÙNG<br/>(Low False Positive Rate < 1.5%)"]
 
@@ -39,7 +39,7 @@ graph TD
     Performance <--> |"Đánh đổi 3: Phân tầng Early-Exit"| UX
 ```
 
-### 1. Đánh Đổi 1: An Toàn Tuyệt Đối vs. Tỷ Lệ Chặn Nhầm (False Positive Rate)
+### 1. Đánh Đổi 1: Mức Độ An Ninh Cao vs. Tỷ Lệ Chặn Nhầm (False Positive Rate)
 - **Vấn đề**: Nếu chỉ tối ưu hóa cho tỷ lệ phát hiện tấn công (Recall $\rightarrow 100\%$), hệ thống sẽ hạ thấp ngưỡng quyết định ($R_{\text{thresh}} = 0.20$). Khi đó, bất kỳ câu hỏi nào của người dùng có chứa các từ nhạy cảm (ví dụ: một lập trình viên hỏi *"Làm thế nào để phòng chống SQL Injection trong Node.js?"* hoặc nhà nghiên cứu hỏi về *"Cơ chế bảo mật của Linux"*) đều sẽ bị gắn nhãn nhầm là mã độc và chặn lại.
 - **Hậu quả**: Trải nghiệm người dùng bị phá hủy (*Developer UX Disruption*), người dùng sẽ tìm cách tắt bỏ lớp Guardrail.
 - **Giải pháp của PI-Guard**:

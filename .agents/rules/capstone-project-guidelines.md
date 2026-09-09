@@ -62,19 +62,31 @@ trigger: always_on
 > **QUY TẮC SÀNG LỌC TÀI LIỆU NGHIÊN CỨU & CHỐNG DÀN TRẢI TRÍCH DẪN**:
 > 1. **EXTERNAL GUARDRAIL SCOPE COMPATIBILITY**: Mọi công trình khoa học được trích dẫn làm cơ sở thiết kế hệ thống PHẢI tương thích với kiến trúc External Guardrail Proxy (phân loại prompt mức văn bản trước khi gọi LLM, không đòi hỏi can thiệp vào trọng số nội bộ hay KV-cache của LLM đích).
 > 2. **ZERO CITATION BLOAT**: Kiên quyết loại bỏ các bài báo khảo sát trùng lặp hoặc có phạm vi quá rộng/ngoài phạm vi đề tài (như tấn công phần cứng, backdoor, data poisoning).
-> 3. **LOCAL PDF AVAILABILITY**: Mọi tài liệu khoa học được phê duyệt sử dụng trong đồ án BẮT BUỘC phải có bản sao PDF lưu trữ cục bộ trong thư mục `reports/References/` và `workspaces/<thành_viên>/References/`.
+> 3. **LOCAL PDF AVAILABILITY**: Mọi tài liệu khoa học được phê duyệt sử dụng trong đồ án BẮT BUỘC phải có bản sao PDF lưu trữ cục bộ trong thư mục `Final-Report/References/` và được định danh trong `REFERENCES_LOG.md`.
 
 ---
 
-## ⏱️ STRICT RULE: PROHIBITION OF "THỜI GIAN THỰC" (REAL-TIME) TERMINOLOGY FOR LATENCY
+## 📖 STRICT RULE: LOCAL REFERENCES FIRST & LITERATURE REUSE PROTOCOL (TRUY LỤC TÀI LIỆU CỤC BỘ TRƯỚC TIÊN)
 
 > [!IMPORTANT]
-> **QUY TẮC BẮT BUỘC VỀ THUẬT NGỮ ĐỘ TRỄ & HIỆU NĂNG**:
-> 1. **TUYỆT ĐỐI KHÔNG DÙNG CỤM TỪ "VẬN HÀNH THỜI GIAN THỰC" HOẶC "THỜI GIAN THỰC" (REAL-TIME)** để miêu tả độ trễ hay hiệu năng của Guardrail API, vì "thời gian thực" (Hard/Soft Real-Time System) là thuật ngữ kỹ thuật đặc thù cho các hệ thống điều khiển nhúng với cam kết microsecond nghiêm ngặt.
-> 2. **THUẬT NGỮ BẮT BUỘC SỬ DỤNG**:
->    - **"Độ trễ thấp" / "Low-Latency"** (ví dụ: *P95 < 30ms trên CPU đa nhân*).
->    - **"Bảo vệ trực tuyến" / "Inline Guardrail Proxy"**.
->    - **"Thời gian đáp ứng nhanh" / "Độ trễ suy luận (Inference Latency)"**.
+> **QUY TẮC BẮT BUỘC: TÁI SỬ DỤNG TÀI LIỆU CỐT LÕI ĐÃ LƯU TRỮ TRƯỚC KHI TÌM MỚI**:
+> 1. **BẮT BUỘC TRA CỨU REFERENCES_LOG.md TRƯỚC TIÊN**: Trước khi gọi bất kỳ công cụ MCP học thuật nào (`arxiv`, `openalex`, `semanticscholar`, `scholar-feed`) hoặc tìm kiếm tài liệu trên mạng, tất cả AI Agent và thành viên nhóm BẮT BUỘC phải tra cứu tệp [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md).
+> 2. **ƯU TIÊN TUYỆT ĐỐI 18 BÀI BÁO CỐT LÕI**: Repository đã tích hợp sẵn 18 công trình khoa học đỉnh cao (được GVHD và Hội đồng phê duyệt) bao quát đầy đủ mọi khía cạnh: Direct/Indirect Prompt Injection, DAN Jailbreak, TF-IDF N-Grams, DeBERTa-v3, Lượng hóa ONNX INT8, Đánh đổi FPR < 1.5%, Kiểm thử Độ bền Đối kháng và Nguyên lý An toàn Thông tin (Saltzer & Schroeder 1975). Khi cần dẫn chứng, BẮT BUỘC tái sử dụng các bài này kèm neo trích dẫn `[[N]](#refN)`.
+> 3. **TIÊU CHUẨN KHẮT KHE CHO BÀI BÁO MỚI**: Chỉ tìm kiếm bài báo mới khi xuất hiện kỹ thuật tấn công hoặc phương pháp phòng thủ hoàn toàn mới chưa có trong 18 bài. Mọi bài báo mới phải có bản Open-Access PDF, tải về `Final-Report/References/` và cập nhật đầy đủ metadata vào `REFERENCES_LOG.md`.
+
+---
+
+## 🛡️ STRICT RULE: ACADEMIC TERMINOLOGY & DEFENSE BLACKLIST / WHITELIST PROTOCOL
+
+Nhằm phòng tránh triệt để các câu hỏi bẫy và nguy cơ bị trừ điểm nặng trước Hội đồng Chấm Bảo vệ Tốt nghiệp FPT (Academic Council), tất cả thành viên và AI Agent bắt buộc phải tuân thủ bảng thuật ngữ chuẩn mực:
+
+| Phân Loại | 🚫 Thuật Ngữ Bị Cấm Tuyệt Đối (Blacklist) | ✅ Thuật Ngữ Học Thuật Bắt Buộc (Whitelist) | Luận Giải Kỹ Thuật & Phòng Thủ Hội Đồng |
+| :--- | :--- | :--- | :--- |
+| **Độ trễ & Hiệu năng** | • "Thời gian thực" / "Real-time"<br>• "Real-time detection"<br>• "Hệ thống thời gian thực" | • **"Độ trễ thấp" / "Low-Latency"**<br>• **"Độ trễ suy luận (Inference Latency)"**<br>• **"Inline Guardrail Proxy"**<br>• **"Thời gian đáp ứng nhanh (P95 < 30ms)"** | Trong Khoa học Máy tính, *"Real-time"* chỉ các hệ thống nhúng có cam kết thời gian ngặt nghèo cấp microsecond (Zero Jitter). Một HTTP Guardrail Proxy không thể cam kết hard real-time; dùng từ này sẽ bị Hội đồng bắt lỗi nặng. |
+| **Bản chất Hệ thống & Phạm vi** | • "Hệ thống Production thương mại"<br>• "Production-ready enterprise system"<br>• "Kiến trúc cấp doanh nghiệp"<br>• "Commercial SaaS guardrail" | • **"Nguyên Mẫu Thực Nghiệm Học Thuật (Academic Proof-of-Concept Prototype)"**<br>• **"Môi Trường Đo Đạc Độ Trễ (Inference Latency Testbed)"**<br>• **"Plug-and-Play Guardrail Middleware"** | PI-Guard là Khóa luận Tốt nghiệp Nghiên cứu (**IAP491 Research Thesis**), không phải sản phẩm Kỹ thuật Phần mềm thương mại. Khẳng định "Production" sẽ bị đòi hỏi OAuth2, RBAC, billing, multi-tenancy và load test 100k RPS. |
+| **Cam kết An ninh** | • "Bảo vệ 100% tuyệt đối"<br>• "Chống hack hoàn toàn"<br>• "Unbreakable defense"<br>• "Silver bullet solution" | • **"Giảm thiểu rủi ro thực nghiệm (Empirical Risk Mitigation)"**<br>• **"Phòng thủ theo chiều sâu (Defense-in-Depth)"**<br>• **"Độ chính xác cao ($F_1 \ge 0.95$, $\text{FPR} < 1.5\%$)"**<br>• **"Khả năng chống chịu đối kháng (Adversarial Robustness)"** | Không gian token là không gian phẳng ($X = S \mathbin{\Vert} U$); về mặt toán học không thể miễn nhiễm tuyệt đối. Tuyên bố an toàn 100% là phi khoa học. |
+| **Phần cứng & Triển khai** | • "Bắt buộc hạ tầng GPU đắt tiền"<br>• "Hệ thống đòi hỏi cụm máy chủ lớn" | • **"Triển khai tối ưu trên CPU tiêu chuẩn (Zero-GPU Commodity CPU)"**<br>• **"Lượng hóa động sau huấn luyện (ONNX INT8 Quantization)"** | Bản đăng ký đề tài ghi rõ triển khai trên CPU đa nhân thông thường, không phát sinh chi phí mua sắm GPU máy chủ cho nhà trường. |
+| **Can thiệp Mô hình** | • "Can thiệp trọng số nội tại của GPT-4"<br>• "Retrain lại downstream LLM"<br>• "Sửa đổi KV-cache bộ nhớ" | • **"Lớp lọc đầu vào độc lập (Model-Agnostic External Input Guardrail)"**<br>• **"Kiểm tra mức văn bản (Prompt-Level Inspection)"**<br>• **"Tương thích hộp đen (Black-Box LLM Compatibility)"** | PI-Guard hoạt động như một reverse proxy kiểm tra prompt mức văn bản. Việc can thiệp vào trọng số LLM thương mại hoặc KV-cache là phi thực tế và ngoài phạm vi đề tài. |
 
 ---
 

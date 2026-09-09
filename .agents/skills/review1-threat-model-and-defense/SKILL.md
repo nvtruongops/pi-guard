@@ -129,7 +129,7 @@ Dựa trên tiêu chuẩn **NIST AI 100-2e2025** [[7]](https://csrc.nist.gov/pub
 - **Target Assets**: System Prompt IP, API Credentials, Toàn vẹn luồng thực thi của Agent, Tài nguyên tính toán GPU.
 - **Attack Surface duy nhất**: Cổng REST API tiếp nhận chuỗi văn bản đầu vào (`POST /v1/chat/guardrail`).
 - **Phạm vi In-Scope vs. Out-of-Scope**:
-  - *In-Scope*: Chuỗi văn bản tiếng Anh; Direct/Indirect Prompt Injection; Jailbreak; Evasion (Leetspeak, Base64, Spacing); Real-time P95 < 30ms trên CPU.
+  - *In-Scope*: Chuỗi văn bản tiếng Anh; Direct/Indirect Prompt Injection; Jailbreak; Evasion (Leetspeak, Base64, Spacing); Low-Latency P95 < 30ms trên CPU.
   - *Out-of-Scope*: Tấn công đa phương thức (Ảnh/Video), DDoS mạng, trích xuất trọng số GPU, dựng RAG Vector DB.
 
 ---
@@ -151,7 +151,7 @@ Dựa trên tiêu chuẩn **NIST AI 100-2e2025** [[7]](https://csrc.nist.gov/pub
 2. **RQ2 (Độ bền Kháng lẩn tránh & Mã hóa đối kháng)**:
    *Hệ thống phòng thủ đa tầng (kết hợp tiền xử lý chuẩn hóa chuỗi, biểu diễn n-gram ký tự và token hóa subword) duy trì độ bền và độ chính xác như thế nào trước các kỹ thuật lẩn tránh đối kháng có cấu trúc (gồm thay thế ký tự Leetspeak, phân tách khoảng trắng và mã hóa Base64/Cipher), và mức độ suy giảm hiệu năng tối đa có thể định lượng được là bao nhiêu?*
 3. **RQ3 (Cân bằng An toàn & Khả thi triển khai Inline)**:
-   *Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và quá trình lượng hóa động INT8 cùng kiến trúc proxy bất đồng bộ có thể bảo toàn ranh giới quyết định an toàn trong khi đạt độ trễ thời gian thực (P95 < 30ms trên CPU) mà không tạo ra điểm nghẽn DoS?*
+   *Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và quá trình lượng hóa động INT8 cùng kiến trúc proxy bất đồng bộ có thể bảo toàn ranh giới quyết định an toàn trong khi đạt độ trễ thấp (P95 < 30ms trên CPU) mà không tạo ra điểm nghẽn DoS?*
 
 ---
 

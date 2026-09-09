@@ -143,7 +143,7 @@ $$D_{\text{KL}}(P_{\text{FP32}} \parallel Q_{\text{INT8}}) = \sum_{c \in \{\text
 └──────────────────────────────────────┴─────────────┴─────────────┴─────────────────────┘
 ```
 
-**Kết luận khoa học**: Độ suy giảm $\Delta F_1 = 0.21\%$ nằm sâu dưới ngưỡng dung sai cho phép ($0.3\%$). Ranh giới phân loại an ninh được bảo toàn nguyên vẹn, chứng minh tính khả thi tuyệt đối của giải pháp Guardrail trực tuyến trên CPU.
+**Kết luận khoa học**: Độ suy giảm $\Delta F_1 = 0.21\%$ nằm sâu dưới ngưỡng dung sai cho phép ($0.3\%$). Ranh giới phân loại an ninh được bảo toàn nguyên vẹn, chứng minh tính khả thi vững chắc của giải pháp Guardrail độ trễ thấp trên CPU tiêu chuẩn.
 
 ---
 

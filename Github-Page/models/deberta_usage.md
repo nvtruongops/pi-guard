@@ -84,9 +84,9 @@ training_args = TrainingArguments(
 
 ---
 
-## ⚡ 3. XUẤT ONNX & LƯỢNG HÓA INT8 (ZERO-GPU PRODUCTION)
+## ⚡ 3. XUẤT ONNX & LƯỢNG HÓA INT8 (ZERO-GPU INFERENCE DEPLOYMENT)
 
-Để đạt mục tiêu $P95 < 30\text{ms}$ trên CPU mà không cần GPU đắt đỏ, ta tiến hành lượng hóa sang ONNX INT8:
+Để đạt mục tiêu $P95 < 30\text{ms}$ trên CPU tiêu chuẩn với chi phí phần cứng tối ưu, ta tiến hành lượng hóa sang ONNX INT8:
 
 ```python
 from onnxruntime.quantization import quantize_dynamic, QuantType

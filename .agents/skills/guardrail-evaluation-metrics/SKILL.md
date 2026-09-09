@@ -81,7 +81,7 @@ def run_robustness_benchmark(model_predict_fn, test_slices_dict):
 
 ## 3. Latency & Throughput Benchmarking
 
-Measure inference speed in milliseconds per request ($ms/req$) to ensure real-time readiness:
+Measure inference speed in milliseconds per request ($ms/req$) to ensure low-latency readiness (P95 < 30ms):
 
 ```python
 import time

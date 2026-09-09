@@ -14,29 +14,34 @@ This skill guides research, taxonomy classification, and literature review for t
 
 ---
 
-## 1. Local References Archive & Application Log (100% >= 2022)
+## 1. Local References Archive & Application Log (18 Verified Papers)
 
-All 17 core academic papers are downloaded and cataloged in [`References/`](file:///d:/Work/Do-an/References/). Always refer to [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/References/REFERENCES_LOG.md) for full metadata, BibTeX citations, and thesis/slide mapping:
+> [!IMPORTANT]
+> **LOCAL REFERENCES FIRST PROTOCOL**:
+> Before querying external databases (arXiv, OpenAlex, Semantic Scholar), all researchers and agents **MUST inspect [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md)**. If a claim or attack/defense mechanism is already covered by the 18 archived papers, reuse the existing reference.
+
+All 18 core academic papers (17 modern $\ge 2022$ + 1 classic foundational work) are downloaded and cataloged in [`Final-Report/References/`](file:///d:/Work/Do-an/Final-Report/References/). Always refer to [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md) for full metadata, taxonomy matrix, BibTeX citations, and thesis mapping:
 
 | File PDF (`References/`) | Authors & Year | Publication Venue | Role & Applied Section |
 | :--- | :--- | :---: | :--- |
-| [`Zhao_2023_A_Survey_of_Large_Language_Models.pdf`](file:///d:/Work/Do-an/References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf) | Zhao et al. (2023) | *IJCAI / arXiv 2023* | LLM Architecture Survey & Flat Code/Data Boundary (Ch. 1, 2) |
-| [`Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`](file:///d:/Work/Do-an/References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf) | Ouyang et al. (2022) | *NeurIPS 2022* | Instruction Tuning, RLHF & System Prompt Processing (Ch. 1, 2) |
-| [`Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf`](file:///d:/Work/Do-an/References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf) | Perez & Ribeiro (2022) | *NeurIPS 2022* | Direct Prompt Injection Foundation (Ch. 1, 2, 3) |
-| [`Greshake_2023_Indirect_Prompt_Injection.pdf`](file:///d:/Work/Do-an/References/Greshake_2023_Indirect_Prompt_Injection.pdf) | Greshake et al. (2023) | *ACM AISEC 2023* | Indirect Prompt Injection & RAG Security (Ch. 1, 2) |
-| [`Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf) | Wei et al. (2024) | *NeurIPS 2024* | Jailbreak Mechanisms & Safety Training Failure (Ch. 1, 4) |
-| [`Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`](file:///d:/Work/Do-an/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf) | Tencent Zhuque Lab (2026) | *arXiv 2026* | Multi-Layer Threat Model & 26+ Attack Operators (Ch. 1, 3, 4) |
-| [`Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf`](file:///d:/Work/Do-an/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf) | Meta AI (2023) | *arXiv 2023* | SOTA Guardrail Baseline Comparison (Ch. 2, 3) |
-| [`NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`](file:///d:/Work/Do-an/References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf) | NVIDIA (2023) | *EMNLP 2023* | Programmable Middleware Architecture (Ch. 2, 3) |
-| [`He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`](file:///d:/Work/Do-an/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf) | He et al. (2023) | *ICLR 2023* | **KEY 2**: Disentangled Attention for Prompt Classification (Ch. 3, 4) |
-| [`OpenAI_2023_Undesired_Content_Detection.pdf`](file:///d:/Work/Do-an/References/OpenAI_2023_Undesired_Content_Detection.pdf) | Markov et al. (2023) | *AAAI HCOMP 2023* | Production Metrics & Low FPR Trade-off (Ch. 2, 4) |
-| [`Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`](file:///d:/Work/Do-an/References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf) | Shen et al. (2024) | *ACM CCS 2024* | In-The-Wild Jailbreak Dataset (15,140 prompts) (Ch. 3, 4) |
-| [`Zhou_2024_EasyJailbreak_Unified_Framework.pdf`](file:///d:/Work/Do-an/References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf) | Zhou et al. (2024) | *arXiv 2024* | Adversarial Mutation Operators (Leetspeak, Spacing, Base64) (Ch. 3, 4) |
-| [`Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf`](file:///d:/Work/Do-an/References/Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf) | Zou et al. (2023) | *arXiv 2023* | GCG Adversarial Suffix Attacks & Token Perturbations (Ch. 4) |
-| [`Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`](file:///d:/Work/Do-an/References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf) | Robey et al. (2023) | *arXiv 2023* | Randomized Smoothing Defense Comparison (Ch. 4) |
-| [`Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf) | Jain et al. (2023) | *arXiv 2023* | **KEY 1**: Baseline Defenses & Simple Classifier Benchmarks (Ch. 3, 4) |
-| [`Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`](file:///d:/Work/Do-an/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf) | Yao et al. (2022) | *NeurIPS 2022* | **KEY 3**: INT8 Post-Training Quantization (PTQ) for Transformers (Ch. 3, 4) |
-| [`Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`](file:///d:/Work/Do-an/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf) | Yuan et al. (2024) | *ICLR 2024* | **CIPHER KEY**: GPT-4 Safety Failure under Cipher & Obfuscation (Ch. 1, 4) |
+| [`Zhao_2023_A_Survey_of_Large_Language_Models.pdf`](file:///d:/Work/Do-an/Final-Report/References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf) | Zhao et al. (2023) | *IJCAI / arXiv 2023* | LLM Architecture Survey & Flat Code/Data Boundary (Ch. 1, 2) |
+| [`Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`](file:///d:/Work/Do-an/Final-Report/References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf) | Ouyang et al. (2022) | *NeurIPS 2022* | Instruction Tuning, RLHF & System Prompt Processing (Ch. 1, 2) |
+| [`Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf`](file:///d:/Work/Do-an/Final-Report/References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf) | Perez & Ribeiro (2022) | *NeurIPS 2022* | Direct Prompt Injection Foundation (Ch. 1, 2, 3) |
+| [`Greshake_2023_Indirect_Prompt_Injection.pdf`](file:///d:/Work/Do-an/Final-Report/References/Greshake_2023_Indirect_Prompt_Injection.pdf) | Greshake et al. (2023) | *ACM AISEC 2023* | Indirect Prompt Injection & RAG Security (Ch. 1, 2) |
+| [`Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/Final-Report/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf) | Wei et al. (2024) | *NeurIPS 2024* | Jailbreak Mechanisms & Safety Training Failure (Ch. 1, 4) |
+| [`Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`](file:///d:/Work/Do-an/Final-Report/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf) | Tencent Zhuque Lab (2026) | *arXiv 2026* | Multi-Layer Threat Model & 26+ Attack Operators (Ch. 1, 3, 4) |
+| [`Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf`](file:///d:/Work/Do-an/Final-Report/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf) | Meta AI (2023) | *arXiv 2023* | SOTA Guardrail Baseline Comparison (Ch. 2, 3) |
+| [`NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`](file:///d:/Work/Do-an/Final-Report/References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf) | NVIDIA (2023) | *EMNLP 2023* | Programmable Middleware Architecture (Ch. 2, 3) |
+| [`He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`](file:///d:/Work/Do-an/Final-Report/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf) | He et al. (2023) | *ICLR 2023* | **KEY 2**: Disentangled Attention for Prompt Classification (Ch. 3, 4) |
+| [`OpenAI_2023_Undesired_Content_Detection.pdf`](file:///d:/Work/Do-an/Final-Report/References/OpenAI_2023_Undesired_Content_Detection.pdf) | Markov et al. (2023) | *AAAI HCOMP 2023* | Production Metrics & Low FPR Trade-off (Ch. 2, 4) |
+| [`Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`](file:///d:/Work/Do-an/Final-Report/References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf) | Shen et al. (2024) | *ACM CCS 2024* | In-The-Wild Jailbreak Dataset (15,140 prompts) (Ch. 3, 4) |
+| [`Zhou_2024_EasyJailbreak_Unified_Framework.pdf`](file:///d:/Work/Do-an/Final-Report/References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf) | Zhou et al. (2024) | *arXiv 2024* | Adversarial Mutation Operators (Leetspeak, Spacing, Base64) (Ch. 3, 4) |
+| [`Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf`](file:///d:/Work/Do-an/Final-Report/References/Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf) | Zou et al. (2023) | *arXiv 2023* | GCG Adversarial Suffix Attacks & Token Perturbations (Ch. 4) |
+| [`Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`](file:///d:/Work/Do-an/Final-Report/References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf) | Robey et al. (2023) | *arXiv 2023* | Randomized Smoothing Defense Comparison (Ch. 4) |
+| [`Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/Final-Report/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf) | Jain et al. (2023) | *arXiv 2023* | **KEY 1**: Baseline Defenses & Simple Classifier Benchmarks (Ch. 3, 4) |
+| [`Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`](file:///d:/Work/Do-an/Final-Report/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf) | Yao et al. (2022) | *NeurIPS 2022* | **KEY 3**: INT8 Post-Training Quantization (PTQ) for Transformers (Ch. 3, 4) |
+| [`Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`](file:///d:/Work/Do-an/Final-Report/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf) | Yuan et al. (2024) | *ICLR 2024* | **CIPHER KEY**: GPT-4 Safety Failure under Cipher & Obfuscation (Ch. 1, 4) |
+| [`Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf`](file:///d:/Work/Do-an/Final-Report/References/Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf) | Saltzer & Schroeder (1975) | *Proc. IEEE 1975* | **FOUNDATION**: Complete Mediation, Defense-in-Depth Principles (Ch. 2, 3) |
 
 ---
 
@@ -133,7 +138,7 @@ Trước khi thu thập, trích dẫn hoặc thêm bất kỳ bài báo nào và
    - Ưu tiên công trình bình duyệt chính thức (ACM, IEEE, EMNLP, ICLR) thay vì các bản preprint khảo sát trùng lặp.
    - Loại bỏ các bài báo khảo sát quá rộng bao gồm cả lỗ hổng phần cứng, data poisoning, backdoor.
 3. **Phân định rõ vai trò (Test Data vs. Realtime Algorithms)**:
-   - Nếu bài báo đề xuất tấn công tối ưu gradient white-box (như Zou et al. GCG), chỉ kế thừa tập mẫu chuỗi đối kháng đã sinh sẵn để làm test set độ bền; không đưa thuật toán tính gradient vào kiến trúc suy luận thời gian thực.
+   - Nếu bài báo đề xuất tấn công tối ưu gradient white-box (như Zou et al. GCG), chỉ kế thừa tập mẫu chuỗi đối kháng đã sinh sẵn để làm test set độ bền; không đưa thuật toán tính gradient vào kiến trúc suy luận độ trễ thấp.
 4. **Lưu trữ bản PDF cục bộ (Local PDF Invariant)**:
    - Tải và lưu trữ file PDF đầy đủ vào `References/` và `workspaces/<thành_viên>/References/`.
 

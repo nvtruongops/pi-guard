@@ -30,7 +30,7 @@ Trong kiến trúc của PI-Guard, Bộ lọc Cú pháp TF-IDF Baseline đóng v
 │ BƯỚC 3: PHÂN LOẠI TUYẾN TÍNH (CLASSIFIER INFERENCE)    │
 │ • Tích vô hướng z = w^T * x + b                        │
 │ • Tính xác suất qua Sigmoid: P(Injection | x)          │
-│ • Thời gian thực thi: ~2.8ms - 3.5ms                   │
+│ • Độ trễ suy luận (Latency): ~2.8ms - 3.5ms            │
 └────────────────────────────────────────────────────────┘
        │
        ▼
@@ -89,7 +89,7 @@ def build_pi_guard_baseline():
 
 ---
 
-## 💾 3. QUẢN LÝ LƯU TRỮ VÀ TRIỂN KHAI PRODUCTION
+## 💾 3. QUẢN LÝ LƯU TRỮ VÀ TRIỂN KHAI THỰC THI (INFERENCE DEPLOYMENT)
 
 - **Lưu mô hình**:
   ```python

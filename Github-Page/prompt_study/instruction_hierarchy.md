@@ -66,8 +66,8 @@ Không giống như ngôn ngữ lập trình có cú pháp nghiêm ngặt (BNF G
 ├────────────────────────────────┼───────────────────────────────────────────────────────┤
 │ PI-GUARD EXTERNAL GUARDRAIL    │ • Đặt ĐỘC LẬP bên ngoài trước khi dữ liệu chạm vào LLM │
 │ (Out-of-Band Proxy Defense)    │ • Không chia sẻ Context Window với Target LLM         │
-│                                │ • Đánh chặn 100% payload độc hại tại cổng API Gateway  │
-│                                │ • ✅ Tiết kiệm chi phí GPU, bảo vệ tuyệt đối System IP│
+│                                │ • Đánh chặn chủ động payload độc hại tại API Gateway  │
+│                                │ • ✅ Tiết kiệm chi phí GPU, bảo vệ tiền trạm System IP│
 └────────────────────────────────┴───────────────────────────────────────────────────────┘
 ```
 

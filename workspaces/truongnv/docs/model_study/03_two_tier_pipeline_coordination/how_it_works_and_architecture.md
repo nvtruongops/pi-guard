@@ -97,7 +97,7 @@ $$\text{Final Decision}(x) = \begin{cases}
 
 ---
 
-## ⚡ 4. LỢI ÍCH VỀ MẶT HIỆU NĂNG SẢN XUẤT (PRODUCTION GAINS)
+## ⚡ 4. LỢI ÍCH VỀ MẶT HIỆU NĂNG HỆ THỐNG THỰC TẾ (SYSTEM EFFICIENCY GAINS)
 
 1. **Giảm tải tính toán (Workload Offloading)**:
    - Trong môi trường thực tế, khoảng **75% – 85%** các truy vấn là các câu hỏi thường nhật rõ ràng hoặc các mẫu tấn công từ khóa thô thiển.

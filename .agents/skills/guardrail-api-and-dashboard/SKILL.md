@@ -115,7 +115,7 @@ import requests
 st.set_page_config(page_title="PI-Guard Dashboard", page_icon="🛡️", layout="wide")
 
 st.title("🛡️ PI-Guard: Prompt Injection & Jailbreak Defense Dashboard")
-st.markdown("Real-time monitoring and testing for ML-based LLM Guardrail.")
+st.markdown("Live monitoring and interactive testing for ML-based LLM Guardrail.")
 
 # Sidebar Settings
 st.sidebar.header("⚙️ Configuration")

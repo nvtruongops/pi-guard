@@ -69,7 +69,7 @@ The primary state-of-the-art model is based on **DeBERTa-v3** due to its disenta
 
 ### Recommended Models:
 - `microsoft/deberta-v3-base` (High accuracy, primary research target)
-- `microsoft/deberta-v3-small` (Low latency, ideal for real-time guardrail API)
+- `microsoft/deberta-v3-small` (Low latency, ideal for inline low-latency guardrail API)
 - `roberta-base` (Comparison baseline)
 
 ### Training Script with Hugging Face `Trainer`:

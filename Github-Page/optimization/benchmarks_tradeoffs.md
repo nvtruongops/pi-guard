@@ -41,7 +41,7 @@
 │             BIỂU ĐỒ PHÂN BỐ ĐỘ TRỄ SUY LUẬN CỦA PI-GUARD (TẬP TEST 2,000 PROMPTS)      │
 ├──────────────────────────┬─────────────┬─────────────┬─────────────┬───────────────────┤
 │ Phân Vị Độ Trễ           │ Tầng 1 Lọc  │ Tầng 2 Lọc  │ PI-Guard    │ Chuẩn Cam Kết SLA │
-│ (Percentile)             │ (TF-IDF)    │ (DeBERTa)   │ Tổng Hợp    │ (Production SLA)  │
+│ (Percentile)             │ (TF-IDF)    │ (DeBERTa)   │ Tổng Hợp    │ (Latency Target)  │
 ├──────────────────────────┼─────────────┼─────────────┼───────────────────┼─────────────┤
 │ P50 (Median)             │ 2.4 ms      │ 11.2 ms     │ 3.2 ms      │ < 15.0 ms         │
 │ P90 (90% requests)       │ 2.9 ms      │ 13.5 ms     │ 8.4 ms      │ < 25.0 ms         │

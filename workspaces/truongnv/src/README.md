@@ -1,9 +1,9 @@
-# THƯ MỤC MÃ NGUỒN CHÍNH THỨC CỦA DỰ ÁN (PRODUCTION SOURCE CODE)
+# THƯ MỤC MÃ NGUỒN CHÍNH THỨC CỦA DỰ ÁN (ACADEMIC POC & PRODUCT BENCHMARK SOURCE CODE)
 ## 🛡️ PI-Guard Core Framework Architecture
 
 > [!IMPORTANT]
-> **QUY TẮC PHÁT TRIỂN PHẦN MỀM (DEVELOPMENT RULES)**:
-> 1. Thư mục `Final-Report/src/` là **NƠI CHỨA MÃ NGUỒN CHÍNH THỨC, HOÀN CHỈNH VÀ ĐÃ QUA KIỂM THỬ (PRODUCTION-READY)**.
+> **QUY TẮC PHÂN HỆ VÀ RANH GIỚI BẤT BIẾN**:
+> 1. Thư mục `Final-Report/src/` là **NƠI CHỨA MÃ NGUỒN CHÍNH THỨC, HOÀN CHỈNH VÀ ĐÃ QUA KIỂM THỬ (ACADEMIC-POC-PROTOTYPE)**.
 > 2. Thành viên **KHÔNG ĐƯỢC CODE TRỰC TIẾP HOẶC TEST NHÁP TRONG `Final-Report/src/`**.
 > 3. Mọi tính năng mới, thử nghiệm thuật toán phải viết trong `workspaces/<tên_bạn>/` trước $\rightarrow$ Sau khi họp nhóm cuối tuần thống nhất mới tạo Pull Request merge vào `Final-Report/src/`.
 
