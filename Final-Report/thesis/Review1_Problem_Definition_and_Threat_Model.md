@@ -46,20 +46,21 @@ The primary deliverables of this capstone project include a curated, deduplicate
 # TABLE OF CONTENTS (MỤC LỤC BÁO CÁO)
 
 - [CHAPTER 1: INTRODUCTION](#chapter-1-introduction)
-  - [1.1. Background (Bối Cảnh Nghiên Cứu)](#11-background-bối-cảnh-nghiên-cứu)
-  - [1.2. Problem Statement (Phát Biểu Bài Toán)](#12-problem-statement-phát-biểu-bài-toán)
-  - [1.3. Research Objectives &amp; Research Questions (Mục Tiêu &amp; 6 Câu Hỏi Nghiên Cứu)](#13-research-objectives--research-questions-mục-tiêu--6-câu-hỏi-nghiên-cứu)
-  - [1.4. Significance of the Study &amp; Threat Impact Analysis (Ý Nghĩa &amp; Phân Tích Thiệt Hại)](#14-significance-of-the-study--threat-impact-analysis-ý-nghĩa--phân-tích-thiệt-hại)
-  - [1.5. Scope and Limitations (Ranh Giới Phạm Vi &amp; Giới Hạn Đề Tài)](#15-scope-and-limitations-ranh-giới-phạm-vi--giới-hạn-đề-tài)
-  - [1.6. Thesis Structure (Bố Cục 6 Chương Của Toàn Văn Luận Văn)](#16-thesis-structure-bố-cục-6-chương-của-toàn-văn-luận-văn)
+  - [1.1. Background (Bối Cảnh Nghiên Cứu)](#11-background-boi-canh-nghien-cuu)
+  - [1.2. Problem Statement (Phát Biểu Bài Toán)](#12-problem-statement-phat-bieu-bai-toan)
+  - [1.3. Research Objectives & Research Questions (Mục Tiêu & 6 Câu Hỏi Nghiên Cứu)](#13-research-objectives-research-questions-muc-tieu-6-cau-hoi-nghien-cuu)
+  - [1.4. Significance of the Study & Threat Impact Analysis (Ý Nghĩa & Phân Tích Thiệt Hại)](#14-significance-of-the-study-threat-impact-analysis-y-nghia-phan-tich-thiet-hai)
+  - [1.5. Scope and Limitations (Ranh Giới Phạm Vi & Giới Hạn Đề Tài)](#15-scope-and-limitations-ranh-gioi-pham-vi-gioi-han-e-tai)
+  - [1.6. Thesis Structure (Bố Cục 6 Chương Của Toàn Văn Luận Văn)](#16-thesis-structure-bo-cuc-6-chuong-cua-toan-van-luan-van)
 - [SECTION 2: THREAT TAXONOMY: PROMPT INJECTION VS. JAILBREAK](#section-2-threat-taxonomy-prompt-injection-vs-jailbreak)
-- [SECTION 3: THREAT MODELING, ATTACKERS &amp; REAL-WORLD DAMAGE ASSESSMENT](#section-3-threat-modeling-attackers--real-world-damage-assessment)
-- [SECTION 4: 3-TIER LAYERED DEFENSE, 2-PHASE ARCHITECTURE &amp; ROBUSTNESS DESIGN](#section-4-3-tier-layered-defense-2-phase-architecture--robustness-design)
-- [SECTION 5: 4-SCENARIO ILLUSTRATIVE PROBLEM &amp; PROPOSED DEFENSE MATRIX](#section-5-4-scenario-illustrative-problem--proposed-defense-matrix)
-- [SECTION 6: LITERATURE REVIEW ON GUARDRAIL APPROACHES &amp; MODEL SELECTION RATIONALE](#section-6-literature-review-on-guardrail-approaches--model-selection-rationale)
+- [SECTION 3: THREAT MODELING, ATTACKERS & REAL-WORLD DAMAGE ASSESSMENT](#section-3-threat-modeling-attackers-real-world-damage-assessment)
+- [SECTION 4: 3-TIER LAYERED DEFENSE, 2-PHASE ARCHITECTURE & ROBUSTNESS DESIGN](#section-4-3-tier-layered-defense-2-phase-architecture-robustness-design)
+- [SECTION 5: 4-SCENARIO ILLUSTRATIVE PROBLEM & PROPOSED DEFENSE MATRIX](#section-5-4-scenario-illustrative-problem-proposed-defense-matrix)
+- [SECTION 6: LITERATURE REVIEW ON GUARDRAIL APPROACHES & MODEL SELECTION RATIONALE](#section-6-literature-review-on-guardrail-approaches-model-selection-rationale)
   - [*Chuyên khảo Luận giải: Tại sao dùng TF-IDF Baseline & DeBERTa-v3?*](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md)
-- [SECTION 7: QUANTITATIVE TARGETS &amp; EVALUATION METRICS](#section-7-quantitative-targets--evaluation-metrics)
-- [SECTION 8: VERIFIED ACADEMIC REFERENCES (100% &gt;= 2022)](#section-8-verified-academic-references-100--2022)
+- [SECTION 7: QUANTITATIVE TARGETS & EVALUATION METRICS](#section-7-quantitative-targets-evaluation-metrics)
+- [SECTION 8: VERIFIED ACADEMIC REFERENCES (100% >= 2022)](#section-8-verified-academic-references-100-2022)
+
 
 ---
 
