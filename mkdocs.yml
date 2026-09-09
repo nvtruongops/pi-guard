@@ -141,7 +141,8 @@ nav:
       - "Chương 2: Tổng Quan Tài Liệu (Literature Review)": thesis/chapter_02_literature_review.md
       - "Luận Văn Tổng Hợp Đầy Đủ": thesis/final_thesis.md
   - "Thư Viện Bài Báo Khoa Học":
-      - "Nhật Ký 18 Bài Báo IEEE (>= 2022)": references/references_log.md
+      - "Tổng Quan 8 Bài Báo Slide & 18 Papers": references/references_overview.md
+      - "Nhật Ký 18 Bài Báo Học Thuật": references/references_log.md
   - "Đội Ngũ & Hướng Dẫn":
       - "Phân Quyền Git & Workspace Rules": dev/team_governance.md
       - "Quy Chuẩn Đóng Góp (Contributing)": dev/contributing_guide.md

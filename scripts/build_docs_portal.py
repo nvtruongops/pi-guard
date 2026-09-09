@@ -352,7 +352,9 @@ def aggregate_all():
              SITE_DOCS_DIR / "thesis" / "final_thesis.md")
 
     # Thư viện bài báo khoa học
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "References" / "REFERENCES_LOG.md",
+    copy_doc(ROOT_DIR / "References" / "README.md",
+             SITE_DOCS_DIR / "references" / "references_overview.md")
+    copy_doc(ROOT_DIR / "References" / "REFERENCES_LOG.md",
              SITE_DOCS_DIR / "references" / "references_log.md")
 
     # Đội ngũ & Hướng dẫn kỹ thuật
