@@ -14,7 +14,9 @@
   - [`docs/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/02_Literature_Review.md): Toàn văn Chương 2 (Literature Review & SOTA Survey).
   - [`docs/thesis/chapters/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/README.md): Lộ trình biên soạn 6 chương theo chuẩn FPT IAP491.
   - [`docs/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md): Hồ sơ kỹ thuật Problem Definition & Threat Model.
-  - [`docs/thesis/Review1_Presentation_Slides_Outline.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/Review1_Presentation_Slides_Outline.md): Dàn ý 9 slide thuyết trình 15 phút.
+  - [`reports/PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/reports/PI-GUARD-Present-109.pptx): Slide thuyết trình tiến độ phục vụ buổi gặp Giáo viên Hướng dẫn (10/09/2026 - 22 slide, Dark Slate Navy, chuẩn bị cho Review 1).
+  - [`reports/REVIEW1_SUPERVISOR_REPORT_10_09_2026.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/REVIEW1_SUPERVISOR_REPORT_10_09_2026.md): Đề cương tóm lược slide-by-slide & kịch bản phân vai báo cáo tiến độ gặp GVHD (10/09/2026).
+  - [`reports/figures/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/figures/README.md): Danh mục 13 hình ảnh minh chứng trích từ slide báo cáo GVHD kèm metadata học thuật & tác dụng kỹ thuật.
   - [`docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md): *(Dùng chung toàn nhóm)* Tóm tắt quy chế và tiêu chí chấm điểm FPT IAP491.
   - [`docs/thesis/FINAL_THESIS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FINAL_THESIS.md): Bản biên dịch toàn văn các chương Review 1.
 

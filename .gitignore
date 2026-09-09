@@ -73,7 +73,5 @@ site_docs/
 site/
 .cache/
 .playwright-mcp/
-
-
-
-
+# CodeGraph Index Cache
+.codegraph/

@@ -1,7 +1,7 @@
 """
 scripts/build_docs_portal.py
 -----------------------------
-PI-Guard Documentation Portal Aggregator
+PI-Guard Documentation Portal Aggregator (8-Pillar Academic Architecture)
 Tự động thu thập, chuẩn hóa và cấu trúc tài liệu toàn dự án PI-Guard
 thành thư mục 'site_docs/' để phục vụ xuất bản Web UI qua MkDocs Material.
 
@@ -31,8 +31,14 @@ def clean_and_prepare_dir():
         shutil.rmtree(SITE_DOCS_DIR)
     SITE_DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Tạo các thư mục con theo kiến trúc thông tin (IA)
-    for sub in ["work", "models", "attacks", "threat_defense", "robustness", "research", "thesis", "references", "dev", "javascripts", "stylesheets"]:
+    # Tạo các thư mục con theo kiến trúc thông tin 8 Chuyên Đề Khoa Học
+    subdirs = [
+        "work", "prompt_study", "attacks", "threat_defense", 
+        "dataset_study", "models", "robustness", "optimization", 
+        "evaluation_study", "research", "thesis", "references", 
+        "dev", "javascripts", "stylesheets"
+    ]
+    for sub in subdirs:
         (SITE_DOCS_DIR / sub).mkdir(parents=True, exist_ok=True)
     print(f"📁 [INIT] Đã khởi tạo cấu trúc thư mục tại: {SITE_DOCS_DIR}")
 
@@ -40,10 +46,9 @@ def sanitize_content(content: str) -> str:
     """
     Chuẩn hóa nội dung markdown:
     - Loại bỏ triệt để mọi liên kết hoặc đề cập đến tài liệu bảo mật nội bộ (docs/fpt_capstone_guide).
-    - Chuyển đổi file:// link tuyệt đối Windows thành link markdown tương đối hoặc link code.
+    - Chuyển đổi file:// link tuyệt đối Windows thành văn bản chuẩn hoặc link hợp lệ.
     - Chuẩn hóa Math block và Callouts.
     """
-    # Lọc bỏ các dòng chứa tài liệu bảo mật nội bộ
     sanitized_lines = []
     for line in content.splitlines():
         if "fpt_capstone_guide" in line or "SP26IA04" in line:
@@ -51,15 +56,14 @@ def sanitize_content(content: str) -> str:
         sanitized_lines.append(line)
     content = "\n".join(sanitized_lines)
 
-    # Thay thế file:///d:/Work/Do-an/... hoặc file:///D:/Work/Do-an/...
-    content = re.sub(r"\[([^\]]+)\]\(file:///[dD]:/Work/Do-an/([^)]+)\)", r"[\1](\2)", content)
+    # Chuyển đổi link PDF nội bộ và link file ngoài thành inline code hoặc text đậm
+    content = re.sub(r"\[([^\]]+)\]\((?:file:///[^)]+|References/[^)]+\.pdf|Meeting/[^)]+|CAPSTONE%20PROJECT%20REGISTER\.md|docs/[^)]+)\)", r"**\1**", content)
+
     # Thay thế file:///... còn lại
     content = re.sub(r"\(file:///[^)]+\)", r"(#)", content)
 
-    # Chuẩn hóa callout kiểu GitHub (> [!NOTE]) thành MkDocs Admonition (!!! note)
     # Sửa lỗi ký tự gạch chéo ngược \_ trong link URL
     content = re.sub(r"https?://[^\s\)]+", lambda m: m.group(0).replace(r"\_", "_"), content)
-    # Chuẩn hóa link OWASP và ACM
     content = content.replace("https://genai.owasp.org/llm-top-10/", "https://owasp.org/www-project-top-10-for-large-language-model-applications/")
     content = content.replace("https://dl.acm.org/doi/epdf/10.1145/3724393", "https://doi.org/10.1145/3724393")
 
@@ -91,6 +95,7 @@ def copy_doc(src_path: Path, dest_path: Path, title_prefix: str = ""):
 def create_homepage():
     """Tạo trang chủ (index.md) chuẩn mực, tối giản, thuần Markdown."""
     index_content = """# 🛡️ PI-Guard: LLM Security Guardrail
+## Hệ Thống 8 Chuyên Đề Nghiên Cứu Khoa Học & Báo Cáo Khóa Luận
 
 > **Đồ án Khóa luận Tốt nghiệp Đại học FPT** — Chuyên ngành An toàn Thông tin (Information Assurance)<br>
 > **Mã đề tài**: `IAP491_FA26_PI_GUARD` | **Năm học**: 2026<br>
@@ -100,10 +105,10 @@ def create_homepage():
 
 ## 🎯 Giới Thiệu & Mục Tiêu Đề Tài
 
-**PI-Guard** là hệ thống bảo vệ (guardrail) trung gian đặt trước các ứng dụng mô hình ngôn ngữ lớn (LLM), hoạt động theo cơ chế **hai tầng bảo vệ (Two-Tier Architecture)**:
+**PI-Guard** là hệ thống bảo vệ (guardrail) trung gian đặt trước các ứng dụng mô hình ngôn ngữ lớn (LLM), hoạt động theo cơ chế **hai tầng bảo vệ (Two-Tier Cascade Architecture)**:
 
-1. **Tier 1 (Bộ lọc Cú pháp - Syntactic Baseline)**: Sử dụng phương pháp vector hóa TF-IDF kết hợp mô hình phân loại tuyến tính siêu nhẹ (Linear Classifier) nhằm nhận diện các mẫu prompt injection phổ biến với độ trễ cực thấp (**< 5 ms**).
-2. **Tier 2 (Bộ lọc Ngữ nghĩa Sâu - Semantic Transformer)**: Sử dụng Transformer tiên tiến (**DeBERTa-v3**) với cơ chế Disentangled Attention, được lượng hóa qua **ONNX Runtime INT8** nhằm phát hiện các biến thể tấn công tinh vi, jailbreak ẩn ngữ cảnh với độ trễ mục tiêu **P95 < 15 ms**.
+1. **Tier 1 (Bộ lọc Cú pháp - Syntactic Baseline)**: Sử dụng phương pháp vector hóa TF-IDF kết hợp mô hình phân loại tuyến tính siêu nhẹ (Linear Classifier) nhằm nhận diện các mẫu prompt injection phổ biến với độ trễ cực thấp (**< 1.0 ms**).
+2. **Tier 2 (Bộ lọc Ngữ nghĩa Sâu - Semantic Transformer)**: Sử dụng Transformer tiên tiến (**DeBERTa-v3**) với cơ chế Disentangled Attention, được lượng hóa qua **ONNX Runtime INT8** nhằm phát hiện các biến thể tấn công tinh vi, jailbreak ẩn ngữ cảnh với độ trễ mục tiêu **P95 < 25 ms**.
 
 ---
 
@@ -114,7 +119,7 @@ flowchart TD
     UserPrompt(["📥 User Prompt"]) --> P1["⚙️ Tiền xử lý & Chuẩn hóa Unicode"]
     P1 --> T1{"⚡ Tier 1: TF-IDF Syntactic Gate"}
 
-    T1 -- "Nguy hiểm (Score >= 0.85)" --> Block1["🚫 Chặn ngay (< 5ms)"]
+    T1 -- "Nguy hiểm (Score >= 0.85)" --> Block1["🚫 Chặn ngay (< 1ms)"]
     T1 -- "Lành tính (Score <= 0.15)" --> Pass1["✅ Cho phép chuyển đến LLM"]
     T1 -- "Nghi vấn (0.15 < Score < 0.85)" --> T2["🧠 Tier 2: DeBERTa-v3 Semantic Gate"]
 
@@ -136,17 +141,18 @@ flowchart TD
 
 ---
 
-## 📋 Mục Lục Tài Liệu Toàn Dự Án
+## 📋 Hệ Thống 8 Chuyên Đề Nghiên Cứu Khoa Học Trọng Điểm
 
-| Khu vực tài liệu | Nội dung trọng tâm | Đường dẫn tra cứu |
-| **Quản Lý Công Việc** | Lộ trình IAP491, Biên bản họp 1 & 2 kèm TODO Sprint, Ma trận RACI | [Xem Biên Bản Họp 1 & Kế Hoạch Sprint](work/meeting_1.md) |
-| **Chuyên Đề Tấn Công** | Lịch sử tiến hóa (2022–2026), Ranh giới In/Out-scope, Prompt Injection & 4 trường phái Jailbreak (DAN, Roleplay, VM, Cipher) | [Khám Phá Chuyên Đề Tấn Công](attacks/history_and_evolution.md) |
-| **Threat Model & Phòng Thủ Đa Tầng** | NIST AI 100-2e2025, STRIDE/DREAD, 3 Lớp bảo vệ (Saltzer & Schroeder), Canary Token | [Khám Phá Threat & Defense](threat_defense/threat_model_and_attack_surface.md) |
-| **Độ Bền & Lẩn Tránh (Robustness)** | Cơ chế phân mảnh BPE, Leetspeak, Base64 Unmasking, Character n-grams TF-IDF, Đột biến EasyJailbreak | [Khám Phá Chuyên Đề Robustness](robustness/theory_and_evasion_mechanisms.md) |
-| **Mô Hình & Nghiên Cứu** | Toán học TF-IDF, Transformer DeBERTa-v3, Phối hợp 2 tầng, Khảo sát SOTA | [Khám Phá Mô Hình](models/two_tier_architecture.md) |
-| **Luận Văn & Review 1** | Hồ sơ Threat Model (NIST), Hệ thống 3 câu hỏi IEEE (RQ1-RQ3), Dàn ý slide | [Xem Hồ Sơ Review 1](thesis/review1_threat_model.md) |
-| **Tài Liệu Tham Khảo** | Nhật ký 18 bài báo khoa học chuẩn IEEE (2022–2026) kèm DOI | [Xem Thư Viện Bài Báo](references/references_log.md) |
-| **Đội Ngũ & Quy Chế** | Quy chuẩn Workspace Boundary, Kiểm toán Commit tự động | [Xem Hướng Dẫn Nhóm](dev/team_governance.md) |
+| Chuyên Đề Khoa Học | Trọng Tâm Nghiên Cứu | Đường Dẫn Tra Cứu |
+| :--- | :--- | :--- |
+| **1. Prompt Study** | Bản chất LLM, Attention, Ranh giới phẳng và Thất bại Phân cấp Chỉ thị (Instruction Hierarchy) | [Xem Prompt Study](prompt_study/llm_foundations.md) |
+| **2. Attack Study** | Phân loại toàn diện Prompt Injection & 4 trường phái Jailbreak (DAN, Roleplay, VM, Cipher) | [Xem Attack Study](attacks/history_and_evolution.md) |
+| **3. Threat & Defense** | Mô hình hóa đe dọa NIST AI 100-2e2025, STRIDE, Kiến trúc phòng thủ đa tầng (Defense-in-Depth) | [Xem Threat & Defense](threat_defense/threat_model_and_attack_surface.md) |
+| **4. Dataset & Benchmark** | Tuyển chọn dữ liệu 3 lớp, Khử trùng lặp MinHash, Group-Aware Splitting & Đánh giá OOD | [Xem Dataset Study](dataset_study/data_curation.md) |
+| **5. Model Study** | Toán học TF-IDF, Transformer DeBERTa-v3 Disentangled Attention & Định tuyến bất định 2 tầng | [Xem Model Study](models/two_tier_architecture.md) |
+| **6. Robustness Study** | Chống chịu kỹ thuật làm mờ (Leetspeak, Homoglyphs, Base64) & Tiền xử lý chuẩn hóa 4 bước | [Xem Robustness Study](robustness/theory_and_evasion_mechanisms.md) |
+| **7. Optimization Study** | Lý thuyết lượng tử hóa INT8 PTQ, Tăng tốc ONNX Runtime Graph & Phân vị độ trễ P95/P99 | [Xem Optimization Study](optimization/quantization_math.md) |
+| **8. Evaluation & Trade-offs** | Kinh tế học cảnh báo sai (FPR Economics), Điểm hoạt động Recall@FPR1% & Đường cong biên Pareto | [Xem Evaluation Study](evaluation_study/false_positive_economics.md) |
 
 ---
 
@@ -156,7 +162,7 @@ flowchart TD
 > Cả 4 thành viên đều trực tiếp thực hiện toàn trình (Full-Pipeline Hands-on) từ tiền xử lý dữ liệu, thử nghiệm Baseline ML, huấn luyện Transformer, đo đạc độ bền Evasion đến tích hợp API/Dashboard và bảo vệ Luận văn.
 
 | STT | Thành Viên | Mã Sinh Viên | Khám Phá Toàn Trình & Đầu Mối Điều Phối |
-| :---: | :--- | :---: | :--- |
+| :---: | :--- | :--- :---: | :--- |
 | 1 | **Nguyễn Văn Trường (Leader)** | `SE182034` | **Toàn trình Full-Pipeline** — Điều phối chung, Chuẩn hóa dữ liệu & Kiến trúc |
 | 2 | **Nguyễn Quí Đức** | `SE182087` | **Toàn trình Full-Pipeline** — Đối sánh mô hình Baseline ML & Threat Model |
 | 3 | **Phạm Minh Hoàng Việt** | `SE181851` | **Toàn trình Full-Pipeline** — Tối ưu Transformer & Thực nghiệm Robustness |
@@ -167,7 +173,7 @@ flowchart TD
     dest = SITE_DOCS_DIR / "index.md"
     with open(dest, "w", encoding="utf-8") as f:
         f.write(index_content)
-    print("✅ [HOMEPAGE] Đã sinh trang chủ index.md tối giản thành công.")
+    print("✅ [HOMEPAGE] Đã sinh trang chủ index.md thành công.")
 
 def create_static_assets():
     """Tạo các file hỗ trợ MathJax và Custom CSS tối giản."""
@@ -224,27 +230,20 @@ def aggregate_all():
              SITE_DOCS_DIR / "work" / "meeting_1.md")
     copy_doc(ROOT_DIR / "Meeting" / "Meeting 2_01_09_26.md",
              SITE_DOCS_DIR / "work" / "meeting_2.md")
+    copy_doc(ROOT_DIR / "Meeting" / "Meeting 3_08_09_26.md",
+             SITE_DOCS_DIR / "work" / "meeting_3.md")
 
-    # 2. Mô hình & Nghiên cứu AI
-    # Model Study
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "03_two_tier_pipeline_coordination" / "how_it_works_and_architecture.md",
-             SITE_DOCS_DIR / "models" / "two_tier_architecture.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "03_two_tier_pipeline_coordination" / "benchmark_and_tradeoffs.md",
-             SITE_DOCS_DIR / "models" / "two_tier_tradeoffs.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "01_tfidf_syntactic_baseline" / "theory_and_math.md",
-             SITE_DOCS_DIR / "models" / "tfidf_theory_and_math.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "01_tfidf_syntactic_baseline" / "how_it_works_and_usage.md",
-             SITE_DOCS_DIR / "models" / "tfidf_usage.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "01_tfidf_syntactic_baseline" / "resources_and_videos.md",
-             SITE_DOCS_DIR / "models" / "tfidf_resources.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "theory_and_math.md",
-             SITE_DOCS_DIR / "models" / "deberta_theory_and_math.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "how_it_works_and_usage.md",
-             SITE_DOCS_DIR / "models" / "deberta_usage.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "resources_and_videos.md",
-             SITE_DOCS_DIR / "models" / "deberta_resources.md")
+    # 2. Chuyên Đề 1: Prompt Study
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "prompt_study" / "01_llm_foundations_and_token_generation.md",
+             SITE_DOCS_DIR / "prompt_study" / "llm_foundations.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "prompt_study" / "02_prompt_structure_and_chat_formats.md",
+             SITE_DOCS_DIR / "prompt_study" / "prompt_structure.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "prompt_study" / "03_instruction_hierarchy_and_flat_boundary.md",
+             SITE_DOCS_DIR / "prompt_study" / "instruction_hierarchy.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "prompt_study" / "04_resources_and_papers.md",
+             SITE_DOCS_DIR / "prompt_study" / "resources_and_papers.md")
 
-    # 2.5. Chuyên Đề Tấn Công (Attack Study)
+    # 3. Chuyên Đề 2: Attack Study
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "00_overview_threat_and_scope" / "history_and_evolution.md",
              SITE_DOCS_DIR / "attacks" / "history_and_evolution.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "00_overview_threat_and_scope" / "scope_and_boundary_analysis.md",
@@ -264,17 +263,7 @@ def aggregate_all():
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "resources_and_papers.md",
              SITE_DOCS_DIR / "attacks" / "jb_resources_and_papers.md")
 
-    # 2.6. Chuyên Đề Robustness & Evasion Study
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "01_theory_and_evasion_mechanisms.md",
-             SITE_DOCS_DIR / "robustness" / "theory_and_evasion_mechanisms.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "02_defense_architecture_and_mitigation.md",
-             SITE_DOCS_DIR / "robustness" / "defense_architecture_and_mitigation.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "03_benchmarks_metrics_and_tradeoffs.md",
-             SITE_DOCS_DIR / "robustness" / "benchmarks_metrics_and_tradeoffs.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "04_resources_and_papers.md",
-             SITE_DOCS_DIR / "robustness" / "resources_and_papers.md")
-
-    # 2.7. Chuyên Đề Threat Model & Multi-Layer Defense Study
+    # 4. Chuyên Đề 3: Threat & Defense Study
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "threat_and_defense_study" / "01_threat_model_and_attack_surface.md",
              SITE_DOCS_DIR / "threat_defense" / "threat_model_and_attack_surface.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "threat_and_defense_study" / "02_multi_layer_defense_architecture.md",
@@ -284,7 +273,63 @@ def aggregate_all():
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "threat_and_defense_study" / "04_resources_and_papers.md",
              SITE_DOCS_DIR / "threat_defense" / "resources_and_papers.md")
 
-    # Research
+    # 5. Chuyên Đề 4: Dataset & Benchmark Study
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "dataset_and_benchmark_study" / "01_data_curation_and_class_balance.md",
+             SITE_DOCS_DIR / "dataset_study" / "data_curation.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "dataset_and_benchmark_study" / "02_group_aware_splitting_and_ood.md",
+             SITE_DOCS_DIR / "dataset_study" / "group_aware_splitting.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "dataset_and_benchmark_study" / "03_resources_and_papers.md",
+             SITE_DOCS_DIR / "dataset_study" / "resources_and_papers.md")
+
+    # 6. Chuyên Đề 5: Model Study
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "03_two_tier_pipeline_coordination" / "how_it_works_and_architecture.md",
+             SITE_DOCS_DIR / "models" / "two_tier_architecture.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "03_two_tier_pipeline_coordination" / "benchmark_and_tradeoffs.md",
+             SITE_DOCS_DIR / "models" / "two_tier_tradeoffs.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "01_tfidf_syntactic_baseline" / "theory_and_math.md",
+             SITE_DOCS_DIR / "models" / "tfidf_theory_and_math.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "01_tfidf_syntactic_baseline" / "how_it_works_and_usage.md",
+             SITE_DOCS_DIR / "models" / "tfidf_usage.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "01_tfidf_syntactic_baseline" / "resources_and_videos.md",
+             SITE_DOCS_DIR / "models" / "tfidf_resources.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "theory_and_math.md",
+             SITE_DOCS_DIR / "models" / "deberta_theory_and_math.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "how_it_works_and_usage.md",
+             SITE_DOCS_DIR / "models" / "deberta_usage.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "resources_and_videos.md",
+             SITE_DOCS_DIR / "models" / "deberta_resources.md")
+
+    # 7. Chuyên Đề 6: Robustness & Evasion Study
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "01_theory_and_evasion_mechanisms.md",
+             SITE_DOCS_DIR / "robustness" / "theory_and_evasion_mechanisms.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "02_defense_architecture_and_mitigation.md",
+             SITE_DOCS_DIR / "robustness" / "defense_architecture_and_mitigation.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "03_benchmarks_metrics_and_tradeoffs.md",
+             SITE_DOCS_DIR / "robustness" / "benchmarks_metrics_and_tradeoffs.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "04_resources_and_papers.md",
+             SITE_DOCS_DIR / "robustness" / "resources_and_papers.md")
+
+    # 8. Chuyên Đề 7: Optimization Study
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "01_quantization_theory_and_ptq_math.md",
+             SITE_DOCS_DIR / "optimization" / "quantization_math.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "02_onnx_runtime_and_graph_optimizations.md",
+             SITE_DOCS_DIR / "optimization" / "onnx_runtime.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "03_inference_acceleration_and_system_design.md",
+             SITE_DOCS_DIR / "optimization" / "inference_acceleration.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "04_benchmarks_metrics_and_tradeoffs.md",
+             SITE_DOCS_DIR / "optimization" / "benchmarks_tradeoffs.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "05_resources_and_papers.md",
+             SITE_DOCS_DIR / "optimization" / "resources_and_papers.md")
+
+    # 9. Chuyên Đề 8: Evaluation & Trade-off Study
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "evaluation_and_tradeoff_study" / "01_false_positive_economics_and_ux.md",
+             SITE_DOCS_DIR / "evaluation_study" / "false_positive_economics.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "evaluation_and_tradeoff_study" / "02_pareto_frontier_and_system_tradeoffs.md",
+             SITE_DOCS_DIR / "evaluation_study" / "pareto_frontier.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "evaluation_and_tradeoff_study" / "03_resources_and_papers.md",
+             SITE_DOCS_DIR / "evaluation_study" / "resources_and_papers.md")
+
+    # Research Docs
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "State_of_the_Art_Guardrail_and_Jailbreak_Benchmarks_Analysis.md",
              SITE_DOCS_DIR / "research" / "sota_guardrail_benchmarks.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "Target_LLM_API_Benchmark_and_Vulnerability_Analysis.md",
@@ -294,13 +339,11 @@ def aggregate_all():
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md",
              SITE_DOCS_DIR / "research" / "why_dual_model_architecture.md")
 
-    # 3. Luận văn & Báo cáo Review
+    # Luận văn & Báo cáo Review
     copy_doc(ROOT_DIR / "CAPSTONE PROJECT REGISTER.md",
              SITE_DOCS_DIR / "thesis" / "capstone_register.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "Review1_Problem_Definition_and_Threat_Model.md",
              SITE_DOCS_DIR / "thesis" / "review1_threat_model.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "Review1_Presentation_Slides_Outline.md",
-             SITE_DOCS_DIR / "thesis" / "review1_slides_outline.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "chapters" / "01_Introduction.md",
              SITE_DOCS_DIR / "thesis" / "chapter_01_introduction.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "chapters" / "02_Literature_Review.md",
@@ -308,11 +351,11 @@ def aggregate_all():
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "FINAL_THESIS.md",
              SITE_DOCS_DIR / "thesis" / "final_thesis.md")
 
-    # 4. Thư viện bài báo khoa học
+    # Thư viện bài báo khoa học
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "References" / "REFERENCES_LOG.md",
              SITE_DOCS_DIR / "references" / "references_log.md")
 
-    # 5. Đội ngũ & Hướng dẫn kỹ thuật
+    # Đội ngũ & Hướng dẫn kỹ thuật
     copy_doc(ROOT_DIR / "AGENTS.md",
              SITE_DOCS_DIR / "dev" / "team_governance.md")
     copy_doc(ROOT_DIR / "CONTRIBUTING.md",
@@ -322,7 +365,7 @@ def aggregate_all():
     copy_doc(ROOT_DIR / "src" / "README.md",
              SITE_DOCS_DIR / "dev" / "src_architecture.md")
 
-    print("\n🎉 [HOÀN TẤT] Toàn bộ tài liệu đã được chuẩn hóa và sẵn sàng cho MkDocs build!")
+    print("\n🎉 [HOÀN TẤT] Toàn bộ 8 chuyên đề khoa học đã được chuẩn hóa và sẵn sàng cho MkDocs build!")
 
 if __name__ == "__main__":
     aggregate_all()

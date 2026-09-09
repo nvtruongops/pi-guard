@@ -76,7 +76,13 @@ nav:
       - "Biên Bản Họp Nhóm":
           - "Biên Bản Họp 1 & Kế Hoạch Sprint 1 (29/08/2026)": work/meeting_1.md
           - "Biên Bản Họp 2 & Nghiên Cứu Mô Hình (01/09/2026)": work/meeting_2.md
-  - "Chuyên Đề Tấn Công (Attack Study)":
+          - "Biên Bản Họp 3 & Chốt Slide Báo Cáo GVHD (08/09/2026)": work/meeting_3.md
+  - "1. Prompt Study (Bản Chất LLM)":
+      - "Nền Tảng LLM & Token Generation": prompt_study/llm_foundations.md
+      - "Cấu Trúc Prompt & Chat Formats": prompt_study/prompt_structure.md
+      - "Thất Bại Phân Cấp Chỉ Thị (Instruction Hierarchy)": prompt_study/instruction_hierarchy.md
+      - "Tài Liệu, Bài Báo & Video": prompt_study/resources_and_papers.md
+  - "2. Attack Study (Tấn Công)":
       - "Tổng Quan & Ranh Giới Đề Tài":
           - "Biên Niên Sử Tiến Hóa (2022-2026)": attacks/history_and_evolution.md
           - "Phân Tích Ranh Giới In/Out-Scope": attacks/scope_and_boundary_analysis.md
@@ -89,17 +95,16 @@ nav:
           - "Cơ Sở Dữ Liệu & 10 Họ Chiến Thuật": attacks/jb_datasets_and_benchmarks.md
           - "Biến Thể Nâng Cao & 26 Toán Tử (Tencent 2026)": attacks/jb_advanced_variants_and_operators.md
           - "Tài Liệu, Bài Báo & Video": attacks/jb_resources_and_papers.md
-  - "Chuyên Đề Threat Model & Phòng Thủ Đa Tầng":
+  - "3. Threat & Defense (Phòng Thủ Đa Tầng)":
       - "Mô Hình Hóa Đe Dọa & Bề Mặt Tấn Công": threat_defense/threat_model_and_attack_surface.md
       - "Kiến Trúc Phòng Thủ 3 Lớp (Defense-in-Depth)": threat_defense/multi_layer_defense_architecture.md
       - "Ma Trận Đối Sánh & Phân Tích Đánh Đổi": threat_defense/comparative_matrix_and_tradeoffs.md
       - "Tài Liệu Học Thuật, Video & Mã Nguồn Mẫu": threat_defense/resources_and_papers.md
-  - "Chuyên Đề Robustness & Evasion":
-      - "Cơ Sở Lý Thuyết & Phân Mảnh Token": robustness/theory_and_evasion_mechanisms.md
-      - "Kiến Trúc Phòng Thủ Đa Tầng": robustness/defense_architecture_and_mitigation.md
-      - "Chỉ Số Đánh Giá & Đối Sánh Thực Nghiệm": robustness/benchmarks_metrics_and_tradeoffs.md
-      - "Tài Liệu, Bài Báo & Video Tham Khảo": robustness/resources_and_papers.md
-  - "Mô Hình & Nghiên Cứu AI":
+  - "4. Dataset & Benchmark Study":
+      - "Tuyển Chọn Dữ Liệu & Phân Loại 3 Lớp": dataset_study/data_curation.md
+      - "Phân Chia Group-Aware & Đánh Giá OOD": dataset_study/group_aware_splitting.md
+      - "Tài Liệu, Benchmark & Nguồn Dữ Liệu": dataset_study/resources_and_papers.md
+  - "5. Model Study (Kiến Trúc Hai Tầng)":
       - "Tổng Quan Kiến Trúc 2 Tầng": models/two_tier_architecture.md
       - "Tier 1: Syntactic Baseline (TF-IDF)":
           - "Lý Thuyết & Toán Học": models/tfidf_theory_and_math.md
@@ -114,10 +119,24 @@ nav:
       - "Khảo Sát 5 Target LLM APIs": research/target_llm_vulnerabilities.md
       - "Phân Tích Bài Báo Tencent 2026": research/tencent2026_paper_analysis.md
       - "Luận Giải Kiến Trúc Kết Hợp": research/why_dual_model_architecture.md
+  - "6. Robustness & Evasion Study":
+      - "Cơ Sở Lý Thuyết & Phân Mảnh Token": robustness/theory_and_evasion_mechanisms.md
+      - "Kiến Trúc Phòng Thủ Đa Tầng": robustness/defense_architecture_and_mitigation.md
+      - "Chỉ Số Đánh Giá & Đối Sánh Thực Nghiệm": robustness/benchmarks_metrics_and_tradeoffs.md
+      - "Tài Liệu, Bài Báo & Video Tham Khảo": robustness/resources_and_papers.md
+  - "7. Optimization & Quantization Study":
+      - "Toán Học Lượng Tử Hóa INT8 PTQ": optimization/quantization_math.md
+      - "ONNX Runtime & Graph Optimizations": optimization/onnx_runtime.md
+      - "Tăng Tốc Suy Luận & Thiết Kế Hệ Thống": optimization/inference_acceleration.md
+      - "Chỉ Số Đo Lường & Đánh Đổi Độ Trễ": optimization/benchmarks_tradeoffs.md
+      - "Tài Liệu, Bài Báo & Video Tham Khảo": optimization/resources_and_papers.md
+  - "8. Evaluation & FPR Economics Study":
+      - "Kinh Tế Học FPR & Trải Nghiệm Người Dùng": evaluation_study/false_positive_economics.md
+      - "Đường Cong Biên Pareto & Đánh Đổi Hệ Thống": evaluation_study/pareto_frontier.md
+      - "Tài Liệu, Benchmark & Bài Báo Đánh Đổi": evaluation_study/resources_and_papers.md
   - "Luận Văn & Báo Cáo Milestone":
       - "Đăng Ký Đề Tài (Register)": thesis/capstone_register.md
       - "Review 1: Threat Model & Defense": thesis/review1_threat_model.md
-      - "Review 1: Slide Thuyết Trình": thesis/review1_slides_outline.md
       - "Chương 1: Giới Thiệu (Introduction)": thesis/chapter_01_introduction.md
       - "Chương 2: Tổng Quan Tài Liệu (Literature Review)": thesis/chapter_02_literature_review.md
       - "Luận Văn Tổng Hợp Đầy Đủ": thesis/final_thesis.md

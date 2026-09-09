@@ -59,7 +59,7 @@ $$\text{Final Project Mark} = (\text{Process Mark / Continuous Assessment} \time
 - Trên mỗi giai đoạn báo cáo, Giảng viên Hướng dẫn sẽ chấm **Điểm Nhóm (Group Mark - GM)**.
 - Điểm cá nhân của từng sinh viên (**Personal Mark**) được xác định linh hoạt dựa trên khối lượng công việc và mức độ đóng góp thực tế:
   $$\text{Personal Mark} \in [100\% \text{ GM} - 20\% \text{ GM}, \; 100\% \text{ GM} + 20\% \text{ GM}]$$
-- Sự đóng góp của từng thành viên được minh chứng rõ ràng qua file theo dõi tiến độ hàng tuần [`Meeting/PI_GUARD_PROCESS_REPORT.xlsx`](file:///d:/Work/Do-an/Meeting/PI_GUARD_PROCESS_REPORT.xlsx).
+- Sự đóng góp của từng thành viên được minh chứng rõ ràng qua file theo dõi tiến độ hàng tuần [`reports/PI_GUARD_PROCESS_REPORT.xlsx`](file:///d:/Work/Do-an/reports/PI_GUARD_PROCESS_REPORT.xlsx).
 
 ---
 

@@ -329,16 +329,12 @@ def generate_report():
     for r in range(5, len(tasks) + 5):
         ws_check.row_dimensions[r].height = 25
 
-    # Save outputs to official locations (reports/ and Meeting/)
+    # Save output to official location (reports/)
     workspace_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    out_paths = [
-        os.path.join(workspace_root, 'reports', 'PI_GUARD_PROCESS_REPORT.xlsx'),
-        os.path.join(workspace_root, 'Meeting', 'PI_GUARD_PROCESS_REPORT.xlsx')
-    ]
-    for p in out_paths:
-        os.makedirs(os.path.dirname(p), exist_ok=True)
-        wb.save(p)
-        print(f'Saved: {p}')
+    out_path = os.path.join(workspace_root, 'reports', 'PI_GUARD_PROCESS_REPORT.xlsx')
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    wb.save(out_path)
+    print(f'Saved: {out_path}')
 
 if __name__ == '__main__':
     generate_report()

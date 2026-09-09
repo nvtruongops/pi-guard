@@ -3,7 +3,7 @@ PI-Guard Google Sheets Synchronization Utility
 ==============================================
 Tự động đồng bộ tiến độ giữa Google Sheets trực tuyến và các file cục bộ trong repo:
 - Google Sheet: https://docs.google.com/spreadsheets/d/1toBlihg3ycJq_0uOLbfHdD3NPMLCYWt1Az460sAfl2M/edit?gid=758037622
-- Local Excel: Meeting/PI_GUARD_PROCESS_REPORT.xlsx & reports/PI_GUARD_PROCESS_REPORT.xlsx
+- Local Excel: reports/PI_GUARD_PROCESS_REPORT.xlsx
 """
 
 import sys
@@ -26,8 +26,7 @@ EXPORT_CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?form
 
 WORKSPACE_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXCEL_PATHS = [
-    os.path.join(WORKSPACE_ROOT, "reports", "PI_GUARD_PROCESS_REPORT.xlsx"),
-    os.path.join(WORKSPACE_ROOT, "Meeting", "PI_GUARD_PROCESS_REPORT.xlsx")
+    os.path.join(WORKSPACE_ROOT, "reports", "PI_GUARD_PROCESS_REPORT.xlsx")
 ]
 
 def fetch_online_tasks():
