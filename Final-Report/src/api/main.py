@@ -10,6 +10,7 @@ from src.llm.provider import (
 from src.models.classifier import DummyClassifier, TfidfBaselineClassifier
 from src.policy.policy_engine import PolicyEngine
 from src.policy.thresholds import GuardrailAction, PolicyConfig
+from src.utils.config import load_env_file
 from src.utils.logger import get_logger
 
 logger = get_logger("pi_guard.api")
@@ -18,6 +19,7 @@ middleware_instance: GuardrailMiddleware = None
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global middleware_instance
+    load_env_file()
     logger.info("Initializing PI-Guard Service...")
 
     # Initialize Classifier

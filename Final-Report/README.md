@@ -59,7 +59,10 @@ Final-Report/
 ├── figures/                       # Sơ đồ kiến trúc, biểu đồ ROC-AUC, biểu đồ độ trễ dạng PNG chất lượng cao
 │   └── PI-GUARD-Present-109/      # 12 ảnh sơ đồ, biểu đồ trích xuất từ slide trình chiếu ngày 10/09/2026
 ├── tables/                        # Bảng số liệu đối chuẩn định dạng Markdown và LaTeX
-└── experiment_reports/            # Các file tóm tắt chỉ số thực nghiệm dạng JSON/Markdown
+├── experiment_reports/            # Các file tóm tắt chỉ số thực nghiệm dạng JSON/Markdown
+├── requirements.txt               # Master Production Dependencies (Core ML, FastAPI, Streamlit, Jupyter)
+├── requirements-dev.txt           # Master Dev Dependencies (Pytest, Ruff, Pre-commit, MkDocs)
+└── .env.example                   # Master Environment Configuration Template
 ```
 
 ---

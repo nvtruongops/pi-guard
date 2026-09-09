@@ -93,15 +93,19 @@ Curated from public benchmarks on Hugging Face and deduplicated with **Group-Awa
 
 ## 🚀 Quick Start Guide
 
-### 1. Installation
+### 1. Installation & Environment Setup
 ```bash
 # Clone repository
 git clone https://github.com/nvtruongops/pi-guard.git
 cd pi-guard
 
-# Install dependencies
+# Install dependencies (Root pointer seamlessly resolves Final-Report/requirements.txt)
 pip install -r requirements.txt
-pip install -e .
+# Alternatively, install development & documentation dependencies:
+pip install -r requirements-dev.txt
+
+# Configure environment variables (.env.example mirrored from Final-Report/.env.example)
+cp .env.example .env
 ```
 
 ### 2. Dataset Pipeline & Training
