@@ -53,13 +53,14 @@ Final-Report/
 │   ├── *.pdf                      # 18 file PDF toàn văn các bài báo học thuật chuẩn IEEE/ACM/NeurIPS/ICLR
 │   ├── REFERENCES_LOG.md          # Bảng tra cứu & ma trận ánh xạ 18 bài báo vào các module trong đề tài
 │   └── README.md
-├── PI-GUARD-Present-109.pptx       # Slide báo cáo tiến độ gặp Giáo viên Hướng dẫn ngày 10/09/2026 (22 slides, Dark Slate Navy)
-├── PI_GUARD_PROCESS_REPORT.xlsx   # Sổ theo dõi tiến độ công việc chính thức (FPT IAP491 Process Report: WBS, Nhân sự, Họp)
-├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt quy chế & tiêu chí chấm điểm FPT IAP491
+├── reports/                       # [PERIODIC REPORTS & METRICS] Sổ tiến độ, slide trình chiếu & benchmark
+│   ├── PI-GUARD-Present-109.pptx  # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026 (22 slides, Dark Slate Navy)
+│   ├── PI_GUARD_PROCESS_REPORT.xlsx # Sổ theo dõi tiến độ công việc chính thức (FPT IAP491 Process Report)
+│   ├── experiment_reports/        # Dữ liệu chỉ số thực nghiệm tự động (adversarial_benchmark.json, ...)
+│   └── README.md                  # Hướng dẫn chi tiết phân hệ báo cáo định kỳ
 ├── figures/                       # Sơ đồ kiến trúc, biểu đồ ROC-AUC, biểu đồ độ trễ dạng PNG chất lượng cao
 │   └── PI-GUARD-Present-109/      # 12 ảnh sơ đồ, biểu đồ trích xuất từ slide trình chiếu ngày 10/09/2026
 ├── tables/                        # Bảng số liệu đối chuẩn định dạng Markdown và LaTeX
-├── experiment_reports/            # Các file tóm tắt chỉ số thực nghiệm dạng JSON/Markdown
 ├── requirements.txt               # Master Production Dependencies (Core ML, FastAPI, Streamlit, Jupyter)
 ├── requirements-dev.txt           # Master Dev Dependencies (Pytest, Ruff, Pre-commit, MkDocs)
 └── .env.example                   # Master Environment Configuration Template
@@ -69,6 +70,6 @@ Final-Report/
 
 ### 📢 LƯU Ý VỀ TÀI LIỆU TRÌNH CHIẾU:
 > [!IMPORTANT]
-> - Tệp [`PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/Final-Report/PI-GUARD-Present-109.pptx) là **SLIDE BÁO CÁO TIẾN ĐỘ ĐỊNH KỲ VỚI GIÁO VIÊN HƯỚNG DẪN (GVHD) TRONG BUỔI GẶP NGÀY 10/09/2026**.
+> - Tệp [`PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/Final-Report/reports/PI-GUARD-Present-109.pptx) là **SLIDE BÁO CÁO TIẾN ĐỘ ĐỊNH KỲ VỚI GIÁO VIÊN HƯỚNG DẪN (GVHD) TRONG BUỔI GẶP NGÀY 10/09/2026**.
 > - Tài liệu này được nhóm sử dụng để báo cáo tình hình nghiên cứu, cơ sở lý thuyết chọn mô hình và kiến trúc đề xuất nhằm xin ý kiến chỉ đạo, định hướng chuyên môn từ GVHD.
 > - **ĐÂY KHÔNG PHẢI LÀ SLIDE BÁO CÁO REVIEW 1 TRƯỚC HỘI ĐỒNG**: Buổi bảo vệ Review 1 chính thức trước Hội đồng FPT University sẽ diễn ra ở cột mốc sau; slide Review 1 chính thức sẽ được nhóm hoàn thiện và đóng gói riêng sau khi tiếp thu các nhận xét của GVHD.

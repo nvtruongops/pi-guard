@@ -414,7 +414,7 @@ def generate_report():
     # Save output to official location (Final-Report/)
     scripts_dir = os.path.dirname(os.path.abspath(__file__))
     final_report_dir = os.path.dirname(scripts_dir)
-    out_path = os.path.join(final_report_dir, 'PI_GUARD_PROCESS_REPORT.xlsx')
+    out_path = os.path.join(final_report_dir, 'reports', 'PI_GUARD_PROCESS_REPORT.xlsx')
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     wb.save(out_path)
     print(f'Saved: {out_path}')

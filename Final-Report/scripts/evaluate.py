@@ -17,7 +17,7 @@ logger = get_logger("pi_guard.evaluate")
 def evaluate_model(
     model_path: str = "Final-Report/notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("Final-Report/notebooks/models") else ("notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models") else "models/baseline/baseline_tfidf.joblib"),
     test_path: str = "Final-Report/notebooks/data/splits/test.csv" if os.path.exists("Final-Report/notebooks/data/splits") else ("notebooks/data/splits/test.csv" if os.path.exists("notebooks/data/splits") else "data/splits/test.csv"),
-    output_report_path: str = "Final-Report/experiment_reports/baseline_test_metrics.json" if os.path.exists("Final-Report") else "reports/experiment_reports/baseline_test_metrics.json"
+    output_report_path: str = "Final-Report/reports/experiment_reports/baseline_test_metrics.json" if os.path.exists("Final-Report/reports") else "Final-Report/experiment_reports/baseline_test_metrics.json"
 ):
     if not os.path.exists(model_path):
         for c in [os.path.join("Final-Report/notebooks", model_path), os.path.join("notebooks", model_path)]:
@@ -62,7 +62,8 @@ if __name__ == "__main__":
     default_test = "Final-Report/notebooks/data/splits/test.csv" if os.path.exists("Final-Report/notebooks/data/splits/test.csv") else "data/splits/test.csv"
     parser.add_argument("--model", default=default_model)
     parser.add_argument("--test_data", default=default_test)
-    parser.add_argument("--output", default="Final-Report/experiment_reports/baseline_test_metrics.json")
+    default_out = "Final-Report/reports/experiment_reports/baseline_test_metrics.json" if os.path.exists("Final-Report/reports") else "Final-Report/experiment_reports/baseline_test_metrics.json"
+    parser.add_argument("--output", default=default_out)
     args = parser.parse_args()
 
     evaluate_model(args.model, args.test_data, args.output)

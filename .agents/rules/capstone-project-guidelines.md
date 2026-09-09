@@ -115,18 +115,18 @@ d:/Work/Do-an/
 │   ├── notebooks/               # Toàn bộ tài nguyên thực nghiệm & Jupyter Notebooks tái lập (configs/, data/, models/)
 │   ├── Meeting/                 # Biên bản họp với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
 │   ├── References/              # 18 bài báo khoa học chuẩn (PDF) & REFERENCES_LOG.md
-│   ├── PI-GUARD-Present-109.pptx # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026
-│   ├── PI_GUARD_PROCESS_REPORT.xlsx # Sổ theo dõi tiến độ chính thức (Process Report)
+│   ├── reports/                 # [PERIODIC REPORTS & METRICS] Sổ tiến độ, slide trình chiếu & benchmark
+│   │   ├── PI-GUARD-Present-109.pptx # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026
+│   │   ├── PI_GUARD_PROCESS_REPORT.xlsx # Sổ theo dõi tiến độ chính thức (Process Report)
+│   │   ├── experiment_reports/  # Kết quả thực nghiệm tự động (JSON)
+│   │   └── README.md            # Hướng dẫn chi tiết phân hệ báo cáo định kỳ
 │   ├── figures/                 # Sơ đồ kiến trúc & hình ảnh trích xuất
 │   ├── tables/                  # Bảng biểu đối chuẩn
-│   └── experiment_reports/      # Kết quả thực nghiệm
+│   ├── requirements.txt         # Master Production Dependencies
+│   ├── requirements-dev.txt     # Master Development Dependencies
+│   └── .env.example             # Master Environment Configuration Template
 ├── Github-Page/                 # [2. GITHUB PAGES] Cổng tài liệu Web UI chính thức (MkDocs Material 8 Chuyên Đề)
 │   ├── index.md                 # Trang chủ cổng tài liệu
 │   └── [8 Chuyên Đề Khoa Học]/  # Toàn bộ nội dung chuyên đề xuất bản lên web
-├── workspaces/                  # [3. WORKSPACE THÀNH VIÊN] Sandbox cá nhân của 4 thành viên (truongnv, ducnq, vietpmh, phuongddd)
-├── src/                         # [CORE CODEBASE] API, models, preprocessing, dashboard, evaluation
-├── tests/                       # [TEST SUITE] Bộ kiểm thử tự động pytest
-├── scripts/                     # [TOOLING & QA] Bộ công cụ kiểm định Local QA & build docs portal
-├── requirements.txt             # Python dependencies
-└── AGENTS.md                    # Agent operating standards
+└── workspaces/                  # [3. WORKSPACE THÀNH VIÊN] Sandbox cá nhân của 4 thành viên (truongnv, ducnq, vietpmh, phuongddd)
 ```

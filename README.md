@@ -180,12 +180,16 @@ d:/Work/Do-an/
 │   ├── notebooks/                 # Toàn bộ tài nguyên thực nghiệm & Jupyter Notebooks tái lập (configs/, data/, models/)
 │   ├── Meeting/                   # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
 │   ├── References/                # Toàn bộ 18 bài báo khoa học toàn văn PDF & REFERENCES_LOG.md
-│   ├── PI-GUARD-Present-109.pptx  # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026 (22 slides, Dark Slate Navy)
-│   ├── PI_GUARD_PROCESS_REPORT.xlsx # Sổ theo dõi tiến độ chính thức (FPT IAP491 Process Report: WBS, Nhân sự, Họp)
-│   ├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt quy chuẩn & barem điểm chấm FPT IAP491
+│   ├── reports/                   # [PERIODIC REPORTS & METRICS] Sổ tiến độ, slide trình chiếu & benchmark
+│   │   ├── PI-GUARD-Present-109.pptx  # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026 (22 slides, Dark Slate Navy)
+│   │   ├── PI_GUARD_PROCESS_REPORT.xlsx # Sổ theo dõi tiến độ chính thức (FPT IAP491 Process Report: WBS, Nhân sự, Họp)
+│   │   ├── experiment_reports/    # Báo cáo tóm tắt chỉ số thực nghiệm dạng JSON/Markdown
+│   │   └── README.md              # Hướng dẫn tra cứu & cập nhật các báo cáo
 │   ├── figures/                   # Sơ đồ kiến trúc & đồ họa (gồm thư mục con PI-GUARD-Present-109/)
 │   ├── tables/                    # Bảng số liệu đối chuẩn định dạng Markdown & LaTeX
-│   └── experiment_reports/        # Báo cáo tóm tắt chỉ số thực nghiệm dạng JSON/Markdown
+│   ├── requirements.txt           # Master Production Dependencies (Core ML, FastAPI, Streamlit, Jupyter)
+│   ├── requirements-dev.txt       # Master Dev Dependencies (Pytest, Ruff, Pre-commit, MkDocs)
+│   └── .env.example               # Master Environment Configuration Template
 │
 ├── 📁 Github-Page/                 # [PHÂN HỆ 2: GITHUB PAGES] Cổng tài liệu Web UI chính thức (MkDocs Material 8 Chuyên Đề)
 │   ├── index.md                   # Trang chủ cổng tài liệu Web UI (8-Pillar Academic Architecture)

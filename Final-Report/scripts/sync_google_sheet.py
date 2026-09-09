@@ -27,7 +27,7 @@ EXPORT_CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?form
 WORKSPACE_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 FINAL_REPORT_DIR = os.path.join(WORKSPACE_ROOT, "Final-Report")
 EXCEL_PATHS = [
-    os.path.join(FINAL_REPORT_DIR, "PI_GUARD_PROCESS_REPORT.xlsx")
+    os.path.join(FINAL_REPORT_DIR, "reports", "PI_GUARD_PROCESS_REPORT.xlsx")
 ]
 
 def fetch_online_tasks():

@@ -17,7 +17,7 @@ logger = get_logger("pi_guard.benchmark")
 def run_adversarial_benchmarks(
     model_path: str = "Final-Report/notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("Final-Report/notebooks/models") else ("notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models") else "models/baseline/baseline_tfidf.joblib"),
     adversarial_dir: str = "Final-Report/tests/adversarial" if os.path.exists("Final-Report/tests/adversarial") else "tests/adversarial",
-    output_report: str = "Final-Report/experiment_reports/adversarial_benchmark.json" if os.path.exists("Final-Report") else "reports/experiment_reports/adversarial_benchmark.json",
+    output_report: str = "Final-Report/reports/experiment_reports/adversarial_benchmark.json" if os.path.exists("Final-Report/reports") else "Final-Report/experiment_reports/adversarial_benchmark.json",
     use_mock: bool = False
 ):
     if not os.path.exists(model_path):
@@ -102,7 +102,8 @@ if __name__ == "__main__":
     default_adv_dir = "Final-Report/tests/adversarial" if os.path.exists("Final-Report/tests/adversarial") else "tests/adversarial"
     parser.add_argument("--model", default=default_model)
     parser.add_argument("--adversarial_dir", default=default_adv_dir)
-    parser.add_argument("--output", default="Final-Report/experiment_reports/adversarial_benchmark.json")
+    default_output = "Final-Report/reports/experiment_reports/adversarial_benchmark.json" if os.path.exists("Final-Report/reports") else "Final-Report/experiment_reports/adversarial_benchmark.json"
+    parser.add_argument("--output", default=default_output)
     parser.add_argument("--mock", action="store_true")
     args = parser.parse_args()
 

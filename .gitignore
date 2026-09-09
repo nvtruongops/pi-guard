@@ -92,6 +92,7 @@ htmlcov/
 .ruff_cache/
 
 # Experiment reports & logs
+Final-Report/reports/experiment_reports/*.json
 Final-Report/experiment_reports/*.json
 !Final-Report/**/.gitkeep
 reports/experiment_reports/*.json
