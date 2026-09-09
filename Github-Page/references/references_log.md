@@ -1,9 +1,9 @@
 # REFERENCES LOG & APPLICATION MAPPING MATRIX
-## Hệ Thống Quản Lý & Định Vị Tài Liệu Tham Khảo — Đề Tài PI-Guard (18 Bài Báo Học Thuật Đỉnh Cao)
+## Hệ Thống Quản Lý & Định Vị Tài Liệu Tham Khảo — Đề Tài PI-Guard (FINAL VERIFIED LITERATURE MATRIX)
 
 > **Thư mục lưu trữ tài liệu gốc**: **`Final-Report/References/`**  
-> **Tiêu chuẩn học thuật**: 17 công trình khoa học đỉnh cao kỷ nguyên LLM hiện đại (2022–2026) + 1 công trình kinh điển đặt nền móng kiến trúc bảo vệ phân tầng (Saltzer & Schroeder, IEEE 1975).  
-> **Cập nhật chuẩn hóa lần cuối**: 2026-09-10 (Đã hoàn thành rà soát chéo 100% metadata, Crossref DOIs, arXiv IDs, văn phong học thuật chuẩn mực và tách bạch đóng góp gốc vs. mục tiêu thực nghiệm của đồ án).  
+> **Tiêu chuẩn học thuật**: 17 công trình khoa học đỉnh cao kỷ nguyên LLM hiện đại (2022–2026) + 1 công trình kinh điển đặt nền móng kiến trúc bảo vệ phân tầng (Saltzer & Schroeder, IEEE 1975) + 4 tài liệu chuyên đề mở rộng.  
+> **Cập nhật chuẩn hóa lần cuối**: 2026-09-10 (Đã hoàn thành rà soát chéo 100% metadata qua Crossref/DBLP/OpenReview, xác lập niên giám NeurIPS 2023 chính xác cho [5], chuẩn hóa văn phong học thuật, tách bạch tuyệt đối đóng góp gốc của tác giả vs. lựa chọn thiết kế và KPI của PI-Guard).  
 > **Mục đích**: Lưu trữ, lập chỉ mục siêu dữ liệu chuẩn xác và ánh xạ toàn bộ **18 bài báo PDF cốt lõi** cùng 4 tài nguyên thực nghiệm mở rộng vào cấu trúc luận văn và mã nguồn đề tài PI-Guard.
 
 ---
@@ -18,10 +18,14 @@
 >    - Tuyệt đối không dùng các công cụ MCP (`arxiv`, `openalex`, `semanticscholar`, `scholar-feed`) để tìm kiếm thêm bài báo mới cho các chủ đề ĐÃ CÓ trong kho 18 bài (như: Direct Prompt Injection, DAN Jailbreak, TF-IDF Baseline, DeBERTa-v3, ONNX INT8 Quantization, Low FPR Trade-off).
 > 3. **PHÂN ĐỊNH TƯỜNG MINH: KẾT QUẢ BÀI BÁO VS. CHỈ TIÊU ĐỒ ÁN (Scientific Rigor Invariant)**:
 >    - **Tuyệt đối không gán ghép các KPI kỹ thuật của PI-Guard** (như: độ trễ $P95 < 30\text{ms}$, $\text{FPR} < 1.5\%$, nhanh hơn $40\times$, độ suy giảm đối kháng $\Delta F_1 < 5\%$) thành kết luận đã được chứng minh trong các bài báo tham chiếu.
->    - Mọi mục trong tài liệu phải tách bạch rõ: *(A) Đóng góp khoa học gốc của tác giả bài báo* và *(B) Định vị kỹ thuật & Giả thuyết thực nghiệm của nhóm PI-Guard*.
-> 4. **CHUẨN MỰC VĂN PHONG HỌC THUẬT (Scientific Phrasing Discipline)**:
->    - Tránh các khẳng định mang tính tuyệt đối hóa vượt quá phạm vi chứng minh của bài báo (ví dụ: không quy kết tuyệt đối "LLM không thể phân tách lệnh và dữ liệu" mà trình bày chính xác: "LLM xử lý ngữ cảnh dưới dạng chuỗi token và không tự cung cấp một security boundary đáng tin cậy giữa instruction và untrusted data").
->    - Sử dụng thuật ngữ học thuật trang trọng (formal academic terminology), loại bỏ văn phong thứ cấp/dân dã (ví dụ: thay "nguyên tắc vàng" bằng "các nguyên tắc thiết kế bảo vệ hệ thống được Saltzer và Schroeder đề xuất").
+>    - Mọi mục trong tài liệu phải tách bạch rõ 3 tầng:
+>      1. *Đóng góp khoa học gốc của bài báo (Original Author Findings)*
+>      2. *Định vị kỹ thuật & Tiếp thu thiết kế của PI-Guard (PI-Guard Design Choice & Adaptation)*
+>      3. *Mục tiêu kỹ thuật & Giả thuyết thực nghiệm của PI-Guard (PI-Guard Target KPI & Research Hypotheses)*.
+> 4. **CHUẨN MỰC GÁN NGUỒN VÀ VĂN PHONG HỌC THUẬT (Attribution & Phrasing Discipline)**:
+>    - Không gán các ký hiệu hình thức hóa của PI-Guard (như $X = S \mathbin{\Vert} U$) hay các mô hình đe dọa prompt injection thành công thức của các bài survey tổng quan (như Zhao et al.) hoặc bài căn chỉnh chỉ thị (như InstructGPT).
+>    - Tránh các khẳng định mang tính tuyệt đối hóa vượt quá phạm vi chứng minh của bài báo.
+>    - Sử dụng thuật ngữ học thuật trang trọng (formal academic terminology), loại bỏ văn phong thứ cấp/dân dã (ví dụ: thay "nguyên tắc vàng" bằng "các nguyên tắc thiết kế bảo vệ hệ thống máy tính được Saltzer và Schroeder đề xuất").
 > 5. **ĐIỀU KIỆN TIẾP NHẬN TÀI LIỆU MỚI (New Reference Ingestion Criteria)**:
 >    - Chỉ được phép bổ sung bài báo mới khi xuất hiện câu hỏi nghiên cứu mới phát sinh ngoài phạm vi 18 bài hiện có.
 >    - Bài báo mới phải đáp ứng 4 điều kiện khắt khe: Năm xuất bản $\ge 2022$ (trừ công trình kinh điển); Tương thích kiến trúc **External Guardrail Proxy**; Bắt buộc có **Open-Access PDF** (Zero Paywalled DOI); Tải PDF về `Final-Report/References/` và cập nhật siêu dữ liệu vào `REFERENCES_LOG.md`.
@@ -32,24 +36,24 @@
 
 | Chủ Đề Nghiên Cứu / Lĩnh Vực | Mã Tham Chiếu | Tác Giả & Năm | Tệp PDF Cục Bộ Trong `References/` | Đóng Góp Gốc Của Bài Báo | Phạm Vi Định Vị Kỹ Thuật Trong Đồ Án PI-Guard |
 | :--- | :---: | :--- | :--- | :--- | :--- |
-| **1. Tổng quan Kiến trúc LLM & Lỗ hổng Ranh giới Phẳng** | <a href="#ref1">`[1]`</a> | Zhao et al. (2023) | **`Zhao_2023_A_Survey_of_Large_Language_Models.pdf`** | Khảo sát kiến trúc Transformer tự hồi quy và không gian token ngữ cảnh phẳng $X = S \mathbin{\Vert} U$. | Cơ sở phân tích: LLM xử lý ngữ cảnh dưới dạng chuỗi token và không tự cung cấp một security boundary đáng tin cậy giữa instruction và untrusted data. (Chương 1, 2) |
-| **2. Instruction Tuning & Xử lý System Prompt** | <a href="#ref2">`[2]`</a> | Ouyang et al. (2022) | **`Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`** | Đặt nền móng kỹ thuật Instruction Tuning qua RLHF; chứng minh khả năng căn chỉnh tuân thủ ý định người dùng. | Cung cấp nền tảng về instruction-following và alignment, làm cơ sở phân tích vấn đề ưu tiên instruction trong LLM. (Chương 1, 2) |
+| **1. Tổng quan Kiến trúc LLM & Lỗ hổng Ranh giới Phẳng** | <a href="#ref1">`[1]`</a> | Zhao et al. (2023) | **`Zhao_2023_A_Survey_of_Large_Language_Models.pdf`** | Khảo sát kiến trúc Transformer tự hồi quy và không gian token ngữ cảnh phẳng. | Cơ sở phân tích: LLM xử lý ngữ cảnh dưới dạng chuỗi token và không tự cung cấp một security boundary đáng tin cậy giữa instruction và untrusted data. (Chương 1, 2) |
+| **2. Instruction Tuning & Xử lý System Prompt** | <a href="#ref2">`[2]`</a> | Ouyang et al. (2022) | **`Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`** | Đặt nền móng kỹ thuật Instruction Tuning qua RLHF; chứng minh khả năng căn chỉnh tuân thủ ý định người dùng. | Cung cấp nền tảng về instruction-following và alignment, được PI-Guard dùng làm cơ sở phân tích cách các chỉ thị cạnh tranh mức độ ưu tiên trong LLM. (Chương 1, 2) |
 | **3. Direct Prompt Injection (Tấn công Trực tiếp)** | <a href="#ref3">`[3]`</a> | Perez & Ribeiro (2022) | **`Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf`** | Định nghĩa và phân loại chính thức hai dạng Direct Prompt Injection: Goal Hijacking và Prompt Leaking. | Cơ sở phân loại lớp nhãn Prompt Injection và xây dựng kịch bản kiểm thử Demo 1. (Chương 1, 2, 3) |
 | **4. Indirect Prompt Injection (Tấn công Gián tiếp)** | <a href="#ref4">`[4]`</a> | Greshake et al. (2023) | **`Greshake_2023_Indirect_Prompt_Injection.pdf`** | Độc hại nhúng trong dữ liệu bên ngoài (Web/RAG); mô hình hóa rủi ro ứng dụng tích hợp LLM. | Luận giải nhu cầu bắt buộc phải có lớp Input Guardrail độc lập ở Ingress để kiểm soát cả dữ liệu RAG. (Chương 1, 2, 3) |
-| **5. Cơ chế Thất bại Căn chỉnh An toàn (Jailbreak Failures)** | <a href="#ref5">`[5]`</a> | Wei et al. (2024) | **`Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`** | Xác lập 2 chế độ lỗi căn chỉnh: Competing Objectives & Mismatched Generalization. | Cơ sở chứng minh an toàn nội tại là chưa đủ, cần bộ phân loại độc lập bên ngoài. (Chương 1, 4) |
-| **6. Mô hình Đe Dọa Đa Tầng Cho AI Agent** | <a href="#ref6">`[6]`</a> | Yang et al. / Tencent (2026) | **`Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`** | Khung Red Teaming đa tầng cho Agent; phân loại 26+ toán tử tấn công hạ tầng. | Tiếp thu mô hình phân vùng an ninh 4 lớp (Zone 0–3) vào ranh giới đe dọa PI-Guard. (Chương 1, 3) |
-| **7. Guardrail Dựa Trên LLM (LLM-as-a-Judge Baseline)** | <a href="#ref7">`[7]`</a> | Inan et al. / Meta (2023) | **`Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf`** | Mô hình LLM 7B làm trọng tài an toàn; chuẩn hóa taxonomy phân loại rủi ro nội dung. | Mô hình đối chuẩn (Baseline): Đặt giả thuyết PI-Guard đạt độ trễ CPU thấp hơn và tiết kiệm phần cứng so với Llama Guard. (Chương 2, 4) |
+| **5. Cơ chế Thất bại Căn chỉnh An toàn (Jailbreak Failures)** | <a href="#ref5">`[5]`</a> | Wei et al. (2023) | **`Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`** | Xác lập 2 chế độ lỗi căn chỉnh: Competing Objectives & Mismatched Generalization (NeurIPS 2023). | Cơ sở chứng minh an toàn nội tại là chưa đủ, cần bộ phân loại độc lập bên ngoài. (Chương 1, 4) |
+| **6. Mô hình Đe Dọa Đa Tầng Cho AI Agent** | <a href="#ref6">`[6]`</a> | Yang et al. / Tencent (2026) | **`Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`** | Khung Red Teaming đa tầng cho Agent; phân loại 26+ toán tử tấn công hạ tầng. | PI-Guard tham khảo mô hình phân tầng Zone 0–3 để tổ chức phạm vi tấn công và vị trí của guardrail proxy. (Chương 1, 3) |
+| **7. Guardrail Dựa Trên LLM (LLM-as-a-Judge Baseline)** | <a href="#ref7">`[7]`</a> | Inan et al. / Meta (2023) | **`Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf`** | Mô hình LLM 7B làm trọng tài an toàn; chuẩn hóa taxonomy phân loại rủi ro nội dung. | Mô hình đối chuẩn (Baseline): PI-Guard đặt mục tiêu đánh giá liệu classifier nhỏ chạy CPU có đạt trade-off latency/accuracy tốt hơn Llama Guard hay không. (Chương 2, 4) |
 | **8. Kiến Trúc Guardrail Middleware Lập Trình Được** | <a href="#ref8">`[8]`</a> | Rebedea et al. / NVIDIA (2023)| **`NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`** | Bộ công cụ kiểm soát an toàn dạng middleware lập trình được với Colang. | Cơ sở tham khảo kiến trúc Ingress Proxy bất đồng bộ đánh chặn trước LLM. (Chương 2, 3) |
-| **9. Huấn Luyện Ngữ Nghĩa Sâu Với DeBERTa-v3** | <a href="#ref9">`[9]`</a> | He, Gao, Chen (2023) | **`He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`** | Đột phá ELECTRA-style RTD và Gradient-Disentangled Embedding Sharing (GDES). | Lý giải việc lựa chọn DeBERTa-v3 làm bộ phân loại ngữ nghĩa sâu Tầng 2. (Chương 3, 4) |
-| **10. Kiểm Soát Đánh Đổi FPR Trong Phát Hiện Độc Hại** | <a href="#ref10">`[10]`</a> | Markov et al. / OpenAI (2023) | **`OpenAI_2023_Undesired_Content_Detection.pdf`** | Phương pháp luận kiểm duyệt nội dung thực tế; tối ưu đường cong PR và trải nghiệm người dùng. | Cơ sở phương pháp luận để PI-Guard đặt chỉ tiêu thiết kế $\text{FPR} < 1.5\%$ trên prompt lành tính. (Chương 2, 4) |
-| **11. Khảo Sát Thực Nghiệm Prompt Jailbreak Trong Tự Nhiên** | <a href="#ref11">`[11]`</a> | Shen et al. (2024) | **`Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`** | Thu thập 15,140 prompt từ cộng đồng, lọc ra 1,405 jailbreak prompts thực tế; phân loại mẫu hình DAN. | Nguồn dữ liệu kiểm thử thực nghiệm jailbreak tự nhiên cho PI-Guard. (Chương 3, 4) |
-| **12. Khung Kiểm Thử Đối Kháng & Đột Biến Văn Bản** | <a href="#ref12">`[12]`</a> | Zhou et al. (2024) | **`Zhou_2024_EasyJailbreak_Unified_Framework.pdf`** | Framework tự động hóa đột biến jailbreak 4 tầng (Initialize, Mutate, Evaluate, Select). | Cung cấp các toán tử đột biến ký tự/từ để stress test độ bền đối kháng của PI-Guard. (Chương 3, 4) |
-| **13. Tấn Công Chuỗi Hậu Tố Đối Kháng Tối Ưu Hóa (GCG)** | <a href="#ref13">`[13]`</a> | Zou et al. (2023) | **`Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf`** | Thuật toán Greedy Coordinate Gradient sinh hậu tố đối kháng chuyển giao. | Bộ kiểm thử nhiễu ngoại lai (OOD) nhằm đánh giá khả năng bắt chuỗi bất thường của n-gram. (Chương 4) |
-| **14. Phòng Thủ Bằng Xáo Trộn Ngẫu Nhiên (SmoothLLM)** | <a href="#ref14">`[14]`</a> | Robey et al. (2023) | **`Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`** | Cơ chế làm mịn ngẫu nhiên qua biến dị prompt và đa số biểu quyết phản hồi LLM. | Đối chuẩn phương pháp phòng vệ: Phân tích đánh đổi giữa chi phí gọi LLM $N$ lần vs. Guardrail Proxy. (Chương 2, 4) |
-| **15. Phòng Thủ Cơ Bản Bằng Thống Kê Chuỗi & Cú Pháp** | <a href="#ref15">`[15]`</a> | Jain et al. (2023) | **`Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`** | Đánh giá một số baseline defense như perplexity filtering và character n-grams nhằm giảm hiệu quả của adversarial attacks. | Tham khảo thiết kế Tầng 1 (Classical ML: TF-IDF Word/Char) để sàng lọc sơ bộ bất thường cú pháp trước khi chuyển tiếp. (Chương 3, 4) |
-| **16. Lượng Hóa Động Sau Huấn Luyện (PTQ) Cho Transformer** | <a href="#ref16">`[16]`</a> | Yao et al. (2022) | **`Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`** | Phương pháp lượng hóa ZeroQuant (weight INT8, token-wise activation INT8) suy hao thấp. | Cơ sở kỹ thuật để lượng hóa DeBERTa-v3 sang ONNX INT8 phục vụ mục tiêu suy luận CPU độ trễ thấp. (Chương 3, 5) |
-| **17. Lẩn Tránh Bằng Mã Hóa Ký Tự (CipherChat & Encoding)** | <a href="#ref17">`[17]`</a> | Yuan et al. (2024) | **`Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`** | Khung CipherChat: Chứng minh năng lực hiểu mật mã của LLM có thể bị lợi dụng để vượt qua căn chỉnh an toàn. | Luận chứng cho việc tích hợp mô-đun tiền xử lý chuẩn hóa chuỗi và giải mã tiền trạm. (Chương 1, 3, 4) |
-| **18. Nguyên Lý Thiết Kế Hệ Thống Bảo Vệ Kinh Điển** | <a href="#ref18">`[18]`</a> | Saltzer & Schroeder (1975) | **`Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf`** | Các nguyên tắc thiết kế bảo vệ hệ thống được Saltzer và Schroeder đề xuất (Complete Mediation, Economy of Mechanism, Defense-in-Depth). | Nền tảng thiết kế hệ thống: Kiểm soát toàn diện tại Ingress (Complete Mediation) và kiến trúc phân tầng (Defense-in-Depth). (Chương 2, 3) |
+| **9. Huấn Luyện Ngữ Nghĩa Sâu Với DeBERTa-v3** | <a href="#ref9">`[9]`</a> | He, Gao, Chen (2023) | **`He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`** | Đột phá ELECTRA-style RTD và Gradient-Disentangled Embedding Sharing (GDES) tại ICLR 2023. | Lý giải việc lựa chọn DeBERTa-v3 làm bộ phân loại ngữ nghĩa sâu Tầng 2. (Chương 3, 4) |
+| **10. Kiểm Soát Đánh Đổi FPR Trong Phát Hiện Độc Hại** | <a href="#ref10">`[10]`</a> | Markov et al. / OpenAI (2023) | **`OpenAI_2023_Undesired_Content_Detection.pdf`** | Phương pháp luận kiểm duyệt nội dung thực tế (AAAI 2023); phân tích chi phí FPR đối với trải nghiệm người dùng. | Cung cấp bài học thực tế để PI-Guard thiết lập yêu cầu kỹ thuật: đặt mục tiêu kiểm soát $\text{FPR} < 1.5\%$ trên tập lành tính. (Chương 2, 4) |
+| **11. Khảo Sát Thực Nghiệm Prompt Jailbreak Trong Tự Nhiên** | <a href="#ref11">`[11]`</a> | Shen et al. (2024) | **`Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`** | Bộ dữ liệu công bố gồm 15,140 prompt tổng cộng, xác định được 1,405 jailbreak prompts thực tế; phân tích mẫu hình DAN. | Nguồn dữ liệu kiểm thử thực nghiệm jailbreak tự nhiên cho PI-Guard. (Chương 3, 4) |
+| **12. Khung Kiểm Thử Đối Kháng & Đột Biến Văn Bản** | <a href="#ref12">`[12]`</a> | Zhou et al. (2024) | **`Zhou_2024_EasyJailbreak_Unified_Framework.pdf`** | Framework tự động hóa đột biến jailbreak 4 tầng (Initialize, Mutate, Evaluate, Select). | PI-Guard sử dụng các toán tử đột biến của framework này làm công cụ fuzzing; đặt mục tiêu kiểm thử duy trì $\Delta F_1 < 5\%$. (Chương 3, 4) |
+| **13. Tấn Công Chuỗi Hậu Tố Đối Kháng Tối Ưu Hóa (GCG)** | <a href="#ref13">`[13]`</a> | Zou et al. (2023) | **`Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf`** | Thuật toán Greedy Coordinate Gradient sinh hậu tố đối kháng chuyển giao. | PI-Guard sử dụng các mẫu sinh bởi GCG như một tập kiểm thử đánh giá đối kháng ngoại lai (OOD evaluation set). (Chương 4) |
+| **14. Phòng Thủ Bằng Xáo Trộn Ngẫu Nhiên (SmoothLLM)** | <a href="#ref14">`[14]`</a> | Robey et al. (2023) | **`Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`** | Cơ chế làm mịn ngẫu nhiên qua biến dị prompt và đa số biểu quyết phản hồi LLM. | PI-Guard sử dụng làm baseline đối chuẩn để so sánh đánh đổi giữa multi-query defense và single-pass classifier. (Chương 2, 4) |
+| **15. Phòng Thủ Cơ Bản Bằng Thống Kê Chuỗi & Cú Pháp** | <a href="#ref15">`[15]`</a> | Jain et al. (2023) | **`Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`** | Đánh giá một số baseline defense như perplexity filtering và character n-grams nhằm giảm hiệu quả của adversarial attacks. | PI-Guard lấy cảm hứng từ các kết quả baseline của Jain et al. để thiết kế Tầng 1 (Classical ML: TF-IDF Word/Char) sàng lọc sơ bộ. (Chương 3, 4) |
+| **16. Lượng Hóa Động Sau Huấn Luyện (PTQ) Cho Transformer** | <a href="#ref16">`[16]`</a> | Yao et al. (2022) | **`Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`** | Phương pháp lượng hóa ZeroQuant (weight INT8, token-wise activation INT8) suy hao thấp. | Cơ sở kỹ thuật để lượng hóa DeBERTa-v3 sang ONNX INT8; PI-Guard đặt mục tiêu suy luận CPU đạt $P95 < 30\text{ms}$. (Chương 3, 5) |
+| **17. Lẩn Tránh Bằng Biến Đổi Ký Tự (CipherChat & Encoding)** | <a href="#ref17">`[17]`</a> | Yuan et al. (2024) | **`Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`** | Khung CipherChat: Nghiên cứu các phép biến đổi prompt dựa trên mật mã cổ điển/bảng mã để vượt qua căn chỉnh an toàn. | Luận chứng cho việc tích hợp mô-đun tiền xử lý chuẩn hóa chuỗi và giải mã tiền trạm. (Chương 1, 3, 4) |
+| **18. Nguyên Lý Thiết Kế Hệ Thống Bảo Vệ Kinh Điển** | <a href="#ref18">`[18]`</a> | Saltzer & Schroeder (1975) | **`Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf`** | Các nguyên tắc thiết kế bảo vệ hệ thống máy tính được Saltzer và Schroeder đề xuất (Complete Mediation, Economy of Mechanism, Defense-in-Depth). | Nền tảng thiết kế hệ thống: Kiểm soát toàn diện tại Ingress (Complete Mediation) và kiến trúc phân tầng (Defense-in-Depth). (Chương 2, 3) |
 
 ---
 
@@ -70,7 +74,7 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 - **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2303.18223.pdf](https://arxiv.org/pdf/2303.18223.pdf) | **arXiv ID**: `2303.18223`
 - **Từ khóa phân loại**: `LLM Architecture`, `Autoregressive Transformers`, `Pre-training`, `Tokenization`, `Alignment`
 - **Đóng góp khoa học gốc của bài báo**: Cung cấp bức tranh toàn cảnh về kiến trúc Transformer tự hồi quy, quy trình tiền huấn luyện, căn chỉnh chỉ thị và đánh giá năng lực LLM. Bài báo phân tích việc xử lý chuỗi token đồng nhất trong không gian ngôn ngữ phẳng, nơi mô hình tiếp nhận dữ liệu và chỉ thị như các token tương đương.
-- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 1 (Giới thiệu vấn đề)** & **Chương 2 (Cơ sở lý thuyết)** — Nhóm PI-Guard sử dụng bài báo để làm rõ bản chất mô hình: *LLM xử lý ngữ cảnh dưới dạng chuỗi token phẳng ($X = S \mathbin{\Vert} U$) và không tự cung cấp một ranh giới an ninh đáng tin cậy (security boundary) giữa instruction và untrusted data*. Cấu trúc phân cấp chỉ thị (prompt hierarchy) hay quy ước định dạng ngữ cảnh không đồng nghĩa với cơ chế cô lập an ninh (security isolation) cấp hệ thống, đặt ra yêu cầu tất yếu phải có giải pháp kiểm soát đầu vào độc lập đặt phía trước.
+- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 1 (Giới thiệu vấn đề)** & **Chương 2 (Cơ sở lý thuyết)** — Trong phạm vi mô hình hóa của đồ án PI-Guard, chuỗi ngữ cảnh đầu vào được biểu diễn dưới dạng chuỗi token kết hợp giữa system/instruction ($S$) và user/untrusted content ($U$), tức $X = S \mathbin{\Vert} U$. Dựa trên khảo sát của Zhao et al. về kiến trúc Transformer tự hồi quy, nhóm làm rõ bản chất mô hình: *LLM xử lý ngữ cảnh dưới dạng chuỗi token liên tục và không tự cung cấp một ranh giới an ninh đáng tin cậy (security boundary) giữa instruction và untrusted data*. Cấu trúc prompt hierarchy hay quy ước định dạng ngữ cảnh chỉ mang tính quy ước ngữ nghĩa, không tương đương với cơ chế cô lập an ninh (security isolation) cấp hệ thống, đặt ra yêu cầu tất yếu phải có giải pháp kiểm soát đầu vào độc lập đặt phía trước.
 
 ---
 
@@ -82,7 +86,7 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 - **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2203.02155.pdf](https://arxiv.org/pdf/2203.02155.pdf) | **arXiv ID**: `2203.02155`
 - **Từ khóa phân loại**: `InstructGPT`, `RLHF`, `Instruction Following`, `System Prompt`, `Alignment`
 - **Đóng góp khoa học gốc của bài báo**: Đặt nền móng cho phương pháp căn chỉnh mô hình ngôn ngữ theo chỉ thị (Instruction Tuning) sử dụng học tăng cường từ phản hồi của con người (RLHF), chứng minh mô hình InstructGPT tuân thủ tốt hơn đáng kể ý định và mệnh lệnh của người dùng so với mô hình tiền huấn luyện thuần túy (Helpful, Honest, Harmless).
-- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 1** & **Chương 2** — Cung cấp nền tảng lý thuyết về instruction-following và alignment, từ đó làm cơ sở khoa học để nhóm PI-Guard phân tích vấn đề ưu tiên chỉ thị (instruction precedence) trong các hệ thống LLM: Việc mô hình được tối ưu hóa nhằm tuân thủ mệnh lệnh người dùng tạo tiền đề cho các cuộc tấn công khai thác xu hướng này để ghi đè ngữ cảnh kiểm soát ban đầu.
+- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 1** & **Chương 2** — Cung cấp nền tảng về instruction-following và alignment, được PI-Guard sử dụng làm cơ sở để phân tích cách các chỉ thị có mức độ ưu tiên khác nhau (system prompt vs. user prompt) có thể cạnh tranh trong hệ thống LLM.
 
 ---
 
@@ -114,7 +118,7 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 ### <a id="ref5"></a>[5] Jailbroken: How Does LLM Safety Training Fail?
 - **Tên bài báo chính xác**: *Jailbroken: How Does LLM Safety Training Fail?*
 - **Tác giả**: Alexander Wei, Nika Haghtalab, Jacob Steinhardt (UC Berkeley)
-- **Năm xuất bản**: 2024 | **Nơi công bố chính thức**: *Advances in Neural Information Processing Systems (NeurIPS 2024)* (Hội nghị NeurIPS 2023, xuất bản trong Kỷ yếu NeurIPS 36 / 37)
+- **Năm xuất bản**: 2023 | **Nơi công bố chính thức**: *Advances in Neural Information Processing Systems 36 (NeurIPS 2023) Main Conference Track*
 - **Tệp PDF Cục Bộ**: **`Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`** (32 trang)
 - **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2307.02483.pdf](https://arxiv.org/pdf/2307.02483.pdf) | **arXiv ID**: `2307.02483`
 - **Từ khóa phân loại**: `Jailbreak Mechanism`, `Competing Objectives`, `Mismatched Generalization`, `Safety Alignment Failure`, `Adversarial Evaluation`
@@ -131,7 +135,7 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 - **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2606.31227.pdf](https://arxiv.org/pdf/2606.31227.pdf) | **arXiv ID**: `2606.31227`
 - **Từ khóa phân loại**: `AI Agent Security`, `Multi-Layer Red Teaming`, `Attack Surface Decomposition`, `Attack Operators`, `Infrastructure Defense`
 - **Đóng góp khoa học gốc của bài báo**: Đề xuất khung kiểm thử an ninh đỏ (Red Teaming) đa tầng cho hệ thống AI Agent; phân rã bề mặt tấn công của tác nhân thông minh thành các tầng chức năng (Hạ tầng, Bộ nhớ, Công cụ, Lời nhắc) và chuẩn hóa danh mục 26+ toán tử tấn công thực tế.
-- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 1 (Mô hình đe dọa)** & **Chương 3 (Kiến trúc)** — Nhóm PI-Guard tiếp thu tư duy mô hình hóa phân tầng của báo cáo để thiết lập mô hình đe dọa Zero-Trust 4 vùng: Zone 0 (Public Ingress) $\rightarrow$ Zone 1 (Lớp lọc PI-Guard Proxy) $\rightarrow$ Zone 2 (Downstream LLM) $\rightarrow$ Zone 3 (Công cụ/Cơ sở dữ liệu).
+- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 1 (Mô hình đe dọa)** & **Chương 3 (Kiến trúc)** — PI-Guard tham khảo mô hình phân tầng Zone 0–3 được đề xuất trong báo cáo kỹ thuật của Tencent Zhuque Lab để tổ chức phạm vi tấn công và định vị vai trò của lớp guardrail proxy ở ranh giới Ingress (Zone 0 $\rightarrow$ Zone 1).
 
 ---
 
@@ -143,7 +147,7 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 - **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2312.06674.pdf](https://arxiv.org/pdf/2312.06674.pdf) | **arXiv ID**: `2312.06674`
 - **Từ khóa phân loại**: `LLM-based Safeguard`, `Llama Guard`, `Safety Risk Taxonomy`, `Input-Output Moderation`, `LLM-as-a-Judge`
 - **Đóng góp khoa học gốc của bài báo**: Giới thiệu mô hình Llama Guard (tinh chỉnh từ Llama-2-7B) áp dụng phương pháp LLM-as-a-Judge để phân loại an toàn cho cả đầu vào prompt và đầu ra phản hồi theo phân loại rủi ro nội dung độc hại được định nghĩa sẵn.
-- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 2** & **Chương 4 (Thực nghiệm đối chuẩn)** — Llama Guard đóng vai trò là mô hình đối chuẩn tiêu biểu (Generative LLM Guardrail Baseline). *Lưu ý học thuật*: Báo cáo Llama Guard không thực nghiệm trên PI-Guard. Con số "nhanh hơn $40\times$" và "chạy được trên CPU tiêu chuẩn" là **chỉ tiêu và giả thuyết thực nghiệm của nhóm đề tài PI-Guard** khi so sánh một bộ phân loại Encoder gọn nhẹ (DeBERTa-v3 86M-435M) với một mô hình sinh 7B/8B tốn kém tài nguyên GPU.
+- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 2** & **Chương 4 (Thực nghiệm đối chuẩn)** — Llama Guard đóng vai trò là mô hình đối chuẩn tiêu biểu (Generative LLM Guardrail Baseline). *Lưu ý học thuật*: PI-Guard đặt mục tiêu đánh giá liệu một classifier nhỏ chạy CPU (DeBERTa-v3 86M-435M) có đạt trade-off latency/accuracy tốt hơn và tiết kiệm phần cứng hơn trong deployment scenario so với mô hình sinh 7B/8B hay không. Đây là mục tiêu kỹ thuật và giả thuyết nghiên cứu của PI-Guard, không phải kết quả của paper Llama Guard.
 
 ---
 
@@ -178,8 +182,8 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 - **Tệp PDF Cục Bộ**: **`OpenAI_2023_Undesired_Content_Detection.pdf`** (15 trang)
 - **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2208.03274.pdf](https://arxiv.org/pdf/2208.03274.pdf) | **DOI chính xác**: `10.1609/aaai.v37i12.26752` | **arXiv ID**: `2208.03274`
 - **Từ khóa phân loại**: `Content Moderation`, `False Positive Trade-off`, `Precision-Recall Curve`, `Active Learning`, `Real-World Deployment`
-- **Đóng góp khoa học gốc của bài báo**: Giới thiệu phương pháp luận thiết kế hệ thống kiểm duyệt nội dung thực tế (OpenAI Moderation API). Phân tích sâu sắc bài toán đánh đổi giữa độ phủ phát hiện độc hại và tỷ lệ chặn nhầm (False Positive Rate - FPR), chỉ ra rằng trong môi trường vận hành thực tế, một hệ thống có FPR cao sẽ phá hủy trải nghiệm người dùng và bị tắt bỏ.
-- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 2** & **Chương 4** — Cung cấp cơ sở phương pháp luận cho việc thiết kế hàm mục tiêu đánh giá của PI-Guard. Chỉ số cam kết $\text{FPR} < 1.5\%$ trên tập prompt lành tính là **mục tiêu kỹ thuật do nhóm PI-Guard đặt ra**, được truyền cảm hứng từ bài học thực tế trong công trình của OpenAI.
+- **Đóng góp khoa học gốc của bài báo**: Giới thiệu phương pháp luận thiết kế hệ thống kiểm duyệt nội dung thực tế (OpenAI Moderation API). Phân tích sâu sắc bài toán đánh đổi giữa độ phủ phát hiện độc hại và chi phí chặn nhầm (False Positive cost), chỉ ra rằng trong môi trường vận hành thực tế, tỷ lệ chặn nhầm cao sẽ làm suy giảm nghiêm trọng trải nghiệm người dùng.
+- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 2** & **Chương 4** — Cung cấp cơ sở phương pháp luận thực tế cho việc thiết kế yêu cầu của PI-Guard. Chỉ số cam kết $\text{FPR} < 1.5\%$ trên tập prompt lành tính là **mục tiêu kỹ thuật do nhóm PI-Guard tự xác lập**, được truyền cảm hứng từ phân tích trade-off trong công trình của OpenAI.
 
 ---
 
@@ -190,7 +194,7 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 - **Tệp PDF Cục Bộ**: **`Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`** (22 trang)
 - **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2308.03825.pdf](https://arxiv.org/pdf/2308.03825.pdf) | **DOI chính xác**: `10.1145/3658644.3670388` | **arXiv ID**: `2308.03825`
 - **Từ khóa phân loại**: `In-The-Wild Prompts`, `Jailbreak Characterization`, `Do Anything Now (DAN)`, `Empirical Measurement`, `Attack Semantic Patterns`
-- **Đóng góp khoa học gốc của bài báo**: Nghiên cứu đo lường thực nghiệm quy mô lớn đầu tiên về prompt jailbreak trong tự nhiên. Các tác giả thu thập tổng cộng **15,140 prompt** từ 4 nền tảng cộng đồng (Reddit, Discord, v.v.), sau đó qua các bước phân tích đã xác định được **1,405 prompt jailbreak thực tế** (tỷ lệ 9.28%); phân loại các mẫu hình tấn công như đóng vai nhân vật, ép buộc giả định và vô hiệu hóa kiểm duyệt.
+- **Đóng góp khoa học gốc của bài báo**: Nghiên cứu đo lường thực nghiệm quy mô lớn đầu tiên về prompt jailbreak trong tự nhiên. Tập dữ liệu được nhóm tác giả công bố chính thức gồm **15,140 prompt tổng cộng** (thu thập từ tháng 12/2022 đến tháng 12/2023 từ 4 nền tảng cộng đồng), trong đó **1,405 prompt được xác định là jailbreak prompts thực tế** (tỷ lệ 9.28%); phân loại các mẫu hình tấn công như đóng vai nhân vật, ép buộc giả định và vô hiệu hóa kiểm duyệt. *(Lưu ý: Bản thảo sơ khởi của bài báo từng ghi nhận số liệu khảo sát ban đầu là 6,387 prompt trong 6 tháng, trước khi tập dữ liệu mở rộng 15,140 prompt được hoàn thiện và công bố chính thức)*.
 - **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 3 (Kỹ nghệ dữ liệu)** & **Chương 4 (Đánh giá thực nghiệm)** — Nhóm kế thừa bộ 1,405 mẫu jailbreak thực tế này (kết hợp với dữ liệu tổng hợp và benign) để làm nguồn dữ liệu kiểm thử thực tế cho lớp nhãn *Jailbreak*, đảm bảo PI-Guard được đánh giá trên các đòn tấn công thực tế do con người tạo ra.
 
 ---
@@ -214,8 +218,8 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 - **Tệp PDF Cục Bộ**: **`Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf`** (31 trang)
 - **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2307.15043.pdf](https://arxiv.org/pdf/2307.15043.pdf) | **arXiv ID**: `2307.15043`
 - **Từ khóa phân loại**: `Greedy Coordinate Gradient (GCG)`, `Adversarial Suffix`, `Universal Attack`, `Gradient Optimization`, `Black-Box Transferability`
-- **Đóng góp khoa học gốc của bài báo**: Phát triển thuật toán Greedy Coordinate Gradient (GCG) tự động tìm kiếm chuỗi token hậu tố đối kháng (adversarial suffix) tối ưu hóa trên mô hình hộp trắng, có khả năng kích hoạt phản hồi vi phạm an toàn trên hàng loạt LLM thương mại hộp đen (ChatGPT, Claude, Bard).
-- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 4 (Kiểm định phân phối ngoại lai - OOD)** — Sử dụng các chuỗi hậu tố GCG (vốn là các ký tự giả ngẫu nhiên có entropy cao) làm mẫu thử nghiệm kiểm tra tính kháng cự của PI-Guard; đánh giá xem Tầng 1 (Character n-grams) và Tầng 2 (DeBERTa-v3) có nhận diện được các mẫu hình token bất thường này hay không.
+- **Đóng góp khoa học gốc của bài báo**: Phát triển thuật toán Greedy Coordinate Gradient (GCG) tự động tìm kiếm chuỗi token hậu tố đối kháng (adversarial suffix) tối ưu hóa trên mô hình hộp trắng, có khả năng kích hoạt phản hồi vi phạm an toàn và chuyển giao sang hàng loạt LLM thương mại hộp đen (ChatGPT, Claude, Bard).
+- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 4 (Kiểm định phân phối ngoại lai - OOD)** — PI-Guard sử dụng các mẫu sinh bởi GCG như một tập kiểm thử đánh giá đối kháng ngoại lai (OOD evaluation set) nhằm đánh giá xem Tầng 1 (Character n-grams) và Tầng 2 (DeBERTa-v3) có nhận diện được các mẫu hình token bất thường này hay không.
 
 ---
 
@@ -226,8 +230,8 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 - **Tệp PDF Cục Bộ**: **`Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`** (42 trang)
 - **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2310.03684.pdf](https://arxiv.org/pdf/2310.03684.pdf) | **arXiv ID**: `2310.03684`
 - **Từ khóa phân loại**: `SmoothLLM`, `Randomized Smoothing`, `Perturbation Defense`, `Adversarial Defense`, `Majority Voting`
-- **Đóng góp khoa học gốc của bài báo**: Đề xuất cơ chế phòng thủ phòng ngừa dựa trên làm mịn ngẫu nhiên (Randomized Smoothing): tạo ra $N$ bản sao xáo trộn ký tự của prompt đầu vào, gửi cả $N$ bản sao qua LLM và lấy biểu quyết đa số phản hồi để triệt tiêu hiệu ứng tấn công của các chuỗi hậu tố GCG.
-- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 2** & **Chương 4** — Dùng làm đối chuẩn phân tích giải pháp phòng thủ: Nhóm chỉ ra nhược điểm lớn của SmoothLLM là làm tăng chi phí tính toán và độ trễ lên gấp $N$ lần (do phải gọi LLM $N$ lần), từ đó làm nổi bật giá trị của kiến trúc External Proxy của PI-Guard (kiểm định 1 lượt ở tiền trạm trước khi chuyển tiếp).
+- **Đóng góp khoa học gốc của bài báo**: Đề xuất cơ chế phòng thủ dựa trên làm mịn ngẫu nhiên (Randomized Smoothing): tạo ra $N$ bản sao xáo trộn ký tự của prompt đầu vào, gửi cả $N$ bản sao qua LLM và lấy biểu quyết đa số phản hồi để triệt tiêu hiệu ứng tấn công của các chuỗi hậu tố GCG.
+- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 2** & **Chương 4** — PI-Guard sử dụng SmoothLLM làm baseline đối chuẩn để phân tích và so sánh sự đánh đổi giữa phương pháp phòng vệ đa truy vấn (multi-query defense tốn kém chi phí) và kiến trúc bộ phân loại kiểm tra một lượt (single-pass proxy classifier) của PI-Guard.
 
 ---
 
@@ -239,7 +243,7 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 - **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2309.00614.pdf](https://arxiv.org/pdf/2309.00614.pdf) | **arXiv ID**: `2309.00614`
 - **Từ khóa phân loại**: `Baseline Defenses`, `Perplexity Filter`, `Paraphrasing`, `Character N-Grams`, `Adversarial Detection`
 - **Đóng góp khoa học gốc của bài báo**: Đánh giá một số baseline defense như perplexity filtering, re-tokenization, paraphrasing và character n-grams nhằm giảm hiệu quả của các đòn tấn công đối kháng (như GCG); chỉ ra rằng các biện pháp kiểm soát cú pháp cơ bản có thể làm suy giảm tỷ lệ tấn công thành công (ASR) với chi phí tính toán thấp trong một số điều kiện thực nghiệm.
-- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 3** & **Chương 4** — Kế thừa phát hiện thực nghiệm của Jain et al. để xây dựng Tầng 1 (Classical ML: TF-IDF Word & Character n-grams) trong kiến trúc phòng thủ phân tầng của PI-Guard, đóng vai trò như một bộ lọc sàng lọc sơ bộ (lightweight baseline filter) phát hiện sớm các bất thường cú pháp trước khi chuyển tiếp sang tầng phân loại ngữ nghĩa sâu, tránh ngộ nhận rằng n-gram có thể thay thế hoàn toàn các mô hình phân loại sâu.
+- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 3** & **Chương 4** — PI-Guard kế thừa và lấy cảm hứng từ các kết quả baseline của Jain et al. để đưa ra lựa chọn thiết kế Tầng 1 (Classical ML: TF-IDF Word & Character n-grams) đóng vai trò như một bộ lọc sàng lọc sơ bộ (lightweight baseline filter) phát hiện sớm các bất thường cú pháp trước khi chuyển tiếp sang tầng phân loại ngữ nghĩa sâu. *Lưu ý*: Jain et al. khảo sát các baseline phòng thủ nói chung; pipeline cụ thể kết hợp TF-IDF n-grams hai tầng là lựa chọn kiến trúc riêng của PI-Guard.
 
 ---
 
@@ -262,8 +266,8 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 - **Tệp PDF Cục Bộ**: **`Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`** (21 trang)
 - **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2308.06463.pdf](https://arxiv.org/pdf/2308.06463.pdf) | **arXiv ID**: `2308.06463`
 - **Từ khóa phân loại**: `CipherChat`, `Cipher Jailbreak`, `Human Ciphers`, `SelfCipher`, `Safety Alignment Failure`
-- **Đóng góp khoa học gốc của bài báo**: Giới thiệu khung thực nghiệm CipherChat, chứng minh rằng khi hội thoại bằng mật mã (bao gồm các mật mã cổ điển như Caesar, Morse, Atbash, cùng dạng SelfCipher tự định nghĩa), khả năng tuân thủ căn chỉnh an toàn của các LLM mạnh (như GPT-4) bị suy giảm nghiêm trọng so với khi giao tiếp bằng ngôn ngữ tự nhiên thông thường.
-- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 1**, **Chương 3 (Tiền xử lý)** & **Chương 4** — Cung cấp bằng chứng thực nghiệm rằng việc mã hóa văn bản là một vector tấn công lẩn tránh hiệu quả. Từ đó, nhóm PI-Guard thiết kế thêm tầng tiền xử lý chuẩn hóa chuỗi và phát hiện/giải mã tiền trạm (như Base64, mã hóa thay thế) trước khi đưa văn bản vào bộ phân loại.
+- **Đóng góp khoa học gốc của bài báo**: Giới thiệu khung thực nghiệm CipherChat, nghiên cứu các phép biến đổi prompt dựa trên mật mã cổ điển và bảng mã ký tự (cipher/encoding-based prompt transformations như Caesar, Morse, Atbash, Unicode, SelfCipher) để khảo sát hành vi lẩn tránh; chứng minh khả năng tuân thủ căn chỉnh an toàn của LLM (như GPT-4) bị suy giảm khi tương tác qua các dạng biểu diễn này. *(Lưu ý: Đây là các phép biến đổi chuỗi nhằm vượt rào an toàn ngôn ngữ, không phải các thuật toán mật mã học hiện đại)*.
+- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 1**, **Chương 3 (Tiền xử lý)** & **Chương 4** — Cung cấp bằng chứng thực nghiệm rằng việc biến đổi chuỗi ký tự là một vector tấn công lẩn tránh tiềm tàng. Từ đó, nhóm PI-Guard thiết kế thêm tầng tiền xử lý chuẩn hóa chuỗi và phát hiện/giải mã tiền trạm (như Base64, mã hóa thay thế) trước khi đưa văn bản vào bộ phân loại.
 
 ---
 
@@ -308,7 +312,7 @@ Ngoài 18 bài báo cốt lõi, thư mục `References/` còn lưu trữ 4 tài 
    - *Tên bài báo*: *RAP-ID: Mechanistic Prompt Injection Detection via Impostor Behavior Analysis*
    - *Tác giả*: Yuchen Yang, Lei Peng, Yujie He, Yang Yu, Zhongxin Wu, Yanlei Shi (Lenovo)
    - *Venue*: Findings of ACL 2026, pp. 15008–15019
-   - *Đánh giá của nhóm*: **XÁC ĐỊNH LÀ NGOÀI PHẠM VI (OUT-OF-SCOPE)**. RAP-ID đòi hỏi quyền truy cập hộp trắng vào attention weights và KV-cache nội tại của LLM đích, không tương thích với mô hình External Guardrail Proxy bảo vệ các LLM thương mại hộp đen (Black-box APIs) của đề tài PI-Guard.
+   - *Đánh giá của nhóm*: **XÁC ĐỊNH LÀ NGOÀI PHẠM VI (OUT-OF-SCOPE)**. Do phương pháp yêu cầu truy cập trực tiếp vào các trạng thái nội tại của mô hình và động lực chú ý (internal model states / attention dynamics), trong khi đề tài PI-Guard được thiết kế như một External Black-box Guardrail Middleware bảo vệ các API LLM đóng mà không can thiệp vào trọng số hay bộ nhớ mô hình.
 
 ---
 
@@ -348,12 +352,12 @@ Ngoài 18 bài báo cốt lõi, thư mục `References/` còn lưu trữ 4 tài 
   doi       = {10.1145/3605764.3623985}
 }
 
-@inproceedings{wei2024jailbroken,
+@inproceedings{wei2023jailbroken,
   title     = {Jailbroken: How Does LLM Safety Training Fail?},
   author    = {Wei, Alexander and Haghtalab, Nika and Steinhardt, Jacob},
-  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS 2023)},
   volume    = {36},
-  year      = {2024},
+  year      = {2023},
   url       = {https://arxiv.org/abs/2307.02483}
 }
 
