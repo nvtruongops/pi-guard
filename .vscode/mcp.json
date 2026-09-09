@@ -4,9 +4,38 @@
       "command": "arxiv-mcp-server",
       "description": "Academic literature search, abstract extraction, citation graph, and deep research on arXiv"
     },
-    "jupyter": {
-      "command": "mcp-server-jupyter",
-      "description": "Jupyter Notebook MCP server for creating, editing, and executing Python notebook cells with network access"
+    "scholar-feed": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "scholar-feed-mcp"
+      ],
+      "description": "Scholarly paper search across 600k+ CS/AI/ML papers, citation lineage tracking, full text extraction, and BibTeX retrieval"
+    },
+    "openalex": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "openalex-mcp"
+      ],
+      "description": "Global academic index (250M+ works) with automated Open-Access PDF discovery and peer-reviewed paper resolution (ACM, IEEE, NeurIPS)"
+    },
+    "semanticscholar": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@xbghc/semanticscholar-mcp"
+      ],
+      "description": "Semantic Scholar API with AI-powered TLDR summaries, influential citation analysis, and citation graph exploration"
+    },
+    "kaggle": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://www.kaggle.com/mcp"
+      ],
+      "description": "Official Kaggle MCP server for exploring datasets, running GPU cloud notebooks/labs, and managing experimental baselines"
     },
     "duckduckgo-search": {
       "command": "npx",
@@ -15,6 +44,10 @@
         "@ericthered926/duckduckgo-mcp-server"
       ],
       "description": "Internet and web search access for retrieving latest information, documentation, and research papers"
+    },
+    "jupyter": {
+      "command": "mcp-server-jupyter",
+      "description": "Jupyter Notebook MCP server for creating, editing, and executing Python notebook cells with network access"
     },
     "playwright": {
       "command": "npx",
@@ -40,14 +73,6 @@
         "@modelcontextprotocol/server-sequential-thinking"
       ],
       "description": "Multi-step structured reasoning and analysis"
-    },
-    "scholar-feed": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "scholar-feed-mcp"
-      ],
-      "description": "Scholarly paper search across 600k+ CS/AI/ML papers, citation lineage tracking, full text extraction, and BibTeX retrieval"
     },
     "officecli": {
       "command": "npx",

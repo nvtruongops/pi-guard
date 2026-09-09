@@ -74,21 +74,25 @@ To prevent severe challenges and score deductions during committee defenses befo
 
 ## 🛠️ Configured MCP Servers (Model Context Protocol)
 
-The workspace is configured with 8 integrated Model Context Protocol (MCP) servers defined in [`.vscode/mcp.json`](file:///d:/Work/Do-an/.vscode/mcp.json):
+The workspace is configured with 11 integrated Model Context Protocol (MCP) servers defined in [`.vscode/mcp.json`](file:///d:/Work/Do-an/.vscode/mcp.json):
 
-1. 📚 **`arxiv`**: Search academic papers, fetch full abstracts, build citation graphs, and perform deep research directly on arXiv.
+1. 📚 **`arxiv`**: Search academic papers, fetch full abstracts, build citation graphs, and perform deep research directly on arXiv preprints.
 2. 📖 **`scholar-feed`**: Query scholarly literature across 600k+ CS/AI/ML papers, trace citation lineages, extract full text, and retrieve clean BibTeX entries.
-3. 🌐 **`duckduckgo-search`**: Web search access for retrieving latest AI security advisories, benchmark datasets, Hugging Face repositories, and technical error code troubleshooting.
-4. 📓 **`jupyter`**: Inspect, edit, and execute Jupyter Notebook (.ipynb) cells with active Python kernels and network connectivity.
-5. 🎭 **`playwright`**: Headless browser automation and web scraping for dataset verification and online documentation parsing.
-6. 🧠 **`memory`**: Persistent Knowledge Graph Memory to track experimental benchmarks, architectural decisions, and metric progressions.
-7. 💡 **`sequential-thinking`**: Structured multi-step reasoning for algorithm design, adversarial evasion analysis, and bug troubleshooting.
-8. 📄 **`officecli`**: Read, edit, generate, and validate Office documents (`.docx`, `.xlsx`, `.pptx`) for thesis compilation and defense slide preparation.
+3. 🏛️ **`openalex`**: Global academic index (250M+ works) with automated Open-Access PDF discovery, citation metrics, and peer-reviewed paper resolution across top security venues (ACM CCS, IEEE S&P, USENIX, NeurIPS).
+4. 🧠 **`semanticscholar`**: Semantic Scholar API integration featuring AI-powered one-sentence summaries (TLDRs), influential citation analysis, and semantic similarity search from the Allen Institute for AI.
+5. ⚡ **`kaggle`**: Official Kaggle MCP server for discovering community security datasets, exploring public prompt injection / transformer notebooks, and executing GPU cloud training experiments (30h/week free T4/P100 GPUs).
+6. 🌐 **`duckduckgo-search`**: Web search access for retrieving latest AI security advisories, benchmark datasets, Hugging Face repositories, and technical error code troubleshooting.
+7. 📓 **`jupyter`**: Inspect, edit, and execute Jupyter Notebook (.ipynb) cells with active Python kernels and network connectivity.
+8. 🎭 **`playwright`**: Headless browser automation and web scraping for dataset verification and online documentation parsing.
+9. 💾 **`memory`**: Persistent Knowledge Graph Memory to track experimental benchmarks, architectural decisions, and metric progressions.
+10. 💡 **`sequential-thinking`**: Structured multi-step reasoning for algorithm design, adversarial evasion analysis, and bug troubleshooting.
+11. 📄 **`officecli`**: Read, edit, generate, and validate Office documents (`.docx`, `.xlsx`, `.pptx`) for thesis compilation and defense slide preparation.
 
-### 🎯 Research & Debugging MCP Usage Guide
-- **Academic Literature Discovery**: Prefer `arxiv` and `scholar-feed` for finding peer-reviewed papers (2022–2026), followed by `duckduckgo-search` for conference proceedings (ACM CCS, NeurIPS, ICLR, IEEE S&P).
+### 🎯 Research, Lab & Debugging MCP Usage Guide
+- **Academic Literature Discovery**: Leverage the golden quartet (`arxiv` for newest preprints, `openalex` for verified open-access PDFs, `semanticscholar` for quick TLDR screening and influential citation graphs, and `scholar-feed` for BibTeX citation trees).
+- **GPU Cloud Labs & Dataset Exploration**: Utilize `kaggle` to search reference transformer classification notebooks, access supplementary jailbreak datasets, and manage long-running GPU training jobs without local hardware constraints.
 - **Error Code & Technical Troubleshooting**: Use `duckduckgo-search` for PyTorch, Transformers, ONNX Runtime, and FastAPI exceptions; use `jupyter` for interactive debugging in experimental notebooks.
-- **Strict Scope Guard**: All tooling and literature queries MUST strictly align with the scope defined in [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) (Text-based Prompt Injection, Jailbreak, Classical ML Baselines, DeBERTa-v3, ONNX INT8, and Lightweight FastAPI/Streamlit PoC).
+- **Strict Scope Guard**: All tooling and literature queries MUST strictly align with the scope defined in [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) (Text-based Prompt Injection, Jailbreak, Classical ML Baselines, DeBERTa-v3, ONNX INT8, and Lightweight FastAPI/Streamlit PoC). Out-of-scope domains (bio/medical tools, cloud enterprise BigQuery data pipelines, hardware attacks) are strictly prohibited.
 
 ---
 
