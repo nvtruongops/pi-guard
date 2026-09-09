@@ -99,7 +99,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run adversarial robustness benchmark.")
     parser.add_argument("--model", default="models/baseline/baseline_tfidf.joblib")
     parser.add_argument("--adversarial_dir", default="tests/adversarial")
-    parser.add_argument("--output", default="reports/experiment_reports/adversarial_benchmark.json")
+    parser.add_argument("--output", default="Final-Report/experiment_reports/adversarial_benchmark.json")
     parser.add_argument("--mock", action="store_true")
     args = parser.parse_args()
 

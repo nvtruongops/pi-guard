@@ -59,6 +59,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluate trained PI-Guard models.")
     parser.add_argument("--model", default="models/baseline/baseline_tfidf.joblib")
     parser.add_argument("--test", default="data/splits/test.csv")
-    parser.add_argument("--output", default="reports/experiment_reports/baseline_test_metrics.json")
+    parser.add_argument("--output", default="Final-Report/experiment_reports/baseline_test_metrics.json")
     args = parser.parse_args()
     evaluate_model(args.model, args.test, args.output)

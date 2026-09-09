@@ -73,10 +73,14 @@ htmlcov/
 .ruff_cache/
 
 # Experiment reports & logs
+Final-Report/experiment_reports/*.json
+!Final-Report/**/.gitkeep
 reports/experiment_reports/*.json
 !reports/**/.gitkeep
 
 # Internal University Documents & References (Confidential / Non-public)
+Github-Page/fpt_capstone_guide/
+Github-Page/fpt_capstone_guide/**
 docs/fpt_capstone_guide/
 docs/fpt_capstone_guide/**
 **/fpt_capstone_guide/
