@@ -54,10 +54,10 @@ select = ["E", "F", "I", "W", "UP", "B"]
 ignore = ["E501"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["Final-Report/tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
-pythonpath = ["."]
+pythonpath = ["Final-Report", "."]
 addopts = "-v --tb=short --strict-markers"
 
 

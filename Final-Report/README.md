@@ -6,10 +6,33 @@
 
 ---
 
-### 📂 CẤU TRÚC PHÂN HỆ BÁO CÁO TỔNG (`Final-Report/`):
+### 📂 CẤU TRÚC PHÂN HỆ BÁO CÁO TỔNG & MÃ NGUỒN SẢN PHẨM (`Final-Report/`):
 
 ```
 Final-Report/
+├── src/                           # [CORE CODEBASE] Mã nguồn sản phẩm bảo vệ Guardrail chính thức
+│   ├── api/                       # FastAPI async proxy middleware & schemas
+│   ├── models/                    # Classifier modules (TF-IDF Baseline, DeBERTa-v3, ONNX)
+│   ├── preprocessing/             # Bộ chuẩn hóa văn bản, giải mã Base64 & chống evasion
+│   ├── policy/                    # Policy Engine & ngưỡng phân loại (Allow, Review, Block)
+│   ├── evaluation/                # Module tính toán chỉ số (F1, FPR, Latency Profiler)
+│   ├── dashboard/                 # Streamlit UI demo tương tác trực quan
+│   └── utils/                     # Config loader & structured logging
+├── tests/                         # [TEST SUITE] Toàn bộ bộ kiểm thử tự động (Pytest)
+│   ├── unit/                      # Unit tests cho cleaner, policy engine, metrics
+│   ├── integration/               # Integration tests cho API endpoints & middleware
+│   └── adversarial/               # Kiểm thử độ bền trước kỹ thuật làm mờ (Obfuscation)
+├── scripts/                       # [TOOLING & QA] Bộ công cụ kiểm định Local QA & thực thi
+│   ├── validate_local.py          # Unified Local QA Suite (Boundaries, Manifests, Lint, Pytest, Benchmark, Docs)
+│   ├── audit_workspace_boundaries.py # Kiểm toán phân quyền workspace & commit
+│   ├── build_docs_portal.py       # Tự động tổng hợp và biên dịch tài liệu MkDocs
+│   ├── benchmark.py               # Benchmark độ trễ P50/P95/P99 trên tập đối kháng
+│   ├── train.py                   # Script huấn luyện TF-IDF baseline pipeline
+│   ├── evaluate.py                # Script đánh giá mô hình trên tập test split
+│   ├── preprocess.py              # Tiền xử lý dữ liệu và chia tập train/val/test
+│   ├── download_dataset.py        # Tải và hợp nhất bộ dữ liệu từ Hugging Face
+│   ├── compile_thesis.py          # Biên dịch các chương thành luận văn hoàn chỉnh
+│   └── generate_process_report.py # Sinh sổ theo dõi tiến độ chính thức PI_GUARD_PROCESS_REPORT.xlsx
 ├── thesis/                        # Toàn bộ hồ sơ Luận văn tốt nghiệp chính thức (Single Source of Truth)
 │   ├── FINAL_THESIS.md            # Toàn văn Khóa luận tốt nghiệp (Chapters 1-6 + References)
 │   ├── Review1_Problem_Definition_and_Threat_Model.md # Báo cáo Chuyên đề Đợt 1 (Định nghĩa bài toán & Threat Model)

@@ -94,20 +94,23 @@ trigger: always_on
      - `workspaces/ducnq/`
      - `workspaces/vietpmh/`
      - `workspaces/phuongddd/`
-   - Direct edits to common directories (`reports/`, `docs/`, `src/`, `notebooks/`, `tests/`, `scripts/`) by non-leader members are strictly prohibited.
+   - Direct edits to common directories (`Final-Report/`, `Github-Page/`, `.agents/`) by non-leader members are strictly prohibited.
 2. **Leader Sole Merge Authorization**:
    - Only the Leader (`nvtruongops`) is authorized to merge champion artifacts from `workspaces/` into root production directories during weekly convergence sessions.
 3. **Automated Commit Audit Enforcement**:
-   - All commits and PRs must pass `python scripts/validate_local.py` or `python scripts/audit_workspace_boundaries.py`.
-   - Pre-commit hook (`scripts/validate_local.py --install-hook`) must be installed on all member environments.
+   - All commits and PRs must pass `python Final-Report/scripts/validate_local.py` or `python Final-Report/scripts/audit_workspace_boundaries.py`.
+   - Pre-commit hook (`Final-Report/scripts/validate_local.py --install-hook`) must be installed on all member environments.
 
 ---
 
-## Directory & Architectural Standards (3 Phân Hệ Chính & Core Codebase)
+## Directory & Architectural Standards (Đúng 3 Phân Hệ Độc Tôn Tại Thư Mục Gốc)
 
 ```
 d:/Work/Do-an/
-├── Final-Report/                # [1. BÁO CÁO TỔNG] Luận văn, hồ sơ bảo vệ, tài nguyên thực nghiệm & tài liệu báo cáo
+├── Final-Report/                # [1. BÁO CÁO TỔNG & MÃ NGUỒN SẢN PHẨM] Luận văn, mã nguồn, tests, scripts, tài nguyên thực nghiệm
+│   ├── src/                     # [CORE CODEBASE] API, models, preprocessing, dashboard, evaluation
+│   ├── tests/                   # [TEST SUITE] Bộ kiểm thử tự động pytest
+│   ├── scripts/                 # [TOOLING & QA] Bộ công cụ kiểm định Local QA & build docs portal
 │   ├── thesis/                  # Luận văn tốt nghiệp (FINAL_THESIS.md, Review 1, Chapters 1-6)
 │   ├── notebooks/               # Toàn bộ tài nguyên thực nghiệm & Jupyter Notebooks tái lập (configs/, data/, models/)
 │   ├── Meeting/                 # Biên bản họp với GVHD & nội bộ nhóm (Meeting 1, 2, 3)

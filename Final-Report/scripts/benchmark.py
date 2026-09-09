@@ -1,7 +1,8 @@
 import os
 import sys
 
-# Ensure repository root is on Python sys.path
+# Ensure repository root and Final-Report are on Python sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import json
@@ -15,7 +16,7 @@ logger = get_logger("pi_guard.benchmark")
 
 def run_adversarial_benchmarks(
     model_path: str = "Final-Report/notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("Final-Report/notebooks/models") else ("notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models") else "models/baseline/baseline_tfidf.joblib"),
-    adversarial_dir: str = "tests/adversarial",
+    adversarial_dir: str = "Final-Report/tests/adversarial" if os.path.exists("Final-Report/tests/adversarial") else "tests/adversarial",
     output_report: str = "Final-Report/experiment_reports/adversarial_benchmark.json" if os.path.exists("Final-Report") else "reports/experiment_reports/adversarial_benchmark.json",
     use_mock: bool = False
 ):
@@ -97,8 +98,10 @@ def run_adversarial_benchmarks(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run adversarial robustness benchmark.")
-    parser.add_argument("--model", default="models/baseline/baseline_tfidf.joblib")
-    parser.add_argument("--adversarial_dir", default="tests/adversarial")
+    default_model = "Final-Report/notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("Final-Report/notebooks/models/baseline/baseline_tfidf.joblib") else "models/baseline/baseline_tfidf.joblib"
+    default_adv_dir = "Final-Report/tests/adversarial" if os.path.exists("Final-Report/tests/adversarial") else "tests/adversarial"
+    parser.add_argument("--model", default=default_model)
+    parser.add_argument("--adversarial_dir", default=default_adv_dir)
     parser.add_argument("--output", default="Final-Report/experiment_reports/adversarial_benchmark.json")
     parser.add_argument("--mock", action="store_true")
     args = parser.parse_args()

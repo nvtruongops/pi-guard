@@ -26,6 +26,12 @@ notebooks/models/**/*.pt
 notebooks/models/**/*.onnx
 notebooks/models/**/*.joblib
 !notebooks/models/**/.gitkeep
+Final-Report/notebooks/models/**/*.bin
+Final-Report/notebooks/models/**/*.safetensors
+Final-Report/notebooks/models/**/*.pt
+Final-Report/notebooks/models/**/*.onnx
+Final-Report/notebooks/models/**/*.joblib
+!Final-Report/notebooks/models/**/.gitkeep
 
 # Data artifacts (downloaded or generated during Step 1)
 data/raw/*
@@ -48,9 +54,22 @@ notebooks/data/splits/*
 !notebooks/data/splits/.gitkeep
 notebooks/data/augmentation/*
 !notebooks/data/augmentation/.gitkeep
+Final-Report/notebooks/data/raw/*
+!Final-Report/notebooks/data/raw/.gitkeep
+Final-Report/notebooks/data/interim/*
+!Final-Report/notebooks/data/interim/.gitkeep
+Final-Report/notebooks/data/processed/*
+!Final-Report/notebooks/data/processed/.gitkeep
+Final-Report/notebooks/data/splits/*
+!Final-Report/notebooks/data/splits/.gitkeep
+Final-Report/notebooks/data/augmentation/*
+!Final-Report/notebooks/data/augmentation/.gitkeep
 tests/adversarial/*.jsonl
 tests/adversarial/**/*.jsonl
 !tests/adversarial/**/.gitkeep
+Final-Report/tests/adversarial/*.jsonl
+Final-Report/tests/adversarial/**/*.jsonl
+!Final-Report/tests/adversarial/**/.gitkeep
 
 # Environment & Secrets
 .env

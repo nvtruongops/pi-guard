@@ -45,41 +45,30 @@ Mọi bài báo khoa học được trích dẫn trong tài liệu, nghiên cứ
 
 Repository đã tích hợp sẵn 2 công cụ Python chuyên dụng để hỗ trợ việc kiểm tra:
 
-### A. Công Cụ Kiểm Tra Nhanh & Tra Cứu Open Access: `scripts/verify_resource_url.py`
+### A. Công Cụ Kiểm Tra Nhanh & Tra Cứu Open Access: `Final-Report/scripts/verify_resource_url.py`
 
 #### 1. Kiểm tra tính tồn tại của một URL bất kỳ (Web, GitHub, YouTube, Docs):
 ```bash
-python scripts/verify_resource_url.py --url "https://www.youtube.com/watch?v=ATK6fm3cYfI"
-# Kết quả:
-# 🔍 Kiểm tra URL: https://www.youtube.com/watch?v=ATK6fm3cYfI
-#   Trạng thái: ✅ HỢP LỆ
-#   HTTP Code : 200
-#   Loại nội dung: video/youtube
-#   Ghi chú   : Video hợp lệ: 'Text Representation Using TF-IDF: NLP Tutorial For Beginners - S2 E6' bởi codebasics
+python Final-Report/scripts/verify_resource_url.py --url "https://www.youtube.com/watch?v=ATK6fm3cYfI"
 ```
 
 #### 2. Tra cứu DOI để tự động trích xuất liên kết tải PDF mở miễn phí:
 ```bash
-python scripts/verify_resource_url.py --doi "10.1145/3658644.3670388"
-# Kết quả:
-# 🔍 Tra cứu DOI: 10.1145/3658644.3670388
-#   Tiêu đề bài báo: "Do Anything Now": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models
-#   Trạng thái Open Access: ✅ CÓ (OPEN ACCESS)
-#   🔗 Link tải PDF trực tiếp: https://dl.acm.org/doi/pdf/10.1145/3658644.3670388 (Nguồn: OpenAlex)
+python Final-Report/scripts/verify_resource_url.py --doi "10.1145/3658644.3670388"
 ```
 
 #### 3. Quét và kiểm toán toàn bộ link trong một file Markdown trước khi commit:
 ```bash
-python scripts/verify_resource_url.py --file "workspaces/truongnv/docs/model_study/01_tfidf_syntactic_baseline/resources_and_videos.md"
+python Final-Report/scripts/verify_resource_url.py --file "workspaces/truongnv/docs/model_study/01_tfidf_syntactic_baseline/resources_and_videos.md"
 ```
 
 ---
 
-### B. Công Cụ Kiểm Toán Toàn Diện Repository: `scripts/audit_urls.py`
+### B. Công Cụ Kiểm Toán Toàn Diện Repository: `Final-Report/scripts/audit_urls.py`
 
 Kiểm tra toàn bộ hơn 60+ file Markdown trong dự án bằng cơ chế đa luồng song song (`ThreadPoolExecutor`):
 ```bash
-python -u scripts/audit_urls.py
+python -u Final-Report/scripts/audit_urls.py
 ```
 - Tự động phân loại URL hoạt động và URL lỗi/paywall.
 - Đưa ra danh sách chi tiết các file bị ảnh hưởng để xử lý kịp thời.
@@ -106,7 +95,7 @@ Mỗi khi agent hoặc thành viên nhóm muốn thêm một bài báo hoặc vi
                        │
                        ▼
 [ BƯỚC 4: Ghi vào tài liệu theo định dạng Dual-Linking & Re-test ]
-  - Chạy `python scripts/verify_resource_url.py --file <file.md>`
+  - Chạy `python Final-Report/scripts/verify_resource_url.py --file <file.md>`
   - Đảm bảo 100% link hoạt động trước khi commit
 ```
 

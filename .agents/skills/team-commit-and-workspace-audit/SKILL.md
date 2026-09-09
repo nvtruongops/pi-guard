@@ -30,42 +30,42 @@ Skill này cung cấp cơ chế và công cụ tự động để **kiểm toán
 
 ---
 
-## 💻 2. Công Cụ Kiểm Toán: `scripts/audit_workspace_boundaries.py`
+## 💻 2. Công Cụ Kiểm Toán: `Final-Report/scripts/audit_workspace_boundaries.py`
 
-Nhóm đã trang bị script Python [`scripts/audit_workspace_boundaries.py`](file:///d:/Work/Do-an/scripts/audit_workspace_boundaries.py) để tự động hóa toàn bộ việc kiểm tra.
+Nhóm đã trang bị script Python [`Final-Report/scripts/audit_workspace_boundaries.py`](file:///d:/Work/Do-an/Final-Report/scripts/audit_workspace_boundaries.py) để tự động hóa toàn bộ việc kiểm tra.
 
 ### 📌 Các Lệnh Thực Thi Phổ Biến:
 
 #### 1. Kiểm tra toàn bộ thay đổi hiện tại (Working Tree + Staging Area):
 ```bash
-python scripts/audit_workspace_boundaries.py --mode all
+python Final-Report/scripts/audit_workspace_boundaries.py --mode all
 ```
 
 #### 2. Kiểm tra các file đã `git add` trước khi commit (Staged Only):
 ```bash
-python scripts/audit_workspace_boundaries.py --mode staged
+python Final-Report/scripts/audit_workspace_boundaries.py --mode staged
 ```
 
 #### 3. Kiểm tra commit vừa tạo gần nhất:
 ```bash
-python scripts/audit_workspace_boundaries.py --mode last_commit
+python Final-Report/scripts/audit_workspace_boundaries.py --mode last_commit
 ```
 
 #### 4. Kiểm tra một dải commit / Pull Request của thành viên:
 ```bash
 # Kiểm tra PR của Đức
-python scripts/audit_workspace_boundaries.py --commit-range origin/main..HEAD --author ducnq
+python Final-Report/scripts/audit_workspace_boundaries.py --commit-range origin/main..HEAD --author ducnq
 
 # Kiểm tra PR của Việt
-python scripts/audit_workspace_boundaries.py --commit-range origin/main..HEAD --author vietpmh
+python Final-Report/scripts/audit_workspace_boundaries.py --commit-range origin/main..HEAD --author vietpmh
 
 # Kiểm tra PR của Phương
-python scripts/audit_workspace_boundaries.py --commit-range origin/main..HEAD --author phuongddd
+python Final-Report/scripts/audit_workspace_boundaries.py --commit-range origin/main..HEAD --author phuongddd
 ```
 
 #### 5. Xem chi tiết danh sách file (Verbose):
 ```bash
-python scripts/audit_workspace_boundaries.py --mode all --verbose
+python Final-Report/scripts/audit_workspace_boundaries.py --mode all --verbose
 ```
 
 ---
@@ -75,11 +75,11 @@ python scripts/audit_workspace_boundaries.py --mode all --verbose
 Để ngăn chặn commit sai quy tắc ngay từ máy của thành viên, mỗi thành viên chỉ cần chạy lệnh cài đặt 1 lần duy nhất:
 
 ```bash
-python scripts/audit_workspace_boundaries.py --install-hook
+python Final-Report/scripts/validate_local.py --install-hook
 ```
 
 Sau khi cài đặt:
-- Mỗi khi thành viên gõ `git commit`, Git sẽ tự động gọi `scripts/audit_workspace_boundaries.py --mode staged`.
+- Mỗi khi thành viên gõ `git commit`, Git sẽ tự động gọi `Final-Report/scripts/validate_local.py --mode pre-commit`.
 - Nếu phát hiện vi phạm: Git sẽ **tự động hủy bỏ commit (Abort)** và in ra hướng dẫn sửa file.
 - Nếu hợp lệ: Git cho phép commit tiếp tục bình thường.
 

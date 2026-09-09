@@ -1,7 +1,8 @@
 import os
 import sys
 
-# Ensure repository root is on Python sys.path
+# Ensure repository root and Final-Report are on Python sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import json
@@ -57,8 +58,11 @@ def evaluate_model(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluate trained PI-Guard models.")
-    parser.add_argument("--model", default="models/baseline/baseline_tfidf.joblib")
-    parser.add_argument("--test", default="data/splits/test.csv")
+    default_model = "Final-Report/notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("Final-Report/notebooks/models/baseline/baseline_tfidf.joblib") else "models/baseline/baseline_tfidf.joblib"
+    default_test = "Final-Report/notebooks/data/splits/test.csv" if os.path.exists("Final-Report/notebooks/data/splits/test.csv") else "data/splits/test.csv"
+    parser.add_argument("--model", default=default_model)
+    parser.add_argument("--test_data", default=default_test)
     parser.add_argument("--output", default="Final-Report/experiment_reports/baseline_test_metrics.json")
     args = parser.parse_args()
-    evaluate_model(args.model, args.test, args.output)
+
+    evaluate_model(args.model, args.test_data, args.output)

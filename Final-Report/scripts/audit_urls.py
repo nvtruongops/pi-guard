@@ -15,7 +15,7 @@ from pathlib import Path
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent if Path(__file__).resolve().parent.parent.name == "Final-Report" else Path(__file__).resolve().parent.parent
 
 # Regex tìm URL http/https trong markdown
 URL_REGEX = re.compile(r'https?://[^\s\)\]\>"\']+')

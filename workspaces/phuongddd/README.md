@@ -16,7 +16,7 @@
 - `scratch_app.py`: Thử nghiệm giao diện Streamlit UI nháp.
 - `scratch_api.py`: Thử nghiệm endpoint FastAPI và streaming token.
 - `scratch_integration.py`: Thử nghiệm luồng tích hợp hệ thống.
-- Khi hoàn thiện thử nghiệm $\rightarrow$ Trao đổi cùng nhóm trong buổi họp tuần để Leader merge giải pháp tối ưu ra thư mục chung (`src/`, `notebooks/`, `docs/`).
+- Khi hoàn thiện thử nghiệm $\rightarrow$ Trao đổi cùng nhóm trong buổi họp tuần để Leader merge giải pháp tối ưu ra thư mục chung `Final-Report/` (`Final-Report/src/`, `Final-Report/notebooks/`, `Final-Report/thesis/`).
 
 ### 📚 Tài liệu nghiên cứu cục bộ:
 - [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/phuongddd/References/REFERENCES_LOG.md): Nhật ký các bài báo khoa học thẩm định trong Meeting 2 và đối chiếu cùng nhóm.

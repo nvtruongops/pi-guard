@@ -99,10 +99,10 @@ The workspace has 7 integrated MCP servers:
 ## 👥 Collaboration Paradigm: Parallel Full-Pipeline Exploration & Knowledge Convergence
 
 > **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  
-> Instead of a siloed assembly-line, all 4 members explore the entire pipeline hands-on in parallel (`workspaces/<member>/`) and consolidate the best findings during weekly convergence meetings into `src/` and `reports/thesis/chapters/`:
+> Instead of a siloed assembly-line, all 4 members explore the entire pipeline hands-on in parallel (`workspaces/<member>/`) and consolidate the best findings during weekly convergence meetings into `Final-Report/src/` and `Final-Report/thesis/chapters/`:
 
 - **All 4 members gain full-stack AI security experience** (Dataset Curation, Baseline ML, Transformer INT8, Adversarial Testing, FastAPI Middleware).
-- **Weekly Convergence Sessions**: The team compares experimental metrics (F1, FPR, Latency), selects the champion models/code for `src/`, and compiles thesis chapters seamlessly.
+- **Weekly Convergence Sessions**: The team compares experimental metrics (F1, FPR, Latency), selects the champion models/code for `Final-Report/src/`, and compiles thesis chapters seamlessly.
 - **Council Defense Preparedness**: Every member understands the full ecosystem end-to-end and can answer any committee question confidently.
 
 | Member | Full-Pipeline Sandbox & Focus Area | Workspace Directory | Git Feature Branch |
@@ -118,6 +118,6 @@ The workspace has 7 integrated MCP servers:
 
 > [!IMPORTANT]
 > **QUY ĐỊNH PHÂN QUYỀN GIT & RANH GIỚI WORKSPACE BẤT BIẾN**:
-> 1. **Thành viên (Đức, Việt, Phương)**: CHỈ ĐƯỢC PHÉP tạo, sửa đổi và commit các file nằm bên trong thư mục workspace cá nhân được chỉ định (`workspaces/<tên_thành_viên>/`). Tuyệt đối không được sửa đổi trực tiếp các file chung (`Final-Report/`, `Github-Page/`, `src/`, `tests/`, `scripts/`, etc.).
+> 1. **Thành viên (Đức, Việt, Phương)**: CHỈ ĐƯỢC PHÉP tạo, sửa đổi và commit các file nằm bên trong thư mục workspace cá nhân được chỉ định (`workspaces/<tên_thành_viên>/`). Tuyệt đối không được sửa đổi trực tiếp các file chung (`Final-Report/`, `Github-Page/`, `.agents/`, etc.).
 > 2. **Trưởng nhóm (Leader: `nvtruongops` / Nguyễn Văn Trường)**: Là NGƯỜI DUY NHẤT có thẩm quyền đồng quy tri thức, chọn lọc module xuất sắc nhất từ `workspaces/` của các thành viên để merge ra cây thư mục chung và xuất bản vào nhánh `main`.
-> 3. **Kiểm toán tự động**: Sử dụng `python scripts/validate_local.py` hoặc `python scripts/audit_workspace_boundaries.py` trước khi commit hoặc merge. Mọi commit vi phạm ranh giới sẽ bị chặn tự động bởi Git Pre-commit Hook (`python scripts/validate_local.py --install-hook`).
+> 3. **Kiểm toán tự động**: Sử dụng `python Final-Report/scripts/validate_local.py` hoặc `python Final-Report/scripts/audit_workspace_boundaries.py` trước khi commit hoặc merge. Mọi commit vi phạm ranh giới sẽ bị chặn tự động bởi Git Pre-commit Hook (`python Final-Report/scripts/validate_local.py --install-hook`).

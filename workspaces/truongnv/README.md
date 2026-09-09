@@ -54,4 +54,4 @@
 
 ### 📌 QUY TRÌNH KHI CHỐT FINAL REPORT:
 1. Bạn có thể tự do chỉnh sửa, bổ sung, format các file trong workspace này.
-2. Khi nhóm họp xong và thống nhất chốt bản Final Report Review 1 $\rightarrow$ Đồng bộ phiên bản chính thức ra thư mục chung `reports/` và `docs/` để nộp cho Giảng viên hướng dẫn!
+2. Khi nhóm họp xong và thống nhất chốt bản Final Report Review 1 $\rightarrow$ Đồng bộ phiên bản chính thức ra thư mục chung `Final-Report/` và `Github-Page/` để nộp cho Giảng viên hướng dẫn và xuất bản cổng tài liệu!

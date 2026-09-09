@@ -47,7 +47,7 @@ $$\text{Final Project Mark} = (\text{Process Mark } [6 \text{ Reports}] \times 5
 
 | Student | Role | Core Technical Module | Assigned Process Reports |
 | :--- | :--- | :--- | :--- |
-| **Nguyễn Văn Trường (Leader)** | Architecture & Data Engineering | `scripts/download_dataset.py`, `src/datasets/splitter.py` | **Report No.1** + **Report No.2** |
-| **Nguyễn Quí Đức** | Classical ML Baseline | `scripts/train.py`, `notebooks/02_baseline.ipynb` | **Report No.3** |
-| **Phạm Minh Hoàng Việt** | Transformer & Robustness | `notebooks/03_transformer_training.ipynb`, `src/preprocessing/obfuscation.py` | **Report No.4** |
-| **Đỗ Đoàn Duy Phương** | API Middleware & Dashboard | `src/api/`, `src/dashboard/`, Thesis Compilation | **Report No.5** + **Report No.6** |
+| **Nguyễn Văn Trường (Leader)** | Architecture & Data Engineering | `Final-Report/scripts/download_dataset.py`, `Final-Report/src/datasets/splitter.py` | **Report No.1** + **Report No.2** |
+| **Nguyễn Quí Đức** | Classical ML Baseline | `Final-Report/scripts/train.py`, `Final-Report/notebooks/02_baseline.ipynb` | **Report No.3** |
+| **Phạm Minh Hoàng Việt** | Transformer & Robustness | `Final-Report/notebooks/03_transformer_training.ipynb`, `Final-Report/src/preprocessing/obfuscation.py` | **Report No.4** |
+| **Đỗ Đoàn Duy Phương** | API Middleware & Dashboard | `Final-Report/src/api/`, `Final-Report/src/dashboard/`, Thesis Compilation | **Report No.5** + **Report No.6** |

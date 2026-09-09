@@ -3,9 +3,9 @@
 
 > [!IMPORTANT]
 > **QUY TẮC CHẠY KIỂM THỬ (TESTING RULES)**:
-> 1. Mọi Pull Request trước khi được duyệt merge vào `src/` phải vượt qua 100% các bài test tự động:
+> 1. Mọi Pull Request trước khi được duyệt merge vào `Final-Report/src/` phải vượt qua 100% các bài test tự động:
 >    ```powershell
->    pytest tests/
+>    pytest Final-Report/tests/
 >    ```
 > 2. Các test suite đối kháng (Adversarial Tests) dùng để đo khả năng phát hiện khi hacker tấn công mã hóa Base64, Leetspeak và chèn khoảng trắng.
 

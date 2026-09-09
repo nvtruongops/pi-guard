@@ -45,7 +45,9 @@ if sys.stderr and hasattr(sys.stderr, "reconfigure"):
     except Exception:
         pass
 
-ROOT_DIR = Path(__file__).resolve().parent.parent
+SCRIPTS_DIR = Path(__file__).resolve().parent
+FINAL_REPORT_DIR = SCRIPTS_DIR.parent
+ROOT_DIR = FINAL_REPORT_DIR.parent
 
 # ANSI Colors
 GREEN = "\033[92m"
@@ -59,6 +61,7 @@ RESET = "\033[0m"
 # Danh mục file & folder bất biến tuyệt đối
 STRICT_IMMUTABLE_PATHS = [
     "CAPSTONE PROJECT REGISTER.md",
+    "Github-Page/fpt_capstone_guide/",
     "docs/fpt_capstone_guide/",
 ]
 
@@ -96,7 +99,9 @@ def run_cmd(
 # ==============================================================================
 def step_workspace_boundary_audit(mode: str = "staged") -> Tuple[bool, str]:
     """Kiểm toán ranh giới workspace và phân quyền commit qua audit_workspace_boundaries.py."""
-    audit_script = ROOT_DIR / "scripts" / "audit_workspace_boundaries.py"
+    audit_script = SCRIPTS_DIR / "audit_workspace_boundaries.py"
+    if not audit_script.exists():
+        audit_script = ROOT_DIR / "scripts" / "audit_workspace_boundaries.py"
     if not audit_script.exists():
         return False, "Không tìm thấy scripts/audit_workspace_boundaries.py"
 
@@ -125,7 +130,11 @@ def step_validate_manifests(staged_only: bool = False) -> Tuple[bool, str]:
                     if p.exists():
                         manifest_files.append(p)
     else:
-        root_manifests = glob.glob(str(ROOT_DIR / "notebooks" / "data" / "manifests" / "*.json")) + glob.glob(str(ROOT_DIR / "data" / "manifests" / "*.json"))
+        root_manifests = (
+            glob.glob(str(FINAL_REPORT_DIR / "notebooks" / "data" / "manifests" / "*.json"))
+            + glob.glob(str(ROOT_DIR / "notebooks" / "data" / "manifests" / "*.json"))
+            + glob.glob(str(ROOT_DIR / "data" / "manifests" / "*.json"))
+        )
         ws_manifests = glob.glob(str(ROOT_DIR / "workspaces" / "*" / "data" / "manifests" / "*.json"))
         manifest_files = [Path(f) for f in root_manifests + ws_manifests]
 
@@ -172,7 +181,7 @@ def step_code_linting(staged_only: bool = False) -> tuple[bool, str]:
             if code == 0 and out:
                 for line in out.splitlines():
                     line = line.strip().strip('"').replace("\\", "/")
-                    if line.endswith(".py") and line.startswith(("src/", "tests/")):
+                    if line.endswith(".py") and line.startswith(("Final-Report/src/", "Final-Report/tests/", "src/", "tests/")):
                         p = ROOT_DIR / line
                         if p.exists():
                             py_files.append(str(p))
@@ -181,9 +190,14 @@ def step_code_linting(staged_only: bool = False) -> tuple[bool, str]:
             code, out, err = run_cmd(["ruff", "check"] + py_files)
         else:
             targets = []
-            for t in ["src", "tests"]:
-                if (ROOT_DIR / t).exists():
-                    targets.append(t)
+            for t in [
+                FINAL_REPORT_DIR / "src",
+                FINAL_REPORT_DIR / "tests",
+                ROOT_DIR / "src",
+                ROOT_DIR / "tests",
+            ]:
+                if t.exists():
+                    targets.append(str(t.relative_to(ROOT_DIR)).replace("\\", "/"))
             code, out, err = run_cmd(["ruff", "check"] + targets)
 
         if code == 0:
@@ -198,13 +212,19 @@ def step_code_linting(staged_only: bool = False) -> tuple[bool, str]:
             if code == 0 and out:
                 for line in out.splitlines():
                     line = line.strip().strip('"').replace("\\", "/")
-                    if line.endswith(".py") and line.startswith(("src/", "tests/")):
+                    if line.endswith(".py") and line.startswith(("Final-Report/src/", "Final-Report/tests/", "src/", "tests/")):
                         p = ROOT_DIR / line
                         if p.exists():
                             py_files_ast.append(p)
         else:
-            for t in ["src", "tests"]:
-                py_files_ast.extend(list((ROOT_DIR / t).rglob("*.py")))
+            for t in [
+                FINAL_REPORT_DIR / "src",
+                FINAL_REPORT_DIR / "tests",
+                ROOT_DIR / "src",
+                ROOT_DIR / "tests",
+            ]:
+                if t.exists():
+                    py_files_ast.extend(list(t.rglob("*.py")))
 
         errors = []
         for pf in py_files_ast:
@@ -236,11 +256,21 @@ def step_automated_tests(fast_only: bool = False) -> Tuple[bool, str]:
         return True, "Pytest is not installed in current environment. Skipped."
 
     if fast_only:
-        test_paths = ["tests/unit"]
+        test_paths = [
+            FINAL_REPORT_DIR / "tests" / "unit",
+            ROOT_DIR / "tests" / "unit",
+        ]
     else:
-        test_paths = ["tests/unit", "tests/integration", "tests/adversarial"]
+        test_paths = [
+            FINAL_REPORT_DIR / "tests" / "unit",
+            FINAL_REPORT_DIR / "tests" / "integration",
+            FINAL_REPORT_DIR / "tests" / "adversarial",
+            ROOT_DIR / "tests" / "unit",
+            ROOT_DIR / "tests" / "integration",
+            ROOT_DIR / "tests" / "adversarial",
+        ]
 
-    valid_paths = [p for p in test_paths if (ROOT_DIR / p).exists()]
+    valid_paths = [str(p.relative_to(ROOT_DIR)).replace("\\", "/") for p in test_paths if p.exists()]
     if not valid_paths:
         return True, "No test paths found. Skipped."
 
@@ -258,7 +288,9 @@ def step_automated_tests(fast_only: bool = False) -> Tuple[bool, str]:
 # ==============================================================================
 def step_benchmark_smoke_test() -> Tuple[bool, str]:
     """Chạy thử nghiệm Adversarial Smoke Benchmark đo độ trễ P50/P95/P99."""
-    benchmark_script = ROOT_DIR / "scripts" / "benchmark.py"
+    benchmark_script = SCRIPTS_DIR / "benchmark.py"
+    if not benchmark_script.exists():
+        benchmark_script = ROOT_DIR / "scripts" / "benchmark.py"
     if not benchmark_script.exists():
         return True, "scripts/benchmark.py not found. Skipped."
 
@@ -276,7 +308,9 @@ def step_benchmark_smoke_test() -> Tuple[bool, str]:
 # ==============================================================================
 def step_docs_portal_build() -> Tuple[bool, str]:
     """Chạy script tổng hợp tài liệu và biên dịch MkDocs Material cục bộ."""
-    build_script = ROOT_DIR / "scripts" / "build_docs_portal.py"
+    build_script = SCRIPTS_DIR / "build_docs_portal.py"
+    if not build_script.exists():
+        build_script = ROOT_DIR / "scripts" / "build_docs_portal.py"
     if not build_script.exists():
         return True, "scripts/build_docs_portal.py not found. Skipped."
 
@@ -324,7 +358,7 @@ def install_pre_commit_hook() -> int:
 
 echo "🛡️ [Local-QA] Đang chạy kiểm định trước khi commit (Pre-commit Validation)..."
 
-python scripts/validate_local.py --mode pre-commit
+python Final-Report/scripts/validate_local.py --mode pre-commit
 VALIDATION_EXIT=$?
 
 if [ $VALIDATION_EXIT -ne 0 ]; then
@@ -348,7 +382,7 @@ exit 0
         pass
 
     print(f"\n{GREEN}✅ Đã cài đặt thành công Git Pre-commit Hook tại: {hook_file}{RESET}")
-    print(f"{CYAN}   Mỗi khi thực hiện `git commit`, Git sẽ tự động chạy: `python scripts/validate_local.py --mode pre-commit`{RESET}\n")
+    print(f"{CYAN}   Mỗi khi thực hiện `git commit`, Git sẽ tự động chạy: `python Final-Report/scripts/validate_local.py --mode pre-commit`{RESET}\n")
     return 0
 
 
@@ -452,14 +486,14 @@ def main() -> int:
         steps_to_run = [
             ("Workspace Boundaries Audit", step_workspace_boundary_audit, ("staged",)),
             ("JSON Manifests Validation", step_validate_manifests, (False,)),
-            ("Code Quality & Linting (src/ tests/)", step_code_linting, (False,)),
+            ("Code Quality & Linting", step_code_linting, (False,)),
             ("Adversarial Benchmark Smoke Test", step_benchmark_smoke_test, ()),
         ]
     elif mode == "full":
         steps_to_run = [
             ("Workspace Boundaries Audit", step_workspace_boundary_audit, ("staged",)),
             ("JSON Manifests Validation", step_validate_manifests, (False,)),
-            ("Code Quality & Linting (src/ tests/)", step_code_linting, (False,)),
+            ("Code Quality & Linting", step_code_linting, (False,)),
             ("Automated Tests (Pytest Suite)", step_automated_tests, (False,)),
             ("Adversarial Benchmark Smoke Test", step_benchmark_smoke_test, ()),
             ("Documentation Portal & MkDocs Build", step_docs_portal_build, ()),

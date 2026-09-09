@@ -24,9 +24,10 @@ SHEET_ID = "1toBlihg3ycJq_0uOLbfHdD3NPMLCYWt1Az460sAfl2M"
 GID = "758037622"
 EXPORT_CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid={GID}"
 
-WORKSPACE_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+WORKSPACE_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+FINAL_REPORT_DIR = os.path.join(WORKSPACE_ROOT, "Final-Report")
 EXCEL_PATHS = [
-    os.path.join(WORKSPACE_ROOT, "reports", "PI_GUARD_PROCESS_REPORT.xlsx")
+    os.path.join(FINAL_REPORT_DIR, "PI_GUARD_PROCESS_REPORT.xlsx")
 ]
 
 def fetch_online_tasks():

@@ -16,7 +16,7 @@
 - `scratch_quantize.py`: Thử nghiệm script nén ONNX INT8 và đo latency P95 trên CPU.
 - `scratch_evasion_test.py`: Thử nghiệm các payload Base64/Cipher độc hại.
 - `scratch_transformer.py`: Thử nghiệm huấn luyện và đánh giá mô hình.
-- Khi hoàn thiện thử nghiệm $\rightarrow$ Trao đổi cùng nhóm trong buổi họp tuần để Leader merge giải pháp tối ưu ra thư mục chung (`src/`, `notebooks/`, `docs/`).
+- Khi hoàn thiện thử nghiệm $\rightarrow$ Trao đổi cùng nhóm trong buổi họp tuần để Leader merge giải pháp tối ưu ra thư mục chung `Final-Report/` (`Final-Report/src/`, `Final-Report/notebooks/`, `Final-Report/thesis/`).
 
 ### 📚 Tài liệu nghiên cứu cục bộ:
 - [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/vietpmh/References/REFERENCES_LOG.md): Nhật ký các bài báo khoa học thẩm định trong Meeting 2 và đối chiếu cùng nhóm.

@@ -2,7 +2,6 @@ import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
-
 from src.api.middleware import GuardrailMiddleware
 from src.api.schemas import GuardrailCheckRequest, GuardrailCheckResponse
 from src.llm.provider import (

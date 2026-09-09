@@ -1,7 +1,8 @@
 import os
 import sys
 
-# Ensure repository root is on Python sys.path
+# Ensure repository root and Final-Report are on Python sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import argparse

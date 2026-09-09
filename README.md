@@ -107,16 +107,16 @@ pip install -e .
 ### 2. Dataset Pipeline & Training
 ```bash
 # 1. Download & merge Hugging Face datasets
-python scripts/download_dataset.py
+python Final-Report/scripts/download_dataset.py
 
 # 2. Preprocess & group-aware split (prevents leakage)
-python scripts/preprocess.py
+python Final-Report/scripts/preprocess.py
 
 # 3. Train Baseline ML model
-python scripts/train.py --model baseline
+python Final-Report/scripts/train.py --model baseline
 
 # 4. Run Adversarial Robustness Benchmark
-python scripts/benchmark.py
+python Final-Report/scripts/benchmark.py
 ```
 
 ### 3. Launching Services
@@ -125,7 +125,7 @@ python scripts/benchmark.py
 uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
 
 # Start Streamlit Interactive Dashboard (Port 8501)
-streamlit run src.dashboard/app.py
+streamlit run Final-Report/src/dashboard/app.py
 ```
 
 ---
@@ -136,31 +136,42 @@ Dự án PI-Guard áp dụng mô hình **Kiểm định thuần Local (Local-Fir
 
 ```bash
 # 1. Cài đặt Git Pre-commit Hook tự động (chặn commit vi phạm ranh giới & lỗi cú pháp)
-python scripts/validate_local.py --install-hook
+python Final-Report/scripts/validate_local.py --install-hook
 
 # 2. Kiểm định nhanh trước khi commit (Workspace Boundary + JSON Manifests + Ruff Lint + Benchmark Smoke Test)
-python scripts/validate_local.py
+python Final-Report/scripts/validate_local.py
 
 # 3. Kiểm định toàn diện 100% (Bao gồm đầy đủ Pytest 16 bài tests + Biên dịch MkDocs Portal)
-python scripts/validate_local.py --all
+python Final-Report/scripts/validate_local.py --all
 
 # 4. Chạy trực tiếp Pytest Suite (Unit, Integration & Adversarial Robustness)
-pytest tests/ -v --cov=src
+pytest Final-Report/tests/ -v
 
 # 5. Xem Cổng tài liệu nội bộ trên máy cục bộ (Local MkDocs Server)
-python scripts/build_docs_portal.py
+python Final-Report/scripts/build_docs_portal.py
 mkdocs serve   # Truy cập tại: http://127.0.0.1:8000
 ```
 
 ---
 
-## 📚 Project Structure (3 Phân Hệ Chính & Core Codebase)
+## 📚 Project Structure (3 Phân Hệ Độc Tôn Tại Thư Mục Gốc)
 
-Hệ thống thư mục của dự án được quy hoạch tinh gọn thành **3 phân hệ chính** cùng bộ mã nguồn cốt lõi:
+Hệ thống thư mục gốc của dự án được quy hoạch tối giản thành **đúng 3 thư mục chính**:
 
 ```
 d:/Work/Do-an/
-├── 📁 Final-Report/                # [PHÂN HỆ 1: BÁO CÁO TỔNG] Luận văn, hồ sơ bảo vệ, tài nguyên thực nghiệm & tài liệu báo cáo
+├── 📁 Final-Report/                # [PHÂN HỆ 1: BÁO CÁO TỔNG & MÃ NGUỒN SẢN PHẨM]
+│   ├── src/                       # [CORE CODEBASE] Mã nguồn sản phẩm bảo vệ Guardrail chính thức
+│   │   ├── api/                   # FastAPI Async Guardrail Middleware & Endpoints
+│   │   ├── models/                # Model abstractions (TF-IDF Baseline, DeBERTa-v3, ONNX INT8)
+│   │   ├── preprocessing/         # Unicode cleaner, normalizer & synthetic obfuscation generators
+│   │   ├── datasets/              # Dataset loaders & group-aware splitters chống data leakage
+│   │   ├── policy/                # 3-tier Decision Policy Engine & Dynamic Thresholds
+│   │   ├── llm/                   # Downstream LLM Cloud API proxies (Groq, OpenAI, Gemini)
+│   │   ├── dashboard/             # Streamlit Live Monitoring & Testing UI
+│   │   └── evaluation/            # Metrics calculator, FPR computation & Latency profiler
+│   ├── tests/                     # [TEST SUITE] Bộ kiểm thử tự động pytest (unit, integration, adversarial)
+│   ├── scripts/                   # [TOOLING & QA] Bộ công cụ tự động hóa kiểm định Local QA & build docs portal
 │   ├── thesis/                    # Toàn văn Luận văn tốt nghiệp (FINAL_THESIS.md, Review 1, Chapters 1-6)
 │   ├── notebooks/                 # Toàn bộ tài nguyên thực nghiệm & Jupyter Notebooks tái lập (configs/, data/, models/)
 │   ├── Meeting/                   # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
@@ -177,24 +188,11 @@ d:/Work/Do-an/
 │   ├── javascripts/ & stylesheets/# Cấu hình MathJax LaTeX hiển thị công thức & Custom CSS giao diện
 │   └── [8 Chuyên Đề Khoa Học]/    # Prompt, Attacks, Threat & Defense, Dataset, Models, Robustness, Optimization, Evaluation
 │
-├── 📁 workspaces/                  # [PHÂN HỆ 3: WORKSPACE THÀNH VIÊN] Không gian thử nghiệm sandbox độc lập của 4 bạn
-│   ├── truongnv/                  # Workspace Leader (Trường): Chuẩn hóa dữ liệu, kiến trúc hệ thống, điều phối chung
-│   ├── ducnq/                     # Workspace Đức: Classical ML Baseline TF-IDF, Feature Extraction & Threat Model
-│   ├── vietpmh/                   # Workspace Việt: Transformer DeBERTa-v3, Quantization INT8, Robustness Testing
-│   ├── phuongddd/                 # Workspace Phương: FastAPI Guardrail Proxy, Streamlit Dashboard & Luận văn
-│   └── README.md                  # Hướng dẫn quy chuẩn bố trí không gian làm việc cá nhân
-│
-├── ⚙️ src/                         # [CORE CODEBASE] Mã nguồn sản phẩm chính thức
-│   ├── preprocessing/             # Unicode cleaner, normalizer & synthetic obfuscation generators
-│   ├── datasets/                  # Dataset loaders & group-aware splitters chống data leakage
-│   ├── models/                    # Model abstractions (TF-IDF Baseline, DeBERTa-v3, ONNX Runtime INT8)
-│   ├── policy/                    # 3-tier Decision Policy Engine & Dynamic Thresholds
-│   ├── llm/                       # Downstream LLM Cloud API proxies (Groq, OpenAI, Gemini)
-│   ├── api/                       # FastAPI Async Guardrail Middleware & Endpoints
-│   ├── dashboard/                 # Streamlit Live Monitoring & Testing UI
-│   └── evaluation/                # Metrics calculator, FPR computation & Latency profiler
-│
-├── 🧪 tests/                       # [TEST SUITE] Bộ kiểm thử tự động pytest (unit, integration, adversarial)
-└── 🛠️ scripts/                     # [TOOLING & QA] Bộ công cụ tự động hóa kiểm định Local QA & build docs portal
+└── 📁 workspaces/                  # [PHÂN HỆ 3: WORKSPACE THÀNH VIÊN] Không gian thử nghiệm sandbox độc lập của 4 bạn
+    ├── truongnv/                  # Workspace Leader (Trường): Chuẩn hóa dữ liệu, kiến trúc hệ thống, điều phối chung
+    ├── ducnq/                     # Workspace Đức: Classical ML Baseline TF-IDF, Feature Extraction & Threat Model
+    ├── vietpmh/                   # Workspace Việt: Transformer DeBERTa-v3, Quantization INT8, Robustness Testing
+    ├── phuongddd/                 # Workspace Phương: FastAPI Guardrail Proxy, Streamlit Dashboard & Luận văn
+    └── README.md                  # Hướng dẫn quy chuẩn bố trí không gian làm việc cá nhân
 ```
 

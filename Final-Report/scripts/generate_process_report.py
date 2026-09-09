@@ -412,8 +412,9 @@ def generate_report():
     ws_meet.row_dimensions[4].height = 25
 
     # Save output to official location (Final-Report/)
-    workspace_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    out_path = os.path.join(workspace_root, 'Final-Report', 'PI_GUARD_PROCESS_REPORT.xlsx')
+    scripts_dir = os.path.dirname(os.path.abspath(__file__))
+    final_report_dir = os.path.dirname(scripts_dir)
+    out_path = os.path.join(final_report_dir, 'PI_GUARD_PROCESS_REPORT.xlsx')
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     wb.save(out_path)
     print(f'Saved: {out_path}')

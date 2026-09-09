@@ -71,30 +71,30 @@ Vào mỗi buổi họp nhóm hàng tuần (Knowledge Convergence Meeting):
 Leader chạy script kiểm toán toàn bộ thay đổi của các nhánh:
 ```bash
 # Kiểm tra PR hoặc commit range của thành viên
-python scripts/audit_workspace_boundaries.py --commit-range origin/main..origin/feat/duc-baseline-ml --author ducnq
+python Final-Report/scripts/audit_workspace_boundaries.py --commit-range origin/main..origin/feat/duc-baseline-ml --author ducnq
 ```
 
 ### Bước 2: Chọn lọc Artifact xuất sắc nhất (Champion Code / Models)
 - Đánh giá mã nguồn trong `workspaces/ducnq/`, `workspaces/vietpmh/`, `workspaces/phuongddd/`.
 - Sao chép và chuẩn hóa các module đạt chuẩn sang cây thư mục chính:
-  - Baseline ML tốt nhất $\rightarrow$ `src/models/`
-  - Preprocessing / Obfuscation $\rightarrow$ `src/preprocessing/`
-  - API / Dashboard $\rightarrow$ `src/api/` & `src/dashboard/`
-  - Kết quả thực nghiệm $\rightarrow$ `docs/thesis/chapters/`
+  - Baseline ML tốt nhất $\rightarrow$ `Final-Report/src/models/`
+  - Preprocessing / Obfuscation $\rightarrow$ `Final-Report/src/preprocessing/`
+  - API / Dashboard $\rightarrow$ `Final-Report/src/api/` & `Final-Report/src/dashboard/`
+  - Kết quả thực nghiệm $\rightarrow$ `Final-Report/thesis/chapters/`
 
 ### Bước 3: Tự động biên dịch Luận văn & Cập nhật Process Report
 ```bash
 # Biên dịch các chương mới vào bản Master Thesis
-python scripts/compile_thesis.py
+python Final-Report/scripts/compile_thesis.py
 
 # Cập nhật file Excel tiến độ tuần
-python scripts/generate_process_report.py
+python Final-Report/scripts/generate_process_report.py
 ```
 
 ### Bước 4: Commit và Push vào nhánh `main`
 ```bash
-python scripts/audit_workspace_boundaries.py --mode staged
-git commit -m "chore(convergence): đồng quy tri thức Tuần X vào src/ và docs/"
+python Final-Report/scripts/audit_workspace_boundaries.py --mode staged
+git commit -m "chore(convergence): đồng quy tri thức Tuần X vào Final-Report/"
 git push origin main
 ```
 

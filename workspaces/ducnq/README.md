@@ -16,7 +16,7 @@
 - `scratch_tfidf.py`: Thử nghiệm các tham số TF-IDF (`max_features`, `ngram_range`).
 - `scratch_pipeline.py`: Thử nghiệm luồng tiền xử lý hoặc mô hình.
 - `notes_model_comparison.md`: So sánh tốc độ và độ chính xác các thuật toán.
-- Khi hoàn thiện thử nghiệm $\rightarrow$ Trao đổi cùng nhóm trong buổi họp tuần để Leader merge giải pháp tối ưu ra thư mục chung (`src/`, `notebooks/`, `docs/`).
+- Khi hoàn thiện thử nghiệm $\rightarrow$ Trao đổi cùng nhóm trong buổi họp tuần để Leader merge giải pháp tối ưu ra thư mục chung `Final-Report/` (`Final-Report/src/`, `Final-Report/notebooks/`, `Final-Report/thesis/`).
 
 ### 📚 Tài liệu nghiên cứu cục bộ:
 - [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/ducnq/References/REFERENCES_LOG.md): Nhật ký các bài báo khoa học thẩm định trong Meeting 2 và đối chiếu cùng nhóm.

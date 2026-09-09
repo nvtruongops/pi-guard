@@ -3,7 +3,6 @@ import re
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
 from src.preprocessing.cleaner import TextCleaner
 from src.preprocessing.obfuscation import ObfuscationGenerator
 

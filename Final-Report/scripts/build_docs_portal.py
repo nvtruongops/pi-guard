@@ -22,7 +22,8 @@ if sys.stderr and hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8")
 
 # Root project directory
-ROOT_DIR = Path(__file__).resolve().parent.parent
+FINAL_REPORT_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = FINAL_REPORT_DIR.parent
 DOCS_DIR = ROOT_DIR / "Github-Page"
 
 def clean_and_prepare_dir():
@@ -380,7 +381,8 @@ def aggregate_all():
              DOCS_DIR / "dev" / "contributing_guide.md")
     copy_doc(ROOT_DIR / "workspaces" / "README.md",
              DOCS_DIR / "dev" / "workspaces_overview.md")
-    copy_doc(ROOT_DIR / "src" / "README.md",
+    src_readme = FINAL_REPORT_DIR / "src" / "README.md" if (FINAL_REPORT_DIR / "src" / "README.md").exists() else ROOT_DIR / "src" / "README.md"
+    copy_doc(src_readme,
              DOCS_DIR / "dev" / "src_architecture.md")
 
     print("\n🎉 [HOÀN TẤT] Toàn bộ 8 chuyên đề khoa học đã được chuẩn hóa và sẵn sàng cho MkDocs build!")

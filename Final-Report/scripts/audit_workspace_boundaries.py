@@ -350,7 +350,7 @@ def install_pre_commit_hook():
 
 echo "🛡️ [Local-QA] Đang chạy kiểm định trước khi commit (Pre-commit Validation)..."
 
-python scripts/validate_local.py --mode pre-commit
+python Final-Report/scripts/validate_local.py --mode pre-commit
 VALIDATION_EXIT=$?
 
 if [ $VALIDATION_EXIT -ne 0 ]; then
@@ -374,7 +374,7 @@ exit 0
         pass
 
     print(f"✅ Đã cài đặt thành công Git Pre-commit Hook tại: {hook_file}")
-    print("   Từ bây giờ, Git sẽ tự động chạy `python scripts/validate_local.py --mode pre-commit` mỗi khi có thành viên thực hiện `git commit`.")
+    print("   Từ bây giờ, Git sẽ tự động chạy `python Final-Report/scripts/validate_local.py --mode pre-commit` mỗi khi có thành viên thực hiện `git commit`.")
     return 0
 
 if __name__ == '__main__':

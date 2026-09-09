@@ -6,7 +6,10 @@ Khi bạn thử nghiệm thành công, kết quả chuẩn hóa sẽ được ch
 
 ```
 d:/Work/Do-an/
-├── Final-Report/                  # [1. BÁO CÁO TỔNG] Luận văn, hồ sơ bảo vệ, tài nguyên thực nghiệm & tài liệu báo cáo
+├── Final-Report/                  # [1. BÁO CÁO TỔNG & MÃ NGUỒN SẢN PHẨM] Luận văn, mã nguồn, tests, scripts, tài nguyên thực nghiệm
+│   ├── src/                       # [CORE CODEBASE] Mã nguồn sản phẩm chính thức (API, Models, Preprocessing, Dashboard)
+│   ├── tests/                     # [AUTOMATION TEST] Bộ kiểm thử tự động pytest
+│   ├── scripts/                   # [DEVOPS & UTILITIES] Bộ công cụ tự động hóa kiểm định QA & build docs portal
 │   ├── thesis/                    # Toàn văn Luận văn tốt nghiệp (FINAL_THESIS.md, Review 1, Chapters 1-6)
 │   ├── notebooks/                 # Toàn bộ tài nguyên thực nghiệm & Jupyter Notebooks tái lập (configs/, data/, models/)
 │   ├── Meeting/                   # Biên bản họp với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
@@ -21,17 +24,13 @@ d:/Work/Do-an/
 │   ├── index.md                   # Trang chủ cổng tài liệu
 │   └── [8 Chuyên Đề Khoa Học]/    # Toàn bộ nội dung chuyên đề xuất bản lên web
 │
-├── workspaces/                    # [3. WORKSPACE THÀNH VIÊN] Không gian thử nghiệm sandbox cá nhân của 4 bạn
-│   ├── truongnv/                  # • Trường (Leader): Chuẩn hóa dữ liệu, kiến trúc hệ thống, điều phối chung
-│   ├── ducnq/                     # • Đức: Baseline ML TF-IDF, Threat Model & đối sánh mô hình
-│   ├── vietpmh/                   # • Việt: Transformer DeBERTa-v3, Quantization INT8, Robustness
-│   └── phuongddd/                 # • Phương: FastAPI Guardrail Proxy, Streamlit Dashboard & Luận văn
-│
-├── src/                           # [CORE CODEBASE] Mã nguồn sản phẩm chính thức (API, Models, Preprocessing, Dashboard)
-├── tests/                         # [AUTOMATION TEST] Bộ kiểm thử tự động pytest
-└── scripts/                       # [DEVOPS & UTILITIES] Bộ công cụ tự động hóa kiểm định QA & build docs portal
+└── workspaces/                    # [3. WORKSPACE THÀNH VIÊN] Không gian thử nghiệm sandbox cá nhân của 4 bạn
+    ├── truongnv/                  # • Trường (Leader): Chuẩn hóa dữ liệu, kiến trúc hệ thống, điều phối chung
+    ├── ducnq/                     # • Đức: Baseline ML TF-IDF, Threat Model & đối sánh mô hình
+    ├── vietpmh/                   # • Việt: Transformer DeBERTa-v3, Quantization INT8, Robustness
+    └── phuongddd/                 # • Phương: FastAPI Guardrail Proxy, Streamlit Dashboard & Luận văn
 ```
 
-### 💡 NGUYÊN TẮC: "NHÁP TẠI WORKSPACES — CHUẨN HÓA VÀO SRC & FINAL-REPORT CHUNG"
+### 💡 NGUYÊN TẮC: "NHÁP TẠI WORKSPACES — CHUẨN HÓA VÀO FINAL-REPORT CHUNG"
 1. **Khi đang nghiên cứu, thử sai, debug**: Làm việc thoải mái trong `workspaces/<tên_bạn>/`.
-2. **Khi code đã chạy tốt, có kết quả đẹp**: Đưa vào `src/` và `Final-Report/` chung để cả nhóm cùng dùng và nghiệm thu với Giảng viên hướng dẫn!
+2. **Khi code đã chạy tốt, có kết quả đẹp**: Báo cáo Leader trong buổi họp tuần để được đưa vào `Final-Report/src/` và `Final-Report/` chung để cả nhóm cùng dùng và nghiệm thu với Giảng viên hướng dẫn!
