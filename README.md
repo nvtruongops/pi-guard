@@ -55,43 +55,65 @@ PI-Guard employs an **External Inline Guardrail Proxy** architecture governed by
 
 ```mermaid
 flowchart TD
-    subgraph Zone0["Zone 0: Untrusted Ingress (User Prompt / RAG / Web)"]
-        UP["User / Client Prompt"]
+    subgraph Zone0["Zone 0: Untrusted Ingress (External Sources)"]
+        UP["User / Client Prompt<br/>(Direct Web, API, RAG Payload)"]
     end
 
     subgraph Zone1["Zone 1: PI-Guard Defensive Perimeter (Async Middleware Proxy)"]
-        P1["Stage 1: Preprocessing & Normalization<br/>• Unicode NFKC & Zero-Width Stripping<br/>• Base64 / Hex Decoding<br/>• Whitespace & Leetspeak Canonicalization"]
-        
-        subgraph TwoTier["Stage 2: Two-Tier Cascaded Classification & Uncertainty Routing"]
-            T1["Tier 1: Char/Word n-gram TF-IDF<br/>(P95 < 1.0ms, Linear Hyperplane)"]
-            T2["Tier 2: DeBERTa-v3 ONNX INT8<br/>(P95 < 15ms, Disentangled Attention)"]
-        end
-
-        POL["Stage 3: 3-Zone Policy Engine<br/>• Dynamic Threshold Evaluation<br/>• Benign Allowlist Bypass"]
+        P1["Stage 1: Preprocessing & Obfuscation Stripping<br/>• Unicode NFKC & Zero-Width Removal<br/>• Base64 / Hex Decoding • Leetspeak Normalization"]
+        T1["Stage 2 - Tier 1: Fast Baseline Classifier<br/>Char/Word n-gram TF-IDF (P95 < 1.0 ms)"]
+        T2["Stage 2 - Tier 2: Deep Semantic Classifier<br/>DeBERTa-v3 ONNX INT8 (P95 < 15.0 ms)"]
+        POL{"Stage 3: 3-Zone Policy Engine<br/>Threshold Evaluation & Allowlist Bypass"}
     end
 
-    subgraph Zone2["Zone 2: Application Core & Observability"]
-        DASH["Telemetry & Audit Logging<br/>(Streamlit Security Dashboard)"]
+    subgraph Zone2["Zone 2: Monitoring & Audit"]
+        DASH["Telemetry & Audit Logging<br/>(Streamlit Dashboard & Alerts)"]
     end
 
-    subgraph Zone3["Zone 3: Downstream Target LLMs"]
+    subgraph Zone3["Zone 3: Target LLMs & Output Ingress"]
         LLM["Foundation LLMs via Cloud API<br/>(OpenAI / Gemini / Groq LLaMA-3.1)"]
+        BLK["HTTP 403 Forbidden Response<br/>(Prompt Injection / Jailbreak Blocked)"]
     end
 
     UP --> P1
     P1 --> T1
     
     %% Tier 1 Routing
-    T1 -- "P_atk >= 0.85 (High Confidence)" --> POL
-    T1 -- "P_atk <= 0.15 (Clear Benign)" --> POL
-    T1 -- "0.15 < P_atk < 0.85 (Uncertainty Zone)" --> T2
+    T1 -- "High Confidence (Risk >= 0.85)" --> POL
+    T1 -- "Clear Benign (Risk <= 0.15)" --> POL
+    T1 -- "Uncertainty Zone (0.15 < Risk < 0.85)" --> T2
     T2 --> POL
 
     %% Policy Decisions
     POL -- "ALLOW (Risk < 0.30)" --> LLM
     POL -- "REVIEW (0.30 <= Risk < 0.70)" --> DASH
-    POL -- "BLOCK (Risk >= 0.70)" --> BLK["HTTP 403 Forbidden<br/>(Zero Token Consumed)"]
+    POL -- "BLOCK (Risk >= 0.70)" --> BLK
     LLM --> DASH
+
+    %% High-Contrast Theme Styling (Clean on Dark & Light)
+    classDef default fill:#1e293b,stroke:#475569,stroke-width:1px,color:#f8fafc;
+    classDef ingress fill:#1e1b4b,stroke:#6366f1,stroke-width:1.5px,color:#e0e7ff;
+    classDef prep fill:#0c4a6e,stroke:#0284c7,stroke-width:1.5px,color:#f0f9ff;
+    classDef tier1 fill:#172554,stroke:#2563eb,stroke-width:1.5px,color:#dbeafe;
+    classDef tier2 fill:#312e81,stroke:#7c3aed,stroke-width:1.5px,color:#ede9fe;
+    classDef policy fill:#3b0764,stroke:#c084fc,stroke-width:1.5px,color:#faf5ff;
+    classDef block fill:#450a0a,stroke:#ef4444,stroke-width:1.5px,color:#fee2e2;
+    classDef allow fill:#064e3b,stroke:#10b981,stroke-width:1.5px,color:#d1fae5;
+    classDef audit fill:#451a03,stroke:#f59e0b,stroke-width:1.5px,color:#fef3c7;
+
+    class UP ingress;
+    class P1 prep;
+    class T1 tier1;
+    class T2 tier2;
+    class POL policy;
+    class BLK block;
+    class LLM allow;
+    class DASH audit;
+
+    style Zone0 fill:#0f172a,stroke:#6366f1,stroke-width:1.5px,stroke-dasharray: 4 4,color:#c7d2fe
+    style Zone1 fill:#0f172a,stroke:#38bdf8,stroke-width:1.5px,stroke-dasharray: 4 4,color:#bae6fd
+    style Zone2 fill:#0f172a,stroke:#f59e0b,stroke-width:1.5px,stroke-dasharray: 4 4,color:#fed7aa
+    style Zone3 fill:#0f172a,stroke:#10b981,stroke-width:1.5px,stroke-dasharray: 4 4,color:#a7f3d0
 ```
 
 
@@ -111,13 +133,7 @@ flowchart TD
 
 ---
 
-## 🚀 Lộ Trình Triển Khai & Quy Chuẩn Giai Đoạn (Review 1: Zero-Code Invariant)
-
-> [!IMPORTANT]
-> **TIÊU CHUẨN BÁO CÁO CỘT MỐC REVIEW 1 (ĐH FPT — IAP491)**:
-> 1. **Giai đoạn hiện tại (Review 1: Tuần 1–4)**: Tập trung **100% vào Nghiên cứu lý thuyết, Khảo sát y văn quốc tế, Mô hình hóa đe dọa (NIST AI 100-2e2025, STRIDE) và Thiết kế kiến trúc phòng thủ hai tầng**.
-> 2. **Quy tắc phân hệ Nghiệm thu (`Final-Report/`)**: **"Chỉ khi hoàn thành xong và nghiệm thu mới có code hay tài liệu chính thức ở Final-Report/"**. Do đó, trong giai đoạn Review 1, phân hệ `Final-Report/` tuyệt đối không chứa mã nguồn nháp hay kết quả thực nghiệm sớm.
-> 3. **Không gian làm việc thành viên (`workspaces/<member>/`)**: Toàn bộ quá trình cào dữ liệu, xử lý Group-Aware Splitting, thử nghiệm Baseline ML và tinh chỉnh Transformer DeBERTa-v3 được 4 thành viên tiến hành độc lập trong sandbox cá nhân và sẽ được Leader đồng quy tích hợp vào `Final-Report/` ở các cột mốc **Review 2 & Hội đồng Giữa kỳ**.
+## 🚀 Hướng Dẫn Cài Đặt & Vận Hành (Quickstart)
 
 ### 1. Thiết Lập Môi Trường Phát Triển & Tài Liệu
 ```bash
@@ -181,15 +197,13 @@ Hệ thống thư mục gốc của dự án được quy hoạch tối giản t
 ```
 d:/Work/Do-an/
 ├── 📁 Final-Report/                # [PHÂN HỆ 1: BÁO CÁO TỔNG & HỒ SƠ NGHIỆM THU CHÍNH THỨC]
-│   ├── thesis/                    # Toàn văn Luận văn tốt nghiệp chính thức (Single Source of Truth)
-│   │   ├── FINAL_THESIS.md        # Toàn văn Khóa luận tốt nghiệp (Chapters 1-6 + References)
-│   │   ├── Review1_Problem_Definition_and_Threat_Model.md # Hồ sơ chuyên đề Review 1 (Chương 1 & Chương 2)
-│   │   ├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt quy chế & rubric IAP491
-│   │   ├── chapters/              # Các chương riêng biệt (01_Introduction, 02_Literature_Review)
-│   │   └── README.md              # Quy chuẩn viết và biên dịch Luận văn
+│   ├── thesis/                    # Toàn bộ hồ sơ Luận văn tốt nghiệp chính thức (Chapters 1-6, Review 1)
+│   ├── notebooks/                 # Tài nguyên thực nghiệm & 5 Jupyter Notebooks tái lập (configs/, data/, models/)
+│   ├── src/                       # Khung mã nguồn chính thức (Production Scaffolding 10 modules)
+│   ├── tests/                     # Bộ kiểm thử tự động (Unit, Integration, Adversarial Scaffolding)
 │   ├── Meeting/                   # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
 │   ├── References/                # Toàn bộ 18 bài báo khoa học toàn văn PDF chuẩn & REFERENCES_LOG.md
-│   ├── reports/                   # Sổ theo dõi tiến độ chính thức (PI_GUARD_PROCESS_REPORT.xlsx) & Slide gặp GVHD (PI-GUARD-Present-109.pptx)
+│   ├── reports/                   # Sổ theo dõi tiến độ (PI_GUARD_PROCESS_REPORT.xlsx) & Slide gặp GVHD (PI-GUARD-Present-109.pptx)
 │   ├── figures/                   # Sơ đồ kiến trúc & hình ảnh trích xuất chất lượng cao
 │   ├── tables/                    # Bảng số liệu đối chuẩn định dạng Markdown và LaTeX
 │   ├── scripts/                   # Bộ công cụ kiểm định Local QA, xuất bản tài liệu & quy trình nhóm
