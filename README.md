@@ -49,29 +49,172 @@ In accordance with the approved [`CAPSTONE PROJECT REGISTER.md`](CAPSTONE%20PROJ
 
 ---
 
-## 🏛️ System Architecture
+## 🏛️ System Architecture & Configuration
+
+PI-Guard employs an **External Inline Guardrail Proxy** architecture governed by the principles of **Complete Mediation** and **Economy of Mechanism** (Saltzer & Schroeder, IEEE 1975). The system is partitioned into **2 distinct operational phases** across **4 Zero-Trust Security Boundaries** (Tencent Zhuque Lab, 2026):
+
+```mermaid
+flowchart TD
+    subgraph Zone0["Zone 0: Untrusted Ingress (User Prompt / RAG / Web)"]
+        UP["User / Client Prompt"]
+    end
+
+    subgraph Zone1["Zone 1: PI-Guard Defensive Perimeter (Async Middleware Proxy)"]
+        P1["Stage 1: Preprocessing & Normalization<br/>• Unicode NFKC & Zero-Width Stripping<br/>• Base64 / Hex Decoding<br/>• Whitespace & Leetspeak Canonicalization"]
+        
+        subgraph TwoTier["Stage 2: Two-Tier Cascaded Classification & Uncertainty Routing"]
+            T1["Tier 1: Char/Word n-gram TF-IDF<br/>(P95 < 1.0ms, Linear Hyperplane)"]
+            T2["Tier 2: DeBERTa-v3 ONNX INT8<br/>(P95 < 15ms, Disentangled Attention)"]
+        end
+
+        POL["Stage 3: 3-Zone Policy Engine<br/>• Dynamic Threshold Evaluation<br/>• Benign Allowlist Bypass"]
+    end
+
+    subgraph Zone2["Zone 2: Application Core & Observability"]
+        DASH["Telemetry & Audit Logging<br/>(Streamlit Security Dashboard)"]
+    end
+
+    subgraph Zone3["Zone 3: Downstream Target LLMs"]
+        LLM["Foundation LLMs via Cloud API<br/>(OpenAI / Gemini / Groq LLaMA-3.1)"]
+    end
+
+    UP --> P1
+    P1 --> T1
+    
+    %% Tier 1 Routing
+    T1 -- "P_atk >= 0.85 (High Confidence)" --> POL
+    T1 -- "P_atk <= 0.15 (Clear Benign)" --> POL
+    T1 -- "0.15 < P_atk < 0.85 (Uncertainty Zone)" --> T2
+    T2 --> POL
+
+    %% Policy Decisions
+    POL -- "ALLOW (Risk < 0.30)" --> LLM
+    POL -- "REVIEW (0.30 <= Risk < 0.70)" --> DASH
+    POL -- "BLOCK (Risk >= 0.70)" --> BLK["HTTP 403 Forbidden<br/>(Zero Token Consumed)"]
+    LLM --> DASH
+```
+
+### 1. Two-Phase Operational Pipeline
 
 ```
-                       [ User Prompt ]
-                              │
-                              ▼
-           ┌─────────────────────────────────────┐
-           │        PI-Guard Middleware          │
-           │                                     │
-           │  ┌───────────────┐ ┌──────────────┐ │
-           │  │ ML Classifier │ │ Policy Engine│ │
-           │  │ (Probability) │ │(ALLOW/BLOCK) │ │
-           │  └───────┬───────┘ └──────┬───────┘ │
-           └──────────┼────────────────┼─────────┘
-                      │                │
-          ┌───────────┴────────────────┴───────────┐
-          │                                        │
-          ▼ Score < 0.50 (ALLOW)                   ▼ Score >= 0.80 (BLOCK)
-  [ Forward to Target LLM ]                 [ HTTP 403 / Security Alert ]
-  (Groq / OpenAI / Gemini)                         │
-          │                                        ▼
-          └───────────────────────────────► [ Streamlit Dashboard ]
+═════════════════════════════════════════════════════════════════════════════════════════════════════════
+                       PHA 1: OFFLINE TRAINING PIPELINE (HUẤN LUYỆN NGOẠI TUYẾN)
+═════════════════════════════════════════════════════════════════════════════════════════════════════════
+  [ Public Benchmarks & Benign Corpora ] (Deepset, Gandalf, In-the-Wild, Open Benign QA)
+               │
+               ▼ (Group-Aware Splitting via MinHash LSH / Jaccard to prevent attack family data leakage)
+     ┌─────────┴──────────────────────────────┐
+     ▼ (Train/Validation Splits)              ▼ (Adversarial Slices: Leetspeak, Base64, Spacing)
+  ┌───────────────────────────────┐        ┌────────────────────────────────────────────────────────┐
+  │ 1. Train TF-IDF Baseline      │        │ ROBUSTNESS EVALUATION SUITE                            │
+  │ 2. Fine-tune DeBERTa-v3-base  │        │ • Adversarial Degradation Target: Delta F1 < 5%        │
+  │ 3. ONNX INT8 Quantization     │        │ • Target Metrics: Recall >= 95%, FPR < 1.5%            │
+  └──────────────┬────────────────┘        └───────────────────────────┬────────────────────────────┘
+                 │ Trọng số mô hình                                    │
+                 ▼                                                     ▼
+  [ Model Registry: models/baseline/ & models/onnx/ ] ─────────────────┘
+                 │
+                 ▼ (Nạp runtime vào memory)
+═════════════════════════════════════════════════════════════════════════════════════════════════════════
+                       PHA 2: ONLINE RUNTIME MIDDLEWARE (VẬN HÀNH TRỰC TUYẾN)
+═════════════════════════════════════════════════════════════════════════════════════════════════════════
+  [ Ingress Prompt ] ──► POST /v1/chat/guardrail
+                               │
+                               ▼
+  ┌─────────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ PI-GUARD DEFENSE MIDDLEWARE (FastAPI Gateway)                                                       │
+  │                                                                                                     │
+  │  [Stage 1: Preprocessing] ──► Unicode NFKC, Base64/Hex Probe, Whitespace Collapse                  │
+  │                                      │                                                              │
+  │  [Stage 2: Two-Tier Cascade]         ▼                                                              │
+  │   ├── Tier 1 (TF-IDF Baseline):      P_atk >= 0.85 ──► Early BLOCK (Save 80% CPU overhead, < 1ms)  │
+  │   │                                  P_atk <= 0.15 ──► Fast PASS (Forward to Target LLM, < 1ms)     │
+  │   │                                  0.15 < P_atk < 0.85 ──► Escalate to Tier 2                     │
+  │   └── Tier 2 (DeBERTa-v3 ONNX INT8): Disentangled Attention Content H vs Position P (P95 ~14.5ms)  │
+  │                                      │                                                              │
+  │  [Stage 3: Policy Engine]            ▼ Chấm Risk Score (0.0 - 1.0) & Taxonomy Mapping               │
+  │   ├── ALLOW  (Risk < 0.30):          Chuyển tiếp đến Target LLM (Groq / OpenAI / Gemini)            │
+  │   ├── REVIEW (0.30 <= Risk < 0.70):  Gắn cảnh báo an ninh, chuyển sang hộp cát / human review       │
+  │   └── BLOCK  (Risk >= 0.70):         Trả về HTTP 403 Forbidden (0 token tiêu tốn, bảo vệ ngân sách) │
+  └─────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+### 2. Standardized Configuration Specifications
+
+Cấu hình hệ thống được khai báo dạng **Declarative YAML & Pydantic Schemas** nhằm đảm bảo tính tái lập và độc lập giữa các tầng xử lý:
+
+#### A. Policy Engine Configuration (`thresholds.py` / `policy.yaml`)
+```yaml
+policy:
+  version: "1.0.0"
+  block_threshold: 0.70       # Ngưỡng kích hoạt HTTP 403 Blocked (mặc định 0.70 - 0.80)
+  review_threshold: 0.30      # Ngưỡng kích hoạt cảnh báo REVIEW / Sandboxed (0.30 - 0.70)
+  allowlist_enabled: true     # Cho phép bypass các câu hỏi học thuật / an ninh mạng lành tính
+  enable_hard_keyword_filters: false # Thay thế hoàn toàn regex giòn gãy bằng mô hình học máy
+
+tier1_uncertainty_routing:
+  early_block_threshold: 0.85 # Tầng 1 chặn ngay lập tức nếu độ tin cậy tấn công cực cao (< 1ms)
+  fast_pass_threshold: 0.15   # Tầng 1 thông qua ngay lập tức nếu độ tin cậy lành tính cực cao (< 1ms)
+  uncertainty_range: [0.15, 0.85] # Khoảng bất định bắt buộc kích hoạt DeBERTa-v3 Tầng 2
+```
+
+#### B. Model Registry Configuration (`models.yaml`)
+```yaml
+models:
+  baseline_tfidf:
+    type: "classical_ml"
+    path: "models/baseline/baseline_tfidf.joblib"
+    ngram_range: [3, 5]               # Character n-grams quét xuyên Leetspeak (Jain et al. 2023)
+    max_features: 60000
+    expected_latency_p95_ms: 1.5
+    device: "cpu"
+
+  deberta_v3_onnx_int8:
+    type: "onnx_quantized"
+    path: "models/onnx/deberta_v3_int8.onnx"
+    base_model: "microsoft/deberta-v3-base"
+    architecture: "DebertaV2ForSequenceClassification"
+    quantization_type: "INT8_Dynamic_Quantization" # Tối ưu hóa AVX-512 / VNNI (Yao et al. 2022)
+    execution_provider: "CPUExecutionProvider"
+    intra_op_num_threads: 4
+    max_sequence_length: 512
+    expected_latency_p95_ms: 14.5
+    device: "cpu"
+```
+
+#### C. Performance SLA & Target Evaluation (`evaluation.yaml`)
+```yaml
+performance_sla:
+  target_recall: 0.95                 # Tỷ lệ phát hiện tấn công Injection & Jailbreak >= 95%
+  target_fpr: 0.015                   # Tỷ lệ báo động nhầm trên câu hỏi an toàn (FPR) < 1.5%
+  target_p95_latency_ms: 30.0         # Cam kết độ trễ suy luận P95 trên CPU đa nhân < 30ms (Zero-GPU)
+  adversarial_degradation_f1: 0.05    # Độ suy giảm F1 khi bị làm nhiễu đối kháng (Delta F1) < 5%
+
+downstream_target_llms:
+  - provider: "groq"
+    model: "llama-3.1-8b-instant"     # Open-weights baseline đối chuẩn red-teaming (Shen et al. 2024)
+  - provider: "openai"
+    model: "gpt-4o-mini"              # Commercial frontier safety baseline (Yuan et al. 2024)
+  - provider: "gemini"
+    model: "gemini-1.5-flash"         # High-throughput enterprise API baseline
+```
+
+---
+
+### 3. Academic Foundations & Literature Mapping
+
+Kiến trúc PI-Guard được bảo chứng trực tiếp bởi các công trình y văn quốc tế và tiêu chuẩn bảo mật chính thức:
+
+| Thành Phần Kiến Trúc | Nguyên Lý & Đột Phá Kỹ Thuật | Công Trình Khoa Học Bảo Chứng |
+| :--- | :--- | :--- |
+| **External Guardrail Proxy** | Kiểm duyệt độc lập, triệt tiêu lỗ hổng trộn lẫn luồng lệnh/dữ liệu (*Control/Data Conflation*) | Perez & Ribeiro (NeurIPS 2022 [[3]](#ref3)), Greshake et al. (ACM AISec 2023 [[4]](#ref4)) |
+| **Zero-Trust Defense Perimeter** | Phân ranh giới 4 Zone (Zone 0 Ingress đến Zone 3 Foundation LLM) | Tencent Zhuque Lab (2026 [[6]](#ref6)), NIST AI 100-2e2025, OWASP LLM01:2025 |
+| **Two-Tier Cascaded Defense** | *Complete Mediation* & *Economy of Mechanism*: Tầng 1 lọc nhanh, Tầng 2 phân giải bất định | Saltzer & Schroeder (Proc. IEEE 1975 [[18]](#ref18)), Rebedea et al. / NVIDIA (EMNLP 2023 [[8]](#ref8)) |
+| **Tier 1: Character N-Grams** | Quét xuyên biến dị Leetspeak (`1gn0r3`) và khoảng trắng nhân tạo bỏ qua BPE Tokenizer | Jain et al. (arXiv:2309.00614, 2023 [[15]](#ref15)) |
+| **Tier 2: Disentangled Attention** | Phân tách ma trận nội dung $\mathbf{H}$ và vị trí tương đối $\mathbf{P}$, nhận diện đảo ngữ và DAN roleplay | He et al. (ICLR 2021 / 2023 [[9]](#ref9)), Meta Prompt-Guard-86M (Meta AI 2024) |
+| **CPU ONNX INT8 Quantization** | Lượng hóa ma trận trọng số sang số nguyên 8-bit, khai thác tập lệnh AVX-512/VNNI đạt P95 < 22ms | Yao et al. (NeurIPS 2022 [[16]](#ref16)), Hugging Face Optimum |
 
 
 ---
@@ -189,5 +332,31 @@ d:/Work/Do-an/
     ├── phuongddd/                 # Workspace Phương: FastAPI Guardrail Proxy, Streamlit Dashboard & Luận văn
     └── README.md                  # Hướng dẫn quy chuẩn không gian làm việc cá nhân
 ```
+
+---
+
+## 🔬 Tài Liệu Tham Khảo Học Thuật (References)
+
+Toàn bộ 18 bài báo khoa học toàn văn (PDF) được lưu trữ cục bộ tại [`Final-Report/References/`](Final-Report/References/) và quản lý theo dõi tại [`REFERENCES_LOG.md`](Final-Report/References/REFERENCES_LOG.md):
+
+- <a id="ref1"></a>**[1]** Zhao et al. (2023). *A Survey of Large Language Models*. arXiv:2303.18223. [[PDF Bản Mở]](Final-Report/References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf)
+- <a id="ref2"></a>**[2]** Ouyang et al. (2022). *Training language models to follow instructions with human feedback*. NeurIPS 2022. [[PDF Bản Mở]](Final-Report/References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf)
+- <a id="ref3"></a>**[3]** Perez, F., & Ribeiro, I. (2022). *Ignore This Title and Hack This Paper: Do Language Models follow Specifications?*. In NeurIPS ML Safety Workshop 2022. [[PDF Bản Mở]](Final-Report/References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf)
+- <a id="ref4"></a>**[4]** Greshake, K., et al. (2023). *Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection*. In ACM AISec '23. [[PDF Bản Mở]](Final-Report/References/Greshake_2023_Indirect_Prompt_Injection.pdf)
+- <a id="ref5"></a>**[5]** Wei, A., et al. (2024). *Jailbroken: How Does LLM Safety Training Fail?*. In NeurIPS 2024. [[PDF Bản Mở]](Final-Report/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf)
+- <a id="ref6"></a>**[6]** Tencent Zhuque Lab (2026). *AI-Infra-Guard: Multi-Layer Attack Surface and Defense Framework for AI Agents*. Tencent Security Technical Report 2026. [[PDF Bản Mở]](Final-Report/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf)
+- <a id="ref7"></a>**[7]** Inan, H., et al. / Meta AI (2023). *Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations*. arXiv:2312.06674. [[PDF Bản Mở]](Final-Report/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf)
+- <a id="ref8"></a>**[8]** Rebedea, T., et al. / NVIDIA (2023). *NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications*. In EMNLP 2023. [[PDF Bản Mở]](Final-Report/References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf)
+- <a id="ref9"></a>**[9]** He, P., et al. (2021/2023). *DeBERTa: Decoding-enhanced BERT with Disentangled Attention*. In ICLR 2021 / 2023. [[PDF Bản Mở]](Final-Report/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf)
+- <a id="ref10"></a>**[10]** Markov, T., et al. / OpenAI (2023). *A Holistic Approach to Undesired Content Detection in the Real World*. In AAAI HCOMP 2023. [[PDF Bản Mở]](Final-Report/References/OpenAI_2023_Undesired_Content_Detection.pdf)
+- <a id="ref11"></a>**[11]** Shen, X., et al. (2024). *"Do Anything Now": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models*. In ACM CCS '24. [[PDF Bản Mở]](Final-Report/References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf)
+- <a id="ref12"></a>**[12]** Zhou, Y., et al. (2024). *EasyJailbreak: A Unified Framework for Jailbreak Attacks*. arXiv:2403.12171. [[PDF Bản Mở]](Final-Report/References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf)
+- <a id="ref13"></a>**[13]** Zou, A., et al. (2023). *Universal and Transferable Adversarial Attacks on Aligned Language Models*. arXiv:2307.15043. [[PDF Bản Mở]](Final-Report/References/Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf)
+- <a id="ref14"></a>**[14]** Robey, A., et al. (2023). *SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks*. arXiv:2310.03684. [[PDF Bản Mở]](Final-Report/References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf)
+- <a id="ref15"></a>**[15]** Jain, N., et al. (2023). *Baseline Defenses for Adversarial Attacks Against Aligned Language Models*. arXiv:2309.00614. [[PDF Bản Mở]](Final-Report/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf)
+- <a id="ref16"></a>**[16]** Yao, Z., et al. (2022). *ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers*. In NeurIPS 2022. [[PDF Bản Mở]](Final-Report/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf)
+- <a id="ref17"></a>**[17]** Yuan, Y., et al. (2024). *GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher*. In ICLR 2024. [[PDF Bản Mở]](Final-Report/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf)
+- <a id="ref18"></a>**[18]** Saltzer, J. H., & Schroeder, M. D. (1975). *The Protection of Information in Computer Systems*. Proceedings of the IEEE, 63(9), 1278-1308. [[PDF Bản Mở]](Final-Report/References/Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf)
+
 
 

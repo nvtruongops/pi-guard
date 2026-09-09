@@ -93,6 +93,7 @@ The workspace has 7 integrated MCP servers:
 - **`team-git-sync-and-merge`**: Quy trình Git phân nhánh, đồng bộ không xung đột và độc quyền merge vào cây thư mục chính dành cho Leader.
 - **`team-commit-and-workspace-audit`**: Công cụ tự động kiểm toán commit/PR, phát hiện và ngăn chặn vi phạm chỉnh sửa ngoài `workspaces/`.
 - **`resource-and-literature-validation`**: Tiêu chuẩn và công cụ kiểm định URL, video YouTube oEmbed và tự động tra cứu Open-Access PDF từ DOI chống paywall.
+- **`docs-portal-sync-and-deploy`**: Quy trình đồng bộ hóa tài liệu giữa repository và Cổng Tài Liệu Web UI (Github-Page & MkDocs Material), kiểm toán toàn vẹn neo/link và xuất bản tự động lên GitHub Pages.
 
 ---
 
