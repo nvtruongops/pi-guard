@@ -107,8 +107,9 @@ trigger: always_on
 
 ```
 d:/Work/Do-an/
-├── reports/                     # [1. BÁO CÁO TỔNG] Luận văn tốt nghiệp, báo cáo tiến độ, slides, figures, tables, Meeting/ & References/
+├── Final-Report/                # [1. BÁO CÁO TỔNG] Luận văn, hồ sơ bảo vệ, tài nguyên thực nghiệm & tài liệu báo cáo
 │   ├── thesis/                  # Luận văn tốt nghiệp (FINAL_THESIS.md, Review 1, Chapters 1-6)
+│   ├── notebooks/               # Toàn bộ tài nguyên thực nghiệm & Jupyter Notebooks tái lập (configs/, data/, models/)
 │   ├── Meeting/                 # Biên bản họp với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
 │   ├── References/              # 18 bài báo khoa học chuẩn (PDF) & REFERENCES_LOG.md
 │   ├── PI-GUARD-Present-109.pptx # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026
@@ -116,12 +117,11 @@ d:/Work/Do-an/
 │   ├── figures/                 # Sơ đồ kiến trúc & hình ảnh trích xuất
 │   ├── tables/                  # Bảng biểu đối chuẩn
 │   └── experiment_reports/      # Kết quả thực nghiệm
-├── workspaces/                  # [2. WORKSPACE THÀNH VIÊN] Sandbox cá nhân của 4 thành viên (truongnv, ducnq, vietpmh, phuongddd)
-├── docs/                        # [3. GITHUB PAGES] Cổng tài liệu Web UI chính thức (MkDocs Material 8 Chuyên Đề)
+├── Github-Page/                 # [2. GITHUB PAGES] Cổng tài liệu Web UI chính thức (MkDocs Material 8 Chuyên Đề)
 │   ├── index.md                 # Trang chủ cổng tài liệu
-│   └── fpt_capstone_guide/      # Tài liệu nội bộ FPT (BẤT BIẾN / READ-ONLY)
+│   └── [8 Chuyên Đề Khoa Học]/  # Toàn bộ nội dung chuyên đề xuất bản lên web
+├── workspaces/                  # [3. WORKSPACE THÀNH VIÊN] Sandbox cá nhân của 4 thành viên (truongnv, ducnq, vietpmh, phuongddd)
 ├── src/                         # [CORE CODEBASE] API, models, preprocessing, dashboard, evaluation
-├── notebooks/                   # [EXPERIMENTS] Jupyter Notebooks (configs/, data/, models/)
 ├── tests/                       # [TEST SUITE] Bộ kiểm thử tự động pytest
 ├── scripts/                     # [TOOLING & QA] Bộ công cụ kiểm định Local QA & build docs portal
 ├── requirements.txt             # Python dependencies

@@ -5,7 +5,7 @@ site_url: "https://nvtruongops.github.io/pi-guard/"
 repo_url: "https://github.com/nvtruongops/pi-guard"
 repo_name: "nvtruongops/pi-guard"
 
-docs_dir: "docs"
+docs_dir: "Github-Page"
 site_dir: "site"
 
 exclude_docs: |

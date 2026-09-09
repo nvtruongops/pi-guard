@@ -1,21 +1,26 @@
-# THƯ MỤC BÁO CÁO NGHIỆM THU & BẢN XUẤT BẢNG BIỂU (REPORTS, FIGURES & TABLES)
-## 📈 PI-Guard Deliverables & Exported Assets
+# THƯ MỤC BÁO CÁO TỔNG, LUẬN VĂN & TÀI NGUYÊN THỰC NGHIỆM (`Final-Report/`)
+## 📈 PI-Guard Final Report, Thesis & Experimentation Deliverables Hub
 
 > [!NOTE]
-> Thư mục này lưu trữ các sản phẩm đầu ra đã được xuất bản (Exported Figures, LaTeX Tables, Process Reports) dùng để nộp cho Nhà trường và chèn vào Luận văn tốt nghiệp.
+> Thư mục `Final-Report/` là **phân hệ Báo Cáo Tổng** của dự án PI-Guard. Đây là nơi lưu trữ tập trung toàn bộ sản phẩm học thuật, hồ sơ bảo vệ, tài liệu luận văn và tài nguyên thực nghiệm phục vụ việc nghiệm thu với Giáo viên Hướng dẫn và Hội đồng Chấm Đồ án ĐH FPT (IAP491).
 
 ---
 
-### 📂 CẤU TRÚC THƯ MỤC BÁO CÁO TỔNG (`reports/`):
+### 📂 CẤU TRÚC PHÂN HỆ BÁO CÁO TỔNG (`Final-Report/`):
 
 ```
-reports/
+Final-Report/
 ├── thesis/                        # Toàn bộ hồ sơ Luận văn tốt nghiệp chính thức (Single Source of Truth)
 │   ├── FINAL_THESIS.md            # Toàn văn Khóa luận tốt nghiệp (Chapters 1-6 + References)
 │   ├── Review1_Problem_Definition_and_Threat_Model.md # Báo cáo Chuyên đề Đợt 1 (Định nghĩa bài toán & Threat Model)
-│   ├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt tiêu chuẩn đánh giá IAP491
+│   ├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt quy chế & tiêu chí chấm điểm IAP491
 │   ├── chapters/                  # Các chương riêng biệt (01_Introduction, 02_Literature_Review)
 │   └── README.md                  # Quy chuẩn viết và biên dịch Luận văn
+├── notebooks/                     # Toàn bộ tài nguyên thực nghiệm & Jupyter Notebooks tái lập
+│   ├── configs/                   # Cấu hình thực nghiệm (data.yaml, models.yaml, training.yaml, evaluation.yaml)
+│   ├── data/                      # Dataset tiêu chuẩn phục vụ thực nghiệm (raw/, interim/, processed/, splits/)
+│   ├── models/                    # Model checkpoints & weights (baseline/, transformer/, onnx/)
+│   └── README.md                  # Hướng dẫn chạy thực nghiệm và tái lập kết quả
 ├── Meeting/                       # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
 │   ├── Meeting 1_29_08_26.md      # Họp khởi động đề tài & phân công Sprint 1
 │   ├── Meeting 2_01_09_26.md      # Khảo sát & sàng lọc 10 bài báo khoa học, định hướng 2 mô hình
@@ -38,7 +43,6 @@ reports/
 
 ### 📢 LƯU Ý VỀ TÀI LIỆU TRÌNH CHIẾU:
 > [!IMPORTANT]
-> - Tệp [`PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/reports/PI-GUARD-Present-109.pptx) là **SLIDE BÁO CÁO TIẾN ĐỘ ĐỊNH KỲ VỚI GIÁO VIÊN HƯỚNG DẪN (GVHD) TRONG BUỔI GẶP NGÀY 10/09/2026**.
+> - Tệp [`PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/Final-Report/PI-GUARD-Present-109.pptx) là **SLIDE BÁO CÁO TIẾN ĐỘ ĐỊNH KỲ VỚI GIÁO VIÊN HƯỚNG DẪN (GVHD) TRONG BUỔI GẶP NGÀY 10/09/2026**.
 > - Tài liệu này được nhóm sử dụng để báo cáo tình hình nghiên cứu, cơ sở lý thuyết chọn mô hình và kiến trúc đề xuất nhằm xin ý kiến chỉ đạo, định hướng chuyên môn từ GVHD.
 > - **ĐÂY KHÔNG PHẢI LÀ SLIDE BÁO CÁO REVIEW 1 TRƯỚC HỘI ĐỒNG**: Buổi bảo vệ Review 1 chính thức trước Hội đồng FPT University sẽ diễn ra ở cột mốc sau; slide Review 1 chính thức sẽ được nhóm hoàn thiện và đóng gói riêng sau khi tiếp thu các nhận xét của GVHD.
-

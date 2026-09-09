@@ -14,14 +14,20 @@ from src.utils.logger import get_logger
 logger = get_logger("pi_guard.evaluate")
 
 def evaluate_model(
-    model_path: str = "notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models") else "models/baseline/baseline_tfidf.joblib",
-    test_path: str = "notebooks/data/splits/test.csv" if os.path.exists("notebooks/data/splits") else "data/splits/test.csv",
-    output_report_path: str = "reports/experiment_reports/baseline_test_metrics.json"
+    model_path: str = "Final-Report/notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("Final-Report/notebooks/models") else ("notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models") else "models/baseline/baseline_tfidf.joblib"),
+    test_path: str = "Final-Report/notebooks/data/splits/test.csv" if os.path.exists("Final-Report/notebooks/data/splits") else ("notebooks/data/splits/test.csv" if os.path.exists("notebooks/data/splits") else "data/splits/test.csv"),
+    output_report_path: str = "Final-Report/experiment_reports/baseline_test_metrics.json" if os.path.exists("Final-Report") else "reports/experiment_reports/baseline_test_metrics.json"
 ):
-    if not os.path.exists(model_path) and os.path.exists(os.path.join("notebooks", model_path)):
-        model_path = os.path.join("notebooks", model_path)
-    if not os.path.exists(test_path) and os.path.exists(os.path.join("notebooks", test_path)):
-        test_path = os.path.join("notebooks", test_path)
+    if not os.path.exists(model_path):
+        for c in [os.path.join("Final-Report/notebooks", model_path), os.path.join("notebooks", model_path)]:
+            if os.path.exists(c):
+                model_path = c
+                break
+    if not os.path.exists(test_path):
+        for c in [os.path.join("Final-Report/notebooks", test_path), os.path.join("notebooks", test_path)]:
+            if os.path.exists(c):
+                test_path = c
+                break
 
     if not os.path.exists(model_path) or not os.path.exists(test_path):
         logger.error("Model or test split not found. Ensure training has completed.")

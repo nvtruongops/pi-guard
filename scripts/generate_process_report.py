@@ -379,8 +379,8 @@ def generate_report():
             'Trực tuyến qua Discord',
             'Cả 4 thành viên (Trường, Đức, Việt, Phương)',
             'Đánh giá kết quả nghiên cứu và thống nhất slide báo cáo tiến độ gặp GVHD ngày 10/09/2026.',
-            'Trường và Đức trực tiếp tạo slide, biên soạn nội dung và hoàn thiện toàn bộ bộ Slide 22 trang (PI-GUARD-Present-109.pptx); Việt và Phương rà soát, thống nhất hoàn toàn và không có ý kiến bổ sung.\nĐầu ra: Meeting 3_08_09_26.md & reports/PI-GUARD-Present-109.pptx.',
-            'Hoàn thành (100%)\nreports/Meeting/Meeting 3_08_09_26.md\nreports/PI-GUARD-Present-109.pptx'
+            'Trường và Đức trực tiếp tạo slide, biên soạn nội dung và hoàn thiện toàn bộ bộ Slide 22 trang (PI-GUARD-Present-109.pptx); Việt và Phương rà soát, thống nhất hoàn toàn và không có ý kiến bổ sung.\nĐầu ra: Meeting 3_08_09_26.md & Final-Report/PI-GUARD-Present-109.pptx.',
+            'Hoàn thành (100%)\nFinal-Report/Meeting/Meeting 3_08_09_26.md\nFinal-Report/PI-GUARD-Present-109.pptx'
         )
     ]
 
@@ -411,9 +411,9 @@ def generate_report():
     ws_meet.row_dimensions[2].height = 20
     ws_meet.row_dimensions[4].height = 25
 
-    # Save output to official location (reports/)
+    # Save output to official location (Final-Report/)
     workspace_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    out_path = os.path.join(workspace_root, 'reports', 'PI_GUARD_PROCESS_REPORT.xlsx')
+    out_path = os.path.join(workspace_root, 'Final-Report', 'PI_GUARD_PROCESS_REPORT.xlsx')
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     wb.save(out_path)
     print(f'Saved: {out_path}')

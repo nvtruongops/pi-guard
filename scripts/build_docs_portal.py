@@ -23,7 +23,7 @@ if sys.stderr and hasattr(sys.stderr, "reconfigure"):
 
 # Root project directory
 ROOT_DIR = Path(__file__).resolve().parent.parent
-DOCS_DIR = ROOT_DIR / "docs"
+DOCS_DIR = ROOT_DIR / "Github-Page"
 
 def clean_and_prepare_dir():
     """Khởi tạo và làm sạch các thư mục chuyên đề trong docs/ phục vụ MkDocs (BẢO VỆ TUYỆT ĐỐI docs/fpt_capstone_guide/)."""
@@ -73,7 +73,7 @@ def sanitize_content(content: str) -> str:
     content = "\n".join(sanitized_lines)
 
     # Chuyển đổi link PDF nội bộ và link file ngoài thành inline code hoặc text đậm
-    content = re.sub(r"\[([^\]]+)\]\((?:file:///[^)]+|reports/References/[^)]+\.pdf|References/[^)]+\.pdf|reports/Meeting/[^)]+|Meeting/[^)]+|CAPSTONE%20PROJECT%20REGISTER\.md|docs/[^)]+)\)", r"**\1**", content)
+    content = re.sub(r"\[([^\]]+)\]\((?:file:///[^)]+|Final-Report/References/[^)]+\.pdf|Final-Report/Meeting/[^)]+|Final-Report/[^)]+|reports/References/[^)]+\.pdf|References/[^)]+\.pdf|reports/Meeting/[^)]+|Meeting/[^)]+|CAPSTONE%20PROJECT%20REGISTER\.md|Github-Page/[^)]+|docs/[^)]+)\)", r"**\1**", content)
 
     # Thay thế file:///... còn lại
     content = re.sub(r"\(file:///[^)]+\)", r"(#)", content)
@@ -240,13 +240,13 @@ def aggregate_all():
     create_static_assets()
 
     # 1. Quản lý công việc & Tiến độ
-    copy_doc(ROOT_DIR / "reports" / "thesis" / "FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md",
+    copy_doc(ROOT_DIR / "Final-Report" / "thesis" / "FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md",
              DOCS_DIR / "work" / "fpt_guidelines_and_rubrics.md")
-    copy_doc(ROOT_DIR / "reports" / "Meeting" / "Meeting 1_29_08_26.md",
+    copy_doc(ROOT_DIR / "Final-Report" / "Meeting" / "Meeting 1_29_08_26.md",
              DOCS_DIR / "work" / "meeting_1.md")
-    copy_doc(ROOT_DIR / "reports" / "Meeting" / "Meeting 2_01_09_26.md",
+    copy_doc(ROOT_DIR / "Final-Report" / "Meeting" / "Meeting 2_01_09_26.md",
              DOCS_DIR / "work" / "meeting_2.md")
-    copy_doc(ROOT_DIR / "reports" / "Meeting" / "Meeting 3_08_09_26.md",
+    copy_doc(ROOT_DIR / "Final-Report" / "Meeting" / "Meeting 3_08_09_26.md",
              DOCS_DIR / "work" / "meeting_3.md")
 
     # 2. Chuyên Đề 1: Prompt Study
@@ -358,19 +358,19 @@ def aggregate_all():
     # Luận văn & Báo cáo Review
     copy_doc(ROOT_DIR / "CAPSTONE PROJECT REGISTER.md",
              DOCS_DIR / "thesis" / "capstone_register.md")
-    copy_doc(ROOT_DIR / "reports" / "thesis" / "Review1_Problem_Definition_and_Threat_Model.md",
+    copy_doc(ROOT_DIR / "Final-Report" / "thesis" / "Review1_Problem_Definition_and_Threat_Model.md",
              DOCS_DIR / "thesis" / "review1_threat_model.md")
-    copy_doc(ROOT_DIR / "reports" / "thesis" / "chapters" / "01_Introduction.md",
+    copy_doc(ROOT_DIR / "Final-Report" / "thesis" / "chapters" / "01_Introduction.md",
              DOCS_DIR / "thesis" / "chapter_01_introduction.md")
-    copy_doc(ROOT_DIR / "reports" / "thesis" / "chapters" / "02_Literature_Review.md",
+    copy_doc(ROOT_DIR / "Final-Report" / "thesis" / "chapters" / "02_Literature_Review.md",
              DOCS_DIR / "thesis" / "chapter_02_literature_review.md")
-    copy_doc(ROOT_DIR / "reports" / "thesis" / "FINAL_THESIS.md",
+    copy_doc(ROOT_DIR / "Final-Report" / "thesis" / "FINAL_THESIS.md",
              DOCS_DIR / "thesis" / "final_thesis.md")
 
     # Thư viện bài báo khoa học
-    copy_doc(ROOT_DIR / "reports" / "References" / "README.md",
+    copy_doc(ROOT_DIR / "Final-Report" / "References" / "README.md",
              DOCS_DIR / "references" / "references_overview.md")
-    copy_doc(ROOT_DIR / "reports" / "References" / "REFERENCES_LOG.md",
+    copy_doc(ROOT_DIR / "Final-Report" / "References" / "REFERENCES_LOG.md",
              DOCS_DIR / "references" / "references_log.md")
 
     # Đội ngũ & Hướng dẫn kỹ thuật

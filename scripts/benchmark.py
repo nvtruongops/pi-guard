@@ -14,13 +14,16 @@ from src.utils.logger import get_logger
 logger = get_logger("pi_guard.benchmark")
 
 def run_adversarial_benchmarks(
-    model_path: str = "notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models") else "models/baseline/baseline_tfidf.joblib",
+    model_path: str = "Final-Report/notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("Final-Report/notebooks/models") else ("notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models") else "models/baseline/baseline_tfidf.joblib"),
     adversarial_dir: str = "tests/adversarial",
-    output_report: str = "reports/experiment_reports/adversarial_benchmark.json",
+    output_report: str = "Final-Report/experiment_reports/adversarial_benchmark.json" if os.path.exists("Final-Report") else "reports/experiment_reports/adversarial_benchmark.json",
     use_mock: bool = False
 ):
-    if not os.path.exists(model_path) and os.path.exists(os.path.join("notebooks", model_path)):
-        model_path = os.path.join("notebooks", model_path)
+    if not os.path.exists(model_path):
+        for candidate in [os.path.join("Final-Report/notebooks", model_path), os.path.join("notebooks", model_path)]:
+            if os.path.exists(candidate):
+                model_path = candidate
+                break
     os.makedirs(os.path.dirname(output_report), exist_ok=True)
 
     if use_mock or not os.path.exists(model_path):

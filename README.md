@@ -160,8 +160,9 @@ Hệ thống thư mục của dự án được quy hoạch tinh gọn thành **
 
 ```
 d:/Work/Do-an/
-├── 📁 reports/                     # [PHÂN HỆ 1: BÁO CÁO TỔNG] Luận văn tốt nghiệp, báo cáo tiến độ, slides, figures, tables, Meeting/ & References/
+├── 📁 Final-Report/                # [PHÂN HỆ 1: BÁO CÁO TỔNG] Luận văn, hồ sơ bảo vệ, tài nguyên thực nghiệm & tài liệu báo cáo
 │   ├── thesis/                    # Toàn văn Luận văn tốt nghiệp (FINAL_THESIS.md, Review 1, Chapters 1-6)
+│   ├── notebooks/                 # Toàn bộ tài nguyên thực nghiệm & Jupyter Notebooks tái lập (configs/, data/, models/)
 │   ├── Meeting/                   # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
 │   ├── References/                # Toàn bộ 18 bài báo khoa học toàn văn PDF & REFERENCES_LOG.md
 │   ├── PI-GUARD-Present-109.pptx  # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026 (22 slides, Dark Slate Navy)
@@ -171,18 +172,17 @@ d:/Work/Do-an/
 │   ├── tables/                    # Bảng số liệu đối chuẩn định dạng Markdown & LaTeX
 │   └── experiment_reports/        # Báo cáo tóm tắt chỉ số thực nghiệm dạng JSON/Markdown
 │
-├── 📁 workspaces/                  # [PHÂN HỆ 2: WORKSPACE THÀNH VIÊN] Không gian thử nghiệm sandbox độc lập của 4 bạn
+├── 📁 Github-Page/                 # [PHÂN HỆ 2: GITHUB PAGES] Cổng tài liệu Web UI chính thức (MkDocs Material 8 Chuyên Đề)
+│   ├── index.md                   # Trang chủ cổng tài liệu Web UI (8-Pillar Academic Architecture)
+│   ├── javascripts/ & stylesheets/# Cấu hình MathJax LaTeX hiển thị công thức & Custom CSS giao diện
+│   └── [8 Chuyên Đề Khoa Học]/    # Prompt, Attacks, Threat & Defense, Dataset, Models, Robustness, Optimization, Evaluation
+│
+├── 📁 workspaces/                  # [PHÂN HỆ 3: WORKSPACE THÀNH VIÊN] Không gian thử nghiệm sandbox độc lập của 4 bạn
 │   ├── truongnv/                  # Workspace Leader (Trường): Chuẩn hóa dữ liệu, kiến trúc hệ thống, điều phối chung
 │   ├── ducnq/                     # Workspace Đức: Classical ML Baseline TF-IDF, Feature Extraction & Threat Model
 │   ├── vietpmh/                   # Workspace Việt: Transformer DeBERTa-v3, Quantization INT8, Robustness Testing
 │   ├── phuongddd/                 # Workspace Phương: FastAPI Guardrail Proxy, Streamlit Dashboard & Luận văn
 │   └── README.md                  # Hướng dẫn quy chuẩn bố trí không gian làm việc cá nhân
-│
-├── 📁 docs/                        # [PHÂN HỆ 3: GITHUB PAGES] Cổng tài liệu Web UI chính thức (MkDocs Material 8 Chuyên Đề)
-│   ├── index.md                   # Trang chủ cổng tài liệu Web UI (8-Pillar Academic Architecture)
-│   ├── fpt_capstone_guide/        # Tài liệu nội bộ FPT University (BẤT BIẾN / READ-ONLY)
-│   ├── javascripts/ & stylesheets/# Cấu hình MathJax LaTeX hiển thị công thức & Custom CSS giao diện
-│   └── [8 Chuyên Đề Khoa Học]/    # Prompt, Attacks, Threat & Defense, Dataset, Models, Robustness, Optimization, Evaluation
 │
 ├── ⚙️ src/                         # [CORE CODEBASE] Mã nguồn sản phẩm chính thức
 │   ├── preprocessing/             # Unicode cleaner, normalizer & synthetic obfuscation generators
@@ -193,11 +193,6 @@ d:/Work/Do-an/
 │   ├── api/                       # FastAPI Async Guardrail Middleware & Endpoints
 │   ├── dashboard/                 # Streamlit Live Monitoring & Testing UI
 │   └── evaluation/                # Metrics calculator, FPR computation & Latency profiler
-│
-├── 📓 notebooks/                   # [EXPERIMENTS] Jupyter Notebooks thực nghiệm tái lập (01_eda..05_errors)
-│   ├── configs/                   # Cấu hình YAML (data, training, evaluation, models)
-│   ├── data/                      # Dữ liệu chuẩn thức (raw, interim, processed, splits, manifests)
-│   └── models/                    # Trọng số mô hình sau huấn luyện (joblib, PyTorch, ONNX)
 │
 ├── 🧪 tests/                       # [TEST SUITE] Bộ kiểm thử tự động pytest (unit, integration, adversarial)
 └── 🛠️ scripts/                     # [TOOLING & QA] Bộ công cụ tự động hóa kiểm định Local QA & build docs portal

@@ -12,7 +12,7 @@ Quy tắc bất biến:
    - Phạm Minh Hoàng Việt:   workspaces/vietpmh/
    - Đỗ Đoàn Duy Phương:     workspaces/phuongddd/
 2. CHỈ DUY NHẤT Trưởng nhóm (Leader: nvtruongops / Nguyễn Văn Trường) mới có quyền chỉnh sửa
-   các thư mục chung ngoài workspaces/ (reports/, docs/, src/, notebooks/, scripts/, .agents/, etc.)
+   các thư mục chung ngoài workspaces/ (Final-Report/, Github-Page/, src/, scripts/, .agents/, etc.)
    để phục vụ quá trình nghiệm thu, đồng quy tri thức (Knowledge Convergence).
 3. TẤT CẢ THÀNH VIÊN (kể cả Leader) TUYỆT ĐỐI KHÔNG được sửa đổi các file/thư mục bất biến (Read-Only):
    - CAPSTONE PROJECT REGISTER.md
@@ -197,7 +197,7 @@ def check_violations(files: List[str], role_key: str, role_info: Dict, is_leader
             
         # 2. Kiểm tra vi phạm phân quyền Workspace
         if is_leader:
-            # Leader được phép sửa các file dự án chung (reports/, docs/, src/, notebooks/, etc.)
+            # Leader được phép sửa các file dự án chung (Final-Report/, Github-Page/, src/, etc.)
             continue
         else:
             # Thành viên thông thường

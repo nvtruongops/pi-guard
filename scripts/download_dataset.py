@@ -13,11 +13,14 @@ from src.utils.logger import get_logger
 logger = get_logger("pi_guard.download")
 
 def download_and_merge(
-    config_path: str = "notebooks/configs/data.yaml" if os.path.exists("notebooks/configs") else "configs/data.yaml",
-    output_path: str = "notebooks/data/raw/combined_raw.csv" if os.path.exists("notebooks/data") else "data/raw/combined_raw.csv"
+    config_path: str = "Final-Report/notebooks/configs/data.yaml" if os.path.exists("Final-Report/notebooks/configs") else ("notebooks/configs/data.yaml" if os.path.exists("notebooks/configs") else "configs/data.yaml"),
+    output_path: str = "Final-Report/notebooks/data/raw/combined_raw.csv" if os.path.exists("Final-Report/notebooks/data") else ("notebooks/data/raw/combined_raw.csv" if os.path.exists("notebooks/data") else "data/raw/combined_raw.csv")
 ):
-    if not os.path.exists(os.path.dirname(output_path)) and os.path.exists(os.path.join("notebooks", os.path.dirname(output_path))):
-        output_path = os.path.join("notebooks", output_path)
+    if not os.path.exists(os.path.dirname(output_path)):
+        for c in [os.path.join("Final-Report/notebooks", output_path), os.path.join("notebooks", output_path)]:
+            if os.path.exists(os.path.dirname(c)):
+                output_path = c
+                break
     config = load_yaml_config(config_path)
     records = []
     

@@ -22,7 +22,7 @@ async def lifespan(app: FastAPI):
     logger.info("Initializing PI-Guard Service...")
 
     # Initialize Classifier
-    default_model_path = "notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models/baseline/baseline_tfidf.joblib") else "models/baseline/baseline_tfidf.joblib"
+    default_model_path = "Final-Report/notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("Final-Report/notebooks/models/baseline/baseline_tfidf.joblib") else ("notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models/baseline/baseline_tfidf.joblib") else "models/baseline/baseline_tfidf.joblib")
     model_path = os.getenv("BASELINE_MODEL_PATH", default_model_path)
     if os.path.exists(model_path):
         classifier = TfidfBaselineClassifier(model_path)
