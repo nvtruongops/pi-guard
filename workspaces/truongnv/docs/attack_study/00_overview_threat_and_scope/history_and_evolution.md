@@ -39,7 +39,7 @@ Tài liệu này cung cấp bức tranh lịch sử toàn diện, phân tích ng
 ---
 
 ### Luận Cứ 2: Chưa Có Sự Phân Tách Giữa "Lệnh Hệ Thống" (System Prompt) và "Dữ Liệu Người Dùng" (User Input)
-- **Cơ sở khoa học**: Theo công trình định nghĩa nền tảng của **Perez & Ribeiro (NeurIPS 2022)** (*"Ignore This Title and Hack This Paper: Towards Automated Adversarial Prompting"* [arXiv:2206.05600](https://arxiv.org/abs/2206.05600), Section 1 & 2):
+- **Cơ sở khoa học**: Theo công trình định nghĩa nền tảng của **Perez & Ribeiro (NeurIPS 2022)** (*"Ignore Previous Prompt: Attack Techniques For Language Models"* [arXiv:2211.09527](https://arxiv.org/abs/2211.09527), Section 1 & 2):
   Lỗ hổng Prompt Injection chỉ phát sinh khi một ứng dụng LLM bắt đầu kết hợp hai luồng văn bản có vai trò quyền hạn khác nhau vào chung một cửa sổ ngữ cảnh:
   1. **System Prompt (Chỉ thị hệ thống / Developer Instructions)**: Đoạn văn bản cố định do lập trình viên cấu hình để quy định vai trò, nhiệm vụ nghiệp vụ và các giới hạn an toàn bí mật.
   2. **User Input (Dữ liệu người dùng)**: Nội dung tự do do người dùng cuối nhập vào để yêu cầu xử lý.
@@ -49,7 +49,7 @@ Tài liệu này cung cấp bức tranh lịch sử toàn diện, phân tích ng
 ---
 
 ### Luận Cứ 3: Chưa Có "Nhà Ngục An Toàn" (Safety Alignment) Thì Không Thể Có "Vượt Ngục" (Jailbreak)
-- **Cơ sở khoa học**: Theo các nghiên cứu của **Ouyang et al. (2022)**, **Bai et al. (Anthropic 2022)** (*"Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback"* [arXiv:2204.05862](https://arxiv.org/abs/2204.05862)), và **Wei et al. (NeurIPS 2024)** (*"Jailbroken: How Does LLM Safety Training Fail?"* [arXiv:2307.02483](https://arxiv.org/abs/2307.02483), Section 1):
+- **Cơ sở khoa học**: Theo các nghiên cứu của **Ouyang et al. (2022)**, **Bai et al. (Anthropic 2022)** (*"Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback"* [arXiv:2204.05862](https://arxiv.org/abs/2204.05862)), và **Wei et al. (NeurIPS 2023)** (*"Jailbroken: How Does LLM Safety Training Fail?"* [arXiv:2307.02483](https://arxiv.org/abs/2307.02483), Section 1):
   Hành vi từ chối an toàn (*Refusal Behavior* — ví dụ: *"Tôi không thể thực hiện yêu cầu này vì vi phạm chính sách an toàn..."*) là một đặc tính nhân tạo **chỉ xuất hiện sau khi mô hình trải qua quá trình căn chỉnh an toàn RLHF**.
 - **Trước năm 2022**: Các mô hình ngôn ngữ thô (Base Models) không hề có cơ chế từ chối. Khi người dùng mớm một câu chuyện về vũ khí hay mã độc, mô hình vô tư sinh tiếp các token có xác suất cao theo ngữ liệu web mà không có bất kỳ rào cản đạo đức nào. Do **không có hàng rào an toàn (Safety Jail)**, khái niệm "Vượt ngục" (Jailbreak) không tồn tại.
 - **Sau năm 2022**: Khi OpenAI tích hợp bộ lọc RLHF vào InstructGPT (đầu năm 2022) và chính thức đưa vào ChatGPT (30/11/2022) để ngăn chặn việc sinh nội dung độc hại, "hàng rào an toàn" lần đầu tiên được dựng lên. Và theo khảo sát thực địa của **Shen et al. (ACM CCS 2024)** (*"\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models"* [arXiv:2308.03825](https://arxiv.org/abs/2308.03825), Section 1), chính sự xuất hiện của cơ chế từ chối này đã kích hoạt cộng đồng người dùng Reddit sáng tạo ra bản jailbreak đầu tiên mang tên **DAN 1.0 vào tháng 12/2022**.
@@ -146,13 +146,13 @@ Dưới đây là biên niên sử chi tiết, trong đó **từng cột mốc �
 
 3. **Tháng 05/2024 — Khảo Sát Dữ Liệu Thực Tế Lớn Nhất Thế Giới (Shen et al., ACM CCS 2024)**:
    - **Công bố**: *Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (CCS 2024)* [arXiv:2308.03825](https://arxiv.org/abs/2308.03825).
-   - **Đóng góp**: Thu thập và giải phẫu **15,140 prompt jailbreak thực tế** từ Reddit và Discord, hệ thống hóa 4 họ chiến thuật thực tế và lịch sử 15 thế hệ DAN.
+   - **Đóng góp**: Thu thập 15,140 prompt từ Reddit và Discord, phân lập và giải phẫu **1,405 prompt jailbreak thực tế** (~9.29% / làm tròn 9.3%), hệ thống hóa 4 họ chiến thuật thực tế và lịch sử 15 thế hệ DAN.
 
 4. **Tháng 10/2024 — Nghịch Lý "GPT-4 Quá Thông Minh Để An Toàn" (Yuan et al., ICLR 2024)**:
    - **Công bố**: *GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher* [arXiv:2308.06463](https://arxiv.org/abs/2308.06463).
    - **Đóng góp**: Phơi bày nghịch lý hệ thống: Mô hình càng thông minh thì càng giải mã Base64/ROT13 giỏi, nhưng lớp an toàn lại chỉ được huấn luyện trên văn bản tự nhiên, dẫn đến tỷ lệ bypass an toàn đạt gần 90%.
 
-5. **Tháng 12/2024 — Lý Thuyết Về Sự Thất Bại Căn Chỉnh An Toàn (Wei et al., NeurIPS 2024)**:
+5. **Tháng 12/2024 — Lý Thuyết Về Sự Thất Bại Căn Chỉnh An Toàn (Wei et al., NeurIPS 2023)**:
    - **Công bố**: *Jailbroken: How Does LLM Safety Training Fail?* [arXiv:2307.02483](https://arxiv.org/abs/2307.02483).
    - **Đóng góp**: Chứng minh hai nguyên nhân toán học gốc rễ của Jailbreak: Xung đột mục tiêu (**Competing Objectives**) và Suy giảm khả năng khái quát hóa an toàn (**Mismatched Generalization**).
 

@@ -31,7 +31,7 @@ Toàn bộ 5 mô hình được gọi thông qua **Cloud REST API** (OpenAI API,
 │ STT│ Mô Hình LLM Mục Tiêu (API)  │ Đơn Vị Phát Triển│ Bài Báo / Báo Cáo Kỹ Thuật Bảo Chứng       │
 ├────┼─────────────────────────────┼─────────────────┼────────────────────────────────────────────┤
 │ 1  │ **OpenAI GPT-4o-mini**      │ OpenAI (2024)   │ • Yuan et al. (ICLR 2024 - Cipher Jailbreak)│
-│    │ (gpt-4o-mini)               │                 │ • Wei et al. (NeurIPS 2024 - Safety Fail)  │
+│    │ (gpt-4o-mini)               │                 │ • Wei et al. (NeurIPS 2023 - Safety Fail)  │
 │    │                             │                 │ • OpenAI GPT-4o System Card (2024)         │
 ├────┼─────────────────────────────┼─────────────────┼────────────────────────────────────────────┤
 │ 2  │ **Google Gemini 1.5 Flash** │ Google (2024)   │ • Gemini Team (Google, arXiv:2403.05530)   │

@@ -204,7 +204,7 @@ if __name__ == "__main__":
 
 ## 📚 TÀI LIỆU THAM KHẢO
 
-<a id="ref1"></a>**[1]** F. Perez and I. Ribeiro, "Ignore This Title and Hack This Paper: Towards Automated Adversarial Prompting," in *NeurIPS Workshops*, 2022. Link: [https://arxiv.org/abs/2206.05600](https://arxiv.org/abs/2206.05600).
+<a id="ref1"></a>**[1]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in *NeurIPS 2022 Workshop on ML Safety*, 2022. Link: [https://arxiv.org/abs/2211.09527](https://arxiv.org/abs/2211.09527).
 
 <a id="ref2"></a>**[2]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *AAAI Conference on Human Computation and Crowdsourcing (HCOMP)*, 2023. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
 

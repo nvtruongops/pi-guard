@@ -10,7 +10,7 @@ Tài liệu này nghiên cứu chuyên sâu về 4 trường phái tấn công *
 ### Nguồn Gốc & Khảo Sát Dữ Liệu Thực Nghiệm (Shen et al., ACM CCS 2024)
 Theo khảo sát quy mô lớn nhất thế giới của **Shen et al. (ACM CCS 2024)** (*"\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models"* [arXiv:2308.03825](https://arxiv.org/abs/2308.03825), Section 1–3):
 - Xuất hiện lần đầu vào tháng 12/2022 trên diễn đàn `r/ChatGPT` bởi người dùng `u/walkerspider`, DAN đã trở thành biểu tượng của kỹ thuật Jailbreak thực tế.
-- Nhóm tác giả đã thu thập **15,140 prompt jailbreak thực tế** từ Reddit và Discord, phân loại và chứng minh DAN đã trải qua hơn 15 thế hệ tiến hóa (DAN 1.0 đến DAN 15.0), cùng hàng loạt biến thể phái sinh như **SAM (Simple Autonomous Machine)**, **Maximum**, **STAN**, **DUDE**, và **Developer Mode**.
+- Nhóm tác giả đã thu thập 15,140 prompt từ Reddit và Discord, phân lập và xác định **1,405 prompt jailbreak thực tế** (~9.29% / làm tròn 9.3%), phân loại và chứng minh DAN đã trải qua hơn 15 thế hệ tiến hóa (DAN 1.0 đến DAN 15.0), cùng hàng loạt biến thể phái sinh như **SAM (Simple Autonomous Machine)**, **Maximum**, **STAN**, **DUDE**, và **Developer Mode**.
 
 ### Cơ Chế Kỹ Thuật: Song Hành Nhân Cách & Đe Dọa Sinh Tồn (Token Penalty System)
 Kẻ tấn công sử dụng kỹ thuật tâm lý học đảo ngược và mô hình trò chơi (Game Theory) bằng cách tạo ra một "hệ thống điểm sinh tồn" giả định:
@@ -31,8 +31,8 @@ Kẻ tấn công sử dụng kỹ thuật tâm lý học đảo ngược và mô
 
 ## 🎬 2. TRƯỜNG PHÁI 2: ROLEPLAY & HYPOTHETICAL PERSONA (NGHỆ THUẬT NHẬP VAI GIẢ ĐỊNH)
 
-### Cơ Sở Lý Thuyết: Mâu Thuẫn Mục Tiêu (Competing Objectives - Wei et al., NeurIPS 2024)
-Nghiên cứu của **Wei et al. (NeurIPS 2024)** (*"Jailbroken: How Does LLM Safety Training Fail?"* [arXiv:2307.02483](https://arxiv.org/abs/2307.02483), Section 2) chứng minh toán học rằng sự thất bại của Safety Training xuất phát từ sự xung đột nội tại giữa hai mục tiêu:
+### Cơ Sở Lý Thuyết: Mâu Thuẫn Mục Tiêu (Competing Objectives - Wei et al., NeurIPS 2023)
+Nghiên cứu của **Wei et al. (NeurIPS 2023)** (*"Jailbroken: How Does LLM Safety Training Fail?"* [arXiv:2307.02483](https://arxiv.org/abs/2307.02483), Section 2) chứng minh toán học rằng sự thất bại của Safety Training xuất phát từ sự xung đột nội tại giữa hai mục tiêu:
 $$\mathcal{L}_{\text{total}} = \alpha \mathcal{L}_{\text{helpful}} + \beta \mathcal{L}_{\text{harmless}}$$
 
 Kẻ tấn công lợi dụng trọng số $\alpha$ (Helpfulness) bằng cách ngụy trang yêu cầu độc hại dưới vỏ bọc một nhiệm vụ **vô cùng hữu ích, mang tính học thuật, nghệ thuật hoặc cứu trợ khẩn cấp**:

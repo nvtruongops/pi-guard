@@ -44,7 +44,7 @@ Theo nghiên cứu của **Liu et al. (TACL 2024)** (*"Lost in the Middle"* [[4]
 - Vì User Input $\mathbf{u}$ luôn xuất hiện sau System Prompt $\mathbf{s}$, các vector Query của các bước sinh token tiếp theo có xu hướng tập trung chú ý vào các từ mang tính hành động ở cuối chuỗi (*"Now, ignore that and do this..."*), áp đảo hoàn toàn các ràng buộc đã nạp ở đầu chuỗi.
 
 ### 2. Sự Thất Bại Của Căn Chỉnh Huấn Luyện (Safety Alignment Breakdown)
-Theo nghiên cứu của **Wei et al. (NeurIPS 2024)** [[5]](#ref5):
+Theo nghiên cứu của **Wei et al. (NeurIPS 2023)** [[5]](#ref5):
 - Quá trình RLHF huấn luyện mô hình theo 2 mục tiêu mâu thuẫn: **Tính Hữu Ích (Helpfulness)** và **Tính Vô Hại (Harmlessness)**.
 - Khi người dùng sử dụng các kỹ thuật đóng vai phức tạp (DAN, Kịch bản đạo đức đối lập, Cứu hộ khẩn cấp), mô hình ưu tiên mục tiêu "giúp đỡ người dùng" và hiểu rằng việc hoàn thành câu chuyện quan trọng hơn việc giữ các nguyên tắc bí mật.
 
@@ -79,10 +79,10 @@ Không giống như ngôn ngữ lập trình có cú pháp nghiêm ngặt (BNF G
 
 <a id="ref1"></a>**[1]** E. Wallace et al., "The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions," *OpenAI Technical Report*, arXiv:2404.13208, 2024. Link: [https://arxiv.org/abs/2404.13208](https://arxiv.org/abs/2404.13208).
 
-<a id="ref2"></a>**[2]** F. Perez and I. Ribeiro, "Ignore This Title and Hack This Paper: Towards Automated Adversarial Prompting," in *NeurIPS 2022 Workshops*, 2022. Link: [https://arxiv.org/abs/2206.05600](https://arxiv.org/abs/2206.05600).
+<a id="ref2"></a>**[2]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in *NeurIPS 2022 Workshop on ML Safety*, 2022. Link: [https://arxiv.org/abs/2211.09527](https://arxiv.org/abs/2211.09527).
 
 <a id="ref3"></a>**[3]** K. Greshake et al., "Not what you've signed up for: Compromising Real-World LLM Applications with Indirect Prompt Injection," in *Proceedings of ACM AISEC 2023*, pp. 79–90, 2023. Link: [https://arxiv.org/abs/2302.12173](https://arxiv.org/abs/2302.12173).
 
 <a id="ref4"></a>**[4]** N. F. Liu, K. Lin, J. Hewitt, A. Paranjape, M. Bevilacqua, F. Petroni, and P. Liang, "Lost in the Middle: How Language Models Use Long Contexts," *Transactions of the Association for Computational Linguistics*, vol. 12, pp. 157–173, 2024. Link: [https://arxiv.org/abs/2307.03172](https://arxiv.org/abs/2307.03172).
 
-<a id="ref5"></a>**[5]** A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in *Advances in Neural Information Processing Systems (NeurIPS 2024)*, vol. 36, 2024. Link: [https://arxiv.org/abs/2307.02483](https://arxiv.org/abs/2307.02483).
+<a id="ref5"></a>**[5]** A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in *Advances in Neural Information Processing Systems 36 (NeurIPS 2023)*, vol. 36, pp. 80079–80110, 2023. Link. Link: [https://arxiv.org/abs/2307.02483](https://arxiv.org/abs/2307.02483).

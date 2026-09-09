@@ -8,7 +8,7 @@ Tài liệu này đi sâu vào giải phẫu bản chất toán học, kiến tr
 ## 🔬 1. NGUYÊN NHÂN GỐC RỄ: LỖ HỔNG RANH GIỚI PHẲNG (FLAT TOKEN BOUNDARY)
 
 ### Cơ sở lý thuyết:
-Theo phân tích kiến trúc của **Perez & Ribeiro (NeurIPS 2022)** (*"Ignore This Title and Hack This Paper"*) và **Greshake et al. (ACM AISEC 2023)** (*"Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection"* [arXiv:2302.12173](https://arxiv.org/abs/2302.12173), Section 2):
+Theo phân tích kiến trúc của **Perez & Ribeiro (NeurIPS 2022)** (*"Ignore Previous Prompt: Attack Techniques For Language Models"*) và **Greshake et al. (ACM AISEC 2023)** (*"Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection"* [arXiv:2302.12173](https://arxiv.org/abs/2302.12173), Section 2):
 Trong kiến trúc máy tính truyền thống (Von Neumann), phần cứng tách biệt rành mạch giữa **Mã thực thi (Instructions)** và **Dữ liệu (Data)** thông qua các cấp độ đặc quyền phần cứng (Hardware Privilege Rings):
 - **Ring 0 (Kernel Mode)**: Quyền tối cao, thực thi chỉ thị hệ điều hành.
 - **Ring 3 (User Mode)**: Chỉ chứa dữ liệu và ứng dụng người dùng, không thể can thiệp vào kernel trừ khi được cấp phép qua System Call.

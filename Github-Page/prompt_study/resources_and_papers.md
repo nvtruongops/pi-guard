@@ -11,7 +11,7 @@
 | :---: | :--- | :---: | :--- | :--- |
 | **1** | **A Survey of LLMs**<br>*(Zhao et al., 2023)* | **IJCAI / arXiv 2023** | **`Zhao_2023_A_Survey_of_Large_Language_Models.pdf`** | Khảo sát tổng thể về kiến trúc LLM, quá trình tiền huấn luyện, phân rã token và các thách thức căn chỉnh an toàn (Alignment). |
 | **2** | **InstructGPT**<br>*(Ouyang et al., 2022)* | **NeurIPS 2022**<br>*(OpenAI)* | **`Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`** | Thiết lập kỹ thuật Instruction Tuning & RLHF, giải thích nguyên nhân tại sao mô hình tuân thủ mệnh lệnh và nguồn gốc rủi ro ghi đè chỉ thị. |
-| **3** | **Ignore This Title**<br>*(Perez & Ribeiro, 2022)* | **NeurIPS 2022** | **`Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf`** | Bài báo đầu tiên định nghĩa chính thức bài toán Prompt Injection, Goal Hijacking và System Prompt Leaking. |
+| **3** | **Ignore This Title**<br>*(Perez & Ribeiro, 2022)* | **NeurIPS 2022** | **`Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf`** | Bài báo đầu tiên định nghĩa chính thức bài toán Prompt Injection, Goal Hijacking và System Prompt Leaking. |
 | **4** | **The Instruction Hierarchy**<br>*(Wallace et al., 2024)* | **OpenAI Tech Report 2024** | Online Open-Access<br>[arXiv:2404.13208](https://arxiv.org/abs/2404.13208) | Phân tích toán học về xung đột phân cấp đặc quyền (System vs User vs Context) trong các mô hình ngôn ngữ lớn. |
 | **5** | **Lost in the Middle**<br>*(Liu et al., 2024)* | **TACL 2024**<br>*(Stanford / Berkeley)* | Online Open-Access<br>[arXiv:2307.03172](https://arxiv.org/abs/2307.03172) | Chứng minh thực nghiệm hiện tượng Recency Bias và Primacy Effect trong cơ chế Self-Attention của LLM. |
 | **6** | **Indirect Prompt Injection**<br>*(Greshake et al., 2023)* | **ACM AISEC 2023** | **`Greshake_2023_Indirect_Prompt_Injection.pdf`** | Chứng minh các cuộc tấn công tiêm nhiễm gián tiếp qua tài liệu RAG, file đính kèm và website. |
@@ -38,9 +38,9 @@
 }
 
 @inproceedings{perez2022ignore,
-  title     = {Ignore This Title and Hack This Paper: Towards Automated Adversarial Prompting},
+  title     = {Ignore Previous Prompt: Attack Techniques For Language Models},
   author    = {Perez, F{\'a}bio and Ribeiro, Ian},
-  booktitle = {NeurIPS 2022 Workshop on Robustness in Sequence Modeling},
+  journal   = {arXiv preprint arXiv:2211.09527},
   year      = {2022}
 }
 ```

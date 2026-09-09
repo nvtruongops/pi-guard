@@ -26,9 +26,9 @@ All 18 core academic papers (17 modern $\ge 2022$ + 1 classic foundational work)
 | :--- | :--- | :---: | :--- |
 | [`Zhao_2023_A_Survey_of_Large_Language_Models.pdf`](file:///d:/Work/Do-an/Final-Report/References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf) | Zhao et al. (2023) | *IJCAI / arXiv 2023* | LLM Architecture Survey & Flat Code/Data Boundary (Ch. 1, 2) |
 | [`Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`](file:///d:/Work/Do-an/Final-Report/References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf) | Ouyang et al. (2022) | *NeurIPS 2022* | Instruction Tuning, RLHF & System Prompt Processing (Ch. 1, 2) |
-| [`Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf`](file:///d:/Work/Do-an/Final-Report/References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf) | Perez & Ribeiro (2022) | *NeurIPS 2022* | Direct Prompt Injection Foundation (Ch. 1, 2, 3) |
+| [`Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf`](file:///d:/Work/Do-an/Final-Report/References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf) | Perez & Ribeiro (2022) | *NeurIPS 2022* | Direct Prompt Injection Foundation (Ch. 1, 2, 3) |
 | [`Greshake_2023_Indirect_Prompt_Injection.pdf`](file:///d:/Work/Do-an/Final-Report/References/Greshake_2023_Indirect_Prompt_Injection.pdf) | Greshake et al. (2023) | *ACM AISEC 2023* | Indirect Prompt Injection & RAG Security (Ch. 1, 2) |
-| [`Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/Final-Report/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf) | Wei et al. (2024) | *NeurIPS 2024* | Jailbreak Mechanisms & Safety Training Failure (Ch. 1, 4) |
+| [`Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/Final-Report/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf) | Wei et al. (2023) | *NeurIPS 2023* | Jailbreak Mechanisms & Safety Training Failure (Ch. 1, 4) |
 | [`Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`](file:///d:/Work/Do-an/Final-Report/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf) | Tencent Zhuque Lab (2026) | *arXiv 2026* | Multi-Layer Threat Model & 26+ Attack Operators (Ch. 1, 3, 4) |
 | [`Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf`](file:///d:/Work/Do-an/Final-Report/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf) | Meta AI (2023) | *arXiv 2023* | SOTA Guardrail Baseline Comparison (Ch. 2, 3) |
 | [`NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`](file:///d:/Work/Do-an/Final-Report/References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf) | NVIDIA (2023) | *EMNLP 2023* | Programmable Middleware Architecture (Ch. 2, 3) |
@@ -121,7 +121,7 @@ Mọi bài viết nghiên cứu, chuyên đề kỹ thuật (`docs/attack_study/
 1. **Cú pháp trích dẫn**: Trích dẫn trong văn bản dùng định dạng `[[N]](#refN)` (ví dụ: `Perez & Ribeiro (2022) [[3]](#ref3)`).
 2. **Neo định vị**: Khối References ở cuối trang bắt buộc phải chứa thẻ neo `<a id="refN"></a>` tương ứng trên cùng file:
    ```markdown
-   <a id="ref3"></a>**[3]** F. Perez and I. Ribeiro, "Ignore This Title and Hack This Paper: Towards Automated Adversarial Prompting," in *NeurIPS Workshops*, 2022. Link: [https://arxiv.org/abs/2206.05600](https://arxiv.org/abs/2206.05600).
+   <a id="ref3"></a>**[3]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in *NeurIPS 2022 Workshop on ML Safety*, 2022. Link: [https://arxiv.org/abs/2211.09527](https://arxiv.org/abs/2211.09527).
    ```
 3. **Mục đích**: Bảo đảm cổng tài liệu MkDocs Material biên dịch 100% sạch, không sinh bất kỳ cảnh báo missing anchor nào.
 

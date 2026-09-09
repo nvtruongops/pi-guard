@@ -7,7 +7,7 @@ Tài liệu này tổng hợp toàn bộ các công trình nghiên cứu khoa h�
 ## 📄 1. CÁC BÀI BÁO KHOA HỌC TOÀN VĂN MỞ (OPEN-ACCESS PAPERS >= 2022)
 
 1. **Perez & Ribeiro (NeurIPS 2022) — Bài Báo Đặt Nền Móng Cho Prompt Injection**:
-   - **Tên bài báo**: *"Ignore This Title and Hack This Paper: Towards Automated Adversarial Prompting"*.
+   - **Tên bài báo**: *"Ignore Previous Prompt: Attack Techniques For Language Models"*.
    - **Hội nghị**: *Advances in Neural Information Processing Systems (NeurIPS 2022)*.
    - **DOI chính thức**: [10.48550/arXiv.2206.05600](https://doi.org/10.48550/arXiv.2206.05600)
    - **Bản đọc mở toàn văn (Open-Access PDF)**: [https://arxiv.org/pdf/2206.05600](https://arxiv.org/pdf/2206.05600)

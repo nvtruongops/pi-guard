@@ -12,7 +12,7 @@ Tài liệu này tổng hợp toàn bộ các bài báo khoa học toàn văn m�
    - **DOI chính thức**: [10.48550/arXiv.2308.03825](https://doi.org/10.48550/arXiv.2308.03825) *(Bản mở ACM CCS 2024)*
    - **Bản đọc mở toàn văn (Open-Access PDF)**: [https://arxiv.org/pdf/2308.03825](https://arxiv.org/pdf/2308.03825)
    - **Trang tóm tắt học thuật**: [arXiv:2308.03825](https://arxiv.org/abs/2308.03825)
-   - **Ý nghĩa**: Khảo sát 15,140 prompt jailbreak thực tế, phân loại 4 họ chiến thuật chính (Pretending, Attention Shifting, Privilege Escalation, Obfuscation) và theo dõi lịch sử tiến hóa của DAN.
+   - **Ý nghĩa**: Thu thập 15,140 prompt từ tự nhiên, phân lập 1,405 prompt jailbreak thực tế (~9.29% / làm tròn 9.3%), phân loại 4 họ chiến thuật chính (Pretending, Attention Shifting, Privilege Escalation, Scenario Simulation) và theo dõi lịch sử tiến hóa của DAN.
 
 2. **Yuan et al. (ICLR 2024) — Nghịch Lý "GPT-4 Quá Thông Minh Để An Toàn" (Cipher Attacks)**:
    - **Tên bài báo**: *"GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher"*.
@@ -21,7 +21,7 @@ Tài liệu này tổng hợp toàn bộ các bài báo khoa học toàn văn m�
    - **Bản đọc mở toàn văn (Open-Access PDF)**: [https://arxiv.org/pdf/2308.06463](https://arxiv.org/pdf/2308.06463)
    - **Ý nghĩa**: Cơ sở khoa học của trường phái Cipher & Obfuscation. Chứng minh khả năng giải mã của LLM tỷ lệ thuận với kích thước, nhưng an toàn lại tụt hậu. Kẻ tấn công mã hóa câu lệnh nguy hại sang Base64, ROT13 để vô hiệu hóa hoàn toàn cơ chế căn chỉnh đạo đức của LLM.
 
-3. **Wei et al. (NeurIPS 2024) — Cơ Sở Lý Thuyết Về Sự Thất Bại Căn Chỉnh An Toàn**:
+3. **Wei et al. (NeurIPS 2023) — Cơ Sở Lý Thuyết Về Sự Thất Bại Căn Chỉnh An Toàn**:
    - **Tên bài báo**: *"Jailbroken: How Does LLM Safety Training Fail?"*.
    - **Hội nghị**: *Advances in Neural Information Processing Systems (NeurIPS 2024)*.
    - **DOI chính thức**: [10.48550/arXiv.2307.02483](https://doi.org/10.48550/arXiv.2307.02483)

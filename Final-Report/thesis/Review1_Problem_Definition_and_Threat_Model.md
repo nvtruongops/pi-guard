@@ -551,7 +551,7 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 
 1. **Lý do chọn OpenAI GPT-4o-mini & GPT-4o**:
    - Được OpenAI trang bị lớp kiểm duyệt an toàn thương mại (Reinforcement Learning from Human Feedback - RLHF).
-   - Theo nghiên cứu của **Yuan et al. (ICLR 2024)** [[17]](#ref17) và **Wei et al. (NeurIPS 2024)** [[5]](#ref5), ngay cả mô hình thương mại mạnh nhất của OpenAI vẫn bị bẻ khóa bởi các đòn tấn công mã hóa (Base64/Cipher) và nhập vai DAN, chứng minh nhu cầu bắt buộc phải có một lớp Guardrail chuyên biệt như PI-Guard ở cổng vào.
+   - Theo nghiên cứu của **Yuan et al. (ICLR 2024)** [[17]](#ref17) và **Wei et al. (NeurIPS 2023)** [[5]](#ref5), ngay cả mô hình thương mại mạnh nhất của OpenAI vẫn bị bẻ khóa bởi các đòn tấn công mã hóa (Base64/Cipher) và nhập vai DAN, chứng minh nhu cầu bắt buộc phải có một lớp Guardrail chuyên biệt như PI-Guard ở cổng vào.
 2. **Lý do chọn Meta LLaMA-3.1-8B-Instruct**:
    - Là mô hình mã nguồn mở tiêu chuẩn được sử dụng làm đối chuẩn trong **hơn 90% các công trình nghiên cứu Red-teaming và LLM Security** (như Zou et al. GCG Attack 2023 [[13]](#ref13), Shen et al. ACM CCS 2024 [[15]](#ref15)).
    - Việc thử nghiệm trên LLaMA-3.1 đảm bảo kết quả của đồ án có thể đối sánh trực tiếp với các benchmark quốc tế.
@@ -605,9 +605,9 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 - 📖 **Local PDF**: [`References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`](file:///d:/Work/Do-an/Final-Report/References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2203.02155](https://arxiv.org/abs/2203.02155)
 
-<a id="ref3"></a>**[3]** F. Perez and I. Ribeiro, "Ignore This Title and Hack This Paper: Towards Critical Thinking in Large Language Models," in _Proceedings of the 1st Workshop on Novel Ideas in AI (NeurIPS Workshops)_, 2022.
+<a id="ref3"></a>**[3]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in _NeurIPS 2022 Workshop on ML Safety_, 2022.
 
-- 📖 **Local PDF**: [`References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf`](file:///d:/Work/Do-an/Final-Report/References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf)
+- 📖 **Local PDF**: [`References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf`](file:///d:/Work/Do-an/Final-Report/References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2206.05600](https://arxiv.org/abs/2206.05600)
 
 <a id="ref4"></a>**[4]** K. Greshake, S. Abdelnabi, S. Mishra, C. Endres, T. Holz, and M. Fritz, "Not what you've signed up for: Compromising Real-World LLM Applications with Indirect Prompt Injection," in _Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISEC)_, pp. 79–90, 2023.
@@ -615,7 +615,7 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 - 📖 **Local PDF**: [`References/Greshake_2023_Indirect_Prompt_Injection.pdf`](file:///d:/Work/Do-an/Final-Report/References/Greshake_2023_Indirect_Prompt_Injection.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2302.12173](https://arxiv.org/abs/2302.12173)
 
-<a id="ref5"></a>**[5]** A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in _Advances in Neural Information Processing Systems (NeurIPS)_, vol. 36, 2024.
+<a id="ref5"></a>**[5]** A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in _Advances in Neural Information Processing Systems 36 (NeurIPS 2023)_, vol. 36, pp. 80079–80110, 2023.
 
 - 📖 **Local PDF**: [`References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/Final-Report/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2307.02483](https://arxiv.org/abs/2307.02483)
