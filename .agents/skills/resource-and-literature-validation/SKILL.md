@@ -80,28 +80,38 @@ python -u Final-Report/scripts/audit_urls.py
 
 ---
 
-## 🌐 3. Quy Trình 4 Bước Khi Tìm Kiếm & Đưa Tài Liệu Mới Vào Repo
+## 🌐 3. Quy Trình 5 Bước Kiểm Định Học Thuật Nghiêm Ngặt (Academic Paper Rigor Gate)
 
-Mỗi khi agent hoặc thành viên nhóm muốn thêm một bài báo hoặc video hướng dẫn vào tài liệu:
+Mỗi khi agent hoặc thành viên nhóm muốn trích dẫn, bổ sung một bài báo khoa học mới hoặc cập nhật tài liệu tham khảo:
 
 ```
-[ BƯỚC 1: Thu thập DOI / Tên bài báo / Link Video ]
-                       │
-                       ▼
-[ BƯỚC 2: Chạy verify_resource_url.py ]
-  - Nếu là Video  ──> Kiểm tra oEmbed (xác nhận mã 200, tiêu đề thật)
-  - Nếu là DOI    ──> Truy vấn OpenAlex/Semantic Scholar tìm Open-Access PDF
-                       │
-                       ▼
-[ BƯỚC 3: Xử lý Paywall (Nếu bài báo bị khóa) ]
-  - Dùng MCP tool `arxiv` (search_papers) tìm preprint tương ứng
-  - Tra cứu Google Scholar / ResearchGate / Kho lưu trữ Đại học của tác giả
-  - Đối với lý thuyết kinh điển (1970-1990), bổ sung giáo trình chuẩn (Stanford IR book)
-                       │
-                       ▼
-[ BƯỚC 4: Ghi vào tài liệu theo định dạng Dual-Linking & Re-test ]
-  - Chạy `python Final-Report/scripts/verify_resource_url.py --file <file.md>`
-  - Đảm bảo 100% link hoạt động trước khi commit
+[ BƯỚC 1: XÁC THỰC TIÊU ĐỀ & TÁC GIẢ CHÍNH THỨC ]
+  ├── Đối chiếu OpenReview / DBLP / Crossref / arXiv để lấy chính xác tiêu đề bài báo đã bình duyệt.
+  └── LOẠI BỎ TRIỆT ĐỂ khẩu hiệu/slogan trình diễn (ví dụ: "Ignore This Title..." chỉ là slogan, tiêu đề chuẩn là "Ignore Previous Prompt...").
+                         │
+                         ▼
+[ BƯỚC 2: XÁC THỰC NƠI CÔNG BỐ, SỐ TẬP & NIÊN GIÁM (VOLUME & YEAR) ]
+  ├── Tra cứu chính xác số tập kỷ yếu và năm diễn ra hội nghị (ví dụ: NeurIPS 35 = 2022, NeurIPS 36 = 2023, NeurIPS 37 = 2024).
+  └── Tuyệt đối không nhầm lẫn niên giám hội nghị với năm nộp bản thảo hoặc năm cập nhật preprint.
+                         │
+                         ▼
+[ BƯỚC 3: KIỂM TOÁN VĂN BẢN PHÂN ĐỊNH 3 TẦNG (THREE-TIER ATTRIBUTION AUDIT) ]
+  ├── Tách biệt: (1) Đóng góp gốc của tác giả  ──> (2) Tiếp thu/cảm hứng của PI-Guard  ──> (3) Chỉ tiêu KPI/Giả thuyết của PI-Guard.
+  ├── CẤM GÁN NGUỒN CÔNG THỨC: Không gán công thức của PI-Guard ($X = S || U$) cho bài báo khảo sát.
+  ├── CẤM GÁN KPI CỦA ĐỒ ÁN: Không biến chỉ tiêu FPR < 1.5% hay P95 < 30ms thành kết luận của bài báo.
+  └── CHÍNH XÁC SỐ LIỆU TẬP DỮ LIỆU: Phân biệt rõ quy mô tổng thể (15,140 prompts) và số lượng mẫu tấn công thực tế (1,405 jailbreaks).
+                         │
+                         ▼
+[ BƯỚC 4: KIỂM ĐỊNH PHẠM VI & RANH GIỚI HỘP ĐEN (SCOPE & BLACK-BOX INVARIANT) ]
+  ├── Kiểm tra tính tương thích: Phải hoạt động ở mức prompt text ngoài cổng API (External Guardrail Proxy).
+  └── Nếu phương pháp đòi hỏi truy cập trọng số/nội tại (như RAP-ID): Đánh dấu OUT-OF-SCOPE và ghi rõ lý do chính xác:
+      "yêu cầu truy cập các internal model states / attention dynamics, trong khi PI-Guard là external black-box guardrail".
+                         │
+                         ▼
+[ BƯỚC 5: LƯU TRỮ CỤC BỘ OPEN-ACCESS PDF & CẬP NHẬT BIBTEX CHUẨN ]
+  ├── Tải Open-Access PDF vào `Final-Report/References/<filename>.pdf`.
+  ├── Lập chỉ mục siêu dữ liệu, đóng góp gốc và mã ánh xạ trong `Final-Report/References/REFERENCES_LOG.md`.
+  └── Chạy `python Final-Report/scripts/verify_resource_url.py --file <file.md>` để xác thực liên kết trước khi commit.
 ```
 
 ---

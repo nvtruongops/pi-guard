@@ -194,11 +194,75 @@ def audit_markdown_file(file_path: Path) -> list:
 
     return results
 
+def audit_academic_attribution(file_path: Path) -> list:
+    """
+    Kiểm tra các lỗi siêu dữ liệu và gán nguồn học thuật phổ biến:
+    1. Niên giám sai (Wei et al. NeurIPS 2024 thay vì 2023)
+    2. Nhầm khẩu hiệu trình diễn thành tiêu đề chính thức
+    3. Từ khóa không chuẩn mực trong trích dẫn (8 nguyên tắc vàng, peer-reviewed bibliography)
+    4. Gán ghép KPI của đồ án thành kết luận bài báo
+    """
+    issues = []
+    if not file_path.exists():
+        print(f"❌ File không tồn tại: {file_path}")
+        return [{"line": 0, "type": "FILE_NOT_FOUND", "msg": "Tệp không tồn tại"}]
+
+    with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+        lines = f.readlines()
+
+    rules = [
+        (
+            re.compile(r"Wei\s+et\s+al\..*NeurIPS\s+2024", re.IGNORECASE),
+            "METADATA_DISCREPANCY",
+            "Wei et al. (Jailbroken) là NeurIPS 2023 (Vol. 36), không phải NeurIPS 2024.",
+        ),
+        (
+            re.compile(r"Ignore\s+This\s+Title\s+and\s+Hack\s+This\s+Paper", re.IGNORECASE),
+            "SLOGAN_AS_TITLE",
+            "Cụm từ 'Ignore This Title...' là khẩu hiệu minh họa. Tiêu đề chính thức là 'Ignore Previous Prompt: Attack Techniques For Language Models'.",
+        ),
+        (
+            re.compile(r"8\s+nguyên\s+tắc\s+vàng", re.IGNORECASE),
+            "INFORMAL_TERMINOLOGY",
+            "Dùng 'các nguyên tắc thiết kế bảo vệ hệ thống máy tính được Saltzer và Schroeder đề xuất', không dùng '8 nguyên tắc vàng'.",
+        ),
+        (
+            re.compile(r"FINAL\s+PEER-REVIEWED\s+BIBLIOGRAPHY", re.IGNORECASE),
+            "OVERCLAIM_TITLE",
+            "Dùng 'FINAL VERIFIED LITERATURE MATRIX' thay cho 'FINAL PEER-REVIEWED BIBLIOGRAPHY'.",
+        ),
+        (
+            re.compile(r"(?:paper|bài báo)\s+(?:chứng minh|đạt)\s+.*(?:FPR\s*<\s*1\.5%|P95\s*<\s*30\s*ms)", re.IGNORECASE),
+            "KPI_CONFLATION",
+            "Không gán chỉ tiêu kỹ thuật của PI-Guard (FPR < 1.5%, P95 < 30ms) thành kết luận đã chứng minh của bài báo.",
+        ),
+    ]
+
+    print(f"\n🔬 Đang kiểm toán học thuật & gán nguồn (Attribution Audit): {file_path}")
+    for idx, line in enumerate(lines, 1):
+        for pattern, issue_type, msg in rules:
+            if pattern.search(line):
+                # Ngoại lệ: Nếu dòng đó có ghi chú cảnh báo/giải thích rõ ràng thì bỏ qua
+                if any(k in line for k in ["Lưu ý", "không phải", "thay cho", "slogan", "khẩu hiệu", "tiêu chuẩn"]):
+                    continue
+                issues.append({"line": idx, "type": issue_type, "msg": msg, "content": line.strip()})
+
+    if issues:
+        print(f"  ❌ Phát hiện {len(issues)} điểm cần chuẩn hóa học thuật:")
+        for iss in issues:
+            print(f"    - [Dòng {iss['line']}] [{iss['type']}] {iss['msg']}")
+            print(f"      Nội dung: {iss['content'][:100]}...")
+    else:
+        print("  ✅ 100% ĐẠT CHUẨN: Không phát hiện lỗi siêu dữ liệu, slogan hay gán nguồn sai lệch.")
+
+    return issues
+
 def main():
     parser = argparse.ArgumentParser(description="PI-Guard Resource & Literature Validator")
     parser.add_argument("--url", help="Kiểm tra một URL cụ thể")
     parser.add_argument("--doi", help="Tra cứu DOI để tìm kiếm Open-Access PDF")
     parser.add_argument("--file", help="Quét và kiểm tra toàn bộ liên kết trong một file Markdown")
+    parser.add_argument("--audit-attribution", help="Kiểm toán siêu dữ liệu và ranh giới gán nguồn học thuật trong file")
     args = parser.parse_args()
 
     if args.url:
@@ -229,6 +293,10 @@ def main():
         res = audit_markdown_file(Path(args.file))
         has_invalid = any(not r["is_valid"] for r in res)
         sys.exit(1 if has_invalid else 0)
+
+    if args.audit_attribution:
+        issues = audit_academic_attribution(Path(args.audit_attribution))
+        sys.exit(1 if issues else 0)
 
     parser.print_help()
 

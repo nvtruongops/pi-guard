@@ -76,6 +76,24 @@ trigger: always_on
 
 ---
 
+## 🔬 STRICT RULE: THREE-TIER DECOUPLING & LITERATURE ATTRIBUTION INVARIANT (QUY TẮC BẤT BIẾN PHÂN ĐỊNH 3 TẦNG & CHỐNG GÁN NGUỒN SAI LỆCH)
+
+> [!IMPORTANT]
+> **QUY TẮC BẮT BUỘC KHI TRÍCH DẪN & ÁNH XẠ TÀI LIỆU KHOA HỌC**:
+> 1. **PHÂN ĐỊNH 3 TẦNG BẮT BUỘC (THREE-TIER DECOUPLING)**:
+>    Mọi trích dẫn và phân tích bài báo khoa học trong luận văn và tài liệu chuyên đề PHẢI phân tách rõ ràng 3 thực thể độc lập:
+>    - **Tầng 1: Đóng góp khoa học gốc của bài báo (Original Author Findings)**: Chỉ nêu chính xác những gì tác giả bài báo thực sự chứng minh, đo đạc hoặc đề xuất.
+>    - **Tầng 2: Định vị kỹ thuật & Tiếp thu của PI-Guard (PI-Guard Design Choice & Adaptation)**: Trình bày rõ ràng cách đồ án lấy cảm hứng hoặc kế thừa kết quả đó vào thiết kế hệ thống (dùng dấu chấm phẩy `;` hoặc phân tách bằng mục riêng).
+>    - **Tầng 3: Mục tiêu kỹ thuật & Giả thuyết của PI-Guard (PI-Guard Target KPI & Hypotheses)**: Tuyệt đối không gán ghép các KPI đo đạc của đồ án (FPR < 1.5%, P95 < 30ms, delta F1 < 5%) vào bài báo tham chiếu.
+> 2. **CẤM GÁN NGUỒN CÔNG THỨC & MÔ HÌNH HÓA (ZERO EQUATION ATTRIBUTION LEAK)**:
+>    - Các công thức toán học và ký hiệu mô hình hóa do nhóm tự đề xuất (như $X = S \mathbin{\Vert} U$) phải được định danh rõ: *"Trong phạm vi mô hình hóa của PI-Guard..."*, tuyệt đối không viết như thể đó là định lý hay ký hiệu từ các bài báo khảo sát (như Zhao et al.).
+> 3. **XÁC MINH SIÊU DỮ LIỆU ĐA NGUỒN (MULTI-SOURCE METADATA VERIFICATION)**:
+>    - Trước khi ghi nhận bất kỳ paper nào, bắt buộc phải tra cứu chính xác: Tên bài báo chính thức (phân biệt với slogan trình diễn), Danh sách đầy đủ tác giả, Hội nghị / Tạp chí, Số tập (Volume), Năm tổ chức/xuất bản chính thức (ví dụ: NeurIPS 2023 là Volume 36, diễn ra tháng 12/2023; không được nhầm sang NeurIPS 2024).
+> 4. **CHÍNH XÁC HỌC THUẬT VỀ SỐ LIỆU TẬP DỮ LIỆU**:
+>    - Khi dẫn số liệu từ các tập dữ liệu thực tế (như Shen et al. DAN dataset), phải phân biệt chính xác giữa kích thước tập dữ liệu tổng quát (15,140 prompts) và số lượng mẫu tấn công thực tế (1,405 jailbreaks).
+
+---
+
 ## 🛡️ STRICT RULE: ACADEMIC TERMINOLOGY & DEFENSE BLACKLIST / WHITELIST PROTOCOL
 
 Nhằm phòng tránh triệt để các câu hỏi bẫy và nguy cơ bị trừ điểm nặng trước Hội đồng Chấm Bảo vệ Tốt nghiệp FPT (Academic Council), tất cả thành viên và AI Agent bắt buộc phải tuân thủ bảng thuật ngữ chuẩn mực:

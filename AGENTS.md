@@ -68,6 +68,19 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
+## 🔬 STRICT RULE: THREE-TIER DECOUPLING & LITERATURE ATTRIBUTION INVARIANT (ZERO CITATION ATTRIBUTION OVERREACH)
+> [!IMPORTANT]
+> **MANDATORY ACADEMIC RIGOR FOR SCIENTIFIC CITATIONS & APPLICATION MAPPING**:
+> 1. **MANDATORY THREE-TIER DECOUPLING**: Every scientific citation in the thesis, literature review, and reports MUST clearly demarcate three independent entities:
+>    - **Tier 1: Original Author Findings**: Accurately state only what the paper's authors proved, observed, or proposed.
+>    - **Tier 2: PI-Guard Design Choice & Adaptation**: Explicitly explain how PI-Guard adopts, inherits, or is inspired by the finding (use semicolons or dedicated sub-bullets).
+>    - **Tier 3: PI-Guard Engineering Target & Hypotheses**: Under no circumstances attribute PI-Guard's technical KPIs ($\text{FPR} < 1.5\%$, $P95 < 30\text{ms}$, $\Delta F_1 < 5\%$, $40\times$ speedup) to the referenced paper.
+> 2. **ZERO EQUATION & NOTATION ATTRIBUTION LEAK**: Never attribute project-specific mathematical notations (e.g., $X = S \mathbin{\Vert} U$) or project threat boundaries to general survey or alignment papers (e.g., Zhao et al., InstructGPT). State clearly: *"Within the modeling scope of PI-Guard..."*.
+> 3. **MULTI-SOURCE METADATA VERIFICATION**: Before citing any paper, cross-check official conference volume, proceeding year, and official paper title across Crossref / OpenReview / DBLP. Do not cite informal demo slogans (e.g. "Ignore This Title...") as official paper titles, and do not conflate conference volumes (e.g. NeurIPS 2023 Vol. 36 vs NeurIPS 2024 Vol. 37).
+> 4. **DATASET SAMPLE RIGOR**: Clearly distinguish total corpus size from actual positive attack samples (e.g., Shen et al. DAN dataset: 15,140 total prompts collected vs. 1,405 verified jailbreak prompts).
+
+---
+
 ## 🛡️ STRICT RULE: ACADEMIC TERMINOLOGY & DEFENSE BLACKLIST / WHITELIST PROTOCOL
 
 To prevent severe challenges and score deductions during committee defenses before the FPT Academic Council, all team members and AI Agents must strictly adhere to the following terminology blacklist/whitelist:
