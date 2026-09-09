@@ -74,7 +74,7 @@ def sanitize_content(content: str) -> str:
     content = "\n".join(sanitized_lines)
 
     # Chuyển đổi link PDF nội bộ và link file ngoài thành inline code hoặc text đậm
-    content = re.sub(r"\[([^\]]+)\]\((?:file:///[^)]+|Final-Report/References/[^)]+\.pdf|Final-Report/Meeting/[^)]+|Final-Report/[^)]+|reports/References/[^)]+\.pdf|References/[^)]+\.pdf|reports/Meeting/[^)]+|Meeting/[^)]+|CAPSTONE%20PROJECT%20REGISTER\.md|Github-Page/[^)]+|docs/[^)]+)\)", r"**\1**", content)
+    content = re.sub(r"\[([^\]]+)\]\((?:file:///[^)]*|Final-Report(?:/[^)]*)?|workspaces(?:/[^)]*)?|reports/(?:References|Meeting)/[^)]*|References/[^)]*|Meeting/[^)]*|CAPSTONE%20PROJECT%20REGISTER\.md|Github-Page/[^)]*|docs/[^)]*)\)", r"**\1**", content)
 
     # Thay thế file:///... còn lại
     content = re.sub(r"\(file:///[^)]+\)", r"(#)", content)

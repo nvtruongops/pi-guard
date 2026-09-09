@@ -32,8 +32,8 @@ Trong đề tài **PI-Guard** (FPT University IAP491), nhóm áp dụng mô hìn
 
 > [!IMPORTANT]
 > **QUY TẮC NGHIỆM THU ĐẦU RA (DELIVERABLE ACCEPTANCE RULE)**:
-> - **Giai đoạn hiện tại (Review 1: Tuần 1–4)**: Phân hệ nghiệm thu chính thức [`Final-Report/`](Final-Report/) **CHỈ BÁO CÁO CÁC SẢN PHẨM ĐÃ CÓ THỰC TẾ** (Hồ sơ chuyên đề, Luận văn dự thảo, Slide GVHD, Sổ tiến độ, 18 bài báo khoa học PDF và Khung cấu hình YAML tái lập).
-> - **Mã nguồn, Notebooks và Test Scripts**: Hiện đang được cả 4 thành viên phát triển song song độc lập trong các sandbox cá nhân [`workspaces/<thành_viên>/`](workspaces/) và sẽ được Leader đồng quy tích hợp vào [`Final-Report/`](Final-Report/) tại các cột mốc Review 2 và Hội Đồng Giữa Kỳ sau khi nghiệm thu.
+> - **Giai đoạn hiện tại (Review 1: Tuần 1–4)**: Phân hệ nghiệm thu chính thức **`Final-Report/`** **CHỈ BÁO CÁO CÁC SẢN PHẨM ĐÃ CÓ THỰC TẾ** (Hồ sơ chuyên đề, Luận văn dự thảo, Slide GVHD, Sổ tiến độ, 18 bài báo khoa học PDF và Khung cấu hình YAML tái lập).
+> - **Mã nguồn, Notebooks và Test Scripts**: Hiện đang được cả 4 thành viên phát triển song song độc lập trong các sandbox cá nhân **`workspaces/<thành_viên>/`** và sẽ được Leader đồng quy tích hợp vào **`Final-Report/`** tại các cột mốc Review 2 và Hội Đồng Giữa Kỳ sau khi nghiệm thu.
 
 | Cột Mốc Đánh Giá | Hoạt Động Song Song Của Cả 4 Thành Viên | Phiên Họp Tổng Kết & Đồng Quy Tri Thức | Sản Phẩm Đầu Ra Nghiệm Thu (Chỉ báo cáo các phần đã có) |
 | :--- | :--- | :--- | :--- |
@@ -50,10 +50,10 @@ Mỗi thành viên làm việc độc lập trong thư mục sandbox được ch
 
 | Thành Viên | MSSV | Vai Trò Chuyên Sâu | Workspace Cá Nhân | Nhánh Git Feature |
 | :--- | :--- | :--- | :--- | :--- |
-| **Nguyễn Văn Trường (Leader)** | SE182034 | Data Engineering, Kiến trúc Guardrail, Quản trị Repository & Đồng quy Tri thức | [`workspaces/truongnv/`](workspaces/truongnv/) | `main`, `lead/truong-*` |
-| **Nguyễn Quí Đức** | SE182087 | Classical ML Baseline (TF-IDF), Trích xuất đặc trưng & Mô hình hóa đe dọa | [`workspaces/ducnq/`](workspaces/ducnq/) | `feat/duc-baseline-ml` |
-| **Phạm Minh Hoàng Việt** | SE181851 | Transformer DeBERTa-v3 Fine-tuning, Lượng hóa INT8 ONNX & Đối kháng Evasion | [`workspaces/vietpmh/`](workspaces/vietpmh/) | `feat/viet-transformer` |
-| **Đỗ Đoàn Duy Phương** | SE180235 | FastAPI Guardrail Middleware Proxy, Streamlit Dashboard & Biên dịch Luận văn | [`workspaces/phuongddd/`](workspaces/phuongddd/) | `feat/phuong-api-ui` |
+| **Nguyễn Văn Trường (Leader)** | SE182034 | Data Engineering, Kiến trúc Guardrail, Quản trị Repository & Đồng quy Tri thức | **`workspaces/truongnv/`** | `main`, `lead/truong-*` |
+| **Nguyễn Quí Đức** | SE182087 | Classical ML Baseline (TF-IDF), Trích xuất đặc trưng & Mô hình hóa đe dọa | **`workspaces/ducnq/`** | `feat/duc-baseline-ml` |
+| **Phạm Minh Hoàng Việt** | SE181851 | Transformer DeBERTa-v3 Fine-tuning, Lượng hóa INT8 ONNX & Đối kháng Evasion | **`workspaces/vietpmh/`** | `feat/viet-transformer` |
+| **Đỗ Đoàn Duy Phương** | SE180235 | FastAPI Guardrail Middleware Proxy, Streamlit Dashboard & Biên dịch Luận văn | **`workspaces/phuongddd/`** | `feat/phuong-api-ui` |
 
 ---
 
