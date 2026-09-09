@@ -3,12 +3,12 @@
 
 > **Thư mục lưu trữ tài liệu gốc**: **`Final-Report/References/`**  
 > **Tiêu chuẩn học thuật**: 17 công trình khoa học đỉnh cao kỷ nguyên LLM hiện đại (2022–2026) + 1 công trình kinh điển đặt nền móng kiến trúc bảo vệ phân tầng (Saltzer & Schroeder, IEEE 1975) + 4 tài liệu chuyên đề mở rộng.  
-> **Cập nhật chuẩn hóa lần cuối**: 2026-09-10 (Đã hoàn thành rà soát chéo 100% metadata qua Crossref/DBLP/OpenReview, xác lập niên giám NeurIPS 2023 chính xác cho [5], chuẩn hóa văn phong học thuật, tách bạch tuyệt đối đóng góp gốc của tác giả vs. lựa chọn thiết kế và KPI của PI-Guard).  
+> **Cập nhật chuẩn hóa lần cuối**: 2026-09-10 (Đã hoàn thành rà soát chéo metadata qua Proceedings/Crossref/DBLP/arXiv, xác lập niên giám NeurIPS 2023 chính xác cho [5], chuẩn hóa văn phong học thuật, áp dụng mô hình Four-Tier Provenance & Decoupling tách bạch tuyệt đối đóng góp gốc của tác giả vs. lựa chọn thiết kế và KPI của PI-Guard).  
 > **Mục đích**: Lưu trữ, lập chỉ mục siêu dữ liệu chuẩn xác và ánh xạ toàn bộ **18 bài báo PDF cốt lõi** cùng 4 tài nguyên thực nghiệm mở rộng vào cấu trúc luận văn và mã nguồn đề tài PI-Guard.
 
 ---
 
-## 🔒 0. NGUYÊN TẮC BẤT BIẾN: "LOCAL REFERENCES FIRST" PROTOCOL
+## 🔒 0. NGUYÊN TẮC BẤT BIẾN: "LOCAL REFERENCES FIRST" PROTOCOL & FOUR-TIER PROVENANCE
 > [!IMPORTANT]
 > **QUY TRÌNH BẮT BUỘC CHO TẤT CẢ THÀNH VIÊN & AI AGENTS TRƯỚC KHI TÌM KIẾM BÀI BÁO MỚI**:
 > 1. **TRUY LỤC TÀI LIỆU CỤC BỘ TRƯỚC TIÊN (Local References First)**:
@@ -16,15 +16,15 @@
 >    - Nếu luận điểm đã được bảo chứng bởi một trong 18 bài báo đã lưu trữ, **PHẢI TÁI SỬ DỤNG NGAY** bài báo đó (dùng đúng mã neo `[[N]](#refN)` và tệp PDF cục bộ tương ứng).
 > 2. **CHỐNG DÀN TRẢI & TÌM KIẾM TRÙNG LẶP (Zero Redundant Search)**:
 >    - Tuyệt đối không dùng các công cụ MCP (`arxiv`, `openalex`, `semanticscholar`, `scholar-feed`) để tìm kiếm thêm bài báo mới cho các chủ đề ĐÃ CÓ trong kho 18 bài (như: Direct Prompt Injection, DAN Jailbreak, TF-IDF Baseline, DeBERTa-v3, ONNX INT8 Quantization, Low FPR Trade-off).
-> 3. **PHÂN ĐỊNH TƯỜNG MINH: KẾT QUẢ BÀI BÁO VS. CHỈ TIÊU ĐỒ ÁN (Scientific Rigor Invariant)**:
->    - **Tuyệt đối không gán ghép các KPI kỹ thuật của PI-Guard** (như: độ trễ $P95 < 30\text{ms}$, $\text{FPR} < 1.5\%$, nhanh hơn $40\times$, độ suy giảm đối kháng $\Delta F_1 < 5\%$) thành kết luận đã được chứng minh trong các bài báo tham chiếu.
->    - Mọi mục trong tài liệu phải tách bạch rõ 3 tầng:
->      1. *Đóng góp khoa học gốc của bài báo (Original Author Findings)*
->      2. *Định vị kỹ thuật & Tiếp thu thiết kế của PI-Guard (PI-Guard Design Choice & Adaptation)*
->      3. *Mục tiêu kỹ thuật & Giả thuyết thực nghiệm của PI-Guard (PI-Guard Target KPI & Research Hypotheses)*.
-> 4. **CHUẨN MỰC GÁN NGUỒN VÀ VĂN PHONG HỌC THUẬT (Attribution & Phrasing Discipline)**:
+> 3. **MÔ HÌNH PHÂN ĐỊNH 4 TẦNG & TRUY XUẤT NGUỒN GỐC (Four-Tier Provenance & Decoupling)**:
+>    - Mọi trích dẫn khoa học trong đề tài phải tuân thủ nghiêm ngặt 4 tầng độc lập:
+>      - **Tầng 0: Nguồn gốc Thư mục (Tier 0 — Bibliographic Provenance)**: Title, Authors, Venue, Volume/Issue, Year, Pages, DOI, Version/Publication Status, Primary Authoritative Source. Thứ tự xác thực siêu dữ liệu ưu tiên: `Trang kỷ yếu nhà xuất bản (Publisher/proceedings page) -> Metadata hội nghị/tạp chí chính thức -> DOI/Crossref -> arXiv/DBLP/OpenReview (khi có)`.
+>      - **Tầng 1: Đóng góp Khoa học Gốc của Bài báo (Tier 1 — Original Author Findings)**: Chỉ nêu trung thực và chính xác những gì tác giả nghiên cứu thực sự chứng minh, đo đạc hoặc đề xuất.
+>      - **Tầng 2: Định vị Kỹ thuật & Tiếp thu của PI-Guard (Tier 2 — PI-Guard Design Choice & Adaptation)**: Trình bày rõ ràng cách đồ án lấy cảm hứng hoặc kế thừa kết quả đó vào thiết kế hệ thống (dùng dấu chấm phẩy `;` hoặc phân tách bằng mục riêng).
+>      - **Tầng 3: Mục tiêu Kỹ thuật & Giả thuyết của PI-Guard (Tier 3 — PI-Guard Target KPI & Hypotheses)**: **Không được trình bày KPI, benchmark result, latency, FPR, F1 hoặc performance measurement của PI-Guard như kết quả thực nghiệm của tài liệu tham chiếu, trừ khi tài liệu đó thực sự báo cáo cùng phép đo và cùng điều kiện.**
+> 4. **CHUẨN MỰC GÁN NGUỒN VÀ KHIÊM TỐN HỌC THUẬT (Attribution & Academic Humility)**:
 >    - Không gán các ký hiệu hình thức hóa của PI-Guard (như $X = S \mathbin{\Vert} U$) hay các mô hình đe dọa prompt injection thành công thức của các bài survey tổng quan (như Zhao et al.) hoặc bài căn chỉnh chỉ thị (như InstructGPT).
->    - Tránh các khẳng định mang tính tuyệt đối hóa vượt quá phạm vi chứng minh của bài báo.
+>    - Tuyệt đối loại bỏ các tuyên bố khẳng định quá mức (như "100% PASS cho toàn bộ luận văn/học thuật", "không lo ngại bất kỳ câu hỏi phản biện nào", "độ chuẩn mực học thuật tối đa"). Phân định rõ: `Automated repository validation: 100% PASS` (cho kịch bản kiểm thử mã nguồn) và `Academic literature verification: VERIFIED / REVIEWED`.
 >    - Sử dụng thuật ngữ học thuật trang trọng (formal academic terminology), loại bỏ văn phong thứ cấp/dân dã (ví dụ: thay "nguyên tắc vàng" bằng "các nguyên tắc thiết kế bảo vệ hệ thống máy tính được Saltzer và Schroeder đề xuất").
 > 5. **ĐIỀU KIỆN TIẾP NHẬN TÀI LIỆU MỚI (New Reference Ingestion Criteria)**:
 >    - Chỉ được phép bổ sung bài báo mới khi xuất hiện câu hỏi nghiên cứu mới phát sinh ngoài phạm vi 18 bài hiện có.
@@ -46,7 +46,7 @@
 | **8. Kiến Trúc Guardrail Middleware Lập Trình Được** | <a href="#ref8">`[8]`</a> | Rebedea et al. / NVIDIA (2023)| **`NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`** | Bộ công cụ kiểm soát an toàn dạng middleware lập trình được với Colang. | Cơ sở tham khảo kiến trúc Ingress Proxy bất đồng bộ đánh chặn trước LLM. (Chương 2, 3) |
 | **9. Huấn Luyện Ngữ Nghĩa Sâu Với DeBERTa-v3** | <a href="#ref9">`[9]`</a> | He, Gao, Chen (2023) | **`He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`** | Đột phá ELECTRA-style RTD và Gradient-Disentangled Embedding Sharing (GDES) tại ICLR 2023. | Lý giải việc lựa chọn DeBERTa-v3 làm bộ phân loại ngữ nghĩa sâu Tầng 2. (Chương 3, 4) |
 | **10. Kiểm Soát Đánh Đổi FPR Trong Phát Hiện Độc Hại** | <a href="#ref10">`[10]`</a> | Markov et al. / OpenAI (2023) | **`OpenAI_2023_Undesired_Content_Detection.pdf`** | Phương pháp luận kiểm duyệt nội dung thực tế (AAAI 2023); phân tích chi phí FPR đối với trải nghiệm người dùng. | Cung cấp bài học thực tế để PI-Guard thiết lập yêu cầu kỹ thuật: đặt mục tiêu kiểm soát $\text{FPR} < 1.5\%$ trên tập lành tính. (Chương 2, 4) |
-| **11. Khảo Sát Thực Nghiệm Prompt Jailbreak Trong Tự Nhiên** | <a href="#ref11">`[11]`</a> | Shen et al. (2024) | **`Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`** | Bộ dữ liệu công bố gồm 15,140 prompt tổng cộng, xác định được 1,405 jailbreak prompts thực tế; phân tích mẫu hình DAN. | Nguồn dữ liệu kiểm thử thực nghiệm jailbreak tự nhiên cho PI-Guard. (Chương 3, 4) |
+| **11. Khảo Sát Thực Nghiệm Prompt Jailbreak Trong Tự Nhiên** | <a href="#ref11">`[11]`</a> | Shen et al. (2024) | **`Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`** | Tập dữ liệu công bố 1,405/15,140 prompts, tương đương khoảng 9.29% (thường được báo cáo làm tròn là 9.3%); kèm ghi chú phân biệt giữa số liệu của các phiên bản/mô tả khác nhau của nghiên cứu. | Nguồn dữ liệu kiểm thử thực nghiệm jailbreak tự nhiên cho PI-Guard. (Chương 3, 4) |
 | **12. Khung Kiểm Thử Đối Kháng & Đột Biến Văn Bản** | <a href="#ref12">`[12]`</a> | Zhou et al. (2024) | **`Zhou_2024_EasyJailbreak_Unified_Framework.pdf`** | Framework tự động hóa đột biến jailbreak 4 tầng (Initialize, Mutate, Evaluate, Select). | PI-Guard sử dụng các toán tử đột biến của framework này làm công cụ fuzzing; đặt mục tiêu kiểm thử duy trì $\Delta F_1 < 5\%$. (Chương 3, 4) |
 | **13. Tấn Công Chuỗi Hậu Tố Đối Kháng Tối Ưu Hóa (GCG)** | <a href="#ref13">`[13]`</a> | Zou et al. (2023) | **`Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf`** | Thuật toán Greedy Coordinate Gradient sinh hậu tố đối kháng chuyển giao. | PI-Guard sử dụng các mẫu sinh bởi GCG như một tập kiểm thử đánh giá đối kháng ngoại lai (OOD evaluation set). (Chương 4) |
 | **14. Phòng Thủ Bằng Xáo Trộn Ngẫu Nhiên (SmoothLLM)** | <a href="#ref14">`[14]`</a> | Robey et al. (2023) | **`Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`** | Cơ chế làm mịn ngẫu nhiên qua biến dị prompt và đa số biểu quyết phản hồi LLM. | PI-Guard sử dụng làm baseline đối chuẩn để so sánh đánh đổi giữa multi-query defense và single-pass classifier. (Chương 2, 4) |
@@ -194,7 +194,7 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 - **Tệp PDF Cục Bộ**: **`Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`** (22 trang)
 - **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2308.03825.pdf](https://arxiv.org/pdf/2308.03825.pdf) | **DOI chính xác**: `10.1145/3658644.3670388` | **arXiv ID**: `2308.03825`
 - **Từ khóa phân loại**: `In-The-Wild Prompts`, `Jailbreak Characterization`, `Do Anything Now (DAN)`, `Empirical Measurement`, `Attack Semantic Patterns`
-- **Đóng góp khoa học gốc của bài báo**: Nghiên cứu đo lường thực nghiệm quy mô lớn đầu tiên về prompt jailbreak trong tự nhiên. Tập dữ liệu được nhóm tác giả công bố chính thức gồm **15,140 prompt tổng cộng** (thu thập từ tháng 12/2022 đến tháng 12/2023 từ 4 nền tảng cộng đồng), trong đó **1,405 prompt được xác định là jailbreak prompts thực tế** (tỷ lệ 9.28%); phân loại các mẫu hình tấn công như đóng vai nhân vật, ép buộc giả định và vô hiệu hóa kiểm duyệt. *(Lưu ý: Bản thảo sơ khởi của bài báo từng ghi nhận số liệu khảo sát ban đầu là 6,387 prompt trong 6 tháng, trước khi tập dữ liệu mở rộng 15,140 prompt được hoàn thiện và công bố chính thức)*.
+- **Đóng góp khoa học gốc của bài báo**: Nghiên cứu đo lường thực nghiệm quy mô lớn đầu tiên về prompt jailbreak trong tự nhiên. Tập dữ liệu được nhóm tác giả công bố chính thức gồm **1,405/15,140 prompts được xác định là jailbreak prompts thực tế**, tương đương khoảng **9.29%** (thường được báo cáo làm tròn là **9.3%**, thu thập từ tháng 12/2022 đến tháng 12/2023 từ 4 nền tảng cộng đồng); kèm ghi chú phân biệt giữa số liệu của các phiên bản/mô tả khác nhau của nghiên cứu (bản thảo sơ khởi từng ghi nhận khảo sát ban đầu là 6,387 prompt trong 6 tháng trước khi tập dữ liệu mở rộng 15,140 prompt được hoàn thiện và công bố chính thức). Paper phân tích các mẫu hình tấn công như đóng vai nhân vật, ép buộc giả định và vô hiệu hóa kiểm duyệt.
 - **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 3 (Kỹ nghệ dữ liệu)** & **Chương 4 (Đánh giá thực nghiệm)** — Nhóm kế thừa bộ 1,405 mẫu jailbreak thực tế này (kết hợp với dữ liệu tổng hợp và benign) để làm nguồn dữ liệu kiểm thử thực tế cho lớp nhãn *Jailbreak*, đảm bảo PI-Guard được đánh giá trên các đòn tấn công thực tế do con người tạo ra.
 
 ---
@@ -312,7 +312,7 @@ Ngoài 18 bài báo cốt lõi, thư mục `References/` còn lưu trữ 4 tài 
    - *Tên bài báo*: *RAP-ID: Mechanistic Prompt Injection Detection via Impostor Behavior Analysis*
    - *Tác giả*: Yuchen Yang, Lei Peng, Yujie He, Yang Yu, Zhongxin Wu, Yanlei Shi (Lenovo)
    - *Venue*: Findings of ACL 2026, pp. 15008–15019
-   - *Đánh giá của nhóm*: **XÁC ĐỊNH LÀ NGOÀI PHẠM VI (OUT-OF-SCOPE)**. Do phương pháp yêu cầu truy cập trực tiếp vào các trạng thái nội tại của mô hình và động lực chú ý (internal model states / attention dynamics), trong khi đề tài PI-Guard được thiết kế như một External Black-box Guardrail Middleware bảo vệ các API LLM đóng mà không can thiệp vào trọng số hay bộ nhớ mô hình.
+   - *Đánh giá của nhóm*: **XÁC ĐỊNH LÀ NGOÀI PHẠM VI (OUT-OF-SCOPE)**. Do phương pháp khai thác internal model states và attention dynamics trong forward pass, khác với kiến trúc external black-box guardrail của PI-Guard.
 
 ---
 

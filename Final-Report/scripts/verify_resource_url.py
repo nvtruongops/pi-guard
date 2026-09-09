@@ -236,14 +236,29 @@ def audit_academic_attribution(file_path: Path) -> list:
             "KPI_CONFLATION",
             "Không gán chỉ tiêu kỹ thuật của PI-Guard (FPR < 1.5%, P95 < 30ms) thành kết luận đã chứng minh của bài báo.",
         ),
+        (
+            re.compile(r"không\s+lo\s+ngại\s+bất\s+kỳ\s+câu\s+hỏi\s+phản\s+biện", re.IGNORECASE),
+            "OVERCLAIM_IMMUNITY",
+            "Vi phạm khiêm tốn học thuật: Không tuyên bố 'không lo ngại bất kỳ câu hỏi phản biện nào'. Dùng 'đủ độ tin cậy làm nền tảng cho Chapter 2'.",
+        ),
+        (
+            re.compile(r"độ\s+chuẩn\s+mực\s+học\s+thuật\s+tối\s+đa", re.IGNORECASE),
+            "OVERCLAIM_SUPERLATIVE",
+            "Vi phạm khiêm tốn học thuật: Không tuyên bố 'độ chuẩn mực học thuật tối đa'.",
+        ),
+        (
+            re.compile(r"100%\s+PASS.*(?:học\s+thuật|toàn\s+bộ\s+luận\s+văn|tài\s+liệu)", re.IGNORECASE),
+            "OVERCLAIM_PASS",
+            "Chỉ dùng '100% PASS' cho kiểm thử phần mềm tự động (Automated repository validation). Đối với tài liệu/học thuật, dùng 'VERIFIED / REVIEWED'.",
+        ),
     ]
 
     print(f"\n🔬 Đang kiểm toán học thuật & gán nguồn (Attribution Audit): {file_path}")
     for idx, line in enumerate(lines, 1):
         for pattern, issue_type, msg in rules:
             if pattern.search(line):
-                # Ngoại lệ: Nếu dòng đó có ghi chú cảnh báo/giải thích rõ ràng thì bỏ qua
-                if any(k in line for k in ["Lưu ý", "không phải", "thay cho", "slogan", "khẩu hiệu", "tiêu chuẩn"]):
+                # Ngoại lệ: Nếu dòng đó có ghi chú cảnh báo/giải thích rõ ràng hoặc là rule cấm thì bỏ qua
+                if any(k in line.lower() for k in ["lưu ý", "không phải", "thay cho", "slogan", "khẩu hiệu", "tiêu chuẩn", "cấm", "blacklist", "bị cấm", "tránh", "loại bỏ"]):
                     continue
                 issues.append({"line": idx, "type": issue_type, "msg": msg, "content": line.strip()})
 

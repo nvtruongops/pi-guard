@@ -85,8 +85,9 @@ python -u Final-Report/scripts/audit_urls.py
 Mỗi khi agent hoặc thành viên nhóm muốn trích dẫn, bổ sung một bài báo khoa học mới hoặc cập nhật tài liệu tham khảo:
 
 ```
-[ BƯỚC 1: XÁC THỰC TIÊU ĐỀ & TÁC GIẢ CHÍNH THỨC ]
-  ├── Đối chiếu OpenReview / DBLP / Crossref / arXiv để lấy chính xác tiêu đề bài báo đã bình duyệt.
+[ BƯỚC 1: XÁC THỰC SIÊU DỮ LIỆU VÀ NGUỒN GỐC THEO THỨ TỰ ƯU TIÊN (TIER 0 - BIBLIOGRAPHIC PROVENANCE) ]
+  ├── Thứ tự nguồn uy tín: Publisher/proceedings page -> official conference/journal metadata -> DOI/Crossref -> arXiv/DBLP/OpenReview (khi có).
+  ├── Lấy chính xác tiêu đề, danh sách tác giả, venue, volume, issue, year, pages, DOI, publication status.
   └── LOẠI BỎ TRIỆT ĐỂ khẩu hiệu/slogan trình diễn (ví dụ: "Ignore This Title..." chỉ là slogan, tiêu đề chuẩn là "Ignore Previous Prompt...").
                          │
                          ▼
@@ -95,17 +96,20 @@ Mỗi khi agent hoặc thành viên nhóm muốn trích dẫn, bổ sung một b
   └── Tuyệt đối không nhầm lẫn niên giám hội nghị với năm nộp bản thảo hoặc năm cập nhật preprint.
                          │
                          ▼
-[ BƯỚC 3: KIỂM TOÁN VĂN BẢN PHÂN ĐỊNH 3 TẦNG (THREE-TIER ATTRIBUTION AUDIT) ]
-  ├── Tách biệt: (1) Đóng góp gốc của tác giả  ──> (2) Tiếp thu/cảm hứng của PI-Guard  ──> (3) Chỉ tiêu KPI/Giả thuyết của PI-Guard.
+[ BƯỚC 3: KIỂM TOÁN VĂN BẢN THEO MÔ HÌNH PHÂN ĐỊNH 4 TẦNG (FOUR-TIER ATTRIBUTION & PROVENANCE AUDIT) ]
+  ├── Tầng 0: Nguồn gốc Thư mục (Bibliographic Provenance: Title, Authors, Venue, Volume, Year, Pages, DOI, Primary Source).
+  ├── Tầng 1: Đóng góp gốc của tác giả (Original Author Findings) ── trung thực với những gì paper thực sự chứng minh.
+  ├── Tầng 2: Tiếp thu/cảm hứng của PI-Guard (Design Choice & Adaptation) ── giải thích rõ ràng việc kế thừa.
+  ├── Tầng 3: Mục tiêu KPI & Giả thuyết thực nghiệm của PI-Guard (Target KPI & Hypotheses) ── không được trình bày KPI, benchmark result, latency, FPR, F1 của PI-Guard như kết quả thực nghiệm của tài liệu tham chiếu.
   ├── CẤM GÁN NGUỒN CÔNG THỨC: Không gán công thức của PI-Guard ($X = S || U$) cho bài báo khảo sát.
-  ├── CẤM GÁN KPI CỦA ĐỒ ÁN: Không biến chỉ tiêu FPR < 1.5% hay P95 < 30ms thành kết luận của bài báo.
-  └── CHÍNH XÁC SỐ LIỆU TẬP DỮ LIỆU: Phân biệt rõ quy mô tổng thể (15,140 prompts) và số lượng mẫu tấn công thực tế (1,405 jailbreaks).
+  ├── CHÍNH XÁC SỐ LIỆU TẬP DỮ LIỆU: Phân biệt rõ quy mô tổng thể (15,140 prompts) và số mẫu tấn công thực tế (1,405 jailbreak prompts, ~9.29% / làm tròn 9.3%).
+  └── TUÂN THỦ KHIÊM TỐN HỌC THUẬT: Cấm các absolute claims ("không lo ngại bất kỳ câu hỏi phản biện nào", "100% PASS cho học thuật").
                          │
                          ▼
 [ BƯỚC 4: KIỂM ĐỊNH PHẠM VI & RANH GIỚI HỘP ĐEN (SCOPE & BLACK-BOX INVARIANT) ]
   ├── Kiểm tra tính tương thích: Phải hoạt động ở mức prompt text ngoài cổng API (External Guardrail Proxy).
   └── Nếu phương pháp đòi hỏi truy cập trọng số/nội tại (như RAP-ID): Đánh dấu OUT-OF-SCOPE và ghi rõ lý do chính xác:
-      "yêu cầu truy cập các internal model states / attention dynamics, trong khi PI-Guard là external black-box guardrail".
+      "do phương pháp khai thác internal model states và attention dynamics trong forward pass, khác với kiến trúc external black-box guardrail của PI-Guard".
                          │
                          ▼
 [ BƯỚC 5: LƯU TRỮ CỤC BỘ OPEN-ACCESS PDF & CẬP NHẬT BIBTEX CHUẨN ]

@@ -76,35 +76,37 @@ trigger: always_on
 
 ---
 
-## 🔬 STRICT RULE: THREE-TIER DECOUPLING & LITERATURE ATTRIBUTION INVARIANT (QUY TẮC BẤT BIẾN PHÂN ĐỊNH 3 TẦNG & CHỐNG GÁN NGUỒN SAI LỆCH)
+## 🔬 STRICT RULE: FOUR-TIER PROVENANCE & LITERATURE ATTRIBUTION INVARIANT (QUY TẮC BẤT BIẾN 4 TẦNG & TRUY NGUYÊN HỌC THUẬT)
 
 > [!IMPORTANT]
 > **QUY TẮC BẮT BUỘC KHI TRÍCH DẪN & ÁNH XẠ TÀI LIỆU KHOA HỌC**:
-> 1. **PHÂN ĐỊNH 3 TẦNG BẮT BUỘC (THREE-TIER DECOUPLING)**:
->    Mọi trích dẫn và phân tích bài báo khoa học trong luận văn và tài liệu chuyên đề PHẢI phân tách rõ ràng 3 thực thể độc lập:
->    - **Tầng 1: Đóng góp khoa học gốc của bài báo (Original Author Findings)**: Chỉ nêu chính xác những gì tác giả bài báo thực sự chứng minh, đo đạc hoặc đề xuất.
+> 1. **PHÂN ĐỊNH 4 TẦNG BẮT BUỘC (FOUR-TIER PROVENANCE & DECOUPLING)**:
+>    Mọi trích dẫn và phân tích bài báo khoa học trong luận văn và tài liệu chuyên đề PHẢI tuân thủ nghiêm ngặt 4 tầng độc lập:
+>    - **Tầng 0: Nguồn Gốc & Siêu Dữ Liệu Xuất Bản (Tier 0 — Bibliographic Provenance)**: Tiêu đề chính thức, Danh sách tác giả, Hội nghị/Tạp chí, Số tập (Volume), Niên giám kỷ yếu (Year), Trang (Pages), DOI/arXiv, Trạng thái xuất bản và Nguồn thẩm quyền gốc (Proceedings/Anthology). *Lỗi tại Tầng 0 sẽ làm vô hiệu hóa toàn bộ các tầng phân tích phía sau*.
+>    - **Tầng 1: Đóng góp khoa học gốc của bài báo (Original Author Findings)**: Chỉ nêu chính xác những gì tác giả bài báo thực sự chứng minh, quan sát hoặc đề xuất.
 >    - **Tầng 2: Định vị kỹ thuật & Tiếp thu của PI-Guard (PI-Guard Design Choice & Adaptation)**: Trình bày rõ ràng cách đồ án lấy cảm hứng hoặc kế thừa kết quả đó vào thiết kế hệ thống (dùng dấu chấm phẩy `;` hoặc phân tách bằng mục riêng).
->    - **Tầng 3: Mục tiêu kỹ thuật & Giả thuyết của PI-Guard (PI-Guard Target KPI & Hypotheses)**: Tuyệt đối không gán ghép các KPI đo đạc của đồ án (FPR < 1.5%, P95 < 30ms, delta F1 < 5%) vào bài báo tham chiếu.
+>    - **Tầng 3: Mục tiêu kỹ thuật & Giả thuyết của PI-Guard (PI-Guard Target KPI & Hypotheses)**: Không được trình bày KPI, benchmark result, latency, FPR, F1 hoặc performance measurement của PI-Guard như kết quả thực nghiệm của tài liệu tham chiếu, trừ khi tài liệu đó thực sự báo cáo cùng phép đo và cùng điều kiện.
 > 2. **CẤM GÁN NGUỒN CÔNG THỨC & MÔ HÌNH HÓA (ZERO EQUATION ATTRIBUTION LEAK)**:
 >    - Các công thức toán học và ký hiệu mô hình hóa do nhóm tự đề xuất (như $X = S \mathbin{\Vert} U$) phải được định danh rõ: *"Trong phạm vi mô hình hóa của PI-Guard..."*, tuyệt đối không viết như thể đó là định lý hay ký hiệu từ các bài báo khảo sát (như Zhao et al.).
-> 3. **XÁC MINH SIÊU DỮ LIỆU ĐA NGUỒN (MULTI-SOURCE METADATA VERIFICATION)**:
->    - Trước khi ghi nhận bất kỳ paper nào, bắt buộc phải tra cứu chính xác: Tên bài báo chính thức (phân biệt với slogan trình diễn), Danh sách đầy đủ tác giả, Hội nghị / Tạp chí, Số tập (Volume), Năm tổ chức/xuất bản chính thức (ví dụ: NeurIPS 2023 là Volume 36, diễn ra tháng 12/2023; không được nhầm sang NeurIPS 2024).
+> 3. **THỨ BẬC NGUỒN XÁC MINH SIÊU DỮ LIỆU CHÍNH THỨC (AUTHORITATIVE METADATA HIERARCHY)**:
+>    - Thứ tự tra cứu bắt buộc: `Trang kỷ yếu/nhà xuất bản chính thức (Publisher/Proceedings page) -> Siêu dữ liệu hội nghị/tạp chí (Official Conference/Journal Metadata) -> DOI/Crossref -> arXiv/DBLP/OpenReview (khi có)`.
+>    - Tuyệt đối không lấy slogan minh họa làm tiêu đề bài báo, và không nhầm lẫn số tập kỷ yếu (như NeurIPS 2023 Vol. 36 vs NeurIPS 2024 Vol. 37).
 > 4. **CHÍNH XÁC HỌC THUẬT VỀ SỐ LIỆU TẬP DỮ LIỆU**:
->    - Khi dẫn số liệu từ các tập dữ liệu thực tế (như Shen et al. DAN dataset), phải phân biệt chính xác giữa kích thước tập dữ liệu tổng quát (15,140 prompts) và số lượng mẫu tấn công thực tế (1,405 jailbreaks).
+>    - Khi dẫn số liệu từ các tập dữ liệu thực tế (như Shen et al. DAN dataset), phải phân biệt chính xác giữa kích thước tập dữ liệu tổng quát (15,140 prompts) và số lượng mẫu tấn công thực tế (1,405/15,140 prompts, ~9.29% / làm tròn 9.3%).
 
 ---
 
-## 🛡️ STRICT RULE: ACADEMIC TERMINOLOGY & DEFENSE BLACKLIST / WHITELIST PROTOCOL
+## 🛡️ STRICT RULE: ACADEMIC DEFENSE TERMINOLOGY & OVERCLAIMING BLACKLIST PROTOCOL
 
-Nhằm phòng tránh triệt để các câu hỏi bẫy và nguy cơ bị trừ điểm nặng trước Hội đồng Chấm Bảo vệ Tốt nghiệp FPT (Academic Council), tất cả thành viên và AI Agent bắt buộc phải tuân thủ bảng thuật ngữ chuẩn mực:
-
-| Phân Loại | 🚫 Thuật Ngữ Bị Cấm Tuyệt Đối (Blacklist) | ✅ Thuật Ngữ Học Thuật Bắt Buộc (Whitelist) | Luận Giải Kỹ Thuật & Phòng Thủ Hội Đồng |
-| :--- | :--- | :--- | :--- |
-| **Độ trễ & Hiệu năng** | • "Thời gian thực" / "Real-time"<br>• "Real-time detection"<br>• "Hệ thống thời gian thực" | • **"Độ trễ thấp" / "Low-Latency"**<br>• **"Độ trễ suy luận (Inference Latency)"**<br>• **"Inline Guardrail Proxy"**<br>• **"Thời gian đáp ứng nhanh (P95 < 30ms)"** | Trong Khoa học Máy tính, *"Real-time"* chỉ các hệ thống nhúng có cam kết thời gian ngặt nghèo cấp microsecond (Zero Jitter). Một HTTP Guardrail Proxy không thể cam kết hard real-time; dùng từ này sẽ bị Hội đồng bắt lỗi nặng. |
-| **Bản chất Hệ thống & Phạm vi** | • "Hệ thống Production thương mại"<br>• "Production-ready enterprise system"<br>• "Kiến trúc cấp doanh nghiệp"<br>• "Commercial SaaS guardrail" | • **"Nguyên Mẫu Thực Nghiệm Học Thuật (Academic Proof-of-Concept Prototype)"**<br>• **"Môi Trường Đo Đạc Độ Trễ (Inference Latency Testbed)"**<br>• **"Plug-and-Play Guardrail Middleware"** | PI-Guard là Khóa luận Tốt nghiệp Nghiên cứu (**IAP491 Research Thesis**), không phải sản phẩm Kỹ thuật Phần mềm thương mại. Khẳng định "Production" sẽ bị đòi hỏi OAuth2, RBAC, billing, multi-tenancy và load test 100k RPS. |
-| **Cam kết An ninh** | • "Bảo vệ 100% tuyệt đối"<br>• "Chống hack hoàn toàn"<br>• "Unbreakable defense"<br>• "Silver bullet solution" | • **"Giảm thiểu rủi ro thực nghiệm (Empirical Risk Mitigation)"**<br>• **"Phòng thủ theo chiều sâu (Defense-in-Depth)"**<br>• **"Độ chính xác cao ($F_1 \ge 0.95$, $\text{FPR} < 1.5\%$)"**<br>• **"Khả năng chống chịu đối kháng (Adversarial Robustness)"** | Không gian token là không gian phẳng ($X = S \mathbin{\Vert} U$); về mặt toán học không thể miễn nhiễm tuyệt đối. Tuyên bố an toàn 100% là phi khoa học. |
-| **Phần cứng & Triển khai** | • "Bắt buộc hạ tầng GPU đắt tiền"<br>• "Hệ thống đòi hỏi cụm máy chủ lớn" | • **"Triển khai tối ưu trên CPU tiêu chuẩn (Zero-GPU Commodity CPU)"**<br>• **"Lượng hóa động sau huấn luyện (ONNX INT8 Quantization)"** | Bản đăng ký đề tài ghi rõ triển khai trên CPU đa nhân thông thường, không phát sinh chi phí mua sắm GPU máy chủ cho nhà trường. |
-| **Can thiệp Mô hình** | • "Can thiệp trọng số nội tại của GPT-4"<br>• "Retrain lại downstream LLM"<br>• "Sửa đổi KV-cache bộ nhớ" | • **"Lớp lọc đầu vào độc lập (Model-Agnostic External Input Guardrail)"**<br>• **"Kiểm tra mức văn bản (Prompt-Level Inspection)"**<br>• **"Tương thích hộp đen (Black-Box LLM Compatibility)"** | PI-Guard hoạt động như một reverse proxy kiểm tra prompt mức văn bản. Việc can thiệp vào trọng số LLM thương mại hoặc KV-cache là phi thực tế và ngoài phạm vi đề tài. |
+> [!CAUTION]
+> **QUY CHUẨN THUẬT NGỮ PHÒNG THỦ HỘI ĐỒNG & CHỐNG KHẲNG ĐỊNH TUYỆT ĐỐI HÓA**:
+> Nhằm phòng tránh triệt để các câu hỏi bẫy và nguy cơ bị trừ điểm nặng trước Hội đồng Chấm Bảo vệ Tốt nghiệp FPT (Academic Council), tất cả thành viên và AI Agent bắt buộc phải tuân thủ bảng thuật ngữ chuẩn mực được quy định chi tiết tại [`.agents/rules/academic-defense-terminology-blacklist.md`](file:///d:/Work/Do-an/.agents/rules/academic-defense-terminology-blacklist.md).
+>
+> **Tóm tắt các bất biến cốt lõi**:
+> - **Độ trễ**: Dùng **"Độ trễ thấp" / "P95 < 30ms"**; CẤM TUYỆT ĐỐI **"Thời gian thực" / "Real-time"**.
+> - **Phạm vi**: Dùng **"Nguyên mẫu thực nghiệm (Academic PoC Prototype)"**; CẤM TUYỆT ĐỐI **"Hệ thống Production thương mại"**.
+> - **An ninh**: Dùng **"Giảm thiểu rủi ro thực nghiệm (Empirical Risk Mitigation)"**; CẤM TUYỆT ĐỐI **"Bảo vệ 100% tuyệt đối" / "Chống hack hoàn toàn"**.
+> - **Khiêm tốn khoa học (Scientific Humility)**: Dùng **"Đủ độ tin cậy làm nền tảng cho Chapter 2"** và **"Automated validation: 100% PASS; Literature verification: VERIFIED / REVIEWED"**; CẤM TUYỆT ĐỐI các câu khẳng định chủ quan như **"Không lo ngại bất kỳ câu hỏi phản biện nào"** hay **"Độ chuẩn mực học thuật tối đa"**.
 
 ---
 

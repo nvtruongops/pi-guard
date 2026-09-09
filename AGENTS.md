@@ -68,30 +68,32 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
-## 🔬 STRICT RULE: THREE-TIER DECOUPLING & LITERATURE ATTRIBUTION INVARIANT (ZERO CITATION ATTRIBUTION OVERREACH)
+## 🔬 STRICT RULE: FOUR-TIER PROVENANCE & LITERATURE ATTRIBUTION INVARIANT (ZERO CITATION ATTRIBUTION OVERREACH)
 > [!IMPORTANT]
-> **MANDATORY ACADEMIC RIGOR FOR SCIENTIFIC CITATIONS & APPLICATION MAPPING**:
-> 1. **MANDATORY THREE-TIER DECOUPLING**: Every scientific citation in the thesis, literature review, and reports MUST clearly demarcate three independent entities:
+> **MANDATORY ACADEMIC RIGOR FOR SCIENTIFIC CITATIONS & PROVENANCE MAPPING**:
+> 1. **MANDATORY FOUR-TIER PROVENANCE & DECOUPLING**: Every scientific citation in the thesis, literature review, and reports MUST strictly adhere to 4 distinct tiers:
+>    - **Tier 0: Bibliographic Provenance (Baseline Foundation)**: Title, Authors, Venue, Volume/Issue, Year, Pages, DOI, Publication Status, and Primary Authoritative Source. (Errors at Tier 0 invalidate all subsequent analysis).
 >    - **Tier 1: Original Author Findings**: Accurately state only what the paper's authors proved, observed, or proposed.
 >    - **Tier 2: PI-Guard Design Choice & Adaptation**: Explicitly explain how PI-Guard adopts, inherits, or is inspired by the finding (use semicolons or dedicated sub-bullets).
->    - **Tier 3: PI-Guard Engineering Target & Hypotheses**: Under no circumstances attribute PI-Guard's technical KPIs ($\text{FPR} < 1.5\%$, $P95 < 30\text{ms}$, $\Delta F_1 < 5\%$, $40\times$ speedup) to the referenced paper.
+>    - **Tier 3: PI-Guard Engineering Target & Hypotheses**: Under no circumstances present KPIs, benchmark results, latency, FPR, F1, or performance measurements of PI-Guard as experimental results of the referenced paper, unless that document actually reported the exact same measurement under the exact same conditions.
 > 2. **ZERO EQUATION & NOTATION ATTRIBUTION LEAK**: Never attribute project-specific mathematical notations (e.g., $X = S \mathbin{\Vert} U$) or project threat boundaries to general survey or alignment papers (e.g., Zhao et al., InstructGPT). State clearly: *"Within the modeling scope of PI-Guard..."*.
-> 3. **MULTI-SOURCE METADATA VERIFICATION**: Before citing any paper, cross-check official conference volume, proceeding year, and official paper title across Crossref / OpenReview / DBLP. Do not cite informal demo slogans (e.g. "Ignore This Title...") as official paper titles, and do not conflate conference volumes (e.g. NeurIPS 2023 Vol. 36 vs NeurIPS 2024 Vol. 37).
-> 4. **DATASET SAMPLE RIGOR**: Clearly distinguish total corpus size from actual positive attack samples (e.g., Shen et al. DAN dataset: 15,140 total prompts collected vs. 1,405 verified jailbreak prompts).
+> 3. **AUTHORITATIVE METADATA HIERARCHY**: Before citing any paper, follow this strict verification order:
+>    `Publisher/proceedings page -> official conference/journal metadata -> DOI/Crossref -> arXiv/DBLP/OpenReview (when available)`.
+>    Do not cite informal demo slogans as official paper titles, and do not conflate conference volumes (e.g., NeurIPS 2023 Vol. 36 vs NeurIPS 2024 Vol. 37).
+> 4. **DATASET SAMPLE RIGOR**: Clearly distinguish total corpus size from actual positive attack samples (e.g., Shen et al. DAN dataset: 1,405/15,140 prompts, ~9.29% / rounded 9.3% jailbreaks).
 
 ---
 
-## 🛡️ STRICT RULE: ACADEMIC TERMINOLOGY & DEFENSE BLACKLIST / WHITELIST PROTOCOL
-
-To prevent severe challenges and score deductions during committee defenses before the FPT Academic Council, all team members and AI Agents must strictly adhere to the following terminology blacklist/whitelist:
-
-| Category | 🚫 Banned Terminology (Blacklist) | ✅ Mandatory Academic Terms (Whitelist) | Technical & Defense Rationale |
-| :--- | :--- | :--- | :--- |
-| **Latency & Performance** | • "Thời gian thực" / "Real-time"<br>• "Real-time detection"<br>• "Hệ thống thời gian thực" | • **"Độ trễ thấp" / "Low-Latency"**<br>• **"Độ trễ suy luận (Inference Latency)"**<br>• **"Inline Guardrail Proxy"**<br>• **"Thời gian đáp ứng nhanh (P95 < 30ms)"** | In Computer Science and Embedded Systems, *"Real-time"* denotes deterministic sub-millisecond hard deadlines with zero jitter. HTTP guardrail proxies cannot offer hard real-time guarantees; using "real-time" invites severe council criticism. |
-| **System Identity & Scope** | • "Hệ thống Production thương mại"<br>• "Production-ready enterprise system"<br>• "Kiến trúc cấp doanh nghiệp"<br>• "Commercial SaaS guardrail" | • **"Nguyên Mẫu Thực Nghiệm Học Thuật (Academic Proof-of-Concept Prototype)"**<br>• **"Môi Trường Đo Đạc Độ Trễ (Inference Latency Testbed)"**<br>• **"Plug-and-Play Guardrail Middleware"** | PI-Guard is an **IAP491 Research-Based Thesis**, not a commercial Software Engineering product. Claiming "Production" triggers demands for OAuth2, RBAC, billing, multi-tenancy, and distributed 100k RPS load tests. |
-| **Security Guarantees** | • "Bảo vệ 100% tuyệt đối"<br>• "Chống hack hoàn toàn"<br>• "Unbreakable defense"<br>• "Silver bullet solution" | • **"Giảm thiểu rủi ro thực nghiệm (Empirical Risk Mitigation)"**<br>• **"Phòng thủ theo chiều sâu (Defense-in-Depth)"**<br>• **"Độ chính xác cao ($F_1 \ge 0.95$, $\text{FPR} < 1.5\%$)"**<br>• **"Khả năng chống chịu đối kháng (Adversarial Robustness)"** | Prompt injection operates in a flat token space ($X = S \mathbin{\Vert} U$); mathematical proof of absolute immunity is non-existent. Promising 100% defense is scientifically invalid. |
-| **Hardware & Deployment** | • "Bắt buộc hạ tầng GPU đắt tiền"<br>• "Hệ thống đòi hỏi cụm máy chủ lớn" | • **"Triển khai tối ưu trên CPU tiêu chuẩn (Zero-GPU Commodity CPU)"**<br>• **"Lượng hóa động sau huấn luyện (ONNX INT8 Quantization)"** | The project registration explicitly specifies commodity multi-core CPU deployment with zero hardware purchase overhead for inference. |
-| **Model Intervention** | • "Can thiệp trọng số nội tại của GPT-4"<br>• "Retrain lại downstream LLM"<br>• "Sửa đổi KV-cache bộ nhớ" | • **"Lớp lọc đầu vào độc lập (Model-Agnostic External Input Guardrail)"**<br>• **"Kiểm tra mức văn bản (Prompt-Level Inspection)"**<br>• **"Tương thích hộp đen (Black-Box LLM Compatibility)"** | PI-Guard protects downstream LLMs as an external reverse proxy. Modifying closed-source or third-party LLM weights is completely outside the threat model. |
+## 🛡️ STRICT RULE: ACADEMIC DEFENSE TERMINOLOGY & OVERCLAIMING BLACKLIST PROTOCOL
+> [!CAUTION]
+> **MANDATORY GOVERNANCE & DEFENSE TERMINOLOGY INVARIANTS**:
+> To prevent severe challenges and score deductions before the FPT Academic Council, all team members and AI Agents MUST strictly adhere to the comprehensive terminology blacklist and academic humility protocol defined in [`.agents/rules/academic-defense-terminology-blacklist.md`](file:///d:/Work/Do-an/.agents/rules/academic-defense-terminology-blacklist.md).
+>
+> **Summary of Core Invariants**:
+> - **Latency & Performance**: Use **"Low-Latency"** / **"P95 < 30ms"**; strictly ban **"Real-time" / "Thời gian thực"**.
+> - **System Identity**: Use **"Academic PoC Prototype"** / **"Latency Testbed"**; strictly ban **"Production-ready enterprise system"**.
+> - **Security Guarantees**: Use **"Empirical Risk Mitigation"** / **"Defense-in-Depth"**; strictly ban **"100% unbreakable" / "Bảo vệ tuyệt đối"**.
+> - **Scientific Humility & Overclaiming**: Use **"Đủ độ tin cậy làm nền tảng cho Chapter 2"** and **"Automated repository validation: 100% PASS; Academic literature verification: VERIFIED / REVIEWED"**; strictly ban **"Không lo ngại bất kỳ câu hỏi phản biện nào"** or **"Độ chuẩn mực học thuật tối đa"**.
 
 ---
 
