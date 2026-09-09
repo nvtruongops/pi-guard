@@ -1,125 +1,134 @@
 # AGENTS.md - PI-Guard Capstone Project Workspace
 
-Welcome to the **PI-Guard** Capstone Project repository. This file defines the operational context, available tools, skills, and role assignments for AI pair programmers assisting the project team.
+Welcome to the **PI-Guard** Capstone Project repository. This file defines the operational context, active tools, custom skills, academic terminology constraints, and governance protocols for AI pair programmers assisting the project team.
 
 ---
 
 ## 🛡️ Project Overview
-- **Name**: A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (**PI-Guard**)
-- **Objective**: Develop an API-driven, ML/Transformer-based protective guardrail placed in front of LLM applications to classify user prompts (Benign vs. Prompt Injection vs. Jailbreak) with low latency and low false-positive rate.
-- **Tech Stack**: Python 3.11+, PyTorch, Hugging Face Transformers (`microsoft/deberta-v3-base`), Scikit-Learn (TF-IDF Baseline), FastAPI, Streamlit, Docker, JupyterLab.
+- **Project Title**: A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (**PI-Guard**)
+- **Academic Program**: Bachelor of Science in Information Assurance (IA), FPT University (Course Code: `IAP491`, Fall 2026 Semester)
+- **Primary Objective**: Design, implement, and benchmark an external, API-driven, Machine-Learning and Transformer-based protective guardrail placed in front of downstream LLM applications to classify incoming user prompts (*Benign* vs. *Prompt Injection* vs. *Jailbreak*) with low latency and low false-positive rate.
+- **Tech Stack**: Python 3.11+, PyTorch, Hugging Face Transformers (`microsoft/deberta-v3-base`), Scikit-Learn (TF-IDF Baseline), ONNX Runtime (INT8 Quantization), FastAPI (PoC Proxy), Streamlit (Demo UI), Docker, JupyterLab.
 
 ---
 
 ## 🚫 STRICT RULE: IMMUTABLE / READ-ONLY & CONFIDENTIAL UNIVERSITY RESOURCES
-> **CRITICAL RULES FOR ALL AI AGENTS**:
-> 1. The file **`CAPSTONE PROJECT REGISTER.md`** is the official, signed topic registration document approved by the Supervisor and FPT University.
+> [!CAUTION]
+> **CRITICAL INVARIANTS FOR ALL AI AGENTS**:
+> 1. The document **`CAPSTONE PROJECT REGISTER.md`** is the official, signed topic registration agreement approved by the Supervisor and FPT University Academic Department.
 >
-> - **Extracted Summary**: The academic rubrics, assessment mechanisms (50% Process / 50% Presentation), and 6-chapter thesis structure are officially synthesized into **`Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`**.
-
+> - **Extracted Reference Summary**: The academic rubrics, continuous assessment mechanism (50% Process / 50% Presentation), and 6-chapter thesis structure are officially synthesized into **`Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`**.
 
 ---
 
 ## 🔗 STRICT RULE: RESOURCE & LITERATURE VALIDATION PROTOCOL (ZERO DEAD LINKS / OPEN-ACCESS PDF INVARIANT)
 > [!IMPORTANT]
-> **QUY TẮC BẮT BUỘC KHI TÌM KIẾM TÀI NGUYÊN, TÀI LIỆU & VIDEO**:
-> 1. **ZERO DEAD LINKS**: Mọi URL (website, GitHub, bài báo, tài liệu) trước khi ghi vào repo PHẢI được xác minh tồn tại thực tế (HTTP 200/302). Tuyệt đối không đưa URL suy đoán hoặc hallucinate.
-> 2. **YOUTUBE OEMBED VERIFICATION**: Mọi video YouTube PHẢI được kiểm tra qua `https://www.youtube.com/oembed?url=...&format=json` để xác nhận ID video tồn tại, đang mở công khai và không bị xóa/khóa riêng tư.
-> 3. **MANDATORY OPEN-ACCESS PDF**: Đối với các bài báo khoa học, tuyệt đối **KHÔNG ĐƯỢC CHỈ CUNG CẤP DOI BỊ PAYWALL** (khiến người đọc bị chặn bởi thông báo *"You do not currently have access to this content"*). Bắt buộc phải tìm và dẫn kèm liên kết tải/đọc PDF bản mở (Open-Access) từ arXiv, OpenAlex, Semantic Scholar hoặc kho tài liệu mở của trường đại học tác giả.
-> 4. **CÔNG CỤ KIỂM TRA**: Sử dụng `python scripts/verify_resource_url.py --url <URL>` hoặc `--doi <DOI>` hoặc `--file <file.md>` để tự động xác minh trước khi commit.
+> **MANDATORY PROTOCOL FOR CITATIONS, URLS, AND MEDIA**:
+> 1. **ZERO DEAD LINKS**: Every URL (website, GitHub repository, academic paper, documentation) written into the repository MUST be validated for live existence (HTTP 200/302). Speculative or hallucinated URLs are strictly prohibited.
+> 2. **YOUTUBE OEMBED VERIFICATION**: All YouTube videos MUST be pre-validated via `https://www.youtube.com/oembed?url=...&format=json` to confirm the video exists, is publicly accessible, and is not deleted or private.
+> 3. **MANDATORY OPEN-ACCESS PDF**: For scientific papers, **NEVER PROVIDE ONLY A PAYWALLED DOI** (which yields *"You do not currently have access to this content"*). Always locate and attach an open-access PDF link from arXiv, OpenAlex, Semantic Scholar, or author university repositories.
+> 4. **VALIDATION TOOLING**: Run `python Final-Report/scripts/verify_resource_url.py --url <URL>`, `--doi <DOI>`, or `--file <file.md>` to verify links automatically before committing.
 
 ---
 
 ## 🔬 STRICT RULE: MANDATORY ACADEMIC GROUNDING & ANCHOR INTEGRITY INVARIANT (100% CITED RESEARCH DOCS)
 > [!IMPORTANT]
-> **QUY TẮC BẮT BUỘC KHI TẠO & CẬP NHẬT TÀI LIỆU NGHIÊN CỨU, CHUYÊN ĐỀ & LUẬN VĂN**:
+> **MANDATORY SCIENTIFIC RIGOR FOR RESEARCH & THESIS DOCUMENTS**:
 > 1. **100% ACADEMIC GROUNDING (ZERO UNSUPPORTED CLAIMS)**:
->    - Mọi khẳng định kỹ thuật, công thức toán học, cơ chế tấn công, kiến trúc phòng thủ và số liệu đối sánh trong các tài liệu nghiên cứu (`docs/research/`, `docs/attack_study/`, `docs/model_study/`, `docs/thesis/`) PHẢI được bảo chứng bởi các công trình khoa học đã được bình duyệt (Peer-reviewed Papers tại NeurIPS, ICLR, ACM CCS, IEEE S&P), báo cáo kỹ thuật chính thức (OpenAI, Meta, Microsoft, Tencent) hoặc tiêu chuẩn quốc tế (NIST AI 100-2e2025, OWASP LLM01:2025).
->    - Tuyệt đối không đưa ra các nhận định lý thuyết suông hoặc suy diễn không có trích dẫn khoa học kiểm chứng.
+>    - Every technical assertion, mathematical formulation, attack mechanism, defense architecture, and benchmark figure in research documents (`docs/research/`, `docs/attack_study/`, `docs/model_study/`, `docs/thesis/`) MUST be grounded in peer-reviewed literature (NeurIPS, ICLR, ACM CCS, IEEE S&P), official industry technical reports (OpenAI, Meta, Microsoft, Tencent), or international standards (NIST AI 100-2e2025, OWASP LLM01:2025).
+>    - Speculative claims without scientific citations are strictly rejected.
 > 2. **ON-PAGE CITATION ANCHOR INTEGRITY (ZERO BROKEN ANCHORS)**:
->    - Khi sử dụng trích dẫn trong văn bản dạng `[[N]](#refN)`, trang tài liệu đó BẮT BUỘC phải có mục Tài Liệu Tham Khảo (References) với neo HTML chuẩn `<a id="refN"></a>` tương ứng trên cùng trang.
->    - Đảm bảo trình biên dịch MkDocs Material biên dịch sạch 100% không có cảnh báo missing anchor.
-> 3. **SAFE HANDLING OF PAYWALLED DOIS (OPEN-ACCESS PDF INVARIANT)**:
->    - Đối với các bài báo thuộc nhà xuất bản có tường phí/chặn bot (ACM, Emerald, IEEE): KHÔNG đặt link hyperlink trực tiếp vào DOI để tránh mã lỗi HTTP 403 bot-block.
->    - Định dạng chuẩn: Ghi DOI dạng inline code/text (ví dụ: `DOI: 10.1145/xxxx`) và BẮT BUỘC dẫn kèm link đọc/tải bản mở Open-Access PDF (arXiv, Semantic Scholar, Cambridge/Stanford tech report).
-> 4. **DOCS PORTAL AGGREGATION & AUDIT SYNCHRONIZATION**:
->    - Khi tạo mới bất kỳ folder chuyên đề nào, phải lập tức cập nhật `scripts/build_docs_portal.py` và `mkdocs.yml` để cổng Web UI tổng hợp tự động.
->    - Trước khi commit, bắt buộc chạy `python scripts/verify_resource_url.py --file <file>` và `python scripts/audit_workspace_boundaries.py`.
+>    - In-text citation anchors like `[[N]](#refN)` MUST correspond to an identical HTML anchor tag `<a id="refN"></a>` within the References section on the exact same page.
+>    - Ensure MkDocs Material compiles with zero missing anchor warnings (`--strict`).
+> 3. **SAFE HANDLING OF PAYWALLED DOIS**:
+>    - For publisher DOIs protected by paywalls/bot-blocks (ACM, IEEE, Springer): format the DOI as inline code/text (e.g., `DOI: 10.1145/xxxx`) and attach the verified Open-Access PDF link.
 
 ---
 
 ## 📚 STRICT RULE: LITERATURE SCOPING & ARCHITECTURAL COMPATIBILITY INVARIANT (ZERO CITATION BLOAT)
 > [!IMPORTANT]
-> **QUY TẮC SÀNG LỌC TÀI LIỆU NGHIÊN CỨU & CHỐNG DÀN TRẢI TRÍCH DẪN**:
-> 1. **EXTERNAL GUARDRAIL SCOPE COMPATIBILITY**: Mọi công trình khoa học được trích dẫn làm cơ sở thiết kế hệ thống PHẢI tương thích với kiến trúc External Guardrail Proxy (phân loại prompt mức văn bản trước khi gọi LLM, không đòi hỏi can thiệp vào trọng số nội bộ hay KV-cache của LLM đích).
-> 2. **ZERO CITATION BLOAT**: Kiên quyết loại bỏ các bài báo khảo sát trùng lặp hoặc có phạm vi quá rộng/ngoài phạm vi đề tài (như tấn công phần cứng, backdoor, data poisoning).
-> 3. **LOCAL PDF AVAILABILITY**: Mọi tài liệu khoa học được phê duyệt sử dụng trong đồ án BẮT BUỘC phải có bản sao PDF lưu trữ cục bộ trong thư mục `reports/References/` và `workspaces/<thành_viên>/References/`.
+> **SCOPE BOUNDARY FOR LITERATURE & SYSTEM DESIGN**:
+> 1. **EXTERNAL GUARDRAIL SCOPE COMPATIBILITY**: All cited scientific works used to justify system architecture MUST be compatible with an **External Guardrail Proxy** paradigm (text-level prompt classification before dispatching to downstream LLMs, requiring zero access to model weights or internal KV-cache).
+> 2. **ZERO CITATION BLOAT**: Eliminate out-of-scope papers focusing on hardware tampering, model backdoors, weight data poisoning, or side-channel attacks.
+> 3. **LOCAL PDF ARCHIVE**: Every approved academic paper cited in the thesis MUST have a local PDF copy archived in `Final-Report/References/` and indexed in `REFERENCES_LOG.md`.
 
 ---
 
-## ⏱️ STRICT RULE: PROHIBITION OF "THỜI GIAN THỰC" (REAL-TIME) TERMINOLOGY FOR LATENCY
-> [!IMPORTANT]
-> **QUY TẮC BẮT BUỘC VỀ THUẬT NGỮ ĐỘ TRỄ & HIỆU NĂNG**:
-> 1. **TUYỆT ĐỐI KHÔNG DÙNG CỤM TỪ "VẬN HÀNH THỜI GIAN THỰC" HOẶC "THỜI GIAN THỰC" (REAL-TIME)** để miêu tả độ trễ hay hiệu năng của Guardrail API, vì "thời gian thực" (Hard/Soft Real-Time System) là thuật ngữ kỹ thuật đặc thù cho các hệ thống điều khiển nhúng với cam kết microsecond nghiêm ngặt.
-> 2. **THUẬT NGỮ BẮT BUỘC SỬ DỤNG**:
->    - **"Độ trễ thấp" / "Low-Latency"** (ví dụ: *P95 < 30ms trên CPU đa nhân*).
->    - **"Bảo vệ trực tuyến" / "Inline Guardrail Proxy"**.
->    - **"Thời gian đáp ứng nhanh" / "Độ trễ suy luận (Inference Latency)"**.
+## 🛡️ STRICT RULE: ACADEMIC TERMINOLOGY & DEFENSE BLACKLIST / WHITELIST PROTOCOL
+
+To prevent severe challenges and score deductions during committee defenses before the FPT Academic Council, all team members and AI Agents must strictly adhere to the following terminology blacklist/whitelist:
+
+| Category | 🚫 Banned Terminology (Blacklist) | ✅ Mandatory Academic Terms (Whitelist) | Technical & Defense Rationale |
+| :--- | :--- | :--- | :--- |
+| **Latency & Performance** | • "Thời gian thực" / "Real-time"<br>• "Real-time detection"<br>• "Hệ thống thời gian thực" | • **"Độ trễ thấp" / "Low-Latency"**<br>• **"Độ trễ suy luận (Inference Latency)"**<br>• **"Inline Guardrail Proxy"**<br>• **"Thời gian đáp ứng nhanh (P95 < 30ms)"** | In Computer Science and Embedded Systems, *"Real-time"* denotes deterministic sub-millisecond hard deadlines with zero jitter. HTTP guardrail proxies cannot offer hard real-time guarantees; using "real-time" invites severe council criticism. |
+| **System Identity & Scope** | • "Hệ thống Production thương mại"<br>• "Production-ready enterprise system"<br>• "Kiến trúc cấp doanh nghiệp"<br>• "Commercial SaaS guardrail" | • **"Nguyên Mẫu Thực Nghiệm Học Thuật (Academic Proof-of-Concept Prototype)"**<br>• **"Môi Trường Đo Đạc Độ Trễ (Inference Latency Testbed)"**<br>• **"Plug-and-Play Guardrail Middleware"** | PI-Guard is an **IAP491 Research-Based Thesis**, not a commercial Software Engineering product. Claiming "Production" triggers demands for OAuth2, RBAC, billing, multi-tenancy, and distributed 100k RPS load tests. |
+| **Security Guarantees** | • "Bảo vệ 100% tuyệt đối"<br>• "Chống hack hoàn toàn"<br>• "Unbreakable defense"<br>• "Silver bullet solution" | • **"Giảm thiểu rủi ro thực nghiệm (Empirical Risk Mitigation)"**<br>• **"Phòng thủ theo chiều sâu (Defense-in-Depth)"**<br>• **"Độ chính xác cao ($F_1 \ge 0.95$, $\text{FPR} < 1.5\%$)"**<br>• **"Khả năng chống chịu đối kháng (Adversarial Robustness)"** | Prompt injection operates in a flat token space ($X = S \mathbin{\Vert} U$); mathematical proof of absolute immunity is non-existent. Promising 100% defense is scientifically invalid. |
+| **Hardware & Deployment** | • "Bắt buộc hạ tầng GPU đắt tiền"<br>• "Hệ thống đòi hỏi cụm máy chủ lớn" | • **"Triển khai tối ưu trên CPU tiêu chuẩn (Zero-GPU Commodity CPU)"**<br>• **"Lượng hóa động sau huấn luyện (ONNX INT8 Quantization)"** | The project registration explicitly specifies commodity multi-core CPU deployment with zero hardware purchase overhead for inference. |
+| **Model Intervention** | • "Can thiệp trọng số nội tại của GPT-4"<br>• "Retrain lại downstream LLM"<br>• "Sửa đổi KV-cache bộ nhớ" | • **"Lớp lọc đầu vào độc lập (Model-Agnostic External Input Guardrail)"**<br>• **"Kiểm tra mức văn bản (Prompt-Level Inspection)"**<br>• **"Tương thích hộp đen (Black-Box LLM Compatibility)"** | PI-Guard protects downstream LLMs as an external reverse proxy. Modifying closed-source or third-party LLM weights is completely outside the threat model. |
 
 ---
 
 ## 🛠️ Configured MCP Servers (Model Context Protocol)
 
-The workspace has 7 integrated MCP servers:
-1. 📚 **`arxiv`**: Search academic papers, fetch abstracts, build citation graphs, and perform literature reviews directly.
-2. 📓 **`jupyter`**: Run, inspect, and execute Jupyter Notebooks (.ipynb) with Python kernels and internet access.
-3. 🌐 **`duckduckgo-search`**: Search for latest benchmarks, Hugging Face repos, and LLM security advisories.
-4. 🎭 **`playwright`**: Headless web automation and scraping for datasets and documentation.
-5. 🧠 **`memory`**: Persistent Knowledge Graph Memory to track experimental results and architectural decisions.
-6. 💡 **`sequential-thinking`**: Structured multi-step reasoning for algorithm design and troubleshooting.
-7. 📄 **`officecli`**: Read, edit, generate, and validate Office documents (.docx, .xlsx, .pptx) for thesis reporting and presentations.
+The workspace is configured with 8 integrated Model Context Protocol (MCP) servers defined in **`.vscode/mcp.json`**:
+
+1. 📚 **`arxiv`**: Search academic papers, fetch full abstracts, build citation graphs, and perform deep research directly on arXiv.
+2. 📖 **`scholar-feed`**: Query scholarly literature across 600k+ CS/AI/ML papers, trace citation lineages, extract full text, and retrieve clean BibTeX entries.
+3. 🌐 **`duckduckgo-search`**: Web search access for retrieving latest AI security advisories, benchmark datasets, Hugging Face repositories, and technical error code troubleshooting.
+4. 📓 **`jupyter`**: Inspect, edit, and execute Jupyter Notebook (.ipynb) cells with active Python kernels and network connectivity.
+5. 🎭 **`playwright`**: Headless browser automation and web scraping for dataset verification and online documentation parsing.
+6. 🧠 **`memory`**: Persistent Knowledge Graph Memory to track experimental benchmarks, architectural decisions, and metric progressions.
+7. 💡 **`sequential-thinking`**: Structured multi-step reasoning for algorithm design, adversarial evasion analysis, and bug troubleshooting.
+8. 📄 **`officecli`**: Read, edit, generate, and validate Office documents (`.docx`, `.xlsx`, `.pptx`) for thesis compilation and defense slide preparation.
+
+### 🎯 Research & Debugging MCP Usage Guide
+- **Academic Literature Discovery**: Prefer `arxiv` and `scholar-feed` for finding peer-reviewed papers (2022–2026), followed by `duckduckgo-search` for conference proceedings (ACM CCS, NeurIPS, ICLR, IEEE S&P).
+- **Error Code & Technical Troubleshooting**: Use `duckduckgo-search` for PyTorch, Transformers, ONNX Runtime, and FastAPI exceptions; use `jupyter` for interactive debugging in experimental notebooks.
+- **Strict Scope Guard**: All tooling and literature queries MUST strictly align with the scope defined in **`CAPSTONE PROJECT REGISTER.md`** (Text-based Prompt Injection, Jailbreak, Classical ML Baselines, DeBERTa-v3, ONNX INT8, and Lightweight FastAPI/Streamlit PoC).
 
 ---
 
 ## 🧠 Available Custom Agent Skills (`.agents/skills/`)
 
-- **`review1-threat-model-and-defense`**: Deliverables for Review 1 (Problem definition, Threat modeling, Attack surface, Demo scenarios, Slide outline).
-- **`llm-security-research`**: OWASP LLM01 taxonomy, threat classification, and SOTA comparison.
-- **`guardrail-dataset-engineering`**: Dataset curation, deduplication, group-aware splitting, and class balancing.
-- **`ml-classifier-training`**: TF-IDF baseline + DeBERTa-v3 Transformer training and ONNX quantization.
-- **`guardrail-evaluation-metrics`**: Precision, Recall, F1, FPR on benign inputs, and latency profiling.
-- **`guardrail-api-and-dashboard`**: FastAPI async middleware + Streamlit live testing dashboard.
-- **`capstone-thesis-and-defense`**: Academic thesis writing structure (FPT IAP491 Chapters 1-6) and defense presentation deck.
-- **`fpt-capstone-rubrics-and-process`**: FPT IAP491 milestone tracking, weekly process reports (PROCESS_REPORT.xlsx), and grading rubrics.
-- **`team-git-sync-and-merge`**: Quy trình Git phân nhánh, đồng bộ không xung đột và độc quyền merge vào cây thư mục chính dành cho Leader.
-- **`team-commit-and-workspace-audit`**: Công cụ tự động kiểm toán commit/PR, phát hiện và ngăn chặn vi phạm chỉnh sửa ngoài `workspaces/`.
-- **`resource-and-literature-validation`**: Tiêu chuẩn và công cụ kiểm định URL, video YouTube oEmbed và tự động tra cứu Open-Access PDF từ DOI chống paywall.
-- **`docs-portal-sync-and-deploy`**: Quy trình đồng bộ hóa tài liệu giữa repository và Cổng Tài Liệu Web UI (Github-Page & MkDocs Material), kiểm toán toàn vẹn neo/link và xuất bản tự động lên GitHub Pages.
+The repository provides 12 specialized, domain-specific agent skills:
+
+1. **`review1-threat-model-and-defense`**: Comprehensive deliverables for Review 1 (Problem definition, Threat modeling under NIST AI 100-2e2025, Attack surface analysis, Demo scenarios, and Slide deck outline).
+2. **`llm-security-research`**: OWASP LLM01:2025 taxonomy, threat taxonomy, direct vs. indirect prompt injection, jailbreak archetypes, and SOTA guardrail comparison.
+3. **`guardrail-dataset-engineering`**: Data collection, semantic deduplication, Group-Aware Splitting (preventing data leakage across paraphrases), and class balancing across public Hugging Face sources.
+4. **`ml-classifier-training`**: Training and optimization workflows for Classical ML baselines (TF-IDF Word/Char + LogisticRegression / LinearSVC) and Transformer Fine-Tuning (`microsoft/deberta-v3-base`) with dynamic loss weighting.
+5. **`guardrail-evaluation-metrics`**: Empirical metric evaluation (Precision, Recall, F1, FPR on benign queries, ROC-AUC, Confusion Matrix), adversarial robustness testing against obfuscation, and P95 latency profiling.
+6. **`guardrail-api-and-dashboard`**: Lightweight FastAPI guardrail middleware, downstream LLM proxy integration, security logging, and Streamlit interactive live testing dashboard.
+7. **`capstone-thesis-and-defense`**: Academic writing assistant for the FPT University Capstone Thesis (IAP491 Chapters 1–6), IEEE citation formatting, and Graduation Defense presentation slide preparation.
+8. **`fpt-capstone-rubrics-and-process`**: FPT IAP491 milestone management, weekly process tracking (`PI_GUARD_PROCESS_REPORT.xlsx`), continuous assessment rubrics (Reports 1–6), and committee defense preparation.
+9. **`team-git-sync-and-merge`**: Conflict-free Git synchronization protocol, sandboxed workspace isolation, and Leader exclusive merge governance into the main branch.
+10. **`team-commit-and-workspace-audit`**: Automated commit and PR auditing tool to detect and prevent unauthorized edits outside designated member sandboxes.
+11. **`resource-and-literature-validation`**: Automated verification suite for URLs, YouTube oEmbed endpoints, and Open-Access PDF lookups to prevent broken links and paywalls.
+12. **`docs-portal-sync-and-deploy`**: Automated documentation portal builder, synthesizing 8 research dossiers into the MkDocs Material GitHub Pages web portal.
 
 ---
 
 ## 👥 Collaboration Paradigm: Parallel Full-Pipeline Exploration & Knowledge Convergence
 
-> **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  
-> Instead of a siloed assembly-line, all 4 members explore the entire pipeline hands-on in parallel (`workspaces/<member>/`) and consolidate the best findings during weekly convergence meetings into `Final-Report/src/` and `Final-Report/thesis/chapters/`:
+> **Team Core Principle**: **Everyone Explores $\rightarrow$ Cross-Review Findings $\rightarrow$ Consensus Finalization**  
+> Instead of a fragmented assembly line, all 4 members explore the entire pipeline hands-on in parallel within their individual sandboxes (`workspaces/<member>/`). Weekly convergence meetings consolidate the best empirical results into `Final-Report/src/` and `Final-Report/thesis/chapters/`:
 
-- **All 4 members gain full-stack AI security experience** (Dataset Curation, Baseline ML, Transformer INT8, Adversarial Testing, FastAPI Middleware).
-- **Weekly Convergence Sessions**: The team compares experimental metrics (F1, FPR, Latency), selects the champion models/code for `Final-Report/src/`, and compiles thesis chapters seamlessly.
-- **Council Defense Preparedness**: Every member understands the full ecosystem end-to-end and can answer any committee question confidently.
+- **Full-Stack Competency**: Every member gains hands-on expertise across Data Engineering, Baseline ML, Transformer Fine-Tuning, Quantization, Adversarial Robustness, and API Integration.
+- **Weekly Convergence Sessions**: The team compares empirical metrics (F1, FPR, Latency P95), selects champion modules for `Final-Report/src/`, and compiles thesis chapters collaboratively.
+- **Defense Mastery**: Every member understands the complete ecosystem end-to-end, ensuring confident performance during individual committee oral examinations.
 
 | Member | Full-Pipeline Sandbox & Focus Area | Workspace Directory |
 | :--- | :--- | :--- |
-| **Nguyễn Văn Trường (Leader / `nvtruongops`)** | Architecture, Data Engineering & Repository Governance | `workspaces/truongnv/` |
-| **Nguyễn Quí Đức** | Classical ML Baseline, Feature Extraction & Methodology | `workspaces/ducnq/` |
-| **Phạm Minh Hoàng Việt** | Transformer Fine-Tuning, Quantization & Robustness | `workspaces/vietpmh/` |
-| **Đỗ Đoàn Duy Phương** | FastAPI Middleware, Dashboard & Thesis Compilation | `workspaces/phuongddd/` |
+| **Nguyễn Văn Trường (Leader / `nvtruongops`)** | Overall Architecture, Data Engineering, Group-Aware Splitting & Repository Governance | `workspaces/truongnv/` |
+| **Nguyễn Quí Đức** | Classical ML Baseline (TF-IDF Word/Char N-Grams), Feature Extraction & Threat Surface Modeling | `workspaces/ducnq/` |
+| **Phạm Minh Hoàng Việt** | Transformer Fine-Tuning (`microsoft/deberta-v3-base`), ONNX INT8 Quantization & Adversarial Robustness | `workspaces/vietpmh/` |
+| **Đỗ Đoàn Duy Phương** | FastAPI Guardrail Middleware Proxy, Streamlit Dashboard, Demo Testbed & Thesis Compilation | `workspaces/phuongddd/` |
 
 ---
 
 ## 🔒 Strict Workspace Boundary & Leader Merge Governance Rule
 
 > [!IMPORTANT]
-> **QUY ĐỊNH PHÂN QUYỀN GIT & RANH GIỚI WORKSPACE BẤT BIẾN**:
-> 1. **Thành viên (Đức, Việt, Phương)**: CHỈ ĐƯỢC PHÉP tạo, sửa đổi và commit các file nằm bên trong thư mục workspace cá nhân được chỉ định (`workspaces/<tên_thành_viên>/`). Tuyệt đối không được sửa đổi trực tiếp các file chung (`Final-Report/`, `Github-Page/`, `.agents/`, etc.).
-> 2. **Trưởng nhóm (Leader: `nvtruongops` / Nguyễn Văn Trường)**: Là NGƯỜI DUY NHẤT có thẩm quyền đồng quy tri thức, chọn lọc module xuất sắc nhất từ `workspaces/` của các thành viên để merge ra cây thư mục chung và xuất bản vào nhánh `main`.
-> 3. **Kiểm toán tự động**: Sử dụng `python Final-Report/scripts/validate_local.py` hoặc `python Final-Report/scripts/audit_workspace_boundaries.py` trước khi commit hoặc merge. Mọi commit vi phạm ranh giới sẽ bị chặn tự động bởi Git Pre-commit Hook (`python Final-Report/scripts/validate_local.py --install-hook`).
+> **ACCESS CONTROL & WORKSPACE BOUNDARY INVARIANTS**:
+> 1. **Member Sandbox Isolation**: Members (Đức, Việt, Phương) are authorized to create, modify, and commit files **STRICTLY WITHIN** their assigned personal directory (`workspaces/<member_name>/`). Direct modifications to shared directories (`Final-Report/`, `Github-Page/`, `.agents/`) are strictly prohibited.
+> 2. **Leader Sole Merge Authorization**: The Team Leader (`nvtruongops` / Nguyễn Văn Trường) holds exclusive authority to consolidate validated artifacts from member sandboxes into shared production branches during weekly convergence sessions.
+> 3. **Automated Audit Verification**: All commits and pull requests must pass `python Final-Report/scripts/validate_local.py` and `python Final-Report/scripts/audit_workspace_boundaries.py`. Unauthorized boundary violations are automatically blocked by the local pre-commit hook.
