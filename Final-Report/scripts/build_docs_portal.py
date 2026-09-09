@@ -392,15 +392,17 @@ def aggregate_all():
 
 def create_src_architecture_doc(dest_path: Path):
     """Tạo tài liệu kiến trúc mã nguồn chuẩn cho giai đoạn Review 1 (Zero-Code in Final-Report)."""
-    content = """# THƯ MỤC MÃ NGUỒN CHÍNH THỨC CỦA DỰ ÁN (PRODUCTION SOURCE CODE)
-## 🛡️ PI-Guard Core Framework Architecture
+    content = """# THƯ MỤC MÃ NGUỒN THỰC NGHIỆM CHÍNH THỨC (ACADEMIC RESEARCH & PoC PROTOTYPE)
+## 🛡️ PI-Guard Research Codebase & Evaluation Testbed Architecture
 
 > [!IMPORTANT]
-> **QUY TẮC BẢO TRÌ & ĐỒNG QUY MÃ NGUỒN (CONVERGENCE INVARIANT)**:
-> 1. Thư mục `Final-Report/src/` là **NƠI CHỨA MÃ NGUỒN CHÍNH THỨC, HOÀN CHỈNH VÀ ĐÃ QUA KIỂM THỬ (PRODUCTION-READY)**.
+> **QUY CHUẨN MÃ NGUỒN NGHIÊN CỨU KHOA HỌC (RESEARCH ARTIFACT INVARIANTS)**:
+> 1. Thư mục `Final-Report/src/` là **NƠI LƯU TRỮ MÃ NGUỒN THỰC NGHIỆM ĐÃ QUA KIỂM ĐỊNH (VERIFIED RESEARCH ARTIFACTS & PoC PROTOTYPE)** phục vụ tính tái lập khoa học (Research Reproducibility) theo chuẩn Papers with Code.
 > 2. Theo quy chuẩn học thuật FPT IAP491, trong giai đoạn **Review 1 (Problem Definition & Threat Modeling)**, dự án tuân thủ nghiêm ngặt **Quy tắc 100% Nghiên cứu lý thuyết & y văn (Zero Code in Final-Report)**.
 > 3. Toàn bộ quá trình thử nghiệm, tiền xử lý dữ liệu, huấn luyện mô hình (TF-IDF Baseline, DeBERTa-v3) và xây dựng API proxy được 4 thành viên thực hiện song song trong các không gian làm việc độc lập (`workspaces/<thành_viên>/`).
 > 4. **CHỈ KHI HOÀN THÀNH XONG VÀ NGHIỆM THU**, mã nguồn xuất sắc nhất mới được Leader đồng quy và tích hợp vào `Final-Report/src/` tại các cột mốc Review 2 và Review 3.
+> 5. **Bản chất đề tài Nghiên cứu Khoa học (Research-Based Thesis IAP491)**: Lớp `api/` (FastAPI) và `dashboard/` (Streamlit) được thiết kế như một **Nguyên Mẫu Thực Nghiệm (Proof-of-Concept Prototype)** và **Môi Trường Đo Đạc Độ Trễ (Inference Latency Testbed)** nhằm phục vụ đánh giá thực nghiệm (RQ3: P95 < 20ms) và bảo vệ trước Hội đồng chấm FPT theo đúng bản đăng ký [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md).
+> 6. **Cam kết chống phình phạm vi (Anti-Scope Creep Blacklist)**: Đề tài **TUYỆT ĐỐI KHÔNG** mở rộng sang các bài toán hạ tầng phần mềm thương mại / enterprise production (không làm cơ sở dữ liệu tài khoản người dùng, không làm OAuth2/JWT/RBAC, không làm kiểm thử tải phân tán 100k RPS, không triển khai Kubernetes hay Cloud CI/CD phức tạp).
 
 ---
 

@@ -27,8 +27,8 @@ Final-Report/
 │   ├── configs/                   # Cấu hình siêu tham số (data.yaml, evaluation.yaml, models.yaml, training.yaml)
 │   ├── data/                      # Khung lưu trữ dữ liệu thực nghiệm (raw, processed, splits, augmentation, manifests)
 │   └── models/                    # Khung lưu trữ trọng số mô hình đã huấn luyện (baseline, onnx, transformer)
-├── src/                           # Khung mã nguồn chính thức (Production Scaffolding sẵn sàng cho Review 2/3)
-│   ├── README.md                  # Kiến trúc các module và quy chuẩn phát triển phần mềm
+├── src/                           # Khung mã nguồn thực nghiệm chính thức (Research & PoC Scaffolding sẵn sàng cho Review 2/3)
+│   ├── README.md                  # Kiến trúc các module nghiên cứu & quy chuẩn tái lập khoa học
 │   └── [api, dashboard, datasets, evaluation, llm, models, policy, preprocessing, training, utils]/
 ├── tests/                         # Bộ kiểm thử tự động (Automated Test Suites Scaffolding)
 │   ├── README.md                  # Quy chuẩn kiểm thử (pytest, unit, integration, adversarial)
@@ -60,7 +60,7 @@ Final-Report/
 │   ├── generate_process_report.py # Sinh sổ theo dõi tiến độ chính thức PI_GUARD_PROCESS_REPORT.xlsx
 │   ├── generate_personal_process_report.py # Sinh báo cáo tiến độ cá nhân hóa từng thành viên
 │   └── sync_google_sheet.py       # Đồng bộ dữ liệu tiến độ lên Google Sheet phục vụ GVHD
-├── requirements.txt               # Master Production Dependencies
+├── requirements.txt               # Master Core & Research Dependencies
 ├── requirements-dev.txt           # Master Dev Dependencies (Pytest, Ruff, Pre-commit, MkDocs)
 └── .env.example                   # Master Environment Configuration Template
 ```

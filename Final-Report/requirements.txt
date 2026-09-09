@@ -1,5 +1,5 @@
 # ==============================================================================
-# PI-GUARD MASTER REQUIREMENTS (FINAL-REPORT PRODUCTION & EXPERIMENTS)
+# PI-GUARD MASTER REQUIREMENTS (CORE ML & RESEARCH EXPERIMENTS)
 # ==============================================================================
 
 # Core Machine Learning & NLP

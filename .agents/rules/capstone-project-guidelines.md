@@ -21,7 +21,7 @@ trigger: always_on
 > **AGENTS ARE STRICTLY PROHIBITED FROM MODIFYING, EDITING, OVERWRITING, DELETING, COMMITTING, OR EXPOSING `CAPSTONE PROJECT REGISTER.md` OR ANY FILE IN `docs/fpt_capstone_guide/` UNDER ANY CIRCUMSTANCES.**
 > - **Confidentiality Invariant**: `docs/fpt_capstone_guide/` is protected by `.gitignore` and must NEVER be copied to `Github-Page/` or made public.
 > - **Extracted Reference**: Academic rubrics and thesis structure are officially extracted into [`Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md).
-> - **Fall 2026 Milestone Independence**: The **LỘ TRÌNH THỰC HIỆN & 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)** is defined specifically for Fall 2026 with Supervisor MSc. Trần Văn Ninh, and is **NOT** taken from the legacy timelines in `docs/fpt_capstone_guide/`.
+> - **Fall 2026 Milestone Independence**: The **LỘ TRÌNH THỰC HIỆN & 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)** is defined specifically for Fall 2026 with Supervisor Trần Văn Ninh, and is **NOT** taken from the legacy timelines in `docs/fpt_capstone_guide/`.
 
 
 ---

@@ -12,7 +12,7 @@ This skill manages project governance, weekly milestones, supervisor reporting, 
 > 📚 **Internal Guidelines Reference (Confidential, Local Only)**: [`docs/fpt_capstone_guide/IAP491_CP_StudentsGuideForm for Research Based Thesis.docx`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/IAP491_CP_StudentsGuideForm%20for%20Research%20Based%20Thesis.docx)  
 > 📑 **Official Synthesized Rubrics & Chapter Outline**: [`Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md)  
 > 📊 **Official Semester Process Report**: [`Final-Report/reports/PI_GUARD_PROCESS_REPORT.xlsx`](file:///d:/Work/Do-an/Final-Report/reports/PI_GUARD_PROCESS_REPORT.xlsx)  
-> ⚠️ **Fall 2026 Timeline Notice**: The 15-week milestone timeline below is established specifically for the **Fall 2026 semester** in agreement with Supervisor **MSc. Trần Văn Ninh**, and is **NOT** taken from the legacy schedules stored in `docs/fpt_capstone_guide/`.
+> ⚠️ **Fall 2026 Timeline Notice**: The 15-week milestone timeline below is established specifically for the **Fall 2026 semester** in agreement with Supervisor **Trần Văn Ninh**, and is **NOT** taken from the legacy schedules stored in `docs/fpt_capstone_guide/`.
 
 ---
 
