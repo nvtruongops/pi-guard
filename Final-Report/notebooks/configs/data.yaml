@@ -1,0 +1,47 @@
+# Data Curation & Preprocessing Configuration
+
+sources:
+  - name: deepset_prompt_injections
+    hf_dataset: deepset/prompt-injections
+    split: train
+    label_map: {0: 0, 1: 1}  # 0: benign, 1: injection
+    category: prompt_injection
+  - name: lakera_gandalf
+    hf_dataset: Lakera/gandalf_ignore_instructions
+    split: train
+    label_map: {1: 1}
+    category: jailbreak
+  - name: trustairlab_jailbreak
+    hf_dataset: TrustAIRLab/in-the-wild-jailbreak-prompts
+    split: train
+    label_map: {1: 1}
+    category: jailbreak
+  - name: open_orca_benign
+    hf_dataset: Open-Orca/OpenOrca
+    split: train
+    max_samples: 25000
+    label_map: {0: 0}
+    category: benign
+
+preprocessing:
+  normalize_unicode: true  # NFKC normalization
+  strip_whitespace: true
+  min_char_length: 5
+  max_char_length: 4000
+  deduplication_method: exact_and_minhash
+  similarity_threshold: 0.95
+
+splitting:
+  method: group_aware  # Prevents data leakage between paraphrased templates
+  group_column: cluster_id
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  random_seed: 42
+
+augmentation:
+  enable_adversarial_augmentation: true
+  leetspeak_prob: 0.15
+  base64_prob: 0.10
+  spacing_prob: 0.10
+  delimiter_wrap_prob: 0.15

@@ -9,10 +9,10 @@
 ### 📂 CẤU TRÚC PHÂN HỆ BÁO CÁO TỔNG & NGHIỆM THU (`Final-Report/`):
 
 > [!IMPORTANT]
-> **QUY CHUẨN GIAI ĐOẠN REVIEW 1 (ZERO-CODE INVARIANT IN FINAL-REPORT)**:
+> **QUY CHUẨN GIAI ĐOẠN REVIEW 1 (ZERO-CODE INVARIANT TRONG FINAL-REPORT)**:
 > - Theo quy chế học thuật ĐH FPT (IAP491), giai đoạn **Review 1 (Tuần 1–4)** là giai đoạn **100% Nghiên cứu lý thuyết, Khảo sát y văn, Mô hình hóa đe dọa (Threat Modeling) và Thiết kế kiến trúc**.
-> - Thư mục `Final-Report/` là phân hệ Nghiệm thu chính thức, tuân thủ nguyên tắc: **"Chỉ khi hoàn thành xong và nghiệm thu mới có code hay tài liệu chính thức ở Final-Report/"**.
-> - Các module mã nguồn sản phẩm (`src/`), bộ kiểm thử tự động (`tests/`), và tài nguyên thực nghiệm (`notebooks/`) hiện đang được 4 thành viên phát triển song song trong các không gian làm việc độc lập (`workspaces/<thành_viên>/`) và sẽ được Leader đồng quy tích hợp vào `Final-Report/` tại cột mốc **Review 2 & Hội đồng Giữa kỳ**.
+> - Thư mục `Final-Report/` duy trì đầy đủ khung cấu trúc chuẩn (scaffolding gồm `README.md`, `.gitkeep`, cấu hình `configs/`), nhưng **tuyệt đối không chứa mã nguồn chưa qua kiểm duyệt hoặc code thử nghiệm dang dở**.
+> - Toàn bộ quá trình code thử nghiệm, chạy notebook phân tích dữ liệu và huấn luyện mô hình diễn ra độc lập trong không gian làm việc của 4 thành viên (`workspaces/<thành_viên>/`) và chỉ được Leader đồng quy tích hợp vào `Final-Report/` sau khi họp chốt kết quả tại cột mốc **Review 2 & Hội đồng Giữa kỳ**.
 
 ```
 Final-Report/
@@ -22,6 +22,17 @@ Final-Report/
 │   ├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt quy chế & tiêu chí chấm điểm IAP491
 │   ├── chapters/                  # Các chương riêng biệt (01_Introduction, 02_Literature_Review)
 │   └── README.md                  # Quy chuẩn viết và biên dịch Luận văn
+├── notebooks/                     # Tài nguyên thực nghiệm & kế hoạch 5 Jupyter Notebooks tái lập
+│   ├── README.md                  # Kế hoạch thực nghiệm và quy chế vận hành 5 notebooks
+│   ├── configs/                   # Cấu hình siêu tham số (data.yaml, evaluation.yaml, models.yaml, training.yaml)
+│   ├── data/                      # Khung lưu trữ dữ liệu thực nghiệm (raw, processed, splits, augmentation, manifests)
+│   └── models/                    # Khung lưu trữ trọng số mô hình đã huấn luyện (baseline, onnx, transformer)
+├── src/                           # Khung mã nguồn chính thức (Production Scaffolding sẵn sàng cho Review 2/3)
+│   ├── README.md                  # Kiến trúc các module và quy chuẩn phát triển phần mềm
+│   └── [api, dashboard, datasets, evaluation, llm, models, policy, preprocessing, training, utils]/
+├── tests/                         # Bộ kiểm thử tự động (Automated Test Suites Scaffolding)
+│   ├── README.md                  # Quy chuẩn kiểm thử (pytest, unit, integration, adversarial)
+│   └── [unit, integration, adversarial]/
 ├── Meeting/                       # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
 │   ├── Meeting 1_29_08_26.md      # Họp khởi động đề tài & phân công Sprint 1
 │   ├── Meeting 2_01_09_26.md      # Khảo sát & sàng lọc 10 bài báo khoa học, định hướng 2 mô hình

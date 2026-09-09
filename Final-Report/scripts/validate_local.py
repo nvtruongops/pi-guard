@@ -196,7 +196,7 @@ def step_code_linting(staged_only: bool = False) -> tuple[bool, str]:
                 ROOT_DIR / "src",
                 ROOT_DIR / "tests",
             ]:
-                if t.exists():
+                if t.exists() and any(t.glob("**/*.py")):
                     targets.append(str(t.relative_to(ROOT_DIR)).replace("\\", "/"))
             if not targets:
                 return True, "Review 1 Phase: Zero-Code invariant in Final-Report/ verified (no premature production code). Skipped."
@@ -277,9 +277,9 @@ def step_automated_tests(fast_only: bool = False) -> Tuple[bool, str]:
             ROOT_DIR / "tests" / "adversarial",
         ]
 
-    valid_paths = [str(p.relative_to(ROOT_DIR)).replace("\\", "/") for p in test_paths if p.exists()]
+    valid_paths = [str(p.relative_to(ROOT_DIR)).replace("\\", "/") for p in test_paths if p.exists() and any(p.glob("test_*.py"))]
     if not valid_paths:
-        return True, "No test paths found. Skipped."
+        return True, "No test files found (Review 1 scaffolding phase). Skipped."
 
     code, out, err = run_cmd([sys.executable, "-m", "pytest"] + valid_paths + ["-q"])
     if code == 0:

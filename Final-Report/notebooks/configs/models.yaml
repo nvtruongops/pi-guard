@@ -1,0 +1,25 @@
+# Model Registry & Deployment Specifications
+
+models:
+  baseline_tfidf:
+    type: classical_ml
+    path: models/baseline/baseline_tfidf.joblib
+    vectorizer_features: 60000
+    expected_latency_p95_ms: 3.5
+    device: cpu
+
+  deberta_v3_base:
+    type: transformer
+    path: models/transformer/deberta_v3_guardrail
+    architecture: DebertaV2ForSequenceClassification
+    max_length: 512
+    expected_latency_p95_ms: 28.0
+    device: auto
+
+  deberta_v3_onnx_int8:
+    type: onnx_quantized
+    path: models/onnx/deberta_v3_int8.onnx
+    optimization_level: ORT_ENABLE_ALL
+    threads: 4
+    expected_latency_p95_ms: 14.5
+    device: cpu
