@@ -23,7 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - **Root `README.md` Internationalization & Polish**: Translated the entire landing documentation to academic/enterprise English standard, purged all emoji icons, collapsed `thesis/` to a concise single-line representation, and redesigned the System Architecture Mermaid diagram with an un-nested, high-contrast Dark Navy layout (`#0f172a`).
 - **Local QA Suite Validation (`validate_local.py`)**: Enhanced `step_code_linting` and `step_automated_tests` to guard against empty scaffold directories, ensuring 100% PASS scores during Review 1 zero-code state.
-- **Contributing Guidelines (`CONTRIBUTING.md`)**: Overhauled the 4-member milestone action plan to strictly report only existing deliverables for Review 1 while designating Review 2 and council milestones as in-progress within member workspaces.
+- **Contributing Guidelines (`CONTRIBUTING.md`)**: Realigned the 4-member parallel action plan and evaluation milestones strictly with [`FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md) (Sprint Tiền Đề, Review 1 [Report 1 & 2: 35%], Review 2 [Report 3: 20%], Hội Đồng 1 / Giữa Kỳ [Report 4: 25%], Hội Đồng Final / Bảo Vệ Tốt Nghiệp [Report 5 & 6: 20% + 50% Presentation]), assigned formal reporting lead roles to all 4 members, and strictly limited Review 1 deliverables to existing artifacts in `Final-Report/`.
+- **Documentation Link Hygiene**: Removed hardcoded localhost (`http://127.0.0.1:8000`) references across `README.md`, `CONTRIBUTING.md`, and documentation portal build outputs in favor of clean CLI instructions and official GitHub Pages deployment links.
 
 ---
 

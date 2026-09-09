@@ -153,9 +153,9 @@ cp Final-Report/.env.example .env
 python Final-Report/scripts/build_docs_portal.py
 
 # Launch local documentation preview server
-mkdocs serve   # Available at: http://127.0.0.1:8000
+mkdocs serve
 
-# Or browse the official live deployment on GitHub Pages:
+# Browse the official live deployment on GitHub Pages:
 # https://nvtruongops.github.io/pi-guard/
 ```
 
