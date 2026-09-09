@@ -1,5 +1,0 @@
-# ==============================================================================
-# PI-GUARD ROOT DEV REQUIREMENTS POINTER
-# ==============================================================================
-# The canonical, self-contained dev requirements are maintained in Final-Report/:
--r Final-Report/requirements-dev.txt

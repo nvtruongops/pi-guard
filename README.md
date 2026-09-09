@@ -99,13 +99,13 @@ Curated from public benchmarks on Hugging Face and deduplicated with **Group-Awa
 git clone https://github.com/nvtruongops/pi-guard.git
 cd pi-guard
 
-# Install dependencies (Root pointer seamlessly resolves Final-Report/requirements.txt)
-pip install -r requirements.txt
+# Install dependencies (Self-contained in Final-Report/)
+pip install -r Final-Report/requirements.txt
 # Alternatively, install development & documentation dependencies:
-pip install -r requirements-dev.txt
+pip install -r Final-Report/requirements-dev.txt
 
-# Configure environment variables (.env.example mirrored from Final-Report/.env.example)
-cp .env.example .env
+# Configure environment variables
+cp Final-Report/.env.example .env
 ```
 
 ### 2. Dataset Pipeline & Training
