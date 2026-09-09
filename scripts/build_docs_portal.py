@@ -240,7 +240,7 @@ def aggregate_all():
     create_static_assets()
 
     # 1. Quản lý công việc & Tiến độ
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md",
+    copy_doc(ROOT_DIR / "reports" / "thesis" / "FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md",
              DOCS_DIR / "work" / "fpt_guidelines_and_rubrics.md")
     copy_doc(ROOT_DIR / "reports" / "Meeting" / "Meeting 1_29_08_26.md",
              DOCS_DIR / "work" / "meeting_1.md")
@@ -358,13 +358,13 @@ def aggregate_all():
     # Luận văn & Báo cáo Review
     copy_doc(ROOT_DIR / "CAPSTONE PROJECT REGISTER.md",
              DOCS_DIR / "thesis" / "capstone_register.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "Review1_Problem_Definition_and_Threat_Model.md",
+    copy_doc(ROOT_DIR / "reports" / "thesis" / "Review1_Problem_Definition_and_Threat_Model.md",
              DOCS_DIR / "thesis" / "review1_threat_model.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "chapters" / "01_Introduction.md",
+    copy_doc(ROOT_DIR / "reports" / "thesis" / "chapters" / "01_Introduction.md",
              DOCS_DIR / "thesis" / "chapter_01_introduction.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "chapters" / "02_Literature_Review.md",
+    copy_doc(ROOT_DIR / "reports" / "thesis" / "chapters" / "02_Literature_Review.md",
              DOCS_DIR / "thesis" / "chapter_02_literature_review.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "FINAL_THESIS.md",
+    copy_doc(ROOT_DIR / "reports" / "thesis" / "FINAL_THESIS.md",
              DOCS_DIR / "thesis" / "final_thesis.md")
 
     # Thư viện bài báo khoa học

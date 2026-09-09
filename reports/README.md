@@ -10,6 +10,12 @@
 
 ```
 reports/
+├── thesis/                        # Toàn bộ hồ sơ Luận văn tốt nghiệp chính thức (Single Source of Truth)
+│   ├── FINAL_THESIS.md            # Toàn văn Khóa luận tốt nghiệp (Chapters 1-6 + References)
+│   ├── Review1_Problem_Definition_and_Threat_Model.md # Báo cáo Chuyên đề Đợt 1 (Định nghĩa bài toán & Threat Model)
+│   ├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt tiêu chuẩn đánh giá IAP491
+│   ├── chapters/                  # Các chương riêng biệt (01_Introduction, 02_Literature_Review)
+│   └── README.md                  # Quy chuẩn viết và biên dịch Luận văn
 ├── Meeting/                       # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
 │   ├── Meeting 1_29_08_26.md      # Họp khởi động đề tài & phân công Sprint 1
 │   ├── Meeting 2_01_09_26.md      # Khảo sát & sàng lọc 10 bài báo khoa học, định hướng 2 mô hình

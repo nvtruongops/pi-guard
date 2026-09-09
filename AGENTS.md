@@ -101,7 +101,7 @@ The workspace has 7 integrated MCP servers:
 ## 👥 Collaboration Paradigm: Parallel Full-Pipeline Exploration & Knowledge Convergence
 
 > **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  
-> Instead of a siloed assembly-line, all 4 members explore the entire pipeline hands-on in parallel (`workspaces/<member>/`) and consolidate the best findings during weekly convergence meetings into `src/` and `docs/thesis/chapters/`:
+> Instead of a siloed assembly-line, all 4 members explore the entire pipeline hands-on in parallel (`workspaces/<member>/`) and consolidate the best findings during weekly convergence meetings into `src/` and `reports/thesis/chapters/`:
 
 - **All 4 members gain full-stack AI security experience** (Dataset Curation, Baseline ML, Transformer INT8, Adversarial Testing, FastAPI Middleware).
 - **Weekly Convergence Sessions**: The team compares experimental metrics (F1, FPR, Latency), selects the champion models/code for `src/`, and compiles thesis chapters seamlessly.

@@ -26,7 +26,7 @@
 | `docs/optimization/` | **Chuyên Đề 7**: Lượng tử hóa INT8 PTQ, tối ưu ONNX Runtime Graph & Độ trễ P95/P99 | Đồng bộ từ `workspaces/truongnv/docs/` |
 | `docs/evaluation_study/` | **Chuyên Đề 8**: Kinh tế học FPR, Đường cong biên Pareto & Đánh đổi an toàn/trải nghiệm | Đồng bộ từ `workspaces/truongnv/docs/` |
 | `docs/research/` | Các bài nghiên cứu đối sánh SOTA (Llama Guard, NeMo, Target LLMs, Tencent 2026) | Đồng bộ từ `workspaces/truongnv/docs/` |
-| `docs/thesis/` | Bản đăng ký đề tài chính thức, hồ sơ Review 1 và các chương luận văn hoàn thiện | Đồng bộ từ `CAPSTONE REGISTER` & `workspaces/` |
+| `docs/thesis/` | Bản đăng ký đề tài chính thức, hồ sơ Review 1 và các chương luận văn hoàn thiện | Đồng bộ từ `CAPSTONE REGISTER` & `reports/thesis/` |
 | `docs/references/` | Bảng tra cứu & ma trận áp dụng 18 bài báo khoa học toàn văn PDF | Đồng bộ từ `reports/References/` |
 | `docs/dev/` | Quy chế phân quyền Git, hướng dẫn đóng góp và đặc tả kiến trúc mã nguồn | Đồng bộ từ `AGENTS.md`, `CONTRIBUTING.md` |
 | `docs/javascripts/` & `stylesheets/` | Cấu hình MathJax LaTeX hiển thị công thức toán và Custom CSS bảng biểu | Sinh tự động bởi `build_docs_portal.py` |

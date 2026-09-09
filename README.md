@@ -160,7 +160,8 @@ Hệ thống thư mục của dự án được quy hoạch tinh gọn thành **
 
 ```
 d:/Work/Do-an/
-├── 📁 reports/                     # [PHÂN HỆ 1: BÁO CÁO TỔNG] Báo cáo tiến độ, slides, figures, tables, Meeting/ & References/
+├── 📁 reports/                     # [PHÂN HỆ 1: BÁO CÁO TỔNG] Luận văn tốt nghiệp, báo cáo tiến độ, slides, figures, tables, Meeting/ & References/
+│   ├── thesis/                    # Toàn văn Luận văn tốt nghiệp (FINAL_THESIS.md, Review 1, Chapters 1-6)
 │   ├── Meeting/                   # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
 │   ├── References/                # Toàn bộ 18 bài báo khoa học toàn văn PDF & REFERENCES_LOG.md
 │   ├── PI-GUARD-Present-109.pptx  # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026 (22 slides, Dark Slate Navy)

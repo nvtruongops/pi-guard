@@ -2,7 +2,7 @@ import os
 import glob
 
 def compile_thesis():
-    base_dir = r'D:\Work\Do-an\docs\thesis'
+    base_dir = r'D:\Work\Do-an\reports\thesis'
     chapters_dir = os.path.join(base_dir, 'chapters')
     output_file = os.path.join(base_dir, 'FINAL_THESIS.md')
     
@@ -60,6 +60,7 @@ def compile_thesis():
 
             
     output_files = [
+        r'D:\Work\Do-an\reports\thesis\FINAL_THESIS.md',
         r'D:\Work\Do-an\workspaces\truongnv\docs\thesis\FINAL_THESIS.md'
     ]
     for out in output_files:

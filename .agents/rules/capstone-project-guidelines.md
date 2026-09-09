@@ -107,7 +107,8 @@ trigger: always_on
 
 ```
 d:/Work/Do-an/
-├── reports/                     # [1. BÁO CÁO TỔNG] Báo cáo tiến độ, slides, figures, tables, Meeting/ & References/
+├── reports/                     # [1. BÁO CÁO TỔNG] Luận văn tốt nghiệp, báo cáo tiến độ, slides, figures, tables, Meeting/ & References/
+│   ├── thesis/                  # Luận văn tốt nghiệp (FINAL_THESIS.md, Review 1, Chapters 1-6)
 │   ├── Meeting/                 # Biên bản họp với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
 │   ├── References/              # 18 bài báo khoa học chuẩn (PDF) & REFERENCES_LOG.md
 │   ├── PI-GUARD-Present-109.pptx # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026
