@@ -5,7 +5,7 @@ Trong đề tài **PI-Guard** (FPT University IAP491), nhóm áp dụng mô hìn
 
 ---
 
-### 🔄 1. QUY TRÌNH 2 PHA HÀNG TUẦN (SPRINT WORKFLOW)
+### 1. QUY TRÌNH 2 PHA HÀNG TUẦN (SPRINT WORKFLOW)
 
 ```
                      ┌────────────────────────────────────────────────────────┐
@@ -21,56 +21,81 @@ Trong đề tài **PI-Guard** (FPT University IAP491), nhóm áp dụng mô hìn
 │   - Cùng khảo sát & phân tích dataset        │              │   - So sánh kết quả thực nghiệm của 4 người  │
 │   - Cùng train thử nghiệm các thuật toán ML  │              │   - Đánh giá: Model nào F1 cao hơn? Ít FPR?  │
 │   - Cùng test tấn công Jailbreak/Base64      │              │   - Chọn giải pháp XUẤT SẮC NHẤT đưa vào     │
-│   - Cùng chạy thử nghiệm API/Dashboard       │              │     thư mục chung `src/`                     │
+│   - Cùng chạy thử nghiệm API/Dashboard       │              │     phân hệ chung `Final-Report/`            │
 │ • Mỗi bạn làm việc trong `workspaces/<tên>/` │              │ • Cùng tinh gọn báo cáo & diễn tập slide     │
 └──────────────────────────────────────────────┘              └──────────────────────────────────────────────┘
 ```
 
 ---
 
-### 👥 2. KẾ HOẠCH HÀNH ĐỘNG SONG SONG 4 THÀNH VIÊN THEO TỪNG CỘT MỐC
+### 2. KẾ HOẠCH HÀNH ĐỘNG SONG SONG 4 THÀNH VIÊN THEO TỪNG CỘT MỐC
 
-| Cột Mốc Đánh Giá | Hoạt Động Song Song Của Cả 4 Bạn | Phiên Họp Tổng Kết & Đồng Quy Tri Thức | Sản Phẩm Đầu Ra Nghiệm Thu |
+> [!IMPORTANT]
+> **QUY TẮC NGHIỆM THU ĐẦU RA (DELIVERABLE ACCEPTANCE RULE)**:
+> - **Giai đoạn hiện tại (Review 1: Tuần 1–4)**: Phân hệ nghiệm thu chính thức [`Final-Report/`](Final-Report/) **CHỈ BÁO CÁO CÁC SẢN PHẨM ĐÃ CÓ THỰC TẾ** (Hồ sơ chuyên đề, Luận văn dự thảo, Slide GVHD, Sổ tiến độ, 18 bài báo khoa học PDF và Khung cấu hình YAML tái lập).
+> - **Mã nguồn, Notebooks và Test Scripts**: Hiện đang được cả 4 thành viên phát triển song song độc lập trong các sandbox cá nhân [`workspaces/<thành_viên>/`](workspaces/) và sẽ được Leader đồng quy tích hợp vào [`Final-Report/`](Final-Report/) tại các cột mốc Review 2 và Hội Đồng Giữa Kỳ sau khi nghiệm thu.
+
+| Cột Mốc Đánh Giá | Hoạt Động Song Song Của Cả 4 Thành Viên | Phiên Họp Tổng Kết & Đồng Quy Tri Thức | Sản Phẩm Đầu Ra Nghiệm Thu (Chỉ báo cáo các phần đã có) |
 | :--- | :--- | :--- | :--- |
-| **🎯 REVIEW 1**<br>*(Tuần 1 - 4: Xác định bài toán & SOTA)* | Cả 4 cùng đọc 18 papers, cùng phân tích các vụ tấn công thực tế (DAN, Base64), cùng thử các câu lệnh prompt injection. | Cùng thống nhất bảng Threat Model NIST, 3 Câu hỏi nghiên cứu IEEE, và phân vai thuyết trình 22 slide. | [`chapters/01_Introduction.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/01_Introduction.md)<br>[`chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/02_Literature_Review.md)<br>[`PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/Final-Report/PI-GUARD-Present-109.pptx) |
-| **🎯 REVIEW 2**<br>*(Tuần 5 - 8: Methodology, Baseline ML & Cập nhật Docs)* | Cả 4 cùng tải dataset, cùng thử thuật toán gom cụm Group-Aware, cùng huấn luyện các mô hình Baseline (LinearSVC, LogisticRegression, XGBoost, Naive Bayes), soạn thảo và cập nhật tài liệu docs Chapter 3. | Đối sánh F1-score và FPR giữa các thuật toán của 4 bạn $\rightarrow$ Chọn pipeline Baseline tối ưu nhất đưa vào `Final-Report/src/models/baseline/`, hoàn thiện Report No.3 và bảo vệ Review 2 Tuần 8. | [`chapters/03_Methodology.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/03_Methodology.md)<br>`Final-Report/src/datasets/splitter.py`<br>`Final-Report/notebooks/02_baseline.ipynb` |
-| **🏛️ HỘI ĐỒNG 1**<br>*(Tuần 9 - 13: Transformer, Prototype & Hội Đồng Giữa Kỳ)* | Cả 4 cùng thử fine-tune DeBERTa-v3/RoBERTa, cùng thử các kỹ thuật nén INT8, cùng viết các payload lẩn tránh Base64/Leetspeak để "tấn công thử nghiệm" lẫn nhau. | Chọn checkpoint mô hình có độ trễ thấp nhất (< 15ms) và kháng lẩn tránh tốt nhất $\rightarrow$ Tích hợp vào FastAPI Middleware & Streamlit UI để báo cáo Hội đồng Giữa kỳ tại Tuần 13. | [`chapters/04_Experimental_and_Results.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/04_Experimental_and_Results.md)<br>`Final-Report/src/models/classifier.py`<br>`Final-Report/src/api/` & `Final-Report/src/dashboard/` |
-| **🎓 HỘI ĐỒNG FINAL**<br>*(Tuần 14 - 15: Tốt nghiệp Chính thức)* | Cả 4 cùng đọc toàn văn 6 chương, cùng đặt các câu hỏi phản biện giả định của Hội đồng để tập trả lời (Mock Defense). | Chạy script biên dịch `python Final-Report/scripts/compile_thesis.py`, quét Turnitin (< 20%), tổng duyệt slide và bảo vệ trước Hội đồng tại Tuần 15. | [`FINAL_THESIS.md`](file:///d:/Work/Do-an/Final-Report/thesis/FINAL_THESIS.md)<br>Slide Bảo Vệ Tốt Nghiệp Chính Thức |
+| **REVIEW 1 (HIỆN TẠI)**<br>*(Tuần 1 - 4: Xác định bài toán & SOTA)* | - Cả 4 bạn cùng đọc 18 papers chuẩn IEEE/ACM/NeurIPS.<br>- Cùng phân tích các vụ tấn công thực tế (DAN, Base64, Leetspeak).<br>- Cùng thử nghiệm các prompt injection trong workspace cá nhân. | - Thống nhất mô hình đe dọa STRIDE & NIST AI 100-2e2025.<br>- Thống nhất 3 Câu hỏi nghiên cứu IEEE.<br>- Phân vai thuyết trình 22 slide báo cáo GVHD. | **ĐÃ HOÀN TẤT TRONG REPO:**<br>- [`Review1_Problem_Definition_and_Threat_Model.md`](Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md)<br>- [`FINAL_THESIS.md`](Final-Report/thesis/FINAL_THESIS.md) (Chương 1, 2 & References)<br>- [`01_Introduction.md`](Final-Report/thesis/chapters/01_Introduction.md) & [`02_Literature_Review.md`](Final-Report/thesis/chapters/02_Literature_Review.md)<br>- [`PI-GUARD-Present-109.pptx`](Final-Report/reports/PI-GUARD-Present-109.pptx) (Slide báo cáo GVHD ngày 10/09/2026)<br>- [`PI_GUARD_PROCESS_REPORT.xlsx`](Final-Report/reports/PI_GUARD_PROCESS_REPORT.xlsx) (Sổ tiến độ IAP491)<br>- [`Meeting 1, 2, 3`](Final-Report/Meeting/) (Biên bản họp GVHD & nhóm)<br>- [`References/`](Final-Report/References/) (18 PDF toàn văn & REFERENCES_LOG.md)<br>- [`notebooks/configs/`](Final-Report/notebooks/configs/) (`data.yaml`, `evaluation.yaml`, `models.yaml`, `training.yaml`)<br>- Khung thư mục Scaffolding (`notebooks/`, `src/`, `tests/` kèm `.gitkeep`) |
+| **REVIEW 2**<br>*(Tuần 5 - 8: Methodology, Baseline ML & Data Pipeline)* | - Cả 4 bạn cùng tải dataset HF (`deepset`, `Lakera`, `TrustAIRLab`).<br>- Cùng thử nghiệm thuật toán gom cụm Group-Aware Splitting (MinHash / Jaccard).<br>- Cùng huấn luyện mô hình Baseline (LinearSVC, LogisticRegression, XGBoost).<br>- Soạn thảo dự thảo Chương 3 (Methodology) trong workspace cá nhân. | - Đối sánh F1-score, Precision, Recall và FPR giữa các giải pháp của 4 bạn.<br>- Chọn pipeline Baseline tối ưu nhất đưa vào `Final-Report/src/models/baseline/`.<br>- Chốt dữ liệu chuẩn vào `Final-Report/notebooks/data/`.<br>- Leader hoàn thiện Report No.3 và diễn tập bảo vệ Review 2 Tuần 8. | *(Kế hoạch nghiệm thu Review 2 — Đang chạy nháp trong workspaces cá nhân)*:<br>- `Final-Report/thesis/chapters/03_Methodology.md`<br>- `Final-Report/notebooks/01_dataset_analysis.ipynb`<br>- `Final-Report/notebooks/02_baseline.ipynb`<br>- `Final-Report/notebooks/data/manifests/`<br>- `Final-Report/src/datasets/` & `Final-Report/src/models/baseline/` |
+| **HỘI ĐỒNG 1**<br>*(Tuần 9 - 13: Transformer, Prototype & Giữa Kỳ)* | - Cả 4 cùng thử fine-tune `microsoft/deberta-v3-base`.<br>- Cùng thử các kỹ thuật nén lượng hóa INT8 ONNX Engine.<br>- Cùng viết các payload lẩn tránh đối kháng (Base64, Leetspeak, khoảng trắng) để chéo cánh "tấn công thử nghiệm" mô hình của nhau.<br>- Cùng dựng prototype FastAPI và Streamlit Dashboard cục bộ. | - Chọn checkpoint mô hình có F1 cao nhất (> 0.95), độ trễ P95 < 15ms và kháng lẩn tránh tốt nhất.<br>- Leader đồng quy mã nguồn xuất sắc nhất vào `Final-Report/src/` và `Final-Report/tests/`.<br>- Tổng duyệt slide và bảo vệ Hội đồng Giữa kỳ tại Tuần 13. | *(Kế hoạch nghiệm thu Hội đồng Giữa kỳ — Đang thử nghiệm trong workspaces)*:<br>- `Final-Report/thesis/chapters/04_Experimental_and_Results.md`<br>- `Final-Report/notebooks/03_transformer_training.ipynb`<br>- `Final-Report/notebooks/04_ablation.ipynb`<br>- `Final-Report/src/api/` & `Final-Report/src/dashboard/`<br>- `Final-Report/tests/adversarial/`<br>- Slide Trình Chiếu Hội Đồng Giữa Kỳ (IAP491) |
+| **HỘI ĐỒNG FINAL**<br>*(Tuần 14 - 15: Tốt Nghiệp Chính Thức)* | - Cả 4 cùng rà soát toàn văn 6 chương luận văn.<br>- Cùng đặt các câu hỏi phản biện giả định của Hội đồng để diễn tập vấn đáp (Mock Defense).<br>- Cùng tối ưu hóa hiệu năng và kiểm thử tải cho toàn bộ hệ thống Guardrail Proxy. | - Chạy script biên dịch `compile_thesis.py` xuất bản toàn văn khóa luận.<br>- Quét trùng lặp Turnitin (< 20%).<br>- Tổng duyệt slide bảo vệ tốt nghiệp chính thức trước Hội đồng FPT. | *(Kế hoạch nghiệm thu Tốt nghiệp — Đóng gói cuối khóa)*:<br>- `Final-Report/thesis/FINAL_THESIS.md` (Hoàn chỉnh 6 chương và phụ lục)<br>- `Final-Report/notebooks/05_error_analysis.ipynb`<br>- Gói Docker container triển khai Guardrail Proxy hoàn chỉnh<br>- Báo cáo kiểm định Turnitin chính thức<br>- Slide Bảo Vệ Tốt Nghiệp Chính Thức |
 
 ---
 
-### 🛡️ 3. LỢI ÍCH SỐ 1 KHI BẢO VỆ TRƯỚC HỘI ĐỒNG:
-- **100% Thành viên đều hiểu toàn bộ hệ sinh thái**: Khi Thầy/Cô trong Hội đồng chỉ định bất kỳ ai trả lời về Data, Model hay API $\rightarrow$ Bạn đó đều đã từng tự tay làm thử và trả lời xuất sắc.
-- **Tính đoàn kết và làm chủ đồ án cao nhất**: Không có cảm giác "người gánh team, người đứng ngoài cuộc".
+### 3. PHÂN CÔNG VAI TRÒ VÀ KHÔNG GIAN LÀM VIỆC CÁ NHÂN (`workspaces/<thành_viên>/`)
+
+Mỗi thành viên làm việc độc lập trong thư mục sandbox được chỉ định và chịu trách nhiệm toàn trình cho module chuyên sâu của mình:
+
+| Thành Viên | MSSV | Vai Trò Chuyên Sâu | Workspace Cá Nhân | Nhánh Git Feature |
+| :--- | :--- | :--- | :--- | :--- |
+| **Nguyễn Văn Trường (Leader)** | SE182034 | Data Engineering, Kiến trúc Guardrail, Quản trị Repository & Đồng quy Tri thức | [`workspaces/truongnv/`](workspaces/truongnv/) | `main`, `lead/truong-*` |
+| **Nguyễn Quí Đức** | SE182087 | Classical ML Baseline (TF-IDF), Trích xuất đặc trưng & Mô hình hóa đe dọa | [`workspaces/ducnq/`](workspaces/ducnq/) | `feat/duc-baseline-ml` |
+| **Phạm Minh Hoàng Việt** | SE181851 | Transformer DeBERTa-v3 Fine-tuning, Lượng hóa INT8 ONNX & Đối kháng Evasion | [`workspaces/vietpmh/`](workspaces/vietpmh/) | `feat/viet-transformer` |
+| **Đỗ Đoàn Duy Phương** | SE180235 | FastAPI Guardrail Middleware Proxy, Streamlit Dashboard & Biên dịch Luận văn | [`workspaces/phuongddd/`](workspaces/phuongddd/) | `feat/phuong-api-ui` |
 
 ---
 
-### ⚙️ 4. QUY TRÌNH KIỂM ĐỊNH CHẤT LƯỢNG THUẦN CỤC BỘ (LOCAL-FIRST VALIDATION)
+### 4. QUY TẮC PHÂN QUYỀN WORKSPACE & KIỂM TOÁN TỰ ĐỘNG
 
-Để loại bỏ hoàn toàn sự phụ thuộc vào GitHub Actions, tiết kiệm hạn ngạch cloud runner và phòng ngừa lỗi môi trường, dự án PI-Guard thực hiện toàn bộ các bước kiểm tra chất lượng trên máy cục bộ trước khi commit hoặc merge:
+1. **Ranh giới bất biến đối với Thành viên (Đức, Việt, Phương)**:
+   - Các thành viên **CHỈ ĐƯỢC PHÉP** tạo, sửa đổi và commit các file bên trong thư mục sandbox cá nhân (`workspaces/<tên_thành_viên>/`).
+   - Tuyệt đối không chỉnh sửa trực tiếp các file chung ngoài `workspaces/` (như `Final-Report/`, `Github-Page/`, `.agents/`).
+2. **Quyền độc quyền đồng quy của Trưởng nhóm (Leader: `nvtruongops`)**:
+   - Trưởng nhóm là người duy nhất có quyền chọn lọc các module xuất sắc nhất từ `workspaces/` của 4 bạn để merge vào cây thư mục chính thức `Final-Report/` trong các buổi họp cuối tuần.
+3. **Các file bất biến tuyệt đối (Read-Only cho TẤT CẢ thành viên)**:
+   - [`CAPSTONE PROJECT REGISTER.md`](CAPSTONE%20PROJECT%20REGISTER.md) (Phiếu đăng ký đề tài đã ký duyệt của Nhà trường).
+   - Thư mục nội bộ `docs/fpt_capstone_guide/` (Quy chế và rubric bảo vệ của ĐH FPT).
+   - Nghiêm cấm mọi hành vi sửa đổi, ghi đè hoặc xóa các tài nguyên này.
+
+---
+
+### 5. QUY TRÌNH KIỂM ĐỊNH CHẤT LƯỢNG THUẦN CỤC BỘ (LOCAL-FIRST QA)
+
+Toàn bộ quy trình kiểm định chất lượng được thực hiện trên máy local thông qua bộ công cụ [`Final-Report/scripts/validate_local.py`](Final-Report/scripts/validate_local.py):
 
 1. **Cài đặt Git Pre-commit Hook (Bắt buộc cho cả 4 bạn)**:
    ```bash
    python Final-Report/scripts/validate_local.py --install-hook
    ```
-   *Tác dụng*: Tự động chặn ngay tại máy trạm nếu bạn vô tình sửa file ngoài workspace được giao, vi phạm file bất biến, hoặc commit manifest JSON bị lỗi cú pháp.
+   *Tác dụng*: Tự động chặn commit vi phạm ranh giới workspace hoặc lỗi cú pháp ngay tại máy trạm.
 
 2. **Chạy kiểm định nhanh trước khi commit**:
    ```bash
    python Final-Report/scripts/validate_local.py
    ```
-   *Kiểm tra*: Ranh giới workspace, JSON manifests, Ruff linting, Adversarial benchmark smoke test (hoàn tất trong ~2 giây).
+   *Kiểm tra*: Ranh giới workspace, JSON manifests, Ruff linting (hoàn tất trong ~1 giây).
 
-3. **Chạy kiểm định toàn diện trước buổi họp Đồng Quy Tri Thức**:
+3. **Chạy kiểm định toàn diện 100% trước buổi họp Đồng Quy Tri Thức**:
    ```bash
    python Final-Report/scripts/validate_local.py --all
    ```
-   *Kiểm tra*: 100% các bài test Pytest (unit, integration, adversarial) và biên dịch cổng tài liệu MkDocs.
+   *Kiểm tra*: Ranh giới workspace, JSON manifests, Linting, Pytest test suites và biên dịch cổng tài liệu MkDocs.
 
-4. **Xem tài liệu và báo cáo cục bộ**:
+4. **Biên dịch và duyệt Cổng Tài Liệu Web UI**:
    ```bash
    python Final-Report/scripts/build_docs_portal.py
    mkdocs serve
    ```
-   *Truy cập*: `http://127.0.0.1:8000` trên trình duyệt để duyệt tài liệu, sơ đồ kiến trúc và nhật ký nghiên cứu.
-
+   *Truy cập*: `http://127.0.0.1:8000` hoặc xem bản xuất bản chính thức tại [https://nvtruongops.github.io/pi-guard/](https://nvtruongops.github.io/pi-guard/).
