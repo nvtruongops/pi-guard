@@ -2,7 +2,7 @@
 **Thời gian**: 29/08/2026 (09:00 – 11:30)  
 **Hình thức**: Họp trực tuyến qua Google Meet với Giảng viên Hướng dẫn  
 **Thành phần tham dự**:
-- **Giảng viên Hướng dẫn (Supervisor)**: Chủ trì định hướng và giao 8 nội dung yêu cầu cho Review 1.
+- **Giảng viên Hướng dẫn (Supervisor)**: ThS. Trần Văn Ninh (ninhtv2@fpt.edu.vn) — Chủ trì định hướng và giao 8 nội dung yêu cầu cho Review 1.
 - **Nhóm sinh viên thực hiện (4 thành viên)**:
   1. Nguyễn Văn Trường (Leader – SE182034)
   2. Nguyễn Quí Đức (Thành viên – SE182087)

@@ -12,9 +12,8 @@
 
 **Project Title**: A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (**PI-Guard**)
 **Capstone Project Code**: `IAP491_FA26_PI_GUARD`
-**Academic Program**: Bachelor of Information Assurance (IA)
-**Academic Term**: Fall 2026 / Spring 2027
-**Location & Date**: Hanoi, 2026
+**Academic Program**: IA
+**Academic Term**: Fall 2026
 
 ---
 
@@ -25,7 +24,7 @@
 3. **Phạm Minh Hoàng Việt** — Student ID: `SE181851` _(Deep Learning & Full-Pipeline Exploration)_
 4. **Đỗ Đoàn Duy Phương** — Student ID: `SE180235` _(System Engineering & Full-Pipeline Exploration)_
 
-**Supervisor**: MSc. Supervisor / FPT University Department of Information Assurance
+**Supervisor**: Trần Văn Ninh (ninhtv2@fpt.edu.vn)
 
 ---
 

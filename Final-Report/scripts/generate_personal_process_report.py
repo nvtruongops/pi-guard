@@ -77,8 +77,8 @@ def create_personal_process_report():
 
     student_info = [
         ("Họ và Tên:", "Nguyễn Văn Trường", "Mã Sinh Viên:", "SE182034", "Vai Trò:", "Trưởng Nhóm (Leader)"),
-        ("Chuyên Ngành:", "An Toàn Thông Tin (Information Assurance - IA)", "Khóa / Kỳ:", "K18 / Fall 2026", "Mã Đồ Án:", "IAP491"),
-        ("Giảng Viên Hướng Dẫn:", "ThS. Giảng Viên Hướng Dẫn (Khoa An toàn Thông tin - Đại học FPT)", "Email:", "truongnvse182034@fpt.edu.vn", "Không Gian:", "workspaces/truongnv/")
+        ("Chuyên Ngành:", "IA", "Khóa / Kỳ:", "K18 / Fall 2026", "Mã Đồ Án:", "IAP491"),
+        ("Giảng Viên Hướng Dẫn:", "ThS. Trần Văn Ninh (ninhtv2@fpt.edu.vn)", "Email:", "truongnvse182034@fpt.edu.vn", "Không Gian:", "workspaces/truongnv/")
     ]
 
     for row_idx, info in enumerate(student_info, start=5):

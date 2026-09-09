@@ -1,8 +1,8 @@
 # 🛡️ PI-Guard: LLM Security Guardrail
 ## Hệ Thống 8 Chuyên Đề Nghiên Cứu Khoa Học & Báo Cáo Khóa Luận
 
-> **Đồ án Khóa luận Tốt nghiệp Đại học FPT** — Chuyên ngành An toàn Thông tin (Information Assurance)<br>
-> **Mã đề tài**: `IAP491_FA26_PI_GUARD` | **Năm học**: 2026<br>
+> **Đồ án Khóa luận Tốt nghiệp Đại học FPT** — Chuyên ngành IA<br>
+> **Mã đề tài**: `IAP491_FA26_PI_GUARD` | **Học kỳ**: Fall 2026<br>
 > **Chủ đề**: A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications
 
 ---
@@ -72,4 +72,4 @@ flowchart TD
 | 3 | **Phạm Minh Hoàng Việt** | `SE181851` | **Toàn trình Full-Pipeline** — Tối ưu Transformer & Thực nghiệm Robustness |
 | 4 | **Đỗ Đoàn Duy Phương** | `SE180235` | **Toàn trình Full-Pipeline** — Tích hợp hệ thống API/Dashboard & Luận văn |
 
-**Giảng viên hướng dẫn**: Đại học FPT — Khoa An toàn Thông tin (Information Assurance).
+**Giảng viên hướng dẫn**: ThS. Trần Văn Ninh (ninhtv2@fpt.edu.vn) — Đại học FPT.

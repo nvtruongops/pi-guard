@@ -17,9 +17,9 @@ def compile_thesis():
 
 # PI-GUARD: A MACHINE-LEARNING GUARDRAIL FOR DETECTING PROMPT INJECTION AND JAILBREAK ATTACKS ON LLM APPLICATIONS
 
-**Academic Program**: Bachelor of Information Assurance (IA)  
+**Academic Program**: IA  
+**Academic Term**: Fall 2026  
 **Capstone Code**: `IAP491_FA26_PI_GUARD`  
-**Location & Year**: Hanoi, 2026  
 
 ---
 
@@ -29,7 +29,7 @@ def compile_thesis():
 3. **Phạm Minh Hoàng Việt** — Student ID: `SE181851`
 4. **Đỗ Đoàn Duy Phương** — Student ID: `SE180235`
 
-**Supervisor**: MSc. Supervisor / FPT University Department of Information Assurance  
+**Supervisor**: Trần Văn Ninh (ninhtv2@fpt.edu.vn)  
 
 ---
 
