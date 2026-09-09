@@ -1,4 +1,4 @@
-# 🎯 CÁC CÂU HỎI NGHIÊN CỨU & PHƯƠNG PHÁP GIẢI QUYẾT (RQ SOLUTION)
+#  CÁC CÂU HỎI NGHIÊN CỨU & PHƯƠNG PHÁP GIẢI QUYẾT (RQ SOLUTION)
 
 ---
 
