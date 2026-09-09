@@ -2,9 +2,9 @@
 ## Hệ Thống Quản Lý & Định Vị Tài Liệu Tham Khảo — Đề Tài PI-Guard (FINAL VERIFIED LITERATURE MATRIX)
 
 > **Thư mục lưu trữ tài liệu gốc**: [`Final-Report/References/`](file:///d:/Work/Do-an/Final-Report/References/)  
-> **Tiêu chuẩn học thuật**: 17 công trình khoa học đỉnh cao kỷ nguyên LLM hiện đại (2022–2026) + 1 công trình kinh điển đặt nền móng kiến trúc bảo vệ phân tầng (Saltzer & Schroeder, IEEE 1975) + 4 tài liệu chuyên đề mở rộng.  
+> **Tiêu chuẩn học thuật**: 17 công trình khoa học đỉnh cao kỷ nguyên LLM hiện đại (2022–2026) + 1 công trình kinh điển đặt nền móng kiến trúc bảo vệ phân tầng (Saltzer & Schroeder, IEEE 1975) + 7 tài liệu chuyên đề và khảo sát mở rộng (tổng cộng 25 tệp PDF toàn văn được lưu trữ cục bộ).  
 > **Cập nhật chuẩn hóa lần cuối**: 2026-09-10 (Đã hoàn thành rà soát chéo metadata qua Proceedings/Crossref/DBLP/arXiv, xác lập niên giám NeurIPS 2023 chính xác cho [5], chuẩn hóa văn phong học thuật, áp dụng mô hình Four-Tier Provenance & Decoupling tách bạch tuyệt đối đóng góp gốc của tác giả vs. lựa chọn thiết kế và KPI của PI-Guard).  
-> **Mục đích**: Lưu trữ, lập chỉ mục siêu dữ liệu chuẩn xác và ánh xạ toàn bộ **18 bài báo PDF cốt lõi** cùng 4 tài nguyên thực nghiệm mở rộng vào cấu trúc luận văn và mã nguồn đề tài PI-Guard.
+> **Mục đích**: Lưu trữ, lập chỉ mục siêu dữ liệu chuẩn xác và ánh xạ toàn bộ **18 bài báo PDF cốt lõi** cùng **7 tài nguyên thực nghiệm và khảo sát mở rộng** (toàn bộ 25 tệp PDF cục bộ) vào cấu trúc luận văn và mã nguồn đề tài PI-Guard.
 
 ---
 
@@ -285,7 +285,7 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 
 ## 🗃️ 3. KHO TÀI LIỆU MỞ RỘNG & BENCHMARK THỰC NGHIỆM ĐÃ LƯU TRỮ
 
-Ngoài 18 bài báo cốt lõi, thư mục `References/` còn lưu trữ 4 tài liệu chuyên đề và thực nghiệm phục vụ việc kiểm định mở rộng:
+Ngoài 18 bài báo cốt lõi, thư mục `References/` còn lưu trữ 7 tài liệu chuyên đề, benchmark thực nghiệm và khảo sát phục vụ việc kiểm định mở rộng và nghiên cứu bổ trợ (tổng cộng 25 tệp PDF lưu trữ cục bộ):
 
 1. **`BIPIA Benchmark`** ([`Viet_2024_BIPIA_Benchmarking_Indirect_Prompt_Injection_Attacks.pdf`](file:///d:/Work/Do-an/Final-Report/References/Viet_2024_BIPIA_Benchmarking_Indirect_Prompt_Injection_Attacks.pdf)):
    - *Tên bài báo*: *Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models*
@@ -313,6 +313,27 @@ Ngoài 18 bài báo cốt lõi, thư mục `References/` còn lưu trữ 4 tài 
    - *Tác giả*: Yuchen Yang, Lei Peng, Yujie He, Yang Yu, Zhongxin Wu, Yanlei Shi (Lenovo)
    - *Venue*: Findings of ACL 2026, pp. 15008–15019
    - *Đánh giá của nhóm*: **XÁC ĐỊNH LÀ NGOÀI PHẠM VI (OUT-OF-SCOPE)**. Do phương pháp khai thác internal model states và attention dynamics trong forward pass, khác với kiến trúc external black-box guardrail của PI-Guard.
+
+5. **`Comprehensive Study of Jailbreak Attack vs. Defense`** ([`Phuong_2024_ACL_Comprehensive_Study_Jailbreak_Attack_Defense.pdf`](file:///d:/Work/Do-an/Final-Report/References/Phuong_2024_ACL_Comprehensive_Study_Jailbreak_Attack_Defense.pdf)):
+   - *Tên bài báo*: *A Comprehensive Study of Jailbreak Attack versus Defense for Large Language Models*
+   - *Tác giả*: Zihao Xu, Yi Liu, Gelei Deng, Yuekang Li, Stjepan Picek (NTU, UNSW, TU Delft)
+   - *Venue*: *Findings of the Association for Computational Linguistics: ACL 2024*, pp. 7432–7449 | *DOI*: `10.18653/v1/2024.findings-acl.442` | *arXiv*: `2402.13457`
+   - *Đóng góp gốc*: Nghiên cứu thực nghiệm quy mô lớn so sánh các chiến lược tấn công jailbreak và các cơ chế phòng thủ trên nhiều mô hình LLM.
+   - *Ứng dụng PI-Guard*: Nguồn tài liệu tham khảo đối chuẩn taxonomy các kỹ thuật jailbreak và đánh giá hiệu quả phòng vệ.
+
+6. **`Exploring Vulnerabilities and Protections in LLMs Survey`** ([`Phuong_2024_Exploring_Vulnerabilities_Protections_LLMs_Survey.pdf`](file:///d:/Work/Do-an/Final-Report/References/Phuong_2024_Exploring_Vulnerabilities_Protections_LLMs_Survey.pdf)):
+   - *Tên bài báo*: *Exploring Vulnerabilities and Protections in Large Language Models: A Survey*
+   - *Tác giả*: Frank Weizhen Liu, Chenhui Hu (Zscaler, Inc.)
+   - *Venue*: *arXiv preprint arXiv:2403.09503* (2024)
+   - *Đóng góp gốc*: Khảo sát toàn diện các lỗ hổng an ninh LLM từ góc nhìn ứng dụng công nghiệp và các giải pháp bảo vệ an ninh (security gateway, prompt inspection).
+   - *Ứng dụng PI-Guard*: Cung cấp góc nhìn thực tiễn về triển khai security gateway và inline inspection trong môi trường mạng thực tế.
+
+7. **`Jailbreak Attacks and Defenses Against LLMs Survey`** ([`Phuong_2024_Survey_Jailbreak_Attacks_Defenses_LLMs.pdf`](file:///d:/Work/Do-an/Final-Report/References/Phuong_2024_Survey_Jailbreak_Attacks_Defenses_LLMs.pdf)):
+   - *Tên bài báo*: *Jailbreak Attacks and Defenses Against Large Language Models: A Survey*
+   - *Tác giả*: Sibo Yi, Yule Liu, Zhen Sun, Tianshuo Cong, Xinlei He, Jiaxing Song, Ke Xu, Qi Li (Tsinghua University, HKUST Guangzhou)
+   - *Venue*: *arXiv preprint arXiv:2407.04295* (2024)
+   - *Đóng góp gốc*: Hệ thống hóa toàn diện bức tranh tấn công jailbreak và các giải pháp phòng thủ theo từng tầng (prompt preprocessing, model alignment, post-processing).
+   - *Ứng dụng PI-Guard*: Cung cấp cơ sở phân loại taxonomy cho Chương 2 (Literature Review) và củng cố cơ sở lý luận cho kiến trúc phòng thủ phân tầng.
 
 ---
 
