@@ -1,0 +1,66 @@
+# **Biên bản Meeting 1 – Khởi Động Đề Tài Với GVHD & Kế Hoạch Review 1**
+**Thời gian**: 29/08/2026 (09:00 – 11:30)  
+**Hình thức**: Họp trực tuyến qua Google Meet với Giảng viên Hướng dẫn  
+**Thành phần tham dự**:
+- **Giảng viên Hướng dẫn (Supervisor)**: Chủ trì định hướng và giao 8 nội dung yêu cầu cho Review 1.
+- **Nhóm sinh viên thực hiện (4 thành viên)**:
+  1. Nguyễn Văn Trường (Leader – SE182034)
+  2. Nguyễn Quí Đức (Thành viên – SE182087)
+  3. Phạm Minh Hoàng Việt (Thành viên – SE181851)
+  4. Đỗ Đoàn Duy Phương (Thành viên – SE180235)  
+**Căn cứ đề tài**: Bản đăng ký chính thức **`CAPSTONE PROJECT REGISTER.md`** và Quy chuẩn Khóa luận Tốt nghiệp IAP491 **`docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`**.
+
+---
+
+> [!IMPORTANT]
+> ### 🎯 ĐỊNH HƯỚNG CỐT LÕI TỪ GVHD CHO GIAI ĐOẠN REVIEW 1
+> 1. **MỤC TIÊU DUY NHẤT LÀ TÌM TÀI LIỆU VÀ NGHIÊN CỨU HỌC THUẬT**:
+>    - Sau khi được Giảng viên Hướng dẫn định hướng tại buổi họp, **cả 4 thành viên nhóm thống nhất sẽ chỉ tìm kiếm, đọc hiểu tài liệu nghiên cứu học tập để chuẩn bị cho Review 1 gồm 2 chương báo cáo đầu tiên** theo quy chuẩn IAP491 của Đại học FPT:
+>      - **Report No. 1 (Chapter 1: Introduction)**: Bối cảnh, phát biểu bài toán, mục tiêu nghiên cứu, threat model và phạm vi đề tài.
+>      - **Report No. 2 (Chapter 2: Literature Review)**: Khảo sát các nghiên cứu trước đây về Prompt Injection, Jailbreak và các phương pháp Guardrail bảo vệ.
+> 2. **QUY TẮC PHẠM VI (KHÔNG CODE MÔ HÌNH HAY TRIỂN KHAI PHẦN MỀM SỚM)**:
+>    - Trong giai đoạn Review 1, cả nhóm **chỉ tập trung nghiên cứu tài liệu lý thuyết, không tạo mô hình code hay huấn luyện gì hết**.
+>    - Demo yêu cầu tại Mục 5 của GVHD là **kịch bản minh họa bài toán và cơ chế bảo vệ lý thuyết (trường hợp không có defense vs có defense)** để phân tích trên slide/báo cáo, chưa phải sản phẩm code thực nghiệm.
+>    - Việc thực nghiệm, huấn luyện mô hình và lập trình sẽ được triển khai ở các giai đoạn sau (từ Review 2 trở đi) theo đúng tiến trình.
+
+---
+
+### **1. Các Nội Dung Hướng Dẫn Của Giảng Viên (8 Mục)**
+1. **Tổng quan LLM và Prompt**.  
+2. **Phân biệt Prompt Injection, Direct/Indirect Injection và Jailbreak**.  
+3. **Xác định threat model (mô hình mối đe dọa), attacker, target và attack surface**.  
+4. **Phân tích các lớp bảo vệ: input filtering, guardrail và output filtering**.  
+5. **Xây dựng 2 demo: không có defense và có defense**.  
+6. **Chọn LLM nghiên cứu và giải thích lý do lựa chọn**.  
+7. **Xác định research questions và phạm vi đề tài**.  
+8. **Chuẩn bị PPT Review 1**.
+
+---
+
+### **2. Kết Quả Bắt Buộc Của Review 1**
+- **Problem Definition** (Phát biểu bài toán).  
+- **Threat Model** (Mô hình mối đe dọa).  
+- **Attack Surface** (Bề mặt tấn công).  
+- **Kiến trúc protection nhiều lớp** (Input filtering, Guardrail, Output filtering).  
+- **Demo kịch bản minh họa** (Không có defense vs Có defense).  
+- **Model Selection Matrix** (Bảng khảo sát và lựa chọn mô hình).  
+- **Research Questions** (Hệ thống câu hỏi nghiên cứu và phạm vi).  
+- **PPT Review 1** (Slide thuyết trình bảo vệ trước GVHD).
+
+---
+
+### **3. Kế Hoạch Hành Động (Sprint 1 TODO List: 30/08 – 06/09/2026)**
+> **Phương châm làm việc**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**. Cả 4 thành viên cùng tự tìm kiếm, đọc hiểu tài liệu trong workspace cá nhân, sau đó cả nhóm sẽ họp đối chiếu, thảo luận để tổng kết và cùng viết 2 chương báo cáo và slide thuyết trình chung.
+
+- [ ] Tìm hiểu tổng quan bối cảnh LLM và cấu trúc tương tác Prompt.
+- [ ] Khảo sát tài liệu để phân biệt rõ Prompt Injection (Direct, Indirect) và Jailbreak.
+- [ ] Nghiên cứu xác định threat model, đối tượng tấn công (attacker), mục tiêu (target) và bề mặt tấn công (attack surface).
+- [ ] Phân tích lý thuyết các lớp bảo vệ: input filtering, guardrail và output filtering.
+- [ ] Xây dựng kịch bản minh họa bài toán (trường hợp không có defense vs có defense).
+- [ ] Khảo sát các mô hình LLM phổ biến hiện nay và thảo luận lý do lựa chọn mô hình mục tiêu nghiên cứu.
+- [ ] Xác định các câu hỏi nghiên cứu (Research Questions) và đóng khung phạm vi đề tài.
+- [ ] Chuẩn bị nội dung và bố cục slide thuyết trình PPT cho Review 1.
+- [ ] Họp nhóm tổng kết các nội dung nghiên cứu độc lập của 4 thành viên để thống nhất và cùng soạn thảo **Report No. 1 (Chapter 1: Introduction)**.
+- [ ] Họp nhóm tổng kết phần khảo sát tài liệu của 4 thành viên để thống nhất và cùng soạn thảo **Report No. 2 (Chapter 2: Literature Review)**.
+- [ ] Hoàn thiện file slide trình chiếu PowerPoint (`.pptx`) và tập dượt thuyết trình chuẩn bị bảo vệ Review 1 trước GVHD.
+- [ ] Cập nhật bảng theo dõi tiến độ công việc **`reports/PI_GUARD_PROCESS_REPORT.xlsx`** và nộp cho GVHD.

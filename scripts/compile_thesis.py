@@ -47,6 +47,7 @@ def compile_thesis():
             
     # Append References if available
     ref_candidates = [
+        r'D:\Work\Do-an\reports\References\REFERENCES_LOG.md',
         r'D:\Work\Do-an\workspaces\truongnv\References\REFERENCES_LOG.md',
         r'D:\Work\Do-an\References\REFERENCES_LOG.md'
     ]

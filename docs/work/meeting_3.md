@@ -1,0 +1,50 @@
+# **Biên bản Meeting 3 – Thống Nhất Slide Báo Cáo Tiến Độ Gặp GVHD (10/09/2026)**
+
+**Thời gian**: 08/09/2026**Hình thức**: Họp trực tuyến qua Discord**Thành phần tham dự**: Nguyễn Văn Trường (Leader), Nguyễn Quí Đức, Phạm Minh Hoàng Việt, Đỗ Đoàn Duy Phương.**Nội dung chính**:
+
+1. Đánh giá kết quả nghiên cứu: Nguyễn Văn Trường và Nguyễn Quí Đức trực tiếp triển khai nghiên cứu, tổng hợp cơ sở lý thuyết và xây dựng toàn bộ nội dung slide Meeting 3; hai thành viên còn lại (Việt, Phương) không có ý kiến.
+2. Thống nhất chốt nội dung bộ slide 22 trang **`reports/PI-GUARD-Present-109.pptx`** do Trường và Đức hoàn thiện phục vụ buổi làm việc với GVHD.
+3. Làm rõ mục tiêu: Bộ slide phục vụ báo cáo tiến độ định kỳ với Giáo viên Hướng dẫn (GVHD) vào ngày 10/09/2026.
+4. Xuất bản file slide chính thức lên thư mục báo cáo chung của repository (`reports/`).
+
+---
+
+### **1. Đánh Giá Kết Quả Nghiên Cứu Tuần 2 & Chuẩn Bị Cho Meeting 3 (01/09 – 08/09)**
+
+Trong giai đoạn chuẩn bị cho buổi báo cáo tiến độ gặp Giáo viên Hướng dẫn (10/09/2026), **Nguyễn Văn Trường (Leader)** và **Nguyễn Quí Đức** đã trực tiếp chủ trì và hoàn thành toàn bộ khối lượng nghiên cứu, tổng hợp lý thuyết và xây dựng nội dung:
+
+- **Khảo sát Bối cảnh & Mô hình đe dọa**: Nghiên cứu bản chất kỹ thuật của Prompt Injection (lỗ hổng không gian token phẳng $X = S \mathbin{\Vert} U$, Perez 2022) và Jailbreak DAN (bẻ khóa căn chỉnh an toàn RLHF, Shen 2024), 4 tầng thiệt hại doanh nghiệp (Greshake 2023) và mô hình hóa Zero-Trust 4 vùng ranh giới (Tencent Zhuque Lab 2026).
+- **Nghiên cứu Kỹ thuật 2 Hướng Mô hình**: Nghiên cứu cơ chế Character N-Grams TF-IDF Baseline (bóc tách Leetspeak trong $< 1\text{ms}$ theo Jain et al. 2023 nhưng mù ngữ nghĩa) và cơ chế Disentangled Attention của DeBERTa-v3 (He et al., ICLR 2023) kết hợp lượng hóa ONNX INT8 (Yao et al., NeurIPS 2022).
+- **Thiết kế Kiến trúc Phối hợp Two-Tier**: Xây dựng và đề xuất giải pháp Two-Tier Cascaded Guardrail với cơ chế định tuyến bất định (Uncertainty Routing: $0.15 < P < 0.85$), giúp đạt điểm tối ưu Pareto (P95 $< 22\text{ms}$, FPR $< 1.0\%$, Zero-GPU).
+- **Đối chuẩn SOTA & Câu hỏi nghiên cứu**: Rà soát các giải pháp SOTA (Regex, LLM-as-a-Judge / Llama Guard 3), xây dựng ma trận đánh giá thực nghiệm 4 kịch bản ($2 \times 2$: Unprotected vs. PI-GUARD Protected) và thiết lập 3 câu hỏi nghiên cứu chuẩn IEEE (RQ1, RQ2, RQ3).
+- **Ý kiến các thành viên**: Hai thành viên còn lại (**Phạm Minh Hoàng Việt** và **Đỗ Đoàn Duy Phương**) đã tham gia cuộc họp, rà soát toàn bộ tài liệu và slide do Trường và Đức chuẩn bị, bày tỏ sự nhất trí tuyệt đối và **không có ý kiến bổ sung hay thay đổi nào**.
+
+---
+
+### **2. Làm Rõ Mục Tiêu & Bản Chất Của Bộ Slide**
+
+> [!IMPORTANT]
+> **QUY ĐỊNH BẮT BUỘC VỀ VAI TRÒ CỦA SLIDE `PI-GUARD-Present-109.pptx`**:
+>
+> 1. **MỤC ĐÍCH THỰC TẾ**: Bộ slide này được thiết kế chuyên biệt phục vụ **BUỔI GẶP BÁO CÁO TIẾN ĐỘ ĐỊNH KỲ VỚI GIÁO VIÊN HƯỚNG DẪN (GVHD) VÀO NGÀY 10/09/2026**.
+>    - Báo cáo với GVHD kết quả khảo sát Y văn, cơ sở lý thuyết chọn mô hình và kiến trúc Guardrail đề xuất.
+>    - Xin ý kiến nhận xét, định hướng của Thầy về các ngưỡng bất định trong Uncertainty Routing và phương pháp phân tầng dữ liệu.
+>    - Giải tỏa các thắc mắc kỹ thuật tiềm năng trước khi bước vào triển khai huấn luyện mã nguồn.
+
+---
+
+### **3. Phân Công Xây Dựng Slide & Tinh Thần Làm Chủ Khi Báo Cáo**
+
+- **Phân công xây dựng Slide (`PI-GUARD-Present-109.pptx`)**:
+  - **Nguyễn Văn Trường (Leader) & Nguyễn Quí Đức**: Chịu trách nhiệm trực tiếp thiết kế, biên soạn nội dung toàn văn 22 slide trình chiếu **`reports/PI-GUARD-Present-109.pptx`**.
+  - **Phạm Minh Hoàng Việt & Đỗ Đoàn Duy Phương**: không có ý kiến phản đối.
+- **Tinh thần làm chủ khi báo cáo với GVHD**:
+  - Cả 4 thành viên cùng tham gia buổi gặp GVHD ngày 10/09/2026, cùng nắm vững nội dung slide và sẵn sàng trao đổi, phản biện các câu hỏi chuyên môn từ Thầy.
+
+---
+
+### **4. Quyết Định Xuất Bản Slide Lên Thư Mục Báo Cáo Chung Của Dự Án**
+
+- Trưởng nhóm Nguyễn Văn Trường tiến hành đồng bộ và xuất bản tệp slide chính thức từ workspace cá nhân lên thư mục báo cáo chung của repository tại:
+  👉 **`reports/PI-GUARD-Present-109.pptx`**
+- Cập nhật tài liệu **`reports/README.md`** để ghi nhận đây là tài liệu thuyết trình tiến độ phục vụ buổi làm việc với GVHD ngày 10/09/2026.

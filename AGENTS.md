@@ -54,7 +54,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 > **QUY TẮC SÀNG LỌC TÀI LIỆU NGHIÊN CỨU & CHỐNG DÀN TRẢI TRÍCH DẪN**:
 > 1. **EXTERNAL GUARDRAIL SCOPE COMPATIBILITY**: Mọi công trình khoa học được trích dẫn làm cơ sở thiết kế hệ thống PHẢI tương thích với kiến trúc External Guardrail Proxy (phân loại prompt mức văn bản trước khi gọi LLM, không đòi hỏi can thiệp vào trọng số nội bộ hay KV-cache của LLM đích).
 > 2. **ZERO CITATION BLOAT**: Kiên quyết loại bỏ các bài báo khảo sát trùng lặp hoặc có phạm vi quá rộng/ngoài phạm vi đề tài (như tấn công phần cứng, backdoor, data poisoning).
-> 3. **LOCAL PDF AVAILABILITY**: Mọi tài liệu khoa học được phê duyệt sử dụng trong đồ án BẮT BUỘC phải có bản sao PDF lưu trữ cục bộ trong thư mục `References/` và `workspaces/<thành_viên>/References/`.
+> 3. **LOCAL PDF AVAILABILITY**: Mọi tài liệu khoa học được phê duyệt sử dụng trong đồ án BẮT BUỘC phải có bản sao PDF lưu trữ cục bộ trong thư mục `reports/References/` và `workspaces/<thành_viên>/References/`.
 
 ---
 
@@ -120,7 +120,7 @@ The workspace has 7 integrated MCP servers:
 
 > [!IMPORTANT]
 > **QUY ĐỊNH PHÂN QUYỀN GIT & RANH GIỚI WORKSPACE BẤT BIẾN**:
-> 1. **Thành viên (Đức, Việt, Phương)**: CHỈ ĐƯỢC PHÉP tạo, sửa đổi và commit các file nằm bên trong thư mục workspace cá nhân được chỉ định (`workspaces/<tên_thành_viên>/`). Tuyệt đối không được sửa đổi trực tiếp các file chung (`src/`, `docs/`, `Meeting/`, `reports/`, `models/`, `data/`, etc.).
+> 1. **Thành viên (Đức, Việt, Phương)**: CHỈ ĐƯỢC PHÉP tạo, sửa đổi và commit các file nằm bên trong thư mục workspace cá nhân được chỉ định (`workspaces/<tên_thành_viên>/`). Tuyệt đối không được sửa đổi trực tiếp các file chung (`reports/`, `docs/`, `src/`, `notebooks/`, `tests/`, `scripts/`, etc.).
 > 2. **Trưởng nhóm (Leader: `nvtruongops` / Nguyễn Văn Trường)**: Là NGƯỜI DUY NHẤT có thẩm quyền đồng quy tri thức, chọn lọc module xuất sắc nhất từ `workspaces/` của các thành viên để merge ra cây thư mục chung và xuất bản vào nhánh `main`.
 > 3. **Kiểm toán tự động**: Sử dụng `python scripts/validate_local.py` hoặc `python scripts/audit_workspace_boundaries.py` trước khi commit hoặc merge. Mọi commit vi phạm ranh giới sẽ bị chặn tự động bởi Git Pre-commit Hook (`python scripts/validate_local.py --install-hook`).
 

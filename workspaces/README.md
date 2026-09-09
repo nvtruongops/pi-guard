@@ -6,19 +6,30 @@ Khi bạn thử nghiệm thành công, kết quả chuẩn hóa sẽ được ch
 
 ```
 d:/Work/Do-an/
-├── notebooks/                     # [CHUNG] Thực nghiệm tái lập (01_eda..05_errors, configs/, data/, models/)
-│   ├── configs/                   # Siêu tham số và cấu hình pipeline
-│   ├── data/                      # Dữ liệu chuẩn thức của cả nhóm (raw, processed, splits)
-│   └── models/                    # Trọng số mô hình sau huấn luyện (baseline, onnx, transformer)
-├── src/                           # [CHUNG] Mã nguồn sản phẩm chính thức (API, Models, Preprocessing)
-├── reports/                       # [CHUNG] Báo cáo tiến độ, slides, figures, tables & kết quả thực nghiệm
-├── References/                    # [CHUNG] 18 bài báo khoa học chuẩn (PDF) & REFERENCES_LOG.md
+├── reports/                       # [1. BÁO CÁO TỔNG] Báo cáo tiến độ, slides, figures, tables, Meeting/ & References/
+│   ├── Meeting/                   # Biên bản họp với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
+│   ├── References/                # 18 bài báo khoa học chuẩn (PDF) & REFERENCES_LOG.md
+│   ├── PI-GUARD-Present-109.pptx  # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026
+│   ├── PI_GUARD_PROCESS_REPORT.xlsx # Sổ theo dõi tiến độ chính thức (Process Report)
+│   ├── figures/                   # Sơ đồ kiến trúc & hình ảnh trích xuất
+│   ├── tables/                    # Bảng biểu đối chuẩn
+│   └── experiment_reports/        # Kết quả thực nghiệm
 │
-└── workspaces/                    # [RIÊNG] Không gian thử nghiệm nháp cá nhân của 4 bạn
-    ├── truongnv/                  # • Trường (Leader): Thử nghiệm cào data, thuật toán split, EDA nháp & điều phối
-    ├── ducnq/                     # • Đức: Thử nghiệm trích xuất TF-IDF, so sánh mô hình ML nháp
-    ├── vietpmh/                   # • Việt: Thử nghiệm fine-tune DeBERTa, nén INT8, test payload nháp
-    └── phuongddd/                 # • Phương: Thử nghiệm dựng API endpoint, UI Streamlit nháp
+├── workspaces/                    # [2. WORKSPACE THÀNH VIÊN] Không gian thử nghiệm sandbox cá nhân của 4 bạn
+│   ├── truongnv/                  # • Trường (Leader): Chuẩn hóa dữ liệu, kiến trúc hệ thống, điều phối chung
+│   ├── ducnq/                     # • Đức: Baseline ML TF-IDF, Threat Model & đối sánh mô hình
+│   ├── vietpmh/                   # • Việt: Transformer DeBERTa-v3, Quantization INT8, Robustness
+│   └── phuongddd/                 # • Phương: FastAPI Guardrail Proxy, Streamlit Dashboard & Luận văn
+│
+├── docs/                          # [3. GITHUB PAGES] Cổng tài liệu Web UI chính thức (MkDocs Material 8 Chuyên Đề)
+│   ├── index.md                   # Trang chủ cổng tài liệu
+│   ├── fpt_capstone_guide/        # Tài liệu nội bộ FPT (BẤT BIẾN / READ-ONLY)
+│   └── [8 Chuyên Đề Khoa Học]/    # Prompt, Attacks, Threat & Defense, Dataset, Models, Robustness, Optimization, Evaluation
+│
+├── src/                           # [CORE CODEBASE] Mã nguồn sản phẩm chính thức (API, Models, Preprocessing, Dashboard)
+├── notebooks/                     # [EXPERIMENTS] Jupyter Notebooks (01_eda..05_errors, configs/, data/, models/)
+├── tests/                         # [AUTOMATION TEST] Bộ kiểm thử tự động pytest
+└── scripts/                       # [DEVOPS & UTILITIES] Bộ công cụ tự động hóa kiểm định QA & build docs portal
 ```
 
 ### 💡 NGUYÊN TẮC: "NHÁP TẠI WORKSPACES — CHUẨN HÓA VÀO SRC & NOTEBOOKS CHUNG"

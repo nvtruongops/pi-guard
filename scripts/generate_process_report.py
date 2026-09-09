@@ -253,7 +253,7 @@ def generate_report():
     tasks = [
         ('T01', 'Tuần 1 (07/09 - 13/09)', 'Họp định hướng & Sàng lọc Y văn (Meeting 1: 29/08, Meeting 2: 01/09, Meeting 3: 08/09)', 'Hoàn thành', 'Cả 4 thành viên', 'Biên bản Meeting 1, 2, 3.md', '08/09/2026'),
         ('T02', 'Tuần 1 (07/09 - 13/09)', 'Thiết kế, biên soạn nội dung và hoàn thiện bộ Slide 22 trang báo cáo tiến độ gặp GVHD ngày 10/09 (PI-GUARD-Present-109.pptx)', 'Hoàn thành', 'Trường & Đức', 'reports/PI-GUARD-Present-109.pptx', '09/09/2026'),
-        ('T03', 'Tuần 1 (07/09 - 13/09)', 'Thu thập & thẩm định 17 papers chuẩn IEEE >= 2022 theo CAPSTONE REGISTER', 'Hoàn thành', 'Trường (Leader)', 'References/ & REFERENCES_LOG.md', '13/09/2026'),
+        ('T03', 'Tuần 1 (07/09 - 13/09)', 'Thu thập & thẩm định 17 papers chuẩn IEEE >= 2022 theo CAPSTONE REGISTER', 'Hoàn thành', 'Trường (Leader)', 'reports/References/ & REFERENCES_LOG.md', '13/09/2026'),
         ('T04', 'Tuần 2 (14/09 - 20/09)', 'Soạn thảo Chapter 1: Background & Problem Statement (Lỗ hổng Von Neumann NLP)', 'Đang thực hiện', 'Trường', 'workspaces/truongnv/docs/', '16/09/2026'),
         ('T05', 'Tuần 2 (14/09 - 20/09)', 'Phân loại Threat Taxonomy (Direct/Indirect Injection vs Jailbreak theo OWASP)', 'Đang thực hiện', 'Trường & Đức', 'workspaces/truongnv/docs/', '17/09/2026'),
         ('T06', 'Tuần 2 (14/09 - 20/09)', 'Xây dựng Threat Model (NIST AI 100-2e2025) & Attack Surface (/v1/chat)', 'Đang thực hiện', 'Đức', 'workspaces/ducnq/', '18/09/2026'),
@@ -362,7 +362,7 @@ def generate_report():
             '4 SV (Trường, Đức, Việt, Phương) & GVHD',
             'Họp GVHD định hướng bài toán an ninh LLM',
             'Cả nhóm cùng thu thập tài liệu theo CAPSTONE REGISTER; Trường điều phối hồ sơ.\nĐầu ra: Meeting 1_29_08_26.md',
-            'Hoàn thành (100%)\nMeeting/Meeting 1_29_08_26.md'
+            'Hoàn thành (100%)\nreports/Meeting/Meeting 1_29_08_26.md'
         ),
         (
             'Meet 02',
@@ -371,7 +371,7 @@ def generate_report():
             'Cả 4 thành viên (Trường, Đức, Việt, Phương)',
             'Đọc hiểu, đánh giá khắt khe và sàng lọc các bài báo khoa học đã thu thập; kiên quyết loại bỏ bài báo ngoài phạm vi (như RAP-ID can thiệp KV-cache nội tại LLM) và bài báo trùng lặp.',
             'Cả nhóm cùng tìm hiểu cơ chế hoạt động của 2 hướng mô hình (Baseline TF-IDF và Transformer DeBERTa-v3) trong workspace cá nhân.\nĐầu ra: Meeting 2_01_09_26.md.',
-            'Hoàn thành (100%)\nMeeting/Meeting 2_01_09_26.md'
+            'Hoàn thành (100%)\nreports/Meeting/Meeting 2_01_09_26.md'
         ),
         (
             'Meet 03',
@@ -380,7 +380,7 @@ def generate_report():
             'Cả 4 thành viên (Trường, Đức, Việt, Phương)',
             'Đánh giá kết quả nghiên cứu và thống nhất slide báo cáo tiến độ gặp GVHD ngày 10/09/2026.',
             'Trường và Đức trực tiếp tạo slide, biên soạn nội dung và hoàn thiện toàn bộ bộ Slide 22 trang (PI-GUARD-Present-109.pptx); Việt và Phương rà soát, thống nhất hoàn toàn và không có ý kiến bổ sung.\nĐầu ra: Meeting 3_08_09_26.md & reports/PI-GUARD-Present-109.pptx.',
-            'Hoàn thành (100%)\nMeeting/Meeting 3_08_09_26.md\nreports/PI-GUARD-Present-109.pptx'
+            'Hoàn thành (100%)\nreports/Meeting/Meeting 3_08_09_26.md\nreports/PI-GUARD-Present-109.pptx'
         )
     ]
 

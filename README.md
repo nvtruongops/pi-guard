@@ -154,40 +154,51 @@ mkdocs serve   # Truy cập tại: http://127.0.0.1:8000
 
 ---
 
-## 📚 Project Structure
+## 📚 Project Structure (3 Phân Hệ Chính & Core Codebase)
+
+Hệ thống thư mục của dự án được quy hoạch tinh gọn thành **3 phân hệ chính** cùng bộ mã nguồn cốt lõi:
 
 ```
 d:/Work/Do-an/
-├── .agents/                 # AI Pair Programming Environment (MCP, Skills, Rules)
-├── .github/CODEOWNERS       # Collective Code Ownership & PR Review Governance
-├── notebooks/               # Thực nghiệm tái lập (01_eda..05_errors, configs/, data/, models/)
-│   ├── configs/             # YAML configurations (data, training, evaluation, models)
-│   ├── data/                # Datasets (raw, interim, processed, splits, manifests)
-│   └── models/              # Trained checkpoints (baseline, transformer, onnx)
-├── src/
-│   ├── preprocessing/       # Normalization & synthetic obfuscation generators
-│   ├── datasets/            # Dataset loaders & group-aware splitters
-│   ├── models/              # Model abstractions (TF-IDF, DeBERTa, ONNX, Dummy)
-│   ├── policy/              # 3-tier Decision Policy Engine & Thresholds
-│   ├── llm/                 # Downstream LLM Cloud API proxies (Groq, OpenAI, Gemini)
-│   ├── api/                 # FastAPI Guardrail Middleware & Endpoints
-│   ├── dashboard/           # Streamlit Monitoring UI
-│   └── evaluation/          # Metrics, FPR computation & Latency profiler
-├── tests/
-│   ├── unit/                # Preprocessing, policy, and metrics tests
-│   ├── integration/         # API endpoint integration tests
-│   └── adversarial/         # Direct, indirect, jailbreak, leetspeak, base64 slices
-├── reports/                 # Evaluation figures, tables, and metric reports
-│   ├── figures/             # Visual assets organized by presentation (e.g. PI-GUARD-Present-109/)
-│   ├── tables/              # Markdown & LaTeX comparison tables
-│   └── experiment_reports/  # JSON benchmarks & ablation metrics
-├── References/              # 18 Verified academic research papers (PDF) & REFERENCES_LOG.md
-├── docs/                    # Architecture, methodology, attack studies, and thesis documentation
-├── scripts/                 # Local QA suite (validate_local.py, audit_workspace_boundaries.py, build_docs_portal.py)
-└── workspaces/              # Individual sandboxes for 4 members (Parallel Full-Pipeline Exploration)
-    ├── truongnv/            # Workspace: Nguyễn Văn Trường (Leader)
-    ├── ducnq/               # Workspace: Nguyễn Quí Đức
-    ├── vietpmh/             # Workspace: Phạm Minh Hoàng Việt
-    └── phuongddd/           # Workspace: Đỗ Đoàn Duy Phương
+├── 📁 reports/                     # [PHÂN HỆ 1: BÁO CÁO TỔNG] Báo cáo tiến độ, slides, figures, tables, Meeting/ & References/
+│   ├── Meeting/                   # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
+│   ├── References/                # Toàn bộ 18 bài báo khoa học toàn văn PDF & REFERENCES_LOG.md
+│   ├── PI-GUARD-Present-109.pptx  # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026 (22 slides, Dark Slate Navy)
+│   ├── PI_GUARD_PROCESS_REPORT.xlsx # Sổ theo dõi tiến độ chính thức (FPT IAP491 Process Report: WBS, Nhân sự, Họp)
+│   ├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt quy chuẩn & barem điểm chấm FPT IAP491
+│   ├── figures/                   # Sơ đồ kiến trúc & đồ họa (gồm thư mục con PI-GUARD-Present-109/)
+│   ├── tables/                    # Bảng số liệu đối chuẩn định dạng Markdown & LaTeX
+│   └── experiment_reports/        # Báo cáo tóm tắt chỉ số thực nghiệm dạng JSON/Markdown
+│
+├── 📁 workspaces/                  # [PHÂN HỆ 2: WORKSPACE THÀNH VIÊN] Không gian thử nghiệm sandbox độc lập của 4 bạn
+│   ├── truongnv/                  # Workspace Leader (Trường): Chuẩn hóa dữ liệu, kiến trúc hệ thống, điều phối chung
+│   ├── ducnq/                     # Workspace Đức: Classical ML Baseline TF-IDF, Feature Extraction & Threat Model
+│   ├── vietpmh/                   # Workspace Việt: Transformer DeBERTa-v3, Quantization INT8, Robustness Testing
+│   ├── phuongddd/                 # Workspace Phương: FastAPI Guardrail Proxy, Streamlit Dashboard & Luận văn
+│   └── README.md                  # Hướng dẫn quy chuẩn bố trí không gian làm việc cá nhân
+│
+├── 📁 docs/                        # [PHÂN HỆ 3: GITHUB PAGES] Cổng tài liệu Web UI chính thức (MkDocs Material 8 Chuyên Đề)
+│   ├── index.md                   # Trang chủ cổng tài liệu Web UI (8-Pillar Academic Architecture)
+│   ├── fpt_capstone_guide/        # Tài liệu nội bộ FPT University (BẤT BIẾN / READ-ONLY)
+│   ├── javascripts/ & stylesheets/# Cấu hình MathJax LaTeX hiển thị công thức & Custom CSS giao diện
+│   └── [8 Chuyên Đề Khoa Học]/    # Prompt, Attacks, Threat & Defense, Dataset, Models, Robustness, Optimization, Evaluation
+│
+├── ⚙️ src/                         # [CORE CODEBASE] Mã nguồn sản phẩm chính thức
+│   ├── preprocessing/             # Unicode cleaner, normalizer & synthetic obfuscation generators
+│   ├── datasets/                  # Dataset loaders & group-aware splitters chống data leakage
+│   ├── models/                    # Model abstractions (TF-IDF Baseline, DeBERTa-v3, ONNX Runtime INT8)
+│   ├── policy/                    # 3-tier Decision Policy Engine & Dynamic Thresholds
+│   ├── llm/                       # Downstream LLM Cloud API proxies (Groq, OpenAI, Gemini)
+│   ├── api/                       # FastAPI Async Guardrail Middleware & Endpoints
+│   ├── dashboard/                 # Streamlit Live Monitoring & Testing UI
+│   └── evaluation/                # Metrics calculator, FPR computation & Latency profiler
+│
+├── 📓 notebooks/                   # [EXPERIMENTS] Jupyter Notebooks thực nghiệm tái lập (01_eda..05_errors)
+│   ├── configs/                   # Cấu hình YAML (data, training, evaluation, models)
+│   ├── data/                      # Dữ liệu chuẩn thức (raw, interim, processed, splits, manifests)
+│   └── models/                    # Trọng số mô hình sau huấn luyện (joblib, PyTorch, ONNX)
+│
+├── 🧪 tests/                       # [TEST SUITE] Bộ kiểm thử tự động pytest (unit, integration, adversarial)
+└── 🛠️ scripts/                     # [TOOLING & QA] Bộ công cụ tự động hóa kiểm định Local QA & build docs portal
 ```
 

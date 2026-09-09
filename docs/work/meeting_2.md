@@ -1,0 +1,79 @@
+# **Biên bản Meeting 2 – Khảo Sát, Đọc Hiểu & Sàng Lọc Các Bài Báo Khoa Học**
+**Thời gian**: 01/09/2026  
+**Hình thức**: Họp trực tuyến qua Discord  
+**Thành phần tham dự**: Nguyễn Văn Trường (Leader), Nguyễn Quí Đức, Phạm Minh Hoàng Việt, Đỗ Đoàn Duy Phương.  
+**Nội dung chính**: Cả nhóm cùng đọc, phân tích, đánh giá khắt khe và sàng lọc các bài báo khoa học đã thu thập để lựa chọn các tài liệu thực sự phù hợp với bản đăng ký đề tài **`CAPSTONE PROJECT REGISTER.md`**; kiên quyết loại bỏ các bài báo ngoài phạm vi (Out-of-Scope).  
+
+---
+
+### **1. Đánh Giá Khắt Khe & Sàng Lọc 10 Bài Báo Đã Thu Thập**
+
+Cả nhóm đã tiến hành đối chiếu từng bài báo với mục tiêu đề tài: *Xây dựng lớp bảo vệ (Guardrail API) độc lập bên ngoài, phân loại Prompt Injection và Jailbreak dựa trên văn bản bằng mô hình Baseline (TF-IDF) và Transformer (BERT/DeBERTa), có khả năng chống lẩn tránh cú pháp*:
+
+#### 📌 Kết quả thẩm định chi tiết từng bài báo:
+
+1. **[Greshake et al. (ACM AISec 2023 / arXiv:2302.12173)](https://arxiv.org/pdf/2302.12173.pdf)**: *Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection*
+   - **Đánh giá chuyên môn**: Bài báo nền tảng đầu tiên định nghĩa và chứng minh thực tế rủi ro tấn công gián tiếp (Indirect Prompt Injection) qua tài liệu, file upload và tìm kiếm web.
+   - 👉 **Kết luận thẩm định**: ✅ **GIỮ LẠI (IN-SCOPE)** — Dùng làm tài liệu nền tảng xác lập Problem Statement (Chapter 1) và Threat Model.
+
+2. **[BIPIA (ACM KDD '25 / arXiv:2312.14197)](https://arxiv.org/pdf/2312.14197.pdf)**: *Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models* (Microsoft)
+   - **Đánh giá chuyên môn**: Cung cấp bộ dữ liệu benchmark lớn cho tấn công gián tiếp và đánh giá hiệu quả của các cơ chế phát hiện bên ngoài.
+   - 👉 **Kết luận thẩm định**: ✅ **GIỮ LẠI (IN-SCOPE)** — Phù hợp làm nguồn dữ liệu benchmark đánh giá Indirect Prompt Injection.
+
+3. **[Do-Not-Answer (EMNLP 2023 / arXiv:2308.13387)](https://arxiv.org/pdf/2308.13387.pdf)**: *A Dataset for Evaluating Safeguards in LLMs*
+   - **Đánh giá chuyên môn**: Cung cấp bộ dữ liệu rủi ro an toàn và đưa ra luận điểm thực nghiệm quan trọng: *Mô hình ngôn ngữ nhỏ (BERT-like < 600M tham số) khi được tinh chỉnh có thể phân loại an toàn hiệu quả tương đương LLM lớn*.
+   - 👉 **Kết luận thẩm định**: ✅ **GIỮ LẠI (IN-SCOPE)** — Cung cấp cơ sở khoa học bảo chứng trực tiếp cho việc dùng mô hình nhỏ (DeBERTa-v3) làm Guardrail và tập dữ liệu đánh giá an toàn.
+
+4. **[ACL Findings 2024 (Comprehensive Study / arXiv:2402.13457)](https://aclanthology.org/2024.findings-acl.443.pdf)**: *A Comprehensive Study of Jailbreak Attack versus Defense for Large Language Models*
+   - **Đánh giá chuyên môn**: Hệ thống hóa 13 dạng tấn công Jailbreak và đối sánh các cơ chế phòng thủ mức Prompt-level (Input Guardrail / Filter) và Output-level.
+   - 👉 **Kết luận thẩm định**: ✅ **GIỮ LẠI (IN-SCOPE)** — Phù hợp cho phần khảo sát y văn và bảng đối sánh các phương pháp phòng thủ trong Chapter 2.
+
+5. **[JailGuard (ACM TOSEM 2025 / arXiv:2312.10766)](https://arxiv.org/pdf/2312.10766.pdf)**: *A Universal Detection Framework for Prompt-based Attacks on LLM Systems*
+   - **Đánh giá chuyên môn**: Đề xuất 19 toán tử đột biến đối kháng (Targeted Mutators) trên văn bản (biến đổi từ ngữ, khoảng trắng, cú pháp) để kiểm thử độ bền của bộ phát hiện.
+   - 👉 **Kết luận thẩm định**: ✅ **GIỮ LẠI 1 PHẦN (IN-SCOPE)** — Kế thừa cơ chế đột biến văn bản để phục vụ mục tiêu kiểm thử độ bền (Robustness); ❌ *Loại bỏ* phần xử lý đa phương thức (ảnh/video) vì ngoài phạm vi đề tài.
+
+6. **[Zou et al. (arXiv:2307.15043)](https://arxiv.org/pdf/2307.15043.pdf)**: *Universal and Transferable Adversarial Attacks on Aligned Language Models* (GCG Attack)
+   - **Đánh giá chuyên môn**: Thuật toán tìm hậu tố đối kháng bằng tối ưu gradient (White-box). Đề tài làm Guardrail suy luận nên không chạy thuật toán tính gradient ở runtime.
+   - 👉 **Kết luận thẩm định**: ⚠️ **CHỈ LẤY MẪU TEST (LOẠI BỎ THUẬT TOÁN)** — Chỉ lấy tập mẫu hậu tố đối kháng đã sinh sẵn để làm test set độ bền; loại bỏ toàn bộ phần thuật toán gradient.
+
+7. **[RAP-ID (ACL Findings 2026)](https://aclanthology.org/2026.findings-acl.738.pdf)**: *Robust Alignment Preservation via Injection Defense*
+   - **Đánh giá chuyên môn**: Phương pháp can thiệp trực tiếp vào giai đoạn pre-fill và attention weights bên trong LLM mục tiêu. Đề tài PI-Guard là lớp Guardrail API bên ngoài (bảo vệ cả LLM đóng/hộp đen) nên không thể truy cập weights/KV-cache nội tại của LLM.
+   - 👉 **Kết luận thẩm định**: ❌ **LOẠI BỎ (OUT-OF-SCOPE)** — Cơ chế phòng thủ đòi hỏi can thiệp sâu vào cấu trúc bên trong của LLM, không áp dụng được cho kiến trúc External Guardrail Proxy.
+
+8. **[Wei et al. (NeurIPS 2023 / arXiv:2307.02483)](https://arxiv.org/pdf/2307.02483.pdf)**: *Jailbroken: How Does LLM Safety Training Fail?*
+   - **Đánh giá chuyên môn**: Phân tích sự thất bại của việc huấn luyện an toàn nội tại (RLHF / Safety Training) bên trong mô hình ngôn ngữ lớn, không đề xuất giải pháp Guardrail bên ngoài.
+   - 👉 **Kết luận thẩm định**: ❌ **LOẠI BỎ (OUT-OF-SCOPE)** — Không thuộc phạm vi lớp bảo vệ Guardrail API độc lập.
+
+9. **[arXiv:2407.04295](https://arxiv.org/pdf/2407.04295.pdf)**: *Jailbreak Attacks and Defenses Against Large Language Models: A Survey* (2024)
+   - **Đánh giá chuyên môn**: Bài tổng quan preprint trùng lặp phần lớn nội dung phân loại với bài báo ACL Findings 2024 có độ uy tín cao hơn.
+   - 👉 **Kết luận thẩm định**: ❌ **LOẠI BỎ (TRÙNG LẶP / REDUNDANT)** — Loại bỏ để tránh loãng tài liệu tham khảo.
+
+10. **[arXiv:2406.00240](https://arxiv.org/pdf/2406.00240.pdf)**: *Exploring Vulnerabilities and Protections in Large Language Models: A Survey* (2024)
+    - **Đánh giá chuyên môn**: Khảo sát quá rộng (bao gồm cả data poisoning, backdoor, watermarking, bảo mật phần cứng), không tập trung vào bài toán cốt lõi Input Guardrail.
+    - 👉 **Kết luận thẩm định**: ❌ **LOẠI BỎ (QUÁ RỘNG / OUT-OF-SCOPE)** — Phạm vi không sát với bài toán phân loại prompt độ trễ thấp của Guardrail API.
+
+---
+
+### **2. Thống Nhất Trọng Tâm Nghiên Cứu Mô Hình Theo Bản Đăng Ký Đề Tài**
+
+Căn cứ theo mục tiêu mô hình đã đăng ký trong **`CAPSTONE PROJECT REGISTER.md`**, cả nhóm thống nhất tập trung tìm hiểu cách thức hoạt động của 2 hướng mô hình:
+
+1. **Mô hình Baseline (Học máy cổ điển)**:
+   - Nghiên cứu cơ chế trích xuất đặc trưng **TF-IDF (Word và Character n-grams)** kết hợp với các thuật toán phân loại tuyến tính (**Logistic Regression**, **LinearSVC**).
+   - Mục đích: Tìm hiểu khả năng bắt các từ khóa tấn công và các biến thể chèn ký tự lạ với tốc độ xử lý nhanh.
+2. **Mô hình Deep Learning (Transformer)**:
+   - Nghiên cứu nguyên lý hoạt động của kiến trúc **Transformer (BERT / DeBERTa)** trong việc hiểu ngữ cảnh và ngữ nghĩa sâu của prompt để phát hiện các kỹ thuật Jailbreak tinh vi (nhập vai, đóng vai, giả lập).
+   - Mục đích: Làm rõ ưu thế hiểu ngữ nghĩa của Transformer so với phương pháp khớp mẫu đơn thuần.
+
+---
+
+### **3. Kế Hoạch & Việc Cần Làm Tiếp Theo (TODO — Nghiên Cứu Mô Hình)**
+> **Phương châm làm việc**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**. Cả 4 thành viên cùng tự đọc tài liệu, tìm hiểu cách thức hoạt động của các mô hình trong workspace cá nhân, sau đó sẽ họp thảo luận để tổng kết đưa vào Chapter 2 của Luận văn.
+
+- [ ] Tìm hiểu cơ sở lý thuyết và cách thức hoạt động của mô hình Baseline (TF-IDF kết hợp linear classifier).
+- [ ] Tìm hiểu cơ sở lý thuyết và cách thức hoạt động của mô hình Transformer (BERT / DeBERTa).
+- [ ] Khảo sát các tài liệu về các giải pháp Guardrail hiện có để phục vụ so sánh đối chuẩn trong Chapter 2.
+- [ ] Tìm hiểu nguyên lý các kỹ thuật tối ưu hóa mô hình khi triển khai thực tế.
+- [ ] Từng thành viên tự đọc và ghi chép trong workspace cá nhân để chuẩn bị nội dung thảo luận.
+- [ ] Họp nhóm tổng kết kết quả tìm hiểu mô hình của 4 thành viên để hoàn thiện phần cơ sở lý thuyết lựa chọn mô hình trong Chapter 2.
+

@@ -5,8 +5,17 @@ site_url: "https://nvtruongops.github.io/pi-guard/"
 repo_url: "https://github.com/nvtruongops/pi-guard"
 repo_name: "nvtruongops/pi-guard"
 
-docs_dir: "site_docs"
+docs_dir: "docs"
 site_dir: "site"
+
+exclude_docs: |
+  fpt_capstone_guide/**
+  README.md
+  **/*.docx
+  **/*.xlsx
+  **/*.zip
+  **/*.pdf
+  **/.gitkeep
 
 theme:
   name: material

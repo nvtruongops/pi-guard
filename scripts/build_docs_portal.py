@@ -3,11 +3,11 @@ scripts/build_docs_portal.py
 -----------------------------
 PI-Guard Documentation Portal Aggregator (8-Pillar Academic Architecture)
 Tự động thu thập, chuẩn hóa và cấu trúc tài liệu toàn dự án PI-Guard
-thành thư mục 'site_docs/' để phục vụ xuất bản Web UI qua MkDocs Material.
+thành thư mục 'docs/' để phục vụ xuất bản Web UI qua GitHub Pages (MkDocs Material).
 
 Quy tắc bảo vệ:
-- KHÔNG BAO GIỜ chỉnh sửa hoặc copy tài liệu nội bộ trong docs/fpt_capstone_guide/.
-- Giữ nguyên vẹn file gốc trong Meeting/, workspaces/, References/, docs/.
+- KHÔNG BAO GIỜ chỉnh sửa hoặc xóa tài liệu nội bộ trong docs/fpt_capstone_guide/.
+- Giữ nguyên vẹn file gốc trong reports/Meeting/, workspaces/, reports/References/, docs/.
 """
 
 import re
@@ -23,15 +23,13 @@ if sys.stderr and hasattr(sys.stderr, "reconfigure"):
 
 # Root project directory
 ROOT_DIR = Path(__file__).resolve().parent.parent
-SITE_DOCS_DIR = ROOT_DIR / "site_docs"
+DOCS_DIR = ROOT_DIR / "docs"
 
 def clean_and_prepare_dir():
-    """Khởi tạo lại thư mục site_docs sạch sẽ."""
-    if SITE_DOCS_DIR.exists():
-        shutil.rmtree(SITE_DOCS_DIR)
-    SITE_DOCS_DIR.mkdir(parents=True, exist_ok=True)
+    """Khởi tạo và làm sạch các thư mục chuyên đề trong docs/ phục vụ MkDocs (BẢO VỆ TUYỆT ĐỐI docs/fpt_capstone_guide/)."""
+    DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Tạo các thư mục con theo kiến trúc thông tin 8 Chuyên Đề Khoa Học
+    # Tạo và làm sạch các thư mục con theo kiến trúc thông tin 8 Chuyên Đề Khoa Học
     subdirs = [
         "work", "prompt_study", "attacks", "threat_defense", 
         "dataset_study", "models", "robustness", "optimization", 
@@ -39,8 +37,26 @@ def clean_and_prepare_dir():
         "dev", "javascripts", "stylesheets"
     ]
     for sub in subdirs:
-        (SITE_DOCS_DIR / sub).mkdir(parents=True, exist_ok=True)
-    print(f"📁 [INIT] Đã khởi tạo cấu trúc thư mục tại: {SITE_DOCS_DIR}")
+        sub_path = DOCS_DIR / sub
+        if sub_path.exists():
+            shutil.rmtree(sub_path)
+        sub_path.mkdir(parents=True, exist_ok=True)
+
+    # Xóa index.md cũ nếu có để tạo mới
+    if (DOCS_DIR / "index.md").exists():
+        (DOCS_DIR / "index.md").unlink()
+
+    # Dọn dẹp các thư mục rỗng cũ không còn dùng trong docs nếu có
+    for old_dir in ["api", "architecture", "experiments", "methodology"]:
+        old_p = DOCS_DIR / old_dir
+        if old_p.exists():
+            try:
+                if not any(old_p.iterdir()):
+                    old_p.rmdir()
+            except Exception:
+                pass
+
+    print(f"📁 [INIT] Đã khởi tạo cấu trúc thư mục tài liệu GitHub Pages tại: {DOCS_DIR}")
 
 def sanitize_content(content: str) -> str:
     """
@@ -57,7 +73,7 @@ def sanitize_content(content: str) -> str:
     content = "\n".join(sanitized_lines)
 
     # Chuyển đổi link PDF nội bộ và link file ngoài thành inline code hoặc text đậm
-    content = re.sub(r"\[([^\]]+)\]\((?:file:///[^)]+|References/[^)]+\.pdf|Meeting/[^)]+|CAPSTONE%20PROJECT%20REGISTER\.md|docs/[^)]+)\)", r"**\1**", content)
+    content = re.sub(r"\[([^\]]+)\]\((?:file:///[^)]+|reports/References/[^)]+\.pdf|References/[^)]+\.pdf|reports/Meeting/[^)]+|Meeting/[^)]+|CAPSTONE%20PROJECT%20REGISTER\.md|docs/[^)]+)\)", r"**\1**", content)
 
     # Thay thế file:///... còn lại
     content = re.sub(r"\(file:///[^)]+\)", r"(#)", content)
@@ -70,7 +86,7 @@ def sanitize_content(content: str) -> str:
     return content
 
 def copy_doc(src_path: Path, dest_path: Path, title_prefix: str = ""):
-    """Đọc file nguồn, chuẩn hóa link và ghi vào thư mục site_docs."""
+    """Đọc file nguồn, chuẩn hóa link và ghi vào thư mục docs."""
     if not src_path.exists():
         print(f"⚠️ [SKIP] Không tìm thấy file: {src_path}")
         return False
@@ -170,7 +186,7 @@ flowchart TD
 
 **Giảng viên hướng dẫn**: Đại học FPT — Khoa An toàn Thông tin (Information Assurance).
 """
-    dest = SITE_DOCS_DIR / "index.md"
+    dest = DOCS_DIR / "index.md"
     with open(dest, "w", encoding="utf-8") as f:
         f.write(index_content)
     print("✅ [HOMEPAGE] Đã sinh trang chủ index.md thành công.")
@@ -194,7 +210,7 @@ document$.subscribe(() => {
   MathJax.typesetPromise()
 })
 """
-    with open(SITE_DOCS_DIR / "javascripts" / "mathjax.js", "w", encoding="utf-8") as f:
+    with open(DOCS_DIR / "javascripts" / "mathjax.js", "w", encoding="utf-8") as f:
         f.write(mathjax_js)
 
     extra_css = """/* Tối giản bảng biểu và kiểu dáng chuẩn */
@@ -213,159 +229,159 @@ document$.subscribe(() => {
   background-color: rgba(63, 81, 181, 0.2);
 }
 """
-    with open(SITE_DOCS_DIR / "stylesheets" / "extra.css", "w", encoding="utf-8") as f:
+    with open(DOCS_DIR / "stylesheets" / "extra.css", "w", encoding="utf-8") as f:
         f.write(extra_css)
     print("✅ [ASSETS] Đã sinh MathJax script và custom CSS tối giản.")
 
 def aggregate_all():
-    """Thu thập toàn bộ tài nguyên vào site_docs/."""
+    """Thu thập toàn bộ tài nguyên vào docs/."""
     clean_and_prepare_dir()
     create_homepage()
     create_static_assets()
 
     # 1. Quản lý công việc & Tiến độ
-    copy_doc(ROOT_DIR / "docs" / "thesis" / "FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md",
-             SITE_DOCS_DIR / "work" / "fpt_guidelines_and_rubrics.md")
-    copy_doc(ROOT_DIR / "Meeting" / "Meeting 1_29_08_26.md",
-             SITE_DOCS_DIR / "work" / "meeting_1.md")
-    copy_doc(ROOT_DIR / "Meeting" / "Meeting 2_01_09_26.md",
-             SITE_DOCS_DIR / "work" / "meeting_2.md")
-    copy_doc(ROOT_DIR / "Meeting" / "Meeting 3_08_09_26.md",
-             SITE_DOCS_DIR / "work" / "meeting_3.md")
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md",
+             DOCS_DIR / "work" / "fpt_guidelines_and_rubrics.md")
+    copy_doc(ROOT_DIR / "reports" / "Meeting" / "Meeting 1_29_08_26.md",
+             DOCS_DIR / "work" / "meeting_1.md")
+    copy_doc(ROOT_DIR / "reports" / "Meeting" / "Meeting 2_01_09_26.md",
+             DOCS_DIR / "work" / "meeting_2.md")
+    copy_doc(ROOT_DIR / "reports" / "Meeting" / "Meeting 3_08_09_26.md",
+             DOCS_DIR / "work" / "meeting_3.md")
 
     # 2. Chuyên Đề 1: Prompt Study
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "prompt_study" / "01_llm_foundations_and_token_generation.md",
-             SITE_DOCS_DIR / "prompt_study" / "llm_foundations.md")
+             DOCS_DIR / "prompt_study" / "llm_foundations.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "prompt_study" / "02_prompt_structure_and_chat_formats.md",
-             SITE_DOCS_DIR / "prompt_study" / "prompt_structure.md")
+             DOCS_DIR / "prompt_study" / "prompt_structure.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "prompt_study" / "03_instruction_hierarchy_and_flat_boundary.md",
-             SITE_DOCS_DIR / "prompt_study" / "instruction_hierarchy.md")
+             DOCS_DIR / "prompt_study" / "instruction_hierarchy.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "prompt_study" / "04_resources_and_papers.md",
-             SITE_DOCS_DIR / "prompt_study" / "resources_and_papers.md")
+             DOCS_DIR / "prompt_study" / "resources_and_papers.md")
 
     # 3. Chuyên Đề 2: Attack Study
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "00_overview_threat_and_scope" / "history_and_evolution.md",
-             SITE_DOCS_DIR / "attacks" / "history_and_evolution.md")
+             DOCS_DIR / "attacks" / "history_and_evolution.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "00_overview_threat_and_scope" / "scope_and_boundary_analysis.md",
-             SITE_DOCS_DIR / "attacks" / "scope_and_boundary_analysis.md")
+             DOCS_DIR / "attacks" / "scope_and_boundary_analysis.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "01_prompt_injection" / "how_it_works_and_mechanisms.md",
-             SITE_DOCS_DIR / "attacks" / "pi_how_it_works.md")
+             DOCS_DIR / "attacks" / "pi_how_it_works.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "01_prompt_injection" / "taxonomy_and_variants.md",
-             SITE_DOCS_DIR / "attacks" / "pi_taxonomy_and_variants.md")
+             DOCS_DIR / "attacks" / "pi_taxonomy_and_variants.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "01_prompt_injection" / "resources_and_papers.md",
-             SITE_DOCS_DIR / "attacks" / "pi_resources_and_papers.md")
+             DOCS_DIR / "attacks" / "pi_resources_and_papers.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "archetypes_and_mechanisms.md",
-             SITE_DOCS_DIR / "attacks" / "jb_archetypes_and_mechanisms.md")
+             DOCS_DIR / "attacks" / "jb_archetypes_and_mechanisms.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "datasets_benchmarks_and_taxonomy.md",
-             SITE_DOCS_DIR / "attacks" / "jb_datasets_and_benchmarks.md")
+             DOCS_DIR / "attacks" / "jb_datasets_and_benchmarks.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "advanced_variants_and_operators.md",
-             SITE_DOCS_DIR / "attacks" / "jb_advanced_variants_and_operators.md")
+             DOCS_DIR / "attacks" / "jb_advanced_variants_and_operators.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "resources_and_papers.md",
-             SITE_DOCS_DIR / "attacks" / "jb_resources_and_papers.md")
+             DOCS_DIR / "attacks" / "jb_resources_and_papers.md")
 
     # 4. Chuyên Đề 3: Threat & Defense Study
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "threat_and_defense_study" / "01_threat_model_and_attack_surface.md",
-             SITE_DOCS_DIR / "threat_defense" / "threat_model_and_attack_surface.md")
+             DOCS_DIR / "threat_defense" / "threat_model_and_attack_surface.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "threat_and_defense_study" / "02_multi_layer_defense_architecture.md",
-             SITE_DOCS_DIR / "threat_defense" / "multi_layer_defense_architecture.md")
+             DOCS_DIR / "threat_defense" / "multi_layer_defense_architecture.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "threat_and_defense_study" / "03_comparative_matrix_and_tradeoffs.md",
-             SITE_DOCS_DIR / "threat_defense" / "comparative_matrix_and_tradeoffs.md")
+             DOCS_DIR / "threat_defense" / "comparative_matrix_and_tradeoffs.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "threat_and_defense_study" / "04_resources_and_papers.md",
-             SITE_DOCS_DIR / "threat_defense" / "resources_and_papers.md")
+             DOCS_DIR / "threat_defense" / "resources_and_papers.md")
 
     # 5. Chuyên Đề 4: Dataset & Benchmark Study
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "dataset_and_benchmark_study" / "01_data_curation_and_class_balance.md",
-             SITE_DOCS_DIR / "dataset_study" / "data_curation.md")
+             DOCS_DIR / "dataset_study" / "data_curation.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "dataset_and_benchmark_study" / "02_group_aware_splitting_and_ood.md",
-             SITE_DOCS_DIR / "dataset_study" / "group_aware_splitting.md")
+             DOCS_DIR / "dataset_study" / "group_aware_splitting.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "dataset_and_benchmark_study" / "03_resources_and_papers.md",
-             SITE_DOCS_DIR / "dataset_study" / "resources_and_papers.md")
+             DOCS_DIR / "dataset_study" / "resources_and_papers.md")
 
     # 6. Chuyên Đề 5: Model Study
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "03_two_tier_pipeline_coordination" / "how_it_works_and_architecture.md",
-             SITE_DOCS_DIR / "models" / "two_tier_architecture.md")
+             DOCS_DIR / "models" / "two_tier_architecture.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "03_two_tier_pipeline_coordination" / "benchmark_and_tradeoffs.md",
-             SITE_DOCS_DIR / "models" / "two_tier_tradeoffs.md")
+             DOCS_DIR / "models" / "two_tier_tradeoffs.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "01_tfidf_syntactic_baseline" / "theory_and_math.md",
-             SITE_DOCS_DIR / "models" / "tfidf_theory_and_math.md")
+             DOCS_DIR / "models" / "tfidf_theory_and_math.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "01_tfidf_syntactic_baseline" / "how_it_works_and_usage.md",
-             SITE_DOCS_DIR / "models" / "tfidf_usage.md")
+             DOCS_DIR / "models" / "tfidf_usage.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "01_tfidf_syntactic_baseline" / "resources_and_videos.md",
-             SITE_DOCS_DIR / "models" / "tfidf_resources.md")
+             DOCS_DIR / "models" / "tfidf_resources.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "theory_and_math.md",
-             SITE_DOCS_DIR / "models" / "deberta_theory_and_math.md")
+             DOCS_DIR / "models" / "deberta_theory_and_math.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "how_it_works_and_usage.md",
-             SITE_DOCS_DIR / "models" / "deberta_usage.md")
+             DOCS_DIR / "models" / "deberta_usage.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "resources_and_videos.md",
-             SITE_DOCS_DIR / "models" / "deberta_resources.md")
+             DOCS_DIR / "models" / "deberta_resources.md")
 
     # 7. Chuyên Đề 6: Robustness & Evasion Study
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "01_theory_and_evasion_mechanisms.md",
-             SITE_DOCS_DIR / "robustness" / "theory_and_evasion_mechanisms.md")
+             DOCS_DIR / "robustness" / "theory_and_evasion_mechanisms.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "02_defense_architecture_and_mitigation.md",
-             SITE_DOCS_DIR / "robustness" / "defense_architecture_and_mitigation.md")
+             DOCS_DIR / "robustness" / "defense_architecture_and_mitigation.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "03_benchmarks_metrics_and_tradeoffs.md",
-             SITE_DOCS_DIR / "robustness" / "benchmarks_metrics_and_tradeoffs.md")
+             DOCS_DIR / "robustness" / "benchmarks_metrics_and_tradeoffs.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "04_resources_and_papers.md",
-             SITE_DOCS_DIR / "robustness" / "resources_and_papers.md")
+             DOCS_DIR / "robustness" / "resources_and_papers.md")
 
     # 8. Chuyên Đề 7: Optimization Study
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "01_quantization_theory_and_ptq_math.md",
-             SITE_DOCS_DIR / "optimization" / "quantization_math.md")
+             DOCS_DIR / "optimization" / "quantization_math.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "02_onnx_runtime_and_graph_optimizations.md",
-             SITE_DOCS_DIR / "optimization" / "onnx_runtime.md")
+             DOCS_DIR / "optimization" / "onnx_runtime.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "03_inference_acceleration_and_system_design.md",
-             SITE_DOCS_DIR / "optimization" / "inference_acceleration.md")
+             DOCS_DIR / "optimization" / "inference_acceleration.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "04_benchmarks_metrics_and_tradeoffs.md",
-             SITE_DOCS_DIR / "optimization" / "benchmarks_tradeoffs.md")
+             DOCS_DIR / "optimization" / "benchmarks_tradeoffs.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "05_resources_and_papers.md",
-             SITE_DOCS_DIR / "optimization" / "resources_and_papers.md")
+             DOCS_DIR / "optimization" / "resources_and_papers.md")
 
     # 9. Chuyên Đề 8: Evaluation & Trade-off Study
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "evaluation_and_tradeoff_study" / "01_false_positive_economics_and_ux.md",
-             SITE_DOCS_DIR / "evaluation_study" / "false_positive_economics.md")
+             DOCS_DIR / "evaluation_study" / "false_positive_economics.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "evaluation_and_tradeoff_study" / "02_pareto_frontier_and_system_tradeoffs.md",
-             SITE_DOCS_DIR / "evaluation_study" / "pareto_frontier.md")
+             DOCS_DIR / "evaluation_study" / "pareto_frontier.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "evaluation_and_tradeoff_study" / "03_resources_and_papers.md",
-             SITE_DOCS_DIR / "evaluation_study" / "resources_and_papers.md")
+             DOCS_DIR / "evaluation_study" / "resources_and_papers.md")
 
     # Research Docs
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "State_of_the_Art_Guardrail_and_Jailbreak_Benchmarks_Analysis.md",
-             SITE_DOCS_DIR / "research" / "sota_guardrail_benchmarks.md")
+             DOCS_DIR / "research" / "sota_guardrail_benchmarks.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "Target_LLM_API_Benchmark_and_Vulnerability_Analysis.md",
-             SITE_DOCS_DIR / "research" / "target_llm_vulnerabilities.md")
+             DOCS_DIR / "research" / "target_llm_vulnerabilities.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "Tencent2026_Paper_Analysis_and_Mapping_to_PIGuard.md",
-             SITE_DOCS_DIR / "research" / "tencent2026_paper_analysis.md")
+             DOCS_DIR / "research" / "tencent2026_paper_analysis.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md",
-             SITE_DOCS_DIR / "research" / "why_dual_model_architecture.md")
+             DOCS_DIR / "research" / "why_dual_model_architecture.md")
 
     # Luận văn & Báo cáo Review
     copy_doc(ROOT_DIR / "CAPSTONE PROJECT REGISTER.md",
-             SITE_DOCS_DIR / "thesis" / "capstone_register.md")
+             DOCS_DIR / "thesis" / "capstone_register.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "Review1_Problem_Definition_and_Threat_Model.md",
-             SITE_DOCS_DIR / "thesis" / "review1_threat_model.md")
+             DOCS_DIR / "thesis" / "review1_threat_model.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "chapters" / "01_Introduction.md",
-             SITE_DOCS_DIR / "thesis" / "chapter_01_introduction.md")
+             DOCS_DIR / "thesis" / "chapter_01_introduction.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "chapters" / "02_Literature_Review.md",
-             SITE_DOCS_DIR / "thesis" / "chapter_02_literature_review.md")
+             DOCS_DIR / "thesis" / "chapter_02_literature_review.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "thesis" / "FINAL_THESIS.md",
-             SITE_DOCS_DIR / "thesis" / "final_thesis.md")
+             DOCS_DIR / "thesis" / "final_thesis.md")
 
     # Thư viện bài báo khoa học
-    copy_doc(ROOT_DIR / "References" / "README.md",
-             SITE_DOCS_DIR / "references" / "references_overview.md")
-    copy_doc(ROOT_DIR / "References" / "REFERENCES_LOG.md",
-             SITE_DOCS_DIR / "references" / "references_log.md")
+    copy_doc(ROOT_DIR / "reports" / "References" / "README.md",
+             DOCS_DIR / "references" / "references_overview.md")
+    copy_doc(ROOT_DIR / "reports" / "References" / "REFERENCES_LOG.md",
+             DOCS_DIR / "references" / "references_log.md")
 
     # Đội ngũ & Hướng dẫn kỹ thuật
     copy_doc(ROOT_DIR / "AGENTS.md",
-             SITE_DOCS_DIR / "dev" / "team_governance.md")
+             DOCS_DIR / "dev" / "team_governance.md")
     copy_doc(ROOT_DIR / "CONTRIBUTING.md",
-             SITE_DOCS_DIR / "dev" / "contributing_guide.md")
+             DOCS_DIR / "dev" / "contributing_guide.md")
     copy_doc(ROOT_DIR / "workspaces" / "README.md",
-             SITE_DOCS_DIR / "dev" / "workspaces_overview.md")
+             DOCS_DIR / "dev" / "workspaces_overview.md")
     copy_doc(ROOT_DIR / "src" / "README.md",
-             SITE_DOCS_DIR / "dev" / "src_architecture.md")
+             DOCS_DIR / "dev" / "src_architecture.md")
 
     print("\n🎉 [HOÀN TẤT] Toàn bộ 8 chuyên đề khoa học đã được chuẩn hóa và sẵn sàng cho MkDocs build!")
 

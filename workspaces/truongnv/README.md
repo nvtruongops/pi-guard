@@ -17,7 +17,7 @@
   - [`reports/PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/reports/PI-GUARD-Present-109.pptx): Slide thuyết trình tiến độ phục vụ buổi gặp Giáo viên Hướng dẫn (10/09/2026 - 22 slide, Dark Slate Navy, chuẩn bị cho Review 1).
   - [`reports/SUPERVISOR_REPORT_10_09_2026.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/SUPERVISOR_REPORT_10_09_2026.md): Đề cương tóm lược slide-by-slide & kịch bản báo cáo tiến độ gặp GVHD (10/09/2026).
   - [`reports/figures/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/figures/README.md): Danh mục 13 hình ảnh minh chứng trích từ slide báo cáo GVHD kèm metadata học thuật & tác dụng kỹ thuật.
-  - [`docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md): *(Dùng chung toàn nhóm)* Tóm tắt quy chế và tiêu chí chấm điểm FPT IAP491.
+  - [`reports/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/reports/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md): *(Dùng chung toàn nhóm)* Tóm tắt quy chế và tiêu chí chấm điểm FPT IAP491.
   - [`docs/thesis/FINAL_THESIS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FINAL_THESIS.md): Bản biên dịch toàn văn các chương Review 1.
 
 - 🛡️ **Chuyên Đề Nghiên Cứu Tấn Công (Attack Study Suite — 100% Academic Grounding)**:
@@ -54,4 +54,4 @@
 
 ### 📌 QUY TRÌNH KHI CHỐT FINAL REPORT:
 1. Bạn có thể tự do chỉnh sửa, bổ sung, format các file trong workspace này.
-2. Khi nhóm họp xong và thống nhất chốt bản Final Report Review 1 $\rightarrow$ Đồng bộ phiên bản chính thức ra thư mục chung `docs/thesis/` và `Meeting/` để nộp cho Giảng viên hướng dẫn!
+2. Khi nhóm họp xong và thống nhất chốt bản Final Report Review 1 $\rightarrow$ Đồng bộ phiên bản chính thức ra thư mục chung `reports/` và `docs/` để nộp cho Giảng viên hướng dẫn!

@@ -6,13 +6,24 @@
 
 ---
 
-### 📂 CẤU TRÚC:
+### 📂 CẤU TRÚC THƯ MỤC BÁO CÁO TỔNG (`reports/`):
 
 ```
 reports/
+├── Meeting/                       # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
+│   ├── Meeting 1_29_08_26.md      # Họp khởi động đề tài & phân công Sprint 1
+│   ├── Meeting 2_01_09_26.md      # Khảo sát & sàng lọc 10 bài báo khoa học, định hướng 2 mô hình
+│   ├── Meeting 3_08_09_26.md      # Thống nhất nội dung & thiết kế Slide báo cáo tiến độ GVHD ngày 10/09
+│   └── README.md
+├── References/                    # Toàn bộ 18 bài báo khoa học toàn văn PDF & sổ nhật ký tra cứu
+│   ├── *.pdf                      # 18 file PDF toàn văn các bài báo học thuật chuẩn IEEE/ACM/NeurIPS/ICLR
+│   ├── REFERENCES_LOG.md          # Bảng tra cứu & ma trận ánh xạ 18 bài báo vào các module trong đề tài
+│   └── README.md
 ├── PI-GUARD-Present-109.pptx       # Slide báo cáo tiến độ gặp Giáo viên Hướng dẫn ngày 10/09/2026 (22 slides, Dark Slate Navy)
-├── PI_GUARD_PROCESS_REPORT.xlsx   # Bảng tính theo dõi tiến độ công việc chính thức của toàn đội (FPT IAP491 Process Report)
-├── figures/                       # Sơ đồ kiến trúc, biểu đồ ROC-AUC, biểu đồ độ trễ dạng PNG/PDF chất lượng cao
+├── PI_GUARD_PROCESS_REPORT.xlsx   # Sổ theo dõi tiến độ công việc chính thức (FPT IAP491 Process Report: WBS, Nhân sự, Họp)
+├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt quy chế & tiêu chí chấm điểm FPT IAP491
+├── figures/                       # Sơ đồ kiến trúc, biểu đồ ROC-AUC, biểu đồ độ trễ dạng PNG chất lượng cao
+│   └── PI-GUARD-Present-109/      # 12 ảnh sơ đồ, biểu đồ trích xuất từ slide trình chiếu ngày 10/09/2026
 ├── tables/                        # Bảng số liệu đối chuẩn định dạng Markdown và LaTeX
 └── experiment_reports/            # Các file tóm tắt chỉ số thực nghiệm dạng JSON/Markdown
 ```

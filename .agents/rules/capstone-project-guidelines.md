@@ -59,7 +59,7 @@ trigger: always_on
 > **QUY TẮC SÀNG LỌC TÀI LIỆU NGHIÊN CỨU & CHỐNG DÀN TRẢI TRÍCH DẪN**:
 > 1. **EXTERNAL GUARDRAIL SCOPE COMPATIBILITY**: Mọi công trình khoa học được trích dẫn làm cơ sở thiết kế hệ thống PHẢI tương thích với kiến trúc External Guardrail Proxy (phân loại prompt mức văn bản trước khi gọi LLM, không đòi hỏi can thiệp vào trọng số nội bộ hay KV-cache của LLM đích).
 > 2. **ZERO CITATION BLOAT**: Kiên quyết loại bỏ các bài báo khảo sát trùng lặp hoặc có phạm vi quá rộng/ngoài phạm vi đề tài (như tấn công phần cứng, backdoor, data poisoning).
-> 3. **LOCAL PDF AVAILABILITY**: Mọi tài liệu khoa học được phê duyệt sử dụng trong đồ án BẮT BUỘC phải có bản sao PDF lưu trữ cục bộ trong thư mục `References/` và `workspaces/<thành_viên>/References/`.
+> 3. **LOCAL PDF AVAILABILITY**: Mọi tài liệu khoa học được phê duyệt sử dụng trong đồ án BẮT BUỘC phải có bản sao PDF lưu trữ cục bộ trong thư mục `reports/References/` và `workspaces/<thành_viên>/References/`.
 
 ---
 
@@ -94,7 +94,7 @@ trigger: always_on
      - `workspaces/ducnq/`
      - `workspaces/vietpmh/`
      - `workspaces/phuongddd/`
-   - Direct edits to common directories (`src/`, `docs/`, `Meeting/`, `reports/`, `models/`, `data/`) by non-leader members are strictly prohibited.
+   - Direct edits to common directories (`reports/`, `docs/`, `src/`, `notebooks/`, `tests/`, `scripts/`) by non-leader members are strictly prohibited.
 2. **Leader Sole Merge Authorization**:
    - Only the Leader (`nvtruongops`) is authorized to merge champion artifacts from `workspaces/` into root production directories during weekly convergence sessions.
 3. **Automated Commit Audit Enforcement**:
@@ -103,27 +103,26 @@ trigger: always_on
 
 ---
 
-## Directory & Architectural Standards
+## Directory & Architectural Standards (3 Phân Hệ Chính & Core Codebase)
 
 ```
 d:/Work/Do-an/
-├── .agents/
-│   ├── mcp_config.json          # Workspace MCP servers (arxiv, jupyter, search, playwright, memory)
-│   ├── rules/                   # Project guidelines & agent behavior rules
-│   └── skills/                  # Domain-specific Agent Skills
-├── notebooks/                   # Jupyter Notebooks thực nghiệm tái lập & tài nguyên đi kèm
-│   ├── configs/                 # Cấu hình YAML (data, training, evaluation, models)
-│   ├── data/                    # Datasets (raw, interim, processed, splits, manifests)
-│   └── models/                  # Trọng số mô hình (.joblib, PyTorch checkpoints, ONNX)
-├── src/
-│   ├── preprocessing/           # Cleaners, normalizers, and obfuscation generators
-│   ├── models/                  # ML baseline and Transformer inference wrappers
-│   ├── api/                     # FastAPI guardrail service and LLM proxy
-│   ├── dashboard/               # Streamlit interactive testing & metrics dashboard
-│   └── evaluation/              # Benchmark scripts, metrics calculators, and latency profiler
-├── reports/                     # Báo cáo tiến độ, slides, figures & bảng biểu thực nghiệm
-├── Meeting/                     # Meeting minutes and supervisor notes
-├── References/                  # Academic papers, PDFs, and literature references
+├── reports/                     # [1. BÁO CÁO TỔNG] Báo cáo tiến độ, slides, figures, tables, Meeting/ & References/
+│   ├── Meeting/                 # Biên bản họp với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
+│   ├── References/              # 18 bài báo khoa học chuẩn (PDF) & REFERENCES_LOG.md
+│   ├── PI-GUARD-Present-109.pptx # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026
+│   ├── PI_GUARD_PROCESS_REPORT.xlsx # Sổ theo dõi tiến độ chính thức (Process Report)
+│   ├── figures/                 # Sơ đồ kiến trúc & hình ảnh trích xuất
+│   ├── tables/                  # Bảng biểu đối chuẩn
+│   └── experiment_reports/      # Kết quả thực nghiệm
+├── workspaces/                  # [2. WORKSPACE THÀNH VIÊN] Sandbox cá nhân của 4 thành viên (truongnv, ducnq, vietpmh, phuongddd)
+├── docs/                        # [3. GITHUB PAGES] Cổng tài liệu Web UI chính thức (MkDocs Material 8 Chuyên Đề)
+│   ├── index.md                 # Trang chủ cổng tài liệu
+│   └── fpt_capstone_guide/      # Tài liệu nội bộ FPT (BẤT BIẾN / READ-ONLY)
+├── src/                         # [CORE CODEBASE] API, models, preprocessing, dashboard, evaluation
+├── notebooks/                   # [EXPERIMENTS] Jupyter Notebooks (configs/, data/, models/)
+├── tests/                       # [TEST SUITE] Bộ kiểm thử tự động pytest
+├── scripts/                     # [TOOLING & QA] Bộ công cụ kiểm định Local QA & build docs portal
 ├── requirements.txt             # Python dependencies
 └── AGENTS.md                    # Agent operating standards
 ```

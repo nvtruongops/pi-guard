@@ -593,37 +593,37 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 
 # SECTION 8: VERIFIED ACADEMIC REFERENCES (100% >= 2022)
 
-> 📑 **Nhật ký & Ma trận ánh xạ chi tiết**: Xem tại [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/References/REFERENCES_LOG.md)
-> 📂 **Thư mục lưu trữ 17 file PDF gốc**: [`d:/Work/Do-an/References/`](file:///d:/Work/Do-an/References/)
+> 📑 **Nhật ký & Ma trận ánh xạ chi tiết**: Xem tại [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/reports/References/REFERENCES_LOG.md)
+> 📂 **Thư mục lưu trữ 17 file PDF gốc**: [`d:/Work/Do-an/References/`](file:///d:/Work/Do-an/reports/References/)
 
 <a id="ref1"></a>**[1]** W. X. Zhao et al., "A Survey of Large Language Models," _IJCAI / arXiv preprint arXiv:2303.18223_, 2023.
 
-- 📖 **Local PDF**: [`References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf`](file:///d:/Work/Do-an/References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf)
+- 📖 **Local PDF**: [`References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf`](file:///d:/Work/Do-an/reports/References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2303.18223](https://arxiv.org/abs/2303.18223)
 
 <a id="ref2"></a>**[2]** L. Ouyang et al., "Training language models to follow instructions with human feedback," in _Advances in Neural Information Processing Systems (NeurIPS)_, vol. 35, pp. 27730–27744, 2022.
 
-- 📖 **Local PDF**: [`References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`](file:///d:/Work/Do-an/References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf)
+- 📖 **Local PDF**: [`References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`](file:///d:/Work/Do-an/reports/References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2203.02155](https://arxiv.org/abs/2203.02155)
 
 <a id="ref3"></a>**[3]** F. Perez and I. Ribeiro, "Ignore This Title and Hack This Paper: Towards Critical Thinking in Large Language Models," in _Proceedings of the 1st Workshop on Novel Ideas in AI (NeurIPS Workshops)_, 2022.
 
-- 📖 **Local PDF**: [`References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf`](file:///d:/Work/Do-an/References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf)
+- 📖 **Local PDF**: [`References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf`](file:///d:/Work/Do-an/reports/References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2206.05600](https://arxiv.org/abs/2206.05600)
 
 <a id="ref4"></a>**[4]** K. Greshake, S. Abdelnabi, S. Mishra, C. Endres, T. Holz, and M. Fritz, "Not what you've signed up for: Compromising Real-World LLM Applications with Indirect Prompt Injection," in _Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISEC)_, pp. 79–90, 2023.
 
-- 📖 **Local PDF**: [`References/Greshake_2023_Indirect_Prompt_Injection.pdf`](file:///d:/Work/Do-an/References/Greshake_2023_Indirect_Prompt_Injection.pdf)
+- 📖 **Local PDF**: [`References/Greshake_2023_Indirect_Prompt_Injection.pdf`](file:///d:/Work/Do-an/reports/References/Greshake_2023_Indirect_Prompt_Injection.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2302.12173](https://arxiv.org/abs/2302.12173)
 
 <a id="ref5"></a>**[5]** A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in _Advances in Neural Information Processing Systems (NeurIPS)_, vol. 36, 2024.
 
-- 📖 **Local PDF**: [`References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf)
+- 📖 **Local PDF**: [`References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/reports/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2307.02483](https://arxiv.org/abs/2307.02483)
 
 <a id="ref6"></a>**[6]** Y. Yang, X. Zheng, H. Wu, H. Cheng, X. Shi, J. Guo, B. Yang, Y. Zhou, X. Wu, and Z. Ying, "Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming," _Tencent Zhuque Lab Technical Report_, arXiv preprint arXiv:2606.31227, Jun. 2026.
 
-- 📖 **Local PDF**: [`References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`](file:///d:/Work/Do-an/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf)
+- 📖 **Local PDF**: [`References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`](file:///d:/Work/Do-an/reports/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2606.31227](https://arxiv.org/abs/2606.31227)
 
 <a id="ref7"></a>**[7]** A. Vassilev, A. R. Oprea, C. E. Fordyce, and H. Anderson, "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations," _National Institute of Standards and Technology (NIST)_, NIST Trustworthy and Responsible AI Report NIST.AI.100-2e2025, Jan. 2025.
@@ -636,45 +636,45 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 
 <a id="ref9"></a>**[9]** H. Inan et al., "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations," _Meta AI Technical Report_, arXiv preprint arXiv:2312.06674, Dec. 2023.
 
-- 📖 **Local PDF**: [`References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf`](file:///d:/Work/Do-an/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf)
+- 📖 **Local PDF**: [`References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf`](file:///d:/Work/Do-an/reports/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2312.06674](https://arxiv.org/abs/2312.06674)
 
 <a id="ref10"></a>**[10]** T. Rebedea et al., "NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications," in _Proceedings of EMNLP: System Demonstrations_, pp. 431–444, 2023.
 
-- 📖 **Local PDF**: [`References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`](file:///d:/Work/Do-an/References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf)
+- 📖 **Local PDF**: [`References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`](file:///d:/Work/Do-an/reports/References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2310.10501](https://arxiv.org/abs/2310.10501)
 
 <a id="ref11"></a>**[11]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in _Proceedings of the 11th International Conference on Learning Representations (ICLR)_, 2023.
 
-- 📖 **Local PDF**: [`References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`](file:///d:/Work/Do-an/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf)
+- 📖 **Local PDF**: [`References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`](file:///d:/Work/Do-an/reports/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543)
 
 <a id="ref12"></a>**[12]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in _Proceedings of the AAAI Conference on Human Computation and Crowdsourcing (HCOMP)_, 2023.
 
-- 📖 **Local PDF**: [`References/OpenAI_2023_Undesired_Content_Detection.pdf`](file:///d:/Work/Do-an/References/OpenAI_2023_Undesired_Content_Detection.pdf)
+- 📖 **Local PDF**: [`References/OpenAI_2023_Undesired_Content_Detection.pdf`](file:///d:/Work/Do-an/reports/References/OpenAI_2023_Undesired_Content_Detection.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274)
 
 <a id="ref13"></a>**[13]** N. Jain et al., "Baseline Defenses for Adversarial Attacks Against Aligned Language Models," arXiv preprint arXiv:2309.00614, 2023.
 
-- 📖 **Local PDF**: [`References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf)
+- 📖 **Local PDF**: [`References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/reports/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614)
 
 <a id="ref14"></a>**[14]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in _Advances in Neural Information Processing Systems (NeurIPS)_, vol. 35, 2022.
 
-- 📖 **Local PDF**: [`References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`](file:///d:/Work/Do-an/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf)
+- 📖 **Local PDF**: [`References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`](file:///d:/Work/Do-an/reports/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861)
 
 <a id="ref15"></a>**[15]** X. Shen et al., ""Do Anything Now": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in _Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (CCS)_, pp. 4028–4042, 2024.
 
-- 📖 **Local PDF**: [`References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`](file:///d:/Work/Do-an/References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf)
+- 📖 **Local PDF**: [`References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`](file:///d:/Work/Do-an/reports/References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825) (DOI: `10.1145/3658644.3670388`)
 
 <a id="ref16"></a>**[16]** H. Zhou et al., "EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models," arXiv preprint arXiv:2403.12171, 2024.
 
-- 📖 **Local PDF**: [`References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf`](file:///d:/Work/Do-an/References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf)
+- 📖 **Local PDF**: [`References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf`](file:///d:/Work/Do-an/reports/References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2403.12171](https://arxiv.org/abs/2403.12171)
 
 <a id="ref17"></a>**[17]** Y. Yuan, W. Jiao, W. Wang, J. Huang, P. He, and Z. Tu, "GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher," in _Proceedings of the 12th International Conference on Learning Representations (ICLR)_, 2024.
 
-- 📖 **Local PDF**: [`References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`](file:///d:/Work/Do-an/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf)
+- 📖 **Local PDF**: [`References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`](file:///d:/Work/Do-an/reports/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2308.06463](https://arxiv.org/abs/2308.06463)

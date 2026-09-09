@@ -1,0 +1,15 @@
+/* Tối giản bảng biểu và kiểu dáng chuẩn */
+.md-typeset table:not([class]) {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.md-typeset table:not([class]) th {
+  background-color: rgba(63, 81, 181, 0.08);
+  font-weight: 700;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+  background-color: rgba(63, 81, 181, 0.2);
+}
