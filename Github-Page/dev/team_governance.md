@@ -11,11 +11,12 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
-## 🚫 STRICT RULE: IMMUTABLE / READ-ONLY FILES & DIRECTORIES
+## 🚫 STRICT RULE: IMMUTABLE / READ-ONLY & CONFIDENTIAL UNIVERSITY RESOURCES
 > **CRITICAL RULES FOR ALL AI AGENTS**:
 > 1. The file **`CAPSTONE PROJECT REGISTER.md`** is the official, signed topic registration document approved by the Supervisor and FPT University.
 >
-> These resources are strictly immutable and read-only.
+> - **Extracted Summary**: The academic rubrics, assessment mechanisms (50% Process / 50% Presentation), and 6-chapter thesis structure are officially synthesized into **`Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`**.
+
 
 ---
 

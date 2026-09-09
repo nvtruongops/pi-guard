@@ -2,8 +2,9 @@
 ## 🎓 Quy Chuẩn Học Thuật IAP491 (Research-Based Thesis) Cho Ngành An Toàn Thông Tin
 
 > **Tài liệu căn cứ & trích xuất chính thức**:
-> - **Áp dụng cho**: Đồ án **PI-Guard** (`IAP491_FA26_PI_GUARD`) — Ngành An toàn Thông tin (Information Assurance), Đại học FPT.  
-> - **Cập nhật ngày**: 2026-09-04  
+> - **Lưu ý quan trọng về Lộ trình**: Riêng phần **LỘ TRÌNH THỰC HIỆN & 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)** tại Mục III được thiết lập độc lập theo lịch trình chính thức của kỳ Fall 2026 đã thống nhất với GVHD (ThS. Trần Văn Ninh), không lấy theo timeline của các kỳ cũ trong tài liệu tham khảo lưu trữ.
+> - **Áp dụng cho**: Đồ án **PI-Guard** (`IAP491_FA26_PI_GUARD`) — Ngành An toàn Thông tin (IA), Đại học FPT.  
+> - **Học kỳ**: Fall 2026 (15 tuần từ 07/09/2026 đến 20/12/2026).
 
 ---
 
@@ -64,6 +65,11 @@ $$\text{Final Project Mark} = (\text{Process Mark / Continuous Assessment} \time
 ## 📅 III. LỘ TRÌNH THỰC HIỆN & 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)
 
 Quy trình bảo vệ đồ án tốt nghiệp Khóa luận IAP491 trong học kỳ mới (Fall 2026: 15 Tuần từ 07/09 đến 20/12/2026) được chuẩn hóa thành **4 Cột Mốc Quyết Định**:
+
+> [!IMPORTANT]
+> **ĐỘC LẬP LỊCH TRÌNH SO VỚI TÀI LIỆU LƯU TRỮ (FALL 2026 TIMELINE INDEPENDENCE)**:
+> Lộ trình 4 Cột mốc và kế hoạch 15 tuần dưới đây được thiết lập riêng cho học kỳ **Fall 2026 (07/09/2026 – 20/12/2026)** theo tiến độ chính thức được thống nhất với Giảng viên Hướng dẫn (**ThS. Trần Văn Ninh**). Toàn bộ nhóm và AI Agents tuyệt đối không đối chiếu hay lấy lại các mốc thời gian từ các học kỳ trước lưu trong tài liệu tham khảo cũ.
+
 
 1. 🎯 **CỘT MỐC 1: REVIEW 1 (với GVHD — Tuần 3-4 / 28/09 – 04/10/2026)**:
    - **Nội dung**: Bối cảnh, Lỗ hổng Von Neumann NLP, Phát biểu bài toán, 3 RQ cốt lõi, Threat Model NIST AI 100-2e2025, Khảo sát y văn quốc tế và Đối sánh các trường phái Guardrails SOTA.

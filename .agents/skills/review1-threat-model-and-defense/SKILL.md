@@ -10,12 +10,13 @@ description: >-
 
 # Review 1: Problem Definition, Threat Modeling & Literature Review (2 Chapters)
 
-This skill guides the PI-Guard capstone project team (**Nguyễn Văn Trường, Nguyễn Quí Đức, Phạm Minh Hoàng Việt, Đỗ Đoàn Duy Phương**) in preparing the complete dossier for **Review 1**, covering **TWO Chapters (Report No.1 & Report No.2)** as required by FPT University Capstone Guidelines and Supervisor meeting [`Meeting/Meeting 1_29_08_26.md`](file:///d:/Work/Do-an/Meeting/Meeting%201_29_08_26.md):
+This skill guides the PI-Guard capstone project team (**Nguyễn Văn Trường, Nguyễn Quí Đức, Phạm Minh Hoàng Việt, Đỗ Đoàn Duy Phương**) in preparing the complete dossier for **Review 1**, covering **TWO Chapters (Report No.1 & Report No.2)** as required by FPT University Capstone Guidelines and Supervisor meeting [`Final-Report/Meeting/Meeting 1_29_08_26.md`](file:///d:/Work/Do-an/Final-Report/Meeting/Meeting%201_29_08_26.md):
 
-1. 📘 **CHAPTER 1: INTRODUCTION (Report No. 1 — 10% Process Mark)**: [`docs/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/docs/thesis/chapters/01_Introduction.md)
+1. 📘 **CHAPTER 1: INTRODUCTION (Report No. 1 — 10% Process Mark)**: [`Final-Report/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/01_Introduction.md)
    - *1.1 Background, 1.2 Problem Statement (Lỗ hổng Von Neumann trong NLP), 1.3 Research Objectives & 3 RQs IEEE, 1.4 Significance & 4 Tầng thiệt hại, 1.5 Scope & Limitations, 1.6 Thesis Structure*.
-2. 📗 **CHAPTER 2: LITERATURE REVIEW (Report No. 2 — 25% Process Mark)**: [`docs/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/docs/thesis/chapters/02_Literature_Review.md)
-   - *2.1 Review of Previous Studies (Lịch sử Prompt Injection/Jailbreak, SOTA Guardrails, Robustness & INT8), 2.2 Summary & 3 Research Gaps, 2.3 Contribution of Research (4 đóng góp mới), 2.4 Mapping 17 trích dẫn IEEE (>= 2022)*.
+2. 📗 **CHAPTER 2: LITERATURE REVIEW (Report No. 2 — 25% Process Mark)**: [`Final-Report/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/02_Literature_Review.md)
+   - *2.1 Review of Previous Studies (Lịch sử Prompt Injection/Jailbreak, SOTA Guardrails, Robustness & INT8), 2.2 Summary & 3 Research Gaps, 2.3 Contribution of Research (4 đóng góp mới), 2.4 Mapping 18 trích dẫn IEEE (>= 2022)*.
+
 
 ---
 
@@ -44,15 +45,16 @@ This skill guides the PI-Guard capstone project team (**Nguyễn Văn Trường,
 
 | STT | Sản phẩm bắt buộc | Mô tả kỹ thuật | Vị trí tài liệu lưu trữ |
 | :---: | :--- | :--- | :--- |
-| **1** | **Problem Definition** | Lỗ hổng Von Neumann trong NLP ($X = S \mathbin{\Vert} U$), sự thất bại của Regex và LLM-as-a-Judge | [`docs/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/docs/thesis/chapters/01_Introduction.md#L10-L33) |
-| **2** | **Threat Taxonomy** | Bảng phân loại 3 trục: Direct Injection vs Indirect Injection vs Jailbreak theo OWASP LLM01:2025 | [`docs/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md#L216-L248) |
-| **3** | **Threat Model & Surface** | Sơ đồ luồng tấn công NIST AI 100-2e2025; Attack Surface duy nhất là REST API `/v1/chat/guardrail` | [`docs/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md#L250-L290) |
-| **4** | **Kiến trúc bảo vệ 3 lớp** | Lớp 1: Input Guardrail (TF-IDF + DeBERTa-v3); Lớp 2: Target LLM; Lớp 3: Output Sanitizer | [`docs/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md#L293-L332) |
-| **5** | **Ma trận 4 Kịch bản Demo** | Ma trận $2 \times 2$ (Prompt Injection & Jailbreak $\times$ Vulnerable vs. Protected với PI-Guard) | [`docs/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md#L383-L417) |
-| **6** | **Model Selection Matrix** | So sánh 4 giải pháp Guardrail + Khung đánh giá 5 Target LLM qua Cloud API (GPT-4o, Gemini, LLaMA-3.1...) | [`docs/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md#L418-L503) |
-| **7** | **3 Research Questions** | Hệ thống 3 RQs chuẩn IEEE (RQ1: Data Leakage, RQ2: Robustness, RQ3: FPR & INT8) | [`docs/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/docs/thesis/chapters/01_Introduction.md#L48-L78) |
-| **8** | **Literature Review Survey** | Khảo sát sâu các công trình nghiên cứu quốc tế, ma trận SOTA, 3 Research Gaps, 4 Đóng góp mới | [`docs/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/docs/thesis/chapters/02_Literature_Review.md) |
-| **9** | **Slide PPT Review 1** | Kịch bản 9 slide phân chia 4 thành viên trình bày trong 15 phút + 10 phút Q&A | [`docs/thesis/Review1_Presentation_Slides_Outline.md`](file:///d:/Work/Do-an/docs/thesis/Review1_Presentation_Slides_Outline.md) |
+| **1** | **Problem Definition** | Lỗ hổng Von Neumann trong NLP ($X = S \mathbin{\Vert} U$), sự thất bại của Regex và LLM-as-a-Judge | [`Final-Report/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/01_Introduction.md) |
+| **2** | **Threat Taxonomy** | Bảng phân loại 3 trục: Direct Injection vs Indirect Injection vs Jailbreak theo OWASP LLM01:2025 | [`Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md) |
+| **3** | **Threat Model & Surface** | Sơ đồ luồng tấn công NIST AI 100-2e2025; Attack Surface duy nhất là REST API `/v1/chat/guardrail` | [`Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md) |
+| **4** | **Kiến trúc bảo vệ 3 lớp** | Lớp 1: Input Guardrail (TF-IDF + DeBERTa-v3); Lớp 2: Target LLM; Lớp 3: Output Sanitizer | [`Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md) |
+| **5** | **Ma trận 4 Kịch bản Demo** | Ma trận $2 \times 2$ (Prompt Injection & Jailbreak $\times$ Vulnerable vs. Protected với PI-Guard) | [`Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md) |
+| **6** | **Model Selection Matrix** | So sánh 4 giải pháp Guardrail + Khung đánh giá 5 Target LLM qua Cloud API (GPT-4o, Gemini, LLaMA-3.1...) | [`Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md) |
+| **7** | **3 Research Questions** | Hệ thống 3 RQs chuẩn IEEE (RQ1: Data Leakage, RQ2: Robustness, RQ3: FPR & INT8) | [`Final-Report/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/01_Introduction.md) |
+| **8** | **Literature Review Survey** | Khảo sát sâu các công trình nghiên cứu quốc tế, ma trận SOTA, 3 Research Gaps, 4 Đóng góp mới | [`Final-Report/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/02_Literature_Review.md) |
+| **9** | **Slide PPT Review 1** | Kịch bản trình bày báo cáo Review 1 gặp GVHD ngày 10/09/2026 | [`Final-Report/reports/PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/Final-Report/reports/PI-GUARD-Present-109.pptx) |
+
 
 ---
 

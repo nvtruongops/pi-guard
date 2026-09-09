@@ -68,7 +68,8 @@ Mỗi thành viên làm việc độc lập trong thư mục sandbox được ch
    - Trưởng nhóm là người duy nhất có quyền chọn lọc các module xuất sắc nhất từ `workspaces/` của 4 bạn để merge vào cây thư mục chính thức `Final-Report/` trong các buổi họp cuối tuần.
 3. **Các file bất biến tuyệt đối (Read-Only cho TẤT CẢ thành viên)**:
    - **`CAPSTONE PROJECT REGISTER.md`** (Phiếu đăng ký đề tài đã ký duyệt của Nhà trường).
-   - Nghiêm cấm mọi hành vi sửa đổi, ghi đè hoặc xóa các tài nguyên này.
+   - Nghiêm cấm mọi hành vi sửa đổi, ghi đè, xóa hoặc sao chép ra các thư mục công khai đối với các tài nguyên này.
+
 
 ---
 

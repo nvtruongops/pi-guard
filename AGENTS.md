@@ -11,13 +11,16 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
-## 🚫 STRICT RULE: IMMUTABLE / READ-ONLY FILES & DIRECTORIES
+## 🚫 STRICT RULE: IMMUTABLE / READ-ONLY & CONFIDENTIAL UNIVERSITY RESOURCES
 > **CRITICAL RULES FOR ALL AI AGENTS**:
 > 1. The file [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) is the official, signed topic registration document approved by the Supervisor and FPT University.
-> 2. The directory [`docs/fpt_capstone_guide/`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/) contains internal university thesis guidelines, rubrics, and reference forms.
+> 2. The directory [`docs/fpt_capstone_guide/`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/) contains internal, confidential university guidelines, rubrics, and reference forms (strictly local, protected by `.gitignore`).
 >
-> **AGENTS MUST ONLY READ AND NEVER MODIFY, EDIT, OVERWRITE, OR DELETE ANY FILES IN `docs/fpt_capstone_guide/` OR `CAPSTONE PROJECT REGISTER.md` UNDER ANY CIRCUMSTANCES.**
-> These resources are strictly immutable and read-only.
+> **AGENTS MUST ONLY READ AND NEVER MODIFY, EDIT, OVERWRITE, DELETE, COMMIT, OR EXPOSE ANY FILES IN `docs/fpt_capstone_guide/` OR `CAPSTONE PROJECT REGISTER.md` UNDER ANY CIRCUMSTANCES.**
+> - **Confidentiality & Zero Public Leakage**: Never copy files from `docs/fpt_capstone_guide/` into `Github-Page/` or any public repository path.
+> - **Extracted Summary**: The academic rubrics, assessment mechanisms (50% Process / 50% Presentation), and 6-chapter thesis structure are officially synthesized into [`Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md).
+> - **Fall 2026 Milestone Independence**: The **LỘ TRÌNH THỰC HIỆN & 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)** is defined specifically for the Fall 2026 semester schedule with Supervisor MSc. Trần Văn Ninh, and is **NOT** derived from the legacy timelines in `docs/fpt_capstone_guide/`.
+
 
 ---
 

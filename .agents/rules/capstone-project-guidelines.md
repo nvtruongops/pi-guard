@@ -11,15 +11,18 @@ trigger: always_on
 
 ---
 
-## 🚫 IMMUTABLE / READ-ONLY FILES & DIRECTORIES (STRICT MODIFICATION PROHIBITION)
+## 🚫 IMMUTABLE / READ-ONLY & CONFIDENTIAL UNIVERSITY RESOURCES (STRICT MODIFICATION PROHIBITION)
 
 > [!CAUTION]
 > **STRICT RULE FOR ALL AGENTS**:
 > 1. The file [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) is the official, signed topic registration document approved by the Supervisor and FPT University.
-> 2. The directory [`docs/fpt_capstone_guide/`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/) contains internal university guidelines, rubrics, and templates.
+> 2. The directory [`docs/fpt_capstone_guide/`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/) contains internal university guidelines, rubrics, and reference forms.
 >
-> **AGENTS ARE STRICTLY PROHIBITED FROM MODIFYING, EDITING, OVERWRITING, OR DELETING `CAPSTONE PROJECT REGISTER.md` OR ANY FILE IN `docs/fpt_capstone_guide/` UNDER ANY CIRCUMSTANCES.**
-> Agents must ONLY READ these files for reference. They are 100% immutable and read-only.
+> **AGENTS ARE STRICTLY PROHIBITED FROM MODIFYING, EDITING, OVERWRITING, DELETING, COMMITTING, OR EXPOSING `CAPSTONE PROJECT REGISTER.md` OR ANY FILE IN `docs/fpt_capstone_guide/` UNDER ANY CIRCUMSTANCES.**
+> - **Confidentiality Invariant**: `docs/fpt_capstone_guide/` is protected by `.gitignore` and must NEVER be copied to `Github-Page/` or made public.
+> - **Extracted Reference**: Academic rubrics and thesis structure are officially extracted into [`Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md).
+> - **Fall 2026 Milestone Independence**: The **LỘ TRÌNH THỰC HIỆN & 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)** is defined specifically for Fall 2026 with Supervisor MSc. Trần Văn Ninh, and is **NOT** taken from the legacy timelines in `docs/fpt_capstone_guide/`.
+
 
 ---
 

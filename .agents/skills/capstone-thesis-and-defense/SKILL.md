@@ -9,9 +9,10 @@ description: >-
 
 This skill guides the team in writing the formal **Capstone Graduation Thesis Report** and preparing the **Defense Presentation Slides** according to official FPT University IAP491 Research-Based Thesis guidelines.
 
-> 📚 **Official FPT Template & Guidelines**: [`docs/fpt_capstone_guide/IAP491_CP_StudentsGuideForm for Research Based Thesis.docx`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/IAP491_CP_StudentsGuideForm%20for%20Research%20Based%20Thesis.docx)  
-> 📑 **Full Rubrics & Timeline Breakdown**: [`docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/docs/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md)  
-> 📂 **17 Standard Research Papers (100% >= 2022)**: [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/References/REFERENCES_LOG.md)  
+> 📚 **Internal Guidelines Reference (Confidential, Local Only)**: [`docs/fpt_capstone_guide/IAP491_CP_StudentsGuideForm for Research Based Thesis.docx`](file:///d:/Work/Do-an/docs/fpt_capstone_guide/IAP491_CP_StudentsGuideForm%20for%20Research%20Based%20Thesis.docx)  
+> 📑 **Official Synthesized Rubrics & Chapter Breakdown**: [`Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md)  
+> 📂 **18 Standard Research Papers (100% >= 2022)**: [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md)  
+> ⚠️ **Fall 2026 Timeline Notice**: The milestone timeline follows the official **Fall 2026 schedule** approved by Supervisor MSc. Trần Văn Ninh (not legacy timelines in `docs/fpt_capstone_guide/`).
 
 ---
 
