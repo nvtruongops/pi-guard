@@ -90,119 +90,104 @@ In accordance with the approved [`CAPSTONE PROJECT REGISTER.md`](CAPSTONE%20PROJ
 
 ---
 
-## 🚀 Quick Start Guide (Coming Soon — Under Active Development)
+## 🚀 Lộ Trình Triển Khai & Quy Chuẩn Giai Đoạn (Review 1: Zero-Code Invariant)
 
-> [!NOTE]
-> The full automated dataset curation, transformer fine-tuning, and production deployment pipeline are currently under active development for **Review 2 (Methodology & Baseline)**. The commands below demonstrate the environment setup and developer preview tools available in the current milestone.
+> [!IMPORTANT]
+> **TIÊU CHUẨN BÁO CÁO CỘT MỐC REVIEW 1 (ĐH FPT — IAP491)**:
+> 1. **Giai đoạn hiện tại (Review 1: Tuần 1–4)**: Tập trung **100% vào Nghiên cứu lý thuyết, Khảo sát y văn quốc tế, Mô hình hóa đe dọa (NIST AI 100-2e2025, STRIDE) và Thiết kế kiến trúc phòng thủ hai tầng**.
+> 2. **Quy tắc phân hệ Nghiệm thu (`Final-Report/`)**: **"Chỉ khi hoàn thành xong và nghiệm thu mới có code hay tài liệu chính thức ở Final-Report/"**. Do đó, trong giai đoạn Review 1, phân hệ `Final-Report/` tuyệt đối không chứa mã nguồn nháp hay kết quả thực nghiệm sớm.
+> 3. **Không gian làm việc thành viên (`workspaces/<member>/`)**: Toàn bộ quá trình cào dữ liệu, xử lý Group-Aware Splitting, thử nghiệm Baseline ML và tinh chỉnh Transformer DeBERTa-v3 được 4 thành viên tiến hành độc lập trong sandbox cá nhân và sẽ được Leader đồng quy tích hợp vào `Final-Report/` ở các cột mốc **Review 2 & Hội đồng Giữa kỳ**.
 
-### 1. Environment Setup (Developer Preview)
+### 1. Thiết Lập Môi Trường Phát Triển & Tài Liệu
 ```bash
 # Clone repository
 git clone https://github.com/nvtruongops/pi-guard.git
 cd pi-guard
 
-# Install dependencies (Self-contained in Final-Report/)
-pip install -r Final-Report/requirements.txt
-# Alternatively, install development & documentation dependencies:
+# Cài đặt các gói phụ thuộc phát triển & tài liệu (từ Final-Report/)
 pip install -r Final-Report/requirements-dev.txt
 
-# Configure environment variables
+# Cấu hình biến môi trường mẫu
 cp Final-Report/.env.example .env
 ```
 
-### 2. Dataset Pipeline & Model Training (Coming Soon — Scheduled for Review 2)
+### 2. Xem Cổng Tài Liệu 8 Chuyên Đề Khoa Học (MkDocs Material)
+```bash
+# Tổng hợp tài liệu toàn dự án vào Github-Page/
+python Final-Report/scripts/build_docs_portal.py
+
+# Khởi chạy máy chủ tài liệu cục bộ
+mkdocs serve   # Truy cập tại: http://127.0.0.1:8000
+
+# Hoặc tra cứu trực tiếp phiên bản xuất bản chính thức trên GitHub Pages:
+# https://nvtruongops.github.io/pi-guard/
+```
+
+### 3. Kế Hoạch Nghiên Cứu Mã Nguồn & Thực Nghiệm (Dự Kiến Cho Review 2)
 > [!TIP]
-> The complete end-to-end dataset engineering and model training pipelines are scheduled for Review 2 according to the project roadmap. The planned workflow includes:
-> - **Dataset Collection & Curation**: Merging Hugging Face datasets (`deepset`, `jayavibhav`, `xTRam1`, `Lakera`, `TrustAIRLab`) and benign instruction sets.
-> - **Group-Aware Splitting**: Clustering paraphrased attack families to prevent test-set data leakage.
-> - **Model Training**: Baseline TF-IDF (LinearSVC / LogisticRegression) and Transformer Fine-Tuning (`microsoft/deberta-v3-base`).
-
-```bash
-# Planned Workflow (Under Active Development):
-# python Final-Report/scripts/download_dataset.py
-# python Final-Report/scripts/preprocess.py
-# python Final-Report/scripts/train.py --model baseline
-# python Final-Report/scripts/benchmark.py
-```
-
-### 3. Prototype Services & Local Verification (Available in Current Preview)
-```bash
-# Run Prototype FastAPI Guardrail Service (Port 8000)
-uvicorn Final-Report.src.api.main:app --host 0.0.0.0 --port 8000 --reload
-
-# Run Prototype Streamlit Dashboard (Port 8501)
-streamlit run Final-Report/src/dashboard/app.py
-```
+> Toàn bộ pipeline tiền xử lý dữ liệu và huấn luyện mô hình đang được phát triển trong `workspaces/` cho cột mốc Review 2:
+> - **Thu thập & Chuẩn hóa dữ liệu**: Hợp nhất Hugging Face benchmarks (`deepset`, `jayavibhav`, `xTRam1`, `Lakera`, `TrustAIRLab`) và benign prompts.
+> - **Phân chia Group-Aware Splitting**: Cụm các biến thể tấn công tương đồng bằng MinHash / Jaccard Similarity để triệt tiêu rò rỉ dữ liệu.
+> - **Huấn luyện mô hình**: Huấn luyện Baseline TF-IDF (LinearSVC / LogisticRegression) và Deep Transformer (`microsoft/deberta-v3-base`).
+> - **Triển khai API & Dashboard**: Đóng gói FastAPI Guardrail Proxy và Streamlit Dashboard sau khi nghiệm thu mô hình.
 
 ---
 
-## 🧪 Local Quality Assurance & Validation Suite (Local-First QA)
+## 🧪 Bộ Công Cụ Kiểm Định Chất Lượng Cục Bộ (Local-First QA Suite)
 
-Dự án PI-Guard áp dụng mô hình **Kiểm định thuần Local (Local-First Validation)**, loại bỏ hoàn toàn phụ thuộc vào GitHub Actions cloud runners để tối ưu tốc độ, đảm bảo tính độc lập và phòng ngừa lỗi môi trường:
+Dự án PI-Guard áp dụng mô hình **Kiểm định thuần Local (Local-First Validation)** kết hợp với GitHub Pages Deployment tự động:
 
 ```bash
 # 1. Cài đặt Git Pre-commit Hook tự động (chặn commit vi phạm ranh giới & lỗi cú pháp)
 python Final-Report/scripts/validate_local.py --install-hook
 
-# 2. Kiểm định nhanh trước khi commit (Workspace Boundary + JSON Manifests + Ruff Lint + Benchmark Smoke Test)
+# 2. Kiểm định nhanh trước khi commit (Workspace Boundary + JSON Manifests + Review 1 Invariants)
 python Final-Report/scripts/validate_local.py
 
-# 3. Kiểm định toàn diện 100% (Bao gồm đầy đủ Pytest 16 bài tests + Biên dịch MkDocs Portal)
+# 3. Kiểm định toàn diện 100% (Bao gồm Boundary, Manifests, Lint & Biên dịch MkDocs Portal)
 python Final-Report/scripts/validate_local.py --all
 
-# 4. Chạy trực tiếp Pytest Suite (Unit, Integration & Adversarial Robustness)
-pytest Final-Report/tests/ -v
-
-# 5. Xem Cổng tài liệu nội bộ trên máy cục bộ (Local MkDocs Server)
-python Final-Report/scripts/build_docs_portal.py
-mkdocs serve   # Truy cập tại: http://127.0.0.1:8000
+# 4. Kiểm tra và xác minh URL / DOI / YouTube không bị link chết (Zero Dead Links Invariant)
+python Final-Report/scripts/verify_resource_url.py --file Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md
 ```
 
 ---
 
-## 📚 Project Structure (3 Phân Hệ Độc Tôn Tại Thư Mục Gốc)
+## 📚 Cấu Trúc Dự Án (Đúng 3 Phân Hệ Độc Tôn Tại Thư Mục Gốc)
 
 Hệ thống thư mục gốc của dự án được quy hoạch tối giản thành **đúng 3 thư mục chính**:
 
 ```
 d:/Work/Do-an/
-├── 📁 Final-Report/                # [PHÂN HỆ 1: BÁO CÁO TỔNG & MÃ NGUỒN SẢN PHẨM]
-│   ├── src/                       # [CORE CODEBASE] Mã nguồn sản phẩm bảo vệ Guardrail chính thức
-│   │   ├── api/                   # FastAPI Async Guardrail Middleware & Endpoints
-│   │   ├── models/                # Model abstractions (TF-IDF Baseline, DeBERTa-v3, ONNX INT8)
-│   │   ├── preprocessing/         # Unicode cleaner, normalizer & synthetic obfuscation generators
-│   │   ├── datasets/              # Dataset loaders & group-aware splitters chống data leakage
-│   │   ├── policy/                # 3-tier Decision Policy Engine & Dynamic Thresholds
-│   │   ├── llm/                   # Downstream LLM Cloud API proxies (Groq, OpenAI, Gemini)
-│   │   ├── dashboard/             # Streamlit Live Monitoring & Testing UI
-│   │   └── evaluation/            # Metrics calculator, FPR computation & Latency profiler
-│   ├── tests/                     # [TEST SUITE] Bộ kiểm thử tự động pytest (unit, integration, adversarial)
-│   ├── scripts/                   # [TOOLING & QA] Bộ công cụ tự động hóa kiểm định Local QA & build docs portal
-│   ├── thesis/                    # Toàn văn Luận văn tốt nghiệp (FINAL_THESIS.md, Review 1, Chapters 1-6)
-│   ├── notebooks/                 # Toàn bộ tài nguyên thực nghiệm & Jupyter Notebooks tái lập (configs/, data/, models/)
+├── 📁 Final-Report/                # [PHÂN HỆ 1: BÁO CÁO TỔNG & HỒ SƠ NGHIỆM THU CHÍNH THỨC]
+│   ├── thesis/                    # Toàn văn Luận văn tốt nghiệp chính thức (Single Source of Truth)
+│   │   ├── FINAL_THESIS.md        # Toàn văn Khóa luận tốt nghiệp (Chapters 1-6 + References)
+│   │   ├── Review1_Problem_Definition_and_Threat_Model.md # Hồ sơ chuyên đề Review 1 (Chương 1 & Chương 2)
+│   │   ├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt quy chế & rubric IAP491
+│   │   ├── chapters/              # Các chương riêng biệt (01_Introduction, 02_Literature_Review)
+│   │   └── README.md              # Quy chuẩn viết và biên dịch Luận văn
 │   ├── Meeting/                   # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
-│   ├── References/                # Toàn bộ 18 bài báo khoa học toàn văn PDF & REFERENCES_LOG.md
-│   ├── reports/                   # [PERIODIC REPORTS & METRICS] Sổ tiến độ, slide trình chiếu & benchmark
-│   │   ├── PI-GUARD-Present-109.pptx  # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026 (22 slides, Dark Slate Navy)
-│   │   ├── PI_GUARD_PROCESS_REPORT.xlsx # Sổ theo dõi tiến độ chính thức (FPT IAP491 Process Report: WBS, Nhân sự, Họp)
-│   │   ├── experiment_reports/    # Báo cáo tóm tắt chỉ số thực nghiệm dạng JSON/Markdown
-│   │   └── README.md              # Hướng dẫn tra cứu & cập nhật các báo cáo
-│   ├── figures/                   # Sơ đồ kiến trúc & đồ họa (gồm thư mục con PI-GUARD-Present-109/)
-│   ├── tables/                    # Bảng số liệu đối chuẩn định dạng Markdown & LaTeX
-│   ├── requirements.txt           # Master Production Dependencies (Core ML, FastAPI, Streamlit, Jupyter)
+│   ├── References/                # Toàn bộ 18 bài báo khoa học toàn văn PDF chuẩn & REFERENCES_LOG.md
+│   ├── reports/                   # Sổ theo dõi tiến độ chính thức (PI_GUARD_PROCESS_REPORT.xlsx) & Slide gặp GVHD (PI-GUARD-Present-109.pptx)
+│   ├── figures/                   # Sơ đồ kiến trúc & hình ảnh trích xuất chất lượng cao
+│   ├── tables/                    # Bảng số liệu đối chuẩn định dạng Markdown và LaTeX
+│   ├── scripts/                   # Bộ công cụ kiểm định Local QA, xuất bản tài liệu & quy trình nhóm
+│   ├── requirements.txt           # Master Production Dependencies
 │   ├── requirements-dev.txt       # Master Dev Dependencies (Pytest, Ruff, Pre-commit, MkDocs)
-│   └── .env.example               # Master Environment Configuration Template
+│   ├── .env.example               # Master Environment Configuration Template
+│   └── README.md                  # Hướng dẫn chi tiết phân hệ Báo Cáo Tổng
 │
 ├── 📁 Github-Page/                 # [PHÂN HỆ 2: GITHUB PAGES] Cổng tài liệu Web UI chính thức (MkDocs Material 8 Chuyên Đề)
 │   ├── index.md                   # Trang chủ cổng tài liệu Web UI (8-Pillar Academic Architecture)
 │   ├── javascripts/ & stylesheets/# Cấu hình MathJax LaTeX hiển thị công thức & Custom CSS giao diện
 │   └── [8 Chuyên Đề Khoa Học]/    # Prompt, Attacks, Threat & Defense, Dataset, Models, Robustness, Optimization, Evaluation
 │
-└── 📁 workspaces/                  # [PHÂN HỆ 3: WORKSPACE THÀNH VIÊN] Không gian thử nghiệm sandbox độc lập của 4 bạn
-    ├── truongnv/                  # Workspace Leader (Trường): Chuẩn hóa dữ liệu, kiến trúc hệ thống, điều phối chung
+└── 📁 workspaces/                  # [PHÂN HỆ 3: WORKSPACE THÀNH VIÊN] Sandbox thử nghiệm của 4 thành viên
+    ├── truongnv/                  # Workspace Leader (Trường): Chuẩn hóa dữ liệu, kiến trúc, thực nghiệm thăm dò
     ├── ducnq/                     # Workspace Đức: Classical ML Baseline TF-IDF, Feature Extraction & Threat Model
     ├── vietpmh/                   # Workspace Việt: Transformer DeBERTa-v3, Quantization INT8, Robustness Testing
     ├── phuongddd/                 # Workspace Phương: FastAPI Guardrail Proxy, Streamlit Dashboard & Luận văn
-    └── README.md                  # Hướng dẫn quy chuẩn bố trí không gian làm việc cá nhân
+    └── README.md                  # Hướng dẫn quy chuẩn không gian làm việc cá nhân
 ```
+
 

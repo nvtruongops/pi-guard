@@ -198,6 +198,8 @@ def step_code_linting(staged_only: bool = False) -> tuple[bool, str]:
             ]:
                 if t.exists():
                     targets.append(str(t.relative_to(ROOT_DIR)).replace("\\", "/"))
+            if not targets:
+                return True, "Review 1 Phase: Zero-Code invariant in Final-Report/ verified (no premature production code). Skipped."
             code, out, err = run_cmd(["ruff", "check"] + targets)
 
         if code == 0:
@@ -216,6 +218,8 @@ def step_code_linting(staged_only: bool = False) -> tuple[bool, str]:
                         p = ROOT_DIR / line
                         if p.exists():
                             py_files_ast.append(p)
+            if not py_files_ast:
+                return True, "No staged Python files in src/ or tests/ to lint."
         else:
             for t in [
                 FINAL_REPORT_DIR / "src",
@@ -225,6 +229,9 @@ def step_code_linting(staged_only: bool = False) -> tuple[bool, str]:
             ]:
                 if t.exists():
                     py_files_ast.extend(list(t.rglob("*.py")))
+            if not py_files_ast:
+                return True, "Review 1 Phase: Zero-Code invariant in Final-Report/ verified (no premature production code). Skipped."
+
 
         errors = []
         for pf in py_files_ast:

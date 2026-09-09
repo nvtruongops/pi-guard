@@ -381,11 +381,52 @@ def aggregate_all():
              DOCS_DIR / "dev" / "contributing_guide.md")
     copy_doc(ROOT_DIR / "workspaces" / "README.md",
              DOCS_DIR / "dev" / "workspaces_overview.md")
+    # Kiến trúc mã nguồn & quy chuẩn tích hợp
     src_readme = FINAL_REPORT_DIR / "src" / "README.md" if (FINAL_REPORT_DIR / "src" / "README.md").exists() else ROOT_DIR / "src" / "README.md"
-    copy_doc(src_readme,
-             DOCS_DIR / "dev" / "src_architecture.md")
+    if src_readme.exists():
+        copy_doc(src_readme, DOCS_DIR / "dev" / "src_architecture.md")
+    else:
+        create_src_architecture_doc(DOCS_DIR / "dev" / "src_architecture.md")
 
     print("\n🎉 [HOÀN TẤT] Toàn bộ 8 chuyên đề khoa học đã được chuẩn hóa và sẵn sàng cho MkDocs build!")
 
+def create_src_architecture_doc(dest_path: Path):
+    """Tạo tài liệu kiến trúc mã nguồn chuẩn cho giai đoạn Review 1 (Zero-Code in Final-Report)."""
+    content = """# THƯ MỤC MÃ NGUỒN CHÍNH THỨC CỦA DỰ ÁN (PRODUCTION SOURCE CODE)
+## 🛡️ PI-Guard Core Framework Architecture
+
+> [!IMPORTANT]
+> **QUY TẮC BẢO TRÌ & ĐỒNG QUY MÃ NGUỒN (CONVERGENCE INVARIANT)**:
+> 1. Thư mục `Final-Report/src/` là **NƠI CHỨA MÃ NGUỒN CHÍNH THỨC, HOÀN CHỈNH VÀ ĐÃ QUA KIỂM THỬ (PRODUCTION-READY)**.
+> 2. Theo quy chuẩn học thuật FPT IAP491, trong giai đoạn **Review 1 (Problem Definition & Threat Modeling)**, dự án tuân thủ nghiêm ngặt **Quy tắc 100% Nghiên cứu lý thuyết & y văn (Zero Code in Final-Report)**.
+> 3. Toàn bộ quá trình thử nghiệm, tiền xử lý dữ liệu, huấn luyện mô hình (TF-IDF Baseline, DeBERTa-v3) và xây dựng API proxy được 4 thành viên thực hiện song song trong các không gian làm việc độc lập (`workspaces/<thành_viên>/`).
+> 4. **CHỈ KHI HOÀN THÀNH XONG VÀ NGHIỆM THU**, mã nguồn xuất sắc nhất mới được Leader đồng quy và tích hợp vào `Final-Report/src/` tại các cột mốc Review 2 và Review 3.
+
+---
+
+### 📂 THIẾT KẾ CẤU TRÚC CÁC MODULE DỰ KIẾN TRONG `src/`:
+
+```
+src/
+├── preprocessing/                 # Tiền xử lý: Làm sạch, chuẩn hóa Unicode, bóc tách Base64
+├── datasets/                      # Pipeline cào data, deduplication & Group-Aware Split
+├── models/                        # Trình bao bọc suy luận (Baseline ML & DeBERTa INT8 ONNX)
+│   ├── baseline/                  # Bộ phân loại TF-IDF + LogisticRegression / LinearSVC
+│   └── classifier.py              # Wrapper chạy suy luận ONNX Runtime / PyTorch
+├── training/                      # Pipeline huấn luyện tự động (Trainer, Callbacks, Loss)
+├── evaluation/                    # Bộ đo lường chuẩn: F1, Precision, Recall, FPR, Latency
+├── policy/                        # Bộ quy tắc định tuyến bảo vệ (3-Tier Layered Defense)
+├── api/                           # Dịch vụ FastAPI Middleware & LLM Proxy (/v1/chat)
+├── dashboard/                     # Giao diện Streamlit giám sát & kiểm thử trực quan
+├── llm/                           # Kết nối Target LLM Cloud APIs (Groq, OpenAI, Gemini)
+└── utils/                         # Logging, cấu hình, metrics tracker & helpers
+```
+"""
+    dest_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(dest_path, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"✅ [GEN] Đã sinh tài liệu kiến trúc {dest_path.relative_to(ROOT_DIR)}")
+
 if __name__ == "__main__":
     aggregate_all()
+

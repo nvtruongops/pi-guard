@@ -2,14 +2,15 @@
 ## 🛡️ PI-Guard Core Framework Architecture
 
 > [!IMPORTANT]
-> **QUY TẮC PHÁT TRIỂN PHẦN MỀM (DEVELOPMENT RULES)**:
+> **QUY TẮC BẢO TRÌ & ĐỒNG QUY MÃ NGUỒN (CONVERGENCE INVARIANT)**:
 > 1. Thư mục `Final-Report/src/` là **NƠI CHỨA MÃ NGUỒN CHÍNH THỨC, HOÀN CHỈNH VÀ ĐÃ QUA KIỂM THỬ (PRODUCTION-READY)**.
-> 2. Thành viên **KHÔNG ĐƯỢC CODE TRỰC TIẾP HOẶC TEST NHÁP TRONG `Final-Report/src/`**.
-> 3. Mọi tính năng mới, thử nghiệm thuật toán phải viết trong `workspaces/<tên_bạn>/` trước $\rightarrow$ Sau khi họp nhóm cuối tuần thống nhất mới tạo Pull Request merge vào `Final-Report/src/`.
+> 2. Theo quy chuẩn học thuật FPT IAP491, trong giai đoạn **Review 1 (Problem Definition & Threat Modeling)**, dự án tuân thủ nghiêm ngặt **Quy tắc 100% Nghiên cứu lý thuyết & y văn (Zero Code in Final-Report)**.
+> 3. Toàn bộ quá trình thử nghiệm, tiền xử lý dữ liệu, huấn luyện mô hình (TF-IDF Baseline, DeBERTa-v3) và xây dựng API proxy được 4 thành viên thực hiện song song trong các không gian làm việc độc lập (`workspaces/<thành_viên>/`).
+> 4. **CHỈ KHI HOÀN THÀNH XONG VÀ NGHIỆM THU**, mã nguồn xuất sắc nhất mới được Leader đồng quy và tích hợp vào `Final-Report/src/` tại các cột mốc Review 2 và Review 3.
 
 ---
 
-### 📂 CẤU TRÚC CÁC MODULE CHÍNH TRONG `src/`:
+### 📂 THIẾT KẾ CẤU TRÚC CÁC MODULE DỰ KIẾN TRONG `src/`:
 
 ```
 src/

@@ -40,15 +40,15 @@ Final-Report/reports/
   ```
 
 #### 3. Báo Cáo Kết Quả Thực Nghiệm (`experiment_reports/`)
-- **`adversarial_benchmark.json`**: Ghi nhận độ trễ suy luận (P50, P95, P99) và độ chính xác khi đối mặt với các kỹ thuật làm mờ (Obfuscation: Base64, Leetspeak, Spacing).
-  - Lệnh sinh: `python Final-Report/scripts/benchmark.py`
-- **`baseline_test_metrics.json`**: Chỉ số Precision, Recall, F1-score và FPR trên tập kiểm thử độc lập.
-  - Lệnh sinh: `python Final-Report/scripts/evaluate.py`
+- Thư mục lưu trữ các tệp chỉ số thực nghiệm chính thức dạng JSON / Markdown khi nhóm hoàn thành và nghiệm thu các mốc thực nghiệm (Review 2 & Hội đồng Giữa kỳ).
+- Trong giai đoạn **Review 1 (Problem Definition & Threat Modeling)**, toàn bộ thực nghiệm thăm dò được 4 thành viên tiến hành độc lập trong `workspaces/<thành_viên>/reports/experiment_reports/`.
+- Chỉ khi mô hình và kết quả benchmark được nghiệm thu chính thức, số liệu mới được Leader tổng hợp vào `Final-Report/reports/experiment_reports/`.
 
 ---
 
 ### 🔄 QUY TRÌNH CẬP NHẬT & ĐỒNG BỘ:
 
-1. **Khi có số liệu benchmark mới**: Chạy `python Final-Report/scripts/benchmark.py` $\rightarrow$ kết quả tự động ghi vào `Final-Report/reports/experiment_reports/adversarial_benchmark.json`.
-2. **Khi họp tiến độ xong**: Leader chạy `python Final-Report/scripts/generate_process_report.py` $\rightarrow$ sinh sổ Excel mới tại `Final-Report/reports/PI_GUARD_PROCESS_REPORT.xlsx`.
-3. **Đồng bộ Google Sheet**: Chạy `python Final-Report/scripts/sync_google_sheet.py` để đẩy số liệu lên Google Drive phục vụ GVHD theo dõi trực tuyến.
+1. **Khi họp tiến độ xong**: Leader chạy `python Final-Report/scripts/generate_process_report.py` $\rightarrow$ sinh sổ Excel mới tại `Final-Report/reports/PI_GUARD_PROCESS_REPORT.xlsx`.
+2. **Đồng bộ Google Sheet**: Chạy `python Final-Report/scripts/sync_google_sheet.py` để đẩy số liệu lên Google Drive phục vụ GVHD theo dõi trực tuyến.
+3. **Khi nghiệm thu mô hình (Review 2/3)**: Số liệu benchmark chính thức sẽ được tích hợp vào `Final-Report/reports/experiment_reports/`.
+

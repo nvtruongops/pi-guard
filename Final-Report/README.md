@@ -6,44 +6,22 @@
 
 ---
 
-### 📂 CẤU TRÚC PHÂN HỆ BÁO CÁO TỔNG & MÃ NGUỒN SẢN PHẨM (`Final-Report/`):
+### 📂 CẤU TRÚC PHÂN HỆ BÁO CÁO TỔNG & NGHIỆM THU (`Final-Report/`):
+
+> [!IMPORTANT]
+> **QUY CHUẨN GIAI ĐOẠN REVIEW 1 (ZERO-CODE INVARIANT IN FINAL-REPORT)**:
+> - Theo quy chế học thuật ĐH FPT (IAP491), giai đoạn **Review 1 (Tuần 1–4)** là giai đoạn **100% Nghiên cứu lý thuyết, Khảo sát y văn, Mô hình hóa đe dọa (Threat Modeling) và Thiết kế kiến trúc**.
+> - Thư mục `Final-Report/` là phân hệ Nghiệm thu chính thức, tuân thủ nguyên tắc: **"Chỉ khi hoàn thành xong và nghiệm thu mới có code hay tài liệu chính thức ở Final-Report/"**.
+> - Các module mã nguồn sản phẩm (`src/`), bộ kiểm thử tự động (`tests/`), và tài nguyên thực nghiệm (`notebooks/`) hiện đang được 4 thành viên phát triển song song trong các không gian làm việc độc lập (`workspaces/<thành_viên>/`) và sẽ được Leader đồng quy tích hợp vào `Final-Report/` tại cột mốc **Review 2 & Hội đồng Giữa kỳ**.
 
 ```
 Final-Report/
-├── src/                           # [CORE CODEBASE] Mã nguồn sản phẩm bảo vệ Guardrail chính thức
-│   ├── api/                       # FastAPI async proxy middleware & schemas
-│   ├── models/                    # Classifier modules (TF-IDF Baseline, DeBERTa-v3, ONNX)
-│   ├── preprocessing/             # Bộ chuẩn hóa văn bản, giải mã Base64 & chống evasion
-│   ├── policy/                    # Policy Engine & ngưỡng phân loại (Allow, Review, Block)
-│   ├── evaluation/                # Module tính toán chỉ số (F1, FPR, Latency Profiler)
-│   ├── dashboard/                 # Streamlit UI demo tương tác trực quan
-│   └── utils/                     # Config loader & structured logging
-├── tests/                         # [TEST SUITE] Toàn bộ bộ kiểm thử tự động (Pytest)
-│   ├── unit/                      # Unit tests cho cleaner, policy engine, metrics
-│   ├── integration/               # Integration tests cho API endpoints & middleware
-│   └── adversarial/               # Kiểm thử độ bền trước kỹ thuật làm mờ (Obfuscation)
-├── scripts/                       # [TOOLING & QA] Bộ công cụ kiểm định Local QA & thực thi
-│   ├── validate_local.py          # Unified Local QA Suite (Boundaries, Manifests, Lint, Pytest, Benchmark, Docs)
-│   ├── audit_workspace_boundaries.py # Kiểm toán phân quyền workspace & commit
-│   ├── build_docs_portal.py       # Tự động tổng hợp và biên dịch tài liệu MkDocs
-│   ├── benchmark.py               # Benchmark độ trễ P50/P95/P99 trên tập đối kháng
-│   ├── train.py                   # Script huấn luyện TF-IDF baseline pipeline
-│   ├── evaluate.py                # Script đánh giá mô hình trên tập test split
-│   ├── preprocess.py              # Tiền xử lý dữ liệu và chia tập train/val/test
-│   ├── download_dataset.py        # Tải và hợp nhất bộ dữ liệu từ Hugging Face
-│   ├── compile_thesis.py          # Biên dịch các chương thành luận văn hoàn chỉnh
-│   └── generate_process_report.py # Sinh sổ theo dõi tiến độ chính thức PI_GUARD_PROCESS_REPORT.xlsx
 ├── thesis/                        # Toàn bộ hồ sơ Luận văn tốt nghiệp chính thức (Single Source of Truth)
 │   ├── FINAL_THESIS.md            # Toàn văn Khóa luận tốt nghiệp (Chapters 1-6 + References)
 │   ├── Review1_Problem_Definition_and_Threat_Model.md # Báo cáo Chuyên đề Đợt 1 (Định nghĩa bài toán & Threat Model)
 │   ├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt quy chế & tiêu chí chấm điểm IAP491
 │   ├── chapters/                  # Các chương riêng biệt (01_Introduction, 02_Literature_Review)
 │   └── README.md                  # Quy chuẩn viết và biên dịch Luận văn
-├── notebooks/                     # Toàn bộ tài nguyên thực nghiệm & Jupyter Notebooks tái lập
-│   ├── configs/                   # Cấu hình thực nghiệm (data.yaml, models.yaml, training.yaml, evaluation.yaml)
-│   ├── data/                      # Dataset tiêu chuẩn phục vụ thực nghiệm (raw/, interim/, processed/, splits/)
-│   ├── models/                    # Model checkpoints & weights (baseline/, transformer/, onnx/)
-│   └── README.md                  # Hướng dẫn chạy thực nghiệm và tái lập kết quả
 ├── Meeting/                       # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
 │   ├── Meeting 1_29_08_26.md      # Họp khởi động đề tài & phân công Sprint 1
 │   ├── Meeting 2_01_09_26.md      # Khảo sát & sàng lọc 10 bài báo khoa học, định hướng 2 mô hình
@@ -56,15 +34,26 @@ Final-Report/
 ├── reports/                       # [PERIODIC REPORTS & METRICS] Sổ tiến độ, slide trình chiếu & benchmark
 │   ├── PI-GUARD-Present-109.pptx  # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026 (22 slides, Dark Slate Navy)
 │   ├── PI_GUARD_PROCESS_REPORT.xlsx # Sổ theo dõi tiến độ công việc chính thức (FPT IAP491 Process Report)
-│   ├── experiment_reports/        # Dữ liệu chỉ số thực nghiệm tự động (adversarial_benchmark.json, ...)
+│   ├── experiment_reports/        # Thư mục lưu trữ kết quả thực nghiệm tự động (khi hoàn thành Review 2/3)
 │   └── README.md                  # Hướng dẫn chi tiết phân hệ báo cáo định kỳ
 ├── figures/                       # Sơ đồ kiến trúc, biểu đồ ROC-AUC, biểu đồ độ trễ dạng PNG chất lượng cao
 │   └── PI-GUARD-Present-109/      # 12 ảnh sơ đồ, biểu đồ trích xuất từ slide trình chiếu ngày 10/09/2026
 ├── tables/                        # Bảng số liệu đối chuẩn định dạng Markdown và LaTeX
-├── requirements.txt               # Master Production Dependencies (Core ML, FastAPI, Streamlit, Jupyter)
+├── scripts/                       # [TOOLING & QA] Bộ công cụ kiểm định Local QA, xuất bản tài liệu & quy trình
+│   ├── validate_local.py          # Unified Local QA Suite (Boundaries, Manifests, Lint, Pytest, Docs)
+│   ├── audit_workspace_boundaries.py # Kiểm toán phân quyền workspace & commit
+│   ├── build_docs_portal.py       # Tự động tổng hợp và biên dịch tài liệu MkDocs
+│   ├── compile_thesis.py          # Biên dịch các chương thành luận văn hoàn chỉnh
+│   ├── verify_resource_url.py     # Công cụ kiểm định URL, video YouTube và tra cứu Open-Access PDF
+│   ├── audit_urls.py              # Quét toàn diện tính hợp lệ của tất cả URL trong repo
+│   ├── generate_process_report.py # Sinh sổ theo dõi tiến độ chính thức PI_GUARD_PROCESS_REPORT.xlsx
+│   ├── generate_personal_process_report.py # Sinh báo cáo tiến độ cá nhân hóa từng thành viên
+│   └── sync_google_sheet.py       # Đồng bộ dữ liệu tiến độ lên Google Sheet phục vụ GVHD
+├── requirements.txt               # Master Production Dependencies
 ├── requirements-dev.txt           # Master Dev Dependencies (Pytest, Ruff, Pre-commit, MkDocs)
 └── .env.example                   # Master Environment Configuration Template
 ```
+
 
 ---
 
