@@ -1,36 +1,27 @@
 # CƠ SỞ TOÁN HỌC & NGUYÊN LÝ LƯỢNG HÓA ĐỘNG (POST-TRAINING QUANTIZATION - INT8)
 ## Tối Ưu Hóa Mô Hình Transformer Cho Hệ Thống Guardrail Phân Loại Trực Tuyến Độ Trễ Thấp
 
-> 📑 **Tài liệu tham chiếu chuẩn mực**: Yao et al. (NeurIPS 2022) (*ZeroQuant* [[1]](#ref1)), Jacob et al. (CVPR 2018) [[2]](#ref2), Gholami et al. (2021) [[3]](#ref3).  
-> 🎯 **Mục tiêu trong PI-Guard**: Nén mô hình `microsoft/deberta-v3-base` từ định dạng 32-bit Floating Point (FP32) sang 8-bit Integer (INT8) để chạy trực tiếp trên CPU phổ thông với độ trễ $\text{P95} < 30\text{ms}$ và bộ nhớ $\le 150\text{MB}$ mà không làm suy giảm độ chính xác an ninh ($\Delta F_1 < 0.3\%$).
+> **Tài liệu tham chiếu chuẩn mực**: Yao et al. (NeurIPS 2022) (*ZeroQuant* [[1]](#ref1)), Jacob et al. (CVPR 2018) [[2]](#ref2), Gholami et al. (2021) [[3]](#ref3).  
+> **Mục tiêu trong PI-Guard**: Nén mô hình `microsoft/deberta-v3-base` từ định dạng 32-bit Floating Point (FP32) sang 8-bit Integer (INT8) để chạy trực tiếp trên CPU phổ thông với độ trễ $\text{P95} < 30\text{ms}$ và bộ nhớ $\le 150\text{MB}$ mà không làm suy giảm độ chính xác an ninh ($\Delta F_1 < 0.3\%$).
 
 ---
 
-## 🔬 I. TẠI SAO BẮT BUỘC PHẢI LƯỢNG HÓA MÔ HÌNH TRANSFORMER CHO GUARDRAIL?
+## I. TẠI SAO BẮT BUỘC PHẢI LƯỢNG HÓA MÔ HÌNH TRANSFORMER CHO GUARDRAIL?
 
-Trong một hệ thống Guardrail dạng API Proxy đón đầu luồng dữ liệu (Inline Request Guardrail), mô hình phân loại phải xử lý hàng nghìn truy vấn mỗi giây với ràng buộc khắt khe về thời gian phản hồi:
+Trong một hệ thống Guardrail dạng API Proxy đón đầu luồng dữ liệu (Inline Request Guardrail), mô hình phân loại phải xử lý lượng lớn truy vấn với ràng buộc khắt khe về thời gian phản hồi:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│               THÁCH THỨC VẬN HÀNH GIỮA MÔ HÌNH FP32 VÀ NHU CẦU GUARDRAIL              │
-├────────────────────────────────┬───────────────────────────────────────────────────────┤
-│ MÔ HÌNH DEBERTA-V3 FP32 GỐC    │ • Kích thước file trọng số: ~500 MB                   │
-│ (32-bit Floating Point)        │ • Dung lượng RAM tiêu thụ: ~1.2 GB - 1.8 GB           │
-│                                │ • Băng thông bộ nhớ (Memory Bandwidth): Cực cao       │
-│                                │ • Độ trễ suy luận trên CPU: ~45ms - 65ms (Vi phạm SLA)│
-├────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ MÔ HÌNH DEBERTA-V3 INT8 NÉN    │ • Kích thước file trọng số: ~133 MB (Giảm 73.4%)      │
-│ (8-bit Quantized ONNX Runtime) │ • Dung lượng RAM tiêu thụ: ~280 MB - 350 MB           │
-│                                │ • Tăng tốc độ nạp trọng số qua Cache CPU: 3.5x        │
-│                                │ • Độ trễ suy luận trên CPU: ~12.8ms - 18ms (Đạt SLA)  │
-└────────────────────────────────┴───────────────────────────────────────────────────────┘
-```
+| Đặc Tính | Mô Hình DeBERTa-v3 FP32 Gốc (32-bit Floating Point) | Mô Hình DeBERTa-v3 INT8 Nén (8-bit Quantized ONNX Runtime) |
+| :--- | :--- | :--- |
+| **Kích thước file trọng số** | ~500 MB | ~133 MB (Giảm 73.4%) |
+| **Dung lượng RAM tiêu thụ** | ~1.2 GB - 1.8 GB | ~280 MB - 350 MB |
+| **Băng thông bộ nhớ** | Yêu cầu bộ nhớ rất cao (Memory-Bandwidth Bound) | Giảm lưu lượng nạp cache 4x, tăng tốc độ nạp 3.5x |
+| **Độ trễ suy luận trên CPU** | ~45ms - 65ms (Nguy cơ vi phạm SLA độ trễ) | ~12.8ms - 18ms (Thỏa mãn SLA P95 < 30ms) |
 
 Theo phân tích của **Yao et al. (NeurIPS 2022)** trong bài báo *ZeroQuant* [[1]](#ref1), quá trình suy luận (inference) của các mô hình Transformer phân loại dạng Encoder trên CPU thường bị giới hạn bởi **Băng thông nạp dữ liệu bộ nhớ (Memory-Bandwidth Bound)** hơn là năng lực tính toán thuần túy (Compute-Bound). Khi giảm kích thước biểu diễn từ 4 bytes (FP32) xuống 1 byte (INT8), lưu lượng dữ liệu cần chuyển từ RAM vào L1/L2/L3 Cache của CPU giảm đi 4 lần, trực tiếp giải phóng nút thắt cổ chai và tăng tốc độ xử lý.
 
 ---
 
-## 📐 II. CƠ SỞ TOÁN HỌC CỦA PHÉP LƯỢNG HÓA TUYẾN TÍNH (LINEAR QUANTIZATION)
+## II. CƠ SỞ TOÁN HỌC CỦA PHÉP LƯỢNG HÓA TUYẾN TÍNH (LINEAR QUANTIZATION)
 
 Lượng hóa là quá trình ánh xạ một tập hợp liên tục các giá trị thực $x \in [\alpha, \beta] \subset \mathbb{R}$ sang một tập hợp rời rạc các số nguyên hữu hạn $q \in [q_{\min}, q_{\max}] \subset \mathbb{Z}$.
 
@@ -65,22 +56,14 @@ $$\epsilon = |x - \hat{x}| = \left| x - S \cdot \left( \left\lfloor \frac{x}{S} 
 
 ---
 
-## ⚖️ III. PHÂN BIỆT LƯỢNG HÓA ĐỐI XỨNG VS. BẤT ĐỐI XỨNG
+## III. PHÂN BIỆT LƯỢNG HÓA ĐỐI XỨNG VS. BẤT ĐỐI XỨNG
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│               SO SÁNH HAI TRƯỜNG PHÁI LƯỢNG HÓA TRỌNG SỐ VÀ ACTIVATION                 │
-├────────────────────────────────┬───────────────────────────────────────────────────────┤
-│ LƯỢNG HÓA ĐỐI XỨNG (SYMMETRIC) │ • Miền giá trị thực đối xứng quanh 0: [-\alpha, \alpha]│
-│                                │ • Zero-Point cố định: Z = 0                           │
-│                                │ • Phép toán: q = \text{clip}(\lfloor x/S \rceil)      │
-│                                │ • Tối ưu cực cao cho ma trận trọng số (Weights)       │
-├────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ LƯỢNG HÓA BẤT ĐỐI XỨNG         │ • Miền giá trị thực tùy ý: [\alpha, \beta]            │
-│ (ASYMMETRIC / AFFINE)          │ • Zero-Point tùy biến: Z \neq 0                       │
-│                                │ • Tối ưu cho Activation sau hàm kích hoạt (GELU/ReLU) │
-└────────────────────────────────┴───────────────────────────────────────────────────────┘
-```
+| Phương Pháp Lượng Hóa | Lượng Hóa Đối Xứng (Symmetric) | Lượng Hóa Bất Đối Xứng (Asymmetric / Affine) |
+| :--- | :--- | :--- |
+| **Miền giá trị thực** | Đối xứng quanh 0: $[-\alpha, \alpha]$ | Tùy biến bất kỳ: $[\alpha, \beta]$ |
+| **Zero-Point** | Cố định: $Z = 0$ | Tùy biến: $Z \ne 0$ |
+| **Hàm ánh xạ** | $q = \text{clip}(\lfloor x/S \rceil)$ | $q = \text{clip}(\lfloor x/S \rceil + Z)$ |
+| **Đối tượng ứng dụng tối ưu** | Tối ưu ma trận trọng số (Weights) | Tối ưu ma trận kích hoạt (Activations sau GELU/ReLU) |
 
 ### 1. Lượng Hóa Đối Xứng (Symmetric Quantization)
 - Thường áp dụng cho **Trọng số ma trận (Weight Tensors $\mathbf{W}$)** trong Transformer do phân phối của trọng số sau huấn luyện thường có dạng hình chuông (Gaussian) đối xứng quanh trục $0.0$.
@@ -94,7 +77,7 @@ $$\epsilon = |x - \hat{x}| = \left| x - S \cdot \left( \left\lfloor \frac{x}{S} 
 
 ---
 
-## 🧮 IV. NHÂN MA TRẬN TỐC ĐỘ CAO TRONG MIỀN SỐ NGUYÊN (INT8 GEMM ARITHMETIC)
+## IV. NHÂN MA TRẬN TỐC ĐỘ CAO TRONG MIỀN SỐ NGUYÊN (INT8 GEMM ARITHMETIC)
 
 Xét phép nhân ma trận cơ bản trong tầng Fully Connected của Transformer: $\mathbf{Y} = \mathbf{X} \mathbf{W}$  
 Trong đó $\mathbf{X} \in \mathbb{R}^{M \times K}$ (Activation) và $\mathbf{W} \in \mathbb{R}^{K \times N}$ (Weights).
@@ -116,7 +99,7 @@ $$= S_X S_W \left[ \underbrace{\sum_{k=1}^{K} \mathbf{Q}_{X, i,k} \mathbf{Q}_{W,
 
 ---
 
-## 📊 V. PHÂN TÍCH ĐỘ LỆCH KL VÀ BẢO TOÀN RANH GIỚI AN TOÀN (BOUNDARY PRESERVATION)
+## V. PHÂN TÍCH ĐỘ LỆCH KL VÀ BẢO TOÀN RANH GIỚI AN TOÀN (BOUNDARY PRESERVATION)
 
 Một trong những câu hỏi nghiên cứu quan trọng nhất trong RQ3 của đề tài là: **"Quá trình lượng hóa INT8 có làm dịch chuyển ranh giới quyết định an toàn (Decision Boundary Shift) và gây lọt lưới các cuộc tấn công tinh vi hay không?"**
 
@@ -128,26 +111,20 @@ $$D_{\text{KL}}(P_{\text{FP32}} \parallel Q_{\text{INT8}}) = \sum_{c \in \{\text
 
 ### 2. Tiêu Chuẩn Hiệu Chuẩn Hiệu Năng Của PI-Guard
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│         KẾT QUẢ ĐỐI SOÁNH THỰC NGHIỆM ĐỘ LỆCH LƯỢNG HÓA TRÊN DEBERTA-V3 BASE           │
-├──────────────────────────────────────┬─────────────┬─────────────┬─────────────────────┤
-│ Tiêu Chí Đánh Giá                     │ FP32 (Gốc)  │ INT8 (ONNX) │ Chênh Lệch (\Delta) │
-├──────────────────────────────────────┼─────────────┼─────────────┼─────────────────────┤
-│ Macro F1-Score trên Test Set         │ 98.62%      │ 98.41%      │ -0.21% (< 0.3% mục tiêu)│
-│ False Positive Rate (FPR trên Benign)│ 0.94%       │ 1.02%       │ +0.08% (< 1.5% mục tiêu)│
-│ Precision trên tập Adversarial       │ 97.80%      │ 97.55%      │ -0.25%              │
-│ Độ lệch KL trung bình (D_{KL})        │ 0.0000      │ 0.0184      │ < 0.05 (Rất an toàn)│
-│ Thời gian suy luận P95 (CPU 4 Cores) │ 52.4 ms     │ 14.8 ms     │ Tăng tốc 3.54x      │
-│ Dung lượng File Trọng Số             │ 501 MB      │ 133 MB      │ Giảm 73.4%          │
-└──────────────────────────────────────┴─────────────┴─────────────┴─────────────────────┘
-```
+| Tiêu Chí Đánh Giá | FP32 (Gốc) | INT8 (ONNX) | Chênh Lệch ($\Delta$) |
+| :--- | :--- | :--- | :--- |
+| **Macro F1-Score trên Test Set** | 98.62% | 98.41% | -0.21% (< 0.3% mục tiêu) |
+| **False Positive Rate (FPR trên Benign)** | 0.94% | 1.02% | +0.08% (< 1.5% mục tiêu) |
+| **Precision trên tập Adversarial** | 97.80% | 97.55% | -0.25% |
+| **Độ lệch KL trung bình ($D_{KL}$)** | 0.0000 | 0.0184 | < 0.05 (Độ lệch nhỏ an toàn) |
+| **Thời gian suy luận P95 (CPU 4 Cores)** | 52.4 ms | 14.8 ms | Tăng tốc 3.54x |
+| **Dung lượng File Trọng Số** | 501 MB | 133 MB | Giảm 73.4% |
 
 **Kết luận khoa học**: Độ suy giảm $\Delta F_1 = 0.21\%$ nằm sâu dưới ngưỡng dung sai cho phép ($0.3\%$). Ranh giới phân loại an ninh được bảo toàn nguyên vẹn, chứng minh tính khả thi vững chắc của giải pháp Guardrail độ trễ thấp trên CPU tiêu chuẩn.
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO HỌC THUẬT (VERIFIED ACADEMIC REFERENCES)
+## TÀI LIỆU THAM KHẢO HỌC THUẬT (VERIFIED ACADEMIC REFERENCES)
 
 <a id="ref1"></a>**[1]** Z. Yao, R. Y. Aminabadi, M. Zhang, X. Wu, C. Li, and Y. He, "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *Advances in Neural Information Processing Systems (NeurIPS 2022)*, vol. 35, pp. 27168–27183, 2022. Link: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861).
 

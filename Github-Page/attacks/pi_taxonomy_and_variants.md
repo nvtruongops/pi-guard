@@ -4,31 +4,42 @@ Tài liệu này hệ thống hóa **toàn bộ các biến thể của Prompt I
 
 ---
 
-## 🌳 1. CÂY PHÂN LOẠI TOÀN DIỆN (COMPREHENSIVE TAXONOMY TREE)
+## 1. Cây Phân Loại Toàn Diện (Comprehensive Taxonomy Tree)
 
-```
-                                  PROMPT INJECTION (OWASP LLM01 / NIST AI 100-2)
-                                                        │
-         ┌──────────────────────────────────────────────┴──────────────────────────────────────────────┐
-         ▼                                                                                             ▼
- 1. DIRECT PROMPT INJECTION (DPI)                                              2. INDIRECT PROMPT INJECTION (IPI)
- (Tấn công trực tiếp qua User Prompt)                                          (Tấn công gián tiếp qua Dữ liệu ngoài)
-         │                                                                             │
-         ├─ 1.1. Goal Hijacking (Cướp quyền điều khiển)                                ├─ 2.1. Poisoned Web / Search Injection
-         ├─ 1.2. System Prompt Leaking / Extraction                                    ├─ 2.2. Poisoned RAG & Vector DB Documents
-         ├─ 1.3. Delimiter & Special Tag Hijacking                                     ├─ 2.3. Hidden & Invisible Text Injection
-         ├─ 1.4. Context / Session Reset Spoofing                                      │       ├─ CSS / Font-Color Concealment
-         ├─ 1.5. Administrative Impersonation (Sudo)                                   │       ├─ Markdown Exfiltration Links
-         ├─ 1.6. Recursive / Multi-Pass Injection                                      │       ├─ HTML / XML Comment Embedding
-         └─ 1.7. Completion / Fill-in-the-Blank Luring                                 │       └─ Unicode Zero-Width / Homoglyphs
-                                                                                       ├─ 2.4. Passive Email / Messaging Injection
-                                                                                       ├─ 2.5. Tool-Use / Function Call Hijacking
-                                                                                       └─ 2.6. Multi-Agent Worm Cross-Contamination
+```mermaid
+graph TD
+    Root["Prompt Injection<br/>(OWASP LLM01:2025 / NIST AI 100-2e2025)"]
+    
+    subgraph DPI["1. Direct Prompt Injection (DPI)"]
+        DPI_Desc["Tấn công trực tiếp qua User Prompt"]
+        D1["1.1. Goal Hijacking"]
+        D2["1.2. System Prompt Leaking"]
+        D3["1.3. Delimiter & Tag Hijacking"]
+        D4["1.4. Context / Session Reset Spoofing"]
+        D5["1.5. Administrative Impersonation"]
+        D6["1.6. Recursive / Multi-Pass Injection"]
+        D7["1.7. Completion / Fill-in-the-Blank Luring"]
+        DPI_Desc --> D1 & D2 & D3 & D4 & D5 & D6 & D7
+    end
+
+    subgraph IPI["2. Indirect Prompt Injection (IPI)"]
+        IPI_Desc["Tấn công gián tiếp qua Dữ liệu ngoài"]
+        I1["2.1. Poisoned Web / Search Injection"]
+        I2["2.2. Poisoned RAG & Vector DB Documents"]
+        I3["2.3. Hidden & Invisible Text Injection"]
+        I4["2.4. Passive Email / Messaging Injection"]
+        I5["2.5. Tool-Use / Function Call Hijacking"]
+        I6["2.6. Multi-Agent Worm Cross-Contamination"]
+        IPI_Desc --> I1 & I2 & I3 & I4 & I5 & I6
+    end
+
+    Root --> DPI_Desc
+    Root --> IPI_Desc
 ```
 
 ---
 
-## ⚡ 2. CHI TIẾT TỪNG BIẾN THỂ DIRECT PROMPT INJECTION (DPI)
+## 2. Chi Tiết Từng Biến Thể Direct Prompt Injection (DPI)
 
 ### 1.1. Goal Hijacking (Cướp Quyền Điều Khiển Tác Vụ)
 - **Bản chất**: Xóa bỏ hoặc ghi đè mục tiêu nghiệp vụ ban đầu của ứng dụng và ép LLM thực thi một tác vụ hoàn toàn mới do kẻ tấn công định nghĩa.
@@ -116,7 +127,7 @@ Tài liệu này hệ thống hóa **toàn bộ các biến thể của Prompt I
 
 ---
 
-## 🌐 3. CHI TIẾT TỪNG BIẾN THỂ INDIRECT PROMPT INJECTION (IPI)
+## 3. Chi Tiết Từng Biến Thể Indirect Prompt Injection (IPI)
 
 Được khảo sát toàn diện bởi **Greshake et al. (ACM AISEC 2023)** (*"Not what you've signed up for"* [arXiv:2302.12173](https://arxiv.org/abs/2302.12173)) và đối chuẩn thực nghiệm bởi **Sun et al. (BIPIA 2024 - Microsoft Research)** (*"Benchmarking Indirect Prompt Injection Attacks on Large Language Models"* [arXiv:2312.14197](https://arxiv.org/abs/2312.14197)):
 
@@ -158,7 +169,7 @@ Kẻ tấn công giấu payload để **mắt người không thấy được nh
 
 ---
 
-## 🛡️ 4. MA TRẬN ÁNH XẠ ĐÁNH CHẶN CỦA PI-GUARD VỚI CÁC BIẾN THỂ PROMPT INJECTION
+## 4. Ma Trận Ánh Xạ Đánh Chặn Của PI-Guard Với Các Biến Thể Prompt Injection
 
 | Nhóm | Biến Thể Cụ Thể | Rủi Ro Bảo Mật | Cơ Chế Đánh Chặn Của PI-Guard | Tầng Đảm Trách |
 | :--- | :--- | :---: | :--- | :---: |

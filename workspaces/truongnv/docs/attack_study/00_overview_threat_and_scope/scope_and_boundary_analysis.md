@@ -4,25 +4,25 @@ Tài liệu này cung cấp cơ sở lý luận khoa học giải thích tại s
 
 ---
 
-## ⚖️ 1. NGUYÊN LÝ "NO SILVER BULLET" & BA MÂU THUẪN KỸ THUẬT NỀN TẢNG
+## 1. Nguyên Lý "No Silver Bullet" & Ba Mâu Thuẫn Kỹ Thuật Nền Tảng
 
 Trong an ninh mạng và học máy, *"No-Free-Lunch Theorem"* chỉ ra rằng không có một thuật toán nào tối ưu cho mọi bài toán. Đối với bài toán bảo vệ LLM trước Prompt Injection và Jailbreak, ba mâu thuẫn kỹ thuật sau đây chứng minh sự bất khả thi của một mô hình đơn lẻ:
 
-```
-                  ┌──────────────────────────────────────────────┐
-                  │    TAM GIÁC MÂU THUẪN TRONG LLM GUARDRAIL    │
-                  └──────────────────────┬───────────────────────┘
-                                         │
-                 ┌───────────────────────┴───────────────────────┐
-                 ▼                                               ▼
-     [ ĐỘ TRỄ VẬN HÀNH ]                             [ NĂNG LỰC HIỂU NGỮ NGHĨA ]
-  (Độ trễ thấp < 30ms cho Inline API)             (Semantic Understanding - Roleplay, DAN)
-                 │                                               │
-                 └───────────────────────┬───────────────────────┘
-                                         │
-                                         ▼
-                             [ ĐỘ BỀN VỚI NHIỄU CÚ PHÁP ]
-                       (Robustness - Leetspeak, Spacing, Cipher)
+```mermaid
+flowchart TD
+    A["Tam Giác Đánh Đổi Trong LLM Guardrail"]
+    A --> B["Độ Trễ Vận Hành (Latency)<br/>Yêu cầu P95 < 30ms cho Inline API trên CPU"]
+    A --> C["Năng Lực Hiểu Ngữ Nghĩa (Semantics)<br/>Bắt trọn kịch bản Roleplay, DAN, ẩn dụ"]
+    A --> D["Độ Bền Với Nhiễu Cú Pháp (Robustness)<br/>Kháng Leetspeak, Spacing, Homoglyph, Cipher"]
+
+    B <-->|Mâu thuẫn 1: Mô hình lớn quá chậm vs. Mô hình nhẹ mù ngữ nghĩa| C
+    C <-->|Mâu thuẫn 2: Tokenizer vỡ vụn vs. Bắt cú pháp n-gram| D
+    D <-->|Mâu thuẫn 3: Kiểm soát FPR < 1.5% vs. Tối đa Recall| B
+
+    style A fill:#e8eaf6,stroke:#283593,stroke-width:2px;
+    style B fill:#e3f2fd,stroke:#1565c0,stroke-width:1.5px;
+    style C fill:#ede7f6,stroke:#512da8,stroke-width:1.5px;
+    style D fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px;
 ```
 
 ### Mâu thuẫn 1: Độ trễ siêu tốc (< 30ms) đối đầu Năng lực hiểu ngữ cảnh sâu
@@ -36,7 +36,7 @@ Trong an ninh mạng và học máy, *"No-Free-Lunch Theorem"* chỉ ra rằng k
 
 ### Mâu thuẫn 3: Tỷ lệ Báo động Giả (False Positive Rate - FPR) đối đầu Tỷ lệ Bắt (Recall)
 - Theo phân tích của **Markov et al. (OpenAI 2023)** (*"A Holistic Approach to Undesired Content Detection in the Real World"* [arXiv:2208.03274](https://arxiv.org/abs/2208.03274)): Một bộ lọc từ khóa tĩnh (Regex/Blacklist) hoặc một mô hình quá nhạy sẽ chặn nhầm các câu hỏi nghiệp vụ thông thường của chuyên gia bảo mật hoặc lập trình viên (ví dụ: *"Hãy viết đoạn code minh họa lỗ hổng SQL Injection để tôi giảng dạy"*).
-- Trong môi trường doanh nghiệp thực tế, **chặn nhầm (False Positive) gây khó chịu và gián đoạn dịch vụ hơn cả việc lọt lưới nhỏ**. Tỷ lệ FPR bắt buộc phải duy trì ở mức cực thấp ($< 1.5\%$).
+- Trong môi trường ứng dụng thực tế, **chặn nhầm (False Positive) gây khó chịu và gián đoạn dịch vụ hơn cả việc lọt lưới nhỏ**. Tỷ lệ FPR bắt buộc phải duy trì ở mức cực thấp ($< 1.5\%$).
 
 👉 **KẾT LUẬN HỌC THUẬT**: Bắt buộc phải kết hợp **Kiến trúc phòng thủ phân tầng kép (Two-Tier Cascade Architecture)**:
 - **Tầng 1 (Syntactic Tier)**: Dùng TF-IDF Character N-grams chặn đứng 70% – 80% các cuộc tấn công lộ liễu và lọc sạch văn bản bình thường chỉ trong **< 3ms**.
@@ -44,26 +44,14 @@ Trong an ninh mạng và học máy, *"No-Free-Lunch Theorem"* chỉ ra rằng k
 
 ---
 
-## 🎯 2. MA TRẬN PHÂN ĐỊNH RANH GIỚI (IN-SCOPE VS. OUT-OF-SCOPE)
+## 2. Ma Trận Phân Định Ranh Giới (In-Scope vs. Out-of-Scope)
 
 Căn cứ vào mục tiêu đăng ký đề tài tại Đại học FPT ([`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md)) và biên bản hội ý học thuật [`Meeting 2`](file:///d:/Work/Do-an/Meeting/Meeting%202_01_09_26.md), ranh giới đồ án được xác lập rõ ràng:
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                   BẢN ĐỒ PHẠM VI NGHIÊN CỨU ĐỒ ÁN PI-GUARD                       │
-├────────────────────────────────────────┬─────────────────────────────────────────┤
-│         ✅ IN-SCOPE (TẬP TRUNG GIẢI QUYẾT)      │        ❌ OUT-OF-SCOPE (LOẠI TRỪ CÓ CƠ SỞ)        │
-├────────────────────────────────────────┼─────────────────────────────────────────┤
-│ 1. Direct Prompt Injection (Goal Hijack)│ 1. Multi-Modal Attacks (Ảnh, màng âm thanh)│
-│ 2. System Prompt Leaking               │ 2. Multi-turn Stateful Exploitation     │
-│ 3. Delimiter Escaping                  │ 3. Nội tại mô hình (RLHF/Model Weights) │
-│ 4. DAN (Do Anything Now) Archetype     │ 4. Network DDoS / Query Flooding        │
-│ 5. Roleplay & Hypothetical Framing     │ 5. Live Tool Calling Injection (Agent)  │
-│ 6. Virtual Machine / Terminal Sim      │                                         │
-│ 7. Obfuscation (Leetspeak, Base64)     │                                         │
-│ 8. Text Input Firewall (< 30ms latency)│                                         │
-└────────────────────────────────────────┴─────────────────────────────────────────┘
-```
+| Nhóm Phạm Vi | Hạng Mục Kỹ Thuật | Luận Giải Khoa Học & Ranh Giới Thiết Kế |
+| :--- | :--- | :--- |
+| **In-Scope**<br>*(Trọng tâm giải quyết)* | 1. Direct Prompt Injection (Goal Hijacking)<br>2. System Prompt Leaking<br>3. Delimiter Escaping & Special Tokens<br>4. DAN (Do Anything Now) Archetype<br>5. Roleplay & Hypothetical Framing<br>6. Virtual Machine / Terminal Simulation<br>7. Obfuscation (Leetspeak, Base64, Spacing)<br>8. Inline Text Guardrail Proxy (P95 < 30ms trên CPU) | Trực tiếp xử lý tại Ingress Gateway trước khi prompt chạm tới LLM, không đòi hỏi quyền truy cập trọng số mô hình đích. |
+| **Out-of-Scope**<br>*(Loại trừ có cơ sở)* | 1. Multi-Modal Attacks (Hình ảnh, âm thanh)<br>2. Multi-turn Stateful Exploitation (Crescendo)<br>3. Can thiệp nội tại mô hình (RLHF weights, KV-cache)<br>4. Tấn công hạ tầng mạng (DDoS, Flooding)<br>5. Live Tool Calling Injection (Agent Sandbox) | Đòi hỏi can thiệp vào bộ nhớ GPU nội bộ của LLM, hạ tầng mạng hoặc môi trường sandbox ngoài phạm vi External Input Guardrail. |
 
 ### Chi Tiết Các Hạng Mục IN-SCOPE (Thuộc Trách Nhiệm Của PI-Guard):
 

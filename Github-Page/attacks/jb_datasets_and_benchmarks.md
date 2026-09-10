@@ -4,31 +4,40 @@ Tài liệu này hệ thống hóa **toàn bộ 10 họ chiến thuật và hơn
 
 ---
 
-## 🌳 1. BẢN ĐỒ PHÂN LOẠI 10 HỌ CHIẾN THUẬT JAILBREAK (THE 10 FAMILIES)
+## 1. Bản Đồ Phân Loại 10 Họ Chiến Thuật Jailbreak (The 10 Families)
 
-```
-                                      JAILBREAK ATTACK SPECTRUM
-                                                  │
- ┌───────────────────────┬────────────────────────┼────────────────────────┬───────────────────────┐
- ▼                       ▼                        ▼                        ▼                       ▼
-[ 1. PERSONA FRAMING ]  [ 2. VIRTUALIZATION ]    [ 3. OBFUSCATION ]       [ 4. LINGUISTIC ]       [ 5. AUTOMATED SEARCH ]
-• DAN 1.0 - 15.0        • Linux Bash Terminal    • Base64 / Hex / Binary  • Low-resource Pivot    • GCG Gradient Suffixes
-• Grandma Exploit       • Python REPL / Code     • ROT13 / Caesar Cipher  • Code-Switching Mixing • AutoDAN Genetic Algo
-• Fictional Screenplay  • State Machine Specs    • Self-Defined Cipher    • Translation Bouncing  • PAIR Multi-Agent LLM
-• Sycophancy Flattery   • Skeleton Key Override  • Leetspeak / Spacing                            • TAP Tree Search
-• Trolley Dilemma                                • Reverse String / Zalgo
- │                       │                        │                        │                       │
- ├───────────────────────┼────────────────────────┼────────────────────────┼───────────────────────┤
- ▼                       ▼                        ▼                        ▼                       ▼
-[ 6. CONTEXT OVERLOAD ] [ 7. MULTI-TURN ]        [ 8. PAYLOAD SPLIT ]     [ 9. LOGIC & MATH ]     [ 10. REFUSAL SUPPRESS ]
-• Many-Shot (Anthropic) • Crescendo (Microsoft)  • Variable Substitution  • Truth Tables P -> Q   • Prefix Injection
-• Cognitive Distraction • Socratic Dialogue Trap • Anagram Assembly       • LaTeX Math Paper      • Negative Constraints
-• Token Padding Flood   • Gradual Escalation     • Acrostic Puzzle Stitch • Formal Logic Proof    • Affirmative Forcing
+```mermaid
+graph TD
+    Root["Phổ Tấn Công Jailbreak (Jailbreak Attack Spectrum)"]
+    
+    subgraph S1["Ngữ Nghĩa & Nhận Thức"]
+        F1["1. Persona Framing<br/>• DAN 1.0 - 15.0<br/>• Grandma Exploit<br/>• Fictional Screenplay"]
+        F2["2. Virtualization<br/>• Linux Terminal<br/>• Python REPL<br/>• Skeleton Key"]
+    end
+
+    subgraph S2["Cú Pháp & Ngụy Trang"]
+        F3["3. Obfuscation<br/>• Base64 / Hex<br/>• Ciphers (ROT13)<br/>• Leetspeak / Spacing"]
+        F4["4. Linguistic<br/>• Low-resource Pivot<br/>• Code-Switching Mixing"]
+    end
+
+    subgraph S3["Tự Động Hóa & Ngữ Cảnh"]
+        F5["5. Automated Search<br/>• GCG Gradient Suffixes<br/>• AutoDAN / PAIR / TAP"]
+        F6["6. Context Overload<br/>• Many-Shot (Anthropic)<br/>• Token Padding Flood"]
+    end
+
+    subgraph S4["Cấu Trúc & Kiểm Soát Luồng"]
+        F7["7. Multi-Turn<br/>• Crescendo (Microsoft)<br/>• Socratic Dialogue Trap"]
+        F8["8. Payload Split<br/>• Variable Substitution<br/>• Anagram Assembly"]
+        F9["9. Logic & Math<br/>• Truth Tables P -> Q<br/>• Formal Logic Proof"]
+        F10["10. Refusal Suppress<br/>• Prefix Injection<br/>• Affirmative Forcing"]
+    end
+
+    Root --> S1 & S2 & S3 & S4
 ```
 
 ---
 
-## 🔬 2. GIẢI PHẪU CHI TIẾT 10 HỌ CHIẾN THUẬT & CÁC BIẾN THỂ
+## 2. Giải Phẫu Chi Tiết 10 Họ Chiến Thuật & Các Biến Thể
 
 ### HỌ 1: PERSONA & COGNITIVE FRAMING (NHẬP VAI & KHUNG TÂM LÝ)
 1. **DAN (Do Anything Now) Family**: Ép LLM kích hoạt nhân cách song song hoàn toàn tự do kèm hệ thống trừ điểm sống còn (*Token Economy Penalty*).
@@ -84,7 +93,7 @@ Tài liệu này hệ thống hóa **toàn bộ 10 họ chiến thuật và hơn
 
 ---
 
-## 🗄️ 3. TỔNG HỢP CÁC BỘ DỮ LIỆU ĐỐI CHUẨN (BENCHMARKS LEADERBOARD)
+## 3. Tổng Hợp Các Bộ Dữ Liệu Đối Chuẩn (Benchmarks Leaderboard)
 
 | Tên Bộ Dữ Liệu | Bài Báo Khoa Học & Đơn Vị | Quy Mô | Trọng Tâm Khảo Sát | Ứng Dụng Trong Đồ Án PI-Guard |
 | :--- | :--- | :---: | :--- | :--- |
@@ -96,7 +105,7 @@ Tài liệu này hệ thống hóa **toàn bộ 10 họ chiến thuật và hơn
 
 ---
 
-## 🛡️ 4. CHIẾN LƯỢC DỮ LIỆU ĐA NGUỒN CỦA ĐỒ ÁN PI-GUARD
+## 4. Chiến Lược Dữ Liệu Đa Nguồn Của Đồ Án PI-Guard
 
 Để đảm bảo mô hình phân loại 3 nhãn của PI-Guard (`Benign`, `Prompt Injection`, `Jailbreak`) có khả năng khái quát hóa vượt trội, nhóm áp dụng quy trình 4 bước nghiêm ngặt:
 1. **Tổng hợp Đa nguồn (Multi-Source Synthesis)**: Kết hợp các mẫu Benign từ LMSYS Chatbot Arena và Alpaca với các mẫu Jailbreak thực tế của Shen et al. và Prompt Injection của Deepset/BIPIA.

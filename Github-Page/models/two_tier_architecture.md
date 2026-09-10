@@ -7,35 +7,19 @@
 
 ---
 
-## 🛡️ 1. TẠI SAO BẮT BUỘC PHẢI PHỐI HỢP CẢ 2 MÔ HÌNH?
+## 1. Tại Sao Bắt Buộc Phải Phối Hợp Cả 2 Mô Hình?
 
 Nếu một hệ thống Guardrail chỉ sử dụng một mô hình đơn lẻ, nó sẽ ngay lập tức đối mặt với **Nghịch lý Đánh đổi (Security Trade-off Dilemma)**:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│               NGHỊCH LÝ KHI DÙNG MÔ HÌNH ĐƠN LẺ & GIẢI PHÁP KẾT HỢP CỦA PI-GUARD        │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ TÌNH HUỐNG 1: CHỈ DÙNG TF-IDF BASELINE                                                 │
-│  • Ưu điểm: Siêu tốc (~0.85ms), chặn đứng Leetspeak và Spacing hiệu quả.               │
-│  • Thất bại: Thiếu hiểu biết ngữ nghĩa sâu -> Tỷ lệ báo động nhầm (FPR) lên tới 15-25%.│
-│    Các câu hỏi nghiên cứu hợp lệ ("Explain SQL Injection risks") bị chặn oan!          │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ TÌNH HUỐNG 2: CHỈ DÙNG DEBERTA-V3                                                      │
-│  • Ưu điểm: Hiểu ngữ cảnh sâu sắc, triệt tiêu báo động nhầm (FPR < 1.0%).               │
-│  • Thất bại: Subword BPE bị điểm mù Token Fragmentation (Jain et al., arXiv:2309.00614).│
-│    Kẻ tấn công có thể chèn ký tự biến dị để né tránh (Evasion).                        │
-│  • Độ trễ: Mọi request đều phải chạy qua 12 tầng Transformer (~18.5ms).               │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ GIẢI PHÁP PI-GUARD: PHỐI HỢP 2 TẦNG (CASCADE TWO-TIER DEFENSE)                         │
-│  ✅ Tầng 1 (TF-IDF): Đánh chặn nhanh tấn công thô, biến dị ký tự trong ~0.85ms.         │
-│  ✅ Tầng 2 (DeBERTa-v3 ONNX INT8): Phân xử ngữ cảnh tinh vi, triệt tiêu báo động nhầm. │
-│  👉 Kết quả: Độ trễ P95 < 22ms, FPR < 1.0%, F1 > 0.96, hoạt động 100% Zero-GPU!       │
-└────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Tình Huống | Ưu Điểm | Thất Bại Cố Hữu |
+| :--- | :--- | :--- |
+| **Chỉ dùng TF-IDF Baseline** | Độ trễ thấp (~0.85ms), chặn đứng Leetspeak và Spacing hiệu quả. | Thiếu hiểu biết ngữ nghĩa sâu $\to$ Tỷ lệ báo động nhầm (FPR) lên tới 15–25%. Các câu hỏi nghiên cứu hợp lệ bị chặn nhầm. |
+| **Chỉ dùng DeBERTa-v3** | Hiểu ngữ cảnh sâu sắc, giảm thiểu báo động nhầm (FPR < 1.0%). | Subword BPE bị điểm mù Token Fragmentation (Jain et al., 2023). Kẻ tấn công có thể chèn ký tự biến dị để né tránh. Độ trễ: Mọi request đều phải chạy qua 12 tầng Transformer (~18.5ms). |
+| **Giải Pháp PI-Guard: Phối Hợp 2 Tầng (Cascade)** | **Tầng 1 (TF-IDF)**: Đánh chặn nhanh tấn công thô trong ~0.85ms.<br>**Tầng 2 (DeBERTa-v3 INT8)**: Phân xử ngữ cảnh tinh vi, khống chế FPR. | Kết quả thực nghiệm: Độ trễ P95 < 22ms, FPR < 1.0%, F1 > 0.96, hoạt động hiệu quả trên CPU. |
 
 ---
 
-## 📐 2. CƠ SỞ TOÁN HỌC CỦA CƠ CHẾ ĐỊNH TUYẾN BẤT ĐỊNH (UNCERTAINTY ROUTING FORMULATION)
+## 2. Cơ Sở Toán Học Của Cơ Chế Định Tuyến Bất Định (Uncertainty Routing Formulation)
 
 Cho chuỗi prompt đầu vào $x \in \mathcal{X}$, mô hình Tầng 1 (TF-IDF + Linear Classifier) xuất ra vector xác suất $\hat{\mathbf{p}}^{(1)}(x) = [\hat{p}_0^{(1)}, \hat{p}_1^{(1)}, \hat{p}_2^{(1)}]$, trong đó xác suất tấn công tổng hợp là $P_{\text{atk}}^{(1)}(x) = \hat{p}_1^{(1)}(x) + \hat{p}_2^{(1)}(x)$.
 
@@ -56,48 +40,27 @@ $$\text{Final Decision}(x) = \begin{cases}
 
 ---
 
-## 🔄 3. SƠ ĐỒ LUỒNG ĐIỀU PHỐI RA QUYẾT ĐỊNH (DECISION PIPELINE)
+## 3. Sơ Đồ Luồng Điều Phối Ra Quyết Định (Decision Pipeline)
 
-```
-                       [User Prompt Đầu Vào]
-                                 │
-                                 ▼
-                     ┌───────────────────────┐
-                     │ Tiền Xử Lý Chuẩn Hóa  │
-                     │  (Unicode, Heuristic) │
-                     └───────────────────────┘
-                                 │
-                                 ▼
-                    ┌─────────────────────────┐
-                    │ TẦNG 1: TF-IDF BASELINE │
-                    │ (Char n-grams ~0.85 ms) │
-                    └─────────────────────────┘
-                                 │
-                     Tính xác suất P_atk^(1)
-                                 │
-         ┌───────────────────────┼───────────────────────┐
-         │                       │                       │
-         ▼                       ▼                       ▼
-   P_atk >= 0.85          0.15 < P_atk < 0.85       P_atk <= 0.15
-(Tấn công rõ ràng)       (Vùng phân vân ngữ nghĩa)  (Lành tính rõ ràng)
-         │                       │                       │
-         ▼                       ▼                       ▼
-  🚨 BLOCK NGAY       ┌─────────────────────┐       ✅ CHUYỂN TIẾP
-  (Early Exit)        │ TẦNG 2: DEBERTA-V3  │          SANG LLM
-   Độ trễ ~0.85ms     │ (ONNX INT8 ~18.5ms) │         Độ trễ ~0.85ms
-  Tiết kiệm 80% CPU   └─────────────────────┘
-                                 │
-                       Tính xác suất P_atk^(2)
-                                 │
-                     ┌───────────┴───────────┐
-                     ▼                       ▼
-             P_atk >= tau_deep       P_atk < tau_deep
-              🚨 BLOCK PROMPT         ✅ CHO PHÉP QUA
+```mermaid
+flowchart TD
+    User["User Prompt Đầu Vào"]
+    Sanitizer["Tiền Xử Lý Chuẩn Hóa<br/>(Unicode NFKC, Heuristic)"]
+    Tier1["TẦNG 1: TF-IDF BASELINE<br/>(Char n-grams ~0.85 ms)"]
+    
+    User --> Sanitizer --> Tier1
+    
+    Tier1 -->|P_atk >= 0.85<br/>Tấn công rõ ràng| Block1["BLOCK NGAY (Early Exit)<br/>Độ trễ ~0.85ms"]
+    Tier1 -->|P_atk <= 0.15<br/>Lành tính rõ ràng| Allow1["CHO PHÉP SANG LLM<br/>Độ trễ ~0.85ms"]
+    Tier1 -->|0.15 < P_atk < 0.85<br/>Vùng phân vân ngữ nghĩa| Tier2["TẦNG 2: DEBERTA-V3<br/>(ONNX INT8 ~18.5ms)"]
+    
+    Tier2 -->|P_atk >= tau_deep| Block2["BLOCK PROMPT (HTTP 403)"]
+    Tier2 -->|P_atk < tau_deep| Allow2["CHO PHÉP SANG LLM"]
 ```
 
 ---
 
-## ⚡ 4. LỢI ÍCH VỀ MẶT HIỆU NĂNG HỆ THỐNG THỰC TẾ (SYSTEM EFFICIENCY GAINS)
+## 4. Lợi Ích Về Mặt Hiệu Năng Hệ Thống Thực Tế (System Efficiency Gains)
 
 1. **Giảm tải tính toán (Workload Offloading)**:
    - Trong môi trường thực tế, khoảng **75% – 85%** các truy vấn là các câu hỏi thường nhật rõ ràng hoặc các mẫu tấn công từ khóa thô thiển.
@@ -108,7 +71,7 @@ $$\text{Final Decision}(x) = \begin{cases}
 
 ---
 
-## 📚 5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
+## 5. Tài Liệu Tham Khảo Học Thuật (Academic References)
 
 <a id="ref1"></a>**[1]** N. Jain et al., "Baseline Defenses for Adversarial Attacks Against Aligned Language Models," *arXiv preprint arXiv:2309.00614*, 2023. Link: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614).
 

@@ -8,7 +8,7 @@
 
 ---
 
-## 🔒 0. NGUYÊN TẮC BẤT BIẾN: "LOCAL REFERENCES FIRST" PROTOCOL & FOUR-TIER PROVENANCE
+## 0. NGUYÊN TẮC BẤT BIẾN: "LOCAL REFERENCES FIRST" PROTOCOL & FOUR-TIER PROVENANCE
 > [!IMPORTANT]
 > **QUY TRÌNH BẮT BUỘC CHO TẤT CẢ THÀNH VIÊN & AI AGENTS TRƯỚC KHI TÌM KIẾM BÀI BÁO MỚI**:
 > 1. **TRUY LỤC TÀI LIỆU CỤC BỘ TRƯỚC TIÊN (Local References First)**:
@@ -32,7 +32,7 @@
 
 ---
 
-## 🗺️ 1. MA TRẬN ĐỊNH VỊ NHANH THEO CHỦ ĐỀ NGHIÊN CỨU (TAXONOMY LOOKUP MATRIX)
+## 1. MA TRẬN ĐỊNH VỊ NHANH THEO CHỦ ĐỀ NGHIÊN CỨU (TAXONOMY LOOKUP MATRIX)
 
 | Chủ Đề Nghiên Cứu / Lĩnh Vực | Mã Tham Chiếu | Tác Giả & Năm | Tệp PDF Cục Bộ Trong `References/` | Đóng Góp Gốc Của Bài Báo | Phạm Vi Định Vị Kỹ Thuật Trong Đồ Án PI-Guard |
 | :--- | :---: | :--- | :--- | :--- | :--- |
@@ -57,7 +57,7 @@
 
 ---
 
-## 📊 2. BẢNG CHI TIẾT SIÊU DỮ LIỆU HỌC THUẬT (18 BÀI BÁO CỐT LÕI)
+## 2. BẢNG CHI TIẾT SIÊU DỮ LIỆU HỌC THUẬT (18 BÀI BÁO CỐT LÕI)
 
 ```
 ========================================================================================================================
@@ -283,7 +283,7 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 
 ---
 
-## 🗃️ 3. KHO TÀI LIỆU MỞ RỘNG & BENCHMARK THỰC NGHIỆM ĐÃ LƯU TRỮ
+## 3. KHO TÀI LIỆU MỞ RỘNG & BENCHMARK THỰC NGHIỆM ĐÃ LƯU TRỮ
 
 Ngoài 18 bài báo cốt lõi, thư mục `References/` còn lưu trữ 7 tài liệu chuyên đề, benchmark thực nghiệm và khảo sát phục vụ việc kiểm định mở rộng và nghiên cứu bổ trợ (tổng cộng 25 tệp PDF lưu trữ cục bộ):
 
@@ -337,7 +337,7 @@ Ngoài 18 bài báo cốt lõi, thư mục `References/` còn lưu trữ 7 tài 
 
 ---
 
-## 📑 4. ĐẦY ĐỦ 18 MỤC TRÍCH DẪN BIBTEX CHUẨN IEEE (ĐÃ KIỂM TRA FACT-CHECK)
+## 4. ĐẦY ĐỦ 18 MỤC TRÍCH DẪN BIBTEX CHUẨN IEEE (ĐÃ KIỂM TRA FACT-CHECK)
 
 ```bibtex
 @article{zhao2023survey,

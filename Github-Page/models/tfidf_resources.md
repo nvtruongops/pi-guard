@@ -2,7 +2,7 @@
 
 ---
 
-## 📄 1. CÁC BÀI BÁO KHOA HỌC GỐC (PEER-REVIEWED & LANDMARK PAPERS)
+## 1. CÁC BÀI BÁO KHOA HỌC GỐC (PEER-REVIEWED & LANDMARK PAPERS)
 
 1. **Karen Spärck Jones (1972) — Nguồn Gốc Lịch Sử Của IDF**:
    - **Tên bài báo**: *"A statistical interpretation of term specificity and its application in retrieval"*.
@@ -28,7 +28,7 @@
 
 ---
 
-## 🌐 2. TÀI LIỆU ĐỌC & HƯỚNG DẪN KỸ THUẬT (DOCUMENTATION)
+## 2. TÀI LIỆU ĐỌC & HƯỚNG DẪN KỸ THUẬT (DOCUMENTATION)
 
 1. **Tài liệu chính thức Scikit-learn (Mục 6.2 - Feature Extraction)**:
    - [Scikit-Learn Text Feature Extraction Guide](https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction)
@@ -38,7 +38,7 @@
 
 ---
 
-## 🎥 3. TUYỂN TẬP VIDEO BÀI GIẢNG TRỰC QUAN ĐÃ KIỂM ĐỊNH (100% HOẠT ĐỘNG)
+## 3. TUYỂN TẬP VIDEO BÀI GIẢNG TRỰC QUAN ĐÃ KIỂM ĐỊNH (100% HOẠT ĐỘNG)
 
 1. **Codebasics (NLP Playlist - Tập 6)**:
    - **Tiêu đề**: *Text Representation Using TF-IDF: NLP Tutorial For Beginners - S2 E6*

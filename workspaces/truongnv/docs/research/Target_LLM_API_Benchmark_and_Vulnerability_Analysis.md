@@ -24,30 +24,13 @@ Tuy nhiên, **mỗi nhà cung cấp LLM lại áp dụng các cơ chế căn ch�
 
 Toàn bộ 5 mô hình được gọi thông qua **Cloud REST API** (OpenAI API, Google GenAI API, Groq Serverless API / OpenRouter), giúp đồ án hoàn toàn **không tiêu tốn tài nguyên GPU cục bộ (Local GPU)** và đảm bảo khả năng tái lập thực nghiệm chuẩn mực:
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
-│              DANH MỤC 5 MÔ HÌNH LLM MỤC TIÊU VÀ CƠ SỞ KHOA HỌC BẢO CHỨNG                        │
-├────┬─────────────────────────────┬─────────────────┬────────────────────────────────────────────┤
-│ STT│ Mô Hình LLM Mục Tiêu (API)  │ Đơn Vị Phát Triển│ Bài Báo / Báo Cáo Kỹ Thuật Bảo Chứng       │
-├────┼─────────────────────────────┼─────────────────┼────────────────────────────────────────────┤
-│ 1  │ **OpenAI GPT-4o-mini**      │ OpenAI (2024)   │ • Yuan et al. (ICLR 2024 - Cipher Jailbreak)│
-│    │ (gpt-4o-mini)               │                 │ • Wei et al. (NeurIPS 2023 - Safety Fail)  │
-│    │                             │                 │ • OpenAI GPT-4o System Card (2024)         │
-├────┼─────────────────────────────┼─────────────────┼────────────────────────────────────────────┤
-│ 2  │ **Google Gemini 1.5 Flash** │ Google (2024)   │ • Gemini Team (Google, arXiv:2403.05530)   │
-│    │ (gemini-1.5-flash)          │                 │ • Google AI Safety & Constitutional Policy │
-├────┼─────────────────────────────┼─────────────────┼────────────────────────────────────────────┤
-│ 3  │ **Meta LLaMA-3.1-8B-Inst**  │ Meta AI (2024)  │ • Dubey et al. (Meta, arXiv:2407.21783)    │
-│    │ (llama-3.1-8b-instant)      │                 │ • Zou et al. (GCG Attack, arXiv:2307.15043)│
-│    │                             │                 │ • Shen et al. (ACM CCS 2024 - In-The-Wild) │
-├────┼─────────────────────────────┼─────────────────┼────────────────────────────────────────────┤
-│ 4  │ **Mistral-7B-Instruct-v0.3**│ Mistral AI      │ • Jiang et al. (Mistral AI, arXiv:2310.06825│
-│    │ (mixtral-8x7b-instruct)     │ (Pháp / 2023)   │ • Zhou et al. (EasyJailbreak, 2024)        │
-├────┼─────────────────────────────┼─────────────────┼────────────────────────────────────────────┤
-│ 5  │ **Qwen-2.5-7B-Instruct**    │ Alibaba Cloud   │ • Yang et al. (Qwen Team, arXiv:2412.15115)│
-│    │ (qwen-2.5-7b / 32b)         │ (Alibaba, 2024) │ • Qwen Safety Alignment Benchmarks (2024)  │
-└────┴─────────────────────────────┴─────────────────┴────────────────────────────────────────────┘
-```
+| STT | Mô Hình LLM Mục Tiêu (API) | Đơn Vị Phát Triển | Bài Báo / Báo Cáo Kỹ Thuật Bảo Chứng |
+| :---: | :--- | :--- | :--- |
+| 1 | **OpenAI GPT-4o-mini** (`gpt-4o-mini`) | OpenAI (2024) | Yuan et al. (ICLR 2024 - Cipher Jailbreak)<br>Wei et al. (NeurIPS 2023 - Safety Fail)<br>OpenAI GPT-4o System Card (2024) |
+| 2 | **Google Gemini 1.5 Flash** (`gemini-1.5-flash`) | Google (2024) | Gemini Team (Google, arXiv:2403.05530)<br>Google AI Safety & Constitutional Policy |
+| 3 | **Meta LLaMA-3.1-8B-Instruct** (`llama-3.1-8b-instant`) | Meta AI (2024) | Dubey et al. (Meta, arXiv:2407.21783)<br>Zou et al. (GCG Attack, arXiv:2307.15043)<br>Shen et al. (ACM CCS 2024 - In-The-Wild) |
+| 4 | **Mistral-7B-Instruct-v0.3** (`mixtral-8x7b-instruct`) | Mistral AI (2023) | Jiang et al. (Mistral AI, arXiv:2310.06825)<br>Zhou et al. (EasyJailbreak, 2024) |
+| 5 | **Qwen-2.5-7B-Instruct** (`qwen-2.5-7b / 32b`) | Alibaba Cloud (2024) | Yang et al. (Qwen Team, arXiv:2412.15115)<br>Qwen Safety Alignment Benchmarks (2024) |
 
 ---
 
@@ -106,42 +89,34 @@ Toàn bộ 5 mô hình được gọi thông qua **Cloud REST API** (OpenAI API,
 
 Dựa trên các nghiên cứu Red-teaming và an ninh LLM quốc tế đã công bố (Zhou et al. EasyJailbreak 2024 [[5]](#ref5), Zou et al. GCG Attack 2023 [[3]](#ref3), Yuan et al. ICLR 2024 [[1]](#ref1)), tỷ lệ bị tấn công thành công tự thân (**ASR Baseline khi không có Guardrail tiền trạm**) của 5 dòng mô hình và mục tiêu kiểm nghiệm thiết kế cho PI-Guard trong Chương 4 như sau:
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
-│         KHẢO SÁT ASR TRONG Y VĂN & MỤC TIÊU ĐÁNH CHẶN CỦA PI-GUARD CHO CHAPTER 4                │
-├─────────────────────────────┬─────────────────────────────────┬─────────────────────────────────┤
-│ Downstream Target LLM       │ ASR Tự Thân Theo Khảo Sát Y Văn │ Mục Tiêu Đánh Chặn Đề Xuất      │
-│ (Cloud REST API)            │ (Vulnerable Baseline Không GD)  │ Của PI-Guard (Chapter 4 Target) │
-├─────────────────────────────┼─────────────────────────────────┼─────────────────────────────────┤
-│ **OpenAI GPT-4o-mini**      │ **38.0%** (Lọt Cipher / Base64) │ **Mục tiêu ASR < 5.0%** (Lớp 1) │
-│ **Google Gemini 1.5 Flash** │ **35.5%** (Lọt Roleplay gián tiếp│ **Mục tiêu ASR < 5.0%** (Lớp 1) │
-│ **Meta LLaMA-3.1-8B-Inst**  │ **42.6%** (Lọt GCG & DAN 12.0)  │ **Mục tiêu ASR < 5.0%** (Lớp 1) │
-│ **Mistral-7B-Instruct-v0.3**│ **78.4%** (Lọt Direct Override) │ **Mục tiêu ASR < 5.0%** (Lớp 1) │
-│ **Qwen-2.5-7B-Instruct**    │ **64.2%** (Lọt Cross-lingual JB)│ **Mục tiêu ASR < 5.0%** (Lớp 1) │
-└─────────────────────────────┴─────────────────────────────────┴─────────────────────────────────┘
-```
+| Downstream Target LLM (Cloud REST API) | ASR Tự Thân Theo Khảo Sát Y Văn (Không Guardrail) | Điểm Yếu Khai Thác Tiêu Biểu | Mục Tiêu Đánh Chặn Của PI-Guard (Chapter 4) |
+| :--- | :---: | :--- | :--- |
+| **OpenAI GPT-4o-mini** | **38.0%** | Lọt mã hóa Cipher / Base64 | Mục tiêu ASR < 5.0% |
+| **Google Gemini 1.5 Flash** | **35.5%** | Lọt Roleplay gián tiếp | Mục tiêu ASR < 5.0% |
+| **Meta LLaMA-3.1-8B-Instruct** | **42.6%** | Lọt GCG Suffix & DAN 12.0 | Mục tiêu ASR < 5.0% |
+| **Mistral-7B-Instruct-v0.3** | **78.4%** | Lọt Direct Override | Mục tiêu ASR < 5.0% |
+| **Qwen-2.5-7B-Instruct** | **64.2%** | Lọt Cross-lingual Jailbreak | Mục tiêu ASR < 5.0% |
 
-```
-     100% ┌───────────────────────────────────────────────────────────┐
-          │                                                           │
-      80% │                    ██ 78.4%                               │
-          │                                 ██ 64.2%                  │
-      60% │                                                           │
-          │  ██ 38.0%  ██ 35.5%  ██ 42.6%                             │
-      40% │                                                           │
-          │                                                           │
-      20% │                                                           │
-          │                                                           │
-       0% └──┴──────────┴──────────┴──────────┴──────────┴────────────┘
-            GPT-4o-mini Gemini-Flash LLaMA-3.1 Mistral-7B Qwen-2.5
-            [░░ ASR Tự Thân Theo Y Văn (Không Guardrail) ░░]
+```mermaid
+flowchart LR
+    subgraph BaselineASR["Khảo Sát Tỷ Lệ Dễ Tổn Thương Tự Thân (ASR) Không Có Guardrail"]
+        M1["OpenAI GPT-4o-mini: 38.0%"]
+        M2["Google Gemini 1.5 Flash: 35.5%"]
+        M3["Meta LLaMA-3.1-8B: 42.6%"]
+        M4["Mistral-7B-Instruct: 78.4%"]
+        M5["Qwen-2.5-7B-Instruct: 64.2%"]
+    end
+    subgraph PIGuardTarget["Mục Tiêu Đánh Chặn Của PI-Guard (Chapter 4)"]
+        Target["ASR sau bảo vệ: < 5.0%<br/>(Giảm thiểu rủi ro thực nghiệm)"]
+    end
+    BaselineASR ==>|PI-Guard Two-Tier Guardrail Proxy| PIGuardTarget
 ```
 
 ---
 
 ## 5. Ý NGHĨA KHOA HỌC & ĐỊNH HƯỚNG THỰC NGHIỆM CHO CHAPTER 4
 
-1. **Chứng minh tính cần thiết của Guardrail độc lập (Model-Agnostic Defense)**: Dữ liệu y văn chỉ ra rằng ngay cả các mô hình thương mại đóng tiền tỷ đô la (OpenAI, Google) hay các mô hình mở phổ biến (LLaMA, Mistral, Qwen) đều tồn tại điểm mù trước các biến thể tấn công tinh vi. Do đó, việc đặt một lớp Guardrail độc lập như PI-Guard ở Lớp 1 là yêu cầu bắt buộc đối với mọi ứng dụng LLM trong doanh nghiệp.
+1. **Chứng minh tính cần thiết của Guardrail độc lập (Model-Agnostic Defense)**: Dữ liệu y văn chỉ ra rằng ngay cả các mô hình thương mại đóng (OpenAI, Google) hay các mô hình mở phổ biến (LLaMA, Mistral, Qwen) đều tồn tại điểm mù trước các biến thể tấn công tinh vi. Do đó, việc đặt một lớp Guardrail độc lập như PI-Guard ở Lớp 1 là giải pháp phòng thủ chiều sâu thiết yếu cho các ứng dụng LLM.
 2. **Bảo vệ tài nguyên và chi phí vận hành (Zero Token Wastage)**: Khi phát hiện truy vấn độc hại, PI-Guard ngắt luồng xử lý và trả về mã lỗi an toàn (với mục tiêu độ trễ P95 < 30ms trên CPU), ngăn không cho request truyền tới downstream LLM, triệt tiêu nguy cơ tấn công cạn kiệt tài chính (*Denial-of-Wallet*).
 3. **Kế hoạch triển khai thực nghiệm cho Chapter 4**: Nhóm thiết kế tập kiểm thử chuẩn hóa gồm 500 mẫu đối kháng (250 Prompt Injection + 250 Jailbreak) và sẽ tiến hành kết nối đo đạc ASR thực nghiệm trên 5 Cloud API này trong giai đoạn thực nghiệm (Chương 4) để đánh giá định lượng mức độ giảm thiểu rủi ro.
 

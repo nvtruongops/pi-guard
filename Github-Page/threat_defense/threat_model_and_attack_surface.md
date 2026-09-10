@@ -7,7 +7,7 @@
 
 ---
 
-## 🎯 I. TỔNG QUAN & BỐI CẢNH MÔ HÌNH HÓA AN TOÀN
+## I. TỔNG QUAN & BỐI CẢNH MÔ HÌNH HÓA AN TOÀN
 
 Sự bùng nổ của các ứng dụng tích hợp Mô hình Ngôn ngữ Lớn (LLM Integrated Applications) đã mở rộng diện tích rủi ro an ninh mạng vượt ra ngoài phạm vi phòng thủ truyền thống [[1]](#ref1). Trong kiến trúc phần mềm cổ điển, có sự phân tách rạch ròi giữa mã thực thi (Code) và dữ liệu người dùng (Data). Tuy nhiên, trong mô hình kiến trúc xử lý ngôn ngữ tự nhiên của Transformer (Attention is All You Need) [[2]](#ref2), cả chỉ thị kiểm soát hệ thống (*System Prompt*) và dữ liệu đầu vào người dùng (*User Prompt*) đều được biểu diễn dưới dạng các vector nhúng (Embeddings) trong cùng một không gian không phân định ranh giới bộ nhớ:
 
@@ -22,7 +22,7 @@ Hiện tượng này được cộng đồng an toàn thông tin định danh l�
 
 ---
 
-## 👥 II. HỒ SƠ TÁC NHÂN ĐE DỌA (ATTACKER PROFILES & CAPABILITIES)
+## II. HỒ SƠ TÁC NHÂN ĐE DỌA (ATTACKER PROFILES & CAPABILITIES)
 
 Trong mô hình an toàn thông tin của đề tài PI-Guard, tác nhân đe dọa (Attacker) được phân loại thành 3 nhóm đối tượng cụ thể dựa trên mức độ truy cập, vị trí không gian mạng và động cơ khai thác:
 
@@ -89,7 +89,7 @@ flowchart TD
 
 ---
 
-## 🏛️ III. TÀI SẢN MỤC TIÊU CẦN BẢO VỆ (TARGET ASSETS) & PHÂN TÍCH THIỆT HẠI THỰC TẾ
+## III. TÀI SẢN MỤC TIÊU CẦN BẢO VỆ (TARGET ASSETS) & PHÂN TÍCH THIỆT HẠI THỰC TẾ
 
 Hệ thống PI-Guard được thiết kế để thiết lập vành đai bảo vệ cho 4 nhóm tài sản sống còn:
 
@@ -102,7 +102,7 @@ Hệ thống PI-Guard được thiết kế để thiết lập vành đai bảo
 
 ---
 
-## 🌐 IV. BỀ MẶT TẤN CÔNG (ATTACK SURFACE ENUMERATION)
+## IV. BỀ MẶT TẤN CÔNG (ATTACK SURFACE ENUMERATION)
 
 Bề mặt tấn công (Attack Surface) là toàn bộ các điểm chạm (Entry Points) mà dữ liệu không tin cậy (*Untrusted Data*) từ bên ngoài có thể chảy vào context của LLM:
 
@@ -155,7 +155,7 @@ graph LR
 
 ---
 
-## 📐 V. PHÂN TÍCH MA TRẬN RỦI RO ĐỊNH LƯỢNG STRIDE & DREAD
+## V. PHÂN TÍCH MA TRẬN RỦI RO ĐỊNH LƯỢNG STRIDE & DREAD
 
 Để lượng hóa mức độ rủi ro phục vụ báo cáo khoa học và thẩm định của Hội đồng Khóa luận FPT IAP491, đề tài áp dụng mô hình **STRIDE** kết hợp phương pháp tính điểm **DREAD** (Damage, Reproducibility, Exploitability, Affected Users, Discoverability) với thang điểm từ 1 đến 10 cho từng kịch bản:
 
@@ -171,7 +171,7 @@ $$\text{DREAD Score} = \frac{D + R + E + A + D}{5}$$
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO HỌC THUẬT (100% VERIFIED >= 2022)
+## TÀI LIỆU THAM KHẢO HỌC THUẬT (100% VERIFIED >= 2022)
 
 <a id="ref1"></a>**[1]** J. Devlin et al., "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding," in *NAACL-HLT 2019*, 2019. Link: [https://arxiv.org/abs/1810.04805](https://arxiv.org/abs/1810.04805).  
 <a id="ref2"></a>**[2]** A. Vaswani et al., "Attention Is All You Need," in *NeurIPS 2017*, 2017. Link: [https://arxiv.org/abs/1706.03762](https://arxiv.org/abs/1706.03762).  

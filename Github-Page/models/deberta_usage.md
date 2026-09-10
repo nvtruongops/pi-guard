@@ -2,49 +2,24 @@
 
 ---
 
-## 🔄 1. KIẾN TRÚC MÔ HÌNH VÀ LUỒNG DỮ LIỆU TỪNG TẦNG
+## 1. Kiến Trúc Mô Hình Và Luồng Dữ Liệu Từng Tầng
 
 Trong PI-Guard, mô hình phân loại ngữ nghĩa sâu sử dụng checkpoint `microsoft/deberta-v3-base` (hoặc `mDeBERTa-v3-base` nếu đa ngôn ngữ):
 
-```
-[Input Text Prompt]
-        │
-        ▼
-┌────────────────────────────────────────────────────────┐
-│ 1. TOKENIZER: SentencePiece Subword Tokenization       │
-│ • Băm chuỗi thành tối đa 512 subwords                  │
-│ • Thêm token đặc biệt: [CLS] ở đầu, [SEP] ở cuối       │
-└────────────────────────────────────────────────────────┘
-        │
-        ▼
-┌────────────────────────────────────────────────────────┐
-│ 2. EMBEDDING LAYER: Disentangled Representations       │
-│ • Content Embeddings H (d = 768)                       │
-│ • Relative Position Embeddings P (d = 768, span = 512) │
-└────────────────────────────────────────────────────────┘
-        │
-        ▼
-┌────────────────────────────────────────────────────────┐
-│ 3. ENCODER BACKBONE: 12 Transformer Blocks             │
-│ • Mỗi block gồm Disentangled Self-Attention (12 Heads) │
-│ • 3 ma trận: Content-to-Content, Content-to-Position,  │
-│   Position-to-Content                                  │
-│ • Feed-Forward Network (FFN, intermediate_size = 3072) │
-│ • Layer Normalization & Residual Connections           │
-└────────────────────────────────────────────────────────┘
-        │
-        ▼
-┌────────────────────────────────────────────────────────┐
-│ 4. CLASSIFICATION HEAD: Pooling & Dense Layer          │
-│ • Trích xuất vector đại diện tại vị trí [CLS]          │
-│ • Dense(768 -> 2) + Softmax                            │
-│ • Xác xuất nhị phân: P(Benign), P(Injection/Jailbreak) │
-└────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    Input["Input Text Prompt"]
+    S1["<b>1. Tokenizer: SentencePiece Subword Tokenization</b><br/>• Băm chuỗi thành tối đa 512 subwords<br/>• Thêm token đặc biệt: [CLS] ở đầu, [SEP] ở cuối"]
+    S2["<b>2. Embedding Layer: Disentangled Representations</b><br/>• Content Embeddings H (d = 768)<br/>• Relative Position Embeddings P (d = 768, span = 512)"]
+    S3["<b>3. Encoder Backbone: 12 Transformer Blocks</b><br/>• Mỗi block gồm Disentangled Self-Attention (12 Heads)<br/>• 3 ma trận: Content-to-Content, Content-to-Position, Position-to-Content<br/>• Feed-Forward Network (FFN, intermediate_size = 3072)<br/>• Layer Normalization & Residual Connections"]
+    S4["<b>4. Classification Head: Pooling & Dense Layer</b><br/>• Trích xuất vector đại diện tại vị trí [CLS]<br/>• Dense(768 &rarr; 3) + Softmax<br/>• Xác suất 3 nhãn: Benign, Injection, Jailbreak"]
+
+    Input --> S1 --> S2 --> S3 --> S4
 ```
 
 ---
 
-## 🛠️ 2. QUY TRÌNH HUẤN LUYỆN & FINE-TUNING VỚI PYTORCH
+## 2. Quy Trình Huấn Luyện & Fine-Tuning Với PyTorch
 
 ```python
 import torch
@@ -84,7 +59,7 @@ training_args = TrainingArguments(
 
 ---
 
-## ⚡ 3. XUẤT ONNX & LƯỢNG HÓA INT8 (ZERO-GPU INFERENCE DEPLOYMENT)
+## 3. Xuất ONNX & Lượng Hóa INT8 (Zero-GPU Inference Deployment)
 
 Để đạt mục tiêu $P95 < 30\text{ms}$ trên CPU tiêu chuẩn với chi phí phần cứng tối ưu, ta tiến hành lượng hóa sang ONNX INT8:
 
@@ -110,7 +85,7 @@ print(" - Tốc độ suy luận CPU: ~48ms -> ~12.8ms")
 
 ---
 
-## 🚀 4. TÍCH HỢP VÀO FASTAPI MIDDLEWARE
+## 4. Tích Hợp Vào FastAPI Middleware
 
 Khi triển khai trên FastAPI, mô hình ONNX INT8 được nạp vào bộ nhớ một lần duy nhất lúc khởi động:
 
@@ -143,7 +118,7 @@ def classify_prompt_semantic(prompt: str) -> dict:
 
 ---
 
-## 📚 5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
+## 5. Tài Liệu Tham Khảo Học Thuật (Academic References)
 
 1. **Pengcheng He, Jianfeng Gao, and Weizhu Chen (2023)**: *"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing"*, in *Proceedings of ICLR 2023*. arXiv: [2111.09543](https://arxiv.org/abs/2111.09543).
 2. **Zhewei Yao et al. (2022)**: *"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers"*, in *Advances in Neural Information Processing Systems (NeurIPS 2022)*. arXiv: [2206.01861](https://arxiv.org/abs/2206.01861).

@@ -1,5 +1,5 @@
 # THƯ MỤC MÃ NGUỒN THỰC NGHIỆM CHÍNH THỨC (ACADEMIC RESEARCH & PoC PROTOTYPE)
-## 🛡️ PI-Guard Research Codebase & Evaluation Testbed Architecture
+## PI-Guard Research Codebase & Evaluation Testbed Architecture
 
 > [!IMPORTANT]
 > **QUY CHUẨN MÃ NGUỒN NGHIÊN CỨU KHOA HỌC (RESEARCH ARTIFACT INVARIANTS)**:
@@ -11,21 +11,19 @@
 
 ---
 
-### 📂 CẤU TRÚC CÁC MODULE CHÍNH TRONG `src/`:
+### Cấu Trúc Các Module Chính Trong `src/`
 
-```
-src/
-├── preprocessing/                 # Tiền xử lý: Làm sạch, chuẩn hóa Unicode, bóc tách Base64
-├── datasets/                      # Pipeline cào data, deduplication & Group-Aware Split
-├── models/                        # Trình bao bọc suy luận (Baseline ML & DeBERTa INT8 ONNX)
-│   ├── baseline/                  # Bộ phân loại TF-IDF + LogisticRegression / LinearSVC
-│   └── classifier.py              # Wrapper chạy suy luận ONNX Runtime / PyTorch
-├── training/                      # Pipeline huấn luyện tự động (Trainer, Callbacks, Loss)
-├── evaluation/                    # Bộ đo lường chuẩn: F1, Precision, Recall, FPR, Latency
-├── policy/                        # Bộ quy tắc định tuyến bảo vệ (3-Tier Layered Defense)
-├── api/                           # Dịch vụ FastAPI Middleware & LLM Proxy (/v1/chat)
-├── dashboard/                     # Giao diện Streamlit giám sát & kiểm thử trực quan
-├── llm/                           # Kết nối Target LLM Cloud APIs (Groq, OpenAI, Gemini)
-└── utils/                         # Logging, cấu hình, metrics tracker & helpers
-```
+| Thư Mục / Module | Chức Năng & Nhiệm Vụ |
+| :--- | :--- |
+| `src/preprocessing/` | Tiền xử lý: Làm sạch, chuẩn hóa Unicode, bóc tách Base64 |
+| `src/datasets/` | Pipeline thu thập dữ liệu, semantic deduplication & Group-Aware Split |
+| `src/models/baseline/` | Bộ phân loại TF-IDF (Word/Char N-Grams) + LogisticRegression / LinearSVC |
+| `src/models/classifier.py` | Wrapper chạy suy luận ONNX Runtime / PyTorch |
+| `src/training/` | Pipeline huấn luyện tự động (Trainer, Callbacks, Loss) |
+| `src/evaluation/` | Bộ đo lường chuẩn: F1, Precision, Recall, FPR, Latency |
+| `src/policy/` | Bộ quy tắc định tuyến bảo vệ (3-Tier Layered Defense) |
+| `src/api/` | Dịch vụ FastAPI Middleware & LLM Proxy (/v1/chat) |
+| `src/dashboard/` | Giao diện Streamlit giám sát & kiểm thử trực quan |
+| `src/llm/` | Kết nối Target LLM Cloud APIs (Groq, OpenAI, Gemini) |
+| `src/utils/` | Logging, cấu hình, metrics tracker & helpers |
 

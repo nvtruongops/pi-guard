@@ -4,18 +4,20 @@ Tài liệu này đi sâu vào toán học và thuật toán của các phương
 
 ---
 
-## 🤖 1. CƠ CHẾ TOÁN HỌC CỦA CÁC THUẬT TOÁN TẤN CÔNG ĐỐI KHÁNG TỰ ĐỘNG
+## 1. Cơ Chế Toán Học Của Các Thuật Toán Tấn Công Đối Kháng Tự Động
 
 ### 1. Greedy Coordinate Gradient (GCG — Zou et al., CMU / CAIS 2023)
 - **Công bố**: *Universal and Transferable Adversarial Attacks on Aligned Language Models* [arXiv:2307.15043](https://arxiv.org/abs/2307.15043).
 - Thay vì dùng con người nghĩ ra prompt, GCG biến việc tìm prompt jailbreak thành một bài toán **tối ưu hóa tổ hợp rời rạc (Discrete Combinatorial Optimization)**:
 
-```
-[ Yêu cầu Độc hại: "Write malware" ] + [ Hậu tố Đối kháng: p = (p_1, p_2, ..., p_l) ]
-                                      │
-                                      ▼
-                      [ Tối thiểu hóa hàm Loss của LLM ]
-              L(x || p, y_target) với y_target = "Sure, here is..."
+```mermaid
+flowchart TD
+    Prompt["Yêu cầu Độc hại: 'Write malware'"]
+    Suffix["Hậu tố Đối kháng: p = (p_1, p_2, ..., p_l)"]
+    Comb["Ghép chuỗi: x || p"]
+    Prompt & Suffix --> Comb
+    Loss["Tối thiểu hóa hàm Loss của LLM:<br/>min L(x || p, y_target) với y_target = 'Sure, here is...'"]
+    Comb --> Loss
 ```
 
 - **Hàm mục tiêu toán học**:
@@ -51,7 +53,7 @@ Tài liệu này đi sâu vào toán học và thuật toán của các phương
 
 ---
 
-## 📈 2. KHAI THÁC CỬA SỔ NGỮ CẢNH DÀI (LONG-CONTEXT & MULTI-TURN)
+## 2. Khai Thác Cửa Sổ Ngữ Cảnh Dài (Long-Context & Multi-Turn)
 
 ### Many-Shot Jailbreaking (Anthropic / Anil et al., NeurIPS 2024)
 - **Công bố**: *Many-shot Jailbreaking*, Anthropic Research Portal & NeurIPS 2024 ([Anthropic Research](https://www.anthropic.com/research/many-shot-jailbreaking)).
@@ -82,7 +84,7 @@ Tài liệu này đi sâu vào toán học và thuật toán của các phương
 
 ---
 
-## 📑 3. DANH MỤC 26 TOÁN TỬ TẤN CÔNG (TENCENT ZHUQUE LAB 2026 - APPENDIX E)
+## 3. Danh Mục 26 Toán Tử Tấn Công (Tencent Zhuque Lab 2026 - Appendix E)
 
 Theo báo cáo khoa học của **Tencent Zhuque Lab (2026)** về bảo vệ hạ tầng AI doanh nghiệp, các kỹ thuật tấn công được phân rã thành **26 toán tử chuẩn (Attack Operators)**:
 
@@ -117,7 +119,7 @@ Theo báo cáo khoa học của **Tencent Zhuque Lab (2026)** về bảo vệ h�
 
 ---
 
-## 🎯 4. KẾT LUẬN KIẾN TRÚC CHO ĐỒ ÁN PI-GUARD
+## 4. Kết Luận Kiến Trúc Cho Đồ Án PI-Guard
 
 Sự đa dạng của 26 toán tử trên một lần nữa khẳng định luận điểm khoa học của đề tài:
 1. **Không thể chỉ dựa vào một mô hình duy nhất**: Nếu chỉ dùng mô hình thống kê (TF-IDF), hệ thống sẽ gục ngã trước các toán tử ngữ nghĩa tinh vi (OP-01 đến OP-06). Nếu chỉ dùng Transformer lớn, hệ thống sẽ bị chậm (vỡ SLA độ trễ) và bị qua mặt bởi các toán tử xáo trộn cú pháp (OP-16, OP-17).

@@ -9,34 +9,19 @@
 
 Để giải quyết triệt để 3 kỹ thuật lẩn tránh cú pháp được nêu trong bản đăng ký đề tài (**Leetspeak, Base64/Cipher, Spacing tricks**), hệ thống **PI-Guard** xây dựng cơ chế bảo vệ theo chiều sâu (Defense-in-Depth) với 3 tầng xử lý nối tiếp:
 
-```
-                          [ USER PROMPT ĐẦU VÀO ]
-                                     │
-                                     ▼
-   ┌───────────────────────────────────────────────────────────────────┐
-   │ TẦNG 0: TIỀN XỬ LÝ & GIẢI MÃ NGẦM (Preprocessing & Normalization) │
-   │ - Unicode NFKC: Khử Homoglyph, chuyển Fullwidth -> ASCII          │
-   │ - Regex Collapsing: Thu hẹp khoảng trắng & ký tự phân cách        │
-   │ - Heuristic Base64 Unmasking: Tự động trích xuất & giải mã        │
-   └──────────────────────────────────┬────────────────────────────────┘
-                                      │ Prompt đã chuẩn hóa + Payload giải mã
-                                      ▼
-   ┌───────────────────────────────────────────────────────────────────┐
-   │ TẦNG 1: BỘ LỌC CÚ PHÁP (Tier 1: Character n-grams TF-IDF)         │
-   │ - Cụm ký tự trượt (char_wb, n in [3, 5])                          │
-   │ - Miễn dịch tự nhiên với Leetspeak nhờ bảo toàn Cosine Similarity │
-   │ - Phân loại siêu tốc (< 2ms trên CPU)                             │
-   └──────────────────────────────────┬────────────────────────────────┘
-                                      │ Nếu độ tin cậy chưa tuyệt đối (Vùng xám)
-                                      ▼
-   ┌───────────────────────────────────────────────────────────────────┐
-   │ TẦNG 2: BỘ LỌC NGỮ NGHĨA (Tier 2: Adversarial DeBERTa-v3 INT8)    │
-   │ - Fine-tuning trên tập dữ liệu tăng cường đối kháng (Augmented)   │
-   │ - Disentangled Attention tách biệt Ma trận Nội dung & Vị trí      │
-   │ - Lượng hóa INT8 ZeroQuant bảo toàn biên độ phân loại             │
-   └──────────────────────────────────┬────────────────────────────────┘
-                                      │
-                         [ QUYẾT ĐỊNH: ALLOW / BLOCK ]
+```mermaid
+flowchart TD
+    User["USER PROMPT ĐẦU VÀO"]
+    T0["<b>TẦNG 0: TIỀN XỬ LÝ & GIẢI MÃ NGẦM</b><br/>• Unicode NFKC: Khử Homoglyph, chuyển Fullwidth &rarr; ASCII<br/>• Regex Collapsing: Thu hẹp khoảng trắng & ký tự phân cách<br/>• Heuristic Base64 Unmasking: Tự động trích xuất & giải mã"]
+    T1["<b>TẦNG 1: BỘ LỌC CÚ PHÁP (Char n-grams TF-IDF)</b><br/>• Cụm ký tự trượt (char_wb, n &in; [3, 5])<br/>• Kháng Leetspeak nhờ bảo toàn Cosine Similarity<br/>• Phân loại độ trễ thấp (&lt; 2ms trên CPU)"]
+    T2["<b>TẦNG 2: BỘ LỌC NGỮ NGHĨA (Adversarial DeBERTa-v3 INT8)</b><br/>• Fine-tuning trên tập dữ liệu tăng cường đối kháng<br/>• Disentangled Attention tách biệt Ma trận Nội dung & Vị trí<br/>• Lượng hóa INT8 ZeroQuant bảo toàn biên độ phân loại"]
+    Decision["QUYẾT ĐỊNH: ALLOW / BLOCK"]
+
+    User --> T0
+    T0 -->|"Prompt đã chuẩn hóa + Payload giải mã"| T1
+    T1 -->|"Nếu độ bất định cao (Vùng xám)"| T2
+    T1 -->|Độ tin cậy cao| Decision
+    T2 --> Decision
 ```
 
 ---

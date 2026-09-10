@@ -1,5 +1,5 @@
 # THƯ MỤC CỔNG TÀI LIỆU GITHUB PAGES (`Github-Page/`)
-## 🌐 PI-Guard Official Documentation Portal (MkDocs Material 8-Pillar Architecture)
+## PI-Guard Official Documentation Portal (MkDocs Material 8-Pillar Architecture)
 
 > [!IMPORTANT]
 > **QUY TẮC BẤT DI BẤT DỊCH (DOCUMENTATION INVARIANTS)**:
@@ -10,7 +10,7 @@
 
 ---
 
-### 📂 CẤU TRÚC PHÂN CẤP TÀI LIỆU GITHUB PAGES:
+### CẤU TRÚC PHÂN CẤP TÀI LIỆU GITHUB PAGES:
 
 | Thư mục con / Trang | Nội dung & Chức năng | Cơ chế cập nhật |
 | :--- | :--- | :--- |
@@ -32,7 +32,7 @@
 
 ---
 
-### 🔄 LỆNH BIÊN DỊCH VÀ XEM TRƯỚC CỔNG TÀI LIỆU:
+### LỆNH BIÊN DỊCH VÀ XEM TRƯỚC CỔNG TÀI LIỆU:
 
 ```bash
 # 1. Thu thập & chuẩn hóa toàn bộ tài liệu vào Github-Page/

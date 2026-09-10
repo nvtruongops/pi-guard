@@ -74,19 +74,14 @@ Tuy nhiên, việc triển khai LLM trong thực tế làm phát sinh những l�
 
 Vấn đề cốt lõi của các mô hình Transformer hiện nay bắt nguồn từ sự tương đồng với **"Lỗ hổng kiến trúc Von Neumann trong xử lý ngôn ngữ tự nhiên"** [[1]](#ref1), [[3]](#ref3):
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                       INPUT CONTEXT                         │
-│  ┌─────────────────────────────────┐ ┌───────────────────┐  │
-│  │ System Prompt (Chỉ thị/Rules)  │ │ User Prompt (Data)│  │
-│  └─────────────────────────────────┘ └───────────────────┘  │
-└──────────────────────────────┬──────────────────────────────┘
-                               │ Ghép chung thành 1 chuỗi Token phẳng
-                               ▼
-             ┌──────────────────────────────────────┐
-             │   LLM Transformer Next-Token Engine  │
-             │   (Không có ranh giới phần cứng)     │
-             └──────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph InputContext["NGỮ CẢNH ĐẦU VÀO (INPUT CONTEXT)"]
+        SP["System Prompt<br/>(Chỉ thị điều khiển / Rules)"]
+        UP["User Prompt<br/>(Dữ liệu người dùng / Data)"]
+    end
+    SP --> Engine["Động Cơ Transformer Next-Token<br/>(Ghép chung thành 1 chuỗi Token phẳng, không có ranh giới phần cứng)"]
+    UP --> Engine
 ```
 
 1. **Lẫn lộn giữa Lệnh và Dữ liệu (Instruction/Data Ambiguity)**: Trong cơ chế Self-Attention của Transformer, System Instruction (chỉ thị điều khiển) và User Input (dữ liệu đầu vào) bị ghép chung thành một chuỗi token phẳng ($X = S \mathbin{\Vert} U$). Mô hình không có cơ chế phân tách phần cứng hay quyền hạn (Privilege Separation) giữa dữ liệu và câu lệnh.
@@ -113,26 +108,15 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 
 Để giải quyết trọn vẹn các **khoảng trống nghiên cứu (Research Gaps)** trong lĩnh vực An toàn Thông tin (Information Assurance) cho ứng dụng LLM và đảm bảo tính đo lường định lượng theo chuẩn học thuật IEEE, đề tài PI-Guard tập trung vào **3 Câu Hỏi Nghiên Cứu Cốt Lõi**:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│               HỆ THỐNG 3 CÂU HỎI NGHIÊN CỨU CỐT LÕI (CHUYÊN NGÀNH ATTT)                │
-├──────┬──────────────────────────────────────────┬──────────────────────────────────────┤
-│ Mã   │ Tên Trọng Tâm Nghiên Cứu                 │ Khoảng Trống Nghiên Cứu Cốt Lõi      │
-├──────┼──────────────────────────────────────────┼──────────────────────────────────────┤
-│ RQ1  │ Phân Loại Mối Đe Dọa & Chống Rò Rỉ Dữ Liệu│ Rò rỉ cụm mẫu & Ranh giới phân loại  │
-│      │ (Threat Modeling & Representation)       │ giữa cú pháp tĩnh và ngữ nghĩa sâu   │
-├──────┼──────────────────────────────────────────┼──────────────────────────────────────┤
-│ RQ2  │ Độ Bền Kháng Lẩn Tránh & Mã Hóa Đối Kháng │ Sự sụp đổ của mô hình trước biến dị  │
-│      │ (Adversarial Robustness & Ciphers)       │ cú pháp Leetspeak, Spacing & Base64  │
-├──────┼──────────────────────────────────────────┼──────────────────────────────────────┤
-│ RQ3  │ Cân Bằng An Toàn & Khả Thi Triển Khai    │ Đánh đổi Security/Usability (FPR) và │
-│      │ (Security Trade-off & Inline Feasibility)│ bảo toàn ranh giới an toàn khi nén   │
-└──────┴──────────────────────────────────────────┴──────────────────────────────────────┘
-```
+| Mã | Tên Trọng Tâm Nghiên Cứu | Khoảng Trống Nghiên Cứu Cốt Lõi |
+| :---: | :--- | :--- |
+| **RQ1** | **Phân Loại Mối Đe Dọa & Chống Rò Rỉ Dữ Liệu**<br>*(Threat Modeling & Representation)* | Rò rỉ cụm mẫu & Ranh giới phân loại giữa cú pháp tĩnh và ngữ nghĩa sâu |
+| **RQ2** | **Độ Bền Kháng Lẩn Tránh & Mã Hóa Đối Kháng**<br>*(Adversarial Robustness & Ciphers)* | Sự sụp đổ của mô hình trước biến dị cú pháp Leetspeak, Spacing & Base64 |
+| **RQ3** | **Cân Bằng An Toàn & Khả Thi Triển Khai**<br>*(Security Trade-off & Inline Feasibility)* | Đánh đổi Security/Usability (FPR) và bảo toàn ranh giới an toàn khi nén |
 
 ---
 
-#### 📌 CÂU HỎI NGHIÊN CỨU 1 (RQ1) — Biểu Diễn Mối Đe Dọa, Khử Rò Rỉ Dữ Liệu & Ranh Giới Phân Loại Ngữ Nghĩa:
+#### CÂU HỎI NGHIÊN CỨU 1 (RQ1) — Biểu Diễn Mối Đe Dọa, Khử Rò Rỉ Dữ Liệu & Ranh Giới Phân Loại Ngữ Nghĩa:
 
 - **Câu hỏi nghiên cứu**:_Làm thế nào để xây dựng một phương pháp luận phân chia dữ liệu bảo toàn cụm (Group-Aware Splitting) nhằm triệt tiêu hiện tượng rò rỉ dữ liệu giữa các biến thể tấn công, và sự kết hợp giữa mô hình học máy cổ điển (TF-IDF) với Transformer phân tách vị trí ngữ nghĩa (DeBERTa-v3) nâng cao khả năng phát hiện các đòn tấn công Prompt Injection và Jailbreak vượt trội hơn các mô hình phòng thủ SOTA hiện nay ở mức độ nào?_
 - **Khoảng trống nghiên cứu (Research Gap 1)**:
@@ -145,7 +129,7 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 
 ---
 
-#### 📌 CÂU HỎI NGHIÊN CỨU 2 (RQ2) — Độ Bền Của Hệ Thống Trước Các Kỹ Thuật Lẩn Tránh & Mã Hóa Đối Kháng:
+#### CÂU HỎI NGHIÊN CỨU 2 (RQ2) — Độ Bền Của Hệ Thống Trước Các Kỹ Thuật Lẩn Tránh & Mã Hóa Đối Kháng:
 
 - **Câu hỏi nghiên cứu**:_Hệ thống phòng thủ đa tầng (kết hợp tiền xử lý chuẩn hóa chuỗi, biểu diễn n-gram ký tự và token hóa subword) duy trì độ bền và độ chính xác như thế nào trước các kỹ thuật lẩn tránh đối kháng có cấu trúc (gồm thay thế ký tự Leetspeak, phân tách khoảng trắng và mã hóa Base64/Cipher), và mức độ suy giảm hiệu năng tối đa có thể định lượng được là bao nhiêu?_
 - **Khoảng trống nghiên cứu (Research Gap 2)**:
@@ -158,7 +142,7 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 
 ---
 
-#### 📌 CÂU HỎI NGHIÊN CỨU 3 (RQ3) — Cân Bằng An Toàn, Khống Chế Tỷ Lệ Chặn Nhầm & Bảo Toàn Ranh Giới Khi Lượng Hóa Triển Khai:
+#### CÂU HỎI NGHIÊN CỨU 3 (RQ3) — Cân Bằng An Toàn, Khống Chế Tỷ Lệ Chặn Nhầm & Bảo Toàn Ranh Giới Khi Lượng Hóa Triển Khai:
 
 - **Câu hỏi nghiên cứu**:_Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và quá trình lượng hóa động INT8 cùng kiến trúc proxy bất đồng bộ có thể bảo toàn ranh giới quyết định an toàn trong khi duy trì độ trễ thấp tối ưu (P95 < 30ms trên CPU) mà không tạo ra điểm nghẽn từ chối dịch vụ (DoS)?_
 - **Khoảng trống nghiên cứu (Research Gap 3)**:
@@ -188,27 +172,10 @@ Các cuộc tấn công Prompt Injection và Jailbreak gây ra 4 tầng thiệt 
 
 ## 1.5. Scope and Limitations (Ranh Giới Phạm Vi & Giới Hạn Đề Tài)
 
-```
-┌──────────────────────────────────────────────────────────────────────────┐
-│                   IN-SCOPE (TRỌNG TÂM NGHIÊN CỨU)                        │
-│  - 2 Bài toán cốt lõi: Prompt Injection (Direct/Indirect) & Jailbreak    │
-│  - Chuỗi văn bản đầu vào: English Text Prompts (Tiêu chuẩn nghiên cứu)   │
-│  - Kỹ thuật lẩn tránh cú pháp: Leetspeak, Base64, Spacing (Test độ bền)  │
-│  - Độ trễ thấp (Low-latency): P95 Latency < 30ms trên CPU thông thường   │
-│  - An toàn vận hành: False Positive Rate (FPR) < 1.5% trên tập Benign    │
-│  - Kiến trúc: Hybrid TF-IDF Baseline + Fine-tuned DeBERTa-v3 + ONNX INT8 │
-└──────────────────────────────────────────────────────────────────────────┘
-                                     ▲
-                                     │ RANH GIỚI BẢO VỆ
-                                     ▼
-┌──────────────────────────────────────────────────────────────────────────┐
-│                   OUT-OF-SCOPE (NẰM NGOÀI PHẠM VI)                       │
-│  - Tấn công đa phương thức: Image / Audio / Video Jailbreaks             │
-│  - Tấn công hạ tầng mạng: DDoS, trích xuất trọng số GPU, Side-channel    │
-│  - Quét lỗ hổng hệ điều hành máy chủ / CVE của Linux/Docker              │
-│  - Xây dựng hệ thống cơ sở dữ liệu Vector RAG hoặc Agent Tool Runtime    │
-└──────────────────────────────────────────────────────────────────────────┘
-```
+| Phạm Vi Nghiên Cứu | Nội Dung Chi Tiết |
+| :--- | :--- |
+| **IN-SCOPE<br>(Trọng tâm nghiên cứu)** | • 2 Bài toán cốt lõi: Prompt Injection (Direct/Indirect) và Jailbreak<br>• Chuỗi văn bản đầu vào: English Text Prompts (Tiêu chuẩn nghiên cứu quốc tế)<br>• Kỹ thuật lẩn tránh cú pháp: Leetspeak, Base64, Spacing (Kiểm thử độ bền đối kháng)<br>• Độ trễ thấp: P95 Latency < 30ms trên CPU tiêu chuẩn (Commodity CPU)<br>• Kiểm soát báo động nhầm: False Positive Rate (FPR) < 1.5% trên tập Benign<br>• Kiến trúc hệ thống: Hybrid TF-IDF Baseline + Fine-tuned DeBERTa-v3 + ONNX INT8 |
+| **OUT-OF-SCOPE<br>(Nằm ngoài phạm vi)** | • Tấn công đa phương thức: Image, Audio, Video Jailbreaks<br>• Tấn công hạ tầng mạng: DDoS, trích xuất trọng số GPU, Side-channel attacks<br>• Quét lỗ hổng hệ điều hành máy chủ / CVE của Linux hoặc Docker engine<br>• Xây dựng hệ thống cơ sở dữ liệu Vector RAG hoặc Agent Tool Execution Runtime |
 
 ## 1.6. Thesis Structure (Bố Cục 6 Chương Của Toàn Văn Luận Văn)
 
@@ -236,24 +203,12 @@ Bảng phân tích đối sánh 3 chiều bản chất kỹ thuật theo chuẩn
 | **Đối tượng bị xâm hại**     | **Logic ứng dụng và Dữ liệu bí mật** của doanh nghiệp/nhà phát triển.                                                                   | **Người dùng cuối hoặc Hệ thống Agent** đang xử lý tài liệu không tin cậy.                                                    | **Chính sách an toàn (Safety Policy)** của nhà cung cấp mô hình nền tảng.                                                              |
 | **Hậu quả bảo mật**          | Rò rỉ System Prompt IP, gọi Tool/API trái phép, bypass business logic.                                                                  | Đánh cắp danh bạ, tự động gửi email rác, sửa đổi kết quả RAG tóm tắt.                                                         | Sinh hướng dẫn tấn công mạng, vi phạm pháp luật và đạo đức AI.                                                                         |
 
-```
-                       ┌─────────────────────────────────────┐
-                       │  CÁC DẠNG TẤN CÔNG VÀO LLM          │
-                       └──────────────────┬──────────────────┘
-                                          │
-                  ┌───────────────────────┴───────────────────────┐
-                  ▼                                               ▼
-     ┌─────────────────────────┐                     ┌─────────────────────────┐
-     │    PROMPT INJECTION     │                     │        JAILBREAK        │
-     │  (Xâm phạm Logic/Rules) │                     │ (Xâm phạm An toàn/Policy)│
-     └────────────┬────────────┘                     └─────────────────────────┘
-                  │
-         ┌────────┴────────┐
-         ▼                 ▼
-   ┌───────────┐     ┌───────────┐
-   │  Direct   │     │ Indirect  │
-   │ (Chatbot) │     │(RAG/Tools)│
-   └───────────┘     └───────────┘
+```mermaid
+flowchart TD
+    Attacks["CÁC DẠNG TẤN CÔNG VÀO LLM"] --> PI["PROMPT INJECTION<br/>(Xâm phạm Logic nghiệp vụ & Chỉ thị hệ thống)"]
+    Attacks --> JB["JAILBREAK<br/>(Xâm phạm Rào cản An toàn & Chính sách nội dung)"]
+    PI --> Direct["Direct Prompt Injection<br/>(Tấn công trực tiếp qua Chatbot/API)"]
+    PI --> Indirect["Indirect Prompt Injection<br/>(Tấn công gián tiếp qua RAG/Tools)"]
 ```
 
 ---
@@ -265,32 +220,13 @@ Bảng phân tích đối sánh 3 chiều bản chất kỹ thuật theo chuẩn
 
 Threat Model của PI-Guard được xây dựng dựa trên tiêu chuẩn **NIST AI 100-2e2025** [[7]](#ref7), **OWASP Top 10 for LLM (LLM01:2025)** [[8]](#ref8), và nghiên cứu mới nhất của **Tencent Zhuque Lab (2026)** [[6]](#ref6).
 
-```
-[ Attacker: Người dùng độc hại / Chuỗi văn bản ngoài ]
-                 │
-                 ▼ (Prompt Injection / Jailbreak / Obfuscation)
-  ┌──────────────────────────────────────────────┐
-  │  BỀ MẶT TẤN CÔNG DUY NHẤT (ATTACK SURFACE)   │
-  │  - User Prompt REST API Endpoint (/v1/chat)  │
-  │    (Tiếp nhận chuỗi văn bản đầu vào cho LLM) │
-  └──────────────────────┬───────────────────────┘
-                         │
-                         ▼
-  ┌──────────────────────────────────────────────┐
-  │  PI-GUARD DEFENSE MIDDLEWARE (LỚP BẢO VỆ)    │
-  │  - Bộ chuẩn hóa & Lọc cú pháp (TF-IDF Baseline)│
-  │  - Bộ phân loại ngữ nghĩa sâu (DeBERTa-v3)  │
-  │  - Dynamic Policy Engine (ALLOW/REVIEW/BLOCK)│
-  └──────────────────────┬───────────────────────┘
-                         │ ALLOW (Risk < 0.50)
-                         ▼
-  ┌──────────────────────────────────────────────┐
-  │  TARGET ASSETS (TÀI SẢN CẦN BẢO VỆ)          │
-  │  - Target LLM (Llama-3 / GPT-4o)             │
-  │  - System Prompt / Business Logic IP         │
-  │  - API Keys / Quyền thực thi downstream      │
-  │  - Toàn vẹn dữ liệu phản hồi                 │
-  └──────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    Attacker["Tác Nhân Tấn Công (Attacker)<br/>Người dùng độc hại / Chuỗi văn bản bên thứ ba"] -->|Prompt Injection / Jailbreak / Obfuscation| Surface["BỀ MẶT TẤN CÔNG DUY NHẤT (ATTACK SURFACE)<br/>User Prompt REST API Endpoint (/v1/chat)<br/>(Tiếp nhận chuỗi văn bản đầu vào)"]
+    
+    Surface --> Middleware["PI-GUARD DEFENSE MIDDLEWARE (LỚP BẢO VỆ)<br/>• Bộ chuẩn hóa & Lọc cú pháp (TF-IDF Baseline)<br/>• Bộ phân loại ngữ nghĩa sâu (DeBERTa-v3 ONNX INT8)<br/>• Dynamic Policy Engine (ALLOW / REVIEW / BLOCK)"]
+    
+    Middleware -->|ALLOW: Risk < 0.50| Assets["TÀI SẢN MỤC TIÊU CẦN BẢO VỆ (TARGET ASSETS)<br/>• Target LLM (Llama-3 / GPT-4o)<br/>• System Prompt & Business Logic IP<br/>• API Keys & Quyền thực thi downstream<br/>• Toàn vẹn dữ liệu phản hồi"]
 ```
 
 ### 3.1. Attacker Persona & Capabilities
@@ -315,88 +251,49 @@ Threat Model của PI-Guard được xây dựng dựa trên tiêu chuẩn **NIS
 
 ## 4.1. Cấu Trúc Phòng Thủ 3 Lớp Tiêu Chuẩn (Standard 3-Tier Defense)
 
-```
-[ User Input ] ──► [ LỚP 1: PI-GUARD INPUT GUARDRAIL ] ──► [ LỚP 2: TARGET LLM APPLICATION ] ──► [ LỚP 3: OUTPUT SANITIZER ]
-                         (Trọng tâm của Đồ án)                   (Mô hình ngôn ngữ mục tiêu)           (Hậu kiểm tra đầu ra)
+```mermaid
+flowchart LR
+    UI["User Input"] --> L1["LỚP 1: PI-GUARD INPUT GUARDRAIL<br/>(Trọng tâm của Đồ án)"]
+    L1 --> L2["LỚP 2: TARGET LLM APPLICATION<br/>(Mô hình ngôn ngữ mục tiêu)"]
+    L2 --> L3["LỚP 3: OUTPUT SANITIZER<br/>(Hậu kiểm tra đầu ra)"]
 ```
 
-| Lớp bảo vệ                                                                | Thành phần bên trong                                                                                   | Cơ chế kỹ thuật                                                                                                                                                                                                           | Vai trò & Đóng góp                                                                                                                                                      |
-| :------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **LỚP 1: PI-GUARD INPUT GUARDRAIL\***(Middleware chốt chặn đầu vào)\*     | **1. Heuristic Cleaner\*\***2. Hybrid Classifier (TF-IDF + DeBERTa-v3)\***\*3. Dynamic Policy Engine** | • Chuẩn hóa Unicode NFKC, lọc ký tự điều khiển.• **Word/Char TF-IDF** bắt nhiễu cú pháp/Leetspeak (~3ms).• **DeBERTa-v3 INT8** bắt ngữ nghĩa injection sâu (~12.8ms).• Ra quyết định tức thì: `ALLOW`, `REVIEW`, `BLOCK`. | **ĐÂY LÀ TRỌNG TÂM NGHIÊN CỨU & PHÁT TRIỂN CHÍNH CỦA ĐỒ ÁN PI-GUARD.** Đánh chặn 100% tấn công trước khi chạm vào LLM, tiết kiệm chi phí token và bảo vệ System Prompt. |
-| **LỚP 2: TARGET LLM APPLICATION\***(Mô hình ngôn ngữ phục vụ nghiệp vụ)\* | **1. System Prompt Hardening\*\***2. Target LLM (Llama-3 / GPT-4o)\*\*                                 | • Đóng gói prompt trong thẻ phân tách XML (`<user_input>`).• Áp dụng kỹ thuật Sandwich Defense (nhắc lại ràng buộc ở cuối context).                                                                                       | Mô hình cốt lõi sinh câu trả lời cho nghiệp vụ sau khi đã nhận prompt an toàn từ Lớp 1.                                                                                 |
-| **LỚP 3: OUTPUT FILTERING & SANITIZER\***(Bộ lọc hậu xử lý đầu ra)\*      | **1. Regex Secret Extractor\*\***2. Toxicity / PII Filter\*\*                                          | • Quét chuỗi phản hồi của LLM để phát hiện rò rỉ API Key, mật khẩu, PII trước khi trả về cho client.                                                                                                                      | Lớp phòng thủ bổ trợ vòng ngoài (Hậu kiểm tra), ngăn ngừa rủi ro mô hình bị ảo giác (_Hallucination_).                                                                  |
+| Lớp bảo vệ | Thành phần bên trong | Cơ chế kỹ thuật | Vai trò & Đóng góp |
+| :--- | :--- | :--- | :--- |
+| **LỚP 1: PI-GUARD INPUT GUARDRAIL**<br>*(Middleware chốt chặn đầu vào)* | **1. Heuristic Cleaner**<br>**2. Hybrid Classifier (TF-IDF + DeBERTa-v3)**<br>**3. Dynamic Policy Engine** | • Chuẩn hóa Unicode NFKC, lọc ký tự điều khiển.<br>• **Word/Char TF-IDF** bắt nhiễu cú pháp/Leetspeak (~3ms).<br>• **DeBERTa-v3 INT8** bắt ngữ nghĩa injection sâu (~12.8ms).<br>• Ra quyết định tức thì: `ALLOW`, `REVIEW`, `BLOCK`. | **ĐÂY LÀ TRỌNG TÂM NGHIÊN CỨU & PHÁT TRIỂN CHÍNH CỦA ĐỒ ÁN PI-GUARD.** Đánh chặn các đòn tấn công trước khi chạm vào LLM, tiết kiệm chi phí token và bảo vệ System Prompt. |
+| **LỚP 2: TARGET LLM APPLICATION**<br>*(Mô hình ngôn ngữ phục vụ nghiệp vụ)* | **1. System Prompt Hardening**<br>**2. Target LLM (Llama-3 / GPT-4o)** | • Đóng gói prompt trong thẻ phân tách XML (`<user_input>`).<br>• Áp dụng kỹ thuật Sandwich Defense (nhắc lại ràng buộc ở cuối context). | Mô hình cốt lõi sinh câu trả lời cho nghiệp vụ sau khi đã nhận prompt an toàn từ Lớp 1. |
+| **LỚP 3: OUTPUT FILTERING & SANITIZER**<br>*(Bộ lọc hậu xử lý đầu ra)* | **1. Regex Secret Extractor**<br>**2. Toxicity / PII Filter** | • Quét chuỗi phản hồi của LLM để phát hiện rò rỉ API Key, mật khẩu, PII trước khi trả về cho client. | Lớp phòng thủ bổ trợ vòng ngoài (Hậu kiểm tra), ngăn ngừa rủi ro mô hình bị ảo giác (*Hallucination*). |
 
 ## 4.2. Cơ Chế Phòng Thủ Độ Bền Chống Lẩn Tránh Cú Pháp (Robustness on Obfuscated / Evasion Samples)
 
 Các kỹ thuật lẩn tránh cú pháp (Leetspeak, Base64, Spacing) được thiết kế nhằm làm tê liệt các bộ lọc từ khóa đơn giản:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│             3 TẦNG BẢO VỆ ĐỘ BỀN CỦA PI-GUARD TRƯỚC LẨN TRÁNH CÚ PHÁP                  │
-├────────────────────────────────┬───────────────────────────────────────────────────────┤
-│ TẦNG 1: Tiền Xử Lý Chuẩn Hóa   │ • Unicode NFKC Normalization làm phẳng ký tự đồng hình│
-│ (Pre-processing Cleaner)       │ • Xóa ký tự tàng hình zero-width (\u200B)             │
-│                                │ • Heuristic Base64 Detector: Tự động giải mã chuỗi mã │
-│                                │   hóa trước khi đưa vào Classifier (Yuan et al. 2024) │
-├────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ TẦNG 2: Biểu Diễn Đặc Trưng    │ • Character n-grams TF-IDF (3-5 ký tự) bóc tách       │
-│ (Subword & Char n-grams)       │   "1gn0r3" thành ['1gn','gn0','n0r','0r3'] (Jain 2023)│
-│                                │ • DeBERTa Byte-Pair Encoding (BPE) subword tokenization│
-│                                │   bảo toàn thông tin ngữ nghĩa khi từ bị vỡ           │
-├────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ TẦNG 3: Kiểm Thử Đối Kháng     │ • Sinh tập test đột biến (tests/adversarial/)         │
-│ (Adversarial Benchmark Suite)  │ • Cam kết suy giảm F1 (Degradation) < 5% khi bị nhiễu │
-└────────────────────────────────┴───────────────────────────────────────────────────────┘
-```
+| Tầng Bảo Vệ Độ Bền | Biện Pháp Kỹ Thuật & Cơ Chế Thực Thi |
+| :--- | :--- |
+| **TẦNG 1: Tiền Xử Lý Chuẩn Hóa**<br>*(Pre-processing Cleaner)* | • Chuẩn hóa Unicode NFKC làm phẳng ký tự đồng hình.<br>• Loại bỏ ký tự tàng hình zero-width (`\u200B`).<br>• Heuristic Base64 Detector: Tự động phát hiện và giải mã chuỗi mã hóa trước khi đưa vào Classifier (Yuan et al. ICLR 2024). |
+| **TẦNG 2: Biểu Diễn Đặc Trưng**<br>*(Subword & Char n-grams)* | • Character n-grams TF-IDF (3–5 ký tự) bóc tách chuỗi theo cửa sổ trượt ký tự bên trong từ: `"1gn0r3"` $\rightarrow$ `['1gn', 'gn0', 'n0r', '0r3']` (Jain et al. 2023).<br>• DeBERTa Byte-Pair Encoding (BPE) subword tokenization bảo toàn thông tin ngữ nghĩa khi từ bị vỡ. |
+| **TẦNG 3: Kiểm Thử Đối Kháng**<br>*(Adversarial Benchmark Suite)* | • Sinh tập kiểm thử đột biến đối kháng tự động (`tests/adversarial/`).<br>• Cam kết mức suy giảm F1 ($\Delta F_1$) dưới 5% khi đối mặt với các biến thể cú pháp gây nhiễu. |
 
 ## 4.3. Kiến Trúc 2 Pha: Offline Training vs Online Runtime Middleware
 
-```
-═════════════════════════════════════════════════════════════════════════════════════════════════
-                       PHA 1: OFFLINE TRAINING PIPELINE (HUẤN LUYỆN NGOẠI TUYẾN)
-═════════════════════════════════════════════════════════════════════════════════════════════════
-
-  [ Nguồn Dữ Liệu Công Khai ] (Deepset, Gandalf, In-the-Wild, Benign)
-             │
-             ▼ (scripts/download_dataset.py & scripts/preprocess.py)
-  [ Curation, Lọc Trùng & Group-Aware Split ] (Chống rò rỉ dữ liệu qua cluster_id)
-             │
-     ┌───────┴────────────────────────┐
-     ▼ (Train/Val Splits)             ▼ (Adversarial Test Slices: Leetspeak, Base64, Spacing)
-  ┌─────────────────────────┐      ┌─────────────────────────┐
-  │   TRAINING ENGINE       │      │   ROBUSTNESS TEST SUITE │
-  │ 1. Train Baseline ML    │      │   (Đánh giá độ bền theo │
-  │ 2. Fine-tune DeBERTa-v3 │      │    Yuan 2024 & Zhou 2024│
-  │ 3. ONNX INT8 Quantize   │      └───────────┬─────────────┘
-  └──────────┬──────────────┘                  │
-             │                                 │
-             ▼ Xuất file trọng số              ▼ Đo lường F1, FPR (<1.5%), Latency (<30ms)
-  ┌──────────────────────────────────────────────────────────┐
-  │  THƯ MỤC LƯU TRỮ MÔ HÌNH (models/)                       │
-  │  - models/baseline/baseline_tfidf.joblib                 │
-  │  - models/onnx/deberta_v3_int8.onnx                      │
-  └──────────────────────────┬───────────────────────────────┘
-                             │
-                             │ (Nạp mô hình đã huấn luyện vào bộ nhớ)
-                             ▼
-═════════════════════════════════════════════════════════════════════════════════════════════════
-                       PHA 2: ONLINE RUNTIME MIDDLEWARE (VẬN HÀNH TRỰC TUYẾN)
-═════════════════════════════════════════════════════════════════════════════════════════════════
-
-  [ User Gửi Prompt Vào Chatbot ] ──► POST /v1/chat/guardrail
-                                             │
-                                             ▼
-                      ┌──────────────────────────────────────────────┐
-                      │  PI-GUARD DEFENSE MIDDLEWARE (FastAPI)       │
-                      │  1. Preprocessing (Unicode NFKC, Base64 Dec) │
-                      │  2. Classifier: Chấm Risk Score (0.0 - 1.0)  │
-                      │  3. Policy Engine: ALLOW / REVIEW / BLOCK    │
-                      └──────────────────────┬───────────────────────┘
-                                             │
-                       ┌─────────────────────┴─────────────────────┐
-                       ▼ Risk < 0.50 (ALLOW)                       ▼ Risk >= 0.80 (BLOCK)
-             [ Chuyển tới Target LLM ]                   [ Trả về HTTP 403 Blocked ]
-             (Llama-3 / GPT-4o trả lời)                  (Không tiêu tốn token của LLM)
+```mermaid
+flowchart TD
+    subgraph Phase1["PHA 1: OFFLINE TRAINING PIPELINE (HUẤN LUYỆN NGOẠI TUYẾN)"]
+        Data["Nguồn Dữ Liệu Đa Nguồn<br/>(Deepset, Gandalf, In-The-Wild, Benign)"] --> Pre["Curation, Lọc Trùng & Group-Aware Splitting<br/>(Chống rò rỉ dữ liệu qua cluster_id)"]
+        Pre --> TrainSplit["Tập Huấn Luyện & Kiểm Thử<br/>(Train / Validation / Test)"]
+        Pre --> AdvTest["Adversarial Test Slices<br/>(Leetspeak, Base64, Spacing)"]
+        TrainSplit --> Engine["TRAINING ENGINE<br/>1. Train Baseline ML (TF-IDF)<br/>2. Fine-tune DeBERTa-v3 Base<br/>3. ONNX INT8 Quantization"]
+        AdvTest --> RobSuite["ROBUSTNESS TEST SUITE<br/>(Đo lường F1, FPR < 1.5%, Latency < 30ms)"]
+        Engine --> ModelStore[("THƯ MỤC MÔ HÌNH (models/)<br/>• models/baseline/baseline_tfidf.joblib<br/>• models/onnx/deberta_v3_int8.onnx")]
+    end
+    
+    subgraph Phase2["PHA 2: ONLINE RUNTIME MIDDLEWARE (VẬN HÀNH TRỰC TUYẾN)"]
+        UserReq["User Prompt gửi tới Chatbot"] --> PostReq["POST /v1/chat/guardrail"]
+        PostReq --> MW["PI-GUARD DEFENSE MIDDLEWARE (FastAPI)<br/>1. Preprocessing: Unicode NFKC, Base64 Dec<br/>2. Classifier: Chấm điểm Risk Score (0.0 - 1.0)<br/>3. Policy Engine: ALLOW / REVIEW / BLOCK"]
+        ModelStore -.->|Nạp mô hình| MW
+        MW -->|Risk < 0.50: ALLOW| LLM["Chuyển tới Target LLM<br/>(Llama-3 / GPT-4o phản hồi)"]
+        MW -->|Risk >= 0.80: BLOCK| Block403["Trả về HTTP 403 Forbidden<br/>(Chặn ngay, bảo vệ Token & System Prompt)"]
+    end
 ```
 
 ---
@@ -405,14 +302,10 @@ Các kỹ thuật lẩn tránh cú pháp (Leetspeak, Base64, Spacing) được t
 
 Nhằm đáp ứng **Yêu cầu số 5 của Giảng viên Hướng dẫn** (thiết kế kịch bản minh họa bài toán tấn công và cơ chế bảo vệ đề xuất), nhóm xây dựng **Ma trận 4 Kịch bản Phân tích Minh họa ($2 \times 2$)** để làm rõ luồng dữ liệu và sự khác biệt giữa hệ thống không có phòng vệ và hệ thống được bảo vệ bởi lớp Guardrail đề xuất:
 
-```
-┌──────────────────────────────────────┬─────────────────────────────────┬─────────────────────────────────┐
-│          KỊCH BẢN MINH HỌA           │ KHÔNG CÓ DEFENSE (VULNERABLE)   │ CÓ PI-GUARD DEFENSE (PROTECTED) │
-├──────────────────────────────────────┼─────────────────────────────────┼─────────────────────────────────┤
-│ 1. PROMPT INJECTION (Ghi đè System)  │ Demo 1A: Lộ API Key & Prompt    │ Demo 1B: Chặn tại Lớp 1 (Safe)  │
-│ 2. JAILBREAK (Bẻ khóa an toàn / DAN) │ Demo 2A: Sinh mã độc hại/Keylog │ Demo 2B: Chặn tại Lớp 1 (Safe)  │
-└──────────────────────────────────────┴─────────────────────────────────┴─────────────────────────────────┘
-```
+| Kịch Bản Phân Tích Minh Họa | Không Có Lớp Phòng Vệ (Vulnerable) | Được Bảo Vệ Bởi PI-Guard (Protected) |
+| :--- | :--- | :--- |
+| **1. Prompt Injection (Ghi đè chỉ thị hệ thống)** | **Demo 1A**: Lộ bí mật System Prompt & API Key | **Demo 1B**: Chặn đứng tại Lớp 1 (Safe, HTTP 403) |
+| **2. Jailbreak (Bẻ khóa an toàn / DAN)** | **Demo 2A**: Bị ép sinh mã độc hại / Keylogger | **Demo 2B**: Chặn đứng tại Lớp 1 (Safe, HTTP 403) |
 
 ### 5.1. Nhóm 1: Minh Họa Tấn Công Prompt Injection (Ghi Đè Chỉ Thị)
 
@@ -523,29 +416,13 @@ _(Ghi chú: Toàn bộ 4 thành viên cùng tham gia nghiên cứu, huấn luy�
 
 Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc lập với mô hình (Model-Agnostic Guardrail Layer)**, đồ án **không chạy suy luận LLM nặng nề trên máy cục bộ (Local GPU)** mà sử dụng giao thức **Cloud REST API** để kết nối và đánh giá trong giai đoạn thực nghiệm (Chương 4). Nhóm tiến hành khảo sát mức độ dễ tổn thương trong y văn của **5 Mô hình Ngôn ngữ Lớn tiêu chuẩn trong các nghiên cứu bảo mật quốc tế**:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│        DANH MỤC 5 MÔ HÌNH LLM MỤC TIÊU ĐƯỢC KHẢO SÁT QUA CLOUD API                     │
-├──────┬─────────────────────────────┬─────────────────┬─────────────────────────────────┤
-│ STT  │ Mô Hình LLM Mục Tiêu (Target│ Phương Thức Gọi │ Cơ Sở Khoa Học & Bài Báo Bảo    │
-│      │ LLM)                        │ API             │ Chứng Lý Do Lựa Chọn (>= 2022)  │
-├──────┼─────────────────────────────┼─────────────────┼─────────────────────────────────┤
-│ 1    │ **OpenAI GPT-4o-mini**      │ OpenAI Cloud API│ Đại diện cho biên giới an toàn  │
-│      │                             │                 │ thương mại cao cấp [[17]](#ref17)│
-├──────┼─────────────────────────────┼─────────────────┼─────────────────────────────────┤
-│ 2    │ **Google Gemini 1.5 Flash** │ Google GenAI API│ Đại diện cho LLM API doanh nghiệp│
-│      │                             │                 │ thông lượng cao (Gemini Team)   │
-├──────┼─────────────────────────────┼─────────────────┼─────────────────────────────────┤
-│ 3    │ **Meta LLaMA-3.1-8B-Inst**  │ Groq / Cloud API│ Chuẩn đối sánh Open-weights     │
-│      │                             │                 │ trong 90%+ bài báo [[13]](#ref13)│
-├──────┼─────────────────────────────┼─────────────────┼─────────────────────────────────┤
-│ 4    │ **Mistral-7B-Instruct-v0.3**│ Groq / Cloud API│ Đại diện mô hình mở châu Âu với │
-│      │                             │                 │ căn chỉnh an toàn nhẹ [[16]](#ref16)│
-├──────┼─────────────────────────────┼─────────────────┼─────────────────────────────────┤
-│ 5    │ **Qwen-2.5-7B-Instruct**    │ Groq / Cloud API│ Đại diện cho dòng mô hình mã    │
-│      │                             │                 │ nguồn mở đa năng châu Á         │
-└──────┴─────────────────────────────┴─────────────────┴─────────────────────────────────┘
-```
+| STT | Mô Hình LLM Mục Tiêu (Target LLM) | Phương Thức Gọi API | Cơ Sở Khoa Học & Bài Báo Bảo Chứng Lý Do Lựa Chọn (>= 2022) |
+| :---: | :--- | :---: | :--- |
+| **1** | **OpenAI GPT-4o-mini** | OpenAI Cloud API | Đại diện cho biên giới an toàn thương mại cao cấp [[17]](#ref17) |
+| **2** | **Google Gemini 1.5 Flash** | Google GenAI API | Đại diện cho LLM API doanh nghiệp thông lượng cao (Gemini Team) |
+| **3** | **Meta LLaMA-3.1-8B-Instruct** | Groq / Cloud API | Chuẩn đối sánh Open-weights trong 90%+ bài báo [[13]](#ref13) |
+| **4** | **Mistral-7B-Instruct-v0.3** | Groq / Cloud API | Đại diện mô hình mở châu Âu với căn chỉnh an toàn nhẹ [[16]](#ref16) |
+| **5** | **Qwen-2.5-7B-Instruct** | Groq / Cloud API | Đại diện cho dòng mô hình mã nguồn mở đa năng châu Á |
 
 ### 6.3.1. Cơ Sở Khoa Học & Lý Do Lựa Chọn Từng Mô Hình Để Khảo Sát:
 
@@ -592,37 +469,37 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 
 # SECTION 8: VERIFIED ACADEMIC REFERENCES (100% >= 2022)
 
-> 📑 **Nhật ký & Ma trận ánh xạ chi tiết**: Xem tại [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/reports/References/REFERENCES_LOG.md)
-> 📂 **Thư mục lưu trữ 17 file PDF gốc**: [`d:/Work/Do-an/References/`](file:///d:/Work/Do-an/reports/References/)
+> 📑 **Nhật ký & Ma trận ánh xạ chi tiết**: Xem tại [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md)
+> 📂 **Thư mục lưu trữ 17 file PDF gốc**: [`d:/Work/Do-an/References/`](file:///d:/Work/Do-an/Final-Report/References/)
 
 <a id="ref1"></a>**[1]** W. X. Zhao et al., "A Survey of Large Language Models," _IJCAI / arXiv preprint arXiv:2303.18223_, 2023.
 
-- 📖 **Local PDF**: [`References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf`](file:///d:/Work/Do-an/reports/References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf)
+- 📖 **Local PDF**: [`References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf`](file:///d:/Work/Do-an/Final-Report/References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2303.18223](https://arxiv.org/abs/2303.18223)
 
 <a id="ref2"></a>**[2]** L. Ouyang et al., "Training language models to follow instructions with human feedback," in _Advances in Neural Information Processing Systems (NeurIPS)_, vol. 35, pp. 27730–27744, 2022.
 
-- 📖 **Local PDF**: [`References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`](file:///d:/Work/Do-an/reports/References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf)
+- 📖 **Local PDF**: [`References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`](file:///d:/Work/Do-an/Final-Report/References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2203.02155](https://arxiv.org/abs/2203.02155)
 
 <a id="ref3"></a>**[3]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in _NeurIPS 2022 Workshop on ML Safety_, 2022.
 
-- 📖 **Local PDF**: [`References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf`](file:///d:/Work/Do-an/reports/References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf)
+- 📖 **Local PDF**: [`References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf`](file:///d:/Work/Do-an/Final-Report/References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2206.05600](https://arxiv.org/abs/2206.05600)
 
 <a id="ref4"></a>**[4]** K. Greshake, S. Abdelnabi, S. Mishra, C. Endres, T. Holz, and M. Fritz, "Not what you've signed up for: Compromising Real-World LLM Applications with Indirect Prompt Injection," in _Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISEC)_, pp. 79–90, 2023.
 
-- 📖 **Local PDF**: [`References/Greshake_2023_Indirect_Prompt_Injection.pdf`](file:///d:/Work/Do-an/reports/References/Greshake_2023_Indirect_Prompt_Injection.pdf)
+- 📖 **Local PDF**: [`References/Greshake_2023_Indirect_Prompt_Injection.pdf`](file:///d:/Work/Do-an/Final-Report/References/Greshake_2023_Indirect_Prompt_Injection.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2302.12173](https://arxiv.org/abs/2302.12173)
 
 <a id="ref5"></a>**[5]** A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in _Advances in Neural Information Processing Systems 36 (NeurIPS 2023)_, vol. 36, pp. 80079–80110, 2023.
 
-- 📖 **Local PDF**: [`References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/reports/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf)
+- 📖 **Local PDF**: [`References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/Final-Report/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2307.02483](https://arxiv.org/abs/2307.02483)
 
 <a id="ref6"></a>**[6]** Y. Yang, X. Zheng, H. Wu, H. Cheng, X. Shi, J. Guo, B. Yang, Y. Zhou, X. Wu, and Z. Ying, "Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming," _Tencent Zhuque Lab Technical Report_, arXiv preprint arXiv:2606.31227, Jun. 2026.
 
-- 📖 **Local PDF**: [`References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`](file:///d:/Work/Do-an/reports/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf)
+- 📖 **Local PDF**: [`References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`](file:///d:/Work/Do-an/Final-Report/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2606.31227](https://arxiv.org/abs/2606.31227)
 
 <a id="ref7"></a>**[7]** A. Vassilev, A. R. Oprea, C. E. Fordyce, and H. Anderson, "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations," _National Institute of Standards and Technology (NIST)_, NIST Trustworthy and Responsible AI Report NIST.AI.100-2e2025, Jan. 2025.
@@ -635,45 +512,45 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 
 <a id="ref9"></a>**[9]** H. Inan et al., "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations," _Meta AI Technical Report_, arXiv preprint arXiv:2312.06674, Dec. 2023.
 
-- 📖 **Local PDF**: [`References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf`](file:///d:/Work/Do-an/reports/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf)
+- 📖 **Local PDF**: [`References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf`](file:///d:/Work/Do-an/Final-Report/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2312.06674](https://arxiv.org/abs/2312.06674)
 
 <a id="ref10"></a>**[10]** T. Rebedea et al., "NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications," in _Proceedings of EMNLP: System Demonstrations_, pp. 431–444, 2023.
 
-- 📖 **Local PDF**: [`References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`](file:///d:/Work/Do-an/reports/References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf)
+- 📖 **Local PDF**: [`References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`](file:///d:/Work/Do-an/Final-Report/References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2310.10501](https://arxiv.org/abs/2310.10501)
 
 <a id="ref11"></a>**[11]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in _Proceedings of the 11th International Conference on Learning Representations (ICLR)_, 2023.
 
-- 📖 **Local PDF**: [`References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`](file:///d:/Work/Do-an/reports/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf)
+- 📖 **Local PDF**: [`References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`](file:///d:/Work/Do-an/Final-Report/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543)
 
 <a id="ref12"></a>**[12]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in _Proceedings of the AAAI Conference on Human Computation and Crowdsourcing (HCOMP)_, 2023.
 
-- 📖 **Local PDF**: [`References/OpenAI_2023_Undesired_Content_Detection.pdf`](file:///d:/Work/Do-an/reports/References/OpenAI_2023_Undesired_Content_Detection.pdf)
+- 📖 **Local PDF**: [`References/OpenAI_2023_Undesired_Content_Detection.pdf`](file:///d:/Work/Do-an/Final-Report/References/OpenAI_2023_Undesired_Content_Detection.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274)
 
 <a id="ref13"></a>**[13]** N. Jain et al., "Baseline Defenses for Adversarial Attacks Against Aligned Language Models," arXiv preprint arXiv:2309.00614, 2023.
 
-- 📖 **Local PDF**: [`References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/reports/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf)
+- 📖 **Local PDF**: [`References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/Final-Report/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614)
 
 <a id="ref14"></a>**[14]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in _Advances in Neural Information Processing Systems (NeurIPS)_, vol. 35, 2022.
 
-- 📖 **Local PDF**: [`References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`](file:///d:/Work/Do-an/reports/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf)
+- 📖 **Local PDF**: [`References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`](file:///d:/Work/Do-an/Final-Report/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861)
 
 <a id="ref15"></a>**[15]** X. Shen et al., ""Do Anything Now": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in _Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (CCS)_, pp. 4028–4042, 2024.
 
-- 📖 **Local PDF**: [`References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`](file:///d:/Work/Do-an/reports/References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf)
+- 📖 **Local PDF**: [`References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`](file:///d:/Work/Do-an/Final-Report/References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825) (DOI: `10.1145/3658644.3670388`)
 
 <a id="ref16"></a>**[16]** H. Zhou et al., "EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models," arXiv preprint arXiv:2403.12171, 2024.
 
-- 📖 **Local PDF**: [`References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf`](file:///d:/Work/Do-an/reports/References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf)
+- 📖 **Local PDF**: [`References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf`](file:///d:/Work/Do-an/Final-Report/References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2403.12171](https://arxiv.org/abs/2403.12171)
 
 <a id="ref17"></a>**[17]** Y. Yuan, W. Jiao, W. Wang, J. Huang, P. He, and Z. Tu, "GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher," in _Proceedings of the 12th International Conference on Learning Representations (ICLR)_, 2024.
 
-- 📖 **Local PDF**: [`References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`](file:///d:/Work/Do-an/reports/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf)
+- 📖 **Local PDF**: [`References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`](file:///d:/Work/Do-an/Final-Report/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2308.06463](https://arxiv.org/abs/2308.06463)

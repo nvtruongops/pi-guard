@@ -5,7 +5,7 @@
 
 ---
 
-## 📑 I. BẢNG DANH MỤC BÀI BÁO KHOA HỌC CHỦ CHỐT (PEER-REVIEWED PAPERS)
+## I. BẢNG DANH MỤC BÀI BÁO KHOA HỌC CHỦ CHỐT (PEER-REVIEWED PAPERS)
 
 | STT | Bài Báo & Tác Giả | Hội Nghị / Nơi Xuất Bản | Bản PDF Cục Bộ Trong Repo | Tóm Tắt Đóng Góp Khoa Học & Ứng Dụng Trong PI-Guard |
 | :---: | :--- | :---: | :--- | :--- |
@@ -19,7 +19,7 @@
 
 ---
 
-## 🛠️ II. THƯ VIỆN & CÔNG CỤ MÃ NGUỒN MỞ CHÍNH THỨC (OFFICIAL OPEN-SOURCE TOOLKITS)
+## II. THƯ VIỆN & CÔNG CỤ MÃ NGUỒN MỞ CHÍNH THỨC (OFFICIAL OPEN-SOURCE TOOLKITS)
 
 1. **ONNX Runtime (Microsoft)**:
    - *Mô tả*: Bộ máy thực thi suy luận đa nền tảng tối ưu hóa cao cho CPU đa nhân và GPU.
@@ -37,7 +37,7 @@
 
 ---
 
-## 📺 III. VIDEO BÀI GIẢNG & HƯỚNG DẪN KỸ THUẬT (VERIFIED EDUCATIONAL VIDEOS)
+## III. VIDEO BÀI GIẢNG & HƯỚNG DẪN KỸ THUẬT (VERIFIED EDUCATIONAL VIDEOS)
 
 1. **Hugging Face / Microsoft ONNX Runtime**:
    - *Chủ đề*: Quantization and Optimization for Hugging Face Transformers with ONNX Runtime.
@@ -48,7 +48,7 @@
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO HỌC THUẬT CHI TIẾT (BIBTEX FORMAT)
+## TÀI LIỆU THAM KHẢO HỌC THUẬT CHI TIẾT (BIBTEX FORMAT)
 
 ```bibtex
 @inproceedings{yao2022zeroquant,

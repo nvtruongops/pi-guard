@@ -1,32 +1,28 @@
 # KỸ THUẬT TĂNG TỐC SUY LUẬN & THIẾT KẾ HỆ THỐNG GUARDRAIL TỐC ĐỘ CAO
 ## Phân Tích Cơ Chế Tối Ưu Hóa Băng Thông Bộ Nhớ, Khối Chú Ý & Xử Lý Bất Đồng Bộ
 
-> 📑 **Tài liệu tham chiếu chuẩn mực**: Dao et al. (NeurIPS 2022) (*FlashAttention* [[1]](#ref1)), Hinton et al. (2015) (*Knowledge Distillation* [[2]](#ref2)), Rebedea et al. (EMNLP 2023) (*NeMo Guardrails* [[3]](#ref3)).  
-> 🎯 **Mục tiêu trong PI-Guard**: Xây dựng kiến trúc hệ thống Guardrail toàn diện kết hợp giữa tăng tốc thuật toán mô hình và thiết kế hạ tầng phần mềm bất đồng bộ (FastAPI) để tối đa hóa thông lượng (Throughput $\ge 100\text{ RPS}$) và giảm thiểu độ trễ (Latency P95 $< 30\text{ms}$).
+> **Tài liệu tham chiếu chuẩn mực**: Dao et al. (NeurIPS 2022) (*FlashAttention* [[1]](#ref1)), Hinton et al. (2015) (*Knowledge Distillation* [[2]](#ref2)), Rebedea et al. (EMNLP 2023) (*NeMo Guardrails* [[3]](#ref3)).  
+> **Mục tiêu trong PI-Guard**: Xây dựng kiến trúc hệ thống Guardrail toàn diện kết hợp giữa tăng tốc thuật toán mô hình và thiết kế hạ tầng phần mềm bất đồng bộ (FastAPI) để tối đa hóa thông lượng (Throughput $\ge 100\text{ RPS}$) và giảm thiểu độ trễ (Latency P95 $< 30\text{ms}$).
 
 ---
 
-## ⚡ I. NÚT THẮT CỔ CHAI TRONG SUY LUẬN TRANSFORMER: MEMORY-BOUND VS. COMPUTE-BOUND
+## I. NÚT THẮT CỔ CHAI TRONG SUY LUẬN TRANSFORMER: MEMORY-BOUND VS. COMPUTE-BOUND
 
-Để tối ưu hóa hiệu năng Guardrail một cách khoa học, trước hết phải hiểu rõ bản chất vật lý của các phép tính trong mạng nơ-ron Transformer:
+Để tối ưu hóa hiệu năng Guardrail một cách khoa học, trước hết phải hiểu rõ bản chất vật lý của các phép tính trong mạng nơ-ron Transformer thông qua mô hình Roofline:
 
-```
-                                 [ MÔ HÌNH TOÁN HỌC MÁY TÍNH ROOFLINE ]
-       Băng thông tính toán
-       (FLOPS / Giây)  ▲
-                       │                       ┌───────────────────────────────────────────────┐
-                       │                       │ VÙNG COMPUTE-BOUND (Giới hạn bởi xung nhịp CPU)│
-             Peak FLOP ┼───────────────────────┤ (Các phép nhân ma trận lớn: Dense FFN layers) │
-                       │                      /└───────────────────────────────────────────────┘
-                       │                     /
-                       │                    /  ┌───────────────────────────────────────────────┐
-                       │                   /   │ VÙNG MEMORY-BOUND (Giới hạn bởi RAM/Cache IO) │
-                       │                  /    │ (LayerNorm, Softmax, Gelu, Attention Matrix)  │
-                       │                 /     └───────────────────────────────────────────────┘
-                       │                /
-                       └────────────────┼─────────────────────────────────────────────►
-                       0                Căn bậc hai (Số phép tính / Byte nạp từ RAM)
-                                        (Operational Intensity)
+```mermaid
+flowchart LR
+    subgraph MemoryBound["VÙNG MEMORY-BOUND (Giới hạn RAM / Cache I/O)"]
+        MB1["Các phép toán: LayerNorm, Softmax, GELU, Residual Add"]
+        MB2["Operational Intensity thấp: 1-2 FLOP/Byte nạp từ RAM"]
+        MB3["Giải pháp: Operator Fusion & Lượng hóa INT8"]
+    end
+    subgraph ComputeBound["VÙNG COMPUTE-BOUND (Giới hạn xung nhịp CPU)"]
+        CB1["Các phép toán: Dense FFN Layers, QKV Projections"]
+        CB2["Operational Intensity cao: Nhân ma trận dày đặc"]
+        CB3["Giải pháp: SIMD AVX-512 VNNI & Pruning"]
+    end
+    MemoryBound --> ComputeBound
 ```
 
 1. **Vùng Giới hạn Băng thông Bộ nhớ (Memory-Bound)**:
@@ -40,7 +36,7 @@
 
 ---
 
-## 🧠 II. CƠ CHẾ CHÚ Ý TỐI ƯU HÓA IO (IO-AWARE FLASHATTENTION & SDPA)
+## II. CƠ CHẾ CHÚ Ý TỐI ƯU HÓA IO (IO-AWARE FLASHATTENTION & SDPA)
 
 Theo nghiên cứu đột phá của **Dao et al. (NeurIPS 2022)** (*FlashAttention* [[1]](#ref1)), cơ chế Attention tiêu chuẩn của Transformer có độ phức tạp bộ nhớ bậc hai $\mathcal{O}(L^2)$ đối với độ dài chuỗi $L$:
 
@@ -48,71 +44,34 @@ $$\mathbf{S} = \mathbf{Q} \mathbf{K}^T \in \mathbb{R}^{L \times L}, \quad \mathb
 
 Việc ghi ma trận $\mathbf{S}$ và $\mathbf{P}$ khổng lồ ra bộ nhớ RAM chính và đọc ngược lại để nhân với $\mathbf{V}$ tạo ra nút thắt nghiêm trọng.
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│             SO SÁNH ATTENTION TIÊU CHUẨN VÀ ATTENTION TỐI ƯU HÓA TRONG PI-GUARD        │
-├────────────────────────────────┬───────────────────────────────────────────────────────┤
-│ ATTENTION TIÊU CHUẨN (STANDARD)│ • Nạp Q, K từ RAM -> Tính S = Q K^T -> Ghi ra RAM    │
-│ (PyTorch Eager)                │ • Nạp S từ RAM -> Tính P = softmax(S) -> Ghi ra RAM   │
-│                                │ • Nạp P, V từ RAM -> Tính O = P V -> Ghi ra RAM      │
-│                                │ • Tổng lưu lượng I/O: \mathcal{O}(L^2) (Rất chậm)     │
-├────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ FLASHATTENTION / ORT FUSED ATTN│ • Chia nhỏ Q, K, V thành các khối block kích thước B_r│
-│ (Tối ưu hóa bộ nhớ đệm SRAM)   │ • Tính toán Softmax trực tuyến (Online Softmax)       │
-│                                │ • Giữ nguyên trong Cache L1/L2, không ghi ra RAM chính│
-│                                │ • Tổng lưu lượng I/O: \mathcal{O}(L) (Tối ưu cực đại) │
-└────────────────────────────────┴───────────────────────────────────────────────────────┘
-```
+| Tiêu Chí So Sánh | Attention Tiêu Chuẩn (PyTorch Eager) | FlashAttention / ORT Fused Attention (Tối ưu SRAM) |
+| :--- | :--- | :--- |
+| **Quy trình nạp / tính toán** | Nạp Q, K từ RAM $\rightarrow$ Ghi S ra RAM $\rightarrow$ Ghi P ra RAM $\rightarrow$ Ghi O ra RAM | Chia nhỏ Q, K, V thành các khối block (Tiled Attention), tính Softmax trực tuyến (Online Softmax) |
+| **Vị trí lưu trữ trung gian** | Ghi/đọc liên tục giữa RAM chính và thanh ghi | Giữ nguyên trong Cache L1/L2 của CPU, không ghi tràn ra RAM |
+| **Tổng lưu lượng I/O bộ nhớ** | $\mathcal{O}(L^2)$ (Gây nghẽn băng thông bộ nhớ) | $\mathcal{O}(L)$ (Tối ưu tuyến tính hóa bộ nhớ) |
 
 Trong hệ thống PI-Guard, khi triển khai trên CPU qua ONNX Runtime, Kernel **`FusedAttention`** tự động thực hiện tính toán ma trận chú ý theo từng khối (Tiled Attention), giúp giảm 65% thời gian xử lý của tầng Self-Attention đối với các prompt dài ($L \ge 256$ tokens).
 
 ---
 
-## 🏎️ III. KIẾN TRÚC PHẦN MỀM BẤT ĐỒNG BỘ & ĐIỀU PHỐI ĐA TẦNG (SYSTEM PIPELINE)
+## III. KIẾN TRÚC PHẦN MỀM BẤT ĐỒNG BỘ & ĐIỀU PHỐI ĐA TẦNG (SYSTEM PIPELINE)
 
 Hệ thống PI-Guard được thiết kế như một **Asynchronous High-Throughput Proxy Middleware** đặt trước ứng dụng LLM, kết hợp 4 lớp tối ưu hóa phần mềm:
 
-```
-[ Client Request: POST /v1/chat/completions ]
-                    │
-                    ▼
-┌───────────────────────────────────────────────────────────────┐
-│ CẤP ĐỘ 1: IN-MEMORY CACHE & EXACT-MATCH BLOOM FILTER          │
-│ • Kiểm tra hàm băm SHA-256 của Prompt trong Redis / LRU Cache │
-│ • Nếu trùng lặp (Cache Hit): Trả kết quả ngay trong < 0.2ms   │
-└───────────────────────────────┬───────────────────────────────┘
-                                │ Cache Miss
-                                ▼
-┌───────────────────────────────────────────────────────────────┐
-│ CẤP ĐỘ 2: HEURISTIC PRE-PROCESSING & UNICODE NORMALIZER       │
-│ • NFKC Normalization làm phẳng ký tự đồng hình                │
-│ • Stripping ký tự tàng hình (\u200B) và Base64 Decoder        │
-│ • Thời gian xử lý: ~0.5ms                                     │
-└───────────────────────────────┬───────────────────────────────┘
-                                │
-                                ▼
-┌───────────────────────────────────────────────────────────────┐
-│ CẤP ĐỘ 3: TẦNG 1 TF-IDF SYNTACTIC EARLY-EXIT GATE             │
-│ • Trích xuất Character n-grams (3-5)                          │
-│ • Nếu P_tfidf > 0.85 (Tấn công rõ ràng) -> BLOCK (Early Exit) │
-│ • Nếu P_tfidf < 0.15 (Lành tính tuyệt đối) -> PASS (Fast Pass)│
-│ • Thời gian xử lý: ~2.8ms                                     │
-└───────────────────────────────┬───────────────────────────────┘
-                                │ Phân vân (0.15 <= P <= 0.85) (~15-20% traffic)
-                                ▼
-┌───────────────────────────────────────────────────────────────┐
-│ CẤP ĐỘ 4: TẦNG 2 DEBERTA-V3 ONNX INT8 DEEP SEMANTIC GATE      │
-│ • Disentangled Attention phân tích ý định ngữ nghĩa sâu       │
-│ • Thời gian xử lý: ~12.8ms                                    │
-└───────────────────────────────┬───────────────────────────────┘
-                                │
-                                ▼
-        [ Quyết Định An Toàn & Chuyển Tiếp Sang Target LLM ]
+```mermaid
+flowchart TD
+    Req["Client Request: POST /v1/chat/completions"] --> L1["Cấp độ 1: In-Memory Cache & Bloom Filter<br/>Kiểm tra SHA-256 Prompt trong Redis / LRU<br/>Cache Hit: Phản hồi ngay (< 0.2ms)"]
+    L1 -->|Cache Miss| L2["Cấp độ 2: Heuristic Pre-processing & Unicode Normalizer<br/>NFKC Normalization làm phẳng ký tự đồng hình<br/>Khử ký tự tàng hình & Base64 Decoder (~0.5ms)"]
+    L2 --> L3{"Cấp độ 3: Tầng 1 TF-IDF Fast-Exit Gate (~2.8ms)<br/>Trích xuất Character n-grams (3-5)"}
+    L3 -->|P > 0.85 Tấn công rõ ràng| Block["BLOCK (Early Exit)"]
+    L3 -->|P < 0.15 Benign độ tin cậy cao| Pass["PASS (Fast Pass)"]
+    L3 -->|0.15 <= P <= 0.85 Vùng phân vân| L4["Cấp độ 4: Tầng 2 DeBERTa-v3 ONNX INT8 (~12.8ms)<br/>Disentangled Attention phân tích ý định ngữ nghĩa"]
+    L4 --> Dec["Quyết Định Phân Loại & Chuyển Tiếp Sang LLM Đích"]
 ```
 
 ---
 
-## 🗜️ IV. CÁC HƯỚNG TỐI ƯU HÓA BỔ TRỢ: CHƯNG CẤT TRI THỨC & CẮT TỈA TRỌNG SỐ
+## IV. CÁC HƯỚNG TỐI ƯU HÓA BỔ TRỢ: CHƯNG CẤT TRI THỨC & CẮT TỈA TRỌNG SỐ
 
 Bên cạnh Lượng hóa INT8, các kỹ thuật nén mô hình bổ trợ giúp định hình bức tranh nghiên cứu toàn diện:
 
@@ -129,20 +88,20 @@ Bên cạnh Lượng hóa INT8, các kỹ thuật nén mô hình bổ trợ giú
 
 ---
 
-## 📊 V. TỔNG HỢP MA TRẬN KỸ THUẬT TỐI ƯU HÓA TRONG PI-GUARD
+## V. TỔNG HỢP MA TRẬN KỸ THUẬT TỐI ƯU HÓA TRONG PI-GUARD
 
 | Kỹ Thuật Tối Ưu | Cơ Chế Tác Động | Mức Độ Giảm Độ Trễ | Mức Độ Tiết Kiệm RAM | Tác Động Lên Độ Chính Xác ($F_1$) | Trạng Thái Áp Dụng |
 | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Two-Tier Early Exit** | Lọc 80% traffic bằng TF-IDF | **~75% (từ 15ms xuống 3ms)** | Không đổi | Không đổi (FPR < 1.1%) | ✅ **Trọng tâm đề tài** |
-| **Dynamic INT8 Quantization** | Nén trọng số FP32 $\rightarrow$ INT8 | **~3.5x tăng tốc trên CPU** | **Giảm 73.4%** | $\Delta F_1 = -0.21\%$ (Rất nhỏ) | ✅ **Trọng tâm đề tài** |
-| **ONNX Operator Fusion** | Gộp FastGELU & FusedAttention | **~25% tăng tốc suy luận** | Giảm phân mảnh Cache | $0.0\%$ (Bảo toàn toán học) | ✅ **Trọng tâm đề tài** |
-| **Unicode & Cipher Normalizer** | Giải mã Base64 & khử \u200B | Ngăn chặn lọt lưới | Cực nhẹ (< 1MB) | **Tăng 12% F1 trên Adversarial** | ✅ **Trọng tâm đề tài** |
-| **Exact-Match In-Memory Cache** | Băm SHA-256 kiểm tra mẫu trùng | **> 98% (chỉ tốn < 0.2ms)** | Phụ thuộc kích thước cache | $0.0\%$ (Khớp chính xác 100%) | ✅ **Tích hợp API Gateway** |
-| **Knowledge Distillation** | Nén DeBERTa-base $\rightarrow$ small | ~2x tăng tốc | Giảm 50% | $\Delta F_1 \approx -1.2\%$ | ⚠️ *Nghiên cứu mở rộng* |
+| **Two-Tier Early Exit** | Lọc 80% traffic bằng TF-IDF | **~75% (từ 15ms xuống 3ms)** | Không đổi | Không đổi (FPR < 1.1%) | Trọng tâm đề tài |
+| **Dynamic INT8 Quantization** | Nén trọng số FP32 $\rightarrow$ INT8 | **~3.5x tăng tốc trên CPU** | **Giảm 73.4%** | $\Delta F_1 = -0.21\%$ (Rất nhỏ) | Trọng tâm đề tài |
+| **ONNX Operator Fusion** | Gộp FastGELU & FusedAttention | **~25% tăng tốc suy luận** | Giảm phân mảnh Cache | $0.0\%$ (Bảo toàn toán học) | Trọng tâm đề tài |
+| **Unicode & Cipher Normalizer** | Giải mã Base64 & khử \u200B | Ngăn chặn lọt lưới | Cực nhẹ (< 1MB) | **Tăng 12% F1 trên Adversarial** | Trọng tâm đề tài |
+| **Exact-Match In-Memory Cache** | Băm SHA-256 kiểm tra mẫu trùng | **> 98% (chỉ tốn < 0.2ms)** | Phụ thuộc kích thước cache | $0.0\%$ (Khớp chính xác 100%) | Tích hợp API Gateway |
+| **Knowledge Distillation** | Nén DeBERTa-base $\rightarrow$ small | ~2x tăng tốc | Giảm 50% | $\Delta F_1 \approx -1.2\%$ | Hướng nghiên cứu mở rộng |
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO HỌC THUẬT (VERIFIED ACADEMIC REFERENCES)
+## TÀI LIỆU THAM KHẢO HỌC THUẬT (VERIFIED ACADEMIC REFERENCES)
 
 <a id="ref1"></a>**[1]** T. Dao, D. Y. Fu, S. Ermon, A. Rudra, and C. Ré, "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness," in *Advances in Neural Information Processing Systems (NeurIPS 2022)*, vol. 35, pp. 16344–16359, 2022. Link: [https://arxiv.org/abs/2205.14135](https://arxiv.org/abs/2205.14135).
 

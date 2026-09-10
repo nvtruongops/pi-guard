@@ -5,24 +5,16 @@ Tài liệu này cung cấp bức tranh lịch sử toàn diện, phân tích ng
 
 ---
 
-## ❓ 1. TẠI SAO LỊCH SỬ LẠI BẮT ĐẦU VÀO NĂM 2022? (TẠI SAO KHÔNG PHẢI TRƯỚC ĐÓ?)
+## 1. Tại Sao Lịch Sử Lại Bắt Đầu Vào Năm 2022? (Tại Sao Không Phải Trước Đó?)
 
 Để hiểu bản chất của Prompt Injection và Jailbreak, trước hết phải trả lời câu hỏi học thuật nền tảng: **Tại sao trước năm 2022, trong toàn bộ y văn khoa học máy tính và an ninh mạng, hai khái niệm này hoàn toàn không tồn tại?**
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                        BƯỚC CHUYỂN DỊCH HỆ TIÊN ĐỀ TRONG AN NINH NLP                                  │
-├───────────────────────────────────────────┬────────────────────────────────────────────────────────────┤
-│    KỶ NGUYÊN TRƯỚC 2022 (PRE-2022)        │           KỶ NGUYÊN 2022 TRỞ ĐI (2022 – 2026)              │
-│    (Classifier & Autocompletion)          │           (Instruction Tuning & Aligned LLMs)              │
-├───────────────────────────────────────────┼────────────────────────────────────────────────────────────┤
-│ • Mô hình: BERT, RoBERTa, GPT-2, GPT-3 thô│ • Mô hình: InstructGPT, ChatGPT, GPT-4, Claude, Gemini...   │
-│ • Cơ chế: Phân loại nhãn hoặc nối chữ thô │ • Cơ chế: Tuân thủ mệnh lệnh hội thoại (Instruction Follow)│
-│ • Hàng rào an toàn: KHÔNG CÓ (No Safety)  │ • Hàng rào an toàn: RLHF Alignment, Developer System Prompt│
-│ • Tấn công: Adversarial Perturbations     │ • Tấn công: Prompt Injection & Jailbreak                   │
-│   (HotFlip 2018, TextFooler 2020)         │   (Perez 2022, DAN 2022, GCG 2023, Cipher 2024)            │
-└───────────────────────────────────────────┴────────────────────────────────────────────────────────────┘
-```
+| Đặc Điểm So Sánh | Kỷ Nguyên Trước 2022 (Pre-2022)<br>*(Classifier & Autocompletion)* | Kỷ Nguyên 2022 Trở Đi (2022–2026)<br>*(Instruction Tuning & Aligned LLMs)* |
+| :--- | :--- | :--- |
+| **Mô hình đại diện** | BERT, RoBERTa, GPT-2, GPT-3 Base | InstructGPT, ChatGPT, GPT-4, Claude, Gemini |
+| **Cơ chế hoạt động** | Phân loại nhãn hoặc dự đoán nối tiếp token rời rạc | Tuân thủ mệnh lệnh hội thoại (Instruction Following) qua RLHF |
+| **Hàng rào an toàn** | Không có cơ chế an toàn phân quyền (No Safety Alignment) | RLHF Alignment, Safety Refusal, Developer System Prompt |
+| **Bề mặt tấn công** | Adversarial Perturbations (HotFlip 2018, TextFooler 2020) | Prompt Injection & Jailbreak (Perez 2022, DAN 2022, GCG 2023, Cipher 2024) |
 
 ---
 
@@ -56,32 +48,59 @@ Tài liệu này cung cấp bức tranh lịch sử toàn diện, phân tích ng
 
 ---
 
-## ⏳ 2. BIÊN NIÊN SỬ TIẾN HÓA TOÀN DIỆN (CHRONOLOGY 2022 – 2026)
+## 2. Biên Niên Sử Tiến Hóa Toàn Diện (Chronology 2022–2026)
 
 Dưới đây là biên niên sử chi tiết, trong đó **từng cột mốc đều được định danh bằng công trình khoa học hoặc sự kiện kỹ thuật được công nhận rộng rãi**:
 
-```
-2022 (Khởi nguyên)             2023 (Mở rộng & Tự động)         2024 (Học thuật hóa & Nghịch lý)   2025-2026 (Agent & Đa tầng)
-  │                                   │                                   │                                   │
-  ├─ 01/2022: InstructGPT (RLHF)      ├─ 02/2023: Greshake et al.         ├─ 03/2024: Zhou (EasyJailbreak)    ├─ 2025: OWASP LLM01:2025 v2
-  │  [Ouyang et al., NeurIPS 2022]    │  Indirect Injection [ACM AISEC]   │  Adversarial Mutation Framework   │  Chuẩn hóa phòng thủ toàn diện
-  │                                   │                                   │                                   │
-  ├─ 09/2022: Riley Goodside          ├─ 02/2023: Kang et al.             ├─ 04/2024: Anthropic Many-Shot     ├─ 2025: Morris II AI Worm
-  │  Phát hiện Prompt Injection       │  Linux Terminal Sim [arXiv]       │  [Anil et al., NeurIPS 2024]      │  [Cohen et al.] Lây nhiễm đa Agent
-  │                                   │                                   │                                   │
-  ├─ 30/11/2022: ChatGPT ra mắt       ├─ 07/2023: Zou et al. (CMU)        ├─ 04/2024: Microsoft Crescendo     ├─ 2026: Tencent Zhuque Lab
-  │  [OpenAI System Release]          │  GCG Gradient Attack [arXiv]      │  [Russinovich et al., arXiv]      │  AI Infra Guard (26+ Operators)
-  │                                   │                                   │                                   │
-  ├─ 12/2022: Perez & Ribeiro         ├─ 08/2023: OWASP LLM01             ├─ 05/2024: Shen et al. (ACM CCS)   └─ 2026: PI-Guard Capstone
-  │  Định danh Injection [NeurIPS]    │  Xếp hạng nguy hiểm số 1          │  15,140 In-the-Wild Jailbreaks    Dual-Tier Guardrail
-  │                                   │                                   │                                   (< 30ms latency, FPR < 1.5%)
-  └─ 12/2022: Reddit DAN 1.0          └─ 10/2023: Chao et al. (PAIR)      └─ 10/2024: Yuan et al. (ICLR)
-     [u/walkerspider, Reddit]            Attacker-Target Triad [arXiv]       Cipher Attacks (Base64/ROT13)
+```mermaid
+flowchart LR
+    subgraph E2022["1. Năm 2022: Khởi Nguyên"]
+        direction TB
+        M1["01/2022: InstructGPT (RLHF)<br/>[Ouyang et al., NeurIPS 2022]"]
+        M2["09/2022: Riley Goodside<br/>Phát hiện Prompt Injection"]
+        M3["30/11/2022: Ra mắt ChatGPT<br/>[OpenAI System Release]"]
+        M4["12/2022: Perez & Ribeiro<br/>Định danh Injection [NeurIPS]"]
+        M5["12/2022: DAN 1.0 (Reddit)<br/>Jailbreak tự nhiên đầu tiên"]
+        M1 --> M2 --> M3 --> M4 --> M5
+    end
+
+    subgraph E2023["2. Năm 2023: Tự Động Hóa"]
+        direction TB
+        M6["02/2023: Greshake et al.<br/>Indirect Injection [ACM AISEC]"]
+        M7["07/2023: Zou et al. (CMU)<br/>GCG Gradient Attack [arXiv]"]
+        M8["08/2023: OWASP LLM01:2023<br/>Xếp hạng rủi ro số 1"]
+        M9["10/2023: Chao et al. (PAIR)<br/>Tự động hóa bẻ khóa jailbreak"]
+        M6 --> M7 --> M8 --> M9
+    end
+
+    subgraph E2024["3. Năm 2024: Học Thuật Hóa"]
+        direction TB
+        M10["03/2024: Zhou (EasyJailbreak)<br/>Framework đột biến đối kháng"]
+        M11["04/2024: Crescendo (Microsoft)<br/>Tấn công leo thang đa lượt"]
+        M12["05/2024: Shen et al. (ACM CCS)<br/>Khảo sát 15,140 mẫu DAN"]
+        M13["10/2024: Yuan et al. (ICLR)<br/>Cipher Attack (Base64/ROT13)"]
+        M10 --> M11 --> M12 --> M13
+    end
+
+    subgraph E2025_2026["4. 2025-2026: Phân Tầng & Guardrail"]
+        direction TB
+        M14["2025: OWASP LLM01:2025 v2<br/>Chuẩn hóa định vị phòng thủ"]
+        M15["2026: Tencent Zhuque Lab<br/>AI Infra Guard (26+ toán tử)"]
+        M16["2026: Đề tài PI-Guard<br/>Cascade Dual-Tier Guardrail"]
+        M14 --> M15 --> M16
+    end
+
+    E2022 --> E2023 --> E2024 --> E2025_2026
+
+    style E2022 fill:#e3f2fd,stroke:#1565c0,stroke-width:1.5px;
+    style E2023 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1.5px;
+    style E2024 fill:#fff3e0,stroke:#e65100,stroke-width:1.5px;
+    style E2025_2026 fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px;
 ```
 
 ---
 
-## 🏛️ 3. CHI TIẾT TỪNG GIAI ĐOẠN TIẾN HÓA & DẪN CHỨNG HỌC THUẬT
+## 3. Chi Tiết Từng Giai Đoạn Tiến Hóa & Dẫn Chứng Học Thuật
 
 ### Giai Đoạn 1: Năm Khởi Nguyên 2022 (The Genesis Year)
 

@@ -1,41 +1,27 @@
 # KIẾN TRÚC ONNX RUNTIME & TỐI ƯU HÓA ĐỒ THỊ TÍNH TOÁN (GRAPH OPTIMIZATION)
 ## Cơ Chế Tăng Tốc Suy Luận Transformer Guardrail Trên Hạ Tầng CPU Đa Nhân
 
-> 📑 **Tài liệu tham chiếu chuẩn mực**: ONNX Runtime Architecture Whitepaper [[1]](#ref1), Bai et al. (IEEE Micro 2021) [[2]](#ref2), Yao et al. (NeurIPS 2022) (*ZeroQuant* [[3]](#ref3)).  
-> 🎯 **Mục tiêu trong PI-Guard**: Chuyển đổi mô hình PyTorch `DeBERTaForSequenceClassification` sang định dạng chuẩn ONNX và áp dụng các kỹ thuật tổng hợp toán tử (Operator Fusion) để đạt độ trễ suy luận P95 $< 15\text{ms}$ trên CPU.
+> **Tài liệu tham chiếu chuẩn mực**: ONNX Runtime Architecture Whitepaper [[1]](#ref1), Bai et al. (IEEE Micro 2021) [[2]](#ref2), Yao et al. (NeurIPS 2022) (*ZeroQuant* [[3]](#ref3)).  
+> **Mục tiêu trong PI-Guard**: Chuyển đổi mô hình PyTorch `DeBERTaForSequenceClassification` sang định dạng chuẩn ONNX và áp dụng các kỹ thuật tổng hợp toán tử (Operator Fusion) để đạt độ trễ suy luận P95 $< 15\text{ms}$ trên CPU.
 
 ---
 
-## 🏗️ I. TỔNG QUAN VỀ KIẾN TRÚC ONNX RUNTIME ENGINE
+## I. TỔNG QUAN VỀ KIẾN TRÚC ONNX RUNTIME ENGINE
 
 **ONNX (Open Neural Network Exchange)** là một định dạng mở đại diện cho các mô hình học máy và học sâu dưới dạng một Đồ thị Luồng Dữ liệu Không Có Chu Trình (Directed Acyclic Graph - DAG). Mỗi nút (Node) trong đồ thị đại diện cho một toán tử toán học chuẩn hóa (như `MatMul`, `Add`, `Softmax`, `LayerNormalization`), và các cạnh (Edges) đại diện cho các tensor dữ liệu đa chiều.
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│               KIẾN TRÚC NỘI TẠI CỦA ONNX RUNTIME ENGINE TRONG PI-GUARD                 │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 1. MODEL PARSER & GRAPH LOADER                                                         │
-│    Nạp mô hình DeBERTa-v3 INT8 (.onnx) -> Khởi tạo biểu diễn đồ thị DAG trung gian     │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 2. GRAPH OPTIMIZER (Bộ Tối Ưu Đồ Thị 3 Cấp Độ)                                         │
-│    • Level 1 (Basic): Constant Folding, Dead Node Elimination, Redundant Cast Removal   │
-│    • Level 2 (Extended): LayerNorm Fusion, GELU Fusion, MatMul + Add -> Gemm Fusion    │
-│    • Level 3 (Layout / Architecture): Multi-Head Attention Fusion (FastAttention)      │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 3. EXECUTION PROVIDER (Bộ Thực Thi Phần Cứng)                                          │
-│    • CPU Execution Provider (Default)                                                  │
-│    • Tận dụng tập lệnh phần cứng SIMD: AVX2 / AVX-512 / Intel VNNI / ARM NEON          │
-│    • Bộ cấp phát bộ nhớ tùy biến: MLAS (Microsoft Linear Algebra Subprograms)          │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 4. THREADING & CONCURRENCY CONTROLLER                                                  │
-│    • Intra-Op Threading: Đa luồng tính toán song song bên trong từng phép toán ma trận │
-│    • Inter-Op Threading: Thực thi song song các nhánh đồ thị độc lập                   │
-└────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    M1["1. Model Parser & Graph Loader<br/>Nạp DeBERTa-v3 INT8 (.onnx) & dựng đồ thị DAG"] --> M2["2. Graph Optimizer (3 Cấp Độ)<br/>L1: Constant Folding & Dead Node Removal<br/>L2: LayerNorm & GELU Fusion<br/>L3: Multi-Head Attention Fusion"]
+    M2 --> M3["3. Execution Provider (Phần Cứng)<br/>CPU Execution Provider (MLAS Core Engine)<br/>Tận dụng SIMD: AVX2 / AVX-512 / Intel VNNI / ARM NEON"]
+    M3 --> M4["4. Threading & Concurrency Controller<br/>Intra-Op: Đa luồng tính toán song song ma trận<br/>Inter-Op: Kiểm soát nhánh độc lập tuần tự"]
 ```
 
 ---
 
-## ⚡ II. BA CẤP ĐỘ TỐI ƯU HÓA ĐỒ THỊ (GRAPH OPTIMIZATION LEVELS)
+---
+
+## II. BA CẤP ĐỘ TỐI ƯU HÓA ĐỒ THỊ (GRAPH OPTIMIZATION LEVELS)
 
 Khi khởi tạo một `InferenceSession` trong Python, ONNX Runtime tự động quét và viết lại đồ thị tính toán theo 3 cấp độ liên hoàn:
 
@@ -65,11 +51,11 @@ Nếu thực thi từng phép toán riêng lẻ trên CPU, bộ nhớ phải đ�
 
 ```
 [PyTorch Rời Rạc]:
-x ──► Pow(3) ──► Mul(0.044715) ──► Add(x) ──► Mul(sqrt(2/pi)) ──► Tanh ──► Add(1) ──► Mul(x) ──► Mul(0.5)
+x --> Pow(3) --> Mul(0.044715) --> Add(x) --> Mul(sqrt(2/pi)) --> Tanh --> Add(1) --> Mul(x) --> Mul(0.5)
 (Tiêu tốn 8 lần đọc/ghi bộ nhớ đệm Cache L1/L2)
 
 [ONNX Runtime Operator Fusion]:
-x ──► [ FastGELU_INT8_Kernel (Xử lý trọn gói trong 1 chu kỳ thanh ghi SIMD) ] ──► y
+x --> [ FastGELU_INT8_Kernel (Xử lý trọn gói trong 1 chu kỳ thanh ghi SIMD) ] --> y
 (Tiết kiệm 87.5% lưu lượng truy cập bộ nhớ!)
 ```
 
@@ -80,44 +66,34 @@ ONNX Runtime phát hiện toàn bộ cụm đồ thị này và thay thế bằn
 
 ---
 
-## 💻 III. TĂNG TỐC PHẦN CỨNG BẰNG TẬP LỆNH SIMD & VNNI TRÊN CPU
+## III. TĂNG TỐC PHẦN CỨNG BẰNG TẬP LỆNH SIMD & VNNI TRÊN CPU
 
 Đối với một Guardrail API triển khai trên hạ tầng máy chủ đám mây (Cloud VM không có GPU chuyên dụng), việc tận dụng tập lệnh **SIMD (Single Instruction, Multiple Data)** là chìa khóa để đạt độ trễ cực thấp:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                 TIẾN TRÌNH TIẾN HÓA TẬP LỆNH SIMD TRÊN CPU CHO AI                      │
-├───────────────────┬─────────────┬─────────────┬────────────────────────────────────────┤
-│ Tập Lệnh Phần Cứng│ Độ Rộng Bit │ Số Lượng INT8│ Băng Thông Tính Toán So Với Chuẩn Scalar│
-├───────────────────┼─────────────┼─────────────┼────────────────────────────────────────┤
-│ Chuẩn Scalar C++  │ 32-bit      │ 1 số/lệnh   │ 1.0x (Baseline chậm)                   │
-│ Intel/AMD AVX2    │ 256-bit     │ 32 số/lệnh  │ ~8x - 12x                              │
-│ Intel AVX-512     │ 512-bit     │ 64 số/lệnh  │ ~18x - 24x                             │
-│ Intel VNNI (DL)   │ 512-bit     │ 64 số + FMA │ ~35x - 42x (Chuyên dụng cho Deep Learn)│
-│ ARM NEON (Apple/M)│ 128-bit     │ 16 số/lệnh  │ ~6x - 8x                               │
-└───────────────────┴─────────────┴─────────────┴────────────────────────────────────────┘
-```
+| Tập Lệnh Phần Cứng | Độ Rộng Bit | Số Lượng INT8 Xử Lý | Băng Thông Tính Toán So Với Chuẩn Scalar |
+| :--- | :--- | :--- | :--- |
+| **Chuẩn Scalar C++** | 32-bit | 1 số/lệnh | 1.0x (Baseline tuần tự) |
+| **Intel/AMD AVX2** | 256-bit | 32 số/lệnh | ~8x - 12x |
+| **Intel AVX-512** | 512-bit | 64 số/lệnh | ~18x - 24x |
+| **Intel VNNI (Deep Learning)** | 512-bit | 64 số + FMA | ~35x - 42x (Chuyên dụng cho Deep Learning) |
+| **ARM NEON (Apple Silicon / AWS Graviton)** | 128-bit | 16 số/lệnh | ~6x - 8x |
 
 - **Tập lệnh Intel VNNI (Vector Neural Network Instructions)**: Cung cấp lệnh máy `VPDPBUSD` cho phép thực hiện phép nhân 4 cặp số nguyên 8-bit và cộng dồn vào một thanh ghi 32-bit trong **đúng 1 chu kỳ xung nhịp**.
 - **Thư viện MLAS (Microsoft Linear Algebra Subprograms)**: Bộ nhân lõi bên trong ONNX Runtime tự động nhận diện cấu hình CPU tại runtime và nạp kernel assembly tối ưu nhất cho vi kiến trúc đó.
 
 ---
 
-## 🧵 IV. THIẾT KẾ ĐA LUỒNG & PHÂN PHỐI TẢI CHO GUARDRAIL API (THREADING DESIGN)
+## IV. THIẾT KẾ ĐA LUỒNG & PHÂN PHỐI TẢI CHO GUARDRAIL API (THREADING DESIGN)
 
 Trong môi trường máy chủ bất đồng bộ (FastAPI / Uvicorn Workers), việc phân bổ tài nguyên CPU đa nhân phải được cấu hình chính xác để tránh hiện tượng tranh chấp tài nguyên (Thread Contention):
 
-```
-                                [ FastAPI / Uvicorn Server ]
-                                (4 Worker Processes độc lập)
-                                              │
-                    ┌─────────────────────────┼─────────────────────────┐
-                    ▼                         ▼                         ▼
-            [ Worker 1 (Core 0-1) ]   [ Worker 2 (Core 2-3) ]   [ Worker 3 (Core 4-5) ]
-                    │                         │                         │
-            ort.InferenceSession      ort.InferenceSession      ort.InferenceSession
-            intra_op_threads = 2      intra_op_threads = 2      intra_op_threads = 2
-            inter_op_threads = 1      inter_op_threads = 1      inter_op_threads = 1
+```mermaid
+flowchart TD
+    S["FastAPI / Uvicorn Server<br/>(4 Worker Processes độc lập)"]
+    S --> W1["Worker 1 (Cores 0-1)<br/>ort.InferenceSession<br/>intra_op=2, inter_op=1"]
+    S --> W2["Worker 2 (Cores 2-3)<br/>ort.InferenceSession<br/>intra_op=2, inter_op=1"]
+    S --> W3["Worker 3 (Cores 4-5)<br/>ort.InferenceSession<br/>intra_op=2, inter_op=1"]
+    S --> W4["Worker 4 (Cores 6-7)<br/>ort.InferenceSession<br/>intra_op=2, inter_op=1"]
 ```
 
 ### Nguyên tắc vàng cấu hình:
@@ -127,28 +103,21 @@ Trong môi trường máy chủ bất đồng bộ (FastAPI / Uvicorn Workers), 
 
 ---
 
-## 📈 V. BẢNG ĐỐI SOÁNH HIỆU NĂNG SUY LUẬN TRÊN MÁY CHỦ THỰC TẾ
+## V. BẢNG ĐỐI SOÁNH HIỆU NĂNG SUY LUẬN TRÊN MÁY CHỦ THỰC TẾ
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│      ĐỐI SOÁNH ĐỘ TRỄ SUY LUẬN DEBERTA-V3 (CHUỖI 128 TOKENS TRÊN CPU INTEL XEON)       │
-├──────────────────────────────────────┬─────────────┬─────────────┬─────────────────────┤
-│ Cấu Hình Môi Trường Thực Thi         │ Latency P50 │ Latency P95 │ Bộ Nhớ Tiêu Thụ     │
-├──────────────────────────────────────┼─────────────┼─────────────┼─────────────────────┤
-│ 1. PyTorch Eager FP32 (Mặc định)     │ 48.2 ms     │ 62.5 ms     │ 1,420 MB            │
-│ 2. PyTorch TorchScript JIT FP32      │ 41.5 ms     │ 54.1 ms     │ 1,380 MB            │
-│ 3. ONNX Runtime FP32 (Optimized)     │ 27.8 ms     │ 36.4 ms     │ 520 MB              │
-│ 4. ONNX Runtime INT8 (Dynamic PTQ)   │ 11.2 ms     │ 14.8 ms     │ 280 MB              │
-│ 5. PI-Guard Two-Tier Pipeline        │ 3.2 ms      │ 12.5 ms     │ 310 MB              │
-│    (TF-IDF Fast Exit 80% + ONNX INT8)│ (Trúng T1)  │ (Vào T2)    │ (Tổng thể hệ thống) │
-└──────────────────────────────────────┴─────────────┴─────────────┴─────────────────────┘
-```
+| Cấu Hình Môi Trường Thực Thi | Latency P50 | Latency P95 | Bộ Nhớ Tiêu Thụ |
+| :--- | :--- | :--- | :--- |
+| **1. PyTorch Eager FP32 (Mặc định)** | 48.2 ms | 62.5 ms | 1,420 MB |
+| **2. PyTorch TorchScript JIT FP32** | 41.5 ms | 54.1 ms | 1,380 MB |
+| **3. ONNX Runtime FP32 (Optimized)** | 27.8 ms | 36.4 ms | 520 MB |
+| **4. ONNX Runtime INT8 (Dynamic PTQ)** | 11.2 ms | 14.8 ms | 280 MB |
+| **5. PI-Guard Two-Tier Pipeline**<br/>(TF-IDF Fast Exit 80% + ONNX INT8) | 3.2 ms (Trúng T1) | 12.5 ms (Vào T2) | 310 MB (Tổng thể) |
 
-> **Kết luận**: Việc kết hợp định dạng ONNX Runtime INT8 với kiến trúc điều phối 2 tầng (Two-Tier Cascade) giúp PI-Guard đạt độ trễ trung bình $\text{P50} \approx 3.2\text{ms}$ và $\text{P95} \approx 12.5\text{ms}$, nhanh hơn **gần 5 lần** so với mô hình PyTorch FP32 gốc, hoàn toàn đáp ứng các tiêu chuẩn dịch vụ khắt khe nhất trong môi trường doanh nghiệp.
+> **Kết luận**: Việc kết hợp định dạng ONNX Runtime INT8 với kiến trúc điều phối 2 tầng (Two-Tier Cascade) giúp PI-Guard đạt độ trễ trung bình $\text{P50} \approx 3.2\text{ms}$ và $\text{P95} \approx 12.5\text{ms}$, nhanh hơn **gần 5 lần** so với mô hình PyTorch FP32 gốc, thỏa mãn trọn vẹn yêu cầu khắt khe về độ trễ thấp P95 < 30ms của hệ thống guardrail thực nghiệm.
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO HỌC THUẬT (VERIFIED ACADEMIC REFERENCES)
+## TÀI LIỆU THAM KHẢO HỌC THUẬT (VERIFIED ACADEMIC REFERENCES)
 
 <a id="ref1"></a>**[1]** Microsoft ONNX Runtime Team, "ONNX Runtime: High Performance Machine Learning Inference Engine," *Microsoft Technical Whitepaper*, 2021. Link: [https://github.com/microsoft/onnxruntime](https://github.com/microsoft/onnxruntime).
 

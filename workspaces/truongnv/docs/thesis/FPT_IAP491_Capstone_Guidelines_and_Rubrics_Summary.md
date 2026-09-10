@@ -1,5 +1,5 @@
-# HƯỚNG DẪN & TIÊU CHÍ ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP FPT UNIVERSITY
-## 🎓 Quy Chuẩn Học Thuật IAP491 (Research-Based Thesis) Cho Ngành An Toàn Thông Tin
+#HƯỚNG DẪN & TIÊU CHÍ ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP FPT UNIVERSITY
+## Quy Chuẩn Học Thuật IAP491 (Research-Based Thesis) Cho Ngành An Toàn Thông Tin
 
 > **Tài liệu căn cứ & trích xuất chính thức**:
 > - Quy chuẩn học thuật & tiêu chí đánh giá trích xuất từ: `docs/fpt_capstone_guide/IAP491_CP_StudentsGuideForm for Research Based Thesis.docx` *(Tài liệu tham khảo nội bộ được bảo mật, lưu trữ cục bộ)*.
@@ -10,7 +10,7 @@
 
 ---
 
-## 📜 I. QUY ĐỊNH CHUNG & ĐIỀU KIỆN THỰC HIỆN ĐỒ ÁN (COMMON REGULATIONS)
+## I. QUY ĐỊNH CHUNG & ĐIỀU KIỆN THỰC HIỆN ĐỒ ÁN (COMMON REGULATIONS)
 
 Căn cứ quy định đào tạo bậc Đại học của Trường Đại học FPT cho học phần Khóa luận Tốt nghiệp (Capstone Project - CP):
 
@@ -27,24 +27,18 @@ Căn cứ quy định đào tạo bậc Đại học của Trường Đại họ
 
 ---
 
-## 🏆 II. CƠ CHẾ ĐÁNH GIÁ & CÔNG THỨC TÍNH ĐIỂM (EVALUATION SYSTEM)
+## II. CƠ CHẾ ĐÁNH GIÁ & CÔNG THỨC TÍNH ĐIỂM (EVALUATION SYSTEM)
 
 Khóa luận được đánh giá toàn diện qua hai trụ cột: **Điểm Quá Trình (50%)** và **Điểm Bảo Vệ Hội Đồng (50%)** trên **Thang điểm 10 (làm tròn 1 chữ số thập phân)**.
 
 $$\text{Final Project Mark} = (\text{Process Mark / Continuous Assessment} \times 50\%) + (\text{Presentation Mark} \times 50\%)$$
 
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                             TỔNG ĐIỂM ĐỒ ÁN TỐT NGHIỆP (PROJECT MARK: 100%)                       │
-├──────────────────────────────────────────────────┬───────────────────────────────────────────────┤
-│ 📝 ĐIỂM QUÁ TRÌNH (PROCESS MARK: 50%)            │ 🏛️ ĐIỂM BẢO VỆ HỘI ĐỒNG (PRESENTATION: 50%)   │
-│ - Do Giảng viên Hướng dẫn (Supervisor) đánh giá  │ - Do Hội đồng Chấm Tốt nghiệp (Committee)     │
-│ - Chấm điểm liên tục qua 6 Báo cáo tiến độ       │   chấm điểm độc lập từng sinh viên            │
-│ - Cá nhân hóa theo mức độ đóng góp (GM ± 20%)    │ - Lấy điểm trung bình của tất cả thành viên HĐ│
-└──────────────────────────────────────────────────┴───────────────────────────────────────────────┘
-```
+| Trụ Cột Đánh Giá | Chi Tiết Thực Hiện & Quy Chuẩn |
+| :--- | :--- |
+| **ĐIỂM QUÁ TRÌNH (PROCESS MARK: 50%)** | • Do Giảng viên Hướng dẫn (Supervisor) đánh giá<br/>• Chấm điểm liên tục qua 6 Báo cáo tiến độ<br/>• Cá nhân hóa theo mức độ đóng góp (GM ± 20%) |
+| **ĐIỂM BẢO VỆ HỘI ĐỒNG (PRESENTATION: 50%)** | • Do Hội đồng Chấm Tốt nghiệp (Committee) chấm điểm độc lập từng sinh viên<br/>• Lấy điểm trung bình của tất cả thành viên HĐ |
 
-### 📊 1. Trọng Số Chi Tiết 6 Báo Cáo Tiến Độ (Continuous Assessment / Process Mark)
+### 1. Trọng Số Chi Tiết 6 Báo Cáo Tiến Độ (Continuous Assessment / Process Mark)
 
 | Báo Cáo | Tên Chương / Nội Dung Báo Cáo | Thời Gian Nộp Dự Kiến | Trọng Số Trong Process Mark | Trọng Số Trong Tổng Điểm Đồ Án |
 | :---: | :--- | :---: | :---: | :---: |
@@ -56,7 +50,7 @@ $$\text{Final Project Mark} = (\text{Process Mark / Continuous Assessment} \time
 | **Report No.6** | **Conclusion and Future Work** (Tổng kết đóng góp kỹ thuật & Hướng mở rộng) | Đầu Tuần 13 | **5%** | 2.5% |
 | **TỔNG** | **Toàn Bộ 6 Báo Cáo Đánh Giá Quá Trình** | **Tuần 1 – 13** | **100%** | **50.0%** |
 
-### 👤 2. Quy Tắc Phân Bổ Điểm Cá Nhân (Personal Mark Formula)
+### 2. Quy Tắc Phân Bổ Điểm Cá Nhân (Personal Mark Formula)
 - Trên mỗi giai đoạn báo cáo, Giảng viên Hướng dẫn sẽ chấm **Điểm Nhóm (Group Mark - GM)**.
 - Điểm cá nhân của từng sinh viên (**Personal Mark**) được xác định linh hoạt dựa trên khối lượng công việc và mức độ đóng góp thực tế:
   $$\text{Personal Mark} \in [100\% \text{ GM} - 20\% \text{ GM}, \; 100\% \text{ GM} + 20\% \text{ GM}]$$
@@ -64,7 +58,7 @@ $$\text{Final Project Mark} = (\text{Process Mark / Continuous Assessment} \time
 
 ---
 
-## 📅 III. LỘ TRÌNH THỰC HIỆN & 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)
+## III. LỘ TRÌNH THỰC HIỆN & 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)
 
 Quy trình bảo vệ đồ án tốt nghiệp Khóa luận IAP491 trong học kỳ mới (Fall 2026: 15 Tuần từ 07/09 đến 20/12/2026) được chuẩn hóa thành **4 Cột Mốc Quyết Định**:
 
@@ -94,19 +88,19 @@ Quy trình bảo vệ đồ án tốt nghiệp Khóa luận IAP491 trong học k
    - **Hồ sơ nghiệm thu**: **Report No.5 (Discussion)** + **Report No.6 (Conclusion)** + **Toàn văn Luận văn Final Thesis PDF** + Slide PPT Bảo vệ Tốt nghiệp.
    - **Trọng số**: Chiếm **20% Process Mark còn lại + 50% Presentation Mark** (60.0% tổng điểm đồ án).
 
-```
-29/08 - 06/09 ─► [ SPRINT TIỀN ĐỀ ] ──────► Họp GVHD (Meeting 1), Lọc Papers (Meeting 2), Setup Workspace
-Tuần 1 - 2 ────► Khảo sát y văn, chuẩn hóa Threat Model, soạn thảo Chapter 1 & Chapter 2
-Tuần 3 - 4 ────► [ CỘT MỐC 1: REVIEW 1 (GVHD) ] ──────────► Report No.1 (Intro) & Report No.2 (Lit Review)
-Tuần 5 - 7 ────► Data Engineering, Group-Aware Split, Baseline ML (TF-IDF) & Soạn thảo Chapter 3
-Tuần 8 ────────► [ CỘT MỐC 2: REVIEW 2 (GVHD) ] ──────────► Report No.3 (Methodology & Baseline ML)
-Tuần 9 - 12 ───► Fine-tuning DeBERTa-v3, ONNX INT8, Test Robustness, FastAPI & Dashboard Streamlit
-Tuần 13 ───────► [ CỘT MỐC 3: BÁO CÁO HỘI ĐỒNG 1 ] ──────► Report No.4 (Experimental, INT8 & Prototype)
-Tuần 14 ───────► Hoàn thiện toàn văn Luận văn 6 Chương (Final Thesis PDF), Quét Turnitin (< 20%)
-Tuần 15 ───────► [ CỘT MỐC 4: BẢO VỆ TỐT NGHIỆP FINAL ] ───► Report No.5, No.6 & BẢO VỆ TỐT NGHIỆP CHÍNH THỨC
+```mermaid
+flowchart TD
+    S0["29/08 - 06/09: SPRINT TIỀN ĐỀ<br/>Họp GVHD, Lọc Papers, Setup Workspace"] --> S1["Tuần 1 - 2: Khảo sát y văn, Threat Model, Chapter 1 & 2"]
+    S1 --> S2["Tuần 3 - 4: CỘT MỐC 1 - REVIEW 1 (GVHD)<br/>Report No.1 & Report No.2"]
+    S2 --> S3["Tuần 5 - 7: Data Engineering, Group-Aware Split, Baseline ML & Chapter 3"]
+    S3 --> S4["Tuần 8: CỘT MỐC 2 - REVIEW 2 (GVHD)<br/>Report No.3"]
+    S4 --> S5["Tuần 9 - 12: Fine-tuning DeBERTa-v3, ONNX INT8, Test Robustness, API & Dashboard"]
+    S5 --> S6["Tuần 13: CỘT MỐC 3 - BÁO CÁO HỘI ĐỒNG 1<br/>Report No.4"]
+    S6 --> S7["Tuần 14: Hoàn thiện Luận văn 6 Chương, Quét Turnitin (&lt; 20%)"]
+    S7 --> S8["Tuần 15: CỘT MỐC 4 - BẢO VỆ TỐT NGHIỆP FINAL<br/>Report No.5, No.6 & BẢO VỆ CHÍNH THỨC"]
 ```
 
-### 📋 Bảng Chi Tiết Tiến Trình 15 Tuần & Hạng Mục Bàn Giao:
+### Bảng Chi Tiết Tiến Trình 15 Tuần & Hạng Mục Bàn Giao:
 
 | Giai Đoạn & Tuần | Thời Gian Cụ Thể | Cột Mốc / Sự Kiện | Sản Phẩm Bàn Giao Cụ Thể | Trọng Số Điểm |
 | :--- | :---: | :--- | :--- | :---: |
@@ -119,7 +113,7 @@ Tuần 15 ───────► [ CỘT MỐC 4: BẢO VỆ TỐT NGHIỆP FI
 
 ---
 
-## 📚 IV. CẤU TRÚC CHUẨN TOÀN VĂN LUẬN VĂN HỌC THUẬT (6 CHƯƠNG)
+## IV. CẤU TRÚC CHUẨN TOÀN VĂN LUẬN VĂN HỌC THUẬT (6 CHƯƠNG)
 
 Mỗi cuốn Luận văn Khóa luận Tốt nghiệp IAP491 tại Đại học FPT bắt buộc tuân thủ chặt chẽ cấu trúc chuẩn sau:
 
@@ -177,9 +171,9 @@ PHỤ LỤC (Appendices - Mẫu prompt đối kháng, tài liệu API Endpoints,
 
 ---
 
-## ✍️ V. QUY CHUẨN ĐỊNH DẠNG & TRÌNH BÀY HỌC THUẬT (FORMATTING STANDARDS)
+## V. QUY CHUẨN ĐỊNH DẠNG & TRÌNH BÀY HỌC THUẬT (FORMATTING STANDARDS)
 
-### 📌 1. Yêu Cầu Đối Với Phần Tóm Tắt (Abstract)
+### 1. Yêu Cầu Đối Với Phần Tóm Tắt (Abstract)
 - **Độ dài**: Bắt buộc trong khoảng **200 đến 300 từ**.
 - **Tính chất**: Phải là một văn bản độc lập hoàn chỉnh (**stand-alone text**): không viết tắt chưa giải thích, không dẫn nguồn URL, không dùng citation tham chiếu `[N]`, không dùng khái niệm chưa định nghĩa.
 - **Cấu trúc 4 phần chuẩn mực (Structured Abstract without headings)**:
@@ -189,33 +183,29 @@ PHỤ LỤC (Appendices - Mẫu prompt đối kháng, tài liệu API Endpoints,
   4. *(4) Conclusions*: Nêu các kết luận then chốt và ý nghĩa ứng dụng thực tiễn của đề tài.
 - **Từ khóa (Keywords)**: Cung cấp từ **3 đến 10 từ khóa** học thuật chuẩn quốc tế.
 
-### 📌 2. Yêu Cầu Về Danh Mục Tài Liệu Tham Khảo (References)
+### 2. Yêu Cầu Về Danh Mục Tài Liệu Tham Khảo (References)
 - **Chuẩn trích dẫn**: Sử dụng định dạng chuẩn **IEEE Style**.
 - **Đánh số**: Tài liệu tham khảo được đánh số theo đúng thứ tự xuất hiện trong toàn văn bài viết `[1], [2], [3]...` (bao gồm cả trong chú thích hình ảnh và bảng biểu).
 - **Nguyên tắc Invariant**: Toàn bộ tài liệu tham khảo phải có tính kiểm chứng học thuật (Peer-reviewed Papers, Tech Reports từ 2022 trở lại đây) và bắt buộc dẫn kèm bản mở Open-Access PDF (Zero Dead Links).
 
-### 📌 3. Bảng Biểu & Hình Ảnh (Figures & Tables)
+### 3. Bảng Biểu & Hình Ảnh (Figures & Tables)
 - Mỗi hình ảnh/bảng biểu bắt buộc có số thứ tự, tiêu đề rõ ràng và danh mục tự động ở đầu luận văn:
   - Hình ảnh: Ghi chú phía dưới hình (ví dụ: *Figure 1. The Multi-Layer Defense Architecture of PI-Guard.*).
   - Bảng biểu: Tiêu đề phía trên bảng (ví dụ: *Table 1. Comparative Matrix of SOTA Guardrail Approaches.*).
 
 ---
 
-## 👥 VI. PHƯƠNG CHÂM LÀM VIỆC ĐỒNG QUY & PHÂN VAI TRÁCH NHIỆM
+## VI. PHƯƠNG CHÂM LÀM VIỆC ĐỒNG QUY & PHÂN VAI TRÁCH NHIỆM
 
-Nhằm tối ưu hóa năng lực của tất cả thành viên và đảm bảo từng cá nhân tự tin bảo vệ 100% nội dung trước Hội đồng, nhóm duy trì phương châm:
+Nhằm tối ưu hóa năng lực của tất cả thành viên và đảm bảo từng cá nhân tự tin làm chủ toàn bộ nội dung bảo vệ trước Hội đồng, nhóm duy trì phương châm:
 
 > **AI CŨNG LÀM $\rightarrow$ THAM KHẢO NHAU $\rightarrow$ CHỐT KẾT QUẢ**
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                        QUY TRÌNH ĐỒNG QUY TRI THỨC TOÀN DIỆN (FULL-PIPELINE CONVERGENCE)                 │
-├────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ 1. AI CŨNG LÀM (Parallel Hands-on) : 4 Thành viên cùng nghiên cứu toàn trình trong workspace cá nhân   │
-│ 2. THAM KHẢO NHAU (Cross-Review)   : Đọc hiểu, đối chiếu code, soi chéo tài liệu và phản biện số liệu  │
-│ 3. CHỐT KẾT QUẢ (Leader Consensus) : Họp hàng tuần, chọn champion artifact và merge vào thư mục chung  │
-└────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+| Bước Quy Trình | Mô Tả Thực Hiện |
+| :---: | :--- |
+| **1. AI CŨNG LÀM**<br/>*(Parallel Hands-on)* | 4 thành viên cùng nghiên cứu toàn trình trong workspace cá nhân |
+| **2. THAM KHẢO NHAU**<br/>*(Cross-Review)* | Đọc hiểu, đối chiếu code, soi chéo tài liệu và phản biện số liệu |
+| **3. CHỐT KẾT QUẢ**<br/>*(Leader Consensus)* | Họp hàng tuần, chọn champion artifact và merge vào thư mục chung |
 
 | Thành Viên | Không Gian Khám Phá | Trọng Tâm Chuyên Sâu Đóng Góp | Vai Trò Chủ Trì Báo Cáo FPT |
 | :--- | :--- | :--- | :--- |

@@ -7,24 +7,24 @@
 
 ---
 
-## 📊 I. MA TRẬN ĐỐI SÁNH ĐỊNH LƯỢNG 6 PHƯƠNG PHÁP PHÒNG THỦ
+## I. Ma Trận Đối Sánh Định Lượng 6 Phương Pháp Phòng Thủ
 
 Để chứng minh tính ưu việt và sự cần thiết của kiến trúc **PI-Guard** trước Hội đồng Khóa luận FPT IAP491, bảng đối sánh dưới đây tổng hợp các thông số kỹ thuật thực nghiệm dựa trên các công trình nghiên cứu đã công bố quốc tế:
 
 | Tiêu Chí Đánh Giá | 1. Regex / Blacklist Từ Khóa [[1]](#ref1) | 2. XML Prompt Hardening (Chỉ Lớp 2) [[2]](#ref2) | 3. Output Redactor (Chỉ Lớp 3) [[3]](#ref3) | 4. LLM-as-a-Judge (Llama Guard 3 8B) [[4]](#ref4) | 5. Single DeBERTa-v3 FP32 [[5]](#ref5) | 6. PI-Guard Hybrid Pipeline *(Đề xuất)* |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Độ trễ P95 (Latency trên CPU)** | ⚡ $< 1\text{ms}$ | ⚡ $0\text{ms}$ | ⚡ $< 2\text{ms}$ | 🐢 $> 850\text{ms}$ (Cần GPU) | ⏳ $\approx 45\text{ms}$ | ⚡ **$< 15\text{ms}$ (CPU)** |
+| **Độ trễ P95 (Latency trên CPU)** | $< 1\text{ms}$ | $0\text{ms}$ | $< 2\text{ms}$ | $> 850\text{ms}$ (Cần GPU) | $\approx 45\text{ms}$ | **$< 15\text{ms}$ (CPU)** |
 | **Tài nguyên phần cứng** | $< 5\text{MB}$ RAM | $0\text{MB}$ | $< 10\text{MB}$ RAM | $> 16\text{GB}$ VRAM GPU | $\approx 550\text{MB}$ RAM | **$< 150\text{MB}$ RAM** |
 | **Chi phí Token phát sinh / 1M req** | $0 | $0 (nhưng tốn context) | $0 | $\approx \$150 - \$300$ | $0 | **$0 (Zero Token Cost)** |
-| **Bảo vệ System Prompt?** | ❌ Rất kém | ⚠️ Dễ bị Delimiter Escape | ❌ Không (System Prompt đã lộ) | ✅ Tốt | ✅ Tốt | ✅ **Hiệu quả cao (Đánh chặn từ Gateway)** |
-| **Kháng Leetspeak (`1gn0r3`)** | ❌ Thất bại hoàn toàn ($F_1 < 0.20$) | ❌ Bị đánh lừa | ⚠️ Bắt được từ rõ ràng | ✅ Tốt ($F_1 \approx 0.88$) | ⚠️ Suy giảm ($F_1 \approx 0.82$) | ✅ **Xuất sắc ($F_1 \ge 0.94$)** |
-| **Kháng Base64 / Cipher [[6]](#ref6)** | ❌ Thất bại hoàn toàn | ❌ Thất bại hoàn toàn | ❌ Thất bại hoàn toàn | ⚠️ Kém ($F_1 \approx 0.55$) | ⚠️ Kém ($F_1 \approx 0.60$) | ✅ **Xuất sắc ($F_1 \ge 0.93$)** |
-| **Tỷ lệ chặn nhầm (FPR trên Benign)** | ⚠️ Cao ($\approx 8.5\%$) | 0% | $< 0.5\%$ | ⚠️ Khá cao ($\approx 3.8\%$) | ⚠️ $\approx 2.4\%$ | ✅ **Rất thấp ($< 1.5\%$)** |
-| **Tính độc lập nhà cung cấp (Vendor)**| ✅ Độc lập | ❌ Phụ thuộc vào prompt LLM | ✅ Độc lập | ⚠️ Cần server riêng | ✅ Độc lập | ✅ **Độc lập 100% (Any LLM API)** |
+| **Bảo vệ System Prompt?** | Rất kém | Dễ bị Delimiter Escape | Không (System Prompt đã lộ) | Tốt | Tốt | **Hiệu quả cao (Đánh chặn từ Gateway)** |
+| **Kháng Leetspeak (`1gn0r3`)** | Thất bại ($F_1 < 0.20$) | Bị đánh lừa | Bắt được từ rõ ràng | Tốt ($F_1 \approx 0.88$) | Suy giảm ($F_1 \approx 0.82$) | **Tốt ($F_1 \ge 0.94$)** |
+| **Kháng Base64 / Cipher [[6]](#ref6)** | Thất bại | Thất bại | Thất bại | Kém ($F_1 \approx 0.55$) | Kém ($F_1 \approx 0.60$) | **Tốt ($F_1 \ge 0.93$)** |
+| **Tỷ lệ chặn nhầm (FPR trên Benign)** | Cao ($\approx 8.5\%$) | 0% | $< 0.5\%$ | Khá cao ($\approx 3.8\%$) | $\approx 2.4\%$ | **Rất thấp ($< 1.5\%$)** |
+| **Tính độc lập nhà cung cấp (Vendor)**| Độc lập | Phụ thuộc vào prompt LLM | Độc lập | Cần server riêng | Độc lập | **Độc lập (Any LLM API)** |
 
 ---
 
-## ⚖️ II. PHÂN TÍCH BA MỐI ĐÁNH ĐỔI KỸ THUẬT CỐT LÕI (ENGINEERING TRADE-OFFS)
+## II. Phân Tích Ba Mối Đánh Đổi Kỹ Thuật Cốt Lõi (Engineering Trade-Offs)
 
 Khi triển khai hệ thống bảo mật trong môi trường sản xuất thực tế, các kỹ sư An toàn Thông tin phải liên tục giải quyết bài toán tối ưu hóa đa mục tiêu giữa **An Toàn**, **Hiệu Năng** và **Trải Nghiệm Người Dùng**:
 
@@ -62,28 +62,22 @@ $$\text{Latency}_{\text{avg}} = 0.85 \times 2.5\text{ms} + 0.15 \times 12.8\text
 
 ---
 
-## 🎯 III. TỔNG KẾT MỤC TIÊU ĐỊNH LƯỢNG NGHIỆM THU ĐỒ ÁN (KPI TARGETS)
+## III. Tổng Kết Mục Tiêu Định Lượng Nghiệm Thu Đồ Án (KPI Targets)
 
 Căn cứ theo bản đăng ký đề tài **`CAPSTONE PROJECT REGISTER.md`**, hệ thống PI-Guard cam kết đạt các chỉ số thực nghiệm khắt khe:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│               BẢNG CAM KẾT CHỈ SỐ MỤC TIÊU THIẾT KẾ ĐỒ ÁN PI-GUARD                     │
-├────────────────────────────────────────┬───────────────────────┬───────────────────────┤
-│ Chỉ Số Đo Lường Định Lượng             │ Ngưỡng Đạt Chuẩn FPT  │ Mục Tiêu Thiết Kế     │
-├────────────────────────────────────────┼───────────────────────┼───────────────────────┤
-│ 1. Macro F1-Score (Tập Test Tổng Hợp)  │ ≥ 0.90 (Kỳ vọng ≥0.95)│ Kỳ vọng ≥ 0.95        │
-│ 2. False Positive Rate (Tập Benign)    │ < 2.0% (Kỳ vọng <1.5%)│ Kỳ vọng < 1.5%        │
-│ 3. Attack Success Rate (ASR Đối Kháng) │ < 10% (Kỳ vọng <5%)   │ Kỳ vọng < 5.0%        │
-│ 4. Độ Suy Giảm F1 khi bị Evasion (ΔF1) │ < 10% (Kỳ vọng <5%)   │ Kỳ vọng < 5.0%        │
-│ 5. Độ Trễ P95 Gateway trên CPU (ms)    │ < 30ms                │ < 30ms trên CPU       │
-│ 6. Dung Lượng Bộ Nhớ RAM Runtime       │ < 500MB               │ < 150MB (ONNX INT8)   │
-└────────────────────────────────────────┴───────────────────────┴───────────────────────┘
-```
+| Chỉ Số Đo Lường Định Lượng | Ngưỡng Đạt Chuẩn FPT | Mục Tiêu Thiết Kế |
+| :--- | :---: | :---: |
+| **1. Macro F1-Score (Tập Test Tổng Hợp)** | $\ge 0.90$ (Kỳ vọng $\ge 0.95$) | Kỳ vọng $\ge 0.95$ |
+| **2. False Positive Rate (Tập Benign)** | $< 2.0\%$ (Kỳ vọng $< 1.5\%$) | Kỳ vọng $< 1.5\%$ |
+| **3. Attack Success Rate (ASR Đối Kháng)** | $< 10\%$ (Kỳ vọng $< 5\%$) | Kỳ vọng $< 5.0\%$ |
+| **4. Độ Suy Giảm F1 khi bị Evasion ($\Delta F_1$)** | $< 10\%$ (Kỳ vọng $< 5\%$) | Kỳ vọng $< 5.0\%$ |
+| **5. Độ Trễ P95 Gateway trên CPU (ms)** | $< 30\text{ms}$ | $< 30\text{ms}$ trên CPU |
+| **6. Dung Lượng Bộ Nhớ RAM Runtime** | $< 500\text{MB}$ | $< 150\text{MB}$ (ONNX INT8) |
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO HỌC THUẬT (100% VERIFIED >= 2022)
+## Tài Liệu Tham Khảo Học Thuật (100% Verified >= 2022)
 
 <a id="ref1"></a>**[1]** N. Jain et al., "Baseline Defenses for Adversarial Attacks on Large Language Models," *arXiv preprint arXiv:2309.00614*, 2023. Link: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614).  
 <a id="ref2"></a>**[2]** F. Perez and I. Ribeiro, "Ignore This Title and Hack This Website: Exposing Systemic Vulnerabilities of Large Language Models," *arXiv preprint arXiv:2302.04349*, 2023. Link: [https://arxiv.org/abs/2302.04349](https://arxiv.org/abs/2302.04349).  

@@ -10,7 +10,7 @@
 
 ---
 
-## 🎯 1. TỔNG QUAN ĐỊNH VỊ ĐỀ TÀI PI-GUARD
+## 1. TỔNG QUAN ĐỊNH VỊ ĐỀ TÀI PI-GUARD
 
 Dựa trên bản đăng ký đề tài chính thức [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md), đề tài **PI-Guard** được định vị chính xác:
 
@@ -23,7 +23,7 @@ Dựa trên bản đăng ký đề tài chính thức [`CAPSTONE PROJECT REGISTE
 
 ---
 
-## 📊 2. MA TRẬN ĐỐI SO SÁNH TỔNG HỢP 6 KHUNG CÔNG NGHỆ VỚI PI-GUARD
+## 2. MA TRẬN ĐỐI SO SÁNH TỔNG HỢP 6 KHUNG CÔNG NGHỆ VỚI PI-GUARD
 
 | Khung / Dự án tham khảo              | Loại hình & Tác giả                               | Trọng tâm chính                                                          | Những gì PI-GUARD KẾ THỪA & ÁP DỤNG                                                                                                             | Những gì KHÔNG ÁP DỤNG (Tránh phình Scope)                                                       | Điểm vượt trội của PI-GUARD                                                                                                |
 | :----------------------------------- | :------------------------------------------------ | :----------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
@@ -36,7 +36,7 @@ Dựa trên bản đăng ký đề tài chính thức [`CAPSTONE PROJECT REGISTE
 
 ---
 
-## 📑 3. PHÂN TÍCH CHI TIẾT TỪNG DỰ ÁN & ÁNH XẠ MÃ NGUỒN
+## 3. PHÂN TÍCH CHI TIẾT TỪNG DỰ ÁN & ÁNH XẠ MÃ NGUỒN
 
 ### 3.1. Protect AI — `llm-guard` (2024)
 
@@ -70,20 +70,18 @@ Dựa trên bản đăng ký đề tài chính thức [`CAPSTONE PROJECT REGISTE
 ### 3.5. `EasyJailbreak/EasyJailbreak` (2024)
 
 - **Kho mã nguồn**: [https://github.com/EasyJailbreak/EasyJailbreak](https://github.com/EasyJailbreak/EasyJailbreak)
-- **Bài báo học thuật**: H. Zhou et al., _"EasyJailbreak: A Unified Framework for Jailbreaking Larg```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│         3 TRỤ CỘT AN TOÀN THÔNG TIN CỐT LÕI CỦA PI-GUARD & BẰNG CHỨNG HỌC THUẬT (>=2022)│
-├────────────────────────────────┬───────────────────────────────────────────────────────┤
-│ TRỤ CỘT 1: Kháng Phân Mảnh     │ Bằng chứng từ Jain et al. (Univ of Maryland, 2023)    │
-│            Cú Pháp & Leetspeak │ (Hybrid Word + Character n-grams TF-IDF Baseline)     │
-├────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ TRỤ CỘT 2: Phân Tích Ngữ Nghĩa │ Bằng chứng từ He et al. (ICLR 2023) & ProtectAI (2024)│
-│            Sâu Disentangled    │ (DeBERTa-v3 nhận diện vị trí và ý đồ Jailbreak/DAN)   │
-├────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ TRỤ CỘT 3: Phòng Thủ Phân Tầng │ Phối hợp Cascade Gate 2 tầng & Policy Engine đa cấp   │
-│            Khống Chế FPR <1.5% │ giải quyết bài toán cốt lõi Đánh Đổi An Ninh/Khả Dụng  │
-└────────────────────────────────┴───────────────────────────────────────────────────────┘
-```
+- **Bài báo học thuật**: H. Zhou et al., _"EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models,"_ arXiv:2403.12171, 2024. arXiv: [2403.12171](https://arxiv.org/abs/2403.12171).
+- **Giá trị kế thừa cho PI-Guard**: Khung kỹ thuật đột biến (Mutators: Leetspeak, Spacing, Roleplay Wrapper) để xây dựng kịch bản kiểm thử độ bền đối kháng.
+
+---
+
+## 4. 3 TRỤ CỘT AN TOÀN THÔNG TIN CỐT LÕI CỦA PI-GUARD & BẰNG CHỨNG HỌC THUẬT
+
+| Trụ Cột An Toàn Cốt Lõi | Bằng Chứng Học Thuật & Nền Tảng Khoa Học | Giải Pháp Kỹ Thuật Trong PI-Guard |
+| :--- | :--- | :--- |
+| **Trụ Cột 1: Kháng Phân Mảnh Cú Pháp & Leetspeak** | Jain et al. (Univ of Maryland, 2023) | Hybrid Word + Character n-grams TF-IDF Baseline |
+| **Trụ Cột 2: Phân Tích Ngữ Nghĩa Sâu Disentangled** | He et al. (ICLR 2023) & ProtectAI (2024) | DeBERTa-v3 nhận diện vị trí tương đối và ý đồ Jailbreak/DAN |
+| **Trụ Cột 3: Phòng Thủ Phân Tầng Khống Chế FPR < 1.5%** | Cân bằng bảo mật / khả dụng thực nghiệm | Phối hợp Cascade Gate 2 tầng & Policy Engine đa cấp |
 
 ---
 
@@ -130,48 +128,27 @@ Dựa trên bản đăng ký đề tài chính thức [`CAPSTONE PROJECT REGISTE
 
 ---
 
-## 🗺️ 5. BẢNG TỔNG HỢP ÁNH XẠ VÀO MÃ NGUỒN DỰ ÁN PI-GUARD
+## 5. BẢNG TỔNG HỢP ÁNH XẠ VÀO MÃ NGUỒN DỰ ÁN PI-GUARD
 
-```
-d:\Work\Do-an\
-│
-├── References/                                                     ◄── 16 File PDF học thuật chuẩn quốc tế (100% >= 2022)
-│   ├── Zhao_2023_A_Survey_of_Large_Language_Models.pdf             (IJCAI 2023)
-│   ├── Ouyang_2022_InstructGPT_Training_Language_Models...pdf      (NeurIPS 2022)
-│   ├── He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf           (ICLR 2023) ──► Lý thuyết Trụ cột 2
-│   ├── Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf    (arXiv 2023) ──► Lý thuyết Trụ cột 1
-│   ├── Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization.pdf (NeurIPS 2022) ──► Kỹ thuật tối ưu hóa triển khai
-│   ├── Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf (ACM CCS 2024)
-│   ├── Zhou_2024_EasyJailbreak_Unified_Framework.pdf              (EasyJailbreak 2024)
-│   ├── Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf (CMU CAIS 2023)
-│   ├── Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf (Penn 2023)
-│   └── REFERENCES_LOG.md                                           ◄── Nhật ký định vị 16 tài liệu
-│
-├── src/
-│   ├── preprocessing/
-│   │   ├── cleaner.py          ◄── Kế thừa Scanner Logic từ ProtectAI + Unicode NFKC
-│   │   └── obfuscation.py      ◄── Mutators (Leetspeak, Base64, Spacing) theo Jain 2023 & EasyJailbreak 2024
-│   ├── datasets/
-│   │   └── splitter.py         ◄── Group-Aware Split chống rò rỉ dữ liệu (Shen et al. 2024)
-│   ├── models/
-│   │   └── classifier.py       ◄── Triển khai Hybrid TF-IDF + DeBERTa-v3 ONNX INT8 Runtime (He 2023 & Yao 2022)
-│   ├── policy/
-│   │   └── policy_engine.py    ◄── Tri-state Policy Engine (ALLOW / REVIEW / BLOCK)
-│   └── api/
-│       └── middleware.py       ◄── FastAPI Asynchronous Proxy Middleware (<15ms)
-│
-└── tests/
-    └── adversarial/            ◄── Bộ test 26+ Attack Operators (Tencent 2026 + GCG Zou 2023)
-```
+| Cấu Trúc File / Thư Mục | Vai Trò Kỹ Thuật Trong Hệ Thống PI-Guard | Bằng Chứng & Tài Liệu Học Thuật Bảo Chứng |
+| :--- | :--- | :--- |
+| `Final-Report/References/` | Lưu trữ các bài báo khoa học chuẩn (PDF) | 18 bài báo cốt lõi được định danh trong `REFERENCES_LOG.md` |
+| `Final-Report/src/preprocessing/cleaner.py` | Chuẩn hóa Unicode NFKC & lọc ký tự điều khiển | Kế thừa logic Scanner từ Protect AI (2024) |
+| `Final-Report/src/preprocessing/obfuscation.py` | Sinh nhiễu biến dị kiểm thử (Leetspeak, Base64, Spacing) | Jain et al. (2023) & EasyJailbreak (Zhou et al. 2024) |
+| `Final-Report/src/datasets/splitter.py` | Phân chia dữ liệu Group-Aware Split chống rò rỉ | Shen et al. (ACM CCS 2024) |
+| `Final-Report/src/models/classifier.py` | Mô hình phân loại 2 tầng: Hybrid TF-IDF + DeBERTa INT8 | He et al. (ICLR 2023) & Yao et al. (NeurIPS 2022) |
+| `Final-Report/src/policy/policy_engine.py` | Động cơ chính sách an toàn 3 trạng thái (ALLOW / REVIEW / BLOCK) | IBM Granite Guardrails & Markov et al. (2023) |
+| `Final-Report/src/api/middleware.py` | Guardrail Proxy Middleware bất đồng bộ độ trễ thấp | NVIDIA NeMo Guardrails (EMNLP 2023) |
+| `Final-Report/tests/adversarial/` | Bộ kiểm thử đánh giá độ bền đối kháng thực nghiệm | Tencent Multi-Layer Red Teaming (2026) & GCG (Zou et al. 2023) |
 
 ---
 
-## 🎯 6. KẾT LUẬN & ĐÁNH GIÁ CHUNG
+## 6. KẾT LUẬN & ĐÁNH GIÁ CHUNG
 
-1. **100% Tài liệu tham khảo hiện đại (>= 2022)**: Toàn bộ 16 bài báo PDF đều nằm trong khoảng từ 2022 đến 2026, phản ánh chính xác nhất thực trạng an toàn LLM hiện nay và tuân thủ tuyệt đối chuẩn mực học thuật FPT.
+1. **Tài liệu tham khảo hiện đại & chuẩn mực**: Toàn bộ các tài liệu học thuật tham chiếu đều nằm trong danh mục 18 bài báo cốt lõi đã được kiểm định của đề tài, phản ánh chính xác thực trạng an toàn LLM hiện nay.
 2. **Cơ sở khoa học vững chắc về An toàn Thông tin**: Cả 3 Trụ cột an toàn cốt lõi của PI-Guard:
    - **Kháng phân mảnh cú pháp & Leetspeak (Hybrid TF-IDF)**: Đã được chứng minh bằng Jain et al. (2023).
    - **Nhận diện ngữ nghĩa sâu & Vị trí đòn tấn công (DeBERTa-v3 Disentangled Attention)**: Đã được chứng minh bằng He et al. (ICLR 2023) & Protect AI (2024).
    - **Phòng thủ đa tầng & Khống chế Báo động giả (Two-Tier Cascade Defense)**: Đảm bảo cân bằng an ninh và khả năng vận hành thực tế (FPR < 1.5%).
    - *ONNX Runtime INT8 đóng vai trò là giải pháp kỹ thuật phụ trợ triển khai giúp hệ thống chạy mượt trên CPU thông thường.*
-3. **Sẵn sàng 100% cho Review 1 & Bảo vệ Tốt nghiệp**.
+3. **Đóng góp học thuật**: Tài liệu đóng vai trò làm cơ sở đối sánh vững chắc cho Review 1 và Luận văn tốt nghiệp.

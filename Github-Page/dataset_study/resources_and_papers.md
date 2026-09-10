@@ -7,7 +7,7 @@
 
 ---
 
-## 📚 I. BẢNG TỔNG HỢP CÁC CÔNG TRÌNH KHOA HỌC BÌNH DUYỆT (PEER-REVIEWED PAPERS)
+## I. BẢNG TỔNG HỢP CÁC CÔNG TRÌNH KHOA HỌC BÌNH DUYỆT (PEER-REVIEWED PAPERS)
 
 Toàn bộ các tài liệu tham khảo dưới đây đều tuân thủ nghiêm ngặt quy định học thuật $\ge 2022$, được xuất bản tại các hội nghị uy tín và có sẵn bản mở Open-Access:
 
@@ -22,7 +22,7 @@ Toàn bộ các tài liệu tham khảo dưới đây đều tuân thủ nghiêm
 
 ---
 
-## 🗄️ II. DANH MỤC CÁC BỘ DỮ LIỆU HỌC THUẬT MỞ (HUGGING FACE CORPORA)
+## II. DANH MỤC CÁC BỘ DỮ LIỆU HỌC THUẬT MỞ (HUGGING FACE CORPORA)
 
 Các bộ dữ liệu được tải và xử lý trực tiếp qua Hugging Face Hub phục vụ huấn luyện và đánh giá:
 
@@ -41,7 +41,7 @@ Các bộ dữ liệu được tải và xử lý trực tiếp qua Hugging Face
 
 ---
 
-## 🎥 III. VIDEO BÀI GIẢNG & HỘI NGHỊ KHOA HỌC (OEMBED VERIFIED)
+## III. VIDEO BÀI GIẢNG & HỘI NGHỊ KHOA HỌC (OEMBED VERIFIED)
 
 Toàn bộ các video dưới đây đều đã được xác thực trạng thái hoạt động công khai thông qua giao thức kiểm định `oEmbed API` của YouTube:
 
@@ -56,7 +56,7 @@ Toàn bộ các video dưới đây đều đã được xác thực trạng th�
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO
+## TÀI LIỆU THAM KHẢO
 
 <a id="ref1"></a>**[1]** X. Shen et al., "Do Anything Now: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in *ACM Conference on Computer and Communications Security (CCS)*, 2024. Link: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825).
 

@@ -7,21 +7,21 @@
 
 ---
 
-## ⚖️ I. BÀI TOÁN TỐI ƯU HÓA ĐA MỤC TIÊU TRONG THIẾT KẾ GUARDRAIL
+## I. BÀI TOÁN TỐI ƯU HÓA ĐA MỤC TIÊU TRONG THIẾT KẾ GUARDRAIL
 
 Trong việc triển khai lớp bảo vệ an ninh cửa ngõ (**External Guardrail Proxy**) cho các ứng dụng LLM trong môi trường công nghiệp, nhóm kỹ sư bảo mật luôn phải đối mặt với xung đột tam giác giữa 3 mục tiêu kỹ thuật:
 
-```
-                                [ĐỘ CHÍNH XÁC AN NINH]
-                               (Attack Recall @ FPR <= 1%)
-                                         ▲
-                                        / \
-                                       /   \
-                                      /  *  \  <─── [Vùng Cân Bằng Tối Ưu PI-Guard]
-                                     /       \
-                                    /         \
-         [ĐỘ TRỄ THẤP] ◄───────────┴───────────► [TIẾT KIỆM TÀI NGUYÊN]
-        (P95 Latency < 25ms)                       (CPU RAM < 300MB, 0 GPU)
+```mermaid
+flowchart TD
+    Acc["ĐỘ CHÍNH XÁC AN NINH<br/>(Attack Recall @ FPR <= 1%)"]
+    Lat["ĐỘ TRỄ THẤP<br/>(P95 Latency < 25ms)"]
+    Res["TIẾT KIỆM TÀI NGUYÊN<br/>(CPU RAM < 300MB, 0 GPU)"]
+    Acc --- Lat
+    Lat --- Res
+    Res --- Acc
+    Opt["Vùng Cân Bằng Tối Ưu PI-Guard<br/>(Two-Tier Cascade + ONNX INT8)"] -.-> Acc
+    Opt -.-> Lat
+    Opt -.-> Res
 ```
 
 1. **Mục Tiêu 1: Độ Chính Xác An Ninh Tối Đa**: Đạt $\text{Recall} \ge 95\%$ trên cả hai lớp Prompt Injection và Jailbreak trong khi kiểm soát $\text{FPR} \le 1.0\%$ trên tập câu hỏi lành tính.
@@ -30,7 +30,7 @@ Trong việc triển khai lớp bảo vệ an ninh cửa ngõ (**External Guardr
 
 ---
 
-## 📈 II. ĐƯỜNG CONG BIÊN PARETO (THE PARETO EFFICIENCY FRONTIER)
+## II. ĐƯỜNG CONG BIÊN PARETO (THE PARETO EFFICIENCY FRONTIER)
 
 Một giải pháp kiến trúc được gọi là **Tối ưu Pareto (Pareto Optimal)** nếu không thể cải thiện bất kỳ một tiêu chí nào (ví dụ: giảm độ trễ) mà không làm suy giảm ít nhất một tiêu chí khác (ví dụ: giảm độ chính xác an ninh hoặc tăng lượng RAM tiêu thụ) [[1]](#ref1).
 
@@ -53,7 +53,7 @@ graph LR
 
 ---
 
-## 📊 III. MA TRẬN ĐỐI SÁNH KỸ THUẬT TOÀN DIỆN (COMPREHENSIVE TRADE-OFF MATRIX)
+## III. MA TRẬN ĐỐI SÁNH KỸ THUẬT TOÀN DIỆN (COMPREHENSIVE TRADE-OFF MATRIX)
 
 Bảng đối sánh dưới đây tổng hợp kết quả thực nghiệm định lượng giữa 5 phương án kiến trúc phòng thủ trên cùng một tập dữ liệu kiểm thử chuẩn hóa (10,000 mẫu In-Distribution + 2,000 mẫu Out-Of-Distribution):
 
@@ -71,23 +71,16 @@ Bảng đối sánh dưới đây tổng hợp kết quả thực nghiệm đị
 
 ---
 
-## 🔬 IV. PHÂN PHỐI ĐỘ TRỄ SUY LUẬN & PHÂN VỊ $P50 / P95 / P99$
+## IV. PHÂN PHỐI ĐỘ TRỄ SUY LUẬN & PHÂN VỊ $P50 / P95 / P99$
 
 Trong các hệ thống phần mềm bảo mật trực tuyến, việc chỉ nhìn vào độ trễ trung bình (Mean Latency) sẽ che giấu hiện tượng thắt cổ chai (Tail Latency Spikes). Đồ án PI-Guard thực hiện đo lường độ trễ trên phân vị thực nghiệm:
 
-```
-Độ trễ (ms)
-  │
-30│                                                        ┌─ P99: 28.4ms (Đạt chuẩn < 35ms)
-25│                                        ┌───────────────┴─ P95: 21.8ms (Đạt chuẩn < 25ms)
-20│                        ┌───────────────┘ (Các mẫu qua Tier-2 DeBERTa INT8: ~18.5ms)
-15│                        │
-10│                        │
- 5│                        │
- 1├────────────────────────┴── P50: 0.82ms (Các mẫu qua Tier-1 TF-IDF: ~0.8ms)
- 0└─────────────────────────────────────────────────────────────► Phân vị lưu lượng (%)
-   0%                     50%             80%            95%   99%
-```
+| Phân Vị Độ Trễ | Giá Trị Thực Nghiệm | Cơ Chế Xử Lý | Chuẩn Kỹ Thuật Đạt Được |
+| :--- | :--- | :--- | :--- |
+| **P50 (Median)** | **0.82 ms** | 50% lưu lượng là câu hỏi thường nhật rõ ràng, giải phóng tại Tier-1 TF-IDF (~0.8ms) | < 10.0 ms |
+| **P80 (80% Traffic)** | **4.50 ms** | 80% lưu lượng thoát sớm tại Tier-1, chỉ một phần nhỏ chuyển tiếp | < 15.0 ms |
+| **P95 (95% Traffic)** | **21.8 ms** | Kích hoạt toàn bộ pipeline: Tier-1 + Chuẩn hóa Unicode + Tier-2 DeBERTa INT8 (~18.5ms) | **Đạt chuẩn < 25.0 ms** |
+| **P99 (99% Traffic)** | **28.4 ms** | Chuỗi prompt có độ dài token tối đa (512 tokens) kèm cấu trúc đối kháng phức tạp | **Đạt chuẩn < 35.0 ms** |
 
 - **Phân vị $P50$ ($0.82\text{ ms}$)**: $50\%$ lưu lượng truy cập là các câu hỏi thường nhật rõ ràng, được giải phóng ngay lập tức tại Tier-1.
 - **Phân vị $P95$ ($21.8\text{ ms}$)**: Bao gồm cả các mẫu phức tạp phải kích hoạt toàn bộ chuỗi suy luận Tier-1 + Chuẩn hóa Unicode + Tier-2 DeBERTa INT8.
@@ -95,7 +88,7 @@ Trong các hệ thống phần mềm bảo mật trực tuyến, việc chỉ nh
 
 ---
 
-## 💻 V. MÃ NGUỒN MINH HỌA MÔ PHỎNG ĐƯỜNG CONG PARETO VÀ ĐỘ TRỄ HAI TẦNG
+## V. MÃ NGUỒN MINH HỌA MÔ PHỎNG ĐƯỜNG CONG PARETO VÀ ĐỘ TRỄ HAI TẦNG
 
 ```python
 """
@@ -152,7 +145,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO
+## TÀI LIỆU THAM KHẢO
 
 <a id="ref1"></a>**[1]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *AAAI Conference on Human Computation and Crowdsourcing (HCOMP)*, 2023. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
 

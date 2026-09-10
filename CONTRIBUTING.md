@@ -8,23 +8,10 @@ Trong đề tài **PI-Guard** (FPT University IAP491), nhóm áp dụng mô hìn
 
 ### 1. QUY TRÌNH 2 PHA HÀNG TUẦN (SPRINT WORKFLOW)
 
-```
-                     ┌────────────────────────────────────────────────────────┐
-                     │     QUY TRÌNH HÀNG TUẦN: SONG SONG ──► ĐỒNG QUY        │
-                     └───────────────────────────┬────────────────────────────┘
-                                                 │
-            ┌────────────────────────────────────┴────────────────────────────────────┐
-            ▼                                                                         ▼
-┌──────────────────────────────────────────────┐              ┌──────────────────────────────────────────────┐
-│ PHA 1: KHÁM PHÁ SONG SONG (TRONG TUẦN)       │              │ PHA 2: HỌP ĐỒNG QUY TRI THỨC (CUỐI TUẦN)     │
-├──────────────────────────────────────────────┤              ├──────────────────────────────────────────────┤
-│ • Cả 4 bạn cùng tự tay làm toàn bộ pipeline: │              │ • Cả 4 ngồi lại họp bàn tròn (30-60 phút):   │
-│   - Cùng khảo sát & phân tích dataset        │              │   - So sánh kết quả thực nghiệm của 4 người  │
-│   - Cùng train thử nghiệm các thuật toán ML  │              │   - Đánh giá: Model nào F1 cao hơn? Ít FPR?  │
-│   - Cùng test tấn công Jailbreak/Base64      │              │   - Chọn giải pháp XUẤT SẮC NHẤT đưa vào     │
-│   - Cùng chạy thử nghiệm API/Dashboard       │              │     phân hệ chung `Final-Report/`            │
-│ • Mỗi bạn làm việc trong `workspaces/<tên>/` │              │ • Cùng tinh gọn báo cáo & diễn tập slide     │
-└──────────────────────────────────────────────┘              └──────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    Header["QUY TRÌNH HÀNG TUẦN: SONG SONG --> ĐỒNG QUY"] --> P1["PHA 1: KHÁM PHÁ SONG SONG (TRONG TUẦN)<br/>• Cả 4 bạn cùng tự tay làm toàn bộ pipeline:<br/>  - Cùng khảo sát & phân tích dataset<br/>  - Cùng train thử nghiệm các thuật toán ML<br/>  - Cùng test tấn công Jailbreak/Base64<br/>  - Cùng chạy thử nghiệm API/Dashboard<br/>• Mỗi bạn làm việc trong workspaces/&lt;tên&gt;/"]
+    Header --> P2["PHA 2: HỌP ĐỒNG QUY TRI THỨC (CUỐI TUẦN)<br/>• Cả 4 ngồi lại họp bàn tròn (30-60 phút):<br/>  - So sánh kết quả thực nghiệm của 4 người<br/>  - Đánh giá: Model nào F1 cao hơn? Ít FPR?<br/>  - Chọn giải pháp XUẤT SẮC NHẤT đưa vào phân hệ chung Final-Report/<br/>• Cùng tinh gọn báo cáo & diễn tập slide"]
 ```
 
 ---

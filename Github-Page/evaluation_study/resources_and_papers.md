@@ -7,7 +7,7 @@
 
 ---
 
-## 📚 I. BẢNG TỔNG HỢP CÁC CÔNG TRÌNH KHOA HỌC BÌNH DUYỆT (PEER-REVIEWED PAPERS)
+## I. BẢNG TỔNG HỢP CÁC CÔNG TRÌNH KHOA HỌC BÌNH DUYỆT (PEER-REVIEWED PAPERS)
 
 Toàn bộ các tài liệu tham khảo dưới đây đều tuân thủ nghiêm ngặt quy định học thuật $\ge 2022$, được xuất bản tại các hội nghị uy tín và có sẵn bản mở Open-Access:
 
@@ -21,7 +21,7 @@ Toàn bộ các tài liệu tham khảo dưới đây đều tuân thủ nghiêm
 
 ---
 
-## 🎥 II. VIDEO BÀI GIẢNG & HỘI THẢO CHUYÊN MÔN (OEMBED VERIFIED)
+## II. VIDEO BÀI GIẢNG & HỘI THẢO CHUYÊN MÔN (OEMBED VERIFIED)
 
 Toàn bộ các video dưới đây đều đã được xác thực trạng thái hoạt động công khai thông qua giao thức kiểm định `oEmbed API` của YouTube:
 
@@ -37,7 +37,7 @@ Toàn bộ các video dưới đây đều đã được xác thực trạng th�
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO
+## TÀI LIỆU THAM KHẢO
 
 <a id="ref1"></a>**[1]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *AAAI Conference on Human Computation and Crowdsourcing (HCOMP)*, 2023. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
 

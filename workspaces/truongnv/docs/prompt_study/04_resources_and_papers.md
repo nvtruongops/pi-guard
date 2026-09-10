@@ -1,11 +1,11 @@
 # TỔNG HỢP TÀI LIỆU KHOA HỌC & TÀI NGUYÊN NGHIÊN CỨU PROMPT VÀ LLM CONTEXT
 ## Danh Mục Bài Báo Nền Tảng, Báo Cáo Kỹ Thuật Đã Thẩm Định 100%
 
-> 📚 **Quy chuẩn lưu trữ**: Toàn bộ các tài liệu học thuật trong danh mục này đều có liên kết Open-Access hoặc bản PDF lưu trữ cục bộ trong [`References/`](file:///d:/Work/Do-an/References/) và đã được kiểm định 100% không có liên kết hỏng.
+> **Quy chuẩn lưu trữ**: Toàn bộ các tài liệu học thuật trong danh mục này đều có liên kết Open-Access hoặc bản PDF lưu trữ cục bộ trong [`Final-Report/References/`](file:///d:/Work/Do-an/Final-Report/References/) và đã được kiểm tra liên kết Open-Access xác thực trạng thái hoạt động.
 
 ---
 
-## 📑 I. BẢNG DANH MỤC BÀI BÁO KHOA HỌC CHỦ CHỐT (PEER-REVIEWED & LANDMARK PAPERS)
+## I. Bảng Danh Mục Bài Báo Khoa Học Chủ Chốt (Peer-Reviewed & Landmark Papers)
 
 | STT | Bài Báo & Tác Giả | Hội Nghị / Nơi Xuất Bản | Bản PDF Cục Bộ / Open-Access | Tóm Tắt Đóng Góp Khoa Học & Ứng Dụng Trong PI-Guard |
 | :---: | :--- | :---: | :--- | :--- |

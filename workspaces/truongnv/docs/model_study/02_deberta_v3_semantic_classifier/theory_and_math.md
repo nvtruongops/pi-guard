@@ -2,43 +2,24 @@
 
 ---
 
-## 📜 1. LỊCH SỬ TIẾN HÓA CỦA CÁC KIẾN TRÚC NLP ĐẾN DEBERTA-V3
+## 1. Lịch Sử Tiến Hóa Của Các Kiến Trúc NLP Đến DeBERTa-v3
 
 Để nắm vững bản chất của DeBERTa-v3 trước Hội đồng phản biện, ta cần hiểu sự tiến hóa của không gian biểu diễn ngôn ngữ:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                        DÒNG CHẢY TIẾN HÓA CÁC KIẾN TRÚC NLP (2013 - 2026)              │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 1. KỶ NGUYÊN TĨNH (2013 - 2014): Word2Vec, GloVe                                       │
-│    • Hạn chế: Mỗi từ chỉ có 1 vector tĩnh duy nhất (Polysemy failure). Ví dụ từ "bank" │
-│      trong "ngân hàng" và "bờ sông" bị gán cùng một biểu diễn vector.                  │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 2. KỶ NGUYÊN TUẦN TỰ (2014 - 2017): RNN, LSTM, GRU                                     │
-│    • Hạn chế: Xử lý tuần tự từng từ trái sang phải, điểm nghẽn bộ nhớ đường dài        │
-│      (Vanishing Gradient) và không thể tính toán song song trên GPU.                   │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 3. KỶ NGUYÊN TRANSFORMER & BERT (2017 - 2018): Vaswani et al. (NeurIPS 2017), Devlin et al. (NAACL 2019) │
-│    • Bước ngoặt: Cơ chế Self-Attention tính toán song song toàn câu [arXiv:1706.03762].  │
-│    • Hạn chế của BERT [arXiv:1810.04805]: Cộng gộp vector từ và vector vị trí tuyệt đối từ tầng 0: │
-│      X = E_content + E_position -> Làm nhiễu loạn tương quan vị trí tương đối.         │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 4. KỶ NGUYÊN TỐI ƯU HÓA (2019 - 2020): RoBERTa, ELECTRA                                │
-│    • RoBERTa (Liu et al., 2019 [arXiv:1907.11692]): Bỏ task NSP, batch size lớn.       │
-│    • ELECTRA (Clark et al., ICLR 2020 [arXiv:2003.10555]): Replaced Token Detection    │
-│      giúp tăng hiệu quả mẫu (Sample Efficiency) lên gấp nhiều lần.                     │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 5. ĐỈNH CAO DEBERTA-V3 (He, Gao, Chen - Microsoft Research, ICLR 2023 [arXiv:2111.09543]): │
-│    • Sáng tạo 1: Disentangled Attention (Tách biệt hoàn toàn Content và Position).    │
-│    • Sáng tạo 2: Enhanced Mask Decoder (EMD) đưa vị trí tuyệt đối vào tầng giải mã.    │
-│    • Sáng tạo 3: Huấn luyện RTD với Gradient-Disentangled Embedding Sharing.           │
-│    • Thành tựu: Vượt qua con người trên SuperGLUE benchmark (90.3 vs 89.8).            │
-└────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    E1["<b>1. Kỷ Nguyên Tĩnh (2013 - 2014)</b><br/>Word2Vec, GloVe<br/>• Hạn chế: Mỗi từ chỉ có 1 vector tĩnh duy nhất (Polysemy failure)"]
+    E2["<b>2. Kỷ Nguyên Tuần Tự (2014 - 2017)</b><br/>RNN, LSTM, GRU<br/>• Hạn chế: Xử lý tuần tự, điểm nghẽn bộ nhớ đường dài, không song song hóa"]
+    E3["<b>3. Kỷ Nguyên Transformer & BERT (2017 - 2018)</b><br/>Vaswani et al. (NeurIPS 2017), Devlin et al. (NAACL 2019)<br/>• Bước ngoặt: Self-Attention song song toàn câu<br/>• Hạn chế của BERT: X = E_content + E_position làm nhiễu tương quan vị trí"]
+    E4["<b>4. Kỷ Nguyên Tối Ưu Hóa (2019 - 2020)</b><br/>RoBERTa, ELECTRA<br/>• RoBERTa: Bỏ NSP, batch size lớn<br/>• ELECTRA: Replaced Token Detection tăng Sample Efficiency"]
+    E5["<b>5. Đỉnh Cao DeBERTa-v3 (ICLR 2023)</b><br/>He, Gao, Chen (Microsoft Research)<br/>• Disentangled Attention tách biệt Content & Position<br/>• Enhanced Mask Decoder (EMD)<br/>• Vượt qua con người trên SuperGLUE (90.3 vs 89.8)"]
+
+    E1 --> E2 --> E3 --> E4 --> E5
 ```
 
 ---
 
-## 📐 2. BẢN CHẤT TOÁN HỌC CỦA DISENTANGLED ATTENTION
+## 2. Bản Chất Toán Học Của Disentangled Attention
 
 ### 2.1. Hạn Chế Của Cơ Chế Attention Truyền Thống (BERT / RoBERTa)
 Trong Transformer tiêu chuẩn và BERT, vector nhúng đầu vào của token thứ $i$ được tính bằng cách **cộng đại số trực tiếp**:
@@ -83,7 +64,7 @@ BERT và RoBERTa thất bại vì việc cộng gộp vị trí tuyệt đối k
 
 ---
 
-## 🔬 3. MỤC TIÊU TIỀN HUẤN LUYỆN RTD (REPLACED TOKEN DETECTION)
+## 3. Mục Tiêu Tiền Huấn Luyện RTD (Replaced Token Detection)
 
 Khác biệt giữa **DeBERTa v1** và **DeBERTa-v3**:
 1. **Masked LM (BERT/RoBERTa/DeBERTa v1)**: Chỉ 15% tokens bị mask, mô hình chỉ tính loss trên 15% tokens đó (85% còn lại bị lãng phí thông tin trong mỗi bước cập nhật).
@@ -94,7 +75,7 @@ Khác biệt giữa **DeBERTa v1** và **DeBERTa-v3**:
 
 ---
 
-## ⚡ 4. LƯỢNG HÓA INT8: BẢN CHẤT TOÁN HỌC ÁNH XẠ SỐ NGUYÊN
+## 4. Lượng Hóa INT8: Bản Chất Toán Học Ánh Xạ Số Nguyên
 
 Công thức ánh xạ từ số thực FP32 ($x \in \mathbb{R}$) sang số nguyên có dấu 8-bit ($q \in [-128, 127]$):
 $$q = \text{clip}\left( \text{round}\left(\frac{x}{S}\right) + Z, -128, 127 \right)$$
@@ -106,7 +87,7 @@ Khi chạy trên CPU với ONNX Runtime, tập lệnh **AVX-512 VNNI** thực hi
 
 ---
 
-## 📚 5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
+## 5. Tài Liệu Tham Khảo Học Thuật (Academic References)
 
 1. **Ashish Vaswani et al. (2017)**: *"Attention Is All You Need"*, in *Advances in Neural Information Processing Systems (NeurIPS 2017)*, vol. 30. arXiv: [1706.03762](https://arxiv.org/abs/1706.03762).
 2. **Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova (2019)**: *"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"*, in *Proceedings of NAACL-HLT 2019*, pp. 4171–4186. arXiv: [1810.04805](https://arxiv.org/abs/1810.04805).

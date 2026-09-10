@@ -6,68 +6,47 @@
 
 ---
 
-## 🏛️ I. CẤU TRÚC TỔNG QUAN CỦA MỘT PROMPT TƯƠNG TÁC ĐA THÀNH PHẦN
+## I. Cấu Trúc Tổng Quan Của Một Prompt Tương Tác Đa Thành Phần
 
 Trong các ứng dụng thực tế, một prompt gửi vào LLM không phải là một đoạn văn bản trơn mà là sự kết hợp của nhiều thành phần có vai trò và mức độ tin cậy khác nhau:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                        CẤU TRÚC MỘT PROMPT TOÀN DIỆN TRONG THỰC TẾ                    │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 1. SYSTEM PROMPT (Chỉ thị Lập trình viên - Trusted):                                    │
-│    • Định nghĩa nhân cách (Persona), vai trò nghiệp vụ, các giới hạn đạo đức và an ninh│
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 2. FEW-SHOT DEMONSTRATIONS (Ví dụ mẫu - Trusted/Semi-trusted):                         │
-│    • Các cặp (Input -> Output) mẫu để định hình phong cách phản hồi của mô hình        │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 3. RETRIEVAL CONTEXT / RAG (Dữ liệu truy xuất từ ngoài - Untrusted):                   │
-│    • Đoạn văn bản trích xuất từ tài liệu PDF, email, hoặc kết quả tìm kiếm web         │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 4. CONVERSATION HISTORY (Lịch sử hội thoại - Stateful):                                │
-│    • Các lượt tương tác trước đó giữa User và Assistant                                │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 5. USER QUERY (Yêu cầu hiện tại của người dùng - Untrusted):                           │
-│    • Câu hỏi hoặc mệnh lệnh trực tiếp từ người dùng cuối                               │
-├────────────────────────────────────────────────────────────────────────────────────────┤
-│ 6. TOOL / FUNCTION CALL SCHEMA (Định nghĩa hàm gọi - Trusted):                         │
-│    • Danh sách các hàm JSON Schema mà LLM có quyền thực thi (ví dụ: `send_email`)      │
-└────────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph PromptPayload["Cấu Trúc Ngữ Cảnh Prompt Toàn Diện"]
+        direction TB
+        P1["1. System Prompt (Chỉ thị Lập trình viên - Trusted)<br/>Định nghĩa Persona, vai trò nghiệp vụ, các giới hạn an ninh"]
+        P2["2. Few-Shot Demonstrations (Ví dụ mẫu - Trusted/Semi-trusted)<br/>Các cặp Input -> Output mẫu định hình phong cách phản hồi"]
+        P3["3. Retrieval Context / RAG (Dữ liệu ngoài - Untrusted)<br/>Đoạn trích xuất từ tài liệu, cơ sở tri thức, email, web"]
+        P4["4. Conversation History (Lịch sử hội thoại - Stateful)<br/>Các lượt trao đổi trước đó giữa User và Assistant"]
+        P5["5. User Query (Yêu cầu hiện tại của người dùng - Untrusted)<br/>Câu hỏi hoặc mệnh lệnh trực tiếp từ người dùng cuối"]
+        P6["6. Tool / Function Schema (Định nghĩa hàm gọi - Trusted)<br/>JSON Schema các hàm công cụ LLM có quyền gọi"]
+    end
+
+    P1 --> P2 --> P3 --> P4 --> P5 --> P6
+
+    style P1 fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px;
+    style P2 fill:#ede7f6,stroke:#512da8,stroke-width:1.5px;
+    style P3 fill:#ffebee,stroke:#c62828,stroke-width:1.5px;
+    style P4 fill:#e3f2fd,stroke:#1565c0,stroke-width:1.5px;
+    style P5 fill:#ffcdd2,stroke:#b71c1c,stroke-width:1.5px;
+    style P6 fill:#fff3e0,stroke:#e65100,stroke-width:1.5px;
 ```
 
 ---
 
-## 📋 II. CÁC ĐỊNH DẠNG TUẦN TỰ HÓA CHUẨN CÔNG NGHIỆP (INDUSTRY CHAT TEMPLATES)
+## II. Các Định Dạng Tuần Tự Hóa Chuẩn Công Nghiệp (Industry Chat Templates)
 
 Khi người dùng gửi danh sách các tin nhắn `[{"role": "system", ...}, {"role": "user", ...}]` qua API, thư viện Tokenizer phải tuần tự hóa (serialize) thành một chuỗi ký tự duy nhất bằng các Token đặc biệt (Special Control Tokens):
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│               BA ĐỊNH DẠNG PROMPT PHỔ BIẾN NHẤT TRONG KỶ NGUYÊN HIỆN ĐẠI              │
-├────────────────────────────────┬───────────────────────────────────────────────────────┤
-│ ĐỊNH DẠNG 1: OPENAI CHATML     │ <|im_start|>system                                    │
-│ (Chat Markup Language)         │ You are a helpful assistant.<|im_end|>                │
-│                                │ <|im_start|>user                                      │
-│                                │ Hello!<|im_end|>                                      │
-│                                │ <|im_start|>assistant                                │
-├────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ ĐỊNH DẠNG 2: META LLAMA-3      │ <|begin_of_text|><|start_header_id|>system<|end_header_id|>
-│ (Header ID Format)             │ You are a helpful assistant.<|eot_id|>                │
-│                                │ <|start_header_id|>user<|end_header_id|>               │
-│                                │ Hello!<|eot_id|>                                      │
-│                                │ <|start_header_id|>assistant<|end_header_id|>         │
-├────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ ĐỊNH DẠNG 3: STANFORD ALPACA   │ Below is an instruction that describes a task...      │
-│ (Markdown Instruction Style)   │ ### Instruction:                                      │
-│                                │ Translate the following text...                       │
-│                                │ ### Input:                                            │
-│                                │ Hello!                                                │
-│                                │ ### Response:                                         │
-└────────────────────────────────┴───────────────────────────────────────────────────────┘
-```
+| Định Dạng Tuần Tự Hóa | Nền Tảng Áp Dụng | Cấu Trúc Khung Mẫu (Template Syntax) |
+| :--- | :--- | :--- |
+| **OpenAI ChatML**<br>*(Chat Markup Language)* | GPT-3.5, GPT-4, GPT-4o | `<\|im_start\|>system`<br>`You are a helpful assistant.<\|im_end\|>`<br>`<\|im_start\|>user`<br>`Hello!<\|im_end\|>`<br>`<\|im_start\|>assistant` |
+| **Meta LLaMA-3**<br>*(Header ID Format)* | Llama-3-8B/70B-Instruct | `<\|begin_of_text\|><\|start_header_id\|>system<\|end_header_id\|>`<br>`You are a helpful assistant.<\|eot_id\|>`<br>`<\|start_header_id\|>user<\|end_header_id\|>`<br>`Hello!<\|eot_id\|>`<br>`<\|start_header_id\|>assistant<\|end_header_id\|>` |
+| **Stanford Alpaca**<br>*(Markdown Style)* | Alpaca, Vicuna, Open-Source Finetunes | `Below is an instruction that describes a task...`<br>`### Instruction:`<br>`Translate the following text...`<br>`### Input:`<br>`Hello!`<br>`### Response:` |
 
 ---
 
-## 💥 III. CÁC LỖ HỔNG BẢO MẬT PHÁT SINH TỪ CẤU TRÚC PROMPT
+## III. Các Lỗ Hổng Bảo Mật Phát Sinh Từ Cấu Trúc Prompt
 
 Kẻ tấn công nghiên cứu cấu trúc phân cách trên để thực hiện các cuộc tấn công bẻ gãy cú pháp:
 
@@ -97,7 +76,7 @@ Chuỗi kết quả làm vỡ cấu trúc XML, đưa câu lệnh độc hại ra
 
 ---
 
-## 🛡️ IV. CƠ CHẾ BẢO VỆ CỦA PI-GUARD TRƯỚC CÁC BIẾN THỂ CẤU TRÚC
+## IV. Cơ Chế Bảo Vệ Của PI-Guard Trước Các Biến Thể Cấu Trúc
 
 Tại **Tầng 0 (Syntactic Preprocessor)** của PI-Guard, hệ thống triển khai bộ lọc Regex chủ động phát hiện và bóc tách mọi nỗ lực giả mạo cấu trúc phân cách:
 
@@ -114,7 +93,7 @@ def sanitize_chat_tokens(text: str) -> str:
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO HỌC THUẬT (VERIFIED ACADEMIC REFERENCES)
+## Tài Liệu Tham Khảo Học Thuật (Verified Academic References)
 
 <a id="ref1"></a>**[1]** OpenAI, "OpenAI ChatML Specification and Best Practices," *OpenAI Developer Documentation*, 2023. Link: [https://github.com/openai/openai-python](https://github.com/openai/openai-python).
 

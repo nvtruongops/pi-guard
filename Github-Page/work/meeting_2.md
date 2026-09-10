@@ -10,7 +10,7 @@
 
 Cả nhóm đã tiến hành đối chiếu từng bài báo với mục tiêu đề tài: *Xây dựng lớp bảo vệ (Guardrail API) độc lập bên ngoài, phân loại Prompt Injection và Jailbreak dựa trên văn bản bằng mô hình Baseline (TF-IDF) và Transformer (BERT/DeBERTa), có khả năng chống lẩn tránh cú pháp*:
 
-#### 📌 Kết quả thẩm định chi tiết từng bài báo:
+#### Kết quả thẩm định chi tiết từng bài báo:
 
 1. **[Greshake et al. (ACM AISec 2023 / arXiv:2302.12173)](https://arxiv.org/pdf/2302.12173.pdf)**: *Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection*
    - **Đánh giá chuyên môn**: Bài báo nền tảng đầu tiên định nghĩa và chứng minh thực tế rủi ro tấn công gián tiếp (Indirect Prompt Injection) qua tài liệu, file upload và tìm kiếm web.

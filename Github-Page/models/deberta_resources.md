@@ -2,7 +2,7 @@
 
 ---
 
-## 📄 1. CÁC BÀI BÁO KHOA HỌC GỐC (ICLR / NEURIPS LANDMARK PAPERS)
+## 1. CÁC BÀI BÁO KHOA HỌC GỐC (ICLR / NEURIPS LANDMARK PAPERS)
 
 1. **Pengcheng He, Jianfeng Gao, Weizhu Chen (Microsoft Research) — DeBERTa-v3**:
    - **Tên bài báo**: *"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing"*.
@@ -28,7 +28,7 @@
 
 ---
 
-## 🌐 2. TÀI LIỆU KỸ THUẬT & BLOG CHUYÊN SÂU
+## 2. TÀI LIỆU KỸ THUẬT & BLOG CHUYÊN SÂU
 
 1. **Microsoft Research & GitHub Official**:
    - [Microsoft DeBERTa Official Repository & Documentation](https://github.com/microsoft/DeBERTa) — *Kho mã nguồn chính thức của Microsoft cung cấp code pre-training, fine-tuning và benchmark của DeBERTa-v1/v2/v3*.
@@ -39,7 +39,7 @@
 
 ---
 
-## 🎥 3. TUYỂN TẬP VIDEO BÀI GIẢNG TRỰC QUAN ĐÃ KIỂM ĐỊNH (100% HOẠT ĐỘNG)
+## 3. TUYỂN TẬP VIDEO BÀI GIẢNG TRỰC QUAN ĐÃ KIỂM ĐỊNH (100% HOẠT ĐỘNG)
 
 1. **3Blue1Brown (Trực quan hóa Toán học Đỉnh cao)**:
    - **Tiêu đề**: *Attention in transformers, step-by-step | Deep Learning Chapter 6*

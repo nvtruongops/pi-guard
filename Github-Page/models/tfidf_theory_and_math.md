@@ -2,7 +2,7 @@
 
 ---
 
-## 📜 1. LỊCH SỬ PHÁT TRIỂN & BỐI CẢNH KHOA HỌC
+## 1. LỊCH SỬ PHÁT TRIỂN & BỐI CẢNH KHOA HỌC
 
 - **Năm 1958**: Nhà khoa học **Hans Peter Luhn** (IBM) công bố bài báo *"The Automatic Creation of Literature Abstracts"* ([IBM J. Res. Dev., 1958](https://doi.org/10.1147/rd.22.0159)), đề xuất khái niệm **Term Frequency (TF)**: Tần suất lặp lại của một từ trong văn bản phản ánh mức độ quan trọng của từ đó đối với chủ đề của văn bản.
 - **Năm 1972**: Nhà khoa học máy tính người Anh **Karen Spärck Jones** công bố công trình lịch sử *"A Statistical Interpretation of Term Specificity and Its Application in Retrieval"* (*Journal of Documentation*). Bản nghiên cứu mở được hệ thống hóa trong [Cambridge Technical Report UCAM-CL-TR-356 (PDF)](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf) và [Stanford NLP IR Book Ch. 6 (PDF)](https://nlp.stanford.edu/IR-book/pdf/06vect.pdf). Bà chứng minh rằng: Một từ xuất hiện trong quá nhiều văn bản khác nhau (như "the", "is", "a") thì khả năng phân biệt ngữ nghĩa của nó gần như bằng 0. Từ đó, công thức **Inverse Document Frequency (IDF)** ra đời.
@@ -11,7 +11,7 @@
 
 ---
 
-## 📐 2. CƠ SỞ TOÁN HỌC CHI TIẾT CỦA TF-IDF
+## 2. CƠ SỞ TOÁN HỌC CHI TIẾT CỦA TF-IDF
 
 Giả sử ta có tập ngữ liệu gồm $N$ tài liệu $\mathcal{D} = \{d_1, d_2, \dots, d_N\}$ và không gian từ vựng $\mathcal{V}$ gồm $V$ từ/n-gram duy nhất.
 
@@ -61,7 +61,7 @@ Giả sử ta có tập ngữ liệu gồm $N$ tài liệu $\mathcal{D} = \{d_1,
 
 ---
 
-## 🔬 3. TẠI SAO BẮT BUỘC DÙNG CHARACTER N-GRAMS (`char_wb`) CHỐNG PROMPT INJECTION?
+## 3. TẠI SAO BẮT BUỘC DÙNG CHARACTER N-GRAMS (`char_wb`) CHỐNG PROMPT INJECTION?
 
 Trong PI-Guard, nhóm cấu hình **`analyzer='char_wb', ngram_range=(3, 5)`** (Character-with-Boundary n-grams).
 
@@ -85,7 +85,7 @@ $$\text{Prompt: "Please } \mathbf{1gn0r3} \text{ all previous rules"}$$
 
 ---
 
-## ⚙️ 4. THUẬT TOÁN PHÂN LOẠI TUYẾN TÍNH KẾT HỢP
+## 4. THUẬT TOÁN PHÂN LOẠI TUYẾN TÍNH KẾT HỢP
 
 ### 4.1. Logistic Regression (Hồi quy Logistic)
 - **Hàm giả thuyết**: Ánh xạ vector đặc trưng $\mathbf{x} \in \mathbb{R}^V$ về khoảng xác suất $[0, 1]$ qua hàm Sigmoid:
@@ -101,7 +101,7 @@ $$\text{Prompt: "Please } \mathbf{1gn0r3} \text{ all previous rules"}$$
 
 ---
 
-## 📚 5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
+## 5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
 
 1. **Hans Peter Luhn (1958)**: *"The Automatic Creation of Literature Abstracts"*, *IBM Journal of Research and Development*, Vol. 2, No. 2, pp. 159–165. DOI: [10.1147/rd.22.0159](https://doi.org/10.1147/rd.22.0159).
 2. **Karen Spärck Jones (1972)**: *"A Statistical Interpretation of Term Specificity and Its Application in Retrieval"*, *Journal of Documentation*, Vol. 28, No. 1, pp. 11–21. Giáo trình mở: [Cambridge TR-356 (PDF)](https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf) & [Stanford IR Ch. 6 (PDF)](https://nlp.stanford.edu/IR-book/pdf/06vect.pdf).

@@ -4,7 +4,7 @@ Tài liệu này tổng hợp toàn bộ các bài báo khoa học toàn văn m�
 
 ---
 
-## 📄 1. CÁC BÀI BÁO KHOA HỌC TOÀN VĂN MỞ (OPEN-ACCESS PAPERS >= 2022)
+## 1. CÁC BÀI BÁO KHOA HỌC TOÀN VĂN MỞ (OPEN-ACCESS PAPERS >= 2022)
 
 1. **Shen et al. (ACM CCS 2024) — Nghiên Cứu Khảo Sát Thực Tế Lớn Nhất Thế Giới Về DAN**:
    - **Tên bài báo**: *"\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models"*.
@@ -77,7 +77,7 @@ Tài liệu này tổng hợp toàn bộ các bài báo khoa học toàn văn m�
 
 ---
 
-## 🎥 2. TUYỂN TẬP VIDEO BÀI GIẢNG TRỰC QUAN (ĐÃ XÁC MINH OEMBED 100%)
+## 2. TUYỂN TẬP VIDEO BÀI GIẢNG TRỰC QUAN (ĐÃ XÁC MINH OEMBED 100%)
 
 1. **Computerphile**:
    - **Tiêu đề**: *ChatGPT Jailbreak - Computerphile*

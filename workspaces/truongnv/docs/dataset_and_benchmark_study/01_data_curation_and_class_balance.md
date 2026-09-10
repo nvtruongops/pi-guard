@@ -7,7 +7,7 @@
 
 ---
 
-## 🎯 I. BỐI CẢNH & THÁCH THỨC ĐẶC THÙ CỦA DỮ LIỆU AN NINH LLM
+## I. Bối Cảnh & Thách Thức Đặc Thù Của Dữ Liệu An Ninh LLM
 
 Trong bài toán xây dựng hệ thống **External Guardrail Proxy** bảo vệ ứng dụng Large Language Model (LLM), chất lượng và cấu trúc của tập dữ liệu huấn luyện quyết định trực tiếp đến năng lực phân loại và độ bền vững của mô hình trước các biến thể tấn công mới [[1]](#ref1).
 
@@ -53,7 +53,7 @@ graph TD
 
 ---
 
-## 🗂️ II. HỆ THỐNG DỮ LIỆU NGUỒN CHUẨN HÓA (ACADEMIC BENCHMARK CORPORA)
+## II. Hệ Thống Dữ Liệu Nguồn Chuẩn Hóa (Academic Benchmark Corpora)
 
 Nhóm nghiên cứu PI-Guard tích hợp và tuyển chọn dữ liệu từ 5 bộ dữ liệu học thuật mở đã được công bố tại các hội nghị uy tín ($\ge 2022$):
 
@@ -67,22 +67,17 @@ Nhóm nghiên cứu PI-Guard tích hợp và tuyển chọn dữ liệu từ 5 b
 
 ---
 
-## 🏷️ III. CẤU TRÚC PHÂN LOẠI 3 LỚP (TRI-CLASS TAXONOMY)
+## III. Cấu Trúc Phân Loại 3 Lớp (Tri-Class Taxonomy)
 
 Đồ án **PI-Guard** thiết lập bài toán phân loại đa lớp (Multi-Class Classification) với 3 nhãn phân định rõ ràng về mặt ngữ nghĩa và mức độ nghiêm trọng:
 
-```
-                  ┌────────────────────────────────────────┐
-                  │           Prompt Đầu Vào (x)           │
-                  └───────────────────┬────────────────────┘
-                                      │
-              ┌───────────────────────┼───────────────────────┐
-              ▼                       ▼                       ▼
-    ┌──────────────────┐    ┌───────────────────┐   ┌──────────────────┐
-    │  Lớp 0: Benign   │    │  Lớp 1: Injection │   │ Lớp 2: Jailbreak │
-    │ (Hợp Lệ / Vô Hại)│    │ (Chiếm Quyền Điều │   │ (Vượt Rào Hành Vi│
-    │                  │    │      Khiển)       │   │    Đạo Đức)      │
-    └──────────────────┘    └───────────────────┘   └──────────────────┘
+```mermaid
+graph TD
+    Input["Prompt Đầu Vào (x)"]
+    L0["Lớp 0: Benign<br/>(Hợp Lệ / Vô Hại)"]
+    L1["Lớp 1: Injection<br/>(Chiếm Quyền Điều Khiển)"]
+    L2["Lớp 2: Jailbreak<br/>(Vượt Rào Hành Vi Đạo Đức)"]
+    Input --> L0 & L1 & L2
 ```
 
 ### 1. Lớp 0: Benign (Mẫu Hợp Lệ & Hard Benign)
@@ -107,7 +102,7 @@ Nhóm nghiên cứu PI-Guard tích hợp và tuyển chọn dữ liệu từ 5 b
 
 ---
 
-## 🧹 IV. QUY TRÌNH KHỬ TRÙNG LẶP & LỌC NHIỄU (MINHASH DEDUPLICATION)
+## IV. Quy Trình Khử Trùng Lặp & Lọc Nhiễu (MinHash Deduplication)
 
 Trùng lặp dữ liệu (Data Duplication) là nguyên nhân hàng đầu khiến mô hình ghi nhớ máy móc (Memorization) và dẫn đến hiện tượng rò rỉ dữ liệu giữa tập huấn luyện và tập kiểm thử [[7]](#ref7).
 
@@ -126,7 +121,7 @@ $$P\left(\min_{s \in S(d_1)} h_i(s) = \min_{s \in S(d_2)} h_i(s)\right) = J(S(d_
 
 ---
 
-## 🔬 V. TĂNG CƯỜNG DỮ LIỆU TỔNG HỢP CÓ KIỂM SOÁT (SYNTHETIC AUGMENTATION)
+## V. Tăng Cường Dữ Liệu Tổng Hợp Có Kiểm Soát (Synthetic Augmentation)
 
 Để gia tăng độ bền vững cho mô hình trước các biến thể đa hình (Polymorphic Attacks), nhóm nghiên cứu áp dụng quy trình tăng cường dữ liệu tổng hợp dựa trên 3 toán tử biến đổi:
 
@@ -136,7 +131,7 @@ $$P\left(\min_{s \in S(d_1)} h_i(s) = \min_{s \in S(d_2)} h_i(s)\right) = J(S(d_
 
 ---
 
-## 💻 VI. MÃ NGUỒN MINH HỌA PIPELINE KHỬ TRÙNG LẶP & CÂN BẰNG TẬP DỮ LIỆU
+## VI. Mã Nguồn Minh Họa Pipeline Khử Trùng Lặp & Cân Bằng Tập Dữ Liệu
 
 ```python
 """
@@ -202,7 +197,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO
+## Tài Liệu Tham Khảo
 
 <a id="ref1"></a>**[1]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in *NeurIPS 2022 Workshop on ML Safety*, 2022. Link: [https://arxiv.org/abs/2211.09527](https://arxiv.org/abs/2211.09527).
 

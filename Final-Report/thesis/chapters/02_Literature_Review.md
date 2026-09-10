@@ -14,20 +14,9 @@ Sự phát triển vượt bậc của các Mô hình Ngôn ngữ Lớn (LLMs) d
 
 ### 2.1.1. Lịch Sử Phát Triển & Bản Chất Kỹ Thuật Các Vector Tấn Công LLM
 
-```
-                               ┌────────────────────────────────────────┐
-                               │  TIẾN TRÌNH PHÁT TRIỂN CÁC VECTOR      │
-                               │  TẤN CÔNG VÀO MÔ HÌNH NGÔN NGỮ LỚN     │
-                               └──────────────────┬─────────────────────┘
-                                                  │
-             ┌────────────────────────────────────┼────────────────────────────────────┐
-             ▼                                    ▼                                    ▼
-┌───────────────────────────┐        ┌───────────────────────────┐        ┌───────────────────────────┐
-│ GIAI ĐOẠN 1 (2022 - 2023) │        │ GIAI ĐOẠN 2 (2023 - 2024) │        │ GIAI ĐOẠN 3 (2024 - 2026) │
-│ • Direct Prompt Injection │        │ • Indirect Prompt Inject  │        │ • Multi-Layer Agent Attack│
-│ • "Ignore previous rules" │        │ • Jailbreak DAN / Roleplay│        │ • Cipher / Base64 Evasion │
-│ • Perez & Ribeiro (2022)  │        │ • Greshake (2023), Wei(24)│        │ • Tencent Zhuque (2026)   │
-└───────────────────────────┘        └───────────────────────────┘        └───────────────────────────┘
+```mermaid
+flowchart LR
+    G1["<b>GIAI ĐOẠN 1 (2022 - 2023)</b><br/>• Direct Prompt Injection<br/>• Chỉ thị 'Ignore previous rules'<br/>• Perez & Ribeiro (2022)"] --> G2["<b>GIAI ĐOẠN 2 (2023 - 2024)</b><br/>• Indirect Prompt Injection<br/>• Jailbreak DAN & Roleplay<br/>• Greshake (2023), Wei (2023)"] --> G3["<b>GIAI ĐOẠN 3 (2024 - 2026)</b><br/>• Multi-Layer Agent Attacks<br/>• Cipher & Base64 Evasion<br/>• Tencent Zhuque Lab (2026)"]
 ```
 
 #### A. Tấn công Prompt Injection Trực tiếp & Lỗ hổng Ranh giới Lệnh/Dữ liệu
@@ -51,24 +40,11 @@ Ngoài ra, nghiên cứu **Do-Not-Answer (EMNLP 2023)** đã cung cấp bộ d�
 
 Các giải pháp bảo vệ ứng dụng LLM hiện nay được chia thành 3 trường phái kiến trúc chính:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│             KHẢO SÁT 3 TRƯỜNG PHÁI GUARDRAIL PHỔ BIẾN TRONG THỰC TẾ                    │
-├────────────────────────────────┬───────────────────────────────────────────────────────┤
-│ NHÓM 1: BỘ LỌC TỪ KHÓA TĨNH   │ • Tốc độ siêu nhanh (<1ms), chi phí $0                │
-│ (Regex & Keyword Blacklist)    │ • Điểm yếu: Quá giòn (Brittle), dễ bị bypass bởi      │
-│                                │   Leetspeak (`1gn0r3`), khoảng trắng (`i g n o r e`)  │
-├────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ NHÓM 2: LLM-AS-A-JUDGE         │ • Sử dụng LLM lớn làm trọng tài (Llama Guard 3 8B,    │
-│ (Llama Guard 3, NeMo Guard)    │   NeMo Guardrails, OpenAI Moderation API)             │
-│                                │ • Điểm yếu: Độ trễ cực lớn (>500ms - 1.5s), tốn VRAM  │
-│                                │   (>16GB), chi phí API đắt đỏ, không khả thi inline   │
-├────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ NHÓM 3: TRANSFORMER PHÂN LOẠI  │ • Sử dụng Encoder Transformer nhỏ gọn (DeBERTa-v3)    │
-│ (PI-Guard & ProtectAI SOTA)    │ • Điểm mạnh: Hiểu ngữ nghĩa sâu, độ trễ P95 < 30ms    │
-│                                │   trên CPU, chi phí $0, kháng lẩn tránh tốt           │
-└────────────────────────────────┴───────────────────────────────────────────────────────┘
-```
+| Trường Phái Guardrail | Đặc Trưng Kỹ Thuật & Đánh Giá Thực Nghiệm |
+| :--- | :--- |
+| **NHÓM 1: BỘ LỌC TỪ KHÓA TĨNH**<br>*(Regex & Keyword Blacklist)* | • Tốc độ xử lý siêu nhanh (< 1ms), chi phí vận hành $0.<br>• Điểm yếu cốt tử: Quá giòn (*brittle*), dễ dàng bị vượt qua bởi Leetspeak (`1gn0r3`), phân tách khoảng trắng (`i g n o r e`), hoặc mã hóa Base64. |
+| **NHÓM 2: LLM-AS-A-JUDGE**<br>*(Llama Guard 3 8B, NeMo Guardrails)* | • Sử dụng LLM lớn làm trọng tài phân loại ngữ cảnh (Llama Guard 3 8B, OpenAI Moderation API).<br>• Điểm yếu cốt tử: Độ trễ rất lớn (> 500ms – 1.5s), đòi hỏi GPU VRAM cao (> 16GB), chi phí API đắt đỏ, không khả thi cho chốt chặn trực tuyến. |
+| **NHÓM 3: TRANSFORMER PHÂN LOẠI CHUYÊN BIỆT**<br>*(PI-Guard & ProtectAI SOTA)* | • Sử dụng mô hình Transformer Encoder nhỏ gọn chuyên trách (`microsoft/deberta-v3-base`).<br>• Điểm mạnh: Hiểu ngữ nghĩa sâu, độ trễ P95 < 30ms trên CPU tiêu chuẩn, chi phí $0, độ bền đối kháng vượt trội. |
 
 1. **Nhóm 1: Bộ lọc tĩnh (Regex & Keyword Blacklists)**:
    - *Nguyên lý*: Sử dụng danh sách từ khóa nhạy cảm và các biểu thức chính quy (Regex) để bắt các chuỗi phổ biến như `"ignore previous instructions"`, `"system prompt"`, `"DAN mode"`.
@@ -100,7 +76,7 @@ Các giải pháp bảo vệ ứng dụng LLM hiện nay được chia thành 3 
 ### 2.2.1. Bảng Ma Trận Đối Sánh Toàn Diện Các Giải Pháp Guardrail Hiện Tại:
 
 | Tiêu chí đối sánh | Regex / Keyword Blacklists | LLM-as-a-Judge (Llama Guard 3 8B) [[9]](#ref9) | OpenAI Moderation API [[12]](#ref12) | ProtectAI DeBERTa Baseline | **PI-GUARD (Đề xuất của nhóm)** |
-| :--- | :---: | :---: | :---: | :---: | :---: |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Kích thước mô hình** | 0 MB | ~8,000M (8B) | API Đám mây | 86M | **86M (Tối ưu INT8 < 150MB)** |
 | **Hạ tầng triển khai** | CPU / RAM cực nhẹ | GPU VRAM > 16GB | Máy chủ ngoài | CPU / GPU nhẹ | **CPU phổ thông (Commodity CPU)** |
 | **Độ trễ suy luận (P95)** | **< 1 ms** | **> 500 ms - 1.5s** | ~200 ms - 400 ms | ~45 ms | **< 30 ms (Độ trễ thấp)** |
@@ -116,25 +92,11 @@ Các giải pháp bảo vệ ứng dụng LLM hiện nay được chia thành 3 
 
 Từ kết quả khảo sát các công trình quốc tế, nhóm xác định **3 Khoảng Trống Nghiên Cứu Trọng Yếu** mà đồ án PI-Guard tập trung giải quyết:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                  3 KHOẢNG TRỐNG NGHIÊN CỨU CỐT LÕI (RESEARCH GAPS)                     │
-├───────────────┬────────────────────────────────────────┬───────────────────────────────┤
-│ Mã Khoảng Trống│ Hiện Trạng Các Nghiên Cứu Quốc Tế     │ Hạn Chế & Rủi Ro Thực Tế      │
-├───────────────┼────────────────────────────────────────┼───────────────────────────────┤
-│ GAP 1:        │ Các tập dữ liệu (Deepset, Gandalf...)  │ Phân chia ngẫu nhiên dẫn đến  │
-│ Data Leakage  │ chứa hàng loạt biến thể từ 1 mẫu gốc. │ rò rỉ dữ liệu cụm, làm sai lệch│
-│ & Splitting   │ Hiện tại hầu hết dùng Random Split.    │ đánh giá năng lực Zero-day.   │
-├───────────────┼────────────────────────────────────────┼───────────────────────────────┤
-│ GAP 2:        │ Các mô hình Guardrail chủ yếu được test│ Mô hình sụp đổ khi bị tấn công│
-│ Adversarial   │ trên văn bản chuẩn, thiếu cơ chế giải  │ bằng Base64, Leetspeak hoặc   │
-│ Evasion       │ mã heuristic và biểu diễn đa tầng.     │ phân tách khoảng trắng.       │
-├───────────────┼────────────────────────────────────────┼───────────────────────────────┤
-│ GAP 3:        │ Đa số giải pháp chọn hoặc quá nặng     │ Thiếu giải pháp nén lượng hóa │
-│ Inline Latency│ (Llama Guard > 16GB VRAM) hoặc quá yếu │ INT8 đạt P95 < 30ms trên CPU  │
-│ & Usability   │ (Regex), tỷ lệ FPR cao gây tắc nghẽn.  │ mà vẫn giữ FPR < 1.5%.        │
-└───────────────┴────────────────────────────────────────┴───────────────────────────────┘
-```
+| Mã Khoảng Trống | Hiện Trạng Các Nghiên Cứu Quốc Tế | Hạn Chế & Rủi Ro Thực Tế |
+| :--- | :--- | :--- |
+| **GAP 1: Data Leakage & Splitting** | Các tập dữ liệu an toàn LLM công khai (Deepset, Gandalf...) chứa hàng loạt biến thể sinh từ cùng một mẫu gốc. Hiện tại đa số nghiên cứu sử dụng Random Split. | Phân chia ngẫu nhiên dẫn đến rò rỉ dữ liệu cụm giữa tập Train và Test, làm sai lệch kết quả đánh giá năng lực phát hiện các đòn tấn công Zero-day ngoài thực tế. |
+| **GAP 2: Adversarial Evasion** | Các mô hình Guardrail hiện tại chủ yếu được huấn luyện và đánh giá trên văn bản chuẩn, thiếu cơ chế giải mã heuristic và biểu diễn đặc trưng đa tầng. | Mô hình sụp đổ khi bị tấn công bằng biến thể cú pháp Leetspeak, phân tách khoảng trắng hoặc chuỗi mã hóa Base64/Cipher. |
+| **GAP 3: Inline Latency & Usability** | Đa số giải pháp phân cực: hoặc quá nặng nề (Llama Guard đòi hỏi GPU > 16GB VRAM) hoặc quá thô sơ (Regex với FPR cao gây cản trở vận hành). | Thiếu giải pháp nén lượng hóa INT8 tối ưu hóa cho CPU đạt P95 < 30ms mà vẫn kiểm soát nghiêm ngặt tỷ lệ báo động nhầm FPR < 1.5%. |
 
 ---
 

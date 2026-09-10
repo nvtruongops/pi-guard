@@ -7,7 +7,7 @@
 
 ---
 
-## 📚 I. BẢNG TỔNG HỢP CÁC CÔNG TRÌNH KHOA HỌC BÌNH DUYỆT (PEER-REVIEWED PAPERS)
+## I. BẢNG TỔNG HỢP CÁC CÔNG TRÌNH KHOA HỌC BÌNH DUYỆT (PEER-REVIEWED PAPERS)
 
 Toàn bộ các tài liệu tham khảo dưới đây đều tuân thủ nghiêm ngặt quy định học thuật của Đại học FPT: được xuất bản tại các hội nghị bảo mật và AI hàng đầu thế giới (ACM CCS, NeurIPS, ICLR, NAACL) hoặc tiêu chuẩn an toàn quốc tế (NIST, OWASP):
 
@@ -26,7 +26,7 @@ Toàn bộ các tài liệu tham khảo dưới đây đều tuân thủ nghiêm
 
 ---
 
-## 🎥 II. VIDEO BÀI GIẢNG KHOA HỌC ĐÃ KIỂM ĐỊNH (OEMBED VERIFIED)
+## II. VIDEO BÀI GIẢNG KHOA HỌC ĐÃ KIỂM ĐỊNH (OEMBED VERIFIED)
 
 Toàn bộ các video dưới đây đều đã được xác thực trạng thái hoạt động công khai thông qua giao thức kiểm định `oEmbed API` của YouTube:
 
@@ -51,7 +51,7 @@ Toàn bộ các video dưới đây đều đã được xác thực trạng th�
 
 ---
 
-## 💻 III. MÃ NGUỒN MINH HỌA KIẾN TRÚC PHÒNG THỦ 3 LỚP (PYTHON END-TO-END)
+## III. MÃ NGUỒN MINH HỌA KIẾN TRÚC PHÒNG THỦ 3 LỚP (PYTHON END-TO-END)
 
 Đoạn mã dưới đây minh họa sự phối hợp nhịp nhàng giữa 3 lớp phòng thủ: Lớp 1 (PI-Guard Input Guardrail), Lớp 2 (XML Boundary Enclosure), và Lớp 3 (Output Secret Scanner & Canary Token Verifier):
 
@@ -195,7 +195,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📚 IV. TÀI LIỆU THAM KHẢO HỌC THUẬT (100% VERIFIED >= 2022)
+## IV. TÀI LIỆU THAM KHẢO HỌC THUẬT (100% VERIFIED >= 2022)
 
 <a id="ref1"></a>**[1]** J. H. Saltzer and M. D. Schroeder, "The protection of information in computer systems," *Proceedings of the IEEE*, vol. 63, no. 9, pp. 1278–1308, 1975. Link: [https://ieeexplore.ieee.org/document/1451869](https://ieeexplore.ieee.org/document/1451869).  
 <a id="ref2"></a>**[2]** National Institute of Standards and Technology (NIST), "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations," *NIST AI 100-2e2025*, 2025. Link: [https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf).  

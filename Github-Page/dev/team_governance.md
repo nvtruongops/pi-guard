@@ -4,7 +4,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
-## 🛡️ Project Overview
+## Project Overview
 - **Project Title**: A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (**PI-Guard**)
 - **Academic Program**: Bachelor of Science in Information Assurance (IA), FPT University (Course Code: `IAP491`, Fall 2026 Semester)
 - **Primary Objective**: Design, implement, and benchmark an external, API-driven, Machine-Learning and Transformer-based protective guardrail placed in front of downstream LLM applications to classify incoming user prompts (*Benign* vs. *Prompt Injection* vs. *Jailbreak*) with low latency and low false-positive rate.
@@ -12,7 +12,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
-## 🚫 STRICT RULE: IMMUTABLE / READ-ONLY & CONFIDENTIAL UNIVERSITY RESOURCES
+## STRICT RULE: IMMUTABLE / READ-ONLY & CONFIDENTIAL UNIVERSITY RESOURCES
 > [!CAUTION]
 > **CRITICAL INVARIANTS FOR ALL AI AGENTS**:
 > 1. The document **`CAPSTONE PROJECT REGISTER.md`** is the official, signed topic registration agreement approved by the Supervisor and FPT University Academic Department.
@@ -21,7 +21,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
-## 🔗 STRICT RULE: RESOURCE & LITERATURE VALIDATION PROTOCOL (ZERO DEAD LINKS / OPEN-ACCESS PDF INVARIANT)
+## STRICT RULE: RESOURCE & LITERATURE VALIDATION PROTOCOL (ZERO DEAD LINKS / OPEN-ACCESS PDF INVARIANT)
 > [!IMPORTANT]
 > **MANDATORY PROTOCOL FOR CITATIONS, URLS, AND MEDIA**:
 > 1. **ZERO DEAD LINKS**: Every URL (website, GitHub repository, academic paper, documentation) written into the repository MUST be validated for live existence (HTTP 200/302). Speculative or hallucinated URLs are strictly prohibited.
@@ -31,7 +31,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
-## 🔬 STRICT RULE: MANDATORY ACADEMIC GROUNDING & ANCHOR INTEGRITY INVARIANT (100% CITED RESEARCH DOCS)
+## STRICT RULE: MANDATORY ACADEMIC GROUNDING & ANCHOR INTEGRITY INVARIANT (100% CITED RESEARCH DOCS)
 > [!IMPORTANT]
 > **MANDATORY SCIENTIFIC RIGOR FOR RESEARCH & THESIS DOCUMENTS**:
 > 1. **100% ACADEMIC GROUNDING (ZERO UNSUPPORTED CLAIMS)**:
@@ -45,7 +45,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
-## 📚 STRICT RULE: LITERATURE SCOPING & ARCHITECTURAL COMPATIBILITY INVARIANT (ZERO CITATION BLOAT)
+## STRICT RULE: LITERATURE SCOPING & ARCHITECTURAL COMPATIBILITY INVARIANT (ZERO CITATION BLOAT)
 > [!IMPORTANT]
 > **SCOPE BOUNDARY FOR LITERATURE & SYSTEM DESIGN**:
 > 1. **EXTERNAL GUARDRAIL SCOPE COMPATIBILITY**: All cited scientific works used to justify system architecture MUST be compatible with an **External Guardrail Proxy** paradigm (text-level prompt classification before dispatching to downstream LLMs, requiring zero access to model weights or internal KV-cache).
@@ -54,7 +54,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
-## 📖 STRICT RULE: LOCAL REFERENCES FIRST & LITERATURE REUSE PROTOCOL (ZERO REDUNDANT SEARCH)
+## STRICT RULE: LOCAL REFERENCES FIRST & LITERATURE REUSE PROTOCOL (ZERO REDUNDANT SEARCH)
 > [!IMPORTANT]
 > **MANDATORY INVARIANT: REUSE ARCHIVED LITERATURE BEFORE DISCOVERY**:
 > 1. **INSPECT REFERENCES_LOG.md FIRST**: Before calling any literature MCP tool (`arxiv`, `openalex`, `semanticscholar`, `scholar-feed`) or searching external web/databases for citations, all AI Agents and team members MUST first inspect **`Final-Report/References/REFERENCES_LOG.md`**.
@@ -64,7 +64,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
-## 🔬 STRICT RULE: FOUR-TIER PROVENANCE & LITERATURE ATTRIBUTION INVARIANT (ZERO CITATION ATTRIBUTION OVERREACH)
+## STRICT RULE: FOUR-TIER PROVENANCE & LITERATURE ATTRIBUTION INVARIANT (ZERO CITATION ATTRIBUTION OVERREACH)
 > [!IMPORTANT]
 > **MANDATORY ACADEMIC RIGOR FOR SCIENTIFIC CITATIONS & PROVENANCE MAPPING**:
 > 1. **MANDATORY FOUR-TIER PROVENANCE & DECOUPLING**: Every scientific citation in the thesis, literature review, and reports MUST strictly adhere to 4 distinct tiers:
@@ -80,7 +80,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
-## 🛡️ STRICT RULE: ACADEMIC DEFENSE TERMINOLOGY & OVERCLAIMING BLACKLIST PROTOCOL
+## STRICT RULE: ACADEMIC DEFENSE TERMINOLOGY & OVERCLAIMING BLACKLIST PROTOCOL
 > [!CAUTION]
 > **MANDATORY GOVERNANCE & DEFENSE TERMINOLOGY INVARIANTS**:
 > To prevent severe challenges and score deductions before the FPT Academic Council, all team members and AI Agents MUST strictly adhere to the comprehensive terminology blacklist and academic humility protocol defined in **`.agents/rules/academic-defense-terminology-blacklist.md`**.
@@ -93,7 +93,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
-## 🛠️ Configured MCP Servers (Model Context Protocol)
+## Configured MCP Servers (Model Context Protocol)
 
 The workspace is configured with 11 integrated Model Context Protocol (MCP) servers defined in **`.vscode/mcp.json`**:
 
@@ -109,7 +109,7 @@ The workspace is configured with 11 integrated Model Context Protocol (MCP) serv
 10. 💡 **`sequential-thinking`**: Structured multi-step reasoning for algorithm design, adversarial evasion analysis, and bug troubleshooting.
 11. 📄 **`officecli`**: Read, edit, generate, and validate Office documents (`.docx`, `.xlsx`, `.pptx`) for thesis compilation and defense slide preparation.
 
-### 🎯 Research, Lab & Debugging MCP Usage Guide
+### Research, Lab & Debugging MCP Usage Guide
 - **Academic Literature Discovery**: Leverage the golden quartet (`arxiv` for newest preprints, `openalex` for verified open-access PDFs, `semanticscholar` for quick TLDR screening and influential citation graphs, and `scholar-feed` for BibTeX citation trees).
 - **GPU Cloud Labs & Dataset Exploration**: Utilize `kaggle` to search reference transformer classification notebooks, access supplementary jailbreak datasets, and manage long-running GPU training jobs without local hardware constraints.
 - **Error Code & Technical Troubleshooting**: Use `duckduckgo-search` for PyTorch, Transformers, ONNX Runtime, and FastAPI exceptions; use `jupyter` for interactive debugging in experimental notebooks.
@@ -117,7 +117,7 @@ The workspace is configured with 11 integrated Model Context Protocol (MCP) serv
 
 ---
 
-## 🧠 Available Custom Agent Skills (`.agents/skills/`)
+## Available Custom Agent Skills (`.agents/skills/`)
 
 The repository provides 12 specialized, domain-specific agent skills:
 
@@ -136,7 +136,7 @@ The repository provides 12 specialized, domain-specific agent skills:
 
 ---
 
-## 👥 Collaboration Paradigm: Parallel Full-Pipeline Exploration & Knowledge Convergence
+## Collaboration Paradigm: Parallel Full-Pipeline Exploration & Knowledge Convergence
 
 > **Team Core Principle**: **Everyone Explores $\rightarrow$ Cross-Review Findings $\rightarrow$ Consensus Finalization**  
 > Instead of a fragmented assembly line, all 4 members explore the entire pipeline hands-on in parallel within their individual sandboxes (`workspaces/<member>/`). Weekly convergence meetings consolidate the best empirical results into `Final-Report/src/` and `Final-Report/thesis/chapters/`:
@@ -154,7 +154,7 @@ The repository provides 12 specialized, domain-specific agent skills:
 
 ---
 
-## 🔒 Strict Workspace Boundary & Leader Merge Governance Rule
+## Strict Workspace Boundary & Leader Merge Governance Rule
 
 > [!IMPORTANT]
 > **ACCESS CONTROL & WORKSPACE BOUNDARY INVARIANTS**:

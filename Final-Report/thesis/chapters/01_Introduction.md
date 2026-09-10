@@ -10,19 +10,14 @@ Tuy nhiên, việc triển khai LLM trong thực tế làm phát sinh những l�
 ## 1.2. Problem Statement (Phát Biểu Bài Toán)
 Vấn đề cốt lõi của các mô hình Transformer hiện nay bắt nguồn từ sự tương đồng với **"Lỗ hổng kiến trúc Von Neumann trong xử lý ngôn ngữ tự nhiên"** [[1]](#ref1), [[3]](#ref3):
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                       INPUT CONTEXT                         │
-│  ┌─────────────────────────────────┐ ┌───────────────────┐  │
-│  │ System Prompt (Chỉ thị/Rules)  │ │ User Prompt (Data)│  │
-│  └─────────────────────────────────┘ └───────────────────┘  │
-└──────────────────────────────┬──────────────────────────────┘
-                               │ Ghép chung thành 1 chuỗi Token phẳng
-                               ▼
-             ┌──────────────────────────────────────┐
-             │   LLM Transformer Next-Token Engine  │
-             │   (Không có ranh giới phần cứng)     │
-             └──────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph InputContext["NGỮ CẢNH ĐẦU VÀO (INPUT CONTEXT)"]
+        SP["System Prompt<br/>(Chỉ thị điều khiển / Rules)"]
+        UP["User Prompt<br/>(Dữ liệu người dùng / Data)"]
+    end
+    SP --> Engine["Động Cơ Transformer Next-Token<br/>(Ghép chung thành 1 chuỗi Token phẳng, không có ranh giới phần cứng)"]
+    UP --> Engine
 ```
 
 1. **Lẫn lộn giữa Lệnh và Dữ liệu (Instruction/Data Ambiguity)**: Trong cơ chế Self-Attention của Transformer, System Instruction (chỉ thị điều khiển) và User Input (dữ liệu đầu vào) bị ghép chung thành một chuỗi token phẳng ($X = S \mathbin{\Vert} U$). Mô hình không có cơ chế phân tách phần cứng hay quyền hạn (Privilege Separation) giữa dữ liệu và câu lệnh.
@@ -47,32 +42,21 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 
 ### 1.3.3. Hệ Thống 3 Câu Hỏi Nghiên Cứu Cốt Lõi (RQ1 - RQ3):
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│               HỆ THỐNG 3 CÂU HỎI NGHIÊN CỨU CỐT LÕI (CHUYÊN NGÀNH ATTT)                │
-├──────┬──────────────────────────────────────────┬──────────────────────────────────────┤
-│ Mã   │ Tên Trọng Tâm Nghiên Cứu                 │ Khoảng Trống Nghiên Cứu Cốt Lõi      │
-├──────┼──────────────────────────────────────────┼──────────────────────────────────────┤
-│ RQ1  │ Phân Loại Mối Đe Dọa & Chống Rò Rỉ Dữ Liệu│ Rò rỉ cụm mẫu & Ranh giới phân loại  │
-│      │ (Threat Modeling & Representation)       │ giữa cú pháp tĩnh và ngữ nghĩa sâu   │
-├──────┼──────────────────────────────────────────┼──────────────────────────────────────┤
-│ RQ2  │ Độ Bền Kháng Lẩn Tránh & Mã Hóa Đối Kháng │ Sự sụp đổ của mô hình trước biến dị  │
-│      │ (Adversarial Robustness & Ciphers)       │ cú pháp Leetspeak, Spacing & Base64  │
-├──────┼──────────────────────────────────────────┼──────────────────────────────────────┤
-│ RQ3  │ Cân Bằng An Toàn & Khả Thi Triển Khai    │ Đánh đổi Security/Usability (FPR) và │
-│      │ (Security Trade-off & Inline Feasibility)│ bảo toàn ranh giới an toàn khi nén   │
-└──────┴──────────────────────────────────────────┴──────────────────────────────────────┘
-```
+| Mã | Tên Trọng Tâm Nghiên Cứu | Khoảng Trống Nghiên Cứu Cốt Lõi |
+| :---: | :--- | :--- |
+| **RQ1** | **Phân Loại Mối Đe Dọa & Chống Rò Rỉ Dữ Liệu**<br>*(Threat Modeling & Representation)* | Rò rỉ cụm mẫu & Ranh giới phân loại giữa cú pháp tĩnh và ngữ nghĩa sâu |
+| **RQ2** | **Độ Bền Kháng Lẩn Tránh & Mã Hóa Đối Kháng**<br>*(Adversarial Robustness & Ciphers)* | Sự sụp đổ của mô hình trước biến dị cú pháp Leetspeak, Spacing & Base64 |
+| **RQ3** | **Cân Bằng An Toàn & Khả Thi Triển Khai**<br>*(Security Trade-off & Inline Feasibility)* | Đánh đổi Security/Usability (FPR) và bảo toàn ranh giới an toàn khi nén |
 
-#### 📌 RQ1 — Biểu Diễn Mối Đe Dọa, Khử Rò Rỉ Dữ Liệu & Ranh Giới Phân Loại Ngữ Nghĩa:
+#### RQ1 — Biểu Diễn Mối Đe Dọa, Khử Rò Rỉ Dữ Liệu & Ranh Giới Phân Loại Ngữ Nghĩa:
 - **Câu hỏi**: *Làm thế nào để xây dựng một phương pháp luận phân chia dữ liệu bảo toàn cụm (Group-Aware Splitting) nhằm triệt tiêu hiện tượng rò rỉ dữ liệu giữa các biến thể tấn công, và sự kết hợp giữa mô hình học máy cổ điển (TF-IDF) với Transformer phân tách vị trí ngữ nghĩa (DeBERTa-v3) nâng cao khả năng phát hiện các đòn tấn công Prompt Injection và Jailbreak vượt trội hơn các mô hình phòng thủ SOTA hiện nay ở mức độ nào?*
 - **Chỉ số đo lường**: $\text{Inter-cluster Jaccard} < 0.15$, $\text{Macro } F_1^{\text{OOD}} \ge 0.92$, $\text{Macro } F_1 \ge 0.95$ (kỳ vọng $> 0.98$), $\text{PR-AUC} \ge 0.98$.
 
-#### 📌 RQ2 — Độ Bền Của Hệ Thống Trước Các Kỹ Thuật Lẩn Tránh & Mã Hóa Đối Kháng:
+#### RQ2 — Độ Bền Của Hệ Thống Trước Các Kỹ Thuật Lẩn Tránh & Mã Hóa Đối Kháng:
 - **Câu hỏi**: *Hệ thống phòng thủ đa tầng (kết hợp tiền xử lý chuẩn hóa chuỗi, biểu diễn n-gram ký tự và token hóa subword) duy trì độ bền và độ chính xác như thế nào trước các kỹ thuật lẩn tránh đối kháng có cấu trúc (gồm thay thế ký tự Leetspeak, phân tách khoảng trắng và mã hóa Base64/Cipher), và mức độ suy giảm hiệu năng tối đa có thể định lượng được là bao nhiêu?*
 - **Chỉ số đo lường**: $\text{ARR} = \frac{F_1^{\text{Adversarial}}}{F_1^{\text{Clean}}} \ge 0.95$, $\text{ASR} < 5\%$, $\Delta F_1 = |F_1^{\text{Clean}} - F_1^{\text{Adv}}| < 5\%$.
 
-#### 📌 RQ3 — Cân Bằng An Toàn, Khống Chế Tỷ Lệ Chặn Nhầm & Bảo Toàn Ranh Giới Khi Lượng Hóa:
+#### RQ3 — Cân Bằng An Toàn, Khống Chế Tỷ Lệ Chặn Nhầm & Bảo Toàn Ranh Giới Khi Lượng Hóa:
 - **Câu hỏi**: *Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và quá trình lượng hóa động INT8 cùng kiến trúc proxy bất đồng bộ có thể bảo toàn ranh giới quyết định an toàn trong khi duy trì độ trễ thấp tối ưu (P95 < 30ms trên CPU) mà không tạo ra điểm nghẽn từ chối dịch vụ (DoS)?*
 - **Chỉ số đo lường**: $\text{FPR} < 1.5\%$ (kỳ vọng $< 1.1\%$), $\Delta \text{Decision Boundary (KL)} < 0.05$, $\Delta F_1^{\text{Quant}} < 0.3\%$, $\text{P95 Latency} < 30\text{ms}$ trên CPU.
 
@@ -94,27 +78,10 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 
 ## 1.5. Scope and Limitations (Ranh Giới Phạm Vi & Giới Hạn Đề Tài)
 
-```
-┌──────────────────────────────────────────────────────────────────────────┐
-│                   IN-SCOPE (TRỌNG TÂM NGHIÊN CỨU)                        │
-│  - 2 Bài toán cốt lõi: Prompt Injection (Direct/Indirect) & Jailbreak    │
-│  - Chuỗi văn bản đầu vào: English Text Prompts (Tiêu chuẩn nghiên cứu)   │
-│  - Kỹ thuật lẩn tránh cú pháp: Leetspeak, Base64, Spacing (Test độ bền)  │
-│  - Độ trễ thấp (Low-latency): P95 Latency < 30ms trên CPU thông thường   │
-│  - An toàn vận hành: False Positive Rate (FPR) < 1.5% trên tập Benign    │
-│  - Kiến trúc: Hybrid TF-IDF Baseline + Fine-tuned DeBERTa-v3 + ONNX INT8 │
-└──────────────────────────────────────────────────────────────────────────┘
-                                     ▲
-                                     │ RANH GIỚI BẢO VỆ
-                                     ▼
-┌──────────────────────────────────────────────────────────────────────────┐
-│                   OUT-OF-SCOPE (NẰM NGOÀI PHẠM VI)                       │
-│  - Tấn công đa phương thức: Image / Audio / Video Jailbreaks             │
-│  - Tấn công hạ tầng mạng: DDoS, trích xuất trọng số GPU, Side-channel    │
-│  - Quét lỗ hổng hệ điều hành máy chủ / CVE của Linux/Docker              │
-│  - Xây dựng hệ thống cơ sở dữ liệu Vector RAG hoặc Agent Tool Runtime    │
-└──────────────────────────────────────────────────────────────────────────┘
-```
+| Phạm Vi Nghiên Cứu | Nội Dung Chi Tiết |
+| :--- | :--- |
+| **IN-SCOPE<br>(Trọng tâm nghiên cứu)** | • 2 Bài toán cốt lõi: Prompt Injection (Direct/Indirect) và Jailbreak<br>• Chuỗi văn bản đầu vào: English Text Prompts (Tiêu chuẩn nghiên cứu quốc tế)<br>• Kỹ thuật lẩn tránh cú pháp: Leetspeak, Base64, Spacing (Kiểm thử độ bền đối kháng)<br>• Độ trễ thấp: P95 Latency < 30ms trên CPU tiêu chuẩn (Commodity CPU)<br>• Kiểm soát báo động nhầm: False Positive Rate (FPR) < 1.5% trên tập Benign<br>• Kiến trúc hệ thống: Hybrid TF-IDF Baseline + Fine-tuned DeBERTa-v3 + ONNX INT8 |
+| **OUT-OF-SCOPE<br>(Nằm ngoài phạm vi)** | • Tấn công đa phương thức: Image, Audio, Video Jailbreaks<br>• Tấn công hạ tầng mạng: DDoS, trích xuất trọng số GPU, Side-channel attacks<br>• Quét lỗ hổng hệ điều hành máy chủ / CVE của Linux hoặc Docker engine<br>• Xây dựng hệ thống cơ sở dữ liệu Vector RAG hoặc Agent Tool Execution Runtime |
 
 ---
 

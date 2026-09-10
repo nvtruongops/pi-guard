@@ -2,49 +2,24 @@
 
 ---
 
-## 🔄 1. QUY TRÌNH HOẠT ĐỘNG TỪNG BƯỚC (END-TO-END PIPELINE)
+## 1. Quy Trình Hoạt Động Từng Bước (End-to-End Pipeline)
 
 Trong kiến trúc của PI-Guard, Bộ lọc Cú pháp TF-IDF Baseline đóng vai trò là **Phòng tuyến Lọc Thô Cấp 1 (Tier 1 Coarse-Grained Filter)**:
 
-```
-[Raw User Prompt]
-       │
-       ▼
-┌────────────────────────────────────────────────────────┐
-│ BƯỚC 1: TIỀN XỬ LÝ & CHUẨN HÓA KÝ TỰ (PREPROCESSING)   │
-│ • Unicode Normalization (NFC/NFKC)                     │
-│ • Lowercase, loại bỏ zero-width characters (\u200b)     │
-│ • Giải mã Heuristic nếu phát hiện Base64 / Hex         │
-└────────────────────────────────────────────────────────┘
-       │
-       ▼
-┌────────────────────────────────────────────────────────┐
-│ BƯỚC 2: TRÍCH XUẤT ĐẶC TRƯNG LAI (FEATURE EXTRACTION) │
-│ • Nhánh 1: Word n-grams (1, 2)                         │
-│ • Nhánh 2: Character-with-boundary n-grams (3, 5)      │
-│ • Ghép đặc trưng qua FeatureUnion -> Vector thưa thớt   │
-└────────────────────────────────────────────────────────┘
-       │
-       ▼
-┌────────────────────────────────────────────────────────┐
-│ BƯỚC 3: PHÂN LOẠI TUYẾN TÍNH (CLASSIFIER INFERENCE)    │
-│ • Tích vô hướng z = w^T * x + b                        │
-│ • Tính xác suất qua Sigmoid: P(Injection | x)          │
-│ • Độ trễ suy luận (Latency): ~2.8ms - 3.5ms            │
-└────────────────────────────────────────────────────────┘
-       │
-       ▼
-┌────────────────────────────────────────────────────────┐
-│ BƯỚC 4: RA QUYẾT ĐỊNH & ĐIỀU PHỐI (DISPATCH LOGIC)     │
-│ • Nếu P > 0.85: ĐÁNH CHẶN NGAY (Early Exit, 0 GPU)     │
-│ • Nếu 0.15 <= P <= 0.85: Chuyển sang Tầng 2 (DeBERTa) │
-│ • Nếu P < 0.15: Chuyển thẳng sang LLM                  │
-└────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    Raw["Raw User Prompt"]
+    Step1["<b>Bước 1: Tiền Xử Lý & Chuẩn Hóa Ký Tự</b><br/>• Unicode Normalization (NFC/NFKC)<br/>• Lowercase, loại bỏ zero-width characters (\\u200b)<br/>• Giải mã Heuristic nếu phát hiện Base64 / Hex"]
+    Step2["<b>Bước 2: Trích Xuất Đặc Trưng Lai (Feature Extraction)</b><br/>• Nhánh 1: Word n-grams (1, 2)<br/>• Nhánh 2: Character-with-boundary n-grams (3, 5)<br/>• Ghép đặc trưng qua FeatureUnion &rarr; Vector thưa"]
+    Step3["<b>Bước 3: Phân Loại Tuyến Tính (Classifier Inference)</b><br/>• Tích vô hướng $z = w^T x + b$<br/>• Tính xác suất qua Sigmoid: $P(\\text{Attack} \\mid x)$<br/>• Độ trễ suy luận: ~2.8ms - 3.5ms"]
+    Step4["<b>Bước 4: Ra Quyết Định & Điều Phối (Dispatch Logic)</b><br/>• Nếu $P > 0.85$: Đánh chặn ngay (Early Exit, 0 GPU)<br/>• Nếu $0.15 \\le P \\le 0.85$: Chuyển sang Tầng 2 (DeBERTa-v3)<br/>• Nếu $P < 0.15$: Chuyển thẳng sang LLM"]
+
+    Raw --> Step1 --> Step2 --> Step3 --> Step4
 ```
 
 ---
 
-## 🛠️ 2. CẤU HÌNH THAM SỐ TỐI ƯU TRONG SCIKIT-LEARN
+## 2. Cấu Hình Tham Số Tối Ưu Trong Scikit-Learn
 
 Dưới đây là cấu hình tham số chuẩn được tối ưu hóa riêng cho bài toán bảo vệ an toàn LLM:
 
@@ -89,7 +64,7 @@ def build_pi_guard_baseline():
 
 ---
 
-## 💾 3. QUẢN LÝ LƯU TRỮ VÀ TRIỂN KHAI THỰC THI (INFERENCE DEPLOYMENT)
+## 3. Quản Lý Lưu Trữ Và Triển Khai Thực Thi (Inference Deployment)
 
 - **Lưu mô hình**:
   ```python
@@ -101,28 +76,28 @@ def build_pi_guard_baseline():
   # Load model vào RAM khi khởi động API server (chỉ tốn ~15 MB RAM)
   model = joblib.load("models/tfidf_baseline_model.joblib")
 
-  # Suy luận siêu tốc
+  # Suy luận nhanh
   probs = model.predict_proba([user_prompt])[0]
   injection_risk = probs[1]
   ```
 
 ---
 
-## ⚖️ 4. ĐÁNH GIÁ THỰC TẾ: ĐIỂM MẠNH & ĐIỂM HẠN CHẾ
+## 4. Đánh Giá Thực Tế: Điểm Mạnh & Điểm Hạn Chế
 
 | Khía Cạnh | Đánh Giá Thực Tế | Lý Do Kỹ Thuật |
 | :--- | :---: | :--- |
-| **Tốc độ (Latency)** | 🟢 **Siêu tốc (~3.2ms)** | Chỉ là các phép tính băm chuỗi ký tự và nhân ma trận thưa thớt trên CPU. |
-| **Tài nguyên (RAM/GPU)** | 🟢 **Gần như 0 (Zero-GPU)** | Model chỉ chiếm ~15MB RAM, chạy được trên cả Raspberry Pi / CPU yếu. |
-| **Chống Leetspeak/Spacing** | 🟢 **Xuất sắc (>90%)** | `char_wb` bóc tách các n-grams ký tự trùng khớp bất chấp ký tự lạ. |
-| **Bắt Ngữ Cảnh Tinh Vi** | 🔴 **Kém** | Không hiểu ngữ cảnh sâu (Context-Blind). Nếu câu lệnh dài và phức tạp, TF-IDF có thể bỏ sót. |
-| **Tỷ lệ Báo động Nhầm (FPR)**| 🔴 **Cao (7% - 25%)** | Nếu câu hỏi nghiên cứu bảo mật hợp lệ ("Explain prompt injection risks"), TF-IDF dễ bắt nhầm từ khóa. |
+| **Tốc độ (Latency)** | **Độ trễ thấp (~3.2ms)** | Chỉ là các phép tính băm chuỗi ký tự và nhân ma trận thưa thớt trên CPU. |
+| **Tài nguyên (RAM/GPU)** | **Tiết kiệm (Zero-GPU)** | Model chỉ chiếm ~15MB RAM, chạy tốt trên CPU. |
+| **Chống Leetspeak/Spacing** | **Tốt (>90%)** | `char_wb` bóc tách các n-grams ký tự trùng khớp bất chấp ký tự lạ. |
+| **Bắt Ngữ Cảnh Tinh Vi** | **Kém** | Không hiểu ngữ cảnh sâu (Context-Blind). Nếu câu lệnh dài và phức tạp, TF-IDF có thể bỏ sót. |
+| **Tỷ lệ Báo động Nhầm (FPR)**| **Cao (7% - 25%)** | Nếu câu hỏi nghiên cứu bảo mật hợp lệ ("Explain prompt injection risks"), TF-IDF dễ bắt nhầm từ khóa. |
 
-👉 **KẾT LUẬN KIẾN TRÚC**: TF-IDF không bao giờ nên đứng một mình làm giải pháp duy nhất. Nó được sinh ra để làm **Tầng 1 hỗ trợ cho DeBERTa-v3 ở Tầng 2**, tạo nên hệ thống phòng thủ 2 lớp toàn diện.
+> **KẾT LUẬN KIẾN TRÚC**: TF-IDF không bao giờ nên đứng một mình làm giải pháp duy nhất. Nó được thiết kế làm **Tầng 1 hỗ trợ cho DeBERTa-v3 ở Tầng 2**, tạo nên hệ thống phòng thủ 2 lớp toàn diện.
 
 ---
 
-## 📚 5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
+## 5. Tài Liệu Tham Khảo Học Thuật (Academic References)
 
 1. **Neel Jain et al. (2023)**: *"Baseline Defenses for Adversarial Attacks Against Aligned Language Models"*, arXiv preprint. arXiv: [2309.00614](https://arxiv.org/abs/2309.00614).
 2. **Piotr Bojanowski et al. (2017)**: *"Enriching Word Vectors with Subword Information"*, *Transactions of the Association for Computational Linguistics (TACL)*, Vol. 5, pp. 135–146. arXiv: [1607.04606](https://arxiv.org/abs/1607.04606).

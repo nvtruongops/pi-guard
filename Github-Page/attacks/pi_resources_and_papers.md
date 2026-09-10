@@ -4,7 +4,7 @@ Tài liệu này tổng hợp toàn bộ các công trình nghiên cứu khoa h�
 
 ---
 
-## 📄 1. CÁC BÀI BÁO KHOA HỌC TOÀN VĂN MỞ (OPEN-ACCESS PAPERS >= 2022)
+## 1. CÁC BÀI BÁO KHOA HỌC TOÀN VĂN MỞ (OPEN-ACCESS PAPERS >= 2022)
 
 1. **Perez & Ribeiro (NeurIPS 2022) — Bài Báo Đặt Nền Móng Cho Prompt Injection**:
    - **Tên bài báo**: *"Ignore Previous Prompt: Attack Techniques For Language Models"*.
@@ -37,7 +37,7 @@ Tài liệu này tổng hợp toàn bộ các công trình nghiên cứu khoa h�
 
 ---
 
-## 🎥 2. TUYỂN TẬP VIDEO BÀI GIẢNG TRỰC QUAN (ĐÃ XÁC MINH OEMBED 100%)
+## 2. TUYỂN TẬP VIDEO BÀI GIẢNG TRỰC QUAN (ĐÃ XÁC MINH OEMBED 100%)
 
 1. **LiveOverflow (Kênh Chuyên Gia Bảo Mật Hàng Đầu Thế Giới)**:
    - **Tiêu đề**: *Attacking LLM - Prompt Injection*

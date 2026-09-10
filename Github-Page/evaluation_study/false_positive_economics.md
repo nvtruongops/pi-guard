@@ -7,23 +7,17 @@
 
 ---
 
-## 📉 I. "NGHỊCH LÝ GUARDRAIL" TRONG MÔI TRƯỜNG DOANH NGHIỆP THỰC TẾ
+## I. NGHỊCH LÝ GUARDRAIL TRONG MÔI TRƯỜNG THỰC TẾ
 
-Trong nghiên cứu an ninh thông tin lý thuyết, các mô hình phân loại thường được đánh giá qua chỉ số **Accuracy** hoặc **$F_1$-Score** trung bình trên tập kiểm thử cân bằng ($50\%$ Benign, $50\%$ Attack). Tuy nhiên, khi triển khai hệ thống **Inline Guardrail Proxy** trong môi trường sản xuất thực tế, cách tiếp cận này bộc lộ một sai lầm chết người được gọi là **Nghịch lý Guardrail (The Guardrail Paradox)** [[1]](#ref1).
+Trong nghiên cứu an ninh thông tin lý thuyết, các mô hình phân loại thường được đánh giá qua chỉ số **Accuracy** hoặc **$F_1$-Score** trung bình trên tập kiểm thử cân bằng ($50\%$ Benign, $50\%$ Attack). Tuy nhiên, khi triển khai hệ thống **Inline Guardrail Proxy** trong môi trường vận hành thực tế, cách tiếp cận này bộc lộ một sai lầm nghiêm trọng được gọi là **Nghịch lý Guardrail (The Guardrail Paradox)** [[1]](#ref1).
 
-```
-                       [LƯU LƯỢNG THỰC TẾ: 1,000,000 PROMPTS/NGÀY]
-                                           │
-                ┌──────────────────────────┴──────────────────────────┐
-                ▼                                                     ▼
-      990,000 Prompts Lành Tính                             10,000 Prompts Tấn Công
-           (Benign - 99%)                                       (Attack - 1%)
-                │                                                     │
-        Nếu FPR = 2.0%                                        Nếu FNR = 5.0%
-                │                                                     │
-                ▼                                                     ▼
-  [19,800 KHÁCH HÀNG BỊ CHẶN OAN!]                      [500 CUỘC TẤN CÔNG LỌT LƯỚI]
-(Hủy dịch vụ, khiếu nại, tê liệt SP)                (LLM đích vẫn có thể từ chối phản hồi)
+```mermaid
+flowchart TD
+    Traffic["LƯU LƯỢNG THỰC TẾ: 1,000,000 PROMPTS/NGÀY"]
+    Traffic --> Benign["990,000 Prompts Lành Tính (Benign - 99%)"]
+    Traffic --> Attack["10,000 Prompts Tấn Công (Attack - 1%)"]
+    Benign -->|Nếu FPR = 2.0%| FPBlock["19,800 Yêu Cầu Bị Chặn Nhầm<br/>(Gây gián đoạn trải nghiệm người dùng)"]
+    Attack -->|Nếu FNR = 5.0%| FNMiss["500 Cuộc Tấn Công Lọt Lưới<br/>(LLM đích vẫn có thể từ chối qua Safety Alignment)"]
 ```
 
 ### 1. Chi Phí Bất Đối Xứng Giữa False Positive (FP) và False Negative (FN)
@@ -39,7 +33,7 @@ Trong nghiên cứu an ninh thông tin lý thuyết, các mô hình phân loại
 
 ---
 
-## 📐 II. CƠ SỞ TOÁN HỌC: CÁC CHỈ SỐ ĐO LƯỜNG TẠI ĐIỂM HOẠT ĐỘNG (OPERATING POINT METRICS)
+## II. CƠ SỞ TOÁN HỌC: CÁC CHỈ SỐ ĐO LƯỜNG TẠI ĐIỂM HOẠT ĐỘNG (OPERATING POINT METRICS)
 
 Để đo lường chính xác hiệu năng an ninh trong điều kiện phân phối lệch, đồ án **PI-Guard** sử dụng hệ thống chỉ số chuẩn hóa theo tiêu chuẩn công nghiệp:
 
@@ -60,25 +54,19 @@ $$\text{Recall} @ \text{FPR}_{\alpha} = \max_{\tau} \left\{ \text{Recall}(\tau) 
 
 Trong đồ án PI-Guard, hai điểm hoạt động bắt buộc đánh giá là:
 - $\text{Recall} @ \text{FPR} \le 1.0\%$ (Môi trường vận hành tiêu chuẩn).
-- $\text{Recall} @ \text{FPR} \le 0.5\%$ (Môi trường doanh nghiệp tài chính / y tế khắt khe).
+- $\text{Recall} @ \text{FPR} \le 0.5\%$ (Môi trường bảo mật khắt khe).
 
 ---
 
-## 🎛️ III. HIỆU CHUẨN XÁC SUẤT & ĐIỀU CHỈNH NGƯỠNG QUYẾT ĐỊNH (CALIBRATION & THRESHOLDING)
+## III. HIỆU CHUẨN XÁC SUẤT & ĐIỀU CHỈNH NGƯỠNG QUYẾT ĐỊNH (CALIBRATION & THRESHOLDING)
 
 Các mô hình Transformer sâu (như DeBERTa-v3) thường gặp hiện tượng **quá tự tin (Overconfidence)** — tức xác suất đầu ra $\hat{P}(y \mid x)$ bị đẩy về sát $0$ hoặc $1$ ngay cả khi dự đoán sai. Do đó, việc hiệu chuẩn xác suất là bắt buộc trước khi cố định ngưỡng hoạt động [[3]](#ref3).
 
-```
-                      Logits thô: z = [z_0, z_1, z_2]
-                                     │
-                                     ▼
-                   Hiệu chuẩn nhiệt độ: z' = z / T
-                                     │
-                                     ▼
-                   Softmax hiệu chuẩn: P_i = exp(z'_i) / sum(exp(z'_j))
-                                     │
-                                     ▼
-                  Định tuyến ngưỡng: P_attack >= tau_operating
+```mermaid
+flowchart TD
+    Logits["Logits thô: z = [z_0, z_1, z_2]"] --> Temp["Hiệu chuẩn nhiệt độ: z' = z / T"]
+    Temp --> Softmax["Softmax hiệu chuẩn: P_i = exp(z'_i) / sum(exp(z'_j))"]
+    Softmax --> Route["Định tuyến ngưỡng: P_attack >= tau_operating"]
 ```
 
 ### 1. Hiệu Chuẩn Nhiệt Độ (Temperature Scaling)
@@ -97,7 +85,7 @@ $$\tau^* = \min \left\{ \tau \in [0, 1] \;\middle|\; \frac{1}{|V_{\text{benign}}
 
 ---
 
-## 🧪 IV. THỬ NGHIỆM ĐỘ BỀN TRÊN TẬP "HARD BENIGN" (STRESS TESTING)
+## IV. THỬ NGHIỆM ĐỘ BỀN TRÊN TẬP "HARD BENIGN" (STRESS TESTING)
 
 Để bảo đảm hệ thống không bị kích hoạt sai bởi các thuật ngữ an toàn thông tin thông dụng, PI-Guard thiết lập bộ kiểm thử **Hard Benign Corpus** gồm 2,500 câu hỏi thuộc 5 chủ đề chuyên sâu:
 
@@ -111,7 +99,7 @@ $$\tau^* = \min \left\{ \tau \in [0, 1] \;\middle|\; \frac{1}{|V_{\text{benign}}
 
 ---
 
-## 💻 V. MÃ NGUỒN MINH HỌA HIỆU CHUẨN NGƯỠNG ĐẠT CHỈ TIÊU $\text{FPR} \le 1.0\%$
+## V. MÃ NGUỒN MINH HỌA HIỆU CHUẨN NGƯỠNG ĐẠT CHỈ TIÊU $\text{FPR} \le 1.0\%$
 
 ```python
 """
@@ -176,7 +164,7 @@ if __name__ == "__main__":
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO
+## TÀI LIỆU THAM KHẢO
 
 <a id="ref1"></a>**[1]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *AAAI Conference on Human Computation and Crowdsourcing (HCOMP)*, 2023. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
 

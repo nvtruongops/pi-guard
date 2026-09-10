@@ -71,18 +71,11 @@ PI-Guard có thể kế thừa và áp dụng trực tiếp 4 giá trị học t
 
 Mặc dù có chung nền tảng nghiên cứu về bảo mật LLM, **Tencent AI-Infra-Guard** và **PI-Guard** giải quyết bài toán ở hai góc nhìn và mục đích hoàn toàn khác biệt:
 
-```
-                  ┌────────────────────────────────────────────────────────┐
-                  │                 BẢN CHẤT HỆ THỐNG                     │
-                  └────────────────────────────────────────────────────────┘
-                                 │                            │
-             [ OFFENSIVE / AUDIT ]                            [ DEFENSIVE / RUNTIME ]
-                                 │                            │
-                                 ▼                            ▼
-                 ┌──────────────────────────────┐     ┌──────────────────────────────┐
-                 │    Tencent AI-Infra-Guard    │     │           PI-Guard           │
-                 │ (Red Teaming Scanner Suite)  │     │ (Inline Low-Latency Guardrail)│
-                 └──────────────────────────────┘     └──────────────────────────────┘
+```mermaid
+flowchart TD
+    Core["BẢN CHẤT VÀ MỤC TIÊU HỆ THỐNG"]
+    Core -->|Offensive / Audit| Tencent["Tencent AI-Infra-Guard<br/>(Red Teaming Scanner Suite)"]
+    Core -->|Defensive / Runtime| PIGuard["PI-Guard<br/>(Inline Low-Latency Guardrail)"]
 ```
 
 ### Bảng Ma Trận So Sánh Chi Tiết (Tencent vs. PI-Guard)

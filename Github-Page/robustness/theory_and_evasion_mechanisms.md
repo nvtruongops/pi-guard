@@ -27,10 +27,15 @@ $$\text{Tokenize}(\text{"1gn0r3"}) = [16, 1283, 15, 281, 18] \quad (\text{"1"}, 
 $$\cos\left(\mathbf{e}_{\text{clean}}, \mathbf{e}_{\text{obfuscated}}\right) \approx 0.12 \ll 1.0$$
 2. **Triệt tiêu trọng số chú ý (Attention Weight Dispersion)**: Các ma trận Query-Key $\mathbf{Q}\mathbf{K}^T / \sqrt{d_k}$ trong Transformer phân bổ trọng số chú ý dàn trải ra các token rác, khiến mô hình phân loại không nhận diện được ý định ghi đè (Goal Hijacking) [[4]](#ref4).
 
-```
-Văn bản chuẩn:   [ "ignore" ]               ──> Token ID: [31317]        ──> Transformer Attention bắt trúng 100%
-                      │ (Nhiễu cú pháp)
-Văn bản lẩn tránh: [ "1" ][ "gn" ][ "0" ][ "r" ][ "3" ] ──> Token IDs: [16, 1283, 15, 281, 18] ──> Bị phân mảnh (Bypass)
+```mermaid
+flowchart TD
+    subgraph Clean["Văn bản chuẩn"]
+        C_Text["'ignore'"] --> C_Tok["Token ID: [31317]"] --> C_Attn["Transformer Attention bắt chính xác"]
+    end
+    subgraph Obf["Văn bản lẩn tránh (Nhiễu cú pháp)"]
+        O_Text["'1gn0r3'"] --> O_Tok["Token IDs: [16, 1283, 15, 281, 18]<br/>('1', 'gn', '0', 'r', '3')"] --> O_Attn["Token Fragmentation &rarr; Phân tán Attention (Bypass)"]
+    end
+    Clean -.->|Xáo trộn cú pháp| Obf
 ```
 
 ---
