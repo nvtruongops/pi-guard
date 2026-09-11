@@ -1,6 +1,6 @@
 # **BÁO CÁO KỸ THUẬT NHIỆM VỤ 1 (TASK 1)**
 ## ĐỀ TÀI: A MACHINE-LEARNING GUARDRAIL FOR DETECTING PROMPT INJECTION AND JAILBREAK ATTACKS ON LLM APPLICATIONS (PI-GUARD)
-### Chuyên đề: Phân Biệt Rạch Ròi Bản Chất Kỹ Thuật Giữa Prompt Injection và Jailbreak Attacks
+### Chuyên đề: Báo Cáo Sơ Bộ & Phân Biệt Rạch Ròi Bản Chất Kỹ Thuật Giữa Prompt Injection và Jailbreak Attacks
 **Tác giả**: Nguyễn Văn Trường (Leader — MSSV: `SE182034`) | **Workspace**: `workspaces/truongnv/`  
 **Căn cứ đề tài**: Bản đăng ký đề tài [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) & Biên bản [`Final-Report/Meeting/Meeting 4_10_09_26.md`](file:///d:/Work/Do-an/Final-Report/Meeting/Meeting%204_10_09_26.md)  
 **Tài liệu điều phối trung tâm**: [`workspaces/truongnv/reports/task_for_meeting_4/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/README.md)
@@ -17,7 +17,7 @@
 
 ## 📑 MỤC LỤC
 
-1. [TỔNG QUAN NHIỆM VỤ & Ý KIẾN CHỈ ĐẠO CỦA GVHD](#1-tổng-quan-nhiệm-vụ--ý-kiến-chỉ-đạo-của-gvhd)
+1. [BÁO CÁO SƠ BỘ & Ý KIẾN CHỈ ĐẠO CỦA GVHD](#1-báo-cáo-sơ-bộ--ý-kiến-chỉ-đạo-của-gvhd)
 2. [HỆ THỐNG PHÂN LOẠI MỐI ĐE DỌA & SƠ ĐỒ PHÂN NHÁNH](#2-hệ-thống-phân-loại-mối-đe-dọa--sơ-đồ-phân-nhánh)
 3. [MA TRẬN ĐỐI SÁNH 6 TIÊU CHÍ TOÀN DIỆN](#3-ma-trận-đối-sánh-6-tiêu-chí-toàn-diện)
 4. [BẢN CHẤT KỸ THUẬT CỐT LÕI CỦA PROMPT INJECTION](#4-bản-chất-kỹ-thuật-cốt-lõi-của-prompt-injection)
@@ -28,14 +28,18 @@
 
 ---
 
-## 1. TỔNG QUAN NHIỆM VỤ & Ý KIẾN CHỈ ĐẠO CỦA GVHD
+## 1. BÁO CÁO SƠ BỘ & Ý KIẾN CHỈ ĐẠO CỦA GVHD
 
-Tại buổi báo cáo Meeting 4 ngày 10/09/2026, **Thầy Trần Văn Ninh (GVHD)** đã nhấn mạnh:
+### 1.1. Bối Cảnh & Chỉ Đạo Chiến Lược Từ GVHD Trần Văn Ninh
+Tại buổi báo cáo Meeting 4 ngày 10/09/2026 sau khi nghe thuyết trình slide `PI-GUARD-Present-109.pptx`, **Thầy Trần Văn Ninh (GVHD)** đã nhấn mạnh:
 > *"Một lỗi rất phổ biến của sinh viên là đánh đồng Prompt Injection với Jailbreak, coi chúng là cùng một loại tấn công. Nhóm phải phân biệt rạch ròi bản chất kỹ thuật, tầng tổn thương, mục tiêu khai thác và phương thức phòng thủ của 2 khái niệm này. Đây là cơ sở lý thuyết then chốt để bảo vệ thành công Chapter 1 và Chapter 2 của Luận văn tốt nghiệp!"*
 
-Báo cáo kỹ thuật này giải quyết triệt để yêu cầu của Thầy, thiết lập cơ sở phân loại học chuẩn mực dựa trên các tiêu chuẩn bảo mật quốc tế: **OWASP LLM01:2025** [[8]](#ref8), **NIST AI 100-2e2025** [[7]](#ref7), công trình tiên phong của Perez & Ribeiro (NeurIPS 2022 [[3]](#ref3)), và nghiên cứu căn chỉnh an toàn của Wei et al. (NeurIPS 2023 [[5]](#ref5)).
-
----
+### 1.2. Báo Cáo Sơ Bộ Định Vị Vấn Đề (Executive Summary)
+1. **Thực trạng học thuật & Ngộ nhận phổ biến**: Đa số tài liệu phổ thông thường gộp chung mọi văn bản gây hại cho LLM thành "tấn công prompt". Tuy nhiên, theo các tiêu chuẩn bảo mật quốc tế hàng đầu (**OWASP LLM01:2025** [[8]](#ref8) và **NIST AI 100-2e2025** [[7]](#ref7)), đây là hai lớp bài toán với cơ chế khai thác và không gian tấn công hoàn toàn khác biệt.
+2. **Hai trục phòng thủ độc lập**:
+   - **Prompt Injection**: Thuộc về bài toán an ninh phần mềm ứng dụng (Application-level Security) — giải quyết xung đột phân tách giữa Lệnh điều khiển ($S$) và Dữ liệu không tin cậy ($U$).
+   - **Jailbreak**: Thuộc về bài toán an toàn mô hình nền (Model-level Safety Alignment) — giải quyết việc bẻ gãy ranh giới từ chối đạo đức (*Refusal Boundary*).
+3. **Ý nghĩa thiết kế hệ thống**: Việc phân tách rạch ròi 2 khái niệm này là tiền đề bắt buộc để nhóm định hình đúng kiến trúc của **PI-Guard** như một rào chắn ngoại vi độc lập (External Guardrail Proxy) tại cửa ngõ Ingress thay vì can thiệp vào trọng số nội bộ của LLM.
 
 ## 2. HỆ THỐNG PHÂN LOẠI MỐI ĐE DỌA & SƠ ĐỒ PHÂN NHÁNH
 
