@@ -87,6 +87,16 @@ This skill guides the PI-Guard capstone project team (**Nguyễn Văn Trường,
 | **Kênh khai thác** | Nhập trực tiếp qua ô chat / API parameter. | Nhúng payload ẩn trong tài liệu, trang web, kết quả tìm kiếm [[6]](file:///d:/Work/Do-an/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf). | Nhập vai DAN (Do Anything Now), tình huống giả định, Base64/Cipher [[17]](file:///d:/Work/Do-an/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf). |
 | **Hậu quả bảo mật** | Rò rỉ System Prompt IP, lộ Master API Key, bypass logic kinh doanh. | Chiếm quyền điều khiển AI Agent, đánh cắp cơ sở dữ liệu khách hàng. | Sinh hướng dẫn tấn công mạng, vi phạm EU AI Act và GDPR. |
 
+### 2.1. Cấu Trúc Khung Phân Tích Mối Đe Dọa 5 Trục (5D Threat Analysis Framework)
+> [!IMPORTANT]
+> **TIÊU CHUẨN ĐẶC TẢ MỐI ĐE DỌA CHO REVIEW 1 & THESIS CHAPTER 2**:
+> Thay vì chỉ dùng 3 trục cơ bản (1. Tấn công thế nào, 2. Luồng hoạt động, 3. Ảnh hưởng), một tài liệu học thuật ngành An toàn thông tin (IA) bắt buộc phải phân tích theo **5 Trục toàn diện** (5D Framework) để liên kết chặt chẽ từ giả định tấn công đến cơ chế nhận diện của Guardrail:
+> 1. **Trục 1: Cơ Chế & Kỹ Thuật Tấn Công Cốt Lõi (Attack Mechanisms & Payloads)** — Cú pháp payload, các biến thể lẩn tránh (Delimiter escaping, Character mutation, In-context roleplay, Adversarial suffix).
+> 2. **Trục 2: Mô Hình Hiểm Họa & Giả Định Kẻ Tấn Công (Threat Model & Adversary Assumptions)** — Phân loại khả năng truy cập (Black-box vs Gray-box vs White-box), ranh giới tin cậy theo chuẩn NIST AI 100-2e2025.
+> 3. **Trục 3: Luồng Dữ Liệu & Chuỗi Xâm Nhập Hệ Thống (End-to-End Data Flow & Exploit Execution)** — Sơ đồ tuần tự tương tác (Sequence Diagram) và các bước chuyển tiếp trạng thái trong hệ thống.
+> 4. **Trục 4: Dấu Vết Nhận Diện & Cơ Chế Phát Hiện Của Guardrail (Detection Footprint & Guardrail Feature Space)** — Dấu hiệu tĩnh/động mà 2 mô hình phòng thủ nhận biết (TF-IDF char_wb subwords, DeBERTa-v3 Disentangled Attention).
+> 5. **Trục 5: Mức Độ Ảnh Hưởng, Thiệt Hại Thực Tế & Chế Tài Pháp Lý (Impact Severity, Blast Radius & Regulatory Compliance)** — 4 tầng thiệt hại tài chính/hệ thống và rủi ro pháp lý theo EU AI Act 2024 / GDPR Article 33.
+
 ---
 
 ## 🛡️ 3. THREAT MODEL, ATTACK SURFACE & KIẾN TRÚC PHÒNG THỦ 3 LỚP

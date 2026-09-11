@@ -47,6 +47,14 @@ All 18 core academic papers (17 modern $\ge 2022$ + 1 classic foundational work)
 
 ## 2. Threat Taxonomy & Attack Classes
 
+> [!TIP]
+> **5D THREAT ANALYSIS STANDARD**: Khi phân tích chuyên sâu từng hình thức tấn công cho Capstone Thesis hoặc Milestone Review, áp dụng **Khung phân tích 5 trục toàn diện (5D Threat Analysis Framework)**:
+> 1. *Trục 1: Cơ chế & Kỹ thuật tấn công cốt lõi* (Payloads & Mutators)
+> 2. *Trục 2: Mô hình hiểm họa & Giả định kẻ tấn công* (NIST AI 100-2e2025: Black-box vs White-box)
+> 3. *Trục 3: Luồng dữ liệu & Chuỗi xâm nhập hệ thống* (Sequence diagram & Exploit chain)
+> 4. *Trục 4: Dấu vết nhận diện & Cơ chế phát hiện của Guardrail* (TF-IDF char_wb & DeBERTa-v3)
+> 5. *Trục 5: Mức độ ảnh hưởng & Chế tài pháp lý* (Damage blast radius & EU AI Act / GDPR)
+
 When analyzing or categorizing attacks in this project, adhere to the standard OWASP LLM01:2025 and academic taxonomy:
 
 ### A. Direct Prompt Injection (System Prompt Override / Goal Hijacking)
