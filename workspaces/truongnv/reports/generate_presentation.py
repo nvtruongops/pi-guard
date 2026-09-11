@@ -851,12 +851,12 @@ Toàn đội tuân thủ phương châm làm việc song song toàn trình, sẵ
     # SLIDE 12: SOTA GUARDRAILS SURVEY & COMPARISON MATRIX (TABLE)
     # --------------------------------------------------------------------------
     s12 = prs.slides.add_slide(blank_layout)
-    apply_base_slide(s12, "Khảo Sát SOTA Guardrails & Ma Trận Đối Sánh Mô Hình", "Đối sánh 3 trường phái bảo vệ: Regex Rules vs. LLM-as-a-Judge vs. Transformer Encoders", 12, total_slides, "CHƯƠNG 2")
+    apply_base_slide(s12, "Khảo Sát SOTA Guardrails & Bảng So Sánh Mô Hình", "So sánh 3 trường phái bảo vệ: Regex Rules vs. LLM-as-a-Judge vs. Transformer Encoders", 12, total_slides, "CHƯƠNG 2")
 
     # Native Comparison Table
     sota_table = create_table_shape(s12, 0.8, 1.45, 11.733, 3.2, 6, 5, col_widths=[2.4, 2.2, 2.3, 2.3, 2.533])
     
-    headers = ["Tiêu Chí Đối Sánh", "Regex / Rules", "Llama Guard 3 (8B)", "ProtectAI Baseline", "PI-Guard (DeBERTa-v3 INT8)"]
+    headers = ["Tiêu Chí So Sánh", "Regex / Rules", "Llama Guard 3 (8B)", "ProtectAI Baseline", "PI-Guard (DeBERTa-v3 INT8)"]
     for c_idx, h_text in enumerate(headers):
         is_piguard = (c_idx == 4)
         h_color = CYAN if is_piguard else TEXT_WHITE

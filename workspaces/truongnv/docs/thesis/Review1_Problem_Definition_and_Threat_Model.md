@@ -244,7 +244,7 @@ flowchart TD
 
 # SECTION 4: 3-TIER LAYERED DEFENSE, 2-PHASE ARCHITECTURE & ROBUSTNESS DESIGN
 
-> 📖 **Chuyên Khảo Nghiên Cứu Sâu**: Toàn bộ cơ chế kỹ thuật 3 lớp bảo vệ (Saltzer & Schroeder Complete Mediation, Unicode Sanitizer, Heuristic Base64, XML Boundary Isolation, Canary Token Verification), ma trận đối sánh 6 phương pháp và mã nguồn Python mẫu được phân tích chi tiết tại:  
+> 📖 **Chuyên Khảo Nghiên Cứu Sâu**: Toàn bộ cơ chế kỹ thuật 3 lớp bảo vệ (Saltzer & Schroeder Complete Mediation, Unicode Sanitizer, Heuristic Base64, XML Boundary Isolation, Canary Token Verification), bảng so sánh 6 phương pháp và mã nguồn Python mẫu được phân tích chi tiết tại:  
 > 🔗 [`docs/threat_and_defense_study/02_multi_layer_defense_architecture.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/02_multi_layer_defense_architecture.md)  
 > 🔗 [`docs/threat_and_defense_study/03_comparative_matrix_and_tradeoffs.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/03_comparative_matrix_and_tradeoffs.md)  
 > 🔗 [`docs/threat_and_defense_study/04_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/04_resources_and_papers.md)

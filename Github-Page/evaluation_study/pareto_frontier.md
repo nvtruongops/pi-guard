@@ -53,9 +53,9 @@ graph LR
 
 ---
 
-## III. MA TRẬN ĐỐI SÁNH KỸ THUẬT TOÀN DIỆN (COMPREHENSIVE TRADE-OFF MATRIX)
+## III. BẢNG SO SÁNH KỸ THUẬT TOÀN DIỆN (COMPREHENSIVE TRADE-OFF MATRIX)
 
-Bảng đối sánh dưới đây tổng hợp kết quả thực nghiệm định lượng giữa 5 phương án kiến trúc phòng thủ trên cùng một tập dữ liệu kiểm thử chuẩn hóa (10,000 mẫu In-Distribution + 2,000 mẫu Out-Of-Distribution):
+Bảng so sánh dưới đây tổng hợp kết quả thực nghiệm định lượng giữa 5 phương án kiến trúc phòng thủ trên cùng một tập dữ liệu kiểm thử chuẩn hóa (10,000 mẫu In-Distribution + 2,000 mẫu Out-Of-Distribution):
 
 | Tiêu Chí Đánh Giá | Phương Án 1: Regex & Keyword | Phương Án 2: TF-IDF + LinearSVC | Phương Án 3: Llama Guard 7B [[2]](#ref2) | Phương Án 4: DeBERTa-v3 FP32 | Phương Án 5: PI-Guard Two-Tier INT8 |
 | :--- | :---: | :---: | :---: | :---: | :---: |

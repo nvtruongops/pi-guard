@@ -110,6 +110,17 @@ trigger: always_on
 
 ---
 
+## 📖 STRICT RULE: ACADEMIC TERMINOLOGY & CONCEPT GLOSSARY INVARIANT (ZERO UNEXPLAINED ANALOGY)
+
+> [!IMPORTANT]
+> **QUY TẮC BẮT BUỘC VỀ CHÚ THÍCH & GIẢI NGHĨA THUẬT NGỮ HỌC THUẬT NỀN TẢNG**:
+> Nhằm trang bị đầy đủ cơ sở khoa học để bảo vệ miệng tự tin trước Hội đồng phản biện khi sử dụng các phép so sánh liên ngành (Prepared Statements, Von Neumann, NX-bit, Flat Token Space, Competing Objectives), toàn bộ tài liệu BẮT BUỘC tuân thủ [`.agents/rules/academic-terminology-and-glossary-standards.md`](file:///d:/Work/Do-an/.agents/rules/academic-terminology-and-glossary-standards.md):
+> 1. **Gắn neo trong văn bản**: Đánh dấu rõ ràng bằng `[[TNx]](#term-...)`.
+> 2. **Bảng giải nghĩa ở cuối**: Bắt buộc có mục `BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG` chuẩn hóa 4 trường (`Khái niệm`, `Định nghĩa gốc`, `Phép đối sánh trong PI-Guard`, `Tài liệu tham chiếu`).
+> 3. **Kiểm định tự động**: Xác nhận qua `python Final-Report/scripts/verify_academic_glossary.py` tích hợp trong `validate_local.py`.
+
+---
+
 ## Parallel Full-Pipeline Exploration & Knowledge Convergence Paradigm
 
 > **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  

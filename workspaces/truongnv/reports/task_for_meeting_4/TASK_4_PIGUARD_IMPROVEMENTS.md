@@ -8,7 +8,7 @@
 ---
 
 > [!TIP]
-> ### ⚡ NẮM NHANH TRONG 60 GIÂY (TL;DR CHO HỘI ĐỒNG & THÀNH VIÊN)
+> ### 📌 TÓM TẮT ĐIỀU HÀNH (EXECUTIVE SUMMARY)
 > - **4 Cải tiến kỹ thuật mới**:
 >   1. *Group-Aware Splitting (MD5 Semantic Hash)*: Ngăn ngừa rò rỉ dữ liệu qua các biến thể prompt paraphrase giữa Train và Test.
 >   2. *Dynamic Class-Weighted Loss*: Phạt nặng lỗi False Positive ($W_{\text{benign}} > W_{\text{attack}}$) để ép $\text{FPR} < 1.5\%$.
@@ -66,6 +66,14 @@ flowchart TD
 ---
 
 ## 3. BỐN GIẢI PHÁP CẢI TIẾN KỸ THUẬT ĐỘC ĐÁO CỦA ĐỒ ÁN
+
+> [!NOTE]
+> ### 🎯 Cơ Sở Phương Pháp Luận: Tại Sao Tập Trung Vào 4 Giải Pháp Cải Tiến Này?
+> 4 cải tiến kỹ thuật được thiết kế nhằm giải quyết trực diện **4 điểm nghẽn thực tiễn lớn nhất** của các hệ thống Guardrail hiện hành:
+> 1. *Cải tiến 1 (Group-Aware Splitting)*: Khắc phục điểm nghẽn **Rò rỉ dữ liệu (Data Leakage)** khi chia tập kiểm định ngẫu nhiên trong Shen et al. ACM CCS 2024 [[11]](#ref11).
+> 2. *Cải tiến 2 (Class-Weighted Loss)*: Khắc phục điểm nghẽn **Đánh đổi FPR vs. Tiện ích nghiệp vụ**, tối ưu hóa hàm mất mát phạt nặng lỗi bỏ sót tấn công trên phân phối dữ liệu mất cân bằng.
+> 3. *Cải tiến 3 (Two-Tier Uncertainty Routing)*: Khắc phục điểm nghẽn **Độ trễ cao vs. Năng lực ngữ nghĩa sâu**, cân bằng bài toán thời gian phản hồi theo Jain et al. NeurIPS 2023 [[15]](#ref15).
+> 4. *Cải tiến 4 (Zero-GPU Dynamic INT8 PTQ)*: Khắc phục điểm nghẽn **Chi phí phần cứng GPU đắt đỏ**, tối ưu hóa triển khai trên CPU thông thường theo Yao et al. NeurIPS 2022 [[16]](#ref16).
 
 ### 3.1. Cải tiến 1: Phân Chia Dữ Liệu Bảo Toàn Cụm (Group-Aware Splitting)
 

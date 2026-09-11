@@ -8,7 +8,7 @@
 ---
 
 > [!TIP]
-> ### ⚡ NẮM NHANH TRONG 60 GIÂY (TL;DR CHO HỘI ĐỒNG & THÀNH VIÊN)
+> ### 📌 TÓM TẮT ĐIỀU HÀNH (EXECUTIVE SUMMARY)
 > - **Chuẩn Mực An Toàn Thông Tin 5 Trục (5D Framework)**: Khắc phục triệt để điểm yếu của cách phân tích 3 trục sơ sài, mỗi hình thức tấn công được mổ xẻ toàn diện theo 5 chiều kích chuẩn **NIST AI 100-2e2025** và **MITRE ATLAS**:
 >   1. **Trục 1: Cơ Chế Tấn Công & Kỹ Thuật Payload** (Attack Mechanism & Payloads)
 >   2. **Trục 2: Giả Định Năng Lực Kẻ Tấn Công** (Threat Model: Black-box vs. Gray-box vs. White-box)
@@ -16,7 +16,7 @@
 >   4. **Trục 4: Đặc Trưng Nhận Diện & Dấu Vết Tín Hiệu** (Detection Footprint: Cú pháp vs. Ngữ nghĩa để Guardrail bắt)
 >   5. **Trục 5: Mức Độ Ảnh Hưởng & Bán Kính Thiệt Hại** (Impact, Blast Radius & Chế tài EU AI Act / NIST)
 > - **2 Kênh Ingress Prompt Injection**: Kênh 1 (Direct Ingress ghép phẳng $X = S \mathbin{\Vert} U$) vs. Kênh 2 (Indirect Ingress giấu văn bản tàng hình nạp vào bộ nhớ RAG).
-> - **Jailbreak Attacks**: Bẻ gãy ranh giới từ chối (*Refusal Boundary*) dựa trên *Competing Objectives* (nhập vai DAN) và *Mismatched Generalization* (Leetspeak, Cipher, Base64, GCG Suffix).
+> - **Jailbreak Attacks**: Bẻ gãy ranh giới từ chối (*Refusal Boundary* [[TN3]](#term-refusal-boundary)) dựa trên *Competing Objectives* [[TN1]](#term-competing-objectives) (nhập vai DAN) và *Mismatched Generalization* [[TN2]](#term-mismatched-generalization) (Leetspeak, Cipher, Base64, GCG Suffix).
 > - **Cơ Chế Đối Kháng 2 Mô Hình**: Baseline TF-IDF (`char_wb`) chặn chớp nhoáng Direct & Leetspeak trong ~2.8ms; DeBERTa-v3 Disentangled Attention bắt trọn vẹn ngữ nghĩa gián tiếp trong tài liệu RAG; bàn đạp chuyển tiếp sang Task 3 thực nghiệm.
 
 ---
@@ -33,7 +33,8 @@
    - [3.2. Mô Hình 2: Deep Semantic Transformer (DeBERTa-v3 Disentangled Attention)](#32-mô-hình-2-deep-semantic-transformer-deberta-v3-disentangled-attention)
    - [3.3. Kỹ Thuật Lượng Hóa Động Sau Huấn Luyện (ZeroQuant PTQ INT8 trên ONNX Runtime)](#33-kỹ-thuật-lượng-hóa-động-sau-huấn-luyện-zeroquant-ptq-int8-trên-onnx-runtime)
 4. [TỔNG HỢP SO SÁNH & Ý NGHĨA KỸ THUẬT CHO PI-GUARD](#4-tổng-hợp-so-sánh--ý-nghĩa-kỹ-thuật-cho-pi-guard)
-5. [TÀI LIỆU THAM KHẢO HỌC THUẬT (REFERENCES)](#5-tài-liệu-tham-khảo-học-thuật-references)
+5. [BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG (ACADEMIC CONCEPT GLOSSARY)](#5-bảng-thuật-ngữ--khái-niệm-học-thuật-nền-tảng-academic-concept-glossary)
+6. [TÀI LIỆU THAM KHẢO HỌC THUẬT (REFERENCES)](#6-tài-liệu-tham-khảo-học-thuật-references)
 
 ---
 
@@ -47,6 +48,15 @@ Báo cáo kỹ thuật này thiết lập **Khung Phân Tích Mối Đe Dọa 5 
 ---
 
 ## 2. PHẦN I: KHUNG PHÂN TÍCH MỐI ĐE DỌA 5 TRỤC TOÀN DIỆN (5D THREAT FRAMEWORK)
+
+> [!NOTE]
+> ### 🎯 Cơ Sở Phương Pháp Luận: Tại Sao Thiết Lập Khung Phân Tích 5 Trục?
+> Khung phân tích 5 trục được chuẩn hóa từ chu trình đánh giá rủi ro an ninh AI của **NIST AI 100-2e2025** [[7]](#ref7) và ma trận kỹ thuật tấn công **MITRE ATLAS** (Adversarial Threat Landscape for Artificial-Intelligence Systems). 5 trục này bao quát trọn vẹn chu kỳ sống của một cuộc tấn công nhằm cung cấp đầy đủ thông tin cho việc thiết kế rào chắn:
+> 1. *Trục 1 (Cơ Chế & Payload)*: Khảo sát cấu trúc văn bản đối kháng từ cấp độ token/từ ngữ.
+> 2. *Trục 2 (Mô Hình Đe Dọa - Threat Model)*: Xác định giả định năng lực của đối phương (Black-box / Gray-box / White-box).
+> 3. *Trục 3 (Luồng Dữ Liệu & Vòng Đời)*: Trực quan hóa đường đi của dữ liệu độc hại qua các thành phần hệ thống bằng biểu đồ tuần tự.
+> 4. *Trục 4 (Dấu Vết Tín Hiệu - Detection Footprint)*: Xác định cơ sở để 2 mô hình phòng thủ (TF-IDF vs. DeBERTa-v3) nhận diện.
+> 5. *Trục 5 (Bán Kính Thiệt Hại & Chế Tài)*: Định lượng mức độ rủi ro nghiệp vụ và chế tài theo quy định an toàn thông tin quốc tế.
 
 ### 2.1. Kênh 1: Direct Prompt Injection qua Chat UI & REST API
 
@@ -119,10 +129,10 @@ sequenceDiagram
    - $\rightarrow$ **Ánh xạ phòng thủ (Mô hình 2 — DeBERTa-v3 Transformer)**: Cơ chế Disentangled Attention bóc tách tương tác giữa vị trí token và nội dung ngữ nghĩa, nhận diện chính xác câu lệnh tiêm nhiễm ngay cả khi kẻ tấn công diễn đạt bằng lời lẽ lịch sự hoặc hoán dụ.
 
 #### Trục 5: Mức Độ Ảnh Hưởng & Bán Kính Thiệt Hại (Impact, Blast Radius & Compliance)
-1. **Prompt Leaking (Rò rỉ tài sản sở hữu trí tuệ)**:
+1. **Prompt Leaking [[TN5]](#term-prompt-leaking) (Rò rỉ tài sản sở hữu trí tuệ)**:
    - Kẻ tấn công trích xuất nguyên văn System Prompt độc quyền của doanh nghiệp (vốn được đầu tư hàng tháng trời tinh chỉnh).
    - Lộ các thông tin nhạy cảm nhúng tĩnh bên trong prompt: API keys, chuỗi kết nối Database, đường dẫn endpoint nội bộ, hoặc danh sách khách hàng mẫu.
-2. **Goal Hijacking (Chiếm đoạt mục tiêu ứng dụng)**:
+2. **Goal Hijacking [[TN4]](#term-goal-hijacking) (Chiếm đoạt mục tiêu ứng dụng)**:
    - Phá vỡ hoàn toàn vai trò được thiết kế của ứng dụng (ví dụ: biến một chatbot tư vấn y tế thành công cụ chẩn đoán sai lệch, biến trợ lý tài chính thành bot phát ngôn kích động).
    - Hủy hoại uy tín thương hiệu và làm mất lòng tin của khách hàng vào sản phẩm AI.
 3. **Denial-of-Wallet & Resource Exhaustion (Cạn kiệt tài nguyên tính toán)**:
@@ -368,7 +378,7 @@ $$\mathbf{A}_{i,j} = \underbrace{\mathbf{h}_i \mathbf{W}_{q,c} \mathbf{W}_{k,c}^
 
 ---
 
-### 3.3. Kỹ Thuật Lượng Hóa Động Sau Huấn Luyện (ZeroQuant PTQ INT8 trên ONNX Runtime)
+### 3.3. Kỹ Thuật Lượng Hóa Động Sau Huấn Luyện (ZeroQuant [[TN6]](#term-zeroquant) PTQ INT8 trên ONNX Runtime)
 
 Để triển khai mô hình Transformer phân loại trực tuyến với yêu cầu độ trễ cực thấp ($P95 < 22\text{ms}$) trên CPU tiêu chuẩn (Zero-GPU), PI-Guard ứng dụng phương pháp luận **Post-Training Dynamic Quantization (ZeroQuant - Yao et al., NeurIPS 2022 [[16]](#ref16))**.
 
@@ -415,7 +425,22 @@ $$X_{\text{INT8}} = \text{clamp}\left( \left\lfloor \frac{X_{\text{FP32}}}{S} \r
 
 ---
 
-## 5. TÀI LIỆU THAM KHẢO HỌC THUẬT (REFERENCES)
+## 5. BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG (ACADEMIC CONCEPT GLOSSARY)
+
+Nhằm đảm bảo tính minh định học thuật và hỗ trợ bảo vệ trước Hội đồng chấm Luận văn tốt nghiệp, bảng dưới đây giải thích chi tiết các thuật ngữ chuyên sâu xuất hiện trong báo cáo, làm rõ định nghĩa khoa học gốc, ý nghĩa đối chiếu trong PI-Guard và nguồn trích dẫn tham chiếu:
+
+| Thuật Ngữ / Khái Niệm (Concept / Metaphor) | Định Nghĩa Học Thuật Gốc (Academic / CS Definition) | Vị Trí & Ý Nghĩa Đối Chiếu Trong PI-Guard (Role & Analogy in PI-Guard) | Nguồn Trích Dẫn Gốc (Scholarly Reference) |
+| :--- | :--- | :--- | :--- |
+| <a id="term-competing-objectives"></a>**Competing Objectives** `[[TN1]]` | Hiện tượng xung đột nội tại trong mô hình ngôn ngữ lớn khi mục tiêu "giúp ích" (Helpfulness / Instruction-following) lấn át mục tiêu "vô hại" (Harmlessness / Safety constraint), khiến mô hình ưu tiên làm theo chỉ thị độc hại. | Đòn bẩy lý thuyết giải thích tại sao các prompt DAN / nhập vai có thể vượt qua ranh giới an toàn của LLM; PI-Guard đứng ngoài đóng vai trò chốt chặn độc lập để triệt tiêu xung đột này. | Wei et al. (NeurIPS 2023) [[5]](#ref5) |
+| <a id="term-mismatched-generalization"></a>**Mismatched Generalization** `[[TN2]]` | Điểm mù an toàn khi năng lực hiểu biết ngôn ngữ của mô hình (Pre-training) mở rộng ra các miền biểu diễn lạ (Cipher, Base64, Leetspeak, ngôn ngữ hiếm), nhưng tập dữ liệu căn chỉnh an toàn (Safety Fine-Tuning) không bao phủ tới, dẫn đến mất khả năng từ chối. | Cơ sở để PI-Guard kết hợp bộ trích xuất n-gram ký tự (`char_wb`) trong TF-IDF Baseline nhằm phát hiện xáo trộn bề mặt trước khi prompt đến được mô hình nền. | Wei et al. (NeurIPS 2023) [[5]](#ref5), Yuan et al. (ICLR 2024) [[17]](#ref17) |
+| <a id="term-refusal-boundary"></a>**Refusal Boundary** `[[TN3]]` | Ranh giới quyết định (Decision Boundary) bên trong không gian trọng số của LLM, phân định rõ giữa câu hỏi được phép trả lời và yêu cầu nguy hại bắt buộc phải từ chối sinh nội dung. | Mục tiêu mà các đòn Jailbreak tìm cách bẻ gãy; PI-Guard thay thế việc phụ thuộc vào ranh giới nội tại mong manh của LLM bằng một ranh giới phân loại xác định trước ở tầng biên. | Wei et al. (NeurIPS 2023) [[5]](#ref5), Zou et al. (2023) [[13]](#ref13) |
+| <a id="term-goal-hijacking"></a>**Goal Hijacking** `[[TN4]]` | Kỹ thuật tiêm prompt trong đó kẻ tấn công ghi đè hoàn toàn mục tiêu ban đầu của ứng dụng và chuyển hướng LLM sang thực thi một mục tiêu tùy ý do kẻ tấn công định đoạt. | Phân nhóm tác hại nghiêm trọng của Direct/Indirect Prompt Injection mà PI-Guard có nhiệm vụ phân loại và chặn đứng tại tầng Gateway trước khi chạm tới LLM. | Perez & Ribeiro (NeurIPS 2022) [[3]](#ref3) |
+| <a id="term-prompt-leaking"></a>**Prompt Leaking** `[[TN5]]` | Kỹ thuật tấn công ép buộc LLM in ra nguyên văn các hướng dẫn hệ thống bí mật (*System Prompt*), quy tắc nội bộ hoặc thông tin nhạy cảm được cấu hình sẵn cho ứng dụng. | Rủi ro rò rỉ sở hữu trí tuệ và bí mật kỹ thuật mà PI-Guard ngăn chặn bằng cách bắt giữ các mẫu lệnh truy vấn ngược ngữ cảnh hệ thống. | Perez & Ribeiro (NeurIPS 2022) [[3]](#ref3) |
+| <a id="term-zeroquant"></a>**ZeroQuant** `[[TN6]]` | Khung lượng hóa động sau huấn luyện (Post-Training Quantization - PTQ) cho Transformer, kết hợp lượng hóa trọng số tĩnh INT8 theo kênh và lượng hóa động activation theo token, giúp nén mô hình mà không cần huấn luyện lại. | Giải pháp kỹ thuật giúp nén DeBERTa-v3 từ 500MB xuống 140MB và giảm độ trễ P95 xuống ~14.5ms trên CPU thông thường mà độ suy giảm F1 $< 0.3\%$. | Yao et al. (NeurIPS 2022) [[16]](#ref16) |
+
+---
+
+## 6. TÀI LIỆU THAM KHẢO HỌC THUẬT (REFERENCES)
 
 - <a id="ref3"></a>**[[3]]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in *Proc. NeurIPS ML Safety Workshop*, 2022. [arXiv:2211.09527](https://arxiv.org/pdf/2211.09527.pdf).
 - <a id="ref4"></a>**[[4]]** K. Greshake et al., "Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection," in *Proc. ACM AISec*, 2023. [arXiv:2302.12173](https://arxiv.org/pdf/2302.12173.pdf).

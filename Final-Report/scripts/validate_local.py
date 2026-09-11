@@ -345,7 +345,29 @@ def step_docs_portal_build() -> Tuple[bool, str]:
 
 
 # ==============================================================================
-# 7. GIT PRE-COMMIT HOOK INSTALLER
+# 7. ACADEMIC TERMINOLOGY & CONCEPT GLOSSARY AUDIT
+# ==============================================================================
+def step_academic_glossary_audit() -> Tuple[bool, str]:
+    """Kiểm tra tính toàn vẹn của các neo thuật ngữ học thuật và bảng giải nghĩa cuối trang."""
+    verify_script = SCRIPTS_DIR / "verify_academic_glossary.py"
+    if not verify_script.exists():
+        return True, "scripts/verify_academic_glossary.py not found. Skipped."
+
+    task1_file = ROOT_DIR / "workspaces" / "truongnv" / "reports" / "task_for_meeting_4" / "TASK_1_PROMPT_INJECTION_VS_JAILBREAK.md"
+    if not task1_file.exists():
+        return True, "No target task file found. Skipped."
+
+    code, out, err = run_cmd([sys.executable, str(verify_script), "--file", str(task1_file)])
+    if code == 0:
+        pass_lines = [line.strip() for line in out.splitlines() if "[PASS]" in line]
+        msg = pass_lines[-1] if pass_lines else "Academic glossary validated successfully."
+        return True, msg
+    else:
+        return False, out or err
+
+
+# ==============================================================================
+# 8. GIT PRE-COMMIT HOOK INSTALLER
 # ==============================================================================
 def install_pre_commit_hook() -> int:
     """Tự động cài đặt hoặc cập nhật Git Pre-commit Hook để chạy validate_local.py --mode pre-commit."""
@@ -493,6 +515,7 @@ def main() -> int:
             ("Workspace Boundaries Audit", step_workspace_boundary_audit, ("staged",)),
             ("JSON Manifests Validation", step_validate_manifests, (False,)),
             ("Code Quality & Linting", step_code_linting, (False,)),
+            ("Academic Concept Glossary Audit", step_academic_glossary_audit, ()),
             ("Adversarial Benchmark Smoke Test", step_benchmark_smoke_test, ()),
         ]
     elif mode == "full":
@@ -500,6 +523,7 @@ def main() -> int:
             ("Workspace Boundaries Audit", step_workspace_boundary_audit, ("staged",)),
             ("JSON Manifests Validation", step_validate_manifests, (False,)),
             ("Code Quality & Linting", step_code_linting, (False,)),
+            ("Academic Concept Glossary Audit", step_academic_glossary_audit, ()),
             ("Automated Tests (Pytest Suite)", step_automated_tests, (False,)),
             ("Adversarial Benchmark Smoke Test", step_benchmark_smoke_test, ()),
             ("Documentation Portal & MkDocs Build", step_docs_portal_build, ()),

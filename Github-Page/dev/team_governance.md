@@ -93,6 +93,16 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
+## STRICT RULE: ACADEMIC TERMINOLOGY & CONCEPT GLOSSARY INVARIANT (ZERO UNEXPLAINED ANALOGY)
+> [!IMPORTANT]
+> **MANDATORY IN-TEXT ANCHORING & TERMINAL GLOSSARY STANDARDS**:
+> To prevent embarrassing defense situations before the Academic Council when presenting deep CS analogies (Prepared Statements, Von Neumann, NX-bit, Flat Token Space, Competing Objectives), all AI Agents and team members MUST adhere to **`.agents/rules/academic-terminology-and-glossary-standards.md`**:
+> 1. **In-Text Anchoring**: Mark terms with standard anchors `[[TNx]](#term-...)`.
+> 2. **Terminal Academic Glossary**: Always append a standardized 4-column Glossary section (`Concept`, `Scientific Definition`, `Role & Analogy in PI-Guard`, `Provenance & References`) before References.
+> 3. **Automated Audit**: Verified via `Final-Report/scripts/verify_academic_glossary.py` and integrated into `validate_local.py`.
+
+---
+
 ## Configured MCP Servers (Model Context Protocol)
 
 The workspace is configured with 11 integrated Model Context Protocol (MCP) servers defined in **`.vscode/mcp.json`**:
@@ -119,7 +129,7 @@ The workspace is configured with 11 integrated Model Context Protocol (MCP) serv
 
 ## Available Custom Agent Skills (`.agents/skills/`)
 
-The repository provides 12 specialized, domain-specific agent skills:
+The repository provides 13 specialized, domain-specific agent skills:
 
 1. **`review1-threat-model-and-defense`**: Comprehensive deliverables for Review 1 (Problem definition, Threat modeling under NIST AI 100-2e2025, Attack surface analysis, Demo scenarios, and Slide deck outline).
 2. **`llm-security-research`**: OWASP LLM01:2025 taxonomy, threat taxonomy, direct vs. indirect prompt injection, jailbreak archetypes, and SOTA guardrail comparison.
@@ -133,6 +143,7 @@ The repository provides 12 specialized, domain-specific agent skills:
 10. **`team-commit-and-workspace-audit`**: Automated commit and PR auditing tool to detect and prevent unauthorized edits outside designated member sandboxes.
 11. **`resource-and-literature-validation`**: Automated verification suite for URLs, YouTube oEmbed endpoints, and Open-Access PDF lookups to prevent broken links and paywalls.
 12. **`docs-portal-sync-and-deploy`**: Automated documentation portal builder, synthesizing 8 research dossiers into the MkDocs Material GitHub Pages web portal.
+13. **`academic-terminology-glossary`**: Quy trình tự động phát hiện, đánh dấu neo và khởi tạo Bảng chú thích thuật ngữ học thuật (Academic Concept Glossary & Provenance) 4 trường cho các báo cáo kỹ thuật và luận văn.
 
 ---
 

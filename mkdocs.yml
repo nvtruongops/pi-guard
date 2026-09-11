@@ -106,7 +106,7 @@ nav:
   - "3. Threat & Defense (Phòng Thủ Đa Tầng)":
       - "Mô Hình Hóa Đe Dọa & Bề Mặt Tấn Công": threat_defense/threat_model_and_attack_surface.md
       - "Kiến Trúc Phòng Thủ 3 Lớp (Defense-in-Depth)": threat_defense/multi_layer_defense_architecture.md
-      - "Ma Trận Đối Sánh & Phân Tích Đánh Đổi": threat_defense/comparative_matrix_and_tradeoffs.md
+      - "Bảng So Sánh & Phân Tích Đánh Đổi": threat_defense/comparative_matrix_and_tradeoffs.md
       - "Tài Liệu Học Thuật, Video & Mã Nguồn Mẫu": threat_defense/resources_and_papers.md
   - "4. Dataset & Benchmark Study":
       - "Tuyển Chọn Dữ Liệu & Phân Loại 3 Lớp": dataset_study/data_curation.md

@@ -8,7 +8,7 @@
 ---
 
 > [!TIP]
-> ### ⚡ NẮM NHANH TRONG 60 GIÂY (TL;DR CHO HỘI ĐỒNG & THÀNH VIÊN)
+> ### 📌 TÓM TẮT ĐIỀU HÀNH (EXECUTIVE SUMMARY)
 > - **Mã nguồn & Dữ liệu mở 100% từ bài báo tham chiếu**: Mọi mô hình và tập dữ liệu đều có nguồn gốc công khai, gắn liền với các công trình khoa học bình duyệt (AdvBench từ Zou et al. [[13]](#ref13) & Jain et al. [[15]](#ref15), In-the-Wild DAN từ Shen et al. [[11]](#ref11), BIPIA từ Yi et al. [[19]](#ref19), PromptInject từ Perez & Ribeiro [[3]](#ref3), Alpaca từ Taori et al. [[15]](#ref15)). **Tuyệt đối không sử dụng bất kỳ tập dữ liệu thương mại/cộng đồng nào ngoài các bài báo tham chiếu**.
 > - **Nguyên tắc kế thừa dữ liệu**: Trường hợp bài báo phòng thủ (Jain et al. [[15]](#ref15)) sử dụng lại dataset của bài báo khác (AdvBench từ Zou et al. [[13]](#ref13) và Alpaca từ Dubois/Taori et al.), tài liệu này chỉ rõ chính xác từng đề mục (Section 4, Section 4.1, Appendix A) thảo luận vấn đề đó trong bài báo gốc.
 > - **Quy trình thực nghiệm tái lập chuẩn hóa**: Nạp data học thuật -> Tiền xử lý & Phân tách -> Huấn luyện / Nạp mô hình gốc -> Đo đạc & Xuất file JSON đối chiếu chéo.
@@ -34,7 +34,8 @@
 5. [BẢNG ĐỐI CHUẨN KẾT QUẢ ĐO ĐẠC THỰC NGHIỆM (LOCAL MEASURED VS. PAPER BENCHMARKS)](#5-bảng-đối-chuẩn-kết-quả-đo-đạc-thực-nghiệm-local-measured-vs-paper-benchmarks)
 6. [CHUẨN HÓA ĐỊNH DẠNG XUẤT KẾT QUẢ JSON](#6-chuẩn-hóa-định-dạng-xuất-kết-quả-json)
 7. [BẢNG KIỂM TOÁN URL ĐẢM BẢO ZERO DEAD LINKS (100% VERIFIED HTTP 200)](#7-bảng-kiểm-toán-url-đảm-bảo-zero-dead-links-100-verified-http-200)
-8. [TÀI LIỆU THAM KHẢO HỌC THUẬT (REFERENCES)](#8-tài-liệu-tham-khảo-học-thuật-references)
+8. [BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG (ACADEMIC CONCEPT GLOSSARY)](#8-bảng-thuật-ngữ--khái-niệm-học-thuật-nền-tảng-academic-concept-glossary)
+9. [TÀI LIỆU THAM KHẢO HỌC THUẬT (REFERENCES)](#9-tài-liệu-tham-khảo-học-thuật-references)
 
 ---
 
@@ -58,7 +59,7 @@ Mô hình Tầng 1 của PI-Guard kết hợp trích xuất đặc trưng song s
 | **Baseline Defenses Official Repo** | Neel Jain et al. (NeurIPS 2023 [[15]](#ref15)) | [https://github.com/neelsjain/baseline-defenses](https://github.com/neelsjain/baseline-defenses) | `200 OK` | Mã nguồn gốc của bài báo NeurIPS 2023 về phòng thủ baseline (Perplexity, Tokenizer, Filtering) |
 | **Scikit-Learn Official Repo** | Scikit-Learn Core Team | [https://github.com/scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | `200 OK` | Thư viện mã nguồn mở triển khai `TfidfVectorizer`, `FeatureUnion`, và `LogisticRegression` |
 | **LLM Attacks (AdvBench Official Repo)** | Andy Zou et al. (NeurIPS 2023 [[13]](#ref13)) | [https://github.com/llm-attacks/llm-attacks](https://github.com/llm-attacks/llm-attacks) | `200 OK` | Kho mã nguồn và tập dữ liệu AdvBench được bài báo Neel Jain et al. [[15]](#ref15) kế thừa và đánh giá tại Section 4 |
-| **PromptInject Official Repo** | Fábio Perez & Ian Ribeiro (NeurIPS 2022 [[3]](#ref3)) | [https://github.com/agencyenterprise/PromptInject](https://github.com/agencyenterprise/PromptInject) | `200 OK` | Mã nguồn và tập dữ liệu kiểm thử Direct Prompt Injection (Goal Hijacking & Prompt Leaking) |
+| **PromptInject Official Repo** | Fábio Perez & Ian Ribeiro (NeurIPS 2022 [[3]](#ref3)) | [https://github.com/agencyenterprise/PromptInject](https://github.com/agencyenterprise/PromptInject) | `200 OK` | Mã nguồn và tập dữ liệu kiểm thử Direct Prompt Injection (Goal Hijacking [[TN1]](#term-goal-hijacking) & Prompt Leaking [[TN2]](#term-prompt-leaking)) |
 | **Prompt Injection Security PoC** | Kai Greshake et al. (ACM AISec 2023 [[4]](#ref4)) | [https://github.com/greshake/llm-security](https://github.com/greshake/llm-security) | `200 OK` | Mã nguồn kịch bản khai thác Prompt Injection trực tiếp và gián tiếp |
 
 ---
@@ -178,7 +179,7 @@ print(classification_report(y_test, preds, target_names=["Benign (Alpaca)", "Har
 > **LƯU Ý VỀ PHẠM VI HỌC THUẬT CỦA MÔ HÌNH THAM KHẢO 2 TẠI TASK 3**:
 > - **Mô hình gốc tác giả công bố**: Tác giả P. He et al. (ICLR 2023 [[9]](#ref9)) công bố checkpoint `microsoft/deberta-v3-base` ở định dạng **FP32 nguyên bản** (~500MB, độ trễ P95 trên CPU ~42.5ms). Trong bài báo gốc, tác giả **hoàn toàn không lượng hóa INT8**.
 > - **Nhiệm vụ của Task 3**: Đo đạc và xác lập đường cơ sở (Baseline) của mô hình FP32 nguyên bản để thấy rõ ưu điểm về độ chính xác ($F_1 = 0.978$) nhưng đồng thời chỉ ra **2 điểm nghẽn tài nguyên chí tử (500MB RAM, trễ 42.5ms trên CPU)**.
-> - **Chuyển tiếp sang Task 4**: Việc ứng dụng kỹ thuật lượng hóa ZeroQuant (Yao et al. NeurIPS 2022 [[16]](#ref16)) trên ONNX Runtime để nén xuống 140MB và giảm trễ xuống 14.5ms chính là **Cải tiến 4 độc quyền của đồ án PI-Guard** được trình bày chi tiết tại Task 4! Các đoạn mã ONNX/INT8 trong Task 3 dưới đây đóng vai trò là kịch bản kiểm chứng tính khả thi kỹ thuật (Feasibility Proof) trước khi chính thức đưa vào đồ án.
+> - **Chuyển tiếp sang Task 4**: Việc ứng dụng kỹ thuật lượng hóa ZeroQuant [[TN3]](#term-zeroquant) (Yao et al. NeurIPS 2022 [[16]](#ref16)) trên ONNX Runtime để nén xuống 140MB và giảm trễ xuống 14.5ms chính là **Cải tiến 4 độc quyền của đồ án PI-Guard** được trình bày chi tiết tại Task 4! Các đoạn mã ONNX/INT8 trong Task 3 dưới đây đóng vai trò là kịch bản kiểm chứng tính khả thi kỹ thuật (Feasibility Proof) trước khi chính thức đưa vào đồ án.
 
 ### 3.1. Kho Mã Nguồn Công Khai (Public Code Repositories)
 
@@ -399,7 +400,19 @@ Toàn bộ **26 liên kết công khai** xuất hiện trong tài liệu này đ
 
 ---
 
-## 8. TÀI LIỆU THAM KHẢO HỌC THUẬT (REFERENCES)
+## 8. BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG (ACADEMIC CONCEPT GLOSSARY)
+
+Nhằm phục vụ bảo vệ tính tái lập khoa học và giải trình trước Hội đồng chấm Luận văn tốt nghiệp, bảng dưới đây chuẩn hóa các khái niệm học thuật then chốt xuất hiện trong quy trình thực nghiệm:
+
+| Thuật Ngữ / Khái Niệm (Concept / Metaphor) | Định Nghĩa Học Thuật Gốc (Academic / CS Definition) | Vị Trí & Ý Nghĩa Đối Chiếu Trong PI-Guard (Role & Analogy in PI-Guard) | Nguồn Trích Dẫn Gốc (Scholarly Reference) |
+| :--- | :--- | :--- | :--- |
+| <a id="term-goal-hijacking"></a>**Goal Hijacking** `[[TN1]]` | Kỹ thuật tấn công tiêm prompt làm thay đổi hoặc chiếm đoạt toàn bộ luồng mục tiêu logic ban đầu của ứng dụng và buộc LLM hành xử theo kịch bản của kẻ tấn công. | Phân loại kiểm thử then chốt trong bộ dữ liệu PromptInject để đo độ chính xác phân loại của TF-IDF và DeBERTa-v3. | Perez & Ribeiro (NeurIPS 2022) [[3]](#ref3) |
+| <a id="term-prompt-leaking"></a>**Prompt Leaking** `[[TN2]]` | Kỹ thuật tấn công nhằm trích xuất nguyên văn System Prompt nội bộ hoặc chỉ thị điều khiển ẩn của ứng dụng LLM. | Nhóm tấn công rò rỉ thông tin mà PI-Guard có trách nhiệm phát hiện và ngăn chặn trước khi yêu cầu tiếp cận mô hình sinh. | Perez & Ribeiro (NeurIPS 2022) [[3]](#ref3) |
+| <a id="term-zeroquant"></a>**ZeroQuant** `[[TN3]]` | Phương pháp lượng hóa động sau huấn luyện (Post-Training Quantization - PTQ) cho phép nén mô hình Transformer sang INT8 với độ suy giảm chất lượng tối thiểu mà không cần dữ liệu huấn luyện bổ sung. | Giải pháp cốt lõi để đưa DeBERTa-v3 từ 500MB FP32 xuống 140MB INT8, đạt mục tiêu suy luận dưới 15ms trên CPU thông thường. | Yao et al. (NeurIPS 2022) [[16]](#ref16) |
+
+---
+
+## 9. TÀI LIỆU THAM KHẢO HỌC THUẬT (REFERENCES)
 
 - <a id="ref3"></a>**[[3]]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in *Proc. NeurIPS ML Safety Workshop*, 2022. [arXiv:2211.09527](https://arxiv.org/pdf/2211.09527.pdf).
 - <a id="ref4"></a>**[[4]]** K. Greshake et al., "Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection," in *Proc. ACM AISec*, 2023. [arXiv:2302.12173](https://arxiv.org/pdf/2302.12173.pdf).

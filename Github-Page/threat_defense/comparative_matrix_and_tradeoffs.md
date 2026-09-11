@@ -1,4 +1,4 @@
-# CHUYÊN ĐỀ 03: MA TRẬN ĐỐI SÁNH ĐỊNH LƯỢNG CÁC GIẢI PHÁP PHÒNG THỦ & PHÂN TÍCH ĐÁNH ĐỔI (TRADE-OFFS)
+# CHUYÊN ĐỀ 03: BẢNG SO SÁNH ĐỊNH LƯỢNG CÁC GIẢI PHÁP PHÒNG THỦ & PHÂN TÍCH ĐÁNH ĐỔI (TRADE-OFFS)
 ## SO SÁNH THỰC NGHIỆM ĐỘ TRỄ, CHI PHÍ, HIỆU NĂNG VÀ ĐỘ BỀN GIỮA CÁC HƯỚNG TIẾP CẬN
 
 > **Căn cứ chỉ đạo**: Mục 3 & 4 Biên bản họp **`Meeting/Meeting 1_29_08_26.md`**  
@@ -7,7 +7,7 @@
 
 ---
 
-## I. Ma Trận Đối Sánh Định Lượng 6 Phương Pháp Phòng Thủ
+## I. Bảng So Sánh Định Lượng 6 Phương Pháp Phòng Thủ
 
 Để chứng minh tính ưu việt và sự cần thiết của kiến trúc **PI-Guard** trước Hội đồng Khóa luận FPT IAP491, bảng đối sánh dưới đây tổng hợp các thông số kỹ thuật thực nghiệm dựa trên các công trình nghiên cứu đã công bố quốc tế:
 
