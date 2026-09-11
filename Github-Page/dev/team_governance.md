@@ -145,12 +145,26 @@ The repository provides 12 specialized, domain-specific agent skills:
 - **Weekly Convergence Sessions**: The team compares empirical metrics (F1, FPR, Latency P95), selects champion modules for `Final-Report/src/`, and compiles thesis chapters collaboratively.
 - **Defense Mastery**: Every member understands the complete ecosystem end-to-end, ensuring confident performance during individual committee oral examinations.
 
-| Member | Full-Pipeline Sandbox & Focus Area | Workspace Directory |
+| Member | Full-Pipeline Sandbox (100% End-to-End Pipeline) | Workspace Directory |
 | :--- | :--- | :--- |
-| **Nguyễn Văn Trường (Leader / `nvtruongops`)** | Overall Architecture, Data Engineering, Group-Aware Splitting & Repository Governance | `workspaces/truongnv/` |
-| **Nguyễn Quí Đức** | Classical ML Baseline (TF-IDF Word/Char N-Grams), Feature Extraction & Threat Surface Modeling | `workspaces/ducnq/` |
-| **Phạm Minh Hoàng Việt** | Transformer Fine-Tuning (`microsoft/deberta-v3-base`), ONNX INT8 Quantization & Adversarial Robustness | `workspaces/vietpmh/` |
-| **Đỗ Đoàn Duy Phương** | FastAPI Guardrail Middleware Proxy, Streamlit Dashboard, Demo Testbed & Thesis Compilation | `workspaces/phuongddd/` |
+| **Nguyễn Văn Trường (Leader / `nvtruongops`)** | Full Pipeline (Data, Baseline, Transformer, INT8, Proxy) & Overall Architecture | `workspaces/truongnv/` |
+| **Nguyễn Quí Đức** | Full Pipeline (Data, Baseline, Transformer, INT8, Proxy) & Empirical Cross-Validation | `workspaces/ducnq/` |
+| **Phạm Minh Hoàng Việt** | Full Pipeline (Data, Baseline, Transformer, INT8, Proxy) & Empirical Cross-Validation | `workspaces/vietpmh/` |
+| **Đỗ Đoàn Duy Phương** | Full Pipeline (Data, Baseline, Transformer, INT8, Proxy) & Empirical Cross-Validation | `workspaces/phuongddd/` |
+
+---
+
+## STRICT RULE: TÁCH BẠCH HỒ SƠ KỸ THUẬT VÀ QUẢN TRỊ NỘI BỘ (ZERO SILOING & ZERO GOVERNANCE POLLUTION)
+> [!CAUTION]
+> **QUY TẮC BẢO VỆ PHÒNG THỦ HỌC THUẬT & CHỐNG PHÂN MẢNH MÔ ĐUN (ANTI-SILOING INVARIANT)**:
+> 1. **QUẢN TRỊ NỘI BỘ (TEAM TỰ BIẾT, CẤM HÔ HÀO TRONG TÀI LIỆU KỸ THUẬT)**:
+>    - Phương châm "Ai cũng làm toàn bộ pipeline" là nguyên tắc nội bộ giúp cả 4 thành viên làm chủ toàn diện hệ thống để tự tin bảo vệ trước Hội đồng. Nhóm tự biết và quản lý qua `AGENTS.md` cùng Sổ tiến độ `PI_GUARD_PROCESS_REPORT.xlsx`.
+>    - Tuyệt đối **KHÔNG** đưa các câu khẩu hiệu sinh hoạt nhóm vào tài liệu kỹ thuật, chuyên đề nghiên cứu (`docs/`, `reports/`, `thesis/`). Mọi tài liệu kỹ thuật phải giữ văn phong khoa học, khách quan 100%.
+> 2. **CẤM TUYỆT ĐỐI TẠO BẢNG PHÂN CÔNG CHIA CẮT MÔ ĐUN (ZERO SILOING ASSIGNMENT)**:
+>    - Tuyệt đối **KHÔNG** tạo các bảng "Phân công trách nhiệm cá nhân" kiểu chia rẽ module (như gán Đức chỉ làm Baseline, Việt chỉ làm Transformer, Phương chỉ làm Web/API) trong các tài liệu kỹ thuật nộp cho GVHD hoặc Hội đồng.
+>    - **Nguy cơ phòng thủ học thuật**: Hội đồng FPT sẽ coi việc chia module này là làm việc kiểu dây chuyền phân mảnh (siloing), dẫn đến việc thành viên bị coi là không tham gia vào phần lõi khoa học của đồ án (AI/ML) và bị trừ điểm nặng.
+> 3. **CHUẨN HÓA QUY TRÌNH THỰC NGHIỆM TÁI LẬP HỆ THỐNG**:
+>    - Mọi quy trình thực nghiệm B1–B5 phải được trình bày như một **"Quy trình thực nghiệm tái lập hệ thống (Standardized Reproducibility Pipeline)"** khách quan, cho phép bất kỳ ai (sinh viên, nhà nghiên cứu hay phản biện) cũng có thể chạy độc lập để tái lập 100% kết quả.
 
 ---
 

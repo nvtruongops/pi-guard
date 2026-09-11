@@ -116,9 +116,24 @@ trigger: always_on
 > All 4 members work hands-on across the entire pipeline in parallel workspaces (`workspaces/<member>/`) and converge findings during weekly meetings:
 
 1. **Parallel Full-Stack Hands-on**: Every member explores data collection, baseline training, transformer fine-tuning, adversarial testing, and API integration to build deep, end-to-end expertise.
-2. **Weekly Convergence Sessions**: The team compares experimental metrics (F1, FPR, Latency), selects the champion models for `src/`, and co-authors thesis chapters.
+2. **Weekly Convergence Sessions**: The team compares empirical metrics (F1, FPR, Latency), selects the champion models for `src/`, and co-authors thesis chapters.
 3. **Council Defense Mastery**: Every member understands the full ecosystem end-to-end, preventing knowledge silos and enabling confident defense before the FPT Committee.
 4. **Leader Governance**: Student 1 (Nguyễn Văn Trường / `nvtruongops`) supervises overall project direction, code merges, and milestone submissions.
+
+---
+
+## ⚖️ STRICT RULE: TÁCH BẠCH HỒ SƠ KỸ THUẬT VÀ QUẢN TRỊ NỘI BỘ (ZERO SILOING & ZERO GOVERNANCE POLLUTION)
+
+> [!CAUTION]
+> **QUY TẮC BẢO VỆ PHÒNG THỦ HỌC THUẬT & CHỐNG PHÂN MẢNH MÔ ĐUN (ANTI-SILOING INVARIANT)**:
+> 1. **QUẢN TRỊ NỘI BỘ (TEAM TỰ BIẾT, CẤM HÔ HÀO TRONG TÀI LIỆU KỸ THUẬT)**:
+>    - Phương châm "Ai cũng làm toàn bộ pipeline" là nguyên tắc nội bộ giúp cả 4 thành viên làm chủ toàn diện hệ thống để tự tin bảo vệ trước Hội đồng. Nhóm tự biết và quản lý qua `AGENTS.md` cùng Sổ tiến độ `PI_GUARD_PROCESS_REPORT.xlsx`.
+>    - Tuyệt đối **KHÔNG** đưa các câu khẩu hiệu sinh hoạt nhóm vào tài liệu kỹ thuật, chuyên đề nghiên cứu (`docs/`, `reports/`, `thesis/`). Mọi tài liệu kỹ thuật phải giữ văn phong khoa học, khách quan 100%.
+> 2. **CẤM TUYỆT ĐỐI TẠO BẢNG PHÂN CÔNG CHIA CẮT MÔ ĐUN (ZERO SILOING ASSIGNMENT)**:
+>    - Tuyệt đối **KHÔNG** tạo các bảng "Phân công trách nhiệm cá nhân" kiểu chia rẽ module (như gán Đức chỉ làm Baseline, Việt chỉ làm Transformer, Phương chỉ làm Web/API) trong các tài liệu kỹ thuật nộp cho GVHD hoặc Hội đồng.
+>    - **Nguy cơ phòng thủ học thuật**: Hội đồng FPT sẽ coi việc chia module này là làm việc kiểu dây chuyền phân mảnh (siloing), dẫn đến việc thành viên bị coi là không tham gia vào phần lõi khoa học của đồ án (AI/ML) và bị trừ điểm nặng.
+> 3. **CHUẨN HÓA QUY TRÌNH THỰC NGHIỆM TÁI LẬP HỆ THỐNG**:
+>    - Mọi quy trình thực nghiệm B1–B5 phải được trình bày như một **"Quy trình thực nghiệm tái lập hệ thống (Standardized Reproducibility Pipeline)"** khách quan, cho phép bất kỳ ai (sinh viên, nhà nghiên cứu hay phản biện) cũng có thể chạy độc lập để tái lập 100% kết quả.
 
 ---
 
