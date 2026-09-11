@@ -1,6 +1,6 @@
 # **BÁO CÁO KỸ THUẬT NHIỆM VỤ 2 (TASK 2)**
 ## ĐỀ TÀI: A MACHINE-LEARNING GUARDRAIL FOR DETECTING PROMPT INJECTION AND JAILBREAK ATTACKS ON LLM APPLICATIONS (PI-GUARD)
-### Chuyên đề: Khung Phân Tích Mối Đe Dọa 5 Trục Toàn Diện (5D Threat Framework) Cho Prompt Injection & Jailbreak Và Cơ Chế Đối Kháng Của 2 Mô Hình Phòng Thủ
+### Chuyên đề: Khung Phân Tích Mối Đe Dọa 5 Trục Toàn Diện (5D Threat Framework) Cho Prompt Injection & Jailbreak Và Cơ Sở Toán Học Của 2 Mô Hình Tham Khảo Học Thuật
 **Tác giả**: Nguyễn Văn Trường (Leader — MSSV: `SE182034`) | **Workspace**: `workspaces/truongnv/`  
 **Căn cứ đề tài**: Bản đăng ký đề tài [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) & Biên bản [`Final-Report/Meeting/Meeting 4_10_09_26.md`](file:///d:/Work/Do-an/Final-Report/Meeting/Meeting%204_10_09_26.md)  
 **Tài liệu điều phối trung tâm**: [`workspaces/truongnv/reports/task_for_meeting_4/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/README.md)
@@ -17,7 +17,7 @@
 >   5. **Trục 5: Mức Độ Ảnh Hưởng & Bán Kính Thiệt Hại** (Impact, Blast Radius & Chế tài EU AI Act / NIST)
 > - **2 Kênh Ingress Prompt Injection**: Kênh 1 (Direct Ingress ghép phẳng $X = S \mathbin{\Vert} U$) vs. Kênh 2 (Indirect Ingress giấu văn bản tàng hình nạp vào bộ nhớ RAG).
 > - **Jailbreak Attacks**: Bẻ gãy ranh giới từ chối (*Refusal Boundary* [[TN3]](#term-refusal-boundary)) dựa trên *Competing Objectives* [[TN1]](#term-competing-objectives) (nhập vai DAN) và *Mismatched Generalization* [[TN2]](#term-mismatched-generalization) (Leetspeak, Cipher, Base64, GCG Suffix).
-> - **Cơ Chế Đối Kháng 2 Mô Hình**: Baseline TF-IDF (`char_wb`) chặn chớp nhoáng Direct & Leetspeak trong ~2.8ms; DeBERTa-v3 Disentangled Attention bắt trọn vẹn ngữ nghĩa gián tiếp trong tài liệu RAG; bàn đạp chuyển tiếp sang Task 3 thực nghiệm.
+> - **Cơ Sở Toán Học 2 Mô Hình Tham Khảo (Reference Models)**: Khảo sát lý thuyết 2 mô hình nền tảng từ y văn khoa học: Baseline TF-IDF (`char_wb`, Neel Jain et al. NeurIPS 2023 [[15]](#ref15)) chặn chớp nhoáng các biến dị cú pháp bề mặt; DeBERTa-v3 Disentangled Attention (P. He et al. ICLR 2023 [[9]](#ref9)) bóc tách ngữ nghĩa vị trí câu lệnh; làm cơ sở lý thuyết bàn giao sang Task 3 thực nghiệm tái lập (không dính líu đến thiết kế mô hình riêng của đồ án).
 
 ---
 
@@ -28,11 +28,11 @@
    - [2.1. Kênh 1: Direct Prompt Injection qua Chat UI & REST API](#21-kênh-1-direct-prompt-injection-qua-chat-ui--rest-api)
    - [2.2. Kênh 2: Indirect Prompt Injection qua File Tài Liệu (PDF, DOCX, TXT, RAG/Web)](#22-kênh-2-indirect-prompt-injection-qua-file-tài-liệu-pdf-docx-txt-ragweb)
    - [2.3. Nhóm 3: Jailbreak Attacks Bẻ Khóa Ranh Giới Từ Chối Mô Hình Nền](#23-nhóm-3-jailbreak-attacks-bẻ-khóa-ranh-giới-từ-chối-mô-hình-nền)
-3. [PHẦN II: CƠ SỞ TOÁN HỌC & CÁC BIẾN THỂ CỦA 2 MÔ HÌNH PHÒNG THỦ](#3-phần-ii-cơ-sở-toán-học--các-biến-thể-của-2-mô-hình-phòng-thủ)
-   - [3.1. Mô Hình 1: Classical Machine Learning Baseline (TF-IDF + Linear Classifier)](#31-mô-hình-1-classical-machine-learning-baseline-tf-idf--linear-classifier)
-   - [3.2. Mô Hình 2: Deep Semantic Transformer (DeBERTa-v3 Disentangled Attention)](#32-mô-hình-2-deep-semantic-transformer-deberta-v3-disentangled-attention)
-   - [3.3. Kỹ Thuật Lượng Hóa Động Sau Huấn Luyện (ZeroQuant PTQ INT8 trên ONNX Runtime)](#33-kỹ-thuật-lượng-hóa-động-sau-huấn-luyện-zeroquant-ptq-int8-trên-onnx-runtime)
-4. [TỔNG HỢP SO SÁNH & Ý NGHĨA KỸ THUẬT CHO PI-GUARD](#4-tổng-hợp-so-sánh--ý-nghĩa-kỹ-thuật-cho-pi-guard)
+3. [PHẦN II: CƠ SỞ TOÁN HỌC & CÁC BIẾN THỂ CỦA 2 MÔ HÌNH THAM KHẢO HỌC THUẬT (REFERENCE MODELS)](#3-phần-ii-cơ-sở-toán-học--các-biến-thể-của-2-mô-hình-tham-khảo-học-thuật-reference-models)
+   - [3.1. Mô Hình Tham Khảo 1: Classical Machine Learning Baseline (TF-IDF + Linear Classifier)](#31-mô-hình-tham-khảo-1-classical-machine-learning-baseline-tf-idf--linear-classifier)
+   - [3.2. Mô Hình Tham Khảo 2: Deep Semantic Transformer (DeBERTa-v3 Disentangled Attention)](#32-mô-hình-tham-khảo-2-deep-semantic-transformer-deberta-v3-disentangled-attention)
+   - [3.3. Phân Tích Đánh Đổi Lý Thuyết & Điểm Nghẽn Kỹ Thuật Của 2 Mô Hình Tham Khảo](#33-phân-tích-đánh-đổi-lý-thuyết--điểm-nghẽn-kỹ-thuật-của-2-mô-hình-tham-khảo)
+4. [TỔNG HỢP ĐỐI SÁNH 2 MÔ HÌNH THAM KHẢO & BÀN GIAO SANG THỰC NGHIỆM TASK 3](#4-tổng-hợp-đối-sánh-2-mô-hình-tham-khảo--bàn-giao-sang-thực-nghiệm-task-3)
 5. [BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG (ACADEMIC CONCEPT GLOSSARY)](#5-bảng-thuật-ngữ--khái-niệm-học-thuật-nền-tảng-academic-concept-glossary)
 6. [TÀI LIỆU THAM KHẢO HỌC THUẬT (REFERENCES)](#6-tài-liệu-tham-khảo-học-thuật-references)
 
@@ -41,9 +41,9 @@
 ## 1. BỐI CẢNH & YÊU CẦU CHỈ ĐẠO CỦA GVHD
 
 Tại buổi làm việc Meeting 4 ngày 10/09/2026, **Thầy Trần Văn Ninh (GVHD)** đã chỉ đạo:
-> *"Nhóm phải phân tích thật cặn kẽ bề mặt tấn công: Prompt Injection đi vào hệ thống qua những kênh nào? Cụ thể là qua text chat trực tiếp và qua các tệp tài liệu văn bản (PDF, DOCX, RAG) ra sao? Với từng hình thức, phải làm rõ: Tấn công thế nào? Kẻ tấn công cần năng lực gì? Luồng hoạt động thế nào? Dấu vết nhận diện ra sao? Ảnh hưởng thế nào? Đồng thời, về mặt mô hình hóa, nhóm chọn 2 mô hình (TF-IDF Baseline và DeBERTa-v3) thì phải nắm chắc công thức toán học, cơ chế đối kháng và các biến thể kỹ thuật của chúng để làm cầu nối cho thực nghiệm ở Task 3."*
+> *"Nhóm phải phân tích thật cặn kẽ bề mặt tấn công: Prompt Injection đi vào hệ thống qua những kênh nào? Cụ thể là qua text chat trực tiếp và qua các tệp tài liệu văn bản (PDF, DOCX, RAG) ra sao? Với từng hình thức, phải làm rõ: Tấn công thế nào? Kẻ tấn công cần năng lực gì? Luồng hoạt động thế nào? Dấu vết nhận diện ra sao? Ảnh hưởng thế nào? Đồng thời, về mặt mô hình hóa, nhóm khảo sát 2 mô hình tham khảo học thuật (TF-IDF Baseline từ Neel Jain et al. 2023 và DeBERTa-v3 từ P. He et al. 2023) thì phải nắm chắc công thức toán học, cơ chế đối kháng và các biến thể kỹ thuật của chúng trong y văn để làm cầu nối cho thực nghiệm ở Task 3."*
 
-Báo cáo kỹ thuật này thiết lập **Khung Phân Tích Mối Đe Dọa 5 Trục (5D Threat Analysis Framework)** làm chuẩn mực phương pháp luận bảo vệ Chapter 2 của Luận văn tốt nghiệp.
+Báo cáo kỹ thuật này thiết lập **Khung Phân Tích Mối Đe Dọa 5 Trục (5D Threat Analysis Framework)** và cơ sở lý thuyết toán học của **2 mô hình tham khảo học thuật**, làm chuẩn mực phương pháp luận bảo vệ Chapter 2 của Luận văn tốt nghiệp.
 
 ---
 
@@ -191,7 +191,7 @@ flowchart TD
         VectorDB -->|Truy xuất top-k chunks chứa đoạn độc hại| Search
         Search --> Assembler["<b>Prompt Assembler</b><br/>Ghép: X = System || Chunks || User"]
         
-        Assembler --> GuardCheck{"<b>PI-GUARD GUARDRAIL PROXY</b><br/>(Kiểm Tra Ngữ Nghĩa & Vị Trí Lệnh)"}
+        Assembler --> GuardCheck{"<b>EXTERNAL GUARDRAIL PROXY</b><br/>(Kiểm Tra Ngữ Nghĩa & Vị Trí Lệnh)"}
         
         GuardCheck -- "KHÔNG CÓ RÀO CHẮN (Bị Khai Thác)" --> LLM["<b>Downstream LLM Context</b>"]
         LLM --> Trigger["<b>KÍCH HOẠT CHỈ THỊ ẨN</b><br/>Bỏ qua nhiệm vụ tóm tắt ban đầu"]
@@ -199,7 +199,7 @@ flowchart TD
         Trigger --> Exfil["<b>1. Đánh Cắp Dữ Liệu (Exfiltration)</b><br/>Render thẻ ảnh Markdown gửi về Attacker Server"]
         Trigger --> ToolCall["<b>2. Thao Túng AI Agent (Tool Hijacking)</b><br/>Tự động gọi hàm API chuyển tiền / gửi mail"]
         
-        GuardCheck -- "CÓ PI-GUARD (Phòng Thủ Thành Công)" --> Drop["<b>CHẶN ĐỨNG & CÁCH LY CHUNK ĐỘC</b><br/>• Ghi Security Audit Log<br/>• Trả cảnh báo an toàn cho hệ thống"]
+        GuardCheck -- "CÓ RÀO CHẮN NGOẠI VI (Phòng Thủ Thành Công)" --> Drop["<b>CHẶN ĐỨNG & CÁCH LY CHUNK ĐỘC</b><br/>• Ghi Security Audit Log<br/>• Trả cảnh báo an toàn cho hệ thống"]
     end
 ```
 
@@ -306,22 +306,23 @@ flowchart TD
 ---
 
 
-## 3. PHẦN II: CƠ SỞ TOÁN HỌC & CÁC BIẾN THỂ CỦA 2 MÔ HÌNH PHÒNG THỦ
+## 3. PHẦN II: CƠ SỞ TOÁN HỌC & CÁC BIẾN THỂ CỦA 2 MÔ HÌNH THAM KHẢO HỌC THUẬT (REFERENCE MODELS)
 
-### 3.1. Mô Hình 1: Classical Machine Learning Baseline (TF-IDF + Linear Classifier)
+### 3.1. Mô Hình Tham Khảo 1: Classical Machine Learning Baseline (TF-IDF + Linear Classifier)
 
 #### 1. Nguyên lý toán học của trích xuất đặc trưng hai luồng song song:
-Mô hình Baseline của PI-Guard sử dụng đường ống `FeatureUnion` trích xuất đặc trưng song song trên hai không gian ngôn ngữ:
+Mô hình tham khảo Classical ML Baseline (kế thừa phương pháp luận của Neel Jain et al. NeurIPS 2023 [[15]](#ref15)) sử dụng đường ống `FeatureUnion` trích xuất đặc trưng song song trên hai không gian ngôn ngữ:
 
 $$\mathbf{x} = \left[ \mathbf{x}_{\text{word}} \mathbin{\Vert} \mathbf{x}_{\text{char\_wb}} \right] \in \mathbb{R}^{d_{\text{total}}} \quad (d_{\text{total}} = 25,000 + 35,000 = 60,000)$$
 
-- **Luồng 1: Word-level TF-IDF ($n \in [1, 3]$, Sublinear Scaling)**:
+*(trong đó ký hiệu $\mathbin{\Vert}$ biểu thị phép ghép nối vector đặc trưng)*:
+- **Luồng 1: Word-level TF-IDF ($n \in [1, 3]$, Sublinear Scaling - Salton & Buckley 1988 [[21]](#ref21))**:
   $$\text{TF-IDF}_{\text{word}}(t, d, D) = \left(1 + \log \text{TF}(t, d)\right) \times \left(1 + \log \frac{1 + |D|}{1 + \text{DF}(t, D)}\right)$$
   Bắt các cụm từ ngữ nghĩa tấn công tường minh: `"system override"`, `"ignore previous instructions"`, `"dan mode"`.
 - **Luồng 2: Character Word-Boundary TF-IDF (`char_wb`, $n \in [3, 5]$, Jain et al. 2023 [[15]](#ref15))**:
   Trích xuất các chuỗi ký tự con bên trong ranh giới từ vựng (được đệm bởi ký tự khoảng trắng ở đầu và cuối từ).
   
-  *Chứng minh toán học khả năng kháng Leetspeak của `char_wb`*:
+  *Chứng minh toán học khả năng kháng Leetspeak của `char_wb` (kế thừa phương pháp luận của Jain et al. 2023 [[15]](#ref15))*:
   Khi kẻ tấn công sử dụng từ biến dị $w_{\text{adv}} = \texttt{"1gn0r3"}$ thay cho $w_{\text{orig}} = \texttt{"ignore"}$:
   $$\Phi(\texttt{"1gn0r3"}) = \{ \texttt{" 1g"}, \texttt{"1gn"}, \texttt{"gn0"}, \texttt{"n0r"}, \texttt{"0r3"}, \texttt{"r3 "} \}$$
   $$\Phi(\texttt{"ignore"}) = \{ \texttt{" ig"}, \texttt{"ign"}, \texttt{"gno"}, \texttt{"nor"}, \texttt{"ore"}, \texttt{"re "} \}$$
@@ -332,38 +333,38 @@ Dự đoán xác suất rủi ro độc hại $P(y = 1 \mid \mathbf{x})$ qua hà
 
 $$P(y = 1 \mid \mathbf{x}) = \sigma(\mathbf{w}^T \mathbf{x} + b) = \frac{1}{1 + e^{-(\mathbf{w}^T \mathbf{x} + b)}}$$
 
-Hàm mất mát cực tiểu hóa với điều chuẩn $L_2$ và trọng số lớp cân bằng (*Balanced Class Weights*):
+Hàm mất mát cực tiểu hóa với điều chuẩn $L_2$ và trọng số lớp cân bằng (*Balanced Class Weights*, kế thừa từ **King & Zeng 2001 [[22]](#ref22)**):
 
 $$\mathcal{L}_{\text{LR}}(\mathbf{w}, b) = -\sum_{i=1}^N \left[ w_1 y_i \log \sigma(\mathbf{w}^T \mathbf{x}_i + b) + w_0 (1 - y_i) \log(1 - \sigma(\mathbf{w}^T \mathbf{x}_i + b)) \right] + \frac{1}{2C} \|\mathbf{w}\|_2^2$$
 
 Trong đó $w_c = \frac{N}{2 \cdot N_c}$ giúp phạt nặng hơn trường hợp bỏ sót mẫu tấn công trong tập dữ liệu mất cân bằng.
 
-#### 3. Bảng khảo sát các biến thể của Mô hình Baseline:
+#### 3. Bảng khảo sát các biến thể của Mô hình Baseline trong y văn:
 
-| Nhóm Phân Loại | Biến Thể Đã Khảo Sát | Cơ Chế Hoạt Động | Ưu Điểm | Nhược Điểm | Lựa Chọn PI-Guard |
+| Nhóm Phân Loại | Biến Thể Đã Khảo Sát | Cơ Chế Hoạt Động | Ưu Điểm | Nhược Điểm | Đánh Giá Khả Thi Cho Rào Chắn |
 | :--- | :--- | :--- | :--- | :--- | :---: |
-| **Trích xuất đặc trưng** | **Word N-Grams (1–3)** | Đếm cụm từ theo từ điển | Nắm bắt ngữ nghĩa cụ thể nhanh | Mù hoàn toàn trước OOV & Leetspeak | ✅ Tích hợp (25k dims) |
-| | **Char N-Grams (3–6)** | Đếm ký tự xuyên ranh giới | Bắt tốt biến dị cú pháp | Nhiễu ngữ nghĩa xuyên biên từ | ❌ Loại bỏ |
-| | **Char_wb (3–5)** | Đếm ký tự trong ranh giới từ | Kháng Leetspeak & Spacing cực tốt | Tăng số chiều vector | ✅ **Tối ưu (35k dims)** |
-| | **Subword BPE N-Grams** | Đếm n-gram trên token BPE | Cân bằng giữa từ và ký tự | Cần bộ tokenizer phức tạp | ❌ Dự phòng |
-| | **Perplexity / NCD** | Đo độ nén chuỗi (zlib/gzip) | Phát hiện chuỗi GCG ngẫu nhiên | FPR cực cao trên Code/JSON | ❌ Không dùng |
-| **Bộ phân loại** | **Logistic Regression** | Phân loại tuyến tính + Sigmoid | **Xuất xác suất liên tục $P \in [0, 1]$** | Ranh giới quyết định tuyến tính | ✅ **Lựa chọn chính** |
+| **Trích xuất đặc trưng** | **Word N-Grams (1–3)** | Đếm cụm từ theo từ điển | Nắm bắt ngữ nghĩa cụ thể nhanh | Mù hoàn toàn trước OOV & Leetspeak | ✅ Khả thi (25k dims) |
+| | **Char N-Grams (3–6)** | Đếm ký tự xuyên ranh giới | Bắt tốt biến dị cú pháp | Nhiễu ngữ nghĩa xuyên biên từ | ❌ Không tối ưu |
+| | **Char_wb (3–5)** | Đếm ký tự trong ranh giới từ | Kháng Leetspeak & Spacing cực tốt | Tăng số chiều vector | ✅ **Tối ưu nhất (35k dims)** |
+| | **Subword BPE N-Grams** | Đếm n-gram trên token BPE | Cân bằng giữa từ và ký tự | Cần bộ tokenizer phức tạp | ⚠️ Dự phòng |
+| | **Perplexity / NCD** | Đo độ nén chuỗi (zlib/gzip) | Phát hiện chuỗi GCG ngẫu nhiên | FPR cực cao trên Code/JSON | ❌ Không phù hợp |
+| **Bộ phân loại** | **Logistic Regression** | Phân loại tuyến tính + Sigmoid | **Xuất xác suất liên tục $P \in [0, 1]$** | Ranh giới quyết định tuyến tính | ✅ **Lựa chọn tối ưu** |
 | | **LinearSVC / SGD** | Tối đa hóa khoảng cách lề | Huấn luyện cực nhanh trên vector thưa | Không xuất xác suất hiệu chuẩn | ⚠️ Baseline phụ |
-| | **MultinomialNB** | Định lý Bayes xác suất có điều kiện | Rất nhẹ, tính toán tức thì | Kém chính xác trên n-gram tương quan | ❌ Loại bỏ |
-| | **XGBoost / LightGBM** | Cây quyết định Gradient Boosting | Bắt quan hệ phi tuyến | Chậm và tốn RAM trên 60k chiều | ❌ Loại bỏ |
+| | **MultinomialNB** | Định lý Bayes xác suất có điều kiện | Rất nhẹ, tính toán tức thì | Kém chính xác trên n-gram tương quan | ❌ Không tối ưu |
+| | **XGBoost / LightGBM** | Cây quyết định Gradient Boosting | Bắt quan hệ phi tuyến | Chậm và tốn RAM trên 60k chiều | ❌ Quá nặng |
 
 ---
 
-### 3.2. Mô Hình 2: Deep Semantic Transformer (DeBERTa-v3 Disentangled Attention)
+### 3.2. Mô Hình Tham Khảo 2: Deep Semantic Transformer (DeBERTa-v3 Disentangled Attention)
 
 #### 1. Đột phá toán học của Disentangled Attention (He et al., ICLR 2023 [[9]](#ref9)):
-Trong các kiến trúc Transformer truyền thống (BERT, RoBERTa), mỗi token $i$ được biểu diễn bằng tổng cộng dồn thô sơ của vector nội dung và vector vị trí tuyệt đối: $\mathbf{H} = \mathbf{E}_{\text{content}} + \mathbf{E}_{\text{position}}$, dẫn đến việc tương tác Attention bị trộn lẫn và mất thông tin vị trí tương đối.
+Trong các kiến trúc Transformer truyền thống (BERT, RoBERTa), mỗi token $i$ được biểu diễn bằng tổng cộng dồn thô sơ của vector nội dung và vector vị trí tuyệt đối (theo Vaswani et al. 2017 [[20]](#ref20)): $\mathbf{H} = \mathbf{E}_{\text{content}} + \mathbf{E}_{\text{position}}$, dẫn đến việc tương tác Attention bị trộn lẫn và mất thông tin vị trí tương đối.
 
 DeBERTa-v3 biểu diễn mỗi token $i$ bằng **hai vector độc lập**:
 - Vector nội dung $\mathbf{h}_i \in \mathbb{R}^d$
 - Vector vị trí tương đối $\mathbf{p}_{i|j} \in \mathbb{R}^d$ biểu diễn khoảng cách tương đối $i - j$.
 
-Điểm tương tác Attention giữa token $i$ và token $j$ được phân rã thành **3 thành phần ma trận độc lập**:
+Điểm tương tác Attention giữa token $i$ và token $j$ được phân rã thành **3 thành phần ma trận độc lập** (He et al. 2023 [[9]](#ref9), Eq. 2 & 3):
 
 $$\mathbf{A}_{i,j} = \underbrace{\mathbf{h}_i \mathbf{W}_{q,c} \mathbf{W}_{k,c}^T \mathbf{h}_j^T}_{\text{Content-to-Content}} + \underbrace{\mathbf{h}_i \mathbf{W}_{q,c} \mathbf{W}_{k,r}^T \mathbf{p}_{i|j}^T}_{\text{Content-to-Position}} + \underbrace{\mathbf{p}_{j|i} \mathbf{W}_{q,r} \mathbf{W}_{k,c}^T \mathbf{h}_j^T}_{\text{Position-to-Content}}$$
 
@@ -376,67 +377,61 @@ $$\mathbf{A}_{i,j} = \underbrace{\mathbf{h}_i \mathbf{W}_{q,c} \mathbf{W}_{k,c}^
 - **Replaced Token Detection (RTD)**: Thay vì che ngẫu nhiên 15% token như BERT (MLM), DeBERTa-v3 sử dụng bộ tạo (Generator) để thay thế token và bộ phân biệt (Discriminator) để dự đoán mọi token trong câu xem có bị thay thế hay không. Nhờ đó, 100% token trong chuỗi đều tham gia tính toán hàm mất mát.
 - **Gradient-Disentangled Embedding Sharing (GDES)**: Ngăn chặn xung đột gradient giữa Generator và Discriminator, giúp không gian biểu diễn ngữ nghĩa của DeBERTa-v3 dày đặc và nhạy bén vượt bậc trước các đột biến ngữ nghĩa tinh vi.
 
----
+#### 3. Bảng so sánh lý thuyết giữa các kiến trúc Transformer trong nghiên cứu phòng thủ:
 
-### 3.3. Kỹ Thuật Lượng Hóa Động Sau Huấn Luyện (ZeroQuant [[TN6]](#term-zeroquant) PTQ INT8 trên ONNX Runtime)
-
-Để triển khai mô hình Transformer phân loại trực tuyến với yêu cầu độ trễ cực thấp ($P95 < 22\text{ms}$) trên CPU tiêu chuẩn (Zero-GPU), PI-Guard ứng dụng phương pháp luận **Post-Training Dynamic Quantization (ZeroQuant - Yao et al., NeurIPS 2022 [[16]](#ref16))**.
-
-#### 1. Công thức toán học của ánh xạ lượng hóa INT8:
-Chuyển đổi các ma trận trọng số dấu phẩy động 32-bit ($\mathbf{W}_{\text{FP32}}$) sang số nguyên 8-bit có dấu ($\mathbf{W}_{\text{INT8}} \in [-128, 127]$):
-
-$$X_{\text{INT8}} = \text{clamp}\left( \left\lfloor \frac{X_{\text{FP32}}}{S} \right\rceil + Z, -128, 127 \right)$$
-
-- Trong đó hàm làm tròn $\lfloor \cdot \rceil$ làm tròn tới số nguyên gần nhất.
-- Với lượng hóa đối xứng (*Symmetric Quantization*), điểm không $Z = 0$.
-- Hệ số tỷ lệ động (*Scale Factor*) được tính toán dựa trên biên độ cực trị:
-  $$S = \frac{\max(|X_{\text{FP32}}|)}{127}$$
-- Phép giải lượng hóa (*Dequantization*) phục vụ tính toán:
-  $$\hat{X}_{\text{FP32}} = S \cdot (X_{\text{INT8}} - Z)$$
-
-#### 2. Chiến lược lượng hóa thực thi trên ONNX Runtime:
-- **Weights**: Lượng hóa tĩnh theo từng kênh (*Per-channel symmetric quantization*), cố định trước trong file `.onnx`.
-- **Activations**: Lượng hóa động theo từng token (*Token-wise dynamic quantization*), tính toán ngưỡng biên độ trực tiếp trong quá trình suy luận.
-- **Toán tử tăng tốc phần cứng**: Tập trung chuyển đổi các toán tử nhân ma trận chiếm $>80\%$ thời gian tính toán (`MatMul`, `Gemm`, `Gather`), tận dụng tập lệnh **VNNI (Vector Neural Network Instructions)** và **AVX-512** của CPU hiện đại.
-
-#### 3. Bảng khảo sát các biến thể kiến trúc Transformer & Lượng hóa:
-
-| Hạng Mục | Biến Thể Đã Khảo Sát | Cơ Chế Kỹ Thuật | Độ Trễ CPU | Dung Lượng | Đánh Giá Khả Thi | Lựa Chọn PI-Guard |
-| :--- | :--- | :--- | :---: | :---: | :--- | :---: |
-| **Kiến trúc Transformer** | **BERT-base** | Absolute Positional Embeddings | ~40ms | ~440 MB | Dễ bị đánh lừa bởi vị trí đảo | ❌ Lỗi thời |
-| | **RoBERTa-base** | Byte-level BPE + Absolute Position | ~42ms | ~500 MB | Không bóc tách vị trí tương đối | ❌ Không tối ưu |
-| | **DeBERTa-v3-base** | **Disentangled Attention + RTD** | **~42.5ms** | **~500 MB** | **Nhận diện vị trí câu lệnh xuất sắc** | ✅ **Lựa chọn cốt lõi** |
-| | **Meta Prompt-Guard 86M** | Multilingual mDeBERTa-v3 (86M) | ~32ms | ~350 MB | Huấn luyện chuyên biệt cho Guardrail | ⚠️ Checkpoint đối chuẩn |
-| | **Llama Guard 3 (8B)** | Autoregressive Generative LLM | ~450ms | ~16 GB | Đòi hỏi GPU đắt tiền, quá chậm | ❌ Không khả thi |
-| **Phương pháp Lượng hóa** | **FP32 (Unquantized)** | Trọng số gốc 32-bit | ~42.5ms | ~500 MB | Quá chậm, không đạt P95 < 22ms | ❌ Baseline |
-| | **Dynamic INT8 (ZeroQuant)** | **Weights INT8 + Dynamic Act** | **~14.5ms** | **~140 MB** | **Nén 72%, suy hao $\Delta F_1 < 0.3\%$** | ✅ **Lựa chọn sản xuất** |
-| | **Static INT8 (PTQ)** | Calibration dataset cố định scale | ~13.0ms | ~140 MB | Dễ suy giảm độ chính xác khi OOD | ❌ Rủi ro bảo mật |
-| | **Weight-only INT4/AWQ** | Nén trọng số 4-bit | ~25ms | ~80 MB | Phù hợp LLM sinh văn bản >7B | ❌ Không hợp encoder |
+| Kiến Trúc Transformer | Cơ Chế Biểu Diễn Vị Trí | Cơ Chế Tiền Huấn Luyện (Pre-training) | Năng Lực Bóc Tách Ranh Giới Lệnh (Content-to-Position) | Nhận Xét Khoa Học Từ Y Văn |
+| :--- | :--- | :--- | :---: | :--- |
+| **BERT-base** (Devlin et al. 2019) | Absolute Positional Embeddings (cộng dồn thô sơ $\mathbf{E}_c + \mathbf{E}_p$) | Masked Language Modeling (MLM 15%) | ❌ Kém: Không phân rã được vị trí tương đối | Dễ bị đánh lừa khi kẻ tấn công thay đổi vị trí chèn câu lệnh hoặc đảo trật tự từ |
+| **RoBERTa-base** (Liu et al. 2019) | Byte-level BPE + Absolute Position | Dynamic MLM trên tập ngữ liệu lớn hơn | ❌ Kém: Vẫn cộng dồn nội dung và vị trí | Không bóc tách được tương tác giữa nội dung token này với khoảng cách token khác |
+| **DeBERTa-v3-base** (He et al. 2023 [[9]](#ref9)) | **Disentangled Attention** (2 vector $\mathbf{h}_i, \mathbf{p}_{i\|j}$ độc lập) | **ELECTRA-Style RTD + GDES** | ✅ **Xuất sắc: Bóc tách 3 ma trận $A_{c,c} + A_{c,p} + A_{p,c}$** | Nhận diện chính xác vị trí câu lệnh tiêm nhiễm bất thường trong văn bản RAG dài |
+| **Meta Prompt-Guard 86M** (Meta 2024) | Multilingual mDeBERTa-v3 (86M params) | Fine-tuned chuyên biệt cho phân loại prompt | ✅ Tốt: Tối ưu cho bảo mật đa ngôn ngữ | Checkpoint đối chuẩn thực nghiệm có giá trị cao |
+| **Llama Guard 3 (8B)** (Meta 2024) | Autoregressive Decoder-only LLM | Instruction Fine-Tuning có điều kiện | ⚠️ Chậm: Phụ thuộc vào quá trình sinh văn bản | Chi phí tài nguyên rất lớn, không phù hợp làm rào chắn Ingress độ trễ thấp |
 
 ---
 
-## 4. TỔNG HỢP SO SÁNH & Ý NGHĨA KỸ THUẬT CHO PI-GUARD
+### 3.3. Phân Tích Đánh Đổi Lý Thuyết & Điểm Nghẽn Kỹ Thuật Của 2 Mô Hình Tham Khảo
 
-1. **Sự bổ trợ hoàn hảo giữa 2 mô hình**:
-   - **TF-IDF Baseline**: Cực nhanh (**~2.8ms**), hoàn hảo cho việc bắt các mẫu tấn công từ điển rõ ràng và các biến thể Leetspeak thông qua `char_wb`.
-   - **DeBERTa-v3 ONNX INT8**: Độ trễ thấp (**~14.5ms**), biểu diễn ngữ nghĩa sâu sắc và khả năng bóc tách vị trí lệnh xuất sắc nhờ Disentangled Attention, giải quyết dứt điểm các đòn tiêm nhiễm gián tiếp tinh vi trong tài liệu RAG.
-2. **Nền tảng cho kiến trúc phân tầng (Two-Tier)**:
-   Sự kết hợp giữa 2 mô hình này chính là cơ sở toán học để PI-Guard xây dựng bộ định tuyến bất định (Uncertainty Router) ở Task 4, đạt điểm tối ưu Pareto giữa tốc độ và độ an toàn.
+Từ phân tích cơ sở toán học ở Mục 3.1 và 3.2, y văn khoa học chỉ ra sự đánh đổi mang tính đối kháng (Fundamental Trade-off) giữa 2 mô hình tham khảo:
+
+| Tiêu Chí Học Thuật | Mô Hình Tham Khảo 1: Classical ML Baseline (Neel Jain et al. 2023 [[15]](#ref15)) | Mô Hình Tham Khảo 2: Deep Semantic Transformer (P. He et al. 2023 [[9]](#ref9)) |
+| :--- | :--- | :--- |
+| **Nền tảng toán học** | Không gian vector thưa 60,000 chiều (`Word + Char_wb TF-IDF`) | Không gian vector nhúng liên tục $d=768$, 12 Transformer Layers |
+| **Độ phức tạp tính toán** | $\mathcal{O}(N)$ theo số lượng token; phân loại tuyến tính | $\mathcal{O}(N^2)$ theo độ dài chuỗi context qua ma trận Attention |
+| **Tài nguyên phần cứng** | Siêu nhẹ (~25MB RAM), không cần GPU | Nặng (~500MB checkpoint FP32 gốc), tiêu tốn nhiều RAM/CPU |
+| **Độ trễ suy luận lý thuyết** | Cực thấp (~2.8ms trên CPU thông thường) | Khá cao (~42.5ms trên CPU thông thường cho chuỗi dài) |
+| **Năng lực bắt cú pháp bề mặt** | **Xuất sắc**: Kháng Leetspeak, biến dị ký tự qua sub-character n-grams | **Trung bình**: Tokenizer BPE dễ bị phân mảnh khi gặp chuỗi xáo trộn lạ |
+| **Năng lực bắt ngữ nghĩa sâu** | **Mù ngữ nghĩa**: Không phân biệt được câu lệnh gián tiếp tinh vi | **Xuất sắc**: Disentangled Attention bóc tách hoàn hảo vị trí câu lệnh |
+| **Điểm nghẽn kỹ thuật cốt lõi** | Tỷ lệ bỏ sót tấn công ngữ nghĩa gián tiếp cao | Độ trễ Ingress và dung lượng bộ nhớ vượt quá ngưỡng rào chắn CPU |
+
+> [!NOTE]
+> ### 🔄 Chuyển Tiếp Sang Thực Nghiệm Task 3 Và Đề Xuất Cải Tiến Task 4
+> - **Nhiệm vụ Task 3**: Toàn bộ các công thức toán học và thiết lập siêu tham số của 2 mô hình tham khảo trên được chuyển giao sang [`TASK_3_REPRODUCIBILITY_AND_DATASETS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_3_REPRODUCIBILITY_AND_DATASETS.md) để tiến hành chạy thực nghiệm tái lập độc lập trên máy cá nhân, kiểm chứng số liệu thực tế trước khi báo cáo GVHD tại Meeting 5.
+> - **Nhiệm vụ Task 4**: Nhận diện rõ 2 điểm nghẽn kỹ thuật cốt lõi của 2 mô hình tham khảo (TF-IDF mù ngữ nghĩa; DeBERTa-v3 FP32 quá nặng và chậm) là cơ sở khoa học để đồ án PI-Guard đề xuất **4 giải pháp cải tiến kỹ thuật độc quyền** tại [`TASK_4_PIGUARD_IMPROVEMENTS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_4_PIGUARD_IMPROVEMENTS.md) (bao gồm: Phân chia bảo toàn cụm MD5, Hàm mất mát động, Định tuyến bất định 2 tầng và Lượng hóa Zero-GPU Dynamic INT8 PTQ trên ONNX Runtime).
+
+---
+
+## 4. TỔNG HỢP ĐỐI SÁNH 2 MÔ HÌNH THAM KHẢO & BÀN GIAO SANG THỰC NGHIỆM TASK 3
+
+1. **Khẳng định tính độc lập của 2 mô hình tham khảo học thuật**:
+   - Báo cáo Task 2 tập trung hoàn thành trọn vẹn việc giải phẫu toán học và phân tích cơ chế đối kháng lý thuyết của 2 mô hình tham khảo gốc từ các công bố khoa học uy tín (Neel Jain et al. NeurIPS 2023 và Microsoft Research ICLR 2023).
+   - Task 2 hoàn toàn không định vị kiến trúc hay mô hình riêng của đồ án PI-Guard.
+2. **Cầu nối phương pháp luận hoàn chỉnh**:
+   - **Từ Task 2 sang Task 3**: Cung cấp công thức toán học và không gian đặc trưng để phục vụ thiết lập môi trường thực nghiệm tái lập tại Task 3.
+   - **Từ điểm nghẽn của 2 mô hình tham khảo sang Task 4**: Cung cấp cơ sở lý luận vững chắc chứng minh tại sao một mô hình đơn lẻ không thể giải quyết trọn vẹn bài toán rào chắn, làm bàn đạp cho việc ra đời 4 cải tiến độc quyền của đồ án PI-Guard tại Task 4.
 
 ---
 
 ## 5. BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG (ACADEMIC CONCEPT GLOSSARY)
 
-Nhằm đảm bảo tính minh định học thuật và hỗ trợ bảo vệ trước Hội đồng chấm Luận văn tốt nghiệp, bảng dưới đây giải thích chi tiết các thuật ngữ chuyên sâu xuất hiện trong báo cáo, làm rõ định nghĩa khoa học gốc, ý nghĩa đối chiếu trong PI-Guard và nguồn trích dẫn tham chiếu:
+Nhằm đảm bảo tính minh định học thuật và hỗ trợ bảo vệ trước Hội đồng chấm Luận văn tốt nghiệp, bảng dưới đây giải thích chi tiết các thuật ngữ chuyên sâu xuất hiện trong báo cáo, làm rõ định nghĩa khoa học gốc, ý nghĩa đối chiếu trong nghiên cứu rào chắn bảo vệ và nguồn trích dẫn tham chiếu:
 
-| Thuật Ngữ / Khái Niệm (Concept / Metaphor) | Định Nghĩa Học Thuật Gốc (Academic / CS Definition) | Vị Trí & Ý Nghĩa Đối Chiếu Trong PI-Guard (Role & Analogy in PI-Guard) | Nguồn Trích Dẫn Gốc (Scholarly Reference) |
+| Thuật Ngữ / Khái Niệm (Concept / Metaphor) | Định Nghĩa Học Thuật Gốc (Academic / CS Definition) | Vị Trí & Ý Nghĩa Đối Chiếu Trong Nghiên Cứu Rào Chắn | Nguồn Trích Dẫn Gốc (Scholarly Reference) |
 | :--- | :--- | :--- | :--- |
-| <a id="term-competing-objectives"></a>**Competing Objectives** `[[TN1]]` | Hiện tượng xung đột nội tại trong mô hình ngôn ngữ lớn khi mục tiêu "giúp ích" (Helpfulness / Instruction-following) lấn át mục tiêu "vô hại" (Harmlessness / Safety constraint), khiến mô hình ưu tiên làm theo chỉ thị độc hại. | Đòn bẩy lý thuyết giải thích tại sao các prompt DAN / nhập vai có thể vượt qua ranh giới an toàn của LLM; PI-Guard đứng ngoài đóng vai trò chốt chặn độc lập để triệt tiêu xung đột này. | Wei et al. (NeurIPS 2023) [[5]](#ref5) |
-| <a id="term-mismatched-generalization"></a>**Mismatched Generalization** `[[TN2]]` | Điểm mù an toàn khi năng lực hiểu biết ngôn ngữ của mô hình (Pre-training) mở rộng ra các miền biểu diễn lạ (Cipher, Base64, Leetspeak, ngôn ngữ hiếm), nhưng tập dữ liệu căn chỉnh an toàn (Safety Fine-Tuning) không bao phủ tới, dẫn đến mất khả năng từ chối. | Cơ sở để PI-Guard kết hợp bộ trích xuất n-gram ký tự (`char_wb`) trong TF-IDF Baseline nhằm phát hiện xáo trộn bề mặt trước khi prompt đến được mô hình nền. | Wei et al. (NeurIPS 2023) [[5]](#ref5), Yuan et al. (ICLR 2024) [[17]](#ref17) |
-| <a id="term-refusal-boundary"></a>**Refusal Boundary** `[[TN3]]` | Ranh giới quyết định (Decision Boundary) bên trong không gian trọng số của LLM, phân định rõ giữa câu hỏi được phép trả lời và yêu cầu nguy hại bắt buộc phải từ chối sinh nội dung. | Mục tiêu mà các đòn Jailbreak tìm cách bẻ gãy; PI-Guard thay thế việc phụ thuộc vào ranh giới nội tại mong manh của LLM bằng một ranh giới phân loại xác định trước ở tầng biên. | Wei et al. (NeurIPS 2023) [[5]](#ref5), Zou et al. (2023) [[13]](#ref13) |
-| <a id="term-goal-hijacking"></a>**Goal Hijacking** `[[TN4]]` | Kỹ thuật tiêm prompt trong đó kẻ tấn công ghi đè hoàn toàn mục tiêu ban đầu của ứng dụng và chuyển hướng LLM sang thực thi một mục tiêu tùy ý do kẻ tấn công định đoạt. | Phân nhóm tác hại nghiêm trọng của Direct/Indirect Prompt Injection mà PI-Guard có nhiệm vụ phân loại và chặn đứng tại tầng Gateway trước khi chạm tới LLM. | Perez & Ribeiro (NeurIPS 2022) [[3]](#ref3) |
-| <a id="term-prompt-leaking"></a>**Prompt Leaking** `[[TN5]]` | Kỹ thuật tấn công ép buộc LLM in ra nguyên văn các hướng dẫn hệ thống bí mật (*System Prompt*), quy tắc nội bộ hoặc thông tin nhạy cảm được cấu hình sẵn cho ứng dụng. | Rủi ro rò rỉ sở hữu trí tuệ và bí mật kỹ thuật mà PI-Guard ngăn chặn bằng cách bắt giữ các mẫu lệnh truy vấn ngược ngữ cảnh hệ thống. | Perez & Ribeiro (NeurIPS 2022) [[3]](#ref3) |
-| <a id="term-zeroquant"></a>**ZeroQuant** `[[TN6]]` | Khung lượng hóa động sau huấn luyện (Post-Training Quantization - PTQ) cho Transformer, kết hợp lượng hóa trọng số tĩnh INT8 theo kênh và lượng hóa động activation theo token, giúp nén mô hình mà không cần huấn luyện lại. | Giải pháp kỹ thuật giúp nén DeBERTa-v3 từ 500MB xuống 140MB và giảm độ trễ P95 xuống ~14.5ms trên CPU thông thường mà độ suy giảm F1 $< 0.3\%$. | Yao et al. (NeurIPS 2022) [[16]](#ref16) |
+| <a id="term-competing-objectives"></a>**Competing Objectives** `[[TN1]]` | Hiện tượng xung đột nội tại trong mô hình ngôn ngữ lớn khi mục tiêu "giúp ích" (Helpfulness / Instruction-following) lấn át mục tiêu "vô hại" (Harmlessness / Safety constraint), khiến mô hình ưu tiên làm theo chỉ thị độc hại. | Đòn bẩy lý thuyết giải thích tại sao các prompt DAN / nhập vai có thể vượt qua ranh giới an toàn của LLM; rào chắn ngoại vi đứng ngoài đóng vai trò chốt chặn độc lập để triệt tiêu xung đột này. | Wei et al. (NeurIPS 2023) [[5]](#ref5) |
+| <a id="term-mismatched-generalization"></a>**Mismatched Generalization** `[[TN2]]` | Điểm mù an toàn khi năng lực hiểu biết ngôn ngữ của mô hình (Pre-training) mở rộng ra các miền biểu diễn lạ (Cipher, Base64, Leetspeak, ngôn ngữ hiếm), nhưng tập dữ liệu căn chỉnh an toàn (Safety Fine-Tuning) không bao phủ tới, dẫn đến mất khả năng từ chối. | Cơ sở để kết hợp bộ trích xuất n-gram ký tự (`char_wb`) trong TF-IDF Baseline nhằm phát hiện xáo trộn bề mặt trước khi prompt đến được mô hình nền. | Wei et al. (NeurIPS 2023) [[5]](#ref5), Yuan et al. (ICLR 2024) [[17]](#ref17) |
+| <a id="term-refusal-boundary"></a>**Refusal Boundary** `[[TN3]]` | Ranh giới quyết định (Decision Boundary) bên trong không gian trọng số của LLM, phân định rõ giữa câu hỏi được phép trả lời và yêu cầu nguy hại bắt buộc phải từ chối sinh nội dung. | Mục tiêu mà các đòn Jailbreak tìm cách bẻ gãy; việc đặt rào chắn phân loại độc lập ở tầng biên giúp bảo vệ hệ thống mà không cần can thiệp trọng số LLM. | Wei et al. (NeurIPS 2023) [[5]](#ref5), Zou et al. (2023) [[13]](#ref13) |
+| <a id="term-goal-hijacking"></a>**Goal Hijacking** `[[TN4]]` | Kỹ thuật tiêm prompt trong đó kẻ tấn công ghi đè hoàn toàn mục tiêu ban đầu của ứng dụng và chuyển hướng LLM sang thực thi một mục tiêu tùy ý do kẻ tấn công định đoạt. | Phân nhóm tác hại nghiêm trọng của Direct/Indirect Prompt Injection mà rào chắn ngoại vi có nhiệm vụ phân loại và chặn đứng tại tầng Gateway trước khi chạm tới LLM. | Perez & Ribeiro (NeurIPS 2022) [[3]](#ref3) |
+| <a id="term-prompt-leaking"></a>**Prompt Leaking** `[[TN5]]` | Kỹ thuật tấn công ép buộc LLM in ra nguyên văn các hướng dẫn hệ thống bí mật (*System Prompt*), quy tắc nội bộ hoặc thông tin nhạy cảm được cấu hình sẵn cho ứng dụng. | Rủi ro rò rỉ sở hữu trí tuệ và bí mật kỹ thuật mà rào chắn ngoại vi ngăn chặn bằng cách bắt giữ các mẫu lệnh truy vấn ngược ngữ cảnh hệ thống. | Perez & Ribeiro (NeurIPS 2022) [[3]](#ref3) |
 
 ---
 
@@ -452,6 +447,10 @@ Nhằm đảm bảo tính minh định học thuật và hỗ trợ bảo vệ t
 - <a id="ref12"></a>**[[12]]** W. Zhou et al., "EasyJailbreak: A Unified Framework for Jailbreak Attacks on Large Language Models," *arXiv preprint arXiv:2403.12171*, 2024. [arXiv:2403.12171](https://arxiv.org/pdf/2403.12171.pdf).
 - <a id="ref13"></a>**[[13]]** A. Zou et al., "Universal and Transferable Adversarial Attacks on Aligned Language Models," *arXiv preprint arXiv:2307.15043*, 2023. [arXiv:2307.15043](https://arxiv.org/pdf/2307.15043.pdf).
 - <a id="ref15"></a>**[[15]]** N. Jain et al., "Baseline Defenses for Adversarial Attacks on Language Models," in *Proc. NeurIPS Workshop on Robustness of Few-shot and Zero-shot Learning*, 2023. [arXiv:2309.00614](https://arxiv.org/pdf/2309.00614.pdf).
-- <a id="ref16"></a>**[[16]]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *Proc. NeurIPS*, vol. 35, 2022. [arXiv:2206.01861](https://arxiv.org/pdf/2206.01861.pdf).
 - <a id="ref17"></a>**[[17]]** Y. Yuan et al., "GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher," in *Proc. ICLR*, 2024. [arXiv:2308.06463](https://arxiv.org/pdf/2308.06463.pdf).
+- <a id="ref18"></a>**[[18]]** J. H. Saltzer and M. D. Schroeder, "The Protection of Information in Computer Systems," *Proceedings of the IEEE*, vol. 63, no. 9, pp. 1278–1308, Sep. 1975.
 - <a id="ref19"></a>**[[19]]** J. Yi et al., "Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models," in *Proc. ACM KDD*, 2025. [arXiv:2312.14197](https://arxiv.org/pdf/2312.14197.pdf).
+- <a id="ref20"></a>**[[20]]** A. Vaswani et al., "Attention Is All You Need," in *Proc. NeurIPS*, vol. 30, 2017. [arXiv:1706.03762](https://arxiv.org/pdf/1706.03762.pdf).
+- <a id="ref21"></a>**[[21]]** G. Salton and C. Buckley, "Term-weighting approaches in automatic text retrieval," *Information Processing & Management*, vol. 24, no. 5, pp. 513–523, 1988.
+- <a id="ref22"></a>**[[22]]** G. King and L. Zeng, "Logistic Regression in Rare Events Data," *Political Analysis*, vol. 9, no. 2, pp. 137–163, 2001.
+
