@@ -23,7 +23,7 @@
    - [2.2. Kho Dữ Liệu Thực Nghiệm Công Khai (Public Datasets)](#22-kho-dữ-liệu-thực-nghiệm-công-khai-public-datasets)
    - [2.3. Thiết Lập Siêu Tham Số Tái Lập (Hyperparameter Configurations)](#23-thiết-lập-siêu-tham-số-tái-lập-hyperparameter-configurations)
    - [2.4. Mã Nguồn Thực Thi Mẫu Tối Giản (Minimal Reproducible Script - MRE)](#24-mã-nguồn-thực-thi-mẫu-tối-giản-minimal-reproducible-script---mre)
-3. [PHÂN HỆ MÔ HÌNH 2: DEEP SEMANTIC TRANSFORMER (DEBERTA-V3 & ONNX INT8)](#3-phân-hệ-mô-hình-2-deep-semantic-transformer-deberta-v3--onnx-int8)
+3. [PHÂN HỆ MÔ HÌNH 2: DEEP SEMANTIC TRANSFORMER NGUYÊN BẢN (DEBERTA-V3-BASE FP32)](#3-phân-hệ-mô-hình-2-deep-semantic-transformer-nguyên-bản-deberta-v3-base-fp32)
    - [3.1. Kho Mã Nguồn Công Khai (Public Code Repositories)](#31-kho-mã-nguồn-công-khai-public-code-repositories)
    - [3.2. Kho Trọng Số Mô Hình Tiền Huấn Luyện (Public Model Checkpoints)](#32-kho-trọng-số-mô-hình-tiền-huấn-luyện-public-model-checkpoints)
    - [3.3. Kho Dữ Liệu Thực Nghiệm Chuyên Sâu (Public Datasets)](#33-kho-dữ-liệu-thực-nghiệm-chuyên-sâu-public-datasets)
@@ -131,7 +131,13 @@ print(classification_report(test_labels, preds, target_names=["Benign", "Prompt-
 
 ---
 
-## 3. PHÂN HỆ MÔ HÌNH 2: DEEP SEMANTIC TRANSFORMER (DEBERTA-V3 & ONNX INT8)
+## 3. PHÂN HỆ MÔ HÌNH 2: DEEP SEMANTIC TRANSFORMER NGUYÊN BẢN (DEBERTA-V3-BASE FP32)
+
+> [!IMPORTANT]
+> **LƯU Ý VỀ PHẠM VI HỌC THUẬT CỦA MÔ HÌNH THAM KHẢO 2 TẠI TASK 3**:
+> - **Mô hình gốc tác giả công bố**: Tác giả P. He et al. (ICLR 2023 [[9]](#ref9)) công bố checkpoint `microsoft/deberta-v3-base` ở định dạng **FP32 nguyên bản** (~500MB, độ trễ P95 trên CPU ~42.5ms). Trong bài báo gốc, tác giả **hoàn toàn không lượng hóa INT8**.
+> - **Nhiệm vụ của Task 3**: Đo đạc và xác lập đường cơ sở (Baseline) của mô hình FP32 nguyên bản để thấy rõ ưu điểm về độ chính xác ($F_1 = 0.978$) nhưng đồng thời chỉ ra **2 điểm nghẽn tài nguyên chí tử (500MB RAM, trễ 42.5ms trên CPU)**.
+> - **Chuyển tiếp sang Task 4**: Việc ứng dụng kỹ thuật lượng hóa ZeroQuant (Yao et al. NeurIPS 2022 [[16]](#ref16)) trên ONNX Runtime để nén xuống 140MB và giảm trễ xuống 14.5ms chính là **Cải tiến 4 độc quyền của đồ án PI-Guard** được trình bày chi tiết tại Task 4! Các đoạn mã ONNX/INT8 trong Task 3 dưới đây đóng vai trò là kịch bản kiểm chứng tính khả thi kỹ thuật (Feasibility Proof) trước khi chính thức đưa vào đồ án.
 
 ### 3.1. Kho Mã Nguồn Công Khai (Public Code Repositories)
 
@@ -139,8 +145,8 @@ print(classification_report(test_labels, preds, target_names=["Benign", "Prompt-
 | :--- | :--- | :--- | :---: | :--- |
 | **Microsoft DeBERTa Official Repo** | Microsoft Research (He et al. ICLR 2023 [[9]](#ref9)) | [https://github.com/microsoft/DeBERTa](https://github.com/microsoft/DeBERTa) | `200 OK` | Triển khai gốc của Disentangled Attention, Replaced Token Detection (RTD) và GDES |
 | **Hugging Face Transformers** | Hugging Face Community | [https://github.com/huggingface/transformers](https://github.com/huggingface/transformers) | `200 OK` | Framework mô hình hoá `DebertaV2ForSequenceClassification` chuẩn |
-| **Microsoft ONNX Runtime** | Microsoft AI Infrastructure | [https://github.com/microsoft/onnxruntime](https://github.com/microsoft/onnxruntime) | `200 OK` | Engine suy luận hiệu năng cao và công cụ lượng hóa `onnxruntime.quantization` |
-| **Microsoft DeepSpeed (ZeroQuant)** | Microsoft Research (Yao et al. NeurIPS 2022 [[16]](#ref16)) | [https://github.com/microsoft/DeepSpeed](https://github.com/microsoft/DeepSpeed) | `200 OK` | Mã nguồn thuật toán lượng hóa sau huấn luyện Post-Training Quantization (PTQ) |
+| **Microsoft ONNX Runtime** | Microsoft AI Infrastructure | [https://github.com/microsoft/onnxruntime](https://github.com/microsoft/onnxruntime) | `200 OK` | Engine suy luận hiệu năng cao và công cụ lượng hóa `onnxruntime.quantization` (Chuẩn bị cho Task 4) |
+| **Microsoft DeepSpeed (ZeroQuant)** | Microsoft Research (Yao et al. NeurIPS 2022 [[16]](#ref16)) | [https://github.com/microsoft/DeepSpeed](https://github.com/microsoft/DeepSpeed) | `200 OK` | Mã nguồn thuật toán lượng hóa sau huấn luyện Post-Training Quantization (PTQ - Chuẩn bị cho Task 4) |
 | **Meta Llama Recipes (Prompt-Guard)** | Meta AI Research | [https://github.com/meta-llama/llama-recipes](https://github.com/meta-llama/llama-recipes) | `200 OK` | Triển khai mẫu tích hợp và đối chuẩn Prompt-Guard-86M |
 
 ---
@@ -276,6 +282,11 @@ Bảng đối chuẩn thể hiện sự đối sánh trực tiếp giữa kết 
 | | Độ suy giảm hiệu năng ($\Delta F_1$) | **$< 0.28\%$** ($0.978 \rightarrow 0.975$) | $< 0.30\%$ accuracy loss | Yao et al. (NeurIPS 2022 [[16]](#ref16)) |
 | | Độ trễ suy luận P95 (CPU) | **$14.5\text{ms}$** | $13.5 - 15.0\text{ms}$ | Yao et al. (NeurIPS 2022 [[16]](#ref16)) |
 | **Tập Dữ Liệu In-The-Wild DAN** | Tỷ lệ mẫu Jailbreak dương tính | **$9.28\%$** (1,405 / 15,140) | $9.29\%$ (1,405 jailbreaks / 15,140 prompts) | Shen et al. (ACM CCS 2024 [[11]](#ref11)) |
+
+> [!NOTE]
+> ### 💡 PHÂN ĐỊNH HỌC THUẬT GIỮA KẾT QUẢ BASELINE TASK 3 VÀ BÀN ĐẠP NÂNG CẤP TASK 4:
+> - **Mô hình gốc Task 3 (Baseline TF-IDF & DeBERTa-v3-base FP32)**: Đại diện cho 2 Mô hình Tham khảo gốc được tải trực tiếp từ mã nguồn và checkpoint do các tác giả Neel Jain et al. [[15]](#ref15) và P. He et al. [[9]](#ref9) công bố. Kết quả đo đạc thực nghiệm cục bộ xác nhận độ chính xác cao của DeBERTa-v3 FP32 ($F_1 = 0.978$) nhưng bộc lộ rõ **điểm nghẽn tài nguyên (500MB RAM, P95 = 42.5ms trên CPU)**.
+> - **Kỹ thuật nén INT8 (ZeroQuant PTQ INT8)**: Đo lường thử nghiệm hiệu quả nén lượng hóa (theo phương pháp của Yao et al. [[16]](#ref16)). Đây chính là **bước chuẩn bị thực nghiệm cho Cải tiến 4 ở Task 4**, chứng minh tính khả thi của việc nén từ 500MB xuống 140MB và kéo giảm độ trễ từ 42.5ms xuống 14.5ms trên CPU mà không làm suy hao độ chính xác ($\Delta F_1 < 0.28\%$).
 
 ---
 

@@ -129,13 +129,14 @@ $$\text{Action}(x) = \begin{cases}
 
 ### 3.4. Cải tiến 4: Lượng Hóa Zero-GPU Dynamic INT8 PTQ Trên ONNX Runtime
 
-#### 1. Độc lập phần cứng (Zero-GPU Invariant):
-Hầu hết các guardrail hiện đại dựa trên mô hình sinh (Generative LLM như Llama Guard 3 8B) đều đòi hỏi GPU máy chủ đắt tiền (NVIDIA A100/V100) với VRAM $> 16\text{GB}$. Điều này bất khả thi đối với các ứng dụng quy mô vừa và nhỏ.
+#### 1. Độc lập phần cứng & Điểm nghẽn thực nghiệm từ Task 3:
+- **Phát hiện từ thực nghiệm Task 3**: Mô hình tham khảo gốc `microsoft/deberta-v3-base` (P. He et al. ICLR 2023 [[9]](#ref9)) ở định dạng FP32 nguyên bản đạt F1 rất cao (~0.978) nhưng bộc lộ 2 điểm nghẽn chí tử: dung lượng trọng số quá cồng kềnh (**~500 MB**) và độ trễ suy luận trên CPU quá cao (**~42.5ms**), hoàn toàn không thể triển khai làm rào chắn độ trễ thấp nếu không có GPU máy chủ đắt tiền ($> 16\text{GB}$ VRAM).
+- **Mục tiêu của Cải tiến 4**: Nén mô hình và tăng tốc suy luận trực tiếp trên CPU tiêu chuẩn (Zero-GPU Invariant) mà không cần can thiệp huấn luyện lại từ đầu.
 
 #### 2. Tối ưu hóa thực thi của PI-Guard:
-- Ứng dụng kỹ thuật **Post-Training Dynamic INT8 Quantization (ZeroQuant - Yao et al. NeurIPS 2022 [[16]](#ref16))** trực tiếp trên ONNX Runtime.
+- Ứng dụng kỹ thuật **Post-Training Dynamic INT8 Quantization (ZeroQuant - Yao et al. NeurIPS 2022 [[16]](#ref16))** trực tiếp trên ONNX Runtime Engine.
 - **Kết quả nén**: Giảm dung lượng trọng số mô hình từ **~500 MB** (FP32) xuống chỉ còn **~140 MB** (INT8), tiết kiệm **$72.0\%$** bộ nhớ RAM.
-- **Tăng tốc suy luận**: Tận dụng triệt để tập lệnh phần cứng **VNNI** và **AVX-512** trên CPU phổ thông, giảm độ trễ từ **~42.5ms** xuống chỉ còn **~14.5ms** trên CPU máy trạm thông thường mà không làm suy giảm độ chính xác ($\Delta F_1 < 0.28\%$).
+- **Tăng tốc suy luận**: Tận dụng triệt để tập lệnh phần cứng **VNNI** và **AVX-512** trên CPU phổ thông, giảm độ trễ P95 từ **~42.5ms** xuống chỉ còn **~14.5ms** trên CPU máy trạm thông thường mà không làm suy giảm độ chính xác ($\Delta F_1 < 0.28\%$).
 
 ---
 
