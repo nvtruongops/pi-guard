@@ -1,0 +1,3629 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications">
+      
+      
+        <meta name="author" content="PI-Guard Capstone Team (FPT University)">
+      
+      
+        <link rel="canonical" href="https://nvtruongops.github.io/pi-guard/dev/team_governance/">
+      
+      
+        <link rel="prev" href="../../references/references_log/">
+      
+      
+        <link rel="next" href="../contributing_guide/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Phân Quyền Git & Workspace Rules - PI-Guard: LLM Security Guardrail</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agentsmd-pi-guard-capstone-project-workspace" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PI-Guard: LLM Security Guardrail" class="md-header__button md-logo" aria-label="PI-Guard: LLM Security Guardrail" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PI-Guard: LLM Security Guardrail
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Phân Quyền Git & Workspace Rules
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Chuyển sang Dark Mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang Dark Mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="purple"  aria-label="Chuyển sang Light Mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang Light Mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nvtruongops/pi-guard" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nvtruongops/pi-guard
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PI-Guard: LLM Security Guardrail" class="md-nav__button md-logo" aria-label="PI-Guard: LLM Security Guardrail" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PI-Guard: LLM Security Guardrail
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nvtruongops/pi-guard" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nvtruongops/pi-guard
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trang Chủ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quản Lý Công Việc & Tiến Độ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quản Lý Công Việc & Tiến Độ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../work/fpt_guidelines_and_rubrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lộ Trình & Tiêu Chuẩn FPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp Nhóm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Biên Bản Họp Nhóm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../work/meeting_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp 1 & Kế Hoạch Sprint 1 (29/08/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../work/meeting_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp 2 & Nghiên Cứu Mô Hình (01/09/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../work/meeting_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp 3 & Chốt Slide Báo Cáo GVHD (08/09/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Prompt Study (Bản Chất LLM)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Prompt Study (Bản Chất LLM)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/llm_foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nền Tảng LLM & Token Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/prompt_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cấu Trúc Prompt & Chat Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/instruction_hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thất Bại Phân Cấp Chỉ Thị (Instruction Hierarchy)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Attack Study (Tấn Công)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Attack Study (Tấn Công)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan & Ranh Giới Đề Tài
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tổng Quan & Ranh Giới Đề Tài
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/history_and_evolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Niên Sử Tiến Hóa (2022-2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/scope_and_boundary_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Tích Ranh Giới In/Out-Scope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Injection (OWASP LLM01)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prompt Injection (OWASP LLM01)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/pi_how_it_works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bản Chất & Cơ Chế Hoạt Động
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/pi_taxonomy_and_variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Loại & Các Biến Thể
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/pi_resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modern Jailbreak Attacks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modern Jailbreak Attacks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_archetypes_and_mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 Trường Phái (DAN, Roleplay, VM, Cipher)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_datasets_and_benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cơ Sở Dữ Liệu & 10 Họ Chiến Thuật
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_advanced_variants_and_operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biến Thể Nâng Cao & 26 Toán Tử (Tencent 2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Threat & Defense (Phòng Thủ Đa Tầng)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Threat & Defense (Phòng Thủ Đa Tầng)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/threat_model_and_attack_surface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mô Hình Hóa Đe Dọa & Bề Mặt Tấn Công
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/multi_layer_defense_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiến Trúc Phòng Thủ 3 Lớp (Defense-in-Depth)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/comparative_matrix_and_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bảng So Sánh & Phân Tích Đánh Đổi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu Học Thuật, Video & Mã Nguồn Mẫu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dataset & Benchmark Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Dataset & Benchmark Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset_study/data_curation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tuyển Chọn Dữ Liệu & Phân Loại 3 Lớp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset_study/group_aware_splitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Chia Group-Aware & Đánh Giá OOD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset_study/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Benchmark & Nguồn Dữ Liệu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Model Study (Kiến Trúc Hai Tầng)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Model Study (Kiến Trúc Hai Tầng)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/two_tier_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan Kiến Trúc 2 Tầng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tier 1: Syntactic Baseline (TF-IDF)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tier 1: Syntactic Baseline (TF-IDF)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/tfidf_theory_and_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lý Thuyết & Toán Học
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/tfidf_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hướng Dẫn & Sử Dụng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/tfidf_resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tier 2: Deep Transformer (DeBERTa-v3)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tier 2: Deep Transformer (DeBERTa-v3)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/deberta_theory_and_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lý Thuyết & Disentangled Attention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/deberta_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hướng Dẫn Fine-Tuning & ONNX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/deberta_resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/two_tier_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phối Hợp 2 Tầng & Latency Tradeoffs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/sota_guardrail_benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Khảo Sát Các Guardrail SOTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/target_llm_vulnerabilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Khảo Sát 5 Target LLM APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/tencent2026_paper_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Tích Bài Báo Tencent 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/why_dual_model_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luận Giải Kiến Trúc Kết Hợp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Robustness & Evasion Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. Robustness & Evasion Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/theory_and_evasion_mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cơ Sở Lý Thuyết & Phân Mảnh Token
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/defense_architecture_and_mitigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiến Trúc Phòng Thủ Đa Tầng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/benchmarks_metrics_and_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chỉ Số Đánh Giá & Đối Sánh Thực Nghiệm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Optimization & Quantization Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Optimization & Quantization Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/quantization_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toán Học Lượng Tử Hóa INT8 PTQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/onnx_runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ONNX Runtime & Graph Optimizations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/inference_acceleration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tăng Tốc Suy Luận & Thiết Kế Hệ Thống
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/benchmarks_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chỉ Số Đo Lường & Đánh Đổi Độ Trễ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Evaluation & FPR Economics Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Evaluation & FPR Economics Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation_study/false_positive_economics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kinh Tế Học FPR & Trải Nghiệm Người Dùng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation_study/pareto_frontier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Đường Cong Biên Pareto & Đánh Đổi Hệ Thống
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation_study/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Benchmark & Bài Báo Đánh Đổi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luận Văn & Báo Cáo Milestone
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Luận Văn & Báo Cáo Milestone
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/capstone_register/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Đăng Ký Đề Tài (Register)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/review1_threat_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Review 1: Threat Model & Defense
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/chapter_01_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chương 1: Giới Thiệu (Introduction)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/chapter_02_literature_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chương 2: Tổng Quan Tài Liệu (Literature Review)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/final_thesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luận Văn Tổng Hợp Đầy Đủ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thư Viện Bài Báo Khoa Học
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Thư Viện Bài Báo Khoa Học
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/references_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan 8 Bài Báo Slide & 18 Papers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/references_log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nhật Ký 18 Bài Báo Học Thuật
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Đội Ngũ & Hướng Dẫn
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Đội Ngũ & Hướng Dẫn
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Quyền Git & Workspace Rules
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Quyền Git & Workspace Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-immutable-read-only-confidential-university-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: IMMUTABLE / READ-ONLY &amp; CONFIDENTIAL UNIVERSITY RESOURCES
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-resource-literature-validation-protocol-zero-dead-links-open-access-pdf-invariant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: RESOURCE &amp; LITERATURE VALIDATION PROTOCOL (ZERO DEAD LINKS / OPEN-ACCESS PDF INVARIANT)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-mandatory-academic-grounding-anchor-integrity-invariant-100-cited-research-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: MANDATORY ACADEMIC GROUNDING &amp; ANCHOR INTEGRITY INVARIANT (100% CITED RESEARCH DOCS)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-literature-scoping-architectural-compatibility-invariant-zero-citation-bloat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: LITERATURE SCOPING &amp; ARCHITECTURAL COMPATIBILITY INVARIANT (ZERO CITATION BLOAT)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-local-references-first-literature-reuse-protocol-zero-redundant-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: LOCAL REFERENCES FIRST &amp; LITERATURE REUSE PROTOCOL (ZERO REDUNDANT SEARCH)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-four-tier-provenance-literature-attribution-invariant-zero-citation-attribution-overreach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: FOUR-TIER PROVENANCE &amp; LITERATURE ATTRIBUTION INVARIANT (ZERO CITATION ATTRIBUTION OVERREACH)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-academic-defense-terminology-overclaiming-blacklist-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: ACADEMIC DEFENSE TERMINOLOGY &amp; OVERCLAIMING BLACKLIST PROTOCOL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-academic-terminology-concept-glossary-invariant-zero-unexplained-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: ACADEMIC TERMINOLOGY &amp; CONCEPT GLOSSARY INVARIANT (ZERO UNEXPLAINED ANALOGY)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configured-mcp-servers-model-context-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configured MCP Servers (Model Context Protocol)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configured MCP Servers (Model Context Protocol)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#research-lab-debugging-mcp-usage-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research, Lab &amp; Debugging MCP Usage Guide
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-custom-agent-skills-agentsskills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Custom Agent Skills (.agents/skills/)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collaboration-paradigm-parallel-full-pipeline-exploration-knowledge-convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collaboration Paradigm: Parallel Full-Pipeline Exploration &amp; Knowledge Convergence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-tach-bach-ho-so-ky-thuat-va-quan-tri-noi-bo-zero-siloing-zero-governance-pollution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: TÁCH BẠCH HỒ SƠ KỸ THUẬT VÀ QUẢN TRỊ NỘI BỘ (ZERO SILOING &amp; ZERO GOVERNANCE POLLUTION)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-workspace-boundary-leader-merge-governance-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strict Workspace Boundary &amp; Leader Merge Governance Rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quy Chuẩn Đóng Góp (Contributing)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workspaces_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan Không Gian Thành Viên
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../src_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiến Trúc Source Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-immutable-read-only-confidential-university-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: IMMUTABLE / READ-ONLY &amp; CONFIDENTIAL UNIVERSITY RESOURCES
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-resource-literature-validation-protocol-zero-dead-links-open-access-pdf-invariant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: RESOURCE &amp; LITERATURE VALIDATION PROTOCOL (ZERO DEAD LINKS / OPEN-ACCESS PDF INVARIANT)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-mandatory-academic-grounding-anchor-integrity-invariant-100-cited-research-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: MANDATORY ACADEMIC GROUNDING &amp; ANCHOR INTEGRITY INVARIANT (100% CITED RESEARCH DOCS)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-literature-scoping-architectural-compatibility-invariant-zero-citation-bloat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: LITERATURE SCOPING &amp; ARCHITECTURAL COMPATIBILITY INVARIANT (ZERO CITATION BLOAT)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-local-references-first-literature-reuse-protocol-zero-redundant-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: LOCAL REFERENCES FIRST &amp; LITERATURE REUSE PROTOCOL (ZERO REDUNDANT SEARCH)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-four-tier-provenance-literature-attribution-invariant-zero-citation-attribution-overreach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: FOUR-TIER PROVENANCE &amp; LITERATURE ATTRIBUTION INVARIANT (ZERO CITATION ATTRIBUTION OVERREACH)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-academic-defense-terminology-overclaiming-blacklist-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: ACADEMIC DEFENSE TERMINOLOGY &amp; OVERCLAIMING BLACKLIST PROTOCOL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-academic-terminology-concept-glossary-invariant-zero-unexplained-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: ACADEMIC TERMINOLOGY &amp; CONCEPT GLOSSARY INVARIANT (ZERO UNEXPLAINED ANALOGY)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configured-mcp-servers-model-context-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configured MCP Servers (Model Context Protocol)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configured MCP Servers (Model Context Protocol)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#research-lab-debugging-mcp-usage-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research, Lab &amp; Debugging MCP Usage Guide
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-custom-agent-skills-agentsskills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Custom Agent Skills (.agents/skills/)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collaboration-paradigm-parallel-full-pipeline-exploration-knowledge-convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collaboration Paradigm: Parallel Full-Pipeline Exploration &amp; Knowledge Convergence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-rule-tach-bach-ho-so-ky-thuat-va-quan-tri-noi-bo-zero-siloing-zero-governance-pollution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRICT RULE: TÁCH BẠCH HỒ SƠ KỸ THUẬT VÀ QUẢN TRỊ NỘI BỘ (ZERO SILOING &amp; ZERO GOVERNANCE POLLUTION)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strict-workspace-boundary-leader-merge-governance-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strict Workspace Boundary &amp; Leader Merge Governance Rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="agentsmd-pi-guard-capstone-project-workspace">AGENTS.md - PI-Guard Capstone Project Workspace</h1>
+<p>Welcome to the <strong>PI-Guard</strong> Capstone Project repository. This file defines the operational context, active tools, custom skills, academic terminology constraints, and governance protocols for AI pair programmers assisting the project team.</p>
+<hr />
+<h2 id="project-overview">Project Overview</h2>
+<ul>
+<li><strong>Project Title</strong>: A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (<strong>PI-Guard</strong>)</li>
+<li><strong>Academic Program</strong>: Bachelor of Science in Information Assurance (IA), FPT University (Course Code: <code>IAP491</code>, Fall 2026 Semester)</li>
+<li><strong>Primary Objective</strong>: Design, implement, and benchmark an external, API-driven, Machine-Learning and Transformer-based protective guardrail placed in front of downstream LLM applications to classify incoming user prompts (<em>Benign</em> vs. <em>Prompt Injection</em> vs. <em>Jailbreak</em>) with low latency and low false-positive rate.</li>
+<li><strong>Tech Stack</strong>: Python 3.11+, PyTorch, Hugging Face Transformers (<code>microsoft/deberta-v3-base</code>), Scikit-Learn (TF-IDF Baseline), ONNX Runtime (INT8 Quantization), FastAPI (PoC Proxy), Streamlit (Demo UI), Docker, JupyterLab.</li>
+</ul>
+<hr />
+<h2 id="strict-rule-immutable-read-only-confidential-university-resources">STRICT RULE: IMMUTABLE / READ-ONLY &amp; CONFIDENTIAL UNIVERSITY RESOURCES</h2>
+<blockquote>
+<p>[!CAUTION]
+<strong>CRITICAL INVARIANTS FOR ALL AI AGENTS</strong>:
+1. The document <strong><code>CAPSTONE PROJECT REGISTER.md</code></strong> is the official, signed topic registration agreement approved by the Supervisor and FPT University Academic Department.</p>
+<ul>
+<li><strong>Extracted Reference Summary</strong>: The academic rubrics, continuous assessment mechanism (50% Process / 50% Presentation), and 6-chapter thesis structure are officially synthesized into <strong><code>Final-Report/thesis/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md</code></strong>.</li>
+</ul>
+</blockquote>
+<hr />
+<h2 id="strict-rule-resource-literature-validation-protocol-zero-dead-links-open-access-pdf-invariant">STRICT RULE: RESOURCE &amp; LITERATURE VALIDATION PROTOCOL (ZERO DEAD LINKS / OPEN-ACCESS PDF INVARIANT)</h2>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>MANDATORY PROTOCOL FOR CITATIONS, URLS, AND MEDIA</strong>:
+1. <strong>ZERO DEAD LINKS</strong>: Every URL (website, GitHub repository, academic paper, documentation) written into the repository MUST be validated for live existence (HTTP 200/302). Speculative or hallucinated URLs are strictly prohibited.
+2. <strong>YOUTUBE OEMBED VERIFICATION</strong>: All YouTube videos MUST be pre-validated via <code>https://www.youtube.com/oembed?url=...&amp;format=json</code> to confirm the video exists, is publicly accessible, and is not deleted or private.
+3. <strong>MANDATORY OPEN-ACCESS PDF</strong>: For scientific papers, <strong>NEVER PROVIDE ONLY A PAYWALLED DOI</strong> (which yields <em>"You do not currently have access to this content"</em>). Always locate and attach an open-access PDF link from arXiv, OpenAlex, Semantic Scholar, or author university repositories.
+4. <strong>VALIDATION TOOLING</strong>: Run <code>python Final-Report/scripts/verify_resource_url.py --url &lt;URL&gt;</code>, <code>--doi &lt;DOI&gt;</code>, or <code>--file &lt;file.md&gt;</code> to verify links automatically before committing.</p>
+</blockquote>
+<hr />
+<h2 id="strict-rule-mandatory-academic-grounding-anchor-integrity-invariant-100-cited-research-docs">STRICT RULE: MANDATORY ACADEMIC GROUNDING &amp; ANCHOR INTEGRITY INVARIANT (100% CITED RESEARCH DOCS)</h2>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>MANDATORY SCIENTIFIC RIGOR FOR RESEARCH &amp; THESIS DOCUMENTS</strong>:
+1. <strong>100% ACADEMIC GROUNDING (ZERO UNSUPPORTED CLAIMS)</strong>:
+   - Every technical assertion, mathematical formulation, attack mechanism, defense architecture, and benchmark figure in research documents (<code>docs/research/</code>, <code>docs/attack_study/</code>, <code>docs/model_study/</code>, <code>docs/thesis/</code>) MUST be grounded in peer-reviewed literature (NeurIPS, ICLR, ACM CCS, IEEE S&amp;P), official industry technical reports (OpenAI, Meta, Microsoft, Tencent), or international standards (NIST AI 100-2e2025, OWASP LLM01:2025).
+   - Speculative claims without scientific citations are strictly rejected.
+2. <strong>ON-PAGE CITATION ANCHOR INTEGRITY (ZERO BROKEN ANCHORS)</strong>:
+   - In-text citation anchors like <code>[[N]](#refN)</code> MUST correspond to an identical HTML anchor tag <code>&lt;a id="refN"&gt;&lt;/a&gt;</code> within the References section on the exact same page.
+   - Ensure MkDocs Material compiles with zero missing anchor warnings (<code>--strict</code>).
+3. <strong>SAFE HANDLING OF PAYWALLED DOIS</strong>:
+   - For publisher DOIs protected by paywalls/bot-blocks (ACM, IEEE, Springer): format the DOI as inline code/text (e.g., <code>DOI: 10.1145/xxxx</code>) and attach the verified Open-Access PDF link.</p>
+</blockquote>
+<hr />
+<h2 id="strict-rule-literature-scoping-architectural-compatibility-invariant-zero-citation-bloat">STRICT RULE: LITERATURE SCOPING &amp; ARCHITECTURAL COMPATIBILITY INVARIANT (ZERO CITATION BLOAT)</h2>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>SCOPE BOUNDARY FOR LITERATURE &amp; SYSTEM DESIGN</strong>:
+1. <strong>EXTERNAL GUARDRAIL SCOPE COMPATIBILITY</strong>: All cited scientific works used to justify system architecture MUST be compatible with an <strong>External Guardrail Proxy</strong> paradigm (text-level prompt classification before dispatching to downstream LLMs, requiring zero access to model weights or internal KV-cache).
+2. <strong>ZERO CITATION BLOAT</strong>: Eliminate out-of-scope papers focusing on hardware tampering, model backdoors, weight data poisoning, or side-channel attacks.
+3. <strong>LOCAL PDF ARCHIVE</strong>: Every approved academic paper cited in the thesis MUST have a local PDF copy archived in <code>Final-Report/References/</code> and indexed in <code>REFERENCES_LOG.md</code>.</p>
+</blockquote>
+<hr />
+<h2 id="strict-rule-local-references-first-literature-reuse-protocol-zero-redundant-search">STRICT RULE: LOCAL REFERENCES FIRST &amp; LITERATURE REUSE PROTOCOL (ZERO REDUNDANT SEARCH)</h2>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>MANDATORY INVARIANT: REUSE ARCHIVED LITERATURE BEFORE DISCOVERY</strong>:
+1. <strong>INSPECT REFERENCES_LOG.md FIRST</strong>: Before calling any literature MCP tool (<code>arxiv</code>, <code>openalex</code>, <code>semanticscholar</code>, <code>scholar-feed</code>) or searching external web/databases for citations, all AI Agents and team members MUST first inspect <strong><code>Final-Report/References/REFERENCES_LOG.md</code></strong>.
+2. <strong>PRIORITIZE 18 CORE ARCHIVED PAPERS</strong>: The repository already contains 18 approved, peer-reviewed academic papers covering all core topics (Direct/Indirect Prompt Injection, DAN Jailbreak, TF-IDF N-Grams, DeBERTa-v3, ONNX INT8 Quantization, Low FPR Economics, Adversarial Robustness, and Saltzer &amp; Schroeder 1975). If a claim or topic is already covered, reuse the existing reference and anchor (<code>[[N]](#refN)</code>).
+3. <strong>STRICT THRESHOLD FOR NEW LITERATURE</strong>: External searches are permitted ONLY when researching a newly discovered attack variant or novel method genuinely not addressed in the 18 archived papers.
+4. <strong>MANDATORY INGESTION PIPELINE</strong>: Any newly accepted paper must be verified for Open-Access PDF, archived in <code>Final-Report/References/&lt;filename&gt;.pdf</code>, and indexed in <code>REFERENCES_LOG.md</code> with full metadata and BibTeX.</p>
+</blockquote>
+<hr />
+<h2 id="strict-rule-four-tier-provenance-literature-attribution-invariant-zero-citation-attribution-overreach">STRICT RULE: FOUR-TIER PROVENANCE &amp; LITERATURE ATTRIBUTION INVARIANT (ZERO CITATION ATTRIBUTION OVERREACH)</h2>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>MANDATORY ACADEMIC RIGOR FOR SCIENTIFIC CITATIONS &amp; PROVENANCE MAPPING</strong>:
+1. <strong>MANDATORY FOUR-TIER PROVENANCE &amp; DECOUPLING</strong>: Every scientific citation in the thesis, literature review, and reports MUST strictly adhere to 4 distinct tiers:
+   - <strong>Tier 0: Bibliographic Provenance (Baseline Foundation)</strong>: Title, Authors, Venue, Volume/Issue, Year, Pages, DOI, Publication Status, and Primary Authoritative Source. (Errors at Tier 0 invalidate all subsequent analysis).
+   - <strong>Tier 1: Original Author Findings</strong>: Accurately state only what the paper's authors proved, observed, or proposed.
+   - <strong>Tier 2: PI-Guard Design Choice &amp; Adaptation</strong>: Explicitly explain how PI-Guard adopts, inherits, or is inspired by the finding (use semicolons or dedicated sub-bullets).
+   - <strong>Tier 3: PI-Guard Engineering Target &amp; Hypotheses</strong>: Under no circumstances present KPIs, benchmark results, latency, FPR, F1, or performance measurements of PI-Guard as experimental results of the referenced paper, unless that document actually reported the exact same measurement under the exact same conditions.
+2. <strong>ZERO EQUATION &amp; NOTATION ATTRIBUTION LEAK</strong>: Never attribute project-specific mathematical notations (e.g., <span class="arithmatex">\(X = S \mathbin{\Vert} U\)</span>) or project threat boundaries to general survey or alignment papers (e.g., Zhao et al., InstructGPT). State clearly: <em>"Within the modeling scope of PI-Guard..."</em>.
+3. <strong>AUTHORITATIVE METADATA HIERARCHY</strong>: Before citing any paper, follow this strict verification order:
+   <code>Publisher/proceedings page -&gt; official conference/journal metadata -&gt; DOI/Crossref -&gt; arXiv/DBLP/OpenReview (when available)</code>.
+   Do not cite informal demo slogans as official paper titles, and do not conflate conference volumes (e.g., NeurIPS 2023 Vol. 36 vs NeurIPS 2024 Vol. 37).
+4. <strong>DATASET SAMPLE RIGOR</strong>: Clearly distinguish total corpus size from actual positive attack samples (e.g., Shen et al. DAN dataset: 1,405/15,140 prompts, ~9.29% / rounded 9.3% jailbreaks).</p>
+</blockquote>
+<hr />
+<h2 id="strict-rule-academic-defense-terminology-overclaiming-blacklist-protocol">STRICT RULE: ACADEMIC DEFENSE TERMINOLOGY &amp; OVERCLAIMING BLACKLIST PROTOCOL</h2>
+<blockquote>
+<p>[!CAUTION]
+<strong>MANDATORY GOVERNANCE &amp; DEFENSE TERMINOLOGY INVARIANTS</strong>:
+To prevent severe challenges and score deductions before the FPT Academic Council, all team members and AI Agents MUST strictly adhere to the comprehensive terminology blacklist and academic humility protocol defined in <strong><code>.agents/rules/academic-defense-terminology-blacklist.md</code></strong>.</p>
+<p><strong>Summary of Core Invariants</strong>:
+- <strong>Latency &amp; Performance</strong>: Use <strong>"Low-Latency"</strong> / <strong>"P95 &lt; 30ms"</strong>; strictly ban <strong>"Real-time" / "Thời gian thực"</strong>.
+- <strong>System Identity</strong>: Use <strong>"Academic PoC Prototype"</strong> / <strong>"Latency Testbed"</strong>; strictly ban <strong>"Production-ready enterprise system"</strong>.
+- <strong>Security Guarantees</strong>: Use <strong>"Empirical Risk Mitigation"</strong> / <strong>"Defense-in-Depth"</strong>; strictly ban <strong>"100% unbreakable" / "Bảo vệ tuyệt đối"</strong>.
+- <strong>Scientific Humility &amp; Overclaiming</strong>: Use <strong>"Đủ độ tin cậy làm nền tảng cho Chapter 2"</strong> and <strong>"Automated repository validation: 100% PASS; Academic literature verification: VERIFIED / REVIEWED"</strong>; strictly ban <strong>"Không lo ngại bất kỳ câu hỏi phản biện nào"</strong> or <strong>"Độ chuẩn mực học thuật tối đa"</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="strict-rule-academic-terminology-concept-glossary-invariant-zero-unexplained-analogy">STRICT RULE: ACADEMIC TERMINOLOGY &amp; CONCEPT GLOSSARY INVARIANT (ZERO UNEXPLAINED ANALOGY)</h2>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>MANDATORY IN-TEXT ANCHORING &amp; TERMINAL GLOSSARY STANDARDS</strong>:
+To prevent embarrassing defense situations before the Academic Council when presenting deep CS analogies (Prepared Statements, Von Neumann, NX-bit, Flat Token Space, Competing Objectives), all AI Agents and team members MUST adhere to <strong><code>.agents/rules/academic-terminology-and-glossary-standards.md</code></strong>:
+1. <strong>In-Text Anchoring</strong>: Mark terms with standard anchors <code>[[TNx]](#term-...)</code>.
+2. <strong>Terminal Academic Glossary</strong>: Always append a standardized 4-column Glossary section (<code>Concept</code>, <code>Scientific Definition</code>, <code>Role &amp; Analogy in PI-Guard</code>, <code>Provenance &amp; References</code>) before References.
+3. <strong>Automated Audit</strong>: Verified via <code>Final-Report/scripts/verify_academic_glossary.py</code> and integrated into <code>validate_local.py</code>.</p>
+</blockquote>
+<hr />
+<h2 id="configured-mcp-servers-model-context-protocol">Configured MCP Servers (Model Context Protocol)</h2>
+<p>The workspace is configured with 11 integrated Model Context Protocol (MCP) servers defined in <strong><code>.vscode/mcp.json</code></strong>:</p>
+<ol>
+<li>📚 <strong><code>arxiv</code></strong>: Search academic papers, fetch full abstracts, build citation graphs, and perform deep research directly on arXiv preprints.</li>
+<li>📖 <strong><code>scholar-feed</code></strong>: Query scholarly literature across 600k+ CS/AI/ML papers, trace citation lineages, extract full text, and retrieve clean BibTeX entries.</li>
+<li>🏛️ <strong><code>openalex</code></strong>: Global academic index (250M+ works) with automated Open-Access PDF discovery, citation metrics, and peer-reviewed paper resolution across top security venues (ACM CCS, IEEE S&amp;P, USENIX, NeurIPS).</li>
+<li>🧠 <strong><code>semanticscholar</code></strong>: Semantic Scholar API integration featuring AI-powered one-sentence summaries (TLDRs), influential citation analysis, and semantic similarity search from the Allen Institute for AI.</li>
+<li>⚡ <strong><code>kaggle</code></strong>: Official Kaggle MCP server for discovering community security datasets, exploring public prompt injection / transformer notebooks, and executing GPU cloud training experiments (30h/week free T4/P100 GPUs).</li>
+<li>🌐 <strong><code>duckduckgo-search</code></strong>: Web search access for retrieving latest AI security advisories, benchmark datasets, Hugging Face repositories, and technical error code troubleshooting.</li>
+<li>📓 <strong><code>jupyter</code></strong>: Inspect, edit, and execute Jupyter Notebook (.ipynb) cells with active Python kernels and network connectivity.</li>
+<li>🎭 <strong><code>playwright</code></strong>: Headless browser automation and web scraping for dataset verification and online documentation parsing.</li>
+<li>💾 <strong><code>memory</code></strong>: Persistent Knowledge Graph Memory to track experimental benchmarks, architectural decisions, and metric progressions.</li>
+<li>💡 <strong><code>sequential-thinking</code></strong>: Structured multi-step reasoning for algorithm design, adversarial evasion analysis, and bug troubleshooting.</li>
+<li>📄 <strong><code>officecli</code></strong>: Read, edit, generate, and validate Office documents (<code>.docx</code>, <code>.xlsx</code>, <code>.pptx</code>) for thesis compilation and defense slide preparation.</li>
+</ol>
+<h3 id="research-lab-debugging-mcp-usage-guide">Research, Lab &amp; Debugging MCP Usage Guide</h3>
+<ul>
+<li><strong>Academic Literature Discovery</strong>: Leverage the golden quartet (<code>arxiv</code> for newest preprints, <code>openalex</code> for verified open-access PDFs, <code>semanticscholar</code> for quick TLDR screening and influential citation graphs, and <code>scholar-feed</code> for BibTeX citation trees).</li>
+<li><strong>GPU Cloud Labs &amp; Dataset Exploration</strong>: Utilize <code>kaggle</code> to search reference transformer classification notebooks, access supplementary jailbreak datasets, and manage long-running GPU training jobs without local hardware constraints.</li>
+<li><strong>Error Code &amp; Technical Troubleshooting</strong>: Use <code>duckduckgo-search</code> for PyTorch, Transformers, ONNX Runtime, and FastAPI exceptions; use <code>jupyter</code> for interactive debugging in experimental notebooks.</li>
+<li><strong>Strict Scope Guard</strong>: All tooling and literature queries MUST strictly align with the scope defined in <strong><code>CAPSTONE PROJECT REGISTER.md</code></strong> (Text-based Prompt Injection, Jailbreak, Classical ML Baselines, DeBERTa-v3, ONNX INT8, and Lightweight FastAPI/Streamlit PoC). Out-of-scope domains (bio/medical tools, cloud enterprise BigQuery data pipelines, hardware attacks) are strictly prohibited.</li>
+</ul>
+<hr />
+<h2 id="available-custom-agent-skills-agentsskills">Available Custom Agent Skills (<code>.agents/skills/</code>)</h2>
+<p>The repository provides 13 specialized, domain-specific agent skills:</p>
+<ol>
+<li><strong><code>review1-threat-model-and-defense</code></strong>: Comprehensive deliverables for Review 1 (Problem definition, Threat modeling under NIST AI 100-2e2025, Attack surface analysis, Demo scenarios, and Slide deck outline).</li>
+<li><strong><code>llm-security-research</code></strong>: OWASP LLM01:2025 taxonomy, threat taxonomy, direct vs. indirect prompt injection, jailbreak archetypes, and SOTA guardrail comparison.</li>
+<li><strong><code>guardrail-dataset-engineering</code></strong>: Data collection, semantic deduplication, Group-Aware Splitting (preventing data leakage across paraphrases), and class balancing across public Hugging Face sources.</li>
+<li><strong><code>ml-classifier-training</code></strong>: Training and optimization workflows for Classical ML baselines (TF-IDF Word/Char + LogisticRegression / LinearSVC) and Transformer Fine-Tuning (<code>microsoft/deberta-v3-base</code>) with dynamic loss weighting.</li>
+<li><strong><code>guardrail-evaluation-metrics</code></strong>: Empirical metric evaluation (Precision, Recall, F1, FPR on benign queries, ROC-AUC, Confusion Matrix), adversarial robustness testing against obfuscation, and P95 latency profiling.</li>
+<li><strong><code>guardrail-api-and-dashboard</code></strong>: Lightweight FastAPI guardrail middleware, downstream LLM proxy integration, security logging, and Streamlit interactive live testing dashboard.</li>
+<li><strong><code>capstone-thesis-and-defense</code></strong>: Academic writing assistant for the FPT University Capstone Thesis (IAP491 Chapters 1–6), IEEE citation formatting, and Graduation Defense presentation slide preparation.</li>
+<li><strong><code>fpt-capstone-rubrics-and-process</code></strong>: FPT IAP491 milestone management, weekly process tracking (<code>PI_GUARD_PROCESS_REPORT.xlsx</code>), continuous assessment rubrics (Reports 1–6), and committee defense preparation.</li>
+<li><strong><code>team-git-sync-and-merge</code></strong>: Conflict-free Git synchronization protocol, sandboxed workspace isolation, and Leader exclusive merge governance into the main branch.</li>
+<li><strong><code>team-commit-and-workspace-audit</code></strong>: Automated commit and PR auditing tool to detect and prevent unauthorized edits outside designated member sandboxes.</li>
+<li><strong><code>resource-and-literature-validation</code></strong>: Automated verification suite for URLs, YouTube oEmbed endpoints, and Open-Access PDF lookups to prevent broken links and paywalls.</li>
+<li><strong><code>docs-portal-sync-and-deploy</code></strong>: Automated documentation portal builder, synthesizing 8 research dossiers into the MkDocs Material GitHub Pages web portal.</li>
+<li><strong><code>academic-terminology-glossary</code></strong>: Quy trình tự động phát hiện, đánh dấu neo và khởi tạo Bảng chú thích thuật ngữ học thuật (Academic Concept Glossary &amp; Provenance) 4 trường cho các báo cáo kỹ thuật và luận văn.</li>
+</ol>
+<hr />
+<h2 id="collaboration-paradigm-parallel-full-pipeline-exploration-knowledge-convergence">Collaboration Paradigm: Parallel Full-Pipeline Exploration &amp; Knowledge Convergence</h2>
+<blockquote>
+<p><strong>Team Core Principle</strong>: <strong>Everyone Explores <span class="arithmatex">\(\rightarrow\)</span> Cross-Review Findings <span class="arithmatex">\(\rightarrow\)</span> Consensus Finalization</strong><br />
+Instead of a fragmented assembly line, all 4 members explore the entire pipeline hands-on in parallel within their individual sandboxes (<code>workspaces/&lt;member&gt;/</code>). Weekly convergence meetings consolidate the best empirical results into <code>Final-Report/src/</code> and <code>Final-Report/thesis/chapters/</code>:</p>
+</blockquote>
+<ul>
+<li><strong>Full-Stack Competency</strong>: Every member gains hands-on expertise across Data Engineering, Baseline ML, Transformer Fine-Tuning, Quantization, Adversarial Robustness, and API Integration.</li>
+<li><strong>Weekly Convergence Sessions</strong>: The team compares empirical metrics (F1, FPR, Latency P95), selects champion modules for <code>Final-Report/src/</code>, and compiles thesis chapters collaboratively.</li>
+<li><strong>Defense Mastery</strong>: Every member understands the complete ecosystem end-to-end, ensuring confident performance during individual committee oral examinations.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Member</th>
+<th style="text-align: left;">Full-Pipeline Sandbox (100% End-to-End Pipeline)</th>
+<th style="text-align: left;">Workspace Directory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Nguyễn Văn Trường (Leader / <code>nvtruongops</code>)</strong></td>
+<td style="text-align: left;">Full Pipeline (Data, Baseline, Transformer, INT8, Proxy) &amp; Overall Architecture</td>
+<td style="text-align: left;"><code>workspaces/truongnv/</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Nguyễn Quí Đức</strong></td>
+<td style="text-align: left;">Full Pipeline (Data, Baseline, Transformer, INT8, Proxy) &amp; Empirical Cross-Validation</td>
+<td style="text-align: left;"><code>workspaces/ducnq/</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Phạm Minh Hoàng Việt</strong></td>
+<td style="text-align: left;">Full Pipeline (Data, Baseline, Transformer, INT8, Proxy) &amp; Empirical Cross-Validation</td>
+<td style="text-align: left;"><code>workspaces/vietpmh/</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Đỗ Đoàn Duy Phương</strong></td>
+<td style="text-align: left;">Full Pipeline (Data, Baseline, Transformer, INT8, Proxy) &amp; Empirical Cross-Validation</td>
+<td style="text-align: left;"><code>workspaces/phuongddd/</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="strict-rule-tach-bach-ho-so-ky-thuat-va-quan-tri-noi-bo-zero-siloing-zero-governance-pollution">STRICT RULE: TÁCH BẠCH HỒ SƠ KỸ THUẬT VÀ QUẢN TRỊ NỘI BỘ (ZERO SILOING &amp; ZERO GOVERNANCE POLLUTION)</h2>
+<blockquote>
+<p>[!CAUTION]
+<strong>QUY TẮC BẢO VỆ PHÒNG THỦ HỌC THUẬT &amp; CHỐNG PHÂN MẢNH MÔ ĐUN (ANTI-SILOING INVARIANT)</strong>:
+1. <strong>QUẢN TRỊ NỘI BỘ (TEAM TỰ BIẾT, CẤM HÔ HÀO TRONG TÀI LIỆU KỸ THUẬT)</strong>:
+   - Phương châm "Ai cũng làm toàn bộ pipeline" là nguyên tắc nội bộ giúp cả 4 thành viên làm chủ toàn diện hệ thống để tự tin bảo vệ trước Hội đồng. Nhóm tự biết và quản lý qua <code>AGENTS.md</code> cùng Sổ tiến độ <code>PI_GUARD_PROCESS_REPORT.xlsx</code>.
+   - Tuyệt đối <strong>KHÔNG</strong> đưa các câu khẩu hiệu sinh hoạt nhóm vào tài liệu kỹ thuật, chuyên đề nghiên cứu (<code>docs/</code>, <code>reports/</code>, <code>thesis/</code>). Mọi tài liệu kỹ thuật phải giữ văn phong khoa học, khách quan 100%.
+2. <strong>CẤM TUYỆT ĐỐI TẠO BẢNG PHÂN CÔNG CHIA CẮT MÔ ĐUN (ZERO SILOING ASSIGNMENT)</strong>:
+   - Tuyệt đối <strong>KHÔNG</strong> tạo các bảng "Phân công trách nhiệm cá nhân" kiểu chia rẽ module (như gán Đức chỉ làm Baseline, Việt chỉ làm Transformer, Phương chỉ làm Web/API) trong các tài liệu kỹ thuật nộp cho GVHD hoặc Hội đồng.
+   - <strong>Nguy cơ phòng thủ học thuật</strong>: Hội đồng FPT sẽ coi việc chia module này là làm việc kiểu dây chuyền phân mảnh (siloing), dẫn đến việc thành viên bị coi là không tham gia vào phần lõi khoa học của đồ án (AI/ML) và bị trừ điểm nặng.
+3. <strong>CHUẨN HÓA QUY TRÌNH THỰC NGHIỆM TÁI LẬP HỆ THỐNG</strong>:
+   - Mọi quy trình thực nghiệm B1–B5 phải được trình bày như một <strong>"Quy trình thực nghiệm tái lập hệ thống (Standardized Reproducibility Pipeline)"</strong> khách quan, cho phép bất kỳ ai (sinh viên, nhà nghiên cứu hay phản biện) cũng có thể chạy độc lập để tái lập 100% kết quả.</p>
+</blockquote>
+<hr />
+<h2 id="strict-workspace-boundary-leader-merge-governance-rule">Strict Workspace Boundary &amp; Leader Merge Governance Rule</h2>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>ACCESS CONTROL &amp; WORKSPACE BOUNDARY INVARIANTS</strong>:
+1. <strong>Member Sandbox Isolation</strong>: Members (Đức, Việt, Phương) are authorized to create, modify, and commit files <strong>STRICTLY WITHIN</strong> their assigned personal directory (<code>workspaces/&lt;member_name&gt;/</code>). Direct modifications to shared directories (<code>Final-Report/</code>, <code>Github-Page/</code>, <code>.agents/</code>) are strictly prohibited.
+2. <strong>Leader Sole Merge Authorization</strong>: The Team Leader (<code>nvtruongops</code> / Nguyễn Văn Trường) holds exclusive authority to consolidate validated artifacts from member sandboxes into shared production branches during weekly convergence sessions.
+3. <strong>Automated Audit Verification</strong>: All commits and pull requests must pass <code>python Final-Report/scripts/validate_local.py</code> and <code>python Final-Report/scripts/audit_workspace_boundaries.py</code>. Unauthorized boundary violations are automatically blocked by the local pre-commit hook.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

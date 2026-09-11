@@ -1,0 +1,3475 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications">
+      
+      
+        <meta name="author" content="PI-Guard Capstone Team (FPT University)">
+      
+      
+        <link rel="canonical" href="https://nvtruongops.github.io/pi-guard/models/tfidf_theory_and_math/">
+      
+      
+        <link rel="prev" href="../two_tier_architecture/">
+      
+      
+        <link rel="next" href="../tfidf_usage/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Lý Thuyết & Toán Học - PI-Guard: LLM Security Guardrail</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#toan-hoc-nguyen-ly-hoat-ong-bo-chuan-hoa-loc-cu-phap-tf-idf-baseline" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PI-Guard: LLM Security Guardrail" class="md-header__button md-logo" aria-label="PI-Guard: LLM Security Guardrail" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PI-Guard: LLM Security Guardrail
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lý Thuyết & Toán Học
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Chuyển sang Dark Mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang Dark Mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="purple"  aria-label="Chuyển sang Light Mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang Light Mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nvtruongops/pi-guard" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nvtruongops/pi-guard
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PI-Guard: LLM Security Guardrail" class="md-nav__button md-logo" aria-label="PI-Guard: LLM Security Guardrail" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PI-Guard: LLM Security Guardrail
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nvtruongops/pi-guard" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nvtruongops/pi-guard
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trang Chủ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quản Lý Công Việc & Tiến Độ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quản Lý Công Việc & Tiến Độ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../work/fpt_guidelines_and_rubrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lộ Trình & Tiêu Chuẩn FPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp Nhóm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Biên Bản Họp Nhóm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../work/meeting_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp 1 & Kế Hoạch Sprint 1 (29/08/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../work/meeting_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp 2 & Nghiên Cứu Mô Hình (01/09/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../work/meeting_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp 3 & Chốt Slide Báo Cáo GVHD (08/09/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Prompt Study (Bản Chất LLM)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Prompt Study (Bản Chất LLM)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/llm_foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nền Tảng LLM & Token Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/prompt_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cấu Trúc Prompt & Chat Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/instruction_hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thất Bại Phân Cấp Chỉ Thị (Instruction Hierarchy)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Attack Study (Tấn Công)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Attack Study (Tấn Công)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan & Ranh Giới Đề Tài
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tổng Quan & Ranh Giới Đề Tài
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/history_and_evolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Niên Sử Tiến Hóa (2022-2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/scope_and_boundary_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Tích Ranh Giới In/Out-Scope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Injection (OWASP LLM01)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prompt Injection (OWASP LLM01)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/pi_how_it_works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bản Chất & Cơ Chế Hoạt Động
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/pi_taxonomy_and_variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Loại & Các Biến Thể
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/pi_resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modern Jailbreak Attacks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modern Jailbreak Attacks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_archetypes_and_mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 Trường Phái (DAN, Roleplay, VM, Cipher)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_datasets_and_benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cơ Sở Dữ Liệu & 10 Họ Chiến Thuật
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_advanced_variants_and_operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biến Thể Nâng Cao & 26 Toán Tử (Tencent 2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Threat & Defense (Phòng Thủ Đa Tầng)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Threat & Defense (Phòng Thủ Đa Tầng)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/threat_model_and_attack_surface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mô Hình Hóa Đe Dọa & Bề Mặt Tấn Công
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/multi_layer_defense_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiến Trúc Phòng Thủ 3 Lớp (Defense-in-Depth)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/comparative_matrix_and_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bảng So Sánh & Phân Tích Đánh Đổi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu Học Thuật, Video & Mã Nguồn Mẫu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dataset & Benchmark Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Dataset & Benchmark Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset_study/data_curation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tuyển Chọn Dữ Liệu & Phân Loại 3 Lớp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset_study/group_aware_splitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Chia Group-Aware & Đánh Giá OOD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset_study/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Benchmark & Nguồn Dữ Liệu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Model Study (Kiến Trúc Hai Tầng)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Model Study (Kiến Trúc Hai Tầng)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../two_tier_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan Kiến Trúc 2 Tầng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tier 1: Syntactic Baseline (TF-IDF)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tier 1: Syntactic Baseline (TF-IDF)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lý Thuyết & Toán Học
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lý Thuyết & Toán Học
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-lich-su-phat-trien-boi-canh-khoa-hoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. LỊCH SỬ PHÁT TRIỂN &amp; BỐI CẢNH KHOA HỌC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-co-so-toan-hoc-chi-tiet-cua-tf-idf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. CƠ SỞ TOÁN HỌC CHI TIẾT CỦA TF-IDF
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. CƠ SỞ TOÁN HỌC CHI TIẾT CỦA TF-IDF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-tan-suat-thuat-ngu-term-frequency-tf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Tần Suất Thuật Ngữ — Term Frequency (\(TF\))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-tan-suat-tai-lieu-nghich-ao-inverse-document-frequency-idf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Tần Suất Tài Liệu Nghịch Đảo — Inverse Document Frequency (\(IDF\))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-trong-so-ket-hop-tf-idf-chuan-hoa-vector-l_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Trọng Số Kết Hợp TF-IDF &amp; Chuẩn Hóa Vector \(L_2\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tai-sao-bat-buoc-dung-character-n-grams-char_wb-chong-prompt-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. TẠI SAO BẮT BUỘC DÙNG CHARACTER N-GRAMS (char_wb) CHỐNG PROMPT INJECTION?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. TẠI SAO BẮT BUỘC DÙNG CHARACTER N-GRAMS (char_wb) CHỐNG PROMPT INJECTION?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ban-chat-oi-khang-adversarial-robustness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bản chất đối kháng (Adversarial Robustness):
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-thuat-toan-phan-loai-tuyen-tinh-ket-hop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. THUẬT TOÁN PHÂN LOẠI TUYẾN TÍNH KẾT HỢP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. THUẬT TOÁN PHÂN LOẠI TUYẾN TÍNH KẾT HỢP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-logistic-regression-hoi-quy-logistic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Logistic Regression (Hồi quy Logistic)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-linear-support-vector-classifier-linearsvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Linear Support Vector Classifier (LinearSVC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-tai-lieu-tham-khao-hoc-thuat-academic-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tfidf_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hướng Dẫn & Sử Dụng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tfidf_resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tier 2: Deep Transformer (DeBERTa-v3)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tier 2: Deep Transformer (DeBERTa-v3)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deberta_theory_and_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lý Thuyết & Disentangled Attention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deberta_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hướng Dẫn Fine-Tuning & ONNX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deberta_resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../two_tier_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phối Hợp 2 Tầng & Latency Tradeoffs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/sota_guardrail_benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Khảo Sát Các Guardrail SOTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/target_llm_vulnerabilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Khảo Sát 5 Target LLM APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/tencent2026_paper_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Tích Bài Báo Tencent 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/why_dual_model_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luận Giải Kiến Trúc Kết Hợp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Robustness & Evasion Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. Robustness & Evasion Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/theory_and_evasion_mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cơ Sở Lý Thuyết & Phân Mảnh Token
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/defense_architecture_and_mitigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiến Trúc Phòng Thủ Đa Tầng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/benchmarks_metrics_and_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chỉ Số Đánh Giá & Đối Sánh Thực Nghiệm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Optimization & Quantization Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Optimization & Quantization Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/quantization_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toán Học Lượng Tử Hóa INT8 PTQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/onnx_runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ONNX Runtime & Graph Optimizations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/inference_acceleration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tăng Tốc Suy Luận & Thiết Kế Hệ Thống
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/benchmarks_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chỉ Số Đo Lường & Đánh Đổi Độ Trễ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Evaluation & FPR Economics Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Evaluation & FPR Economics Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation_study/false_positive_economics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kinh Tế Học FPR & Trải Nghiệm Người Dùng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation_study/pareto_frontier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Đường Cong Biên Pareto & Đánh Đổi Hệ Thống
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation_study/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Benchmark & Bài Báo Đánh Đổi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luận Văn & Báo Cáo Milestone
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Luận Văn & Báo Cáo Milestone
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/capstone_register/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Đăng Ký Đề Tài (Register)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/review1_threat_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Review 1: Threat Model & Defense
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/chapter_01_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chương 1: Giới Thiệu (Introduction)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/chapter_02_literature_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chương 2: Tổng Quan Tài Liệu (Literature Review)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/final_thesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luận Văn Tổng Hợp Đầy Đủ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thư Viện Bài Báo Khoa Học
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Thư Viện Bài Báo Khoa Học
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/references_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan 8 Bài Báo Slide & 18 Papers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/references_log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nhật Ký 18 Bài Báo Học Thuật
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Đội Ngũ & Hướng Dẫn
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Đội Ngũ & Hướng Dẫn
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/team_governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Quyền Git & Workspace Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/contributing_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quy Chuẩn Đóng Góp (Contributing)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/workspaces_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan Không Gian Thành Viên
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/src_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiến Trúc Source Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-lich-su-phat-trien-boi-canh-khoa-hoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. LỊCH SỬ PHÁT TRIỂN &amp; BỐI CẢNH KHOA HỌC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-co-so-toan-hoc-chi-tiet-cua-tf-idf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. CƠ SỞ TOÁN HỌC CHI TIẾT CỦA TF-IDF
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. CƠ SỞ TOÁN HỌC CHI TIẾT CỦA TF-IDF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-tan-suat-thuat-ngu-term-frequency-tf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Tần Suất Thuật Ngữ — Term Frequency (\(TF\))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-tan-suat-tai-lieu-nghich-ao-inverse-document-frequency-idf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Tần Suất Tài Liệu Nghịch Đảo — Inverse Document Frequency (\(IDF\))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-trong-so-ket-hop-tf-idf-chuan-hoa-vector-l_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Trọng Số Kết Hợp TF-IDF &amp; Chuẩn Hóa Vector \(L_2\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tai-sao-bat-buoc-dung-character-n-grams-char_wb-chong-prompt-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. TẠI SAO BẮT BUỘC DÙNG CHARACTER N-GRAMS (char_wb) CHỐNG PROMPT INJECTION?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. TẠI SAO BẮT BUỘC DÙNG CHARACTER N-GRAMS (char_wb) CHỐNG PROMPT INJECTION?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ban-chat-oi-khang-adversarial-robustness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bản chất đối kháng (Adversarial Robustness):
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-thuat-toan-phan-loai-tuyen-tinh-ket-hop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. THUẬT TOÁN PHÂN LOẠI TUYẾN TÍNH KẾT HỢP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. THUẬT TOÁN PHÂN LOẠI TUYẾN TÍNH KẾT HỢP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-logistic-regression-hoi-quy-logistic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Logistic Regression (Hồi quy Logistic)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-linear-support-vector-classifier-linearsvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Linear Support Vector Classifier (LinearSVC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-tai-lieu-tham-khao-hoc-thuat-academic-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="toan-hoc-nguyen-ly-hoat-ong-bo-chuan-hoa-loc-cu-phap-tf-idf-baseline">TOÁN HỌC &amp; NGUYÊN LÝ HOẠT ĐỘNG: BỘ CHUẨN HÓA &amp; LỌC CÚ PHÁP (TF-IDF BASELINE)</h1>
+<hr />
+<h2 id="1-lich-su-phat-trien-boi-canh-khoa-hoc">1. LỊCH SỬ PHÁT TRIỂN &amp; BỐI CẢNH KHOA HỌC</h2>
+<ul>
+<li><strong>Năm 1958</strong>: Nhà khoa học <strong>Hans Peter Luhn</strong> (IBM) công bố bài báo <em>"The Automatic Creation of Literature Abstracts"</em> (<a href="https://doi.org/10.1147/rd.22.0159">IBM J. Res. Dev., 1958</a>), đề xuất khái niệm <strong>Term Frequency (TF)</strong>: Tần suất lặp lại của một từ trong văn bản phản ánh mức độ quan trọng của từ đó đối với chủ đề của văn bản.</li>
+<li><strong>Năm 1972</strong>: Nhà khoa học máy tính người Anh <strong>Karen Spärck Jones</strong> công bố công trình lịch sử <em>"A Statistical Interpretation of Term Specificity and Its Application in Retrieval"</em> (<em>Journal of Documentation</em>). Bản nghiên cứu mở được hệ thống hóa trong <a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf">Cambridge Technical Report UCAM-CL-TR-356 (PDF)</a> và <a href="https://nlp.stanford.edu/IR-book/pdf/06vect.pdf">Stanford NLP IR Book Ch. 6 (PDF)</a>. Bà chứng minh rằng: Một từ xuất hiện trong quá nhiều văn bản khác nhau (như "the", "is", "a") thì khả năng phân biệt ngữ nghĩa của nó gần như bằng 0. Từ đó, công thức <strong>Inverse Document Frequency (IDF)</strong> ra đời.</li>
+<li><strong>Thập niên 1980 - 2010</strong>: TF-IDF kết hợp với Không gian Vector (Vector Space Model của Gerard Salton) trở thành tiêu chuẩn vàng trong tìm kiếm thông tin (Information Retrieval) và lọc thư rác (Spam / Phishing Filtering).</li>
+<li><strong>Kỷ nguyên AI 2023 - 2026</strong>: Các nghiên cứu đối kháng hiện đại (<strong>Neel Jain et al., 2023</strong> <a href="https://arxiv.org/abs/2309.00614">arXiv:2309.00614</a>; <strong>Cornacchia et al. - MoJE, 2024</strong> <a href="https://arxiv.org/abs/2409.17699">arXiv:2409.17699</a>) phát hiện ra rằng: Dù các mô hình Deep Learning (BERT, GPT) rất mạnh, chúng lại có điểm mù chết người là <strong>phân tách từ con (Subword/BPE)</strong>. Khi bị tấn công phân mảnh ký tự (Leetspeak, Spacing), mô hình Transformer bị qua mặt. Ngược lại, <strong>TF-IDF Character n-grams (<code>char_wb</code>)</strong> theo nguyên lý của <strong>Bojanowski et al. (TACL 2017)</strong> <a href="https://arxiv.org/abs/1607.04606">arXiv:1607.04606</a> bóc tách các lát cắt ký tự liên tiếp lại đánh chặn được trên 90% biến thể tấn công chỉ trong <strong>~3.2ms trên CPU</strong>.</li>
+</ul>
+<hr />
+<h2 id="2-co-so-toan-hoc-chi-tiet-cua-tf-idf">2. CƠ SỞ TOÁN HỌC CHI TIẾT CỦA TF-IDF</h2>
+<p>Giả sử ta có tập ngữ liệu gồm <span class="arithmatex">\(N\)</span> tài liệu <span class="arithmatex">\(\mathcal{D} = \{d_1, d_2, \dots, d_N\}\)</span> và không gian từ vựng <span class="arithmatex">\(\mathcal{V}\)</span> gồm <span class="arithmatex">\(V\)</span> từ/n-gram duy nhất.</p>
+<h3 id="21-tan-suat-thuat-ngu-term-frequency-tf">2.1. Tần Suất Thuật Ngữ — Term Frequency (<span class="arithmatex">\(TF\)</span>)</h3>
+<p>Đo lường mức độ xuất hiện của một thuật ngữ <span class="arithmatex">\(t\)</span> trong một tài liệu cụ thể <span class="arithmatex">\(d\)</span>.</p>
+<ol>
+<li>
+<p><strong>Dạng thô (Raw Frequency)</strong>:
+   $<span class="arithmatex">\(f_{t, d} = \text{Số lần từ } t \text{ xuất hiện trong } d\)</span>$</p>
+</li>
+<li>
+<p><strong>Dạng tần suất tương đối (Relative Frequency)</strong>:
+   $<span class="arithmatex">\(\text{TF}(t, d) = \frac{f_{t, d}}{\sum_{t' \in d} f_{t', d}}\)</span>$</p>
+</li>
+<li>
+<p><strong>Dạng phi tuyến Logarit (Sublinear TF Scaling — Khuyên dùng trong PI-Guard)</strong>:
+   Trong các cuộc tấn công Prompt Injection, một từ nguy hiểm lặp lại 10 lần không có nghĩa là nguy hiểm gấp 10 lần một từ xuất hiện 1 lần. Scikit-learn hỗ trợ <code>sublinear_tf=True</code>:
+   $<span class="arithmatex">\(\text{TF}_{\text{sublin}}(t, d) = \begin{cases} 1 + \log(f_{t, d}) &amp; \text{nếu } f_{t, d} &gt; 0 \\ 0 &amp; \text{nếu } f_{t, d} = 0 \end{cases}\)</span>$</p>
+</li>
+</ol>
+<hr />
+<h3 id="22-tan-suat-tai-lieu-nghich-ao-inverse-document-frequency-idf">2.2. Tần Suất Tài Liệu Nghịch Đảo — Inverse Document Frequency (<span class="arithmatex">\(IDF\)</span>)</h3>
+<p>Đo lường độ hiếm và khả năng mang thông tin phân biệt của thuật ngữ <span class="arithmatex">\(t\)</span> trên toàn bộ tập dữ liệu.</p>
+<ol>
+<li>
+<p><strong>Công thức gốc của Karen Spärck Jones</strong>:
+   $<span class="arithmatex">\(\text{IDF}(t) = \log\left(\frac{N}{\text{DF}(t)}\right)\)</span>$
+   <em>Trong đó</em>: <span class="arithmatex">\(\text{DF}(t)\)</span> (Document Frequency) là số lượng tài liệu có chứa từ <span class="arithmatex">\(t\)</span>.</p>
+</li>
+<li>
+<p><strong>Công thức Smooth IDF trong Scikit-Learn (<code>smooth_idf=True</code>)</strong>:
+   Để tránh lỗi chia cho 0 khi gặp từ mới trong tập kiểm thử (Test Set), Scikit-learn cộng 1 vào cả tử và mẫu, đồng thời cộng 1 bên ngoài:
+   $<span class="arithmatex">\(\text{IDF}_{\text{smooth}}(t) = \log\left(\frac{1 + N}{1 + \text{DF}(t)}\right) + 1\)</span>$
+   <em>Ý nghĩa toán học</em>: Đảm bảo không có thuật ngữ nào bị gán trọng số <span class="arithmatex">\(IDF = 0\)</span> tuyệt đối, duy trì tính ổn định số học (Numerical Stability).</p>
+</li>
+</ol>
+<hr />
+<h3 id="23-trong-so-ket-hop-tf-idf-chuan-hoa-vector-l_2">2.3. Trọng Số Kết Hợp TF-IDF &amp; Chuẩn Hóa Vector <span class="arithmatex">\(L_2\)</span></h3>
+<ol>
+<li>
+<p><strong>Trọng số chưa chuẩn hóa</strong>:
+   $<span class="arithmatex">\(\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \text{IDF}(t)\)</span>$</p>
+</li>
+<li>
+<p><strong>Biểu diễn văn bản dưới dạng Vector (Vector Space Model)</strong>:
+   Mỗi tài liệu <span class="arithmatex">\(d\)</span> được biểu diễn thành một vector thưa thớt (Sparse Vector) chiều cao <span class="arithmatex">\(V\)</span>:
+   $<span class="arithmatex">\(\mathbf{v}_d = \left[ \text{TF-IDF}(t_1, d), \text{TF-IDF}(t_2, d), \dots, \text{TF-IDF}(t_V, d) \right] \in \mathbb{R}^V\)</span>$</p>
+</li>
+<li>
+<p><strong>Chuẩn hóa vector <span class="arithmatex">\(L_2\)</span> (Euclidean Normalization)</strong>:
+   Để loại bỏ thiên lệch do độ dài văn bản ngắn dài khác nhau:
+   $<span class="arithmatex">\(\mathbf{v}_{\text{norm}} = \frac{\mathbf{v}_d}{\|\mathbf{v}_d\|_2} = \frac{\mathbf{v}_d}{\sqrt{\sum_{i=1}^V (\mathbf{v}_{d, i})^2}}\)</span>$
+   <em>Ý nghĩa hình học</em>: Sau khi chuẩn hóa <span class="arithmatex">\(L_2\)</span>, tích vô hướng giữa 2 vector tài liệu chính là <strong>Độ tương đồng Cosine (Cosine Similarity)</strong>:
+   $<span class="arithmatex">\(\text{Cosine-Sim}(d_1, d_2) = \mathbf{v}_{\text{norm}, 1} \cdot \mathbf{v}_{\text{norm}, 2} = \cos(\theta)\)</span>$</p>
+</li>
+</ol>
+<hr />
+<h2 id="3-tai-sao-bat-buoc-dung-character-n-grams-char_wb-chong-prompt-injection">3. TẠI SAO BẮT BUỘC DÙNG CHARACTER N-GRAMS (<code>char_wb</code>) CHỐNG PROMPT INJECTION?</h2>
+<p>Trong PI-Guard, nhóm cấu hình <strong><code>analyzer='char_wb', ngram_range=(3, 5)</code></strong> (Character-with-Boundary n-grams).</p>
+<h3 id="ban-chat-oi-khang-adversarial-robustness">Bản chất đối kháng (Adversarial Robustness):</h3>
+<p>Giả sử kẻ tấn công dùng kỹ thuật Leetspeak để vượt mặt:
+$<span class="arithmatex">\(\text{Prompt: "Please } \mathbf{1gn0r3} \text{ all previous rules"}\)</span>$</p>
+<ol>
+<li><strong>Mô hình Word-level hoặc BPE Subwords (BERT/RoBERTa/GPT)</strong>:</li>
+<li>Từ <code>1gn0r3</code> không có trong từ điển tiếng Anh.</li>
+<li>BPE băm từ này thành các mảnh token lạ: <code>['1', '##gn', '##0', '##r', '##3']</code>.</li>
+<li>Vector nhúng ngữ nghĩa bị vỡ vụn <span class="arithmatex">\(\rightarrow\)</span> Không nhận diện được động từ điều khiển <span class="arithmatex">\(\rightarrow\)</span> <strong>Bị qua mặt (Evasion thành công)</strong>.</li>
+<li><strong>Cơ chế Character-with-Boundary n-grams (<code>char_wb</code>)</strong>:</li>
+<li>Từ <code>1gn0r3</code> được đặt trong ranh giới ký tự trắng <code>' 1gn0r3 '</code> và sinh ra các n-gram trượt:<ul>
+<li>3-grams: <code>[' 1g', '1gn', 'gn0', 'n0r', '0r3', 'r3 ']</code>.</li>
+<li>4-grams: <code>[' 1gn', '1gn0', 'gn0r', 'n0r3', '0r3 ']</code>.</li>
+<li>5-grams: <code>[' 1gn0', '1gn0r', 'gn0r3', 'n0r3 ']</code>.</li>
+</ul>
+</li>
+<li>Khi đối sánh với các mẫu huấn luyện của từ <code>ignore</code> (<code>' ign'</code>, <code>'igno'</code>, <code>'gnor'</code>, <code>'nore'</code>):<ul>
+<li><strong>Hơn 65% n-grams ký tự trùng khớp vị trí</strong>.</li>
+<li>Trong không gian vector, khoảng cách Cosine giữa <code>1gn0r3</code> và <code>ignore</code> rất gần.</li>
+<li>Bộ phân loại tuyến tính lập tức phát hiện mẫu tấn công và kích hoạt cờ cảnh báo chỉ trong <strong>~3.2ms</strong>.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="4-thuat-toan-phan-loai-tuyen-tinh-ket-hop">4. THUẬT TOÁN PHÂN LOẠI TUYẾN TÍNH KẾT HỢP</h2>
+<h3 id="41-logistic-regression-hoi-quy-logistic">4.1. Logistic Regression (Hồi quy Logistic)</h3>
+<ul>
+<li><strong>Hàm giả thuyết</strong>: Ánh xạ vector đặc trưng <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^V\)</span> về khoảng xác suất <span class="arithmatex">\([0, 1]\)</span> qua hàm Sigmoid:
+  $<span class="arithmatex">\(\hat{y} = \sigma(z) = \frac{1}{1 + e^{-(\mathbf{w}^T \mathbf{x} + b)}}\)</span>$</li>
+<li><strong>Hàm mất mát Binary Cross-Entropy (Log-Loss) có điều chuẩn <span class="arithmatex">\(L_2\)</span></strong>:
+  $<span class="arithmatex">\(\mathcal{L}(\mathbf{w}, b) = -\frac{1}{m} \sum_{i=1}^m \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right] + \frac{1}{2C} \|\mathbf{w}\|_2^2\)</span>$</li>
+<li><strong>Tối ưu hóa</strong>: Thuật toán <strong>L-BFGS (Limited-memory Broyden–Fletcher–Goldfarb–Shanno)</strong> xấp xỉ ma trận nghịch đảo Hessian, cho phép tìm nghiệm tối ưu cực nhanh trên ma trận thưa thớt hàng chục nghìn chiều.</li>
+</ul>
+<h3 id="42-linear-support-vector-classifier-linearsvc">4.2. Linear Support Vector Classifier (LinearSVC)</h3>
+<ul>
+<li><strong>Hàm mục tiêu Hinge Loss có điều chuẩn</strong>:
+  $<span class="arithmatex">\(\min_{\mathbf{w}, b} \frac{1}{2} \|\mathbf{w}\|_2^2 + C \sum_{i=1}^m \max\left(0, 1 - y_i (\mathbf{w}^T \mathbf{x}_i + b)\right)\)</span>$</li>
+<li><strong>Đặc tính</strong>: Tìm siêu phẳng phân tách có khoảng cách lề (Margin) lớn nhất, tạo ranh giới quyết định cực kỳ dứt khoát cho các mẫu tấn công rõ ràng.</li>
+</ul>
+<hr />
+<h2 id="5-tai-lieu-tham-khao-hoc-thuat-academic-references">5. TÀI LIỆU THAM KHẢO HỌC THUẬT (ACADEMIC REFERENCES)</h2>
+<ol>
+<li><strong>Hans Peter Luhn (1958)</strong>: <em>"The Automatic Creation of Literature Abstracts"</em>, <em>IBM Journal of Research and Development</em>, Vol. 2, No. 2, pp. 159–165. DOI: <a href="https://doi.org/10.1147/rd.22.0159">10.1147/rd.22.0159</a>.</li>
+<li><strong>Karen Spärck Jones (1972)</strong>: <em>"A Statistical Interpretation of Term Specificity and Its Application in Retrieval"</em>, <em>Journal of Documentation</em>, Vol. 28, No. 1, pp. 11–21. Giáo trình mở: <a href="https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-356.pdf">Cambridge TR-356 (PDF)</a> &amp; <a href="https://nlp.stanford.edu/IR-book/pdf/06vect.pdf">Stanford IR Ch. 6 (PDF)</a>.</li>
+<li><strong>Piotr Bojanowski, Edouard Grave, Armand Joulin, and Tomas Mikolov (2017)</strong>: <em>"Enriching Word Vectors with Subword Information"</em>, <em>Transactions of the Association for Computational Linguistics (TACL)</em>, Vol. 5, pp. 135–146. arXiv: <a href="https://arxiv.org/abs/1607.04606">1607.04606</a>.</li>
+<li><strong>Neel Jain et al. (2023)</strong>: <em>"Baseline Defenses for Adversarial Attacks Against Aligned Language Models"</em>, arXiv preprint. arXiv: <a href="https://arxiv.org/abs/2309.00614">2309.00614</a>.</li>
+<li><strong>Giandomenico Cornacchia et al. (2024)</strong>: <em>"MoJE: Mixture of Jailbreak Experts, Naive Tabular Classifiers as Guard for Prompt Attacks"</em>, arXiv preprint. arXiv: <a href="https://arxiv.org/abs/2409.17699">2409.17699</a>.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

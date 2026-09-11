@@ -1,0 +1,3763 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications">
+      
+      
+        <meta name="author" content="PI-Guard Capstone Team (FPT University)">
+      
+      
+        <link rel="canonical" href="https://nvtruongops.github.io/pi-guard/work/fpt_guidelines_and_rubrics/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../meeting_1/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Lộ Trình & Tiêu Chuẩn FPT - PI-Guard: LLM Security Guardrail</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#huong-dan-tieu-chi-anh-gia-khoa-luan-tot-nghiep-fpt-university" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PI-Guard: LLM Security Guardrail" class="md-header__button md-logo" aria-label="PI-Guard: LLM Security Guardrail" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PI-Guard: LLM Security Guardrail
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lộ Trình & Tiêu Chuẩn FPT
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Chuyển sang Dark Mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang Dark Mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="purple"  aria-label="Chuyển sang Light Mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang Light Mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nvtruongops/pi-guard" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nvtruongops/pi-guard
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PI-Guard: LLM Security Guardrail" class="md-nav__button md-logo" aria-label="PI-Guard: LLM Security Guardrail" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PI-Guard: LLM Security Guardrail
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nvtruongops/pi-guard" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nvtruongops/pi-guard
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trang Chủ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quản Lý Công Việc & Tiến Độ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quản Lý Công Việc & Tiến Độ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lộ Trình & Tiêu Chuẩn FPT
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lộ Trình & Tiêu Chuẩn FPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quy-chuan-hoc-thuat-iap491-research-based-thesis-cho-nganh-an-toan-thong-tin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quy Chuẩn Học Thuật IAP491 (Research-Based Thesis) Cho Ngành An Toàn Thông Tin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i-quy-inh-chung-ieu-kien-thuc-hien-o-an-common-regulations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. QUY ĐỊNH CHUNG &amp; ĐIỀU KIỆN THỰC HIỆN ĐỒ ÁN (COMMON REGULATIONS)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-co-che-anh-gia-cong-thuc-tinh-iem-evaluation-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. CƠ CHẾ ĐÁNH GIÁ &amp; CÔNG THỨC TÍNH ĐIỂM (EVALUATION SYSTEM)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. CƠ CHẾ ĐÁNH GIÁ &amp; CÔNG THỨC TÍNH ĐIỂM (EVALUATION SYSTEM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-trong-so-chi-tiet-6-bao-cao-tien-o-continuous-assessment-process-mark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Trọng Số Chi Tiết 6 Báo Cáo Tiến Độ (Continuous Assessment / Process Mark)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-quy-tac-phan-bo-iem-ca-nhan-personal-mark-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Quy Tắc Phân Bổ Điểm Cá Nhân (Personal Mark Formula)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-lo-trinh-thuc-hien-4-cot-moc-chinh-milestone-timeline-hoc-ky-fall-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. LỘ TRÌNH THỰC HIỆN &amp; 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. LỘ TRÌNH THỰC HIỆN &amp; 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bang-chi-tiet-tien-trinh-15-tuan-hang-muc-ban-giao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bảng Chi Tiết Tiến Trình 15 Tuần &amp; Hạng Mục Bàn Giao:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-cau-truc-chuan-toan-van-luan-van-hoc-thuat-6-chuong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. CẤU TRÚC CHUẨN TOÀN VĂN LUẬN VĂN HỌC THUẬT (6 CHƯƠNG)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-quy-chuan-inh-dang-trinh-bay-hoc-thuat-formatting-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. QUY CHUẨN ĐỊNH DẠNG &amp; TRÌNH BÀY HỌC THUẬT (FORMATTING STANDARDS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. QUY CHUẨN ĐỊNH DẠNG &amp; TRÌNH BÀY HỌC THUẬT (FORMATTING STANDARDS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-yeu-cau-oi-voi-phan-tom-tat-abstract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Yêu Cầu Đối Với Phần Tóm Tắt (Abstract)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-yeu-cau-ve-danh-muc-tai-lieu-tham-khao-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Yêu Cầu Về Danh Mục Tài Liệu Tham Khảo (References)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-bang-bieu-hinh-anh-figures-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Bảng Biểu &amp; Hình Ảnh (Figures &amp; Tables)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi-phuong-cham-lam-viec-ong-quy-phan-vai-trach-nhiem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VI. PHƯƠNG CHÂM LÀM VIỆC ĐỒNG QUY &amp; PHÂN VAI TRÁCH NHIỆM
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp Nhóm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Biên Bản Họp Nhóm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meeting_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp 1 & Kế Hoạch Sprint 1 (29/08/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meeting_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp 2 & Nghiên Cứu Mô Hình (01/09/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meeting_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Bản Họp 3 & Chốt Slide Báo Cáo GVHD (08/09/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Prompt Study (Bản Chất LLM)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Prompt Study (Bản Chất LLM)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/llm_foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nền Tảng LLM & Token Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/prompt_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cấu Trúc Prompt & Chat Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/instruction_hierarchy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thất Bại Phân Cấp Chỉ Thị (Instruction Hierarchy)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prompt_study/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Attack Study (Tấn Công)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Attack Study (Tấn Công)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan & Ranh Giới Đề Tài
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tổng Quan & Ranh Giới Đề Tài
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/history_and_evolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biên Niên Sử Tiến Hóa (2022-2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/scope_and_boundary_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Tích Ranh Giới In/Out-Scope
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Injection (OWASP LLM01)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prompt Injection (OWASP LLM01)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/pi_how_it_works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bản Chất & Cơ Chế Hoạt Động
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/pi_taxonomy_and_variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Loại & Các Biến Thể
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/pi_resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modern Jailbreak Attacks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modern Jailbreak Attacks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_archetypes_and_mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 Trường Phái (DAN, Roleplay, VM, Cipher)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_datasets_and_benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cơ Sở Dữ Liệu & 10 Họ Chiến Thuật
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_advanced_variants_and_operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biến Thể Nâng Cao & 26 Toán Tử (Tencent 2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../attacks/jb_resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Threat & Defense (Phòng Thủ Đa Tầng)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Threat & Defense (Phòng Thủ Đa Tầng)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/threat_model_and_attack_surface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mô Hình Hóa Đe Dọa & Bề Mặt Tấn Công
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/multi_layer_defense_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiến Trúc Phòng Thủ 3 Lớp (Defense-in-Depth)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/comparative_matrix_and_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bảng So Sánh & Phân Tích Đánh Đổi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../threat_defense/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu Học Thuật, Video & Mã Nguồn Mẫu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dataset & Benchmark Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Dataset & Benchmark Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset_study/data_curation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tuyển Chọn Dữ Liệu & Phân Loại 3 Lớp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset_study/group_aware_splitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Chia Group-Aware & Đánh Giá OOD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset_study/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Benchmark & Nguồn Dữ Liệu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Model Study (Kiến Trúc Hai Tầng)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Model Study (Kiến Trúc Hai Tầng)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/two_tier_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan Kiến Trúc 2 Tầng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tier 1: Syntactic Baseline (TF-IDF)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tier 1: Syntactic Baseline (TF-IDF)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/tfidf_theory_and_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lý Thuyết & Toán Học
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/tfidf_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hướng Dẫn & Sử Dụng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/tfidf_resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tier 2: Deep Transformer (DeBERTa-v3)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tier 2: Deep Transformer (DeBERTa-v3)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/deberta_theory_and_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lý Thuyết & Disentangled Attention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/deberta_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hướng Dẫn Fine-Tuning & ONNX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/deberta_resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/two_tier_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phối Hợp 2 Tầng & Latency Tradeoffs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/sota_guardrail_benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Khảo Sát Các Guardrail SOTA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/target_llm_vulnerabilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Khảo Sát 5 Target LLM APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/tencent2026_paper_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Tích Bài Báo Tencent 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/why_dual_model_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luận Giải Kiến Trúc Kết Hợp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Robustness & Evasion Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. Robustness & Evasion Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/theory_and_evasion_mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cơ Sở Lý Thuyết & Phân Mảnh Token
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/defense_architecture_and_mitigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiến Trúc Phòng Thủ Đa Tầng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/benchmarks_metrics_and_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chỉ Số Đánh Giá & Đối Sánh Thực Nghiệm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robustness/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Optimization & Quantization Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Optimization & Quantization Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/quantization_math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toán Học Lượng Tử Hóa INT8 PTQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/onnx_runtime/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ONNX Runtime & Graph Optimizations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/inference_acceleration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tăng Tốc Suy Luận & Thiết Kế Hệ Thống
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/benchmarks_tradeoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chỉ Số Đo Lường & Đánh Đổi Độ Trễ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../optimization/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Bài Báo & Video Tham Khảo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Evaluation & FPR Economics Study
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Evaluation & FPR Economics Study
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation_study/false_positive_economics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kinh Tế Học FPR & Trải Nghiệm Người Dùng
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation_study/pareto_frontier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Đường Cong Biên Pareto & Đánh Đổi Hệ Thống
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evaluation_study/resources_and_papers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tài Liệu, Benchmark & Bài Báo Đánh Đổi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luận Văn & Báo Cáo Milestone
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Luận Văn & Báo Cáo Milestone
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/capstone_register/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Đăng Ký Đề Tài (Register)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/review1_threat_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Review 1: Threat Model & Defense
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/chapter_01_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chương 1: Giới Thiệu (Introduction)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/chapter_02_literature_review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chương 2: Tổng Quan Tài Liệu (Literature Review)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thesis/final_thesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luận Văn Tổng Hợp Đầy Đủ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thư Viện Bài Báo Khoa Học
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Thư Viện Bài Báo Khoa Học
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/references_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan 8 Bài Báo Slide & 18 Papers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/references_log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nhật Ký 18 Bài Báo Học Thuật
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Đội Ngũ & Hướng Dẫn
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Đội Ngũ & Hướng Dẫn
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/team_governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phân Quyền Git & Workspace Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/contributing_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quy Chuẩn Đóng Góp (Contributing)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/workspaces_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng Quan Không Gian Thành Viên
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/src_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiến Trúc Source Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quy-chuan-hoc-thuat-iap491-research-based-thesis-cho-nganh-an-toan-thong-tin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quy Chuẩn Học Thuật IAP491 (Research-Based Thesis) Cho Ngành An Toàn Thông Tin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i-quy-inh-chung-ieu-kien-thuc-hien-o-an-common-regulations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. QUY ĐỊNH CHUNG &amp; ĐIỀU KIỆN THỰC HIỆN ĐỒ ÁN (COMMON REGULATIONS)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-co-che-anh-gia-cong-thuc-tinh-iem-evaluation-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. CƠ CHẾ ĐÁNH GIÁ &amp; CÔNG THỨC TÍNH ĐIỂM (EVALUATION SYSTEM)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. CƠ CHẾ ĐÁNH GIÁ &amp; CÔNG THỨC TÍNH ĐIỂM (EVALUATION SYSTEM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-trong-so-chi-tiet-6-bao-cao-tien-o-continuous-assessment-process-mark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Trọng Số Chi Tiết 6 Báo Cáo Tiến Độ (Continuous Assessment / Process Mark)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-quy-tac-phan-bo-iem-ca-nhan-personal-mark-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Quy Tắc Phân Bổ Điểm Cá Nhân (Personal Mark Formula)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-lo-trinh-thuc-hien-4-cot-moc-chinh-milestone-timeline-hoc-ky-fall-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. LỘ TRÌNH THỰC HIỆN &amp; 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. LỘ TRÌNH THỰC HIỆN &amp; 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bang-chi-tiet-tien-trinh-15-tuan-hang-muc-ban-giao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bảng Chi Tiết Tiến Trình 15 Tuần &amp; Hạng Mục Bàn Giao:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-cau-truc-chuan-toan-van-luan-van-hoc-thuat-6-chuong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. CẤU TRÚC CHUẨN TOÀN VĂN LUẬN VĂN HỌC THUẬT (6 CHƯƠNG)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-quy-chuan-inh-dang-trinh-bay-hoc-thuat-formatting-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. QUY CHUẨN ĐỊNH DẠNG &amp; TRÌNH BÀY HỌC THUẬT (FORMATTING STANDARDS)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. QUY CHUẨN ĐỊNH DẠNG &amp; TRÌNH BÀY HỌC THUẬT (FORMATTING STANDARDS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-yeu-cau-oi-voi-phan-tom-tat-abstract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Yêu Cầu Đối Với Phần Tóm Tắt (Abstract)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-yeu-cau-ve-danh-muc-tai-lieu-tham-khao-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Yêu Cầu Về Danh Mục Tài Liệu Tham Khảo (References)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-bang-bieu-hinh-anh-figures-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Bảng Biểu &amp; Hình Ảnh (Figures &amp; Tables)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi-phuong-cham-lam-viec-ong-quy-phan-vai-trach-nhiem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VI. PHƯƠNG CHÂM LÀM VIỆC ĐỒNG QUY &amp; PHÂN VAI TRÁCH NHIỆM
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="huong-dan-tieu-chi-anh-gia-khoa-luan-tot-nghiep-fpt-university">HƯỚNG DẪN &amp; TIÊU CHÍ ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP FPT UNIVERSITY</h1>
+<h2 id="quy-chuan-hoc-thuat-iap491-research-based-thesis-cho-nganh-an-toan-thong-tin">Quy Chuẩn Học Thuật IAP491 (Research-Based Thesis) Cho Ngành An Toàn Thông Tin</h2>
+<blockquote>
+<p><strong>Tài liệu căn cứ &amp; trích xuất chính thức</strong>:
+- <strong>Lưu ý quan trọng về Lộ trình</strong>: Riêng phần <strong>LỘ TRÌNH THỰC HIỆN &amp; 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)</strong> tại Mục III được thiết lập độc lập theo lịch trình chính thức của kỳ Fall 2026 đã thống nhất với GVHD (Trần Văn Ninh), không lấy theo timeline của các kỳ cũ trong tài liệu tham khảo lưu trữ.
+- <strong>Áp dụng cho</strong>: Đồ án <strong>PI-Guard</strong> (<code>IAP491_FA26_PI_GUARD</code>) — Ngành An toàn Thông tin (IA), Đại học FPT.<br />
+- <strong>Học kỳ</strong>: Fall 2026 (15 tuần từ 07/09/2026 đến 20/12/2026).</p>
+</blockquote>
+<hr />
+<h2 id="i-quy-inh-chung-ieu-kien-thuc-hien-o-an-common-regulations">I. QUY ĐỊNH CHUNG &amp; ĐIỀU KIỆN THỰC HIỆN ĐỒ ÁN (COMMON REGULATIONS)</h2>
+<p>Căn cứ quy định đào tạo bậc Đại học của Trường Đại học FPT cho học phần Khóa luận Tốt nghiệp (Capstone Project - CP):</p>
+<ol>
+<li><strong>Điều kiện tốt nghiệp</strong>: Khóa luận tốt nghiệp là học phần bắt buộc (10 Tín chỉ) để sinh viên đủ điều kiện nhận bằng Cử nhân/Kỹ sư An toàn Thông tin.</li>
+<li><strong>Quy mô &amp; Tổ chức</strong>:</li>
+<li>Học phần được tổ chức theo lớp chuyên đề, mỗi lớp do Giảng viên Hướng dẫn (Supervisor / Mentor) phụ trách và chia thành các nhóm từ 3 đến 5 sinh viên (nhóm tiêu chuẩn: 4 – 5 thành viên).</li>
+<li>Thời gian thực hiện: Trọn vẹn 1 học kỳ chính thức (<strong>15 Tuần thực học</strong>, net duration 12–15 tuần).</li>
+<li><strong>Ngôn ngữ chính thức</strong>: <strong>100% Tiếng Anh (English)</strong> cho toàn bộ tài liệu hồ sơ, báo cáo luận văn và buổi thuyết trình bảo vệ trước Hội đồng.</li>
+<li><strong>Tham gia họp tiến độ bắt buộc</strong>: Sinh viên bắt buộc phải tham gia đầy đủ tất cả các buổi họp định kỳ và đột xuất với Giảng viên Hướng dẫn theo lịch hẹn trước.</li>
+<li><strong>Điều kiện tiên quyết để làm đồ án</strong>:</li>
+<li>Tích lũy tối thiểu <strong>80% tổng số tín chỉ</strong> của chương trình đào tạo (không tính GDTC, GDQP và OJT).</li>
+<li>Hoàn thành kỳ thực tập doanh nghiệp (<strong>On-the-Job-Training - OJT</strong>).</li>
+<li>Đã qua các môn học tiên quyết bắt buộc: <code>IAP301</code> (Policy Development in Information Assurance) hoặc <code>SPM401</code>; môn mạng nâng cao <code>NWC302</code>/<code>NWC204</code>; và tối thiểu một môn chuyên sâu ngành (<code>IAM302</code>, <code>FRS401(c)</code>, <code>HOD401</code>, <code>DBS401</code>).</li>
+</ol>
+<hr />
+<h2 id="ii-co-che-anh-gia-cong-thuc-tinh-iem-evaluation-system">II. CƠ CHẾ ĐÁNH GIÁ &amp; CÔNG THỨC TÍNH ĐIỂM (EVALUATION SYSTEM)</h2>
+<p>Khóa luận được đánh giá toàn diện qua hai trụ cột: <strong>Điểm Quá Trình (50%)</strong> và <strong>Điểm Bảo Vệ Hội Đồng (50%)</strong> trên <strong>Thang điểm 10 (làm tròn 1 chữ số thập phân)</strong>.</p>
+<div class="arithmatex">\[\text{Final Project Mark} = (\text{Process Mark / Continuous Assessment} \times 50\%) + (\text{Presentation Mark} \times 50\%)\]</div>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Trụ Cột Đánh Giá</th>
+<th style="text-align: left;">Chi Tiết Thực Hiện &amp; Quy Chuẩn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>ĐIỂM QUÁ TRÌNH (PROCESS MARK: 50%)</strong></td>
+<td style="text-align: left;">• Do Giảng viên Hướng dẫn (Supervisor) đánh giá<br/>• Chấm điểm liên tục qua 6 Báo cáo tiến độ<br/>• Cá nhân hóa theo mức độ đóng góp (GM ± 20%)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ĐIỂM BẢO VỆ HỘI ĐỒNG (PRESENTATION: 50%)</strong></td>
+<td style="text-align: left;">• Do Hội đồng Chấm Tốt nghiệp (Committee) chấm điểm độc lập từng sinh viên<br/>• Lấy điểm trung bình của tất cả thành viên HĐ</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-trong-so-chi-tiet-6-bao-cao-tien-o-continuous-assessment-process-mark">1. Trọng Số Chi Tiết 6 Báo Cáo Tiến Độ (Continuous Assessment / Process Mark)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Báo Cáo</th>
+<th style="text-align: left;">Tên Chương / Nội Dung Báo Cáo</th>
+<th style="text-align: center;">Thời Gian Nộp Dự Kiến</th>
+<th style="text-align: center;">Trọng Số Trong Process Mark</th>
+<th style="text-align: center;">Trọng Số Trong Tổng Điểm Đồ Án</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>Report No.1</strong></td>
+<td style="text-align: left;"><strong>Introduction</strong> (Bối cảnh, Bài toán, Mục tiêu RQ1–RQ3, Ý nghĩa, Phạm vi)</td>
+<td style="text-align: center;">Đầu Tuần 3</td>
+<td style="text-align: center;"><strong>10%</strong></td>
+<td style="text-align: center;">5.0%</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Report No.2</strong></td>
+<td style="text-align: left;"><strong>Literature Review</strong> (Khảo sát y văn, Phân loại tấn công, SOTA Guardrails)</td>
+<td style="text-align: center;">Đầu Tuần 4</td>
+<td style="text-align: center;"><strong>25%</strong></td>
+<td style="text-align: center;">12.5%</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Report No.3</strong></td>
+<td style="text-align: left;"><strong>Methodology</strong> (Thiết kế nghiên cứu, Dữ liệu, Trích xuất đặc trưng &amp; Mô hình)</td>
+<td style="text-align: center;">Đầu Tuần 7</td>
+<td style="text-align: center;"><strong>20%</strong></td>
+<td style="text-align: center;">10.0%</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Report No.4</strong></td>
+<td style="text-align: left;"><strong>Experimental and Results</strong> (Môi trường, Thực nghiệm, Đối sánh &amp; Robustness)</td>
+<td style="text-align: center;">Đầu Tuần 9</td>
+<td style="text-align: center;"><strong>25%</strong></td>
+<td style="text-align: center;">12.5%</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Report No.5</strong></td>
+<td style="text-align: left;"><strong>Discussion</strong> (Thảo luận ý nghĩa phát hiện, Trade-offs &amp; Giới hạn thực tiễn)</td>
+<td style="text-align: center;">Đầu Tuần 13</td>
+<td style="text-align: center;"><strong>15%</strong></td>
+<td style="text-align: center;">7.5%</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Report No.6</strong></td>
+<td style="text-align: left;"><strong>Conclusion and Future Work</strong> (Tổng kết đóng góp kỹ thuật &amp; Hướng mở rộng)</td>
+<td style="text-align: center;">Đầu Tuần 13</td>
+<td style="text-align: center;"><strong>5%</strong></td>
+<td style="text-align: center;">2.5%</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>TỔNG</strong></td>
+<td style="text-align: left;"><strong>Toàn Bộ 6 Báo Cáo Đánh Giá Quá Trình</strong></td>
+<td style="text-align: center;"><strong>Tuần 1 – 13</strong></td>
+<td style="text-align: center;"><strong>100%</strong></td>
+<td style="text-align: center;"><strong>50.0%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-quy-tac-phan-bo-iem-ca-nhan-personal-mark-formula">2. Quy Tắc Phân Bổ Điểm Cá Nhân (Personal Mark Formula)</h3>
+<ul>
+<li>Trên mỗi giai đoạn báo cáo, Giảng viên Hướng dẫn sẽ chấm <strong>Điểm Nhóm (Group Mark - GM)</strong>.</li>
+<li>Điểm cá nhân của từng sinh viên (<strong>Personal Mark</strong>) được xác định linh hoạt dựa trên khối lượng công việc và mức độ đóng góp thực tế:
+  $<span class="arithmatex">\(\text{Personal Mark} \in [100\% \text{ GM} - 20\% \text{ GM}, \; 100\% \text{ GM} + 20\% \text{ GM}]\)</span>$</li>
+<li>Sự đóng góp của từng thành viên được minh chứng rõ ràng qua file theo dõi tiến độ hàng tuần <strong><code>reports/PI_GUARD_PROCESS_REPORT.xlsx</code></strong>.</li>
+</ul>
+<hr />
+<h2 id="iii-lo-trinh-thuc-hien-4-cot-moc-chinh-milestone-timeline-hoc-ky-fall-2026">III. LỘ TRÌNH THỰC HIỆN &amp; 4 CỘT MỐC CHÍNH (MILESTONE TIMELINE HỌC KỲ FALL 2026)</h2>
+<p>Quy trình bảo vệ đồ án tốt nghiệp Khóa luận IAP491 trong học kỳ mới (Fall 2026: 15 Tuần từ 07/09 đến 20/12/2026) được chuẩn hóa thành <strong>4 Cột Mốc Quyết Định</strong>:</p>
+<blockquote>
+<p>[!IMPORTANT]
+<strong>ĐỘC LẬP LỊCH TRÌNH SO VỚI TÀI LIỆU LƯU TRỮ (FALL 2026 TIMELINE INDEPENDENCE)</strong>:
+Lộ trình 4 Cột mốc và kế hoạch 15 tuần dưới đây được thiết lập riêng cho học kỳ <strong>Fall 2026 (07/09/2026 – 20/12/2026)</strong> theo tiến độ chính thức được thống nhất với Giảng viên Hướng dẫn (<strong>Trần Văn Ninh</strong>). Toàn bộ nhóm và AI Agents tuyệt đối không đối chiếu hay lấy lại các mốc thời gian từ các học kỳ trước lưu trong tài liệu tham khảo cũ.</p>
+</blockquote>
+<ol>
+<li>🎯 <strong>CỘT MỐC 1: REVIEW 1 (với GVHD — Tuần 3-4 / 28/09 – 04/10/2026)</strong>:</li>
+<li><strong>Nội dung</strong>: Bối cảnh, Lỗ hổng Von Neumann NLP, Phát biểu bài toán, 3 RQ cốt lõi, Threat Model NIST AI 100-2e2025, Khảo sát y văn quốc tế và Đối sánh các trường phái Guardrails SOTA.</li>
+<li><strong>Hồ sơ nghiệm thu</strong>: <strong>Report No.1 (Chapter 1: Introduction)</strong> &amp; <strong>Report No.2 (Chapter 2: Literature Review)</strong> + Slide PPT Review 1.</li>
+<li><strong>Quy tắc bất biến</strong>: 100% Nghiên cứu lý thuyết &amp; y văn (Zero Code / Không tạo mô hình trong Review 1).</li>
+<li>
+<p><strong>Trọng số</strong>: Chiếm <strong>35% Process Mark</strong> (17.5% tổng điểm đồ án).</p>
+</li>
+<li>
+<p>🎯 <strong>CỘT MỐC 2: REVIEW 2 (với GVHD — Tuần 8 / 26/10 – 01/11/2026)</strong>:</p>
+</li>
+<li><strong>Nội dung</strong>: Phương pháp luận nghiên cứu, Thu thập và khử trùng lặp Dataset, Group-Aware Splitting, Trích xuất đặc trưng TF-IDF (Word/Char n-grams) và Huấn luyện mô hình Classical ML Baseline.</li>
+<li><strong>Hồ sơ nghiệm thu</strong>: <strong>Report No.3 (Chapter 3: Methodology)</strong> + Mã nguồn Baseline ML &amp; Báo cáo tiến độ cập nhật.</li>
+<li>
+<p><strong>Trọng số</strong>: Chiếm <strong>20% Process Mark</strong> (10.0% tổng điểm đồ án).</p>
+</li>
+<li>
+<p>🏛️ <strong>CỘT MỐC 3: BÁO CÁO HỘI ĐỒNG 1 / HỘI ĐỒNG GIỮA KỲ (Tuần 13 / 30/11 – 06/12/2026)</strong>:</p>
+</li>
+<li><strong>Nội dung</strong>: Kết quả thực nghiệm Transformer DeBERTa-v3, Lượng hóa động Post-Training Quantization (ONNX INT8), Đo đạc thực nghiệm độ bền (Robustness on Leetspeak/Base64/Spacing) và Demo Prototype API Middleware + Dashboard Streamlit.</li>
+<li><strong>Hồ sơ nghiệm thu</strong>: <strong>Report No.4 (Chapter 4: Experimental and Results)</strong> + Hệ thống Prototype Demo hoạt động trực tiếp.</li>
+<li>
+<p><strong>Trọng số</strong>: Chiếm <strong>25% Process Mark</strong> (12.5% tổng điểm đồ án).</p>
+</li>
+<li>
+<p>🎓 <strong>CỘT MỐC 4: BÁO CÁO HỘI ĐỒNG FINAL / BẢO VỆ TỐT NGHIỆP (Tuần 15 / 14/12 – 20/12/2026)</strong>:</p>
+</li>
+<li><strong>Nội dung</strong>: Hoàn thiện toàn văn Luận văn 6 Chương, Thảo luận ý nghĩa an ninh &amp; giới hạn (Chapter 5), Kết luận &amp; Hướng phát triển tương lai (Chapter 6), Kiểm tra đạo văn Turnitin (&lt; 20%) và Thuyết trình bảo vệ tốt nghiệp chính thức trước Hội đồng FPT.</li>
+<li><strong>Hồ sơ nghiệm thu</strong>: <strong>Report No.5 (Discussion)</strong> + <strong>Report No.6 (Conclusion)</strong> + <strong>Toàn văn Luận văn Final Thesis PDF</strong> + Slide PPT Bảo vệ Tốt nghiệp.</li>
+<li><strong>Trọng số</strong>: Chiếm <strong>20% Process Mark còn lại + 50% Presentation Mark</strong> (60.0% tổng điểm đồ án).</li>
+</ol>
+<pre class="mermaid"><code>flowchart TD
+    S0["29/08 - 06/09: SPRINT TIỀN ĐỀ&lt;br/&gt;Họp GVHD, Lọc Papers, Setup Workspace"] --&gt; S1["Tuần 1 - 2: Khảo sát y văn, Threat Model, Chapter 1 &amp; 2"]
+    S1 --&gt; S2["Tuần 3 - 4: CỘT MỐC 1 - REVIEW 1 (GVHD)&lt;br/&gt;Report No.1 &amp; Report No.2"]
+    S2 --&gt; S3["Tuần 5 - 7: Data Engineering, Group-Aware Split, Baseline ML &amp; Chapter 3"]
+    S3 --&gt; S4["Tuần 8: CỘT MỐC 2 - REVIEW 2 (GVHD)&lt;br/&gt;Report No.3"]
+    S4 --&gt; S5["Tuần 9 - 12: Fine-tuning DeBERTa-v3, ONNX INT8, Test Robustness, API &amp; Dashboard"]
+    S5 --&gt; S6["Tuần 13: CỘT MỐC 3 - BÁO CÁO HỘI ĐỒNG 1&lt;br/&gt;Report No.4"]
+    S6 --&gt; S7["Tuần 14: Hoàn thiện Luận văn 6 Chương, Quét Turnitin (&amp;lt; 20%)"]
+    S7 --&gt; S8["Tuần 15: CỘT MỐC 4 - BẢO VỆ TỐT NGHIỆP FINAL&lt;br/&gt;Report No.5, No.6 &amp; BẢO VỆ CHÍNH THỨC"]</code></pre>
+<h3 id="bang-chi-tiet-tien-trinh-15-tuan-hang-muc-ban-giao">Bảng Chi Tiết Tiến Trình 15 Tuần &amp; Hạng Mục Bàn Giao:</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Giai Đoạn &amp; Tuần</th>
+<th style="text-align: center;">Thời Gian Cụ Thể</th>
+<th style="text-align: left;">Cột Mốc / Sự Kiện</th>
+<th style="text-align: left;">Sản Phẩm Bàn Giao Cụ Thể</th>
+<th style="text-align: center;">Trọng Số Điểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Sprint Tiền Đề</strong></td>
+<td style="text-align: center;">29/08 – 06/09/2026</td>
+<td style="text-align: left;">Khởi động &amp; Họp GVHD</td>
+<td style="text-align: left;">Biên bản Meeting 1, Meeting 2, Bản đăng ký <strong><code>CAPSTONE PROJECT REGISTER.md</code></strong></td>
+<td style="text-align: center;">Duyệt đề tài</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tuần 1 – Tuần 4</strong></td>
+<td style="text-align: center;">07/09 – 04/10/2026</td>
+<td style="text-align: left;"><strong>🎯 CỘT MỐC 1: REVIEW 1</strong> <em>(với GVHD)</em></td>
+<td style="text-align: left;"><strong>Report No.1</strong> (Intro - 10%) + <strong>Report No.2</strong> (Lit Review - 25%) + PPT Review 1</td>
+<td style="text-align: center;"><strong>35% Process</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tuần 5 – Tuần 8</strong></td>
+<td style="text-align: center;">05/10 – 01/11/2026</td>
+<td style="text-align: left;"><strong>🎯 CỘT MỐC 2: REVIEW 2</strong> <em>(với GVHD)</em></td>
+<td style="text-align: left;"><strong>Report No.3</strong> (Methodology - 20%) + Baseline ML Code</td>
+<td style="text-align: center;"><strong>20% Process</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tuần 9 – Tuần 13</strong></td>
+<td style="text-align: center;">02/11 – 06/12/2026</td>
+<td style="text-align: left;"><strong>🏛️ CỘT MỐC 3: HỘI ĐỒNG GIỮA KỲ</strong></td>
+<td style="text-align: left;"><strong>Report No.4</strong> (Experimental - 25%) + Demo Prototype (API/UI)</td>
+<td style="text-align: center;"><strong>25% Process</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tuần 14</strong></td>
+<td style="text-align: center;">07/12 – 13/12/2026</td>
+<td style="text-align: left;">Tổng duyệt Luận văn Final</td>
+<td style="text-align: left;"><strong>Report No.5</strong> (Discussion - 15%) + <strong>Report No.6</strong> (Conclusion - 5%) + Turnitin &lt; 20%</td>
+<td style="text-align: center;"><strong>20% Process</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tuần 15</strong></td>
+<td style="text-align: center;">14/12 – 20/12/2026</td>
+<td style="text-align: left;"><strong>🎓 CỘT MỐC 4: BẢO VỆ TỐT NGHIỆP</strong></td>
+<td style="text-align: left;">Toàn văn Final Thesis PDF + Thuyết trình bảo vệ trước Hội đồng chấm FPT</td>
+<td style="text-align: center;"><strong>50% Presentation</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="iv-cau-truc-chuan-toan-van-luan-van-hoc-thuat-6-chuong">IV. CẤU TRÚC CHUẨN TOÀN VĂN LUẬN VĂN HỌC THUẬT (6 CHƯƠNG)</h2>
+<p>Mỗi cuốn Luận văn Khóa luận Tốt nghiệp IAP491 tại Đại học FPT bắt buộc tuân thủ chặt chẽ cấu trúc chuẩn sau:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>TRANG BÌA NGOÀI &amp; TRANG TIÊU ĐỀ (Title Page - Ministry of Education and Training, FPT University)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>BẢN CAM ĐOAN TÁC QUYỀN (Declaration of Authorship)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>LỜI CẢM ƠN (Acknowledgement - Tùy chọn)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>TÓM TẮT LUẬN VĂN (Abstract - 200 đến 300 từ: Background, Methods, Results, Conclusions)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>DANH MỤC TỪ KHÓA (Keywords: 3 - 10 từ khóa học thuật)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>MỤC LỤC (Table of Contents - Đánh số trang tự động)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>DANH MỤC HÌNH ẢNH (List of Figures)
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>DANH MỤC BẢNG BIỂU (List of Tables)
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>DANH MỤC VIẾT TẮT (List of Abbreviations - Acronym &amp; Full Meaning)
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>CHAPTER 1: INTRODUCTION
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  1.1. Background (Bối cảnh GenAI, Prompting và sự bùng nổ của các ứng dụng LLM)
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  1.2. Problem Statement (Phát biểu bài toán: Lỗ hổng Von Neumann trong NLP, Threat Model)
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>  1.3. Research Objectives (Hệ thống 3 Câu hỏi Nghiên cứu RQ1–RQ3 chuẩn IEEE)
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  1.4. Significance of the Study (Ý nghĩa khoa học, tính cấp thiết và giá trị thực tiễn)
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  1.5. Scope and Limitations (Phạm vi đề tài: In-Scope vs. Out-of-Scope)
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  1.6. Thesis Structure (Bố cục tổng quan các chương của cuốn Luận văn)
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>CHAPTER 2: LITERATURE REVIEW
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>  2.1. Review of Previous Studies (Khảo sát toàn diện các nghiên cứu Prompt Injection, Jailbreak &amp; Guardrail SOTA)
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>  2.2. Summary of the Literature Review (Bảng tổng hợp đối chuẩn các trường phái tiếp cận trong y văn)
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>  2.3. Contribution of Research (3 Research Gaps &amp; Các đóng góp mới của đề tài PI-Guard)
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>CHAPTER 3: METHODOLOGY
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>  3.1. Research Design (Thiết kế nghiên cứu tổng thể: Offline Training Pipeline vs Online Guardrail Inference)
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>  3.2. Data Collection Methods (Thu thập, làm sạch, khử trùng lặp và gán nhãn dataset công khai)
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>  3.3. Sampling &amp; Data Analysis Techniques (Group-Aware Splitting, Trích xuất TF-IDF &amp; Kiến trúc DeBERTa-v3)
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>  3.4. Limitations of the Methodology (Các giới hạn về độ trễ, tài nguyên tính toán và ranh giới phương pháp)
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>CHAPTER 4: EXPERIMENTAL AND RESULTS
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>  4.1. Introduction &amp; Setup (Môi trường thực nghiệm, Siêu tham số, Cấu hình phần cứng)
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>  4.2. Presentation of Data (Phân bố lớp dữ liệu, phân tích đặc trưng các mẫu tấn công)
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>  4.3. Analysis of Results (Kết quả phân loại: Baseline ML vs DeBERTa-v3 vs SOTA ProtectAI)
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>  4.4. Interpretation of Results (Ma trận nhầm lẫn Confusion Matrix, Đường cong ROC-AUC, FPR)
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>  4.5. Comparison with Literature (So sánh đối chuẩn với Llama Guard 3, NeMo Guardrails, v.v.)
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>  4.6. Implications of the Results (Đánh giá độ bền Robustness trước kỹ thuật lẩn tránh Leetspeak/Base64)
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>CHAPTER 5: DISCUSSION
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>  5.1. Restate the Research Problem or Objectives (Khẳng định lại bài toán và mục tiêu ban đầu)
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>  5.2. Summarize Key Findings (Tổng kết các phát hiện định lượng: F1 &gt; 0.98, FPR &lt; 1.1%, Latency &lt; 15ms)
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>  5.3. Security Implications &amp; Trade-offs (Phân tích đánh đổi giữa Độ an toàn và Trải nghiệm người dùng)
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>  5.4. Practical Limitations &amp; Challenges (Hạn chế thực tế trong môi trường sản xuất thực tế)
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>CHAPTER 6: CONCLUSION AND FUTURE WORK
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>  6.1. Conclusion (Tổng kết toàn diện các kết quả và đóng góp của đồ án)
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>  6.2. Future Work (Hướng phát triển mở rộng: Đa ngôn ngữ tiếng Việt, Multimodal Injection, Active Learning)
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>TÀI LIỆU THAM KHẢO (References - Định dạng chuẩn IEEE, đánh số theo thứ tự xuất hiện [1], [2]...)
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>PHỤ LỤC (Appendices - Mẫu prompt đối kháng, tài liệu API Endpoints, Code snippets minh họa)
+</span></code></pre></div>
+<hr />
+<h2 id="v-quy-chuan-inh-dang-trinh-bay-hoc-thuat-formatting-standards">V. QUY CHUẨN ĐỊNH DẠNG &amp; TRÌNH BÀY HỌC THUẬT (FORMATTING STANDARDS)</h2>
+<h3 id="1-yeu-cau-oi-voi-phan-tom-tat-abstract">1. Yêu Cầu Đối Với Phần Tóm Tắt (Abstract)</h3>
+<ul>
+<li><strong>Độ dài</strong>: Bắt buộc trong khoảng <strong>200 đến 300 từ</strong>.</li>
+<li><strong>Tính chất</strong>: Phải là một văn bản độc lập hoàn chỉnh (<strong>stand-alone text</strong>): không viết tắt chưa giải thích, không dẫn nguồn URL, không dùng citation tham chiếu <code>[N]</code>, không dùng khái niệm chưa định nghĩa.</li>
+<li><strong>Cấu trúc 4 phần chuẩn mực (Structured Abstract without headings)</strong>:</li>
+<li><em>(1) Background</em>: Đặt bài toán trong bối cảnh rộng của ngành an toàn thông tin và nêu rõ mục đích nghiên cứu.</li>
+<li><em>(2) Methods</em>: Mô tả ngắn gọn phương pháp nghiên cứu, thuật toán và mô hình đã áp dụng.</li>
+<li><em>(3) Results</em>: Tóm tắt các kết quả thực nghiệm định lượng nổi bật nhất.</li>
+<li><em>(4) Conclusions</em>: Nêu các kết luận then chốt và ý nghĩa ứng dụng thực tiễn của đề tài.</li>
+<li><strong>Từ khóa (Keywords)</strong>: Cung cấp từ <strong>3 đến 10 từ khóa</strong> học thuật chuẩn quốc tế.</li>
+</ul>
+<h3 id="2-yeu-cau-ve-danh-muc-tai-lieu-tham-khao-references">2. Yêu Cầu Về Danh Mục Tài Liệu Tham Khảo (References)</h3>
+<ul>
+<li><strong>Chuẩn trích dẫn</strong>: Sử dụng định dạng chuẩn <strong>IEEE Style</strong>.</li>
+<li><strong>Đánh số</strong>: Tài liệu tham khảo được đánh số theo đúng thứ tự xuất hiện trong toàn văn bài viết <code>[1], [2], [3]...</code> (bao gồm cả trong chú thích hình ảnh và bảng biểu).</li>
+<li><strong>Nguyên tắc Invariant</strong>: Toàn bộ tài liệu tham khảo phải có tính kiểm chứng học thuật (Peer-reviewed Papers, Tech Reports từ 2022 trở lại đây) và bắt buộc dẫn kèm bản mở Open-Access PDF (Zero Dead Links).</li>
+</ul>
+<h3 id="3-bang-bieu-hinh-anh-figures-tables">3. Bảng Biểu &amp; Hình Ảnh (Figures &amp; Tables)</h3>
+<ul>
+<li>Mỗi hình ảnh/bảng biểu bắt buộc có số thứ tự, tiêu đề rõ ràng và danh mục tự động ở đầu luận văn:</li>
+<li>Hình ảnh: Ghi chú phía dưới hình (ví dụ: <em>Figure 1. The Multi-Layer Defense Architecture of PI-Guard.</em>).</li>
+<li>Bảng biểu: Tiêu đề phía trên bảng (ví dụ: <em>Table 1. Comparative Matrix of SOTA Guardrail Approaches.</em>).</li>
+</ul>
+<hr />
+<h2 id="vi-phuong-cham-lam-viec-ong-quy-phan-vai-trach-nhiem">VI. PHƯƠNG CHÂM LÀM VIỆC ĐỒNG QUY &amp; PHÂN VAI TRÁCH NHIỆM</h2>
+<p>Nhằm tối ưu hóa năng lực của tất cả thành viên và đảm bảo từng cá nhân tự tin làm chủ toàn bộ nội dung bảo vệ trước Hội đồng, nhóm duy trì phương châm:</p>
+<blockquote>
+<p><strong>AI CŨNG LÀM <span class="arithmatex">\(\rightarrow\)</span> THAM KHẢO NHAU <span class="arithmatex">\(\rightarrow\)</span> CHỐT KẾT QUẢ</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Bước Quy Trình</th>
+<th style="text-align: left;">Mô Tả Thực Hiện</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1. AI CŨNG LÀM</strong><br/><em>(Parallel Hands-on)</em></td>
+<td style="text-align: left;">4 thành viên cùng nghiên cứu toàn trình trong workspace cá nhân</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2. THAM KHẢO NHAU</strong><br/><em>(Cross-Review)</em></td>
+<td style="text-align: left;">Đọc hiểu, đối chiếu code, soi chéo tài liệu và phản biện số liệu</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3. CHỐT KẾT QUẢ</strong><br/><em>(Leader Consensus)</em></td>
+<td style="text-align: left;">Họp hàng tuần, chọn champion artifact và merge vào thư mục chung</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Thành Viên</th>
+<th style="text-align: left;">Không Gian Khám Phá</th>
+<th style="text-align: left;">Trọng Tâm Chuyên Sâu Đóng Góp</th>
+<th style="text-align: left;">Vai Trò Chủ Trì Báo Cáo FPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Nguyễn Văn Trường (Leader)</strong></td>
+<td style="text-align: left;"><code>workspaces/truongnv/</code></td>
+<td style="text-align: left;">Kiến trúc tổng thể, Chuẩn hóa Dữ liệu Group-Aware Split &amp; Điều phối Luận văn</td>
+<td style="text-align: left;">Chủ trì <strong>Report No.1</strong> (Intro) &amp; <strong>Report No.2</strong> (Lit Review)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Nguyễn Quí Đức</strong></td>
+<td style="text-align: left;"><code>workspaces/ducnq/</code></td>
+<td style="text-align: left;">Classical ML Baseline (TF-IDF Word/Char, Logistic, SVC, XGBoost) &amp; Bề mặt tấn công</td>
+<td style="text-align: left;">Phản biện Threat Model &amp; Chủ trì <strong>Report No.3</strong> (Methodology)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Phạm Minh Hoàng Việt</strong></td>
+<td style="text-align: left;"><code>workspaces/vietpmh/</code></td>
+<td style="text-align: left;">Transformer Fine-Tuning (DeBERTa-v3), Lượng hóa INT8 ONNX &amp; Evasion Robustness</td>
+<td style="text-align: left;">Phản biện Deep Learning &amp; Chủ trì <strong>Report No.4</strong> (Experimental)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Đỗ Đoàn Duy Phương</strong></td>
+<td style="text-align: left;"><code>workspaces/phuongddd/</code></td>
+<td style="text-align: left;">FastAPI Guardrail Middleware, Streamlit Dashboard, Kịch bản Demo &amp; Tổng hợp Luận văn</td>
+<td style="text-align: left;">Phản biện Attack Taxonomy &amp; Chủ trì <strong>Report No.5</strong> + <strong>Report No.6</strong></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
