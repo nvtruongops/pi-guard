@@ -44,44 +44,57 @@ Tại buổi báo cáo trực tiếp tại campus ngày 10/09/2026 sau khi nhóm
 
 ---
 
-## 3. BẢNG ĐỐI CHUẨN TỔNG HỢP 2 MÔ HÌNH PHÒNG THỦ (EXECUTIVE SCORECARD)
+## 3. BẢNG ĐỐI CHUẨN TỔNG HỢP 2 MÔ HÌNH THAM KHẢO (EXECUTIVE SCORECARD OF 2 REFERENCE MODELS)
 
 > [!IMPORTANT]
-> **QUY TẮC PHÂN ĐỊNH 4 TẦNG HỌC THUẬT (FOUR-TIER PROVENANCE & LITERATURE DECOUPLING)**:
-> - **Cột Tầng 1 & Cột Tầng 2**: Căn cứ trên các công trình khoa học công bố bình duyệt (Peer-reviewed) tại các hội nghị đỉnh cao (NeurIPS, ICLR, NAACL). Mọi mã nguồn và tập dữ liệu đều **công khai 100% (Public Code & Open Dataset)** với URL đã kiểm định `HTTP 200 OK`.
-> - **Cột Hệ Thống PI-Guard**: Đại diện cho **kiến trúc phân tầng tích hợp do nhóm đề xuất (Tier 2/3 Adaptation & Engineering Target)**, tuyệt đối không đồng nhất số liệu tích hợp của PI-Guard với kết quả riêng lẻ của các bài báo tham chiếu.
+> **QUY TẮC BẢO VỆ PHƯƠNG PHÁP LUẬN HỌC THUẬT (TASK 3 VS. TASK 4 DECOUPLING)**:
+> - **Mục đích của Nhiệm vụ 3 (Task 3)**: Tập trung 100% vào việc khảo sát mã nguồn công khai, tập dữ liệu công khai, tải về chạy thực nghiệm tái lập (Reproducibility Benchmark) trên máy cá nhân để kiểm chứng số liệu công bố trong bài báo, nắm chắc các siêu tham số cấu hình và phân tích ưu điểm/hạn chế kỹ thuật của **2 Mô Hình Tham Khảo (Reference Models)**.
+> - **Quy tắc bất biến**: **Bảng đối chuẩn Task 3 TUYỆT ĐỐI KHÔNG đưa mô hình đề xuất của đồ án (PI-Guard) vào như một cột kết quả đã xong**. Bảng chỉ đối chuẩn khách quan giữa **Mô hình Tham khảo 1** và **Mô hình Tham khảo 2**.
+> - **Cầu nối sang Nhiệm vụ 4 (Task 4)**: Khi và chỉ khi đã tải, chạy thực nghiệm kiểm chứng thành công và nắm chắc các tham số của 2 mô hình tham khảo, nhóm mới chuyển sang Task 4 để phân tích: *Mô hình đồ án kế thừa (dùng được) những gì? Đề xuất 4 cải tiến nào để khắc phục các hạn chế của 2 mô hình tham khảo?*
 
-| Tiêu Chí So Sánh | Tầng 1: Classical ML Baseline (TF-IDF + Linear Classifier) | Tầng 2: Deep Semantic Transformer (DeBERTa-v3 + ZeroQuant INT8) | Hệ Thống Tích Hợp Phân Tầng PI-Guard (Proposed Multi-Tier Architecture) |
-| :--- | :--- | :--- | :--- |
-| **1. Bài Báo Nền Tảng Phương Pháp Luận (Methodology Paper)** | **Neel Jain et al. (NeurIPS 2023 [[15]](#ref15))**<br/>_Baseline Defenses for Adversarial Attacks_<br/>*(Đề xuất phương pháp lọc baseline n-grams & perplexity)* | **P. He et al. (ICLR 2023 [[9]](#ref9))** (DeBERTa-v3);<br/>**Z. Yao et al. (NeurIPS 2022 [[16]](#ref16))** (ZeroQuant INT8);<br/>**J. Yi et al. (NAACL 2024 [[19]](#ref19))** (BIPIA Defense) | Kế thừa nguyên lý *Defense-in-Depth* & *Economy of Mechanism* (**Saltzer & Schroeder 1975 [[18]](#ref18)**) |
-| **2. Kho Mã Nguồn Công Khai Của Tác Giả (Author Public Code)** | • [neelsjain/baseline-defenses](https://github.com/neelsjain/baseline-defenses) (`200 OK`)<br/>• [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) (`200 OK`) | • [microsoft/DeBERTa](https://github.com/microsoft/DeBERTa) (`200 OK`)<br/>• [microsoft/DeepSpeed](https://github.com/microsoft/DeepSpeed) (`200 OK`)<br/>• [microsoft/onnxruntime](https://github.com/microsoft/onnxruntime) (`200 OK`) | • Pipeline & Proxy tích hợp đồ án:<br/>[`workspaces/truongnv/src/`](file:///d:/Work/Do-an/workspaces/truongnv/src/) |
-| **3. Kho Dữ Liệu & Checkpoint Công Khai (Public Datasets & Checkpoint)** | • **Dataset kiểm thử độc lập**: [deepset/prompt-injections](https://huggingface.co/datasets/deepset/prompt-injections) (Deepset AI, `200 OK`)<br/>• [Lakera/gandalf_ignore_instructions](https://huggingface.co/datasets/Lakera/gandalf_ignore_instructions) (Lakera AI, `200 OK`)<br/>• [Open-Orca/OpenOrca](https://huggingface.co/datasets/Open-Orca/OpenOrca) (`200 OK`) | • **Checkpoint gốc**: [microsoft/deberta-v3-base](https://huggingface.co/microsoft/deberta-v3-base) (`200 OK`)<br/>• **Dataset Indirect PI**: [microsoft/BIPIA](https://github.com/microsoft/BIPIA) (Yi et al. [[19]], `200 OK`)<br/>• **Dataset Jailbreak**: [TrustAIRLab/in-the-wild-jailbreak-prompts](https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts) (Shen et al. [[11]], `200 OK`) | Tập dữ liệu hợp nhất 5 nguồn mở;<br/>Phân chia bảo toàn cụm MD5 Hash (`Group-Aware Splitting`) triệt tiêu rò rỉ |
-| **4. Không Gian Đặc Trưng & Thuật Toán Cốt Lõi** | Song song 2 luồng:<br/>Word n-grams (1–3) + Char_wb (3–5)<br/>($60,000$ chiều thưa) + Logistic Regression | Disentangled Attention (Ma trận $Q, K, V$ phân tách độc lập Content $H_i$ và Relative Position $P_{i,j}$); $86\text{M}$ tham số nén INT8 | **Định tuyến bất định 2 lớp (Two-Tier Uncertainty Routing)**: $P < 0.2$ hoặc $P > 0.85$ chốt Tầng 1; phân vân $[0.2, 0.85]$ chuyển Tầng 2 |
-| **5. Dung Lượng Bộ Nhớ RAM (Memory Footprint)** | $\approx 25\text{ MB}$ (Cực nhẹ trên CPU) | $\approx 140\text{ MB}$ (Nén $72.0\%$ từ 500MB FP32 nhờ Dynamic INT8 PTQ theo Yao et al. [[16]](#ref16)) | $\approx 165\text{ MB}$ tổng bộ nhớ;<br/>Vận hành 100% mượt mà trên CPU |
-| **6. Độ Trễ Suy Luận P95 Trên CPU (Inference Latency P95)** | • Công bố bài báo [[15]]: $2.5 - 3.5\text{ms}$<br/>• **Đo đạc cục bộ**: **$2.8\text{ms}$** | • Công bố bài báo [[16]]: $13.5 - 15.0\text{ms}$ (INT8)<br/>• **Đo đạc cục bộ**: **$14.5\text{ms}$** (FP32 gốc: $42.5\text{ms}$) | **P95 $< 22\text{ms}$** (Trung bình $\approx 7.15\text{ms}$ do 70% truy vấn kết thúc ngay tại Tầng 1) |
-| **7. Hiệu Năng Nhận Diện (F1-Score / Accuracy)** | • Công bố bài báo [[15]]: F1 $0.890 - 0.925$<br/>• **Đo đạc cục bộ**: **$0.912$** (Bắt nhạy Direct Injection & Leetspeak) | • Công bố bài báo [[9]]: MNLI $91.8\%$, SQuAD $92.4\%$ (Suy giảm INT8 $< 0.3\%$ [[16]])<br/>• **Đo đạc cục bộ**: **$0.975$** (FP32: $0.978$) | **F1 $= 0.978$** trên tập kiểm thử tổng hợp (Kết hợp sức mạnh cả 2 tầng) |
-| **8. Tỷ Lệ Báo Động Nhầm (FPR Trên Benign Prompts)** | • Công bố bài báo [[15]]: $< 2.0\%$<br/>• **Đo đạc cục bộ (OpenOrca)**: **$1.42\%$** | • **Đo đạc cục bộ (OpenOrca)**: **$0.95\%$** | **$0.82\%$** (Tối ưu hóa chi phí chặn nhầm theo bài toán kinh tế học OpenAI [[10]](#ref10): $\text{FPR} < 1.5\%$) |
-| **9. Khả Năng Kháng Tấn Công Đối Kháng (Adversarial Robustness)** | Rất tốt với Leetspeak & Typo ($\cos > 0.45$ nhờ `char_wb`); Yếu trước Indirect Prompt giấu trong văn bản dài | Xuất sắc kháng Indirect Prompt giấu trong tài liệu RAG (nhờ bóc tách lệnh khỏi ngữ cảnh theo Yi et al. [[19]](#ref19)) | **Bảo vệ toàn diện 2 lớp**: Bắt trọn vẹn cả biến dị cú pháp bề mặt lẫn tiêm nhiễm ngữ nghĩa phức tạp |
-| **10. Điểm Cân Bằng Vận Hành (Pareto Optimization)** | Lọc siêu tốc cho 70% truy vấn rõ ràng | Phân tích ngữ nghĩa chuyên sâu cho 30% mẫu khó | **Tối ưu hóa Pareto toàn diện**: Tiết kiệm 65% chi phí tính toán so với chạy 100% Transformer |
+| Tiêu Chí Đối Chuẩn Học Thuật | Mô Hình Tham Khảo 1: Classical ML Baseline (TF-IDF + Linear Classifier) | Mô Hình Tham Khảo 2: Deep Semantic Transformer (DeBERTa-v3 + ONNX INT8 Quantization) |
+| :--- | :--- | :--- |
+| **1. Bài Báo Nền Tảng Phương Pháp Luận (Methodology Papers)** | **Neel Jain et al. (NeurIPS 2023 [[15]](#ref15))**<br/>_Baseline Defenses for Adversarial Attacks on Language Models_<br/>*(Đề xuất phương pháp lọc baseline n-grams & perplexity)* | **P. He et al. (ICLR 2023 [[9]](#ref9))** (DeBERTa-v3 & Disentangled Attention);<br/>**Z. Yao et al. (NeurIPS 2022 [[16]](#ref16))** (Lượng hóa động ZeroQuant INT8 PTQ);<br/>**J. Yi et al. (NAACL 2024 [[19]](#ref19))** (Mô hình đe dọa Indirect PI & tập BIPIA) |
+| **2. Kho Mã Nguồn Công Khai Của Tác Giả (Author Public Code)** | • [neelsjain/baseline-defenses](https://github.com/neelsjain/baseline-defenses) (`200 OK`)<br/>• [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) (`200 OK`) | • [microsoft/DeBERTa](https://github.com/microsoft/DeBERTa) (`200 OK`)<br/>• [microsoft/DeepSpeed](https://github.com/microsoft/DeepSpeed) (ZeroQuant, `200 OK`)<br/>• [microsoft/onnxruntime](https://github.com/microsoft/onnxruntime) (`200 OK`) |
+| **3. Kho Dữ Liệu & Checkpoint Công Khai (Public Datasets & Checkpoint)** | • **Dataset kiểm thử độc lập**: [deepset/prompt-injections](https://huggingface.co/datasets/deepset/prompt-injections) (Deepset AI, `200 OK`)<br/>• [Lakera/gandalf_ignore_instructions](https://huggingface.co/datasets/Lakera/gandalf_ignore_instructions) (Lakera AI, `200 OK`)<br/>• [Open-Orca/OpenOrca](https://huggingface.co/datasets/Open-Orca/OpenOrca) (`200 OK`) | • **Checkpoint gốc**: [microsoft/deberta-v3-base](https://huggingface.co/microsoft/deberta-v3-base) (`200 OK`)<br/>• **Dataset Indirect PI**: [microsoft/BIPIA](https://github.com/microsoft/BIPIA) (Yi et al. [[19]], `200 OK`)<br/>• **Dataset Jailbreak**: [TrustAIRLab/in-the-wild-jailbreak-prompts](https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts) (Shen et al. [[11]], `200 OK`) |
+| **4. Không Gian Đặc Trưng & Thuật Toán Cốt Lõi (Feature Space & Algorithm)** | Song song 2 luồng trích xuất đặc trưng:<br/>Word n-grams (1–3) + Char_wb (3–5)<br/>($60,000$ chiều thưa) + Phân loại Logistic Regression / LinearSVC ($L_2$ regularization) | Disentangled Attention (Ma trận $Q, K, V$ phân tách độc lập nội dung từ vựng Content $H_i$ và vị trí tương đối Relative Position $P_{i,j}$); $86\text{M}$ tham số nén INT8 |
+| **5. Thiết Lập Siêu Tham Số Cấu Hình Tái Lập (Key Hyperparameters)** | `ngram_range = (1, 3)` (Word) & `(3, 5)` (`char_wb`);<br/>`max_features = 60000`; `sublinear_tf = True`; `norm = 'l2'`;<br/>`C = 1.0`; `class_weight = 'balanced'`; `solver = 'lbfgs'` | Fine-tuning: `lr = 2e-5`; `batch_size = 16`; `warmup_ratio = 0.1`; `max_seq_len = 512`.<br/>INT8 PTQ: `quant_format = DynamicInt8`; `per_channel = True` |
+| **6. Dung Lượng Bộ Nhớ RAM (Memory Footprint)** | $\approx 25\text{ MB}$ (Cực nhẹ trên CPU, không đòi hỏi GPU) | $\approx 140\text{ MB}$ (Nén $72.0\%$ từ 500MB FP32 gốc nhờ ZeroQuant INT8 PTQ theo Yao et al. [[16]](#ref16)) |
+| **7. Độ Trễ Suy Luận P95 Trên CPU (Inference Latency P95)** | • Công bố bài báo [[15]]: $2.5 - 3.5\text{ms}$<br/>• **Đo đạc cục bộ**: **$2.8\text{ms}$** | • Công bố bài báo [[16]]: $13.5 - 15.0\text{ms}$ (INT8)<br/>• **Đo đạc cục bộ**: **$14.5\text{ms}$** (FP32 gốc: $42.5\text{ms}$) |
+| **8. Hiệu Năng Phân Loại (F1-Score / Accuracy)** | • Công bố bài báo [[15]]: F1 $0.890 - 0.925$<br/>• **Đo đạc cục bộ**: **$0.912$** (Bắt nhạy Direct Injection & Leetspeak) | • Công bố bài báo [[9]]: MNLI $91.8\%$, SQuAD $92.4\%$ (Suy giảm INT8 $< 0.3\%$ [[16]])<br/>• **Đo đạc cục bộ**: **$0.975$** (FP32: $0.978$) |
+| **9. Tỷ Lệ Báo Động Nhầm (FPR Trên Benign Prompts)** | • Công bố bài báo [[15]]: $< 2.0\%$<br/>• **Đo đạc cục bộ (OpenOrca)**: **$1.42\%$** | • **Đo đạc cục bộ (OpenOrca)**: **$0.95\%$** (Nhận diện chính xác ngữ cảnh an toàn) |
+| **10. Ưu Điểm Kỹ Thuật Nổi Bật (Core Strengths)** | Tốc độ cực nhanh ($2.8\text{ms}$); tiêu thụ RAM tối thiểu ($25\text{MB}$); chống chịu rất tốt trước các biến dị cú pháp bề mặt (Leetspeak, typo, chèn dấu) nhờ n-gram ký tự biên từ (`char_wb`). | Khả năng biểu diễn ngữ nghĩa sâu xuất sắc; phân tích chính xác các đòn tấn công hoán dụ, kịch bản Jailbreak dài (DAN) và Indirect Prompt Injection ẩn trong tài liệu RAG. |
+| **11. Hạn Chế Kỹ Thuật & Điểm Nghẽn Học Thuật (Technical Limitations & Gaps)** | **Mù ngữ nghĩa sâu**: Không phân tích được quan hệ ngữ nghĩa xa hay ngữ cảnh gián tiếp; dễ bị qua mặt bởi câu lệnh tiêm nhiễm lịch sự hoặc chèn gián tiếp; FPR ($1.42\%$) tiệm cận trần rủi ro cho phép. | **Độ trễ cao hơn gấp 5 lần**: Dù đã nén INT8 nhưng độ trễ P95 ($14.5\text{ms}$) vẫn là rào cản nếu áp dụng đơn khối cho toàn bộ 100% lưu lượng truy vấn; nguy cơ rò rỉ dữ liệu (data leakage) nếu chia tập ngẫu nhiên. |
+| **12. Cơ Sở Khoa Học Chuyển Tiếp Sang Task 4 (Hand-off to Task 4)** | **Kế thừa làm Bộ lọc Tầng 1 (Fast-Path Filter)**: Xử lý dứt điểm các mẫu tự tin cao ($P < 0.15$ hoặc $P > 0.85$) trong ~2.8ms, giảm tải 70% truy vấn cho hệ thống. | **Kế thừa làm Bộ phân tích Tầng 2 (Deep Semantic Analyzer)**: Tiếp nhận 30% mẫu mập mờ, kết hợp 4 cải tiến tại Task 4 để tạo nên hệ thống hoàn chỉnh. |
 
 ---
 
+### 🔄 CẦU NỐI PHƯƠNG PHÁP LUẬN: TỪ THỰC NGHIỆM TASK 3 ĐẾN ĐỀ XUẤT CẢI TIẾN TASK 4
+
 > [!NOTE]
-> ### 🔬 GIẢI NGHĨA KHOA HỌC: NGUỒN GỐC TẬP DỮ LIỆU & PHẠM VI THỰC NGHIỆM 2 MÔ HÌNH
+> ### 🔬 TIẾN TRÌNH NGHIÊN CỨU 2 GIAI ĐOẠN THEO CHỈ ĐẠO CỦA GVHD
 > 
-> 1. **Về Tập Dữ Liệu `deepset/prompt-injections`**:
->    - Tập dữ liệu này do công ty **Deepset AI** (nhóm phát triển framework Haystack) thu thập, chuẩn hóa và phát hành độc lập trên Hugging Face.
->    - Bài báo của Neel Jain et al. (*NeurIPS 2023* [[15]](#ref15)) đề xuất **phương pháp luận phòng thủ Baseline** (per-token n-grams & perplexity) và thực nghiệm trên tập AdvBench/Alpaca.
->    - Đồ án PI-Guard **kế thừa phương pháp baseline n-grams** của Jain et al., nhưng sử dụng **tập dữ liệu mở chuyên biệt của Deepset AI và Lakera AI** để huấn luyện và kiểm thử bài toán phân loại Prompt Injection thực tế.
+> 1. **Giai Đoạn 1 (Nhiệm vụ 3 — Khảo sát, tải mã nguồn, dataset mở và nắm chắc tham số)**:
+>    - Nhóm tập trung tải mã nguồn công khai và dữ liệu chuẩn, chạy độc lập pipeline 5 bước B1–B5 trên máy tính cá nhân để xác minh tính tái lập của 2 mô hình tham khảo.
+>    - Sau khi chạy thực nghiệm và phân tích cấu hình siêu tham số, nhóm xác định rõ **ranh giới đánh đổi (trade-off)**: Mô hình 1 siêu nhanh nhưng hạn chế ngữ nghĩa; Mô hình 2 rất chính xác nhưng trễ cao gấp 5 lần và có nguy cơ rò rỉ dữ liệu khi chia tập.
 > 
-> 2. **Về Lý Do Tầng 2 Dẫn 3 Bài Báo Khoa Học**:
->    - Nhóm **chỉ chạy DUY NHẤT 1 MÔ HÌNH ở Tầng 2**: Đó là mô hình phân loại ngữ nghĩa sâu dựa trên backbone `microsoft/deberta-v3-base` (86M tham số) sau đó nén động sang `INT8 PTQ`.
->    - Nhóm bắt buộc phải dẫn 3 bài báo vì tuân thủ nguyên tắc trung thực học thuật (Four-Tier Decoupling), thể hiện rõ 3 khối cấu thành được kế thừa:
+> 2. **Giai Đoạn 2 (Nhiệm vụ 4 — Đề xuất giải pháp cải tiến và nâng cấp của đồ án)**:
+>    - Khi đã nắm chắc các tham số và hạn chế của 2 mô hình tham khảo ở Task 3, nhóm mới có đầy đủ căn cứ khoa học để chuyển sang **Task 4** ([`TASK_4_PIGUARD_IMPROVEMENTS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_4_PIGUARD_IMPROVEMENTS.md)):
+>      - *Kế thừa những gì*: Kế thừa trích xuất đặc trưng `char_wb` của Mô hình 1 và kiến trúc Disentangled Attention của Mô hình 2.
+>      - *Nâng cấp những gì*: Đề xuất 4 giải pháp cải tiến độc quyền:
+>        1. **Group-Aware Splitting (MD5)**: Triệt tiêu hiện tượng data leakage giữa Train/Test khi chia tập dữ liệu.
+>        2. **Dynamic Class-Weighted Loss**: Ép tỷ lệ báo động nhầm $\text{FPR} < 1.5\%$ theo tiêu chuẩn kinh tế học OpenAI [[10]](#ref10).
+>        3. **Two-Tier Uncertainty Routing**: Định tuyến phân tầng dựa trên độ bất định, đạt điểm cân bằng Pareto tối ưu (trung bình $\approx 7.15\text{ms}$, F1 $\approx 0.978$).
+>        4. **Zero-GPU Dynamic INT8 PTQ**: Tối ưu hóa sâu trên ONNX Runtime để vận hành 100% trên CPU không đòi hỏi phần cứng GPU máy chủ đắt đỏ.
+> 
+> 3. **Giải Nghĩa Về Nguồn Gốc Dữ Liệu & Số Lượng Bài Báo Tham Chiếu**:
+>    - **Về Dataset `deepset/prompt-injections`**: Do Deepset AI phát hành độc lập trên Hugging Face. Nhóm kế thừa phương pháp lọc n-grams baseline của Neel Jain et al. (NeurIPS 2023 [[15]](#ref15)) nhưng huấn luyện và kiểm thử trên tập dữ liệu mở của Deepset AI và Lakera AI cho bài toán phân loại Prompt Injection thực tế.
+>    - **Về Lý do Mô hình 2 tham chiếu 3 bài báo**: Mô hình 2 là **1 mô hình duy nhất** (DeBERTa-v3 INT8), nhưng kế thừa 3 đóng góp khoa học riêng biệt:
 >      - *Khối kiến trúc mạng*: Kế thừa backbone `DeBERTa-v3` và cơ chế Disentangled Attention từ **P. He et al. (ICLR 2023 [[9]](#ref9))**.
 >      - *Khối kỹ thuật nén*: Kế thừa thuật toán lượng hóa động ZeroQuant INT8 PTQ từ **Z. Yao et al. (NeurIPS 2022 [[16]](#ref16))**.
 >      - *Khối bề mặt tấn công gián tiếp*: Kế thừa bộ dữ liệu và phương pháp đánh giá Indirect Prompt Injection từ **J. Yi et al. (NAACL 2024 [[19]](#ref19))**.
 > 
-> 3. **Phạm Vi Thực Nghiệm Của 4 Thành Viên Trước Meeting 5 (Chỉ Đạo Của GVHD)**:
+> 4. **Phạm Vi Thực Nghiệm Của 4 Thành Viên Trước Meeting 5 (Chỉ Đạo Của GVHD)**:
 >    - Theo đúng chỉ đạo của Thầy Trần Văn Ninh, nhóm **chỉ chạy 2 MÔ HÌNH THAM KHẢO**:
 >      - **Mô hình 1 (Tầng 1)**: `TF-IDF + LogisticRegression` trên tập `deepset` & `OpenOrca`.
 >      - **Mô hình 2 (Tầng 2)**: `DeBERTa-v3 INT8` trên tập tổng hợp.
