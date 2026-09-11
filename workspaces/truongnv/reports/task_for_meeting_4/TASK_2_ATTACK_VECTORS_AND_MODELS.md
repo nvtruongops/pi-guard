@@ -7,6 +7,14 @@
 
 ---
 
+> [!TIP]
+> ### ⚡ NẮM NHANH TRONG 60 GIÂY (TL;DR CHO HỘI ĐỒNG & THÀNH VIÊN)
+> - **2 Kênh Ingress**: Kênh 1 (Direct Prompt qua Chat UI/API) vs Kênh 2 (Indirect Prompt qua tài liệu PDF, DOCX, Web đưa vào bộ nhớ RAG).
+> - **Mô hình Tầng 1 (Baseline)**: Trích xuất song song Word TF-IDF (1–3) + Char_wb TF-IDF (3–5) + Logistic Regression; cực nhẹ (RAM 25MB, P95 ~ 2.8ms, bắt tốt leetspeak).
+> - **Mô hình Tầng 2 (Deep Semantic)**: `DeBERTa-v3` bóc tách Content và Vị trí tương đối (Disentangled Attention) kết hợp nén Dynamic INT8 (RAM 140MB, P95 ~ 14.5ms, bắt trọn vẹn Indirect Prompt giấu ở mọi vị trí).
+
+---
+
 ## 📑 MỤC LỤC
 
 1. [BỐI CẢNH & YÊU CẦU CHỈ ĐẠO CỦA GVHD](#1-bối-cảnh--yêu-cầu-chỉ-đạo-của-gvhd)

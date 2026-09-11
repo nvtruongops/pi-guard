@@ -7,6 +7,14 @@
 
 ---
 
+> [!TIP]
+> ### ⚡ NẮM NHANH TRONG 60 GIÂY (TL;DR CHO HỘI ĐỒNG & THÀNH VIÊN)
+> - **Mã nguồn & Dữ liệu mở**: Mọi mô hình đều có repo công khai (`neelsjain/baseline-defenses`, `microsoft/DeBERTa`, `scikit-learn`) và dataset chuẩn trên Hugging Face (`deepset/prompt-injections`, `Lakera/gandalf`, `Open-Orca`).
+> - **Quy trình thực nghiệm B1–B5**: Tải data -> Tiền xử lý Group-Aware -> Train Baseline TF-IDF -> Nạp DeBERTa & Lượng hóa INT8 -> Xuất file JSON đối chiếu chéo.
+> - **Chi phí & Thời gian chạy**: Toàn bộ quy trình chạy mượt mà trên laptop thông thường (chỉ dùng CPU, RAM < 4GB), hoàn thành trong khoảng **15–20 phút**.
+
+---
+
 ## 📑 MỤC LỤC
 
 1. [CHỈ ĐẠO CỦA GVHD VỀ TÍNH TÁI LẬP HỌC THUẬT](#1-chỉ-đạo-của-gvhd-về-tính-tái-lập-học-thuật)

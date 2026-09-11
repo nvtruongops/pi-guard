@@ -7,6 +7,14 @@
 
 ---
 
+> [!TIP]
+> ### ⚡ NẮM NHANH TRONG 60 GIÂY (TL;DR CHO HỘI ĐỒNG & THÀNH VIÊN)
+> - **Khác biệt cốt lõi**: Prompt Injection đánh vào **Tầng Ứng Dụng** ($X = S \mathbin{\Vert} U$); Jailbreak đánh vào **Tầng Trọng Số Mô Hình** (vượt qua ranh giới từ chối an toàn).
+> - **Nguyên lý then chốt**: Một mô hình LLM đã căn chỉnh an toàn 100% (RLHF/DPO) **vẫn bị dính Prompt Injection**, vì mô hình xem chỉ thị mới là hợp lệ và tận tâm tuân theo.
+> - **Vị trí rào chắn**: Prompt Injection bắt buộc phải phòng thủ bằng **External Input Guardrail Proxy** tại Ingress; Jailbreak phòng thủ bằng Safety Fine-Tuning + Output Filter.
+
+---
+
 ## 📑 MỤC LỤC
 
 1. [TỔNG QUAN NHIỆM VỤ & Ý KIẾN CHỈ ĐẠO CỦA GVHD](#1-tổng-quan-nhiệm-vụ--ý-kiến-chỉ-đạo-của-gvhd)

@@ -7,6 +7,17 @@
 
 ---
 
+> [!TIP]
+> ### ⚡ NẮM NHANH TRONG 60 GIÂY (TL;DR CHO HỘI ĐỒNG & THÀNH VIÊN)
+> - **4 Cải tiến kỹ thuật mới**:
+>   1. *Group-Aware Splitting (MD5 Semantic Hash)*: Ngăn ngừa rò rỉ dữ liệu qua các biến thể prompt paraphrase giữa Train và Test.
+>   2. *Dynamic Class-Weighted Loss*: Phạt nặng lỗi False Positive ($W_{\text{benign}} > W_{\text{attack}}$) để ép $\text{FPR} < 1.5\%$.
+>   3. *Two-Tier Uncertainty Routing*: Baseline xử lý nhanh 70% mẫu tự tin ($P < 0.2$ hoặc $P > 0.85$), chỉ chuyển 30% mẫu phân vân sang DeBERTa.
+>   4. *Zero-GPU Dynamic INT8 PTQ*: Tối ưu hóa ONNX Runtime nén mô hình xuống 140MB, P95 < 22ms trên CPU.
+> - **Ánh xạ Luận văn**: Tạo dựng đóng góp học thuật cốt lõi bảo vệ **Chapter 3** (Proposed Methodology) và **Chapter 4** (Results).
+
+---
+
 ## 📑 MỤC LỤC
 
 1. [YÊU CẦU CỦA GVHD VỀ TÍNH ĐÓNG GÓP HỌC THUẬT](#1-yêu-cầu-của-gvhd-về-tính-đóng-góp-học-thuật)
