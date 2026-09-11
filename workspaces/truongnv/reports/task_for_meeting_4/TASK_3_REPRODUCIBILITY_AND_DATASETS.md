@@ -1,6 +1,6 @@
 # **BÁO CÁO KỸ THUẬT NHIỆM VỤ 3 (TASK 3)**
 ## ĐỀ TÀI: A MACHINE-LEARNING GUARDRAIL FOR DETECTING PROMPT INJECTION AND JAILBREAK ATTACKS ON LLM APPLICATIONS (PI-GUARD)
-### Chuyên đề: Khảo Sát Tính Tái Lập Học Thuật — Danh Mục Mã Nguồn, Trọng Số Checkpoint, Tập Dữ Liệu Công Khai (Public Datasets & Repos) Và Quy Trình Thực Nghiệm Độc Lập 5 Bước (B1–B5)
+### Chuyên đề: Khảo Sát Tính Tái Lập Học Thuật — Danh Mục Mã Nguồn, Trọng Số Checkpoint, Tập Dữ Liệu Công Khai (Public Datasets & Repos) Và Quy Trình Thực Nghiệm Tái Lập Chuẩn Hóa
 **Tác giả**: Nguyễn Văn Trường (Leader — MSSV: `SE182034`) | **Workspace**: `workspaces/truongnv/`  
 **Căn cứ đề tài**: Bản đăng ký đề tài [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) & Biên bản [`Final-Report/Meeting/Meeting 4_10_09_26.md`](file:///d:/Work/Do-an/Final-Report/Meeting/Meeting%204_10_09_26.md)  
 **Tài liệu điều phối trung tâm**: [`workspaces/truongnv/reports/task_for_meeting_4/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/README.md)
@@ -11,8 +11,8 @@
 > ### ⚡ NẮM NHANH TRONG 60 GIÂY (TL;DR CHO HỘI ĐỒNG & THÀNH VIÊN)
 > - **Mã nguồn & Dữ liệu mở 100% từ bài báo tham chiếu**: Mọi mô hình và tập dữ liệu đều có nguồn gốc công khai, gắn liền với các công trình khoa học bình duyệt (AdvBench từ Zou et al. [[13]](#ref13) & Jain et al. [[15]](#ref15), In-the-Wild DAN từ Shen et al. [[11]](#ref11), BIPIA từ Yi et al. [[19]](#ref19), PromptInject từ Perez & Ribeiro [[3]](#ref3), Alpaca từ Taori et al. [[15]](#ref15)). **Tuyệt đối không sử dụng bất kỳ tập dữ liệu thương mại/cộng đồng nào ngoài các bài báo tham chiếu**.
 > - **Nguyên tắc kế thừa dữ liệu**: Trường hợp bài báo phòng thủ (Jain et al. [[15]](#ref15)) sử dụng lại dataset của bài báo khác (AdvBench từ Zou et al. [[13]](#ref13) và Alpaca từ Dubois/Taori et al.), tài liệu này chỉ rõ chính xác từng đề mục (Section 4, Section 4.1, Appendix A) thảo luận vấn đề đó trong bài báo gốc.
-> - **Quy trình thực nghiệm B1–B5**: Tải data học thuật -> Tiền xử lý Group-Aware -> Train Baseline TF-IDF -> Nạp DeBERTa & Thử nghiệm lượng hóa INT8 -> Xuất file JSON đối chiếu chéo.
-> - **Chi phí & Thời gian chạy**: Toàn bộ quy trình chạy mượt mà trên laptop thông thường (chỉ dùng CPU, RAM < 4GB), hoàn thành trong khoảng **15–20 phút**.
+> - **Quy trình thực nghiệm tái lập chuẩn hóa**: Nạp data học thuật -> Tiền xử lý & Phân tách -> Huấn luyện / Nạp mô hình gốc -> Đo đạc & Xuất file JSON đối chiếu chéo.
+> - **Yêu cầu phần cứng thực nghiệm**: Toàn bộ quy trình chạy hoàn toàn trên CPU thông thường (không đòi hỏi GPU đắt tiền), phục vụ báo cáo kết quả độc lập tại Meeting 5 tuần sau.
 
 ---
 
@@ -30,7 +30,7 @@
    - [3.3. Kho Dữ Liệu Thực Nghiệm Chuyên Sâu (Public Security Datasets)](#33-kho-dữ-liệu-thực-nghiệm-chuyên-sâu-public-security-datasets)
    - [3.4. Thiết Lập Siêu Tham Số Fine-Tuning & Lượng Hóa INT8](#34-thiết-lập-siêu-tham-số-fine-tuning--lượng-hóa-int8)
    - [3.5. Mã Nguồn Thực Thi Mẫu Tối Giản (Minimal Reproducible Script - MRE)](#35-mã-nguồn-thực-thi-mẫu-tối-giản-minimal-reproducible-script---mre)
-4. [QUY TRÌNH THỰC NGHIỆM TÁI LẬP HỆ THỐNG 5 BƯỚC (B1–B5)](#4-quy-trình-thực-nghiệm-tái-lập-hệ-thống-5-bước-b1b5)
+4. [QUY TRÌNH THỰC NGHIỆM TÁI LẬP CHUẨN HÓA (STANDARDIZED EXPERIMENTAL PROTOCOL)](#4-quy-trình-thực-nghiệm-tái-lập-chuẩn-hóa-standardized-experimental-protocol)
 5. [BẢNG ĐỐI CHUẨN KẾT QUẢ ĐO ĐẠC THỰC NGHIỆM (LOCAL MEASURED VS. PAPER BENCHMARKS)](#5-bảng-đối-chuẩn-kết-quả-đo-đạc-thực-nghiệm-local-measured-vs-paper-benchmarks)
 6. [CHUẨN HÓA ĐỊNH DẠNG XUẤT KẾT QUẢ JSON](#6-chuẩn-hóa-định-dạng-xuất-kết-quả-json)
 7. [BẢNG KIỂM TOÁN URL ĐẢM BẢO ZERO DEAD LINKS (100% VERIFIED HTTP 200)](#7-bảng-kiểm-toán-url-đảm-bảo-zero-dead-links-100-verified-http-200)
@@ -288,28 +288,16 @@ print(f"Dung lượng INT8: {int8_size:.1f} MB (Tiết kiệm {100 * (1 - int8_s
 
 ---
 
-## 4. QUY TRÌNH THỰC NGHIỆM TÁI LẬP HỆ THỐNG 5 BƯỚC (B1–B5)
+## 4. QUY TRÌNH THỰC NGHIỆM TÁI LẬP CHUẨN HÓA (STANDARDIZED EXPERIMENTAL PROTOCOL)
 
-Quy trình thực nghiệm 5 bước chuẩn hóa (Standardized 5-Step Experimental Pipeline) được thiết kế khép kín nhằm bảo đảm tính độc lập và khả năng tái lập 100% kết quả trên môi trường cục bộ:
+Nhằm bảo đảm tính khách quan khoa học, loại bỏ các bước áp đặt cảm tính và chứng minh khả năng tái lập 100% kết quả trên môi trường cục bộ, quy trình thực nghiệm tái lập 2 mô hình tham khảo gốc được thiết kế theo 4 giai đoạn chuẩn mực của nghiên cứu khoa học máy tính:
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│      LỘ TRÌNH 5 BƯỚC THỰC NGHIỆM TÁI LẬP TOÀN BỘ PIPELINE ĐỒ ÁN PI-GUARD               │
-│            (Đảm bảo tính độc lập, khả năng tái lập 100% trên môi trường cục bộ)        │
-├──────┬───────────────────────────────────┬─────────────────────────────────────────────┤
-│ Bước │ Hạng mục thực nghiệm bắt buộc     │ Lệnh thực thi mẫu trên PowerShell           │
-├──────┼───────────────────────────────────┼─────────────────────────────────────────────┤
-│ B1   │ **Tải dữ liệu từ bài báo mở**     │ `python workspaces/<member>/scripts/download_dataset.py --config Final-Report/notebooks/configs/data.yaml` │
-├──────┼───────────────────────────────────┼─────────────────────────────────────────────┤
-│ B2   │ **Tiền xử lý & Group-Aware Split**│ `python workspaces/<member>/scripts/preprocess.py --splits_dir Final-Report/notebooks/data/splits`        │
-├──────┼───────────────────────────────────┼─────────────────────────────────────────────┤
-│ B3   │ **Huấn luyện Baseline TF-IDF**    │ `python workspaces/<member>/scripts/train.py --model baseline --config Final-Report/notebooks/configs/training.yaml` │
-├──────┼───────────────────────────────────┼─────────────────────────────────────────────┤
-│ B4   │ **Nạp DeBERTa & Lượng hóa INT8**  │ `python workspaces/<member>/scripts/quantize_onnx.py --model_dir Final-Report/notebooks/models/deberta_int8`       │
-├──────┼───────────────────────────────────┼─────────────────────────────────────────────┤
-│ B5   │ **Đối chiếu chéo & Xuất JSON**    │ Xuất file `experiment_reports/<member>_metrics.json` để so sánh độ ổn định tại Meeting 5.   │
-└──────┴───────────────────────────────────┴─────────────────────────────────────────────┘
-```
+| Giai Đoạn Thực Nghiệm | Nội Dung Triển Khai Kỹ Thuật | Lệnh Thực Thi Mẫu Trên PowerShell | Kết Quả Kỹ Thuật Đầu Ra |
+| :--- | :--- | :--- | :--- |
+| **Giai đoạn 1: Nạp Dữ Liệu & Mã Nguồn** | Tải mã nguồn công khai và các tập dữ liệu benchmark học thuật chính thức (AdvBench, Alpaca, In-the-Wild DAN, BIPIA) | `python workspaces/<member>/scripts/download_dataset.py --config Final-Report/notebooks/configs/data.yaml` | Tệp dữ liệu gốc lưu trữ tại `data/raw/` |
+| **Giai đoạn 2: Tiền Xử Lý & Thiết Lập Dữ Liệu** | Chuẩn hóa văn bản Unicode NFKC, làm sạch ký tự điều khiển ẩn và phân chia tập dữ liệu huấn luyện/kiểm thử | `python workspaces/<member>/scripts/preprocess.py --splits_dir Final-Report/notebooks/data/splits` | Tập phân chia `train.csv`, `val.csv`, `test.csv` sẵn sàng cho huấn luyện |
+| **Giai đoạn 3: Huấn Luyện & Nạp Mô Hình Tham Khảo** | Huấn luyện đường ống Baseline TF-IDF (Mô hình 1) và nạp trọng số pre-trained DeBERTa-v3-base FP32 gốc (Mô hình 2) | `python workspaces/<member>/scripts/train.py --model baseline --config Final-Report/notebooks/configs/training.yaml` | Mô hình `baseline_tfidf.joblib` và checkpoint FP32 sẵn sàng đo đạc |
+| **Giai đoạn 4: Đo Đạc & Xuất Báo Cáo Kiểm Định** | Thực hiện đo lường độ chính xác ($F_1$, Precision, Recall), tỷ lệ báo động nhầm (FPR) và độ trễ suy luận P95 trên CPU; xuất tệp JSON báo cáo | Chạy kịch bản đánh giá và xuất tệp JSON theo mẫu chuẩn | `experiment_reports/<member>_metrics.json` đối chiếu chéo tại Meeting 5 |
 
 ---
 

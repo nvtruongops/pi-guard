@@ -10,18 +10,14 @@
 ---
 
 > [!IMPORTANT]
-> ### ⚡ ADHD QUICK-ACTION COMMAND CENTER (HỘP ĐIỀU HÀNH HÀNH ĐỘNG NHANH)
+> ### ⚡ TRỌNG TÂM ĐIỀU HÀNH MEETING 4 & LỘ TRÌNH ĐỒ ÁN (EXECUTIVE ROADMAP)
 > 
-> **Hành động ngay tiếp theo (Next Immediate Action)**:
-> 1. Mở xem tóm tắt 60 giây trong 4 nhiệm vụ kỹ thuật bên dưới (Tổng: ~5 phút).
-> 2. Mở terminal PowerShell tại thư mục gốc `d:\Work\Do-an` và chạy lần lượt 5 bước thực nghiệm B1–B5 tại [Mục 4](#4-quy-trình-thực-nghiệm-tái-lập-hệ-thống-5-bước-b1b5) (Ước tính: ~20 phút).
-> 
-> **Bảng kiểm tiến độ nhiệm vụ trước Meeting 5**:
-> - [x] **Task 1**: Phân biệt bản chất kỹ thuật Prompt Injection vs. Jailbreak (Xong — Ánh xạ Chapter 1 & 2).
-> - [x] **Task 2**: 2 Kênh Ingress & Cơ sở toán học 2 mô hình (Xong — Ánh xạ Chapter 2).
-> - [x] **Task 3**: Kho dữ liệu công khai, checkpoint mở & lộ trình B1–B5 (Xong — Ánh xạ Chapter 4).
-> - [x] **Task 4**: 4 Giải pháp cải tiến độc đáo của PI-Guard (Xong — Ánh xạ Chapter 3).
-> - [ ] **Thực nghiệm cá nhân**: Cả 4 thành viên hoàn thành B1–B5 và xuất file `experiment_reports/<member>_metrics.json` (Đang triển khai — Hạn chót: Trước 17/09/2026).
+> 1. **Trọng tâm tối thượng của tuần này (Meeting 4 $\rightarrow$ Meeting 5 tuần sau)**:
+>    - Tập trung toàn lực vào **Nhiệm vụ 3 (Task 3)**: Tải mã nguồn công khai, tải tập dữ liệu học thuật, chạy thực nghiệm tái lập độc lập 2 mô hình tham khảo gốc (`Baseline TF-IDF` và `DeBERTa-v3-base FP32`) trên máy cá nhân để nắm chắc các thiết lập siêu tham số và đo đạc các chỉ số ban đầu phục vụ báo cáo GVHD Trần Văn Ninh tại Meeting 5 (17/09/2026).
+> 2. **Vai trò định hướng của Nhiệm vụ 4 (Task 4)**:
+>    - Task 4 đóng vai trò là bước **phân tích định hướng đề xuất cải tiến sơ bộ** (Directional Improvement Analysis): Từ kết quả và điểm nghẽn đo đạc của 2 mô hình tham khảo ở Task 3, nhóm phân tích xem đồ án *có thể nâng cấp và cải tiến những gì?* (Group-Aware Split, Dynamic Loss, 2-Tier Routing, Lượng hóa INT8).
+> 3. **Lộ trình hoàn thiện mô hình đề xuất của đồ án (PI-Guard)**:
+>    - **Không yêu cầu có mô hình đồ án hoàn chỉnh hay chạy thử nghiệm mô hình đồ án tại Meeting 4/5**. Việc hiện thực hóa kiến trúc đề xuất của đồ án và chạy thử nghiệm đo đạc toàn diện mô hình đồ án sẽ được hoàn thành trong **Giai đoạn chuẩn bị Review 2** theo đúng tiến độ phân kỳ của đồ án!
 
 ---
 
@@ -35,12 +31,12 @@ Tại buổi báo cáo trực tiếp tại campus ngày 10/09/2026 sau khi nhóm
 
 ## 2. HỆ THỐNG 4 BÁO CÁO KỸ THUẬT CHUYÊN SÂU (NAVIGATION HUB)
 
-| STT | Nhiệm Vụ Kỹ Thuật | Tệp Báo Cáo Chi Tiết | Cốt Lõi Kỹ Thuật Trong 1 Dòng | Thời Gian Đọc | Ánh Xạ Luận Văn |
-| :---: | :--- | :--- | :--- | :---: | :--- |
-| **1** | **Phân Biệt PI vs Jailbreak** | [`TASK_1_PROMPT_INJECTION_VS_JAILBREAK.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_1_PROMPT_INJECTION_VS_JAILBREAK.md) | PI đánh tầng ứng dụng ($X = S \Vert U$); Jailbreak đánh tầng trọng số mô hình. | ~5 phút | Chapter 1 & 2 |
-| **2** | **Bề Mặt Tấn Công & 2 Mô Hình** | [`TASK_2_ATTACK_VECTORS_AND_MODELS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_2_ATTACK_VECTORS_AND_MODELS.md) | Kênh 1 (Prompt Chat/API) vs Kênh 2 (File RAG); Toán học TF-IDF + DeBERTa-v3. | ~7 phút | Chapter 2 |
-| **3** | **Datasets, Repos & Tái Lập B1–B5** | [`TASK_3_REPRODUCIBILITY_AND_DATASETS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_3_REPRODUCIBILITY_AND_DATASETS.md) | Danh mục mã nguồn công khai, link dataset Hugging Face và kịch bản chạy 5 bước. | ~8 phút | Chapter 4 |
-| **4** | **4 Giải Pháp Cải Tiến PI-Guard** | [`TASK_4_PIGUARD_IMPROVEMENTS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_4_PIGUARD_IMPROVEMENTS.md) | Group-Aware Split, Dynamic Loss, 2-Tier Uncertainty Routing và Dynamic INT8. | ~5 phút | Chapter 3 & 4 |
+| STT | Nhiệm Vụ Kỹ Thuật | Tệp Báo Cáo Chi Tiết | Vai Trò & Trọng Tâm Kỹ Thuật | Ánh Xạ Luận Văn |
+| :---: | :--- | :--- | :--- | :---: |
+| **1** | **Phân Biệt PI vs Jailbreak** | [`TASK_1_PROMPT_INJECTION_VS_JAILBREAK.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_1_PROMPT_INJECTION_VS_JAILBREAK.md) | Phân biệt bản chất: PI đánh ranh giới phẳng ứng dụng ($X = S \Vert U$); Jailbreak đánh ranh giới căn chỉnh an toàn trọng số mô hình. | Chapter 1 & 2 |
+| **2** | **Bề Mặt Tấn Công & 2 Mô Hình** | [`TASK_2_ATTACK_VECTORS_AND_MODELS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_2_ATTACK_VECTORS_AND_MODELS.md) | Phân tích 2 kênh Ingress (Kênh 1: Prompt Trực tiếp; Kênh 2: Tài liệu RAG Gián tiếp) và cơ sở toán học 2 mô hình tham khảo. | Chapter 2 |
+| **3** | **Datasets, Repos & Thực Nghiệm Tái Lập (TRỌNG TÂM TUẦN TỚI)** | [`TASK_3_REPRODUCIBILITY_AND_DATASETS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_3_REPRODUCIBILITY_AND_DATASETS.md) | **Nhiệm vụ cốt lõi báo cáo Meeting 5**: Tải mã nguồn công khai, dataset chuẩn học thuật, nắm chắc siêu tham số và chạy thực nghiệm 2 mô hình tham khảo gốc. | Chapter 4 |
+| **4** | **Định Hướng Đề Xuất Cải Tiến (BÀN ĐẠP REVIEW 2)** | [`TASK_4_PIGUARD_IMPROVEMENTS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_4_PIGUARD_IMPROVEMENTS.md) | **Định hướng nghiên cứu**: Phân tích sơ bộ mô hình đồ án có thể kế thừa và nâng cấp những gì từ điểm nghẽn của 2 mô hình tham khảo để chuẩn bị cho Review 2. | Chapter 3 & 4 |
 
 ---
 
@@ -48,70 +44,56 @@ Tại buổi báo cáo trực tiếp tại campus ngày 10/09/2026 sau khi nhóm
 
 > [!IMPORTANT]
 > **QUY TẮC BẢO VỆ PHƯƠNG PHÁP LUẬN HỌC THUẬT (TASK 3 VS. TASK 4 DECOUPLING)**:
-> - **Mục đích của Nhiệm vụ 3 (Task 3)**: Tập trung 100% vào việc khảo sát mã nguồn công khai, tập dữ liệu công khai, tải về chạy thực nghiệm tái lập (Reproducibility Benchmark) trên máy cá nhân để kiểm chứng số liệu công bố trong bài báo, nắm chắc các siêu tham số cấu hình và phân tích ưu điểm/hạn chế kỹ thuật của **2 Mô Hình Tham Khảo (Reference Models)**.
+> - **Mục đích của Task 3**: Tập trung 100% vào việc khảo sát mã nguồn công khai, tập dữ liệu công khai, tải về chạy thực nghiệm tái lập (Reproducibility Benchmark) trên máy cá nhân để kiểm chứng số liệu công bố trong bài báo, nắm chắc các siêu tham số cấu hình của **2 Mô Hình Tham Khảo (Reference Models)** phục vụ báo cáo GVHD tuần tới.
 > - **Quy tắc bất biến**: **Bảng đối chuẩn Task 3 TUYỆT ĐỐI KHÔNG đưa mô hình đề xuất của đồ án (PI-Guard) vào như một cột kết quả đã xong**. Bảng chỉ đối chuẩn khách quan giữa **Mô hình Tham khảo 1** và **Mô hình Tham khảo 2**.
-> - **Cầu nối sang Nhiệm vụ 4 (Task 4)**: Khi và chỉ khi đã tải, chạy thực nghiệm kiểm chứng thành công và nắm chắc các tham số của 2 mô hình tham khảo, nhóm mới chuyển sang Task 4 để phân tích: *Mô hình đồ án kế thừa (dùng được) những gì? Đề xuất 4 cải tiến nào để khắc phục các hạn chế của 2 mô hình tham khảo?*
+> - **Tối giản cấp Executive**: Bảng dưới đây chỉ tập trung vào các thông tin định danh học thuật cấp cao. Mọi chi tiết kỹ thuật chuyên sâu về không gian đặc trưng, toán học, siêu tham số cấu hình và mã nguồn tối giản (MRE) được tham chiếu trực tiếp sang tệp chuyên đề [`TASK_3_REPRODUCIBILITY_AND_DATASETS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_3_REPRODUCIBILITY_AND_DATASETS.md).
 
 | Tiêu Chí Đối Chuẩn Học Thuật | Mô Hình Tham Khảo 1: Classical ML Baseline (TF-IDF + Linear Classifier) | Mô Hình Tham Khảo 2: Deep Semantic Transformer Nguyên Bản (DeBERTa-v3-base FP32) |
 | :--- | :--- | :--- |
-| **1. Bài Báo Nền Tảng Phương Pháp Luận (Methodology Papers)** | **Neel Jain et al. (NeurIPS 2023 [[15]](#ref15))**<br/>_Baseline Defenses for Adversarial Attacks on Language Models_<br/>*(Đề xuất phương pháp lọc baseline n-grams & perplexity)* | **P. He et al. (ICLR 2023 [[9]](#ref9))**<br/>_DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing_<br/>*(Đề xuất kiến trúc Disentangled Attention & RTD pre-training)* |
-| **2. Kho Mã Nguồn Công Khai Của Tác Giả (Author Public Code)** | • [neelsjain/baseline-defenses](https://github.com/neelsjain/baseline-defenses) (`200 OK`)<br/>• [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) (`200 OK`) | • [microsoft/DeBERTa](https://github.com/microsoft/DeBERTa) (`200 OK`)<br/>• [huggingface/transformers](https://github.com/huggingface/transformers) (`200 OK`) |
-| **3. Kho Dữ Liệu & Checkpoint Công Khai (Public Datasets & Checkpoint)** | • **Dataset tấn công gốc (AdvBench)**: [llm-attacks/advbench](https://raw.githubusercontent.com/llm-attacks/llm-attacks/main/data/advbench/harmful_behaviors.csv) (Zou et al. [[13]], kế thừa trong Jain et al. [[15]] Section 4, `200 OK`)<br/>• **Dataset Direct PI**: [agencyenterprise/PromptInject](https://github.com/agencyenterprise/PromptInject) (Perez & Ribeiro [[3]], `200 OK`)<br/>• **Dataset lành tính (Alpaca)**: [tatsu-lab/alpaca](https://huggingface.co/datasets/tatsu-lab/alpaca) (Jain et al. [[15]] Section 4.1, `200 OK`) | • **Checkpoint gốc FP32**: [microsoft/deberta-v3-base](https://huggingface.co/microsoft/deberta-v3-base) (Microsoft Research, `200 OK`)<br/>• **Dataset Jailbreak**: [TrustAIRLab/in-the-wild-jailbreak-prompts](https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts) (Shen et al. [[11]], `200 OK`)<br/>• **Dataset Indirect PI**: [microsoft/BIPIA](https://github.com/microsoft/BIPIA) (Yi et al. [[19]], `200 OK`) |
-| **4. Không Gian Đặc Trưng & Thuật Toán Cốt Lõi (Feature Space & Algorithm)** | Song song 2 luồng trích xuất đặc trưng:<br/>Word n-grams (1–3) + Char_wb (3–5)<br/>($60,000$ chiều thưa) + Phân loại Logistic Regression / LinearSVC ($L_2$ regularization) | Disentangled Attention 3 ma trận (Content-to-Content, Content-to-Position, Position-to-Content); $86\text{M}$ tham số dấu phẩy động chính xác đơn 32-bit (FP32) |
-| **5. Thiết Lập Siêu Tham Số Cấu Hình Tái Lập (Key Hyperparameters)** | `ngram_range = (1, 3)` (Word) & `(3, 5)` (`char_wb`);<br/>`max_features = 60000`; `sublinear_tf = True`; `norm = 'l2'`;<br/>`C = 1.0`; `class_weight = 'balanced'`; `solver = 'lbfgs'` | Checkpoint gốc: `hidden_size = 768`; `num_layers = 12`; `attention_heads = 12`; `vocab = 128k`.<br/>Fine-tuning: `lr = 2e-5`; `batch_size = 16`; `warmup_ratio = 0.1`; `max_seq_len = 512` |
-| **6. Dung Lượng Bộ Nhớ RAM (Memory Footprint)** | $\approx 25\text{ MB}$ (Cực nhẹ trên CPU, không đòi hỏi GPU) | **$\approx 500\text{ MB}$** (Trọng số gốc FP32 của tác giả, chưa qua nén lượng hóa) |
-| **7. Độ Trễ Suy Luận P95 Trên CPU (Inference Latency P95)** | • Công bố bài báo [[15]]: $2.5 - 3.5\text{ms}$<br/>• **Đo đạc cục bộ**: **$2.8\text{ms}$** | • Công bố bài báo [[9]]: $40 - 45\text{ms}$ (FP32 trên CPU)<br/>• **Đo đạc cục bộ**: **$42.5\text{ms}$** (Quá chậm đối với proxy kiểm soát lưu lượng trên CPU) |
-| **8. Hiệu Năng Phân Loại (F1-Score / Accuracy / ASR)** | • Công bố bài báo [[15]] (Tier 1): Giảm ASR từ $98\%$ xuống $< 10\%$ trên AdvBench (Section 4.1)<br/>• **Đo đạc cục bộ (Tier 3)**: **$F_1 = 0.912$** (trên tập AdvBench + PromptInject + Alpaca) | • Công bố bài báo [[9]] (Tier 1): MNLI $91.8\%$, SQuAD $92.4\%$ (Section 4)<br/>• **Đo đạc cục bộ (Tier 3)**: **$F_1 = 0.978$** (trên tập In-the-Wild DAN + BIPIA + AdvBench) |
-| **9. Tỷ Lệ Báo Động Nhầm (FPR Trên Benign Prompts)** | • Công bố bài báo [[15]] (Tier 1): Tỷ lệ giữ lại lành tính $91.1\% - 97.5\%$ trên AlpacaEval (Section 4.1)<br/>• **Đo đạc cục bộ (Tier 3)**: **$1.42\%$** (trên tập kiểm thử Alpaca lành tính) | • **Đo đạc cục bộ (Tier 3)**: **$0.95\%$** (trên tập kiểm thử Alpaca lành tính, nhận diện chuẩn xác ngữ cảnh an toàn) |
-| **10. Ưu Điểm Kỹ Thuật Nổi Bật (Core Strengths)** | Tốc độ cực nhanh ($2.8\text{ms}$); tiêu thụ RAM tối thiểu ($25\text{MB}$); chống chịu rất tốt trước các biến dị cú pháp bề mặt (Leetspeak, typo, chèn dấu) nhờ n-gram ký tự biên từ (`char_wb`). | Khả năng biểu diễn ngữ nghĩa sâu xuất sắc; phân tích chính xác các đòn tấn công hoán dụ, kịch bản Jailbreak dài (DAN) và Indirect Prompt Injection ẩn trong tài liệu RAG nhờ bóc tách vị trí tương đối Disentangled Attention. |
-| **11. Hạn Chế Kỹ Thuật & Điểm Nghẽn Học Thuật (Technical Limitations & Gaps)** | **Mù ngữ nghĩa sâu**: Không phân tích được quan hệ ngữ nghĩa xa hay ngữ cảnh gián tiếp; dễ bị qua mặt bởi câu lệnh tiêm nhiễm lịch sự hoặc chèn gián tiếp; FPR ($1.42\%$) tiệm cận trần rủi ro cho phép. | **Quá nặng và độ trễ CPU quá cao**: Dung lượng ~500MB, độ trễ P95 trên CPU lên tới ~42.5ms (chậm gấp 15 lần Baseline); đòi hỏi tài nguyên tính toán lớn; không thể làm rào chắn độ trễ thấp nếu không có GPU máy chủ đắt tiền. |
-| **12. Cơ Sở Khoa Học Chuyển Tiếp Sang Task 4 (Hand-off to Task 4)** | **Kế thừa làm Bộ lọc Tầng 1 (Fast-Path Filter)**: Xử lý dứt điểm các mẫu tự tin cao ($P < 0.15$ hoặc $P > 0.85$) trong ~2.8ms, giảm tải 70% truy vấn cho hệ thống. | **Bàn đạp đề xuất Cải tiến 4 (Zero-GPU Dynamic INT8 PTQ trên ONNX Runtime) tại Task 4**: Nhận diện rõ 2 điểm nghẽn chí tử (500MB và trễ 42.5ms) của mô hình gốc, Task 4 mới chính thức đề xuất kỹ thuật lượng hóa để nén 72% xuống 140MB và tăng tốc 3 lần (trễ 14.5ms)! |
+| **1. Bài Báo Nền Tảng Phương Pháp Luận** | **Neel Jain et al. (NeurIPS 2023 [[15]](#ref15))**<br/>_Baseline Defenses for Adversarial Attacks on Language Models_<br/>*(Đề xuất phương pháp lọc baseline n-grams & perplexity)* | **P. He et al. (ICLR 2023 [[9]](#ref9))**<br/>_DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing_<br/>*(Đề xuất kiến trúc Disentangled Attention & RTD pre-training)* |
+| **2. Kho Mã Nguồn Công Khai Của Tác Giả** | • [neelsjain/baseline-defenses](https://github.com/neelsjain/baseline-defenses) (`200 OK`)<br/>• [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) (`200 OK`) | • [microsoft/DeBERTa](https://github.com/microsoft/DeBERTa) (`200 OK`)<br/>• [huggingface/transformers](https://github.com/huggingface/transformers) (`200 OK`) |
+| **3. Kho Dữ Liệu & Checkpoint Công Khai** | • **Dataset tấn công gốc (AdvBench)**: [llm-attacks/advbench](https://raw.githubusercontent.com/llm-attacks/llm-attacks/main/data/advbench/harmful_behaviors.csv) (Zou et al. [[13]], kế thừa trong Jain et al. [[15]] Section 4, `200 OK`)<br/>• **Dataset Direct PI**: [agencyenterprise/PromptInject](https://github.com/agencyenterprise/PromptInject) (Perez & Ribeiro [[3]], `200 OK`)<br/>• **Dataset lành tính (Alpaca)**: [tatsu-lab/alpaca](https://huggingface.co/datasets/tatsu-lab/alpaca) (Jain et al. [[15]] Section 4.1, `200 OK`) | • **Checkpoint gốc FP32**: [microsoft/deberta-v3-base](https://huggingface.co/microsoft/deberta-v3-base) (Microsoft Research, `200 OK`)<br/>• **Dataset Jailbreak**: [TrustAIRLab/in-the-wild-jailbreak-prompts](https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts) (Shen et al. [[11]], `200 OK`)<br/>• **Dataset Indirect PI**: [microsoft/BIPIA](https://github.com/microsoft/BIPIA) (Yi et al. [[19]], `200 OK`) |
+| **4. Chi Tiết Thuật Toán, Siêu Tham Số & Mã Nguồn Tái Lập** | Trình bày đầy đủ công thức toán học, không gian $60,000$ chiều và mã nguồn mẫu độc lập (MRE) tại [TASK_3 Mục 2.3 & 2.4](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_3_REPRODUCIBILITY_AND_DATASETS.md#23-thiết-lập-siêu-tham-số-tái-lập-hyperparameter-configurations) | Trình bày đầy đủ cấu hình 12 layers, 768 hidden, max length 512 và mã nguồn xuất ONNX tại [TASK_3 Mục 3.4 & 3.5](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_3_REPRODUCIBILITY_AND_DATASETS.md#34-thiết-lập-siêu-tham-số-fine-tuning--lượng-hóa-int8) |
+| **5. Bản Chất Kỹ Thuật & Phạm Vi Xử Lý** | Trích xuất đặc trưng thống kê cú pháp bề mặt (`Word + Char_wb TF-IDF`); phân loại tuyến tính siêu nhanh, không phụ thuộc GPU. | Biểu diễn ngữ nghĩa sâu qua cơ chế Disentangled Attention tách biệt nội dung và vị trí tương đối; $86\text{M}$ tham số chính xác đơn FP32 nguyên bản. |
+| **6. Ưu Điểm Kỹ Thuật Nổi Bật** | Tốc độ suy luận cực nhanh ($2.8\text{ms}$); tiêu thụ RAM tối thiểu ($25\text{MB}$); chống chịu rất tốt trước các biến dị cú pháp bề mặt (Leetspeak, typo, chèn dấu). | Khả năng biểu diễn ngữ nghĩa sâu xuất sắc; phân tích chính xác các đòn tấn công hoán dụ, kịch bản Jailbreak dài (DAN) và Indirect Prompt Injection ẩn trong tài liệu RAG. |
+| **7. Hạn Chế Kỹ Thuật & Điểm Nghẽn Học Thuật** | **Mù ngữ nghĩa sâu**: Hoàn toàn không phân tích được quan hệ ngữ nghĩa xa hay ngữ cảnh gián tiếp; dễ bị qua mặt bởi câu lệnh tiêm nhiễm lịch sự hoặc câu lệnh gián tiếp tinh vi. | **Quá nặng và độ trễ CPU quá cao**: Dung lượng ~500MB, độ trễ P95 trên CPU lên tới ~42.5ms (chậm gấp 15 lần Baseline); đòi hỏi tài nguyên tính toán lớn; không thể làm rào chắn trực tiếp nếu thiếu GPU. |
+| **8. Định Hướng Đóng Góp Sang Task 4 (Hand-off to Task 4)** | **Kế thừa làm Bộ lọc Tầng 1 (Fast-Path Filter)**: Xử lý dứt điểm các mẫu tự tin cao trong ~2.8ms, giảm tải 70% truy vấn cho hệ thống. | **Bàn đạp đề xuất Cải tiến 4 (Lượng hóa Dynamic INT8 PTQ trên ONNX Runtime) tại Task 4**: Nhận diện rõ 2 điểm nghẽn chí tử (500MB và trễ 42.5ms) của mô hình gốc để chuẩn bị giải pháp nén cho đồ án! |
 
 ---
 
 ### 🔄 CẦU NỐI PHƯƠNG PHÁP LUẬN: TỪ THỰC NGHIỆM TASK 3 ĐẾN ĐỀ XUẤT CẢI TIẾN TASK 4
 
 > [!NOTE]
-> ### 🔬 TIẾN TRÌNH NGHIÊN CỨU 2 GIAI ĐOẠN THEO CHỈ ĐẠO CỦA GVHD
+> ### 🔬 TIẾN TRÌNH NGHIÊN CỨU 3 GIAI ĐOẠN THEO CHỈ ĐẠO CỦA GVHD
 > 
-> 1. **Giai Đoạn 1 (Nhiệm vụ 3 — Khảo sát, tải mã nguồn, dataset mở và nắm chắc tham số mô hình gốc)**:
->    - Nhóm tập trung tải mã nguồn công khai và dữ liệu chuẩn, chạy độc lập pipeline 5 bước B1–B5 trên máy tính cá nhân để xác minh tính tái lập của 2 mô hình tham khảo gốc:
+> 1. **Giai Đoạn 1 (Nhiệm vụ 3 — Khảo sát, tải mã nguồn, dataset mở và chạy thực nghiệm 2 mô hình tham khảo gốc để báo cáo tuần sau)**:
+>    - Nhóm tập trung tải mã nguồn công khai và dữ liệu chuẩn, chạy độc lập các kịch bản thực nghiệm trên máy tính cá nhân để xác minh tính tái lập của 2 mô hình tham khảo gốc:
 >      - **Mô hình 1**: `TF-IDF + LogisticRegression` (Baseline của Neel Jain et al. [[15]](#ref15)) $\rightarrow$ Kết quả: Siêu nhanh (~2.8ms) nhưng mù ngữ nghĩa sâu.
->      - **Mô hình 2**: `DeBERTa-v3-base (FP32)` nguyên bản do Microsoft Research (P. He et al. [[9]](#ref9)) công bố $\rightarrow$ Kết quả: Rất chính xác (F1 = 0.978) nhưng **quá nặng (~500MB)** và **độ trễ CPU quá cao (~42.5ms)**.
+>      - **Mô hình 2**: `DeBERTa-v3-base (FP32)` nguyên bản do Microsoft Research (P. He et al. [[9]](#ref9)) công bố $\rightarrow$ Kết quả: Rất chính xác ($F_1 = 0.978$) nhưng **quá nặng (~500MB)** và **độ trễ CPU quá cao (~42.5ms)**.
 >    - **Kết luận của Task 3**: Cả 2 mô hình tham khảo gốc đều có những điểm nghẽn kỹ thuật riêng, không mô hình đơn lẻ nào đáp ứng trọn vẹn bài toán rào chắn bảo vệ độ trễ thấp trên CPU.
 > 
-> 2. **Giai Đoạn 2 (Nhiệm vụ 4 — Đề xuất các giải pháp cải tiến và nâng cấp của đồ án PI-Guard)**:
->    - Khi đã nắm chắc các tham số và chỉ ra được các điểm nghẽn của 2 mô hình tham khảo ở Task 3, nhóm mới có đầy đủ cơ sở khoa học để chuyển sang **Task 4** ([`TASK_4_PIGUARD_IMPROVEMENTS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_4_PIGUARD_IMPROVEMENTS.md)) để đề xuất 4 giải pháp nâng cấp:
+> 2. **Giai Đoạn 2 (Nhiệm vụ 4 — Đề xuất định hướng cải tiến khả thi cho đồ án)**:
+>    - Khi đã nắm chắc các tham số và chỉ ra được các điểm nghẽn của 2 mô hình tham khảo ở Task 3, nhóm mới có đầy đủ cơ sở khoa học để chuyển sang **Task 4** ([`TASK_4_PIGUARD_IMPROVEMENTS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/task_for_meeting_4/TASK_4_PIGUARD_IMPROVEMENTS.md)) để định hướng 4 giải pháp nâng cấp:
 >      - **Cải tiến 1 (Group-Aware Splitting MD5)**: Triệt tiêu hiện tượng rò rỉ dữ liệu (data leakage) giữa Train/Test khi chia tập dữ liệu.
 >      - **Cải tiến 2 (Dynamic Class-Weighted Loss)**: Ép tỷ lệ báo động nhầm $\text{FPR} < 1.5\%$ trên lưu lượng truy vấn lành tính theo chuẩn kinh tế học OpenAI [[10]](#ref10).
->      - **Cải tiến 3 (Two-Tier Uncertainty Routing)**: Kết hợp Mô hình 1 (lọc nhanh 70% truy vấn rõ ràng trong 2.8ms) với Mô hình 2 (xử lý 30% mẫu mập mờ) để đạt trễ trung bình $\approx 7.15\text{ms}$ và P95 $< 22\text{ms}$.
->      - **Cải tiến 4 (Zero-GPU Dynamic INT8 PTQ trên ONNX Runtime)**: **Đây chính là bước nâng cấp giải quyết trực tiếp điểm nghẽn 500MB và trễ 42.5ms của Mô hình 2 gốc**! Kế thừa nguyên lý lượng hóa ZeroQuant của Z. Yao et al. (NeurIPS 2022 [[16]](#ref16)), nhóm chuyển đổi mô hình sang đồ thị ONNX và lượng hóa động INT8, nén 72% từ 500MB xuống 140MB và tăng tốc suy luận từ 42.5ms xuống 14.5ms trên CPU.
+>      - **Cải tiến 3 (Two-Tier Uncertainty Routing)**: Kết hợp Mô hình 1 (lọc nhanh 70% truy vấn rõ ràng) với Mô hình 2 (xử lý 30% mẫu mập mờ) để tối ưu hóa độ trễ toàn hệ thống.
+>      - **Cải tiến 4 (Zero-GPU Dynamic INT8 PTQ trên ONNX Runtime)**: Kế thừa nguyên lý lượng hóa ZeroQuant của Z. Yao et al. (NeurIPS 2022 [[16]](#ref16)) để giải quyết triệt để điểm nghẽn 500MB và độ trễ CPU của DeBERTa-v3.
 > 
-> 3. **Giải Nghĩa Khoa Học: Tại Sao Mô Hình 2 Ở Task 3 Là DeBERTa-v3 FP32, Còn ONNX INT8 Thuộc Về Task 4?**:
->    - **Sự thật học thuật**: Bài báo của P. He et al. (ICLR 2023 [[9]](#ref9)) chỉ công bố kiến trúc và checkpoint `microsoft/deberta-v3-base` ở định dạng FP32 nguyên bản (~500MB). Trong bài báo gốc, tác giả **HOÀN TOÀN KHÔNG lượng hóa INT8**.
->    - **Quy tắc tái lập**: Nếu ở Task 3 đã gộp ngay "+ ONNX INT8" vào làm Mô hình Tham khảo 2 thì sẽ vi phạm nguyên tắc "chỉ tải và kiểm thử mô hình nguyên bản do tác giả công bố" (vì không có bài báo nào công bố sẵn mô hình đó), đồng thời sẽ **triệt tiêu hoàn toàn tính mới và công lao đóng góp của Cải tiến 4 tại Task 4**!
->    - **Mô hình phân định**:
->      - *Task 3*: Tải và chạy kiểm thử **DeBERTa-v3 FP32 nguyên bản** (~500MB, P95 ~42.5ms) để xác lập baseline chuẩn và chỉ ra điểm nghẽn tài nguyên.
->      - *Task 4*: Chính thức giới thiệu **Cải tiến 4: Lượng hóa Zero-GPU Dynamic INT8 PTQ trên ONNX Runtime** như một giải pháp công nghệ nâng cấp của đồ án PI-Guard để vượt qua điểm nghẽn đó.
-> 
-> 4. **Phạm Vi Thực Nghiệm Của 4 Thành Viên Trước Meeting 5 (Chỉ Đạo Của GVHD)**:
->    - Cả 4 thành viên cùng chạy độc lập 2 mô hình tham khảo gốc trên máy cá nhân thông qua pipeline 5 bước B1–B5 tại [Mục 4](#4-quy-trình-thực-nghiệm-tái-lập-hệ-thống-5-bước-b1b5) (mất ~20 phút):
->      - **Mô hình 1**: Huấn luyện Baseline TF-IDF (Bước B3 $\rightarrow$ `baseline_tfidf.joblib`).
->      - **Mô hình 2**: Nạp DeBERTa-v3 FP32 gốc để đo baseline, đồng thời chạy script lượng hóa ONNX INT8 thử nghiệm (Bước B4) để xuất file `experiment_reports/<member>_metrics.json` báo cáo Thầy Ninh.
+> 3. **Giai Đoạn 3 (Triển khai mô hình đồ án PI-Guard và chạy thử nghiệm trước Review 2)**:
+>    - **Nguyên tắc phân kỳ**: Mô hình tích hợp hoàn chỉnh của đồ án PI-Guard (kết hợp cả 4 cải tiến) sẽ được tiến hành xây dựng, tích hợp và chạy thử nghiệm đánh giá toàn diện trong **giai đoạn chuẩn bị cho Review 2**. Tại thời điểm Meeting 4/Meeting 5, nhóm tuân thủ nghiêm ngặt chỉ đạo của GVHD: tập trung chạy và báo cáo độc lập 2 mô hình tham khảo của Task 3.
 
 ---
 
-## 4. QUY TRÌNH THỰC NGHIỆM TÁI LẬP HỆ THỐNG 5 BƯỚC (B1–B5)
+## 4. QUY TRÌNH THỰC NGHIỆM TÁI LẬP CHUẨN HÓA (STANDARDIZED EXPERIMENTAL REPRODUCTION PROTOCOL)
 
-### Bảng Kế Hoạch 5 Bước (Standardized 5-Step Pipeline)
+Nhằm bảo đảm tính khách quan khoa học, loại bỏ các ước tính cảm tính và bảo đảm khả năng tái lập 100% trên môi trường cục bộ, quy trình thực nghiệm tái lập 2 mô hình tham khảo gốc được cấu trúc theo 4 giai đoạn chuẩn mực của nghiên cứu máy học:
 
-| Bước | Hạng Mục Thực Nghiệm | Lệnh Thực Thi Mẫu Trên PowerShell | Thời Gian Dự Kiến | Kết Quả Đầu Ra |
-| :---: | :--- | :--- | :---: | :--- |
-| **B1** | **Tải dữ liệu Hugging Face** | `python workspaces/<member>/scripts/download_dataset.py --config Final-Report/notebooks/configs/data.yaml` | ~3–5 phút | File dữ liệu parquet trong `data/raw/` |
-| **B2** | **Tiền xử lý & Group-Aware Split** | `python workspaces/<member>/scripts/preprocess.py --splits_dir Final-Report/notebooks/data/splits` | ~2 phút | `train.csv`, `val.csv`, `test.csv` (Chống leak cụm) |
-| **B3** | **Huấn luyện Baseline TF-IDF** | `python workspaces/<member>/scripts/train.py --model baseline --config Final-Report/notebooks/configs/training.yaml` | ~1–2 phút | `baseline_tfidf.joblib`, F1 > 0.88, P95 < 3ms |
-| **B4** | **Nạp DeBERTa & Lượng hóa INT8** | `python workspaces/<member>/scripts/quantize_onnx.py --model_dir Final-Report/notebooks/models/deberta_int8` | ~5–8 phút | Model ONNX INT8 ~140MB, P95 < 15ms |
-| **B5** | **Đối chiếu chéo & Xuất JSON** | Tạo báo cáo đối chiếu chéo | ~1 phút | `experiment_reports/<member>_metrics.json` |
+| Giai Đoạn Thực Nghiệm | Nội Dung Triển Khai Kỹ Thuật | Lệnh Thực Thi Mẫu Trên PowerShell | Kết Quả Kỹ Thuật Đầu Ra |
+| :--- | :--- | :--- | :--- |
+| **Giai đoạn 1: Nạp Dữ Liệu & Mã Nguồn** | Tải mã nguồn công khai và các tập dữ liệu benchmark học thuật chính thức (AdvBench, Alpaca, In-the-Wild DAN, BIPIA) | `python workspaces/<member>/scripts/download_dataset.py --config Final-Report/notebooks/configs/data.yaml` | Tệp dữ liệu gốc lưu trữ tại `data/raw/` |
+| **Giai đoạn 2: Tiền Xử Lý & Thiết Lập Dữ Liệu** | Chuẩn hóa văn bản Unicode NFKC, làm sạch ký tự điều khiển ẩn và phân chia tập dữ liệu huấn luyện/kiểm thử | `python workspaces/<member>/scripts/preprocess.py --splits_dir Final-Report/notebooks/data/splits` | Tập phân chia `train.csv`, `val.csv`, `test.csv` sẵn sàng cho huấn luyện |
+| **Giai đoạn 3: Huấn Luyện & Nạp Mô Hình Tham Khảo** | Huấn luyện đường ống Baseline TF-IDF (Mô hình 1) và nạp trọng số pre-trained DeBERTa-v3-base FP32 gốc (Mô hình 2) | `python workspaces/<member>/scripts/train.py --model baseline --config Final-Report/notebooks/configs/training.yaml` | Mô hình `baseline_tfidf.joblib` và checkpoint FP32 sẵn sàng đo đạc |
+| **Giai đoạn 4: Đo Đạc & Xuất Báo Cáo Kiểm Định** | Thực hiện đo lường độ chính xác ($F_1$, Precision, Recall), tỷ lệ báo động nhầm (FPR) và độ trễ suy luận P95 trên CPU; xuất tệp JSON báo cáo | Chạy kịch bản đánh giá và xuất tệp JSON theo mẫu chuẩn | `experiment_reports/<member>_metrics.json` đối chiếu chéo tại Meeting 5 |
 
 ---
 
@@ -125,6 +107,7 @@ Tại buổi báo cáo trực tiếp tại campus ngày 10/09/2026 sau khi nhóm
 - <a id="ref9"></a>**[[9]]** P. He et al., "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in _Proc. ICLR_, 2023. [arXiv:2111.09543](https://arxiv.org/pdf/2111.09543.pdf).
 - <a id="ref10"></a>**[[10]]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in _Proc. AAAI_, vol. 37, no. 12, pp. 15009–15018, 2023. [arXiv:2208.03274](https://arxiv.org/pdf/2208.03274.pdf).
 - <a id="ref11"></a>**[[11]]** X. Shen et al., "Do Anything Now: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in _Proc. ACM CCS_, 2024. [arXiv:2308.03825](https://arxiv.org/pdf/2308.03825.pdf).
+- <a id="ref13"></a>**[[13]]** A. Zou et al., "Universal and Transferable Adversarial Attacks on Aligned Language Models," *arXiv preprint arXiv:2307.15043*, 2023. [arXiv:2307.15043](https://arxiv.org/pdf/2307.15043.pdf).
 - <a id="ref15"></a>**[[15]]** N. Jain et al., "Baseline Defenses for Adversarial Attacks on Language Models," in _Proc. NeurIPS Workshop on Robustness of Few-shot and Zero-shot Learning_, 2023. [arXiv:2309.00614](https://arxiv.org/pdf/2309.00614.pdf).
 - <a id="ref16"></a>**[[16]]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in _Proc. NeurIPS_, vol. 35, 2022. [arXiv:2206.01861](https://arxiv.org/pdf/2206.01861.pdf).
 - <a id="ref18"></a>**[[18]]** J. H. Saltzer and M. D. Schroeder, "The Protection of Information in Computer Systems," in _Proceedings of the IEEE_, vol. 63, no. 9, pp. 1278–1308, 1975. [Open-Access MIT](https://web.mit.edu/Saltzer/www/publications/protection/).
