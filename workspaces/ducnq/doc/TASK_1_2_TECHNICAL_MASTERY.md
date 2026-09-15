@@ -166,6 +166,20 @@ Kế thừa thuật toán sinh biến dị từ công trình của **Zhang et al
 
 ---
 
+### 3.3. Giải Mã Cơ Chế Sinh Số Liệu & Tuyên Bố Rào Trước Khoa Học (Scientific Disclaimers)
+
+1. **Bản chất của số liệu thực nghiệm**:
+   - Đây là **bộ khung kiểm thử mô phỏng sơ bộ (Preliminary Testbed Harness)** được xây dựng theo thuật toán sinh biến dị của bài báo **ACM TOSEM 2025 (JailGuard [[D6]](#ref-d6))** tại [`workspaces/ducnq/src/`](file:///d:/DoAn/pi-guard/workspaces/ducnq/src/).
+   - Tập kiểm thử hiện tại gồm 20 mẫu prompt đối kháng tổng hợp (Synthetic Adversarial Samples) kết hợp 10 lát cắt biến dị để **minh họa cơ chế lý thuyết và kiểm tra tính toàn vẹn của mã nguồn** trước khi nạp tập dữ liệu quy mô lớn.
+2. **Cơ chế tại sao Bảng 1 (Naive Word Filter) tụt Recall về $0.0\%$**:
+   - Bộ lọc từ khóa chỉ tìm kiếm các chuỗi ký tự nguyên vẹn (ví dụ: `\bignore\b`). Khi câu lệnh bị cố tình chèn khoảng trắng (`i g n o r e`) hoặc biến đổi Leetspeak (`1gn0r3`), ranh giới từ bị phá vỡ hoàn toàn khiến bộ lọc từ khóa bỏ sót $100\%$ các đòn tấn công (Evasion Rate $= 100\%$).
+3. **Cơ chế tại sao Bảng 2 (Proposed Normalization) khôi phục $F_1 = 88.9\%$**:
+   - Nhờ tầng tiền xử lý làm sạch: Unicode NFKC bóc tách ký tự tàng hình zero-width, bộ thu gọn khoảng trắng tự động nối liền `i g n o r e` thành `ignore`, và từ điển Leetspeak giải mã `1gn0r3` về `ignore`. Khi văn bản được hoàn nguyên, mô hình nhận diện chính xác các câu lệnh nguy hại.
+4. **Tính mở rộng (Extensibility cho Task 3)**:
+   - Bộ harness được thiết kế dạng mô đun cắm-rút (Plug-and-Play). Khi nhóm hoàn thành huấn luyện mô hình học máy chính thức trên tập dữ liệu lớn (TF-IDF + LinearSVC, DeBERTa-v3), chỉ cần truyền hàm `predict()` của mô hình vào hàm `evaluate_classifier()` để tự động xuất ra bảng đối chuẩn cho Luận văn tốt nghiệp.
+
+---
+
 # PHẦN III: KỊCH BẢN BẢO VỆ PHẢN BIỆN (DEFENSE Q&A SCRIPT CHO ĐỨC)
 
 ### Câu 1: "Tại sao nhóm chọn kiến trúc External Guardrail Proxy thay vì can thiệp trực tiếp vào LLM?"
@@ -179,6 +193,14 @@ Kế thừa thuật toán sinh biến dị từ công trình của **Zhang et al
 ### Câu 3: "Tại sao nhóm khảo sát cả 2 mô hình (TF-IDF Baseline và DeBERTa-v3) thay vì dùng luôn DeBERTa?"
 > **Trả lời**:  
 > *"Dạ thưa Thầy, đây là bài toán đánh đổi đa mục tiêu (Multi-objective Trade-off) giữa Độ trễ, Chi phí tài nguyên và Độ chính xác ngữ nghĩa: Mô hình Baseline TF-IDF tuy mù ngữ nghĩa sâu nhưng đạt độ trễ siêu thanh (~2.8ms) và chống chịu rất tốt trước các biến dị cú pháp bề mặt nhờ Character n-grams. Ngược lại, DeBERTa-v3 hiểu ngữ nghĩa sâu nhưng độ trễ trên CPU lên tới ~42.5ms và nặng ~500MB. Việc khảo sát độc lập cả 2 mô hình tham khảo ở Task 3 là tiền đề khoa học bắt buộc để nhóm định hướng giải pháp Phân tầng (Two-Tier Routing) và Lượng hóa INT8 ở các giai đoạn tiếp theo của đồ án."*
+
+### Câu 4: "Bảng số liệu đối chuẩn đối kháng trong báo cáo từ đâu ra? Dữ liệu thực nghiệm là gì?"
+> **Trả lời**:  
+> *"Dạ thưa Thầy/Hội đồng, bảng số liệu này được xuất tự động từ bộ kiểm thử thực nghiệm `scratch_baseline_robustness_eval.py` dựa trên thuật toán sinh biến dị của bài báo ACM TOSEM 2025 (JailGuard). Đây là bộ testbed khảo sát sơ bộ với 10 lát cắt biến dị tổng hợp (Synthetic Perturbations) nhằm mục đích kiểm chứng cơ chế lý thuyết: chứng minh điểm mù của bộ lọc từ vựng và sự cần thiết của tầng tiền xử lý chuẩn hóa ký tự trước khi nhóm nạp dữ liệu lớn vào huấn luyện ở Task 3."*
+
+### Câu 5: "Tại sao mô hình Word-level lại sụp đổ về 0.0% Recall trước các đòn biến dị ký tự?"
+> **Trả lời**:  
+> *"Dạ thưa Thầy, vì các mô hình dựa trên từ khóa nguyên vẹn (như Word unigram) phụ thuộc hoàn toàn vào ranh giới từ xác định. Khi kẻ tấn công chèn khoảng trắng giữa các chữ cái ('i g n o r e') hoặc thay thế ký tự số ('1gn0r3'), tokenizer sẽ bẻ gãy từ thành các token đơn lẻ ngoài từ điển (Out-Of-Vocabulary / OOV). Do đó, bộ lọc hoàn toàn không bắt được dấu hiệu độc hại, dẫn đến Recall tụt về 0% và tỷ lệ lọt lưới là 100%."*
 
 ---
 
