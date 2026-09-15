@@ -8,10 +8,24 @@ Purpose:
     and validates how Character n-grams (3-5 n-grams) + Text Normalization restore detection recall.
 """
 
+import io
+import os
+from pathlib import Path
 import re
 import sys
 import unicodedata
 from typing import List
+
+# Fix Unicode output encoding on Windows consoles
+if sys.platform == "win32":
+    try:
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
+# Ensure local imports resolve correctly
+sys.path.insert(0, str(Path(__file__).parent.resolve()))
 
 from adversarial_robustness_suite import AdversarialRobustnessSuite
 from jailguard_mutators import LeetspeakMutator
@@ -128,7 +142,7 @@ def run_benchmark():
     print(suite.format_markdown_report(robust_results))
 
     # Export JSON
-    output_json = "adversarial_benchmark_results.json"
+    output_json = str(Path(__file__).parent / "adversarial_benchmark_results.json")
     suite.export_json(robust_results, output_json)
     print(f"\n✅ Benchmark results exported to: {output_json}")
 

@@ -6,7 +6,12 @@ Workspace: workspaces/ducnq/
 """
 
 import base64
+from pathlib import Path
+import sys
 import unittest
+
+# Ensure local imports resolve correctly
+sys.path.insert(0, str(Path(__file__).parent.resolve()))
 
 from jailguard_mutators import (
     LeetspeakMutator,
