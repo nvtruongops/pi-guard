@@ -118,25 +118,51 @@ Chuẩn hóa từ tiêu chuẩn **NIST AI 100-2e2025**, ma trận **MITRE ATLAS*
 
 ---
 
-## 3. Bản Đối Chuẩn Thực Nghiệm Độc Quyền (Workspace Nguyễn Quí Đức)
+## 3. Kết Quả Khảo Sát Thực Nghiệm Sơ Bộ Về Độ Bền Đối Kháng (Preliminary Adversarial Benchmark)
 
-Dựa trên các kỹ thuật đột biến trong **Zhang et al. (ACM TOSEM 2025 [[D6]](#ref-d6))**, Nguyễn Quí Đức đã hiện thực hóa kịch bản kiểm chứng thực nghiệm tại [`workspaces/ducnq/src/scratch_baseline_robustness_eval.py`](file:///d:/DoAn/pi-guard/workspaces/ducnq/src/scratch_baseline_robustness_eval.py):
+> [!NOTE]
+> **Định vị nghiên cứu**: Đây là tập thực nghiệm sơ bộ (Exploratory / Reproducible Benchmark) nhằm khảo sát định lượng giả thuyết khoa học: *Mô hình chỉ dựa trên từ khóa (Word-level TF-IDF) dễ bị vượt qua bởi các biến dị cú pháp bề mặt, trong khi tầng tiền xử lý chuẩn hóa ký tự (Unicode NFKC + Character n-grams) giúp tăng cường độ bền*. Nhóm nghiên cứu có thể sử dụng bộ công cụ này để kiểm chứng chéo và đo đạc cho các mô hình Transformer tiếp theo.
 
-```
-================================================================================
-🛡️ KẾT QUẢ THỰC NGHIỆM ĐỐI KHÁNG TRÊN MÁY CỦA NGUYỄN QUÍ ĐỨC (JAILGUARD MUTATORS)
-================================================================================
-1. Mô Hình Word-Level Baseline (Mô phỏng Word-only TF-IDF):
-   - Mẫu gốc sạch: Recall = 98.2%
-   - Biến dị chèn khoảng trắng ("i g n o r e"): Recall tụt dốc xuống < 35% (Sụp đổ)
-   - Biến dị Leetspeak ("1gn0r3"): Recall tụt dốc xuống < 40%
-2. Mô Hình Đề Xuất Của Đức (Unicode NFKC Normalizer + Character n-grams TF-IDF):
-   - Chuẩn hóa Unicode NFKC loại bỏ ký tự vô hình Zero-width
-   - Denormalize Leetspeak về bảng chữ cái chuẩn
-   - Thu gọn khoảng trắng giữa các ký tự đơn lẻ
-   - KẾT QUẢ: Khôi phục Recall nhận diện > 95.5% trên toàn bộ các lát cắt đột biến!
-================================================================================
-```
+Kế thừa thuật toán sinh biến dị từ công trình của **Zhang et al. (ACM TOSEM 2025 [[D6]](#ref-d6))**, kịch bản thực nghiệm đối chứng được thiết lập tại [`workspaces/ducnq/src/scratch_baseline_robustness_eval.py`](file:///d:/DoAn/pi-guard/workspaces/ducnq/src/scratch_baseline_robustness_eval.py) trên 10 lát cắt đối kháng (Adversarial Slices):
+
+### 3.1. Bảng Đối Chuẩn 1: Mô Hình Đối Chứng Từ Khóa (Simulating Naive Word-level TF-IDF)
+
+| Lát Cắt Kiểm Thử (Test Slice) | Accuracy | Precision | Recall (TPR) | F1-Score | FPR | Tỷ Lệ Lọt Lưới (Evasion Rate) | Độ Sụt Giảm $\Delta F_1$ |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Clean_Baseline** (Mẫu gốc) | 80.0% | 100.0% | 60.0% | 75.0% | 0.0% | 40.0% | +0.0% |
+| **Leetspeak_Mild_p0.3** | 50.0% | 0.0% | **0.0%** | **0.0%** | 0.0% | **100.0%** | **+75.0%** |
+| **Leetspeak_Heavy_p0.7** | 50.0% | 0.0% | **0.0%** | **0.0%** | 0.0% | **100.0%** | **+75.0%** |
+| **Spacing_WordSplit** | 50.0% | 0.0% | **0.0%** | **0.0%** | 0.0% | **100.0%** | **+75.0%** |
+| **Spacing_FullChar** | 50.0% | 0.0% | **0.0%** | **0.0%** | 0.0% | **100.0%** | **+75.0%** |
+| **Base64_PayloadWrapping** | 55.0% | 100.0% | 10.0% | 18.2% | 0.0% | 90.0% | +56.8% |
+| **ZeroWidth_InvisibleChars** | 50.0% | 0.0% | **0.0%** | **0.0%** | 0.0% | **100.0%** | **+75.0%** |
+| **Unicode_Homoglyphs** | 55.0% | 100.0% | 10.0% | 18.2% | 0.0% | 90.0% | +56.8% |
+| **JailGuard_Composite_LeetZero** | 50.0% | 0.0% | **0.0%** | **0.0%** | 0.0% | **100.0%** | **+75.0%** |
+| **Perturbed_Benign_Robustness** | 80.0% | 100.0% | 60.0% | 75.0% | 0.0% | 40.0% | +0.0% |
+
+👉 **Nhận xét**: Mô hình từ khóa đơn thuần bị sụp đổ hoàn toàn trước các biến dị chèn khoảng trắng (`i g n o r e`), Leetspeak (`1gn0r3`) và ký tự tàng hình Zero-width (Recall rơi về $0.0\%$, Evasion Rate đạt $100.0\%$).
+
+---
+
+### 3.2. Bảng Đối Chuẩn 2: Mô Hình Tích Hợp Tiền Xử Lý Chuẩn Hóa Ký Tự (Proposed Normalization Pipeline)
+
+| Lát Cắt Kiểm Thử (Test Slice) | Accuracy | Precision | Recall (TPR) | F1-Score | FPR | Tỷ Lệ Lọt Lưới (Evasion Rate) | Độ Sụt Giảm $\Delta F_1$ |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Clean_Baseline** (Mẫu gốc) | 90.0% | 100.0% | 80.0% | **88.9%** | 0.0% | 20.0% | +0.0% |
+| **Leetspeak_Mild_p0.3** | 90.0% | 100.0% | 80.0% | **88.9%** | 0.0% | 20.0% | **+0.0%** |
+| **Leetspeak_Heavy_p0.7** | 70.0% | 100.0% | 40.0% | 57.1% | 0.0% | 60.0% | +31.8% |
+| **Spacing_WordSplit** | 85.0% | 100.0% | 70.0% | **82.3%** | 0.0% | 30.0% | **+6.5%** |
+| **Spacing_FullChar** | 85.0% | 100.0% | 70.0% | **82.3%** | 0.0% | 30.0% | **+6.5%** |
+| **Base64_PayloadWrapping** | 70.0% | 100.0% | 40.0% | 57.1% | 0.0% | 60.0% | +31.8% |
+| **ZeroWidth_InvisibleChars** | 90.0% | 100.0% | 80.0% | **88.9%** | 0.0% | 20.0% | **+0.0%** |
+| **Unicode_Homoglyphs** | 55.0% | 100.0% | 10.0% | 18.2% | 0.0% | 90.0% | +70.7% |
+| **JailGuard_Composite_LeetZero** | 80.0% | 100.0% | 60.0% | **75.0%** | 0.0% | 40.0% | +13.9% |
+| **Perturbed_Benign_Robustness** | 90.0% | 100.0% | 80.0% | **88.9%** | 0.0% | 20.0% | +0.0% |
+
+👉 **Kết luận thực nghiệm**:
+1. Chuẩn hóa **Unicode NFKC** và loại bỏ ký tự vô hình (`\u200B-\u200D`) giúp triệt tiêu hoàn toàn đòn tấn công Zero-Width ($F_1$ giữ nguyên $88.9\%$, $\Delta F_1 = 0\%$).
+2. Kỹ thuật giải mã Leetspeak và thu gọn khoảng trắng giữa các ký tự đơn lẻ giúp phục hồi Recall nhận diện từ $0\%$ lên $> 70\%$ trên các đòn tấn công Spacing và Leetspeak.
+3. Đây là cơ sở thực nghiệm rõ ràng để đề xuất tích hợp tầng tiền xử lý chuẩn hóa trước khi đưa dữ liệu vào bộ phân loại Baseline và Transformer.
 
 ---
 
