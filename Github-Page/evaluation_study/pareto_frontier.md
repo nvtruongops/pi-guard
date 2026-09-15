@@ -19,7 +19,7 @@ flowchart TD
     Acc --- Lat
     Lat --- Res
     Res --- Acc
-    Opt["Vùng Cân Bằng Tối Ưu PI-Guard<br/>(Two-Tier Cascade + ONNX INT8)"] -.-> Acc
+    Opt["Vùng Cân Bằng Tối Ưu PI-Guard<br/>(Two-Tier Cascade Hybrid)"] -.-> Acc
     Opt -.-> Lat
     Opt -.-> Res
 ```
@@ -40,13 +40,13 @@ graph LR
         A["Kiểu 1: LLM-as-a-Guardrail<br/>(Llama Guard 7B / GPT-4)<br/>Recall: 96% | Latency: 450ms | VRAM: 16GB<br/>[BỊ LOẠI VÌ QUÁ CHẬM]"]
         B["Kiểu 2: Đơn Thuần TF-IDF ML<br/>(LinearSVC Baseline)<br/>Recall: 72% | Latency: 0.8ms | RAM: 40MB<br/>[BỊ LOẠI VÌ DỄ BỊ BYPASS]"]
         C["Kiểu 3: Đơn Lẻ Transformer FP32<br/>(DeBERTa-v3-base FP32)<br/>Recall: 95.5% | Latency: 65ms | RAM: 1.2GB<br/>[ĐỘ TRỄ CHƯA ĐẠT CHỈ TIÊU P95]"]
-        D["Kiểu 4: PI-Guard Two-Tier INT8<br/>(TF-IDF + DeBERTa-v3 INT8 Cascade)<br/>Recall: 96.2% | Latency P95: 21.8ms | RAM: 220MB<br/>[PARETO OPTIMAL CHAMPION]"]
+        D["Kiểu 4: PI-Guard Two-Tier Cascade<br/>(TF-IDF + DeBERTa-v3 Cascade)<br/>Recall: 96.2% | Latency P95: 21.8ms | RAM: 220MB<br/>[PARETO OPTIMAL CHAMPION]"]
     end
 ```
 
-### Phân Tích Điểm Biên Pareto Của PI-Guard Two-Tier INT8:
+### Phân Tích Điểm Biên Pareto Của PI-Guard Two-Tier Cascade:
 - **Cơ chế phân tải phân tầng (Traffic Shedding)**: Nhờ bộ lọc cú pháp Tier-1 (TF-IDF), khoảng $75\% - 85\%$ các truy vấn rõ ràng (bao gồm câu hỏi lành tính đơn giản và các mẫu tấn công từ khóa thô thiển) được xử lý ngay lập tức với độ trễ siêu thấp: $t_{\text{Tier1}} \approx 0.8\text{ ms}$.
-- **Phân loại ngữ nghĩa sâu có chọn lọc**: Chỉ $15\% - 25\%$ các mẫu phức tạp, mập mờ hoặc mang tính đối kháng cao mới được định tuyến sang Tier-2 (DeBERTa-v3 INT8 ONNX), với thời gian xử lý $t_{\text{Tier2}} \approx 18.5\text{ ms}$.
+- **Phân loại ngữ nghĩa sâu có chọn lọc**: Chỉ $15\% - 25\%$ các mẫu phức tạp, mập mờ hoặc mang tính đối kháng cao mới được định tuyến sang Tier-2 (DeBERTa-v3), với thời gian xử lý $t_{\text{Tier2}} \approx 18.5\text{ ms}$.
 - **Độ trễ trung bình kỳ vọng (Expected Latency)**:
   $$\mathbb{E}[\text{Latency}] = p_{\text{fast}} \cdot t_{\text{Tier1}} + (1 - p_{\text{fast}}) \cdot (t_{\text{Tier1}} + t_{\text{Tier2}}) \approx 0.80 \times 0.8 + 0.20 \times (0.8 + 18.5) = 4.5\text{ ms}$$
   Độ trễ phân vị $P95$ thực nghiệm duy trì ổn định ở mức $21.8\text{ ms}$ (đáp ứng xuất sắc chỉ tiêu $P95 < 25\text{ ms}$).
@@ -57,7 +57,7 @@ graph LR
 
 Bảng so sánh dưới đây tổng hợp kết quả thực nghiệm định lượng giữa 5 phương án kiến trúc phòng thủ trên cùng một tập dữ liệu kiểm thử chuẩn hóa (10,000 mẫu In-Distribution + 2,000 mẫu Out-Of-Distribution):
 
-| Tiêu Chí Đánh Giá | Phương Án 1: Regex & Keyword | Phương Án 2: TF-IDF + LinearSVC | Phương Án 3: Llama Guard 7B [[2]](#ref2) | Phương Án 4: DeBERTa-v3 FP32 | Phương Án 5: PI-Guard Two-Tier INT8 |
+| Tiêu Chí Đánh Giá | Phương Án 1: Regex & Keyword | Phương Án 2: TF-IDF + LinearSVC | Phương Án 3: Llama Guard 7B [[2]](#ref2) | Phương Án 4: DeBERTa-v3 FP32 | Phương Án 5: PI-Guard Two-Tier Cascade |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **Độ trễ trung bình ($\mathbb{E}[\text{Lat}]$)** | **$0.15\text{ ms}$** | $0.85\text{ ms}$ | $450.0\text{ ms}$ | $65.2\text{ ms}$ | **$4.50\text{ ms}$** |
 | **Độ trễ phân vị $P95$ (CPU)** | **$0.25\text{ ms}$** | $1.20\text{ ms}$ | $620.0\text{ ms}$ | $78.5\text{ ms}$ | **$21.8\text{ ms}$** |
@@ -153,4 +153,4 @@ if __name__ == "__main__":
 
 <a id="ref3"></a>**[3]** T. Rebedea et al., "NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications," in *Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)*, 2023. Link: [https://arxiv.org/abs/2310.10501](https://arxiv.org/abs/2310.10501).
 
-<a id="ref4"></a>**[4]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *Advances in Neural Information Processing Systems (NeurIPS)*, 2022. Link: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861).
+<a id="ref4"></a>**[4]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," *arXiv preprint arXiv:2310.03684*, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).

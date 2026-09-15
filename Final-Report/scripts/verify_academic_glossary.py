@@ -90,8 +90,8 @@ def main():
         success = verify_file_glossary(target)
         sys.exit(0 if success else 1)
 
-    # Nếu quét toàn bộ các file báo cáo Task Meeting 4
-    task_dir = repo_root / "workspaces" / "truongnv" / "reports" / "task_for_meeting_4"
+    # Nếu quét toàn bộ các file báo cáo Task Meeting 5
+    task_dir = repo_root / "workspaces" / "truongnv" / "reports" / "tasks_for_meeting_5"
     if task_dir.exists():
         all_passed = True
         for md_file in task_dir.glob("TASK_*.md"):

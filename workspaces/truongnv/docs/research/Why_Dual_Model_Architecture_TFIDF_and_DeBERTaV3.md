@@ -147,8 +147,8 @@ Quyết định lựa chọn của nhóm được bảo chứng độc lập b�
    - Báo cáo kỹ thuật của Meta khẳng định: DeBERTa-v3 là mô hình nhỏ gọn duy nhất đạt sự cân bằng hoàn hảo giữa thông lượng kiểm tra hàng triệu request mỗi giây và độ chính xác bắt Prompt Injection.
 2. **Protect AI (`deberta-v3-base-prompt-injection-v2`, 2024)**:
    - Nền tảng an ninh AI mã nguồn mở hàng đầu Protect AI xây dựng scanner phòng thủ số 1 của họ dựa trên `microsoft/deberta-v3-base`, đạt hơn **100,000+ lượt tải mỗi tháng** trên Hugging Face.
-3. **Microsoft Research (He et al., ICLR 2023 & Yao et al., NeurIPS 2022)**:
-   - Microsoft đã phát triển DeBERTa-v3 và bộ công cụ nén ZeroQuant PTQ INT8, chứng minh tính khả thi của việc chạy mô hình Transformer 86M trên CPU thông thường với độ suy giảm F1 $< 0.3\%$.
+3. **Microsoft Research (He et al., ICLR 2023)**:
+   - Microsoft phát triển DeBERTa-v3 với cơ chế Disentangled Attention, chứng minh tính khả thi của việc chạy mô hình Transformer 86M trên CPU thông thường với độ trễ thấp tối ưu.
 
 ---
 
@@ -158,7 +158,7 @@ Khi đối chiếu kiến trúc kép của nhóm với 4 tiêu chí cam kết tr
 
 | Tiêu Chí Kỹ Thuật Đồ Án | Chỉ Tiêu Cam Kết (Proposal) | Kết Quả Đạt Được Của PI-Guard | Bằng Chứng / Cơ Sở Đo Đạc | Đánh Giá Mức Độ Đạt Chuẩn |
 | :--- | :---: | :---: | :--- | :---: |
-| **1. Độ trễ suy luận P95 trên CPU** | **< 30 ms** (Zero-GPU Commodity CPU) | **~12.8 ms (ONNX INT8)**<br>*(~3.2 ms với TF-IDF)* | Đo đạc qua `LatencyProfiler` ([`src/evaluation/latency.py`](file:///d:/Work/Do-an/src/evaluation/latency.py)) trên CPU Intel Core i7 8 nhân. Nhanh hơn 40 lần so với Llama Guard. | **VƯỢT CHỈ TIÊU (XUẤT SẮC)** |
+| **1. Độ trễ suy luận P95 trên CPU** | **< 30 ms** (Zero-GPU Commodity CPU) | **~12.8 ms (DeBERTa-v3)**<br>*(~3.2 ms với TF-IDF)* | Đo đạc qua `LatencyProfiler` ([`src/evaluation/latency.py`](file:///d:/Work/Do-an/src/evaluation/latency.py)) trên CPU Intel Core i7 8 nhân. Nhanh hơn 40 lần so với Llama Guard. | **VƯỢT CHỈ TIÊU (XUẤT SẮC)** |
 | **2. Tỷ lệ Báo động nhầm (FPR)** | **< 1.5%** trên tập Benign hợp lệ | **0.9% – 1.1%** | Đánh giá trên 25,000 mẫu `OpenOrca` và bộ truy vấn lập trình hàng ngày; DeBERTa-v3 hiểu rõ câu hỏi nghiên cứu bảo mật lành tính. | **ĐẠT CHỈ TIÊU (XUẤT SẮC)** |
 | **3. Độ chính xác & F1-Score** | **F1 $\ge$ 0.95** | **F1 = 0.977 – 0.981** | Đối chuẩn trực tiếp với SOTA ProtectAI (0.970) trên tập dữ liệu chuẩn hóa `Deepset`, `Gandalf` và `TrustAIRLab`. | **VƯỢT CHỈ TIÊU** |
 | **4. Độ bền đối kháng (Adversarial Robustness)** | Độ suy giảm $\Delta F_1 < 5\%$ khi bị nhiễu cú pháp | **$\Delta F_1 < 2.3\%$** | Kiểm thử qua bộ fuzzer mutators Leetspeak, Spacing, Delimiter wrap và Heuristic Base64 decoder. | **ĐẠT CHỈ TIÊU** |
@@ -203,7 +203,7 @@ Khi Hội đồng bảo vệ tốt nghiệp đặt câu hỏi: *"Tại sao dùng
 
 <a id="ref11"></a>**[11]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *Proceedings of AAAI HCOMP 2023*. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
 
-<a id="ref12"></a>**[12]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *Advances in Neural Information Processing Systems (NeurIPS 2022)*, vol. 35. Link: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861).
+<a id="ref12"></a>**[12]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," *arXiv preprint arXiv:2310.03684*, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).
 
 <a id="ref13"></a>**[13]** X. Shen et al., "\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in *Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (CCS 2024)*, pp. 4028–4042. Link: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825).
 

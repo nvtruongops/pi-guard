@@ -14,9 +14,10 @@
   - [`docs/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/02_Literature_Review.md): Toàn văn Chương 2 (Literature Review & SOTA Survey).
   - [`docs/thesis/chapters/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/README.md): Lộ trình biên soạn 6 chương theo chuẩn FPT IAP491.
   - [`docs/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md): Hồ sơ kỹ thuật Problem Definition & Threat Model.
-  - [`Final-Report/PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/Final-Report/PI-GUARD-Present-109.pptx): Slide thuyết trình tiến độ phục vụ buổi gặp Giáo viên Hướng dẫn (10/09/2026 - 22 slide, Dark Slate Navy, chuẩn bị cho Review 1).
-  - [`reports/SUPERVISOR_REPORT_10_09_2026.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/SUPERVISOR_REPORT_10_09_2026.md): Đề cương tóm lược slide-by-slide & kịch bản báo cáo tiến độ gặp GVHD (10/09/2026).
-  - [`reports/figures/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/figures/README.md): Danh mục 13 hình ảnh minh chứng trích từ slide báo cáo GVHD kèm metadata học thuật & tác dụng kỹ thuật.
+  - [`reports/report_for_meeting_4/PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/PI-GUARD-Present-109.pptx): Slide thuyết trình tiến độ phục vụ buổi gặp Giáo viên Hướng dẫn (10/09/2026 - 22 slide, Dark Slate Navy).
+  - [`reports/report_for_meeting_4/SUPERVISOR_REPORT_10_09_2026.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/SUPERVISOR_REPORT_10_09_2026.md): Đề cương tóm lược slide-by-slide & kịch bản báo cáo tiến độ gặp GVHD (10/09/2026).
+  - [`reports/report_for_meeting_4/figures/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/figures/README.md): Danh mục 12 hình ảnh minh chứng trích từ slide báo cáo GVHD Meeting 4.
+  - [`reports/tasks_for_meeting_5/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/README.md): **Hồ sơ 4 nhiệm vụ kỹ thuật chuẩn bị Meeting 5** (Task 1: Phân biệt PI/Jailbreak, Task 2: 5D Framework & Reference Models, Task 3: Thực nghiệm tái lập PIGuard ACL 2025, Task 4: 4 Giải pháp cải tiến).
   - [`Final-Report/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/Final-Report/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md): *(Dùng chung toàn nhóm)* Tóm tắt quy chế và tiêu chí chấm điểm FPT IAP491.
   - [`docs/thesis/FINAL_THESIS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FINAL_THESIS.md): Bản biên dịch toàn văn các chương Review 1.
 
@@ -43,12 +44,8 @@
   - [`docs/model_study/03_two_tier_pipeline_coordination/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/model_study/03_two_tier_pipeline_coordination/): Nguyên lý phối hợp 2 mô hình (Cascade Defense) giải quyết triệt để 3 đánh đổi kỹ thuật.
 
 - 📚 **Tài liệu tham khảo & Nghiên cứu Đối sánh SOTA**:
-  - [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truongnv/References/REFERENCES_LOG.md): Bảng ma trận 17 bài báo IEEE (100% >= 2022).
+  - [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truongnv/References/REFERENCES_LOG.md): Bảng ma trận 18 bài báo chuẩn (100% >= 2022).
   - [`docs/research/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/): Báo cáo đối sánh đa mô hình LLM mục tiêu, Tencent 2026 và luận giải kiến trúc kép Hybrid.
-
-- 💾 **Dữ liệu nghiên cứu**:
-  - [`data/manifests/`](file:///d:/Work/Do-an/workspaces/truongnv/data/manifests/): Taxonomies và manifests dữ liệu.
-  - [`data/raw/`](file:///d:/Work/Do-an/workspaces/truongnv/data/raw/), [`data/processed/`](file:///d:/Work/Do-an/workspaces/truongnv/data/processed/), [`data/splits/`](file:///d:/Work/Do-an/workspaces/truongnv/data/splits/).
 
 ---
 

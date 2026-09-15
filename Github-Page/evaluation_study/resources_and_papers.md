@@ -16,7 +16,7 @@ Toàn bộ các tài liệu tham khảo dưới đây đều tuân thủ nghiêm
 | **1** | **Markov et al. (2023)** | *A Holistic Approach to Undesired Content Detection in the Real World* | *AAAI HCOMP 2023* | [arXiv Open PDF](https://arxiv.org/abs/2208.03274) | Đặt nền móng cho kinh tế học FPR, phân tích chi phí cảnh báo sai trong sản xuất thực tế. |
 | **2** | **Inan et al. (2023)** | *Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations* | *arXiv:2312.06674 (Meta AI)* | [arXiv Open PDF](https://arxiv.org/abs/2312.06674) | Cung cấp chuẩn benchmark đối sánh SOTA guardrail và phân loại 6 danh mục rủi ro an toàn. |
 | **3** | **Rebedea et al. (2023)** | *NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications* | *EMNLP 2023 System Demo* | [arXiv Open PDF](https://arxiv.org/abs/2310.10501) | Phân tích kiến trúc phần mềm trung gian (Middleware) và cơ chế định tuyến bất định. |
-| **4** | **Yao et al. (2022)** | *ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers* | *NeurIPS 2022* | [arXiv Open PDF](https://arxiv.org/abs/2206.01861) | Cơ sở lý thuyết lượng tử hóa INT8 động giúp đạt điểm tối ưu trên đường cong biên Pareto. |
+| **4** | **Robey et al. (2023)** | *SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks* | *arXiv:2310.03684* | [arXiv Open PDF](https://arxiv.org/abs/2310.03684) | Cơ chế phòng thủ đối kháng đa truy vấn làm đối chuẩn so sánh đánh đổi hiệu năng. |
 | **5** | **He et al. (2023)** | *DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Disentangled Attention* | *ICLR 2023* | [arXiv Open PDF](https://arxiv.org/abs/2111.09543) | Kiến trúc Transformer phân tách vector nội dung và vị trí tương đối làm Guardrail. |
 
 ---
@@ -45,6 +45,6 @@ Toàn bộ các video dưới đây đều đã được xác thực trạng th�
 
 <a id="ref3"></a>**[3]** T. Rebedea et al., "NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications," in *Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)*, 2023. Link: [https://arxiv.org/abs/2310.10501](https://arxiv.org/abs/2310.10501).
 
-<a id="ref4"></a>**[4]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *Advances in Neural Information Processing Systems (NeurIPS)*, 2022. Link: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861).
+<a id="ref4"></a>**[4]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," *arXiv preprint arXiv:2310.03684*, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).
 
 <a id="ref5"></a>**[5]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Disentangled Attention," in *International Conference on Learning Representations (ICLR)*, 2023. Link: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543).

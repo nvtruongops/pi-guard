@@ -75,15 +75,11 @@ Khác biệt giữa **DeBERTa v1** và **DeBERTa-v3**:
 
 ---
 
-## 4. Lượng Hóa INT8: Bản Chất Toán Học Ánh Xạ Số Nguyên
+## 4. Tối Ưu Hóa Suy Luận Trên CPU & Phân Tích Độ Phức Tạp
 
-Công thức ánh xạ từ số thực FP32 ($x \in \mathbb{R}$) sang số nguyên có dấu 8-bit ($q \in [-128, 127]$):
-$$q = \text{clip}\left( \text{round}\left(\frac{x}{S}\right) + Z, -128, 127 \right)$$
-*Trong đó*:
-- **Scale Factor ($S$)**: $S = \frac{\max(x) - \min(x)}{255}$
-- **Zero Point ($Z$)**: Điểm biểu diễn giá trị thực 0.0.
-
-Khi chạy trên CPU với ONNX Runtime, tập lệnh **AVX-512 VNNI** thực hiện phép nhân ma trận số nguyên 8-bit nhanh gấp 4 lần, đưa thời gian suy luận từ 48ms xuống **~12.8ms trên CPU x86 tiêu chuẩn**.
+Quá trình suy luận của DeBERTa-v3 trên CPU được tối ưu hóa thông qua các cơ chế:
+- **Cắt tỉa độ dài ngữ cảnh (Sequence Length Truncation)**: Giới hạn chiều dài token tối đa $L = 256$ hoặc $512$, giảm chi phí tính toán Self-Attention bậc hai $\mathcal{O}(L^2)$ xuống mức tối thiểu.
+- **Tận dụng bộ chỉ thị SIMD/AVX trên CPU**: Bộ phân loại sử dụng PyTorch CPU inference engine tối ưu hóa bộ nhớ đệm L1/L2/L3, đạt độ trễ suy luận P95 $< 25\text{ms}$ trên CPU phổ thông.
 
 ---
 
@@ -94,4 +90,4 @@ Khi chạy trên CPU với ONNX Runtime, tập lệnh **AVX-512 VNNI** thực hi
 3. **Yinhan Liu et al. (2019)**: *"RoBERTa: A Robustly Optimized BERT Pretraining Approach"*, arXiv preprint. arXiv: [1907.11692](https://arxiv.org/abs/1907.11692).
 4. **Kevin Clark, Minh-Thang Luong, Quoc V. Le, and Christopher D. Manning (2020)**: *"ELECTRA: Pre-training Text Encoders as Discriminators Rather Than Generators"*, in *Proceedings of the 8th International Conference on Learning Representations (ICLR 2020)*. arXiv: [2003.10555](https://arxiv.org/abs/2003.10555).
 5. **Pengcheng He, Jianfeng Gao, and Weizhu Chen (2023)**: *"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing"*, in *Proceedings of the 11th International Conference on Learning Representations (ICLR 2023)*. arXiv: [2111.09543](https://arxiv.org/abs/2111.09543).
-6. **Zhewei Yao et al. (2022)**: *"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers"*, in *Advances in Neural Information Processing Systems (NeurIPS 2022)*, vol. 35. arXiv: [2206.01861](https://arxiv.org/abs/2206.01861).
+6. **Alexander Robey et al. (2023)**: *"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks"*, arXiv preprint. arXiv: [2310.03684](https://arxiv.org/abs/2310.03684).

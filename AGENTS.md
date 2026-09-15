@@ -8,7 +8,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 - **Project Title**: A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (**PI-Guard**)
 - **Academic Program**: Bachelor of Science in Information Assurance (IA), FPT University (Course Code: `IAP491`, Fall 2026 Semester)
 - **Primary Objective**: Design, implement, and benchmark an external, API-driven, Machine-Learning and Transformer-based protective guardrail placed in front of downstream LLM applications to classify incoming user prompts (*Benign* vs. *Prompt Injection* vs. *Jailbreak*) with low latency and low false-positive rate.
-- **Tech Stack**: Python 3.11+, PyTorch, Hugging Face Transformers (`microsoft/deberta-v3-base`), Scikit-Learn (TF-IDF Baseline), ONNX Runtime (INT8 Quantization), FastAPI (PoC Proxy), Streamlit (Demo UI), Docker, JupyterLab.
+- **Tech Stack**: Python 3.11+, PyTorch, Hugging Face Transformers (`microsoft/deberta-v3-base`), Scikit-Learn (TF-IDF Baseline), FastAPI (PoC Proxy), Streamlit (Demo UI), Docker, JupyterLab.
 
 ---
 
@@ -62,7 +62,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 > [!IMPORTANT]
 > **MANDATORY INVARIANT: REUSE ARCHIVED LITERATURE BEFORE DISCOVERY**:
 > 1. **INSPECT REFERENCES_LOG.md FIRST**: Before calling any literature MCP tool (`arxiv`, `openalex`, `semanticscholar`, `scholar-feed`) or searching external web/databases for citations, all AI Agents and team members MUST first inspect [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md).
-> 2. **PRIORITIZE 18 CORE ARCHIVED PAPERS**: The repository already contains 18 approved, peer-reviewed academic papers covering all core topics (Direct/Indirect Prompt Injection, DAN Jailbreak, TF-IDF N-Grams, DeBERTa-v3, ONNX INT8 Quantization, Low FPR Economics, Adversarial Robustness, and Saltzer & Schroeder 1975). If a claim or topic is already covered, reuse the existing reference and anchor (`[[N]](#refN)`).
+> 2. **PRIORITIZE 17 CORE ARCHIVED PAPERS**: The repository already contains 17 approved, peer-reviewed academic papers covering all core topics (Direct/Indirect Prompt Injection, DAN Jailbreak, TF-IDF N-Grams, DeBERTa-v3, Low FPR Economics, Adversarial Robustness, and Saltzer & Schroeder 1975). If a claim or topic is already covered, reuse the existing reference and anchor (`[[N]](#refN)`).
 > 3. **STRICT THRESHOLD FOR NEW LITERATURE**: External searches are permitted ONLY when researching a newly discovered attack variant or novel method genuinely not addressed in the 18 archived papers.
 > 4. **MANDATORY INGESTION PIPELINE**: Any newly accepted paper must be verified for Open-Access PDF, archived in `Final-Report/References/<filename>.pdf`, and indexed in `REFERENCES_LOG.md` with full metadata and BibTeX.
 
@@ -127,7 +127,7 @@ The workspace is configured with 11 integrated Model Context Protocol (MCP) serv
 - **Academic Literature Discovery**: Leverage the golden quartet (`arxiv` for newest preprints, `openalex` for verified open-access PDFs, `semanticscholar` for quick TLDR screening and influential citation graphs, and `scholar-feed` for BibTeX citation trees).
 - **GPU Cloud Labs & Dataset Exploration**: Utilize `kaggle` to search reference transformer classification notebooks, access supplementary jailbreak datasets, and manage long-running GPU training jobs without local hardware constraints.
 - **Error Code & Technical Troubleshooting**: Use `duckduckgo-search` for PyTorch, Transformers, ONNX Runtime, and FastAPI exceptions; use `jupyter` for interactive debugging in experimental notebooks.
-- **Strict Scope Guard**: All tooling and literature queries MUST strictly align with the scope defined in [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) (Text-based Prompt Injection, Jailbreak, Classical ML Baselines, DeBERTa-v3, ONNX INT8, and Lightweight FastAPI/Streamlit PoC). Out-of-scope domains (bio/medical tools, cloud enterprise BigQuery data pipelines, hardware attacks) are strictly prohibited.
+- **Strict Scope Guard**: All tooling and literature queries MUST strictly align with the scope defined in [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) (Text-based Prompt Injection, Jailbreak, Classical ML Baselines, DeBERTa-v3 Transformer, and Lightweight FastAPI/Streamlit PoC). Out-of-scope domains (bio/medical tools, cloud enterprise BigQuery data pipelines, hardware attacks) are strictly prohibited.
 
 ---
 
@@ -156,16 +156,16 @@ The repository provides 13 specialized, domain-specific agent skills:
 > **Team Core Principle**: **Everyone Explores $\rightarrow$ Cross-Review Findings $\rightarrow$ Consensus Finalization**  
 > Instead of a fragmented assembly line, all 4 members explore the entire pipeline hands-on in parallel within their individual sandboxes (`workspaces/<member>/`). Weekly convergence meetings consolidate the best empirical results into `Final-Report/src/` and `Final-Report/thesis/chapters/`:
 
-- **Full-Stack Competency**: Every member gains hands-on expertise across Data Engineering, Baseline ML, Transformer Fine-Tuning, Quantization, Adversarial Robustness, and API Integration.
+- **Full-Stack Competency**: Every member gains hands-on expertise across Data Engineering, Baseline ML, Transformer Fine-Tuning, Adversarial Robustness, and API Integration.
 - **Weekly Convergence Sessions**: The team compares empirical metrics (F1, FPR, Latency P95), selects champion modules for `Final-Report/src/`, and compiles thesis chapters collaboratively.
 - **Defense Mastery**: Every member understands the complete ecosystem end-to-end, ensuring confident performance during individual committee oral examinations.
 
 | Member | Full-Pipeline Sandbox (100% End-to-End Pipeline) | Workspace Directory |
 | :--- | :--- | :--- |
-| **Nguyễn Văn Trường (Leader / `nvtruongops`)** | Full Pipeline (Data, Baseline, Transformer, INT8, Proxy) & Overall Architecture | `workspaces/truongnv/` |
-| **Nguyễn Quí Đức** | Full Pipeline (Data, Baseline, Transformer, INT8, Proxy) & Empirical Cross-Validation | `workspaces/ducnq/` |
-| **Phạm Minh Hoàng Việt** | Full Pipeline (Data, Baseline, Transformer, INT8, Proxy) & Empirical Cross-Validation | `workspaces/vietpmh/` |
-| **Đỗ Đoàn Duy Phương** | Full Pipeline (Data, Baseline, Transformer, INT8, Proxy) & Empirical Cross-Validation | `workspaces/phuongddd/` |
+| **Nguyễn Văn Trường (Leader / `nvtruongops`)** | Full Pipeline (Data, Baseline, Transformer, Robustness, Proxy) & Overall Architecture | `workspaces/truongnv/` |
+| **Nguyễn Quí Đức** | Full Pipeline (Data, Baseline, Transformer, Robustness, Proxy) & Empirical Cross-Validation | `workspaces/ducnq/` |
+| **Phạm Minh Hoàng Việt** | Full Pipeline (Data, Baseline, Transformer, Robustness, Proxy) & Empirical Cross-Validation | `workspaces/vietpmh/` |
+| **Đỗ Đoàn Duy Phương** | Full Pipeline (Data, Baseline, Transformer, Robustness, Proxy) & Empirical Cross-Validation | `workspaces/phuongddd/` |
 
 ---
 

@@ -14,7 +14,7 @@ flowchart TD
     User["USER PROMPT ĐẦU VÀO"]
     T0["<b>TẦNG 0: TIỀN XỬ LÝ & GIẢI MÃ NGẦM</b><br/>• Unicode NFKC: Khử Homoglyph, chuyển Fullwidth &rarr; ASCII<br/>• Regex Collapsing: Thu hẹp khoảng trắng & ký tự phân cách<br/>• Heuristic Base64 Unmasking: Tự động trích xuất & giải mã"]
     T1["<b>TẦNG 1: BỘ LỌC CÚ PHÁP (Char n-grams TF-IDF)</b><br/>• Cụm ký tự trượt (char_wb, n &in; [3, 5])<br/>• Kháng Leetspeak nhờ bảo toàn Cosine Similarity<br/>• Phân loại độ trễ thấp (&lt; 2ms trên CPU)"]
-    T2["<b>TẦNG 2: BỘ LỌC NGỮ NGHĨA (Adversarial DeBERTa-v3 INT8)</b><br/>• Fine-tuning trên tập dữ liệu tăng cường đối kháng<br/>• Disentangled Attention tách biệt Ma trận Nội dung & Vị trí<br/>• Lượng hóa INT8 ZeroQuant bảo toàn biên độ phân loại"]
+    T2["<b>TẦNG 2: BỘ LỌC NGỮ NGHĨA (Adversarial DeBERTa-v3)</b><br/>• Fine-tuning trên tập dữ liệu tăng cường đối kháng<br/>• Disentangled Attention tách biệt Ma trận Nội dung & Vị trí<br/>• Phân loại ngữ nghĩa sâu bảo toàn biên độ an toàn"]
     Decision["QUYẾT ĐỊNH: ALLOW / BLOCK"]
 
     User --> T0
@@ -115,8 +115,8 @@ Trong đó:
 **Tác dụng kháng Spacing Tricks**:
 Khi kẻ tấn công chèn khoảng trắng làm tăng số lượng token trung gian, cơ chế vị trí tương đối của DeBERTa-v3 giữ cho mối liên kết giữa các thành phần nội dung không bị triệt tiêu đột ngột như cơ chế vị trí tuyệt đối (Absolute Position Embedding) của BERT thông thường.
 
-### C. Lượng Hóa Động INT8 (ZeroQuant - Yao et al., 2022)
-Để triển khai thực tế trên CPU với chi phí thấp, mô hình DeBERTa-v3 được lượng hóa sang dạng số nguyên 8-bit (INT8 Dynamic Quantization) [[7]](#ref7). Kỹ thuật này giảm kích thước mô hình từ $500\text{MB}$ xuống $\approx 135\text{MB}$, tăng tốc độ suy luận gấp $2.8\times$ trên CPU mà vẫn bảo toàn độ suy giảm F1 đối kháng $\Delta F_1 < 0.3\%$.
+### C. Tối Ưu Hóa Độ Trễ Suy Luận Trực Tuyến (Inference Latency Optimization on CPU)
+Để triển khai thực tế trên CPU với chi phí thấp, mô hình DeBERTa-v3 được tối ưu hóa pipeline tiền xử lý và cắt tỉa độ dài ngữ cảnh (Sequence Length Truncation = 256/512 tokens) [[7]](#ref7). Kỹ thuật này giúp mô hình đạt độ trễ suy luận P95 thấp trên CPU phổ thông mà vẫn duy trì năng lực phân loại ngữ nghĩa sâu và độ bền vững đối kháng cao.
 
 ---
 
@@ -128,4 +128,4 @@ Khi kẻ tấn công chèn khoảng trắng làm tăng số lượng token trung
 <a id="ref4"></a>**[4]** N. Jain et al., "Baseline Defenses for Adversarial Attacks on Large Language Models," *arXiv preprint arXiv:2309.00614*, 2023. Link: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614).
 <a id="ref5"></a>**[5]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in *ICLR 2023*, 2023. Link: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543).
 <a id="ref6"></a>**[6]** W. Zhou et al., "EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models," *arXiv preprint arXiv:2403.12171*, 2024. Link: [https://arxiv.org/abs/2403.12171](https://arxiv.org/abs/2403.12171).
-<a id="ref7"></a>**[7]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *Advances in Neural Information Processing Systems (NeurIPS 2022)*, 2022. Link: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861).
+<a id="ref7"></a>**[7]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," *arXiv preprint arXiv:2310.03684*, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).

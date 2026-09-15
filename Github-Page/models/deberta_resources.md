@@ -16,11 +16,11 @@
    - **Link toàn văn arXiv**: [https://arxiv.org/abs/2006.03654](https://arxiv.org/abs/2006.03654)
    - **Ý nghĩa**: Giới thiệu công thức toán học phân rã Attention thành Content và Relative Position.
 
-3. **Zhewei Yao et al. (Microsoft Research) — ZeroQuant INT8 Post-Training Quantization**:
-   - **Tên bài báo**: *"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers"*.
-   - **Hội nghị**: **NeurIPS 2022**.
-   - **Link toàn văn arXiv**: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861)
-   - **Ý nghĩa**: Cơ sở khoa học của kỹ thuật nén mô hình DeBERTa-v3 từ 500MB xuống 140MB chạy trên CPU.
+3. **Alexander Robey et al. — SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks**:
+   - **Tên bài báo**: *"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks"*.
+   - **Nơi công bố**: *arXiv:2310.03684*.
+   - **Link toàn văn arXiv**: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684)
+   - **Ý nghĩa**: Cơ chế phòng thủ đối kháng đa truy vấn làm đối chuẩn so sánh đánh đổi với bộ phân loại đơn lượt PI-Guard.
 
 4. **Meta AI Research (2024 - 2025) — Meta Prompt-Guard-86M**:
    - **Mô hình**: [meta-llama/Prompt-Guard-86M trên Hugging Face](https://huggingface.co/meta-llama/Prompt-Guard-86M)

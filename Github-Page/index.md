@@ -1,5 +1,5 @@
 # PI-Guard: LLM Security Guardrail
-## Hệ Thống 8 Chuyên Đề Nghiên Cứu Khoa Học & Báo Cáo Khóa Luận
+## Hệ Thống 7 Chuyên Đề Nghiên Cứu Khoa Học & Báo Cáo Khóa Luận
 
 > **Đồ án Khóa luận Tốt nghiệp Đại học FPT** — Chuyên ngành An toàn Thông tin (IA)<br>
 > **Mã đề tài**: `IAP491_FA26_PI_GUARD` | **Học kỳ**: Fall 2026<br>
@@ -12,7 +12,7 @@
 **PI-Guard** là hệ thống bảo vệ (guardrail) độc lập đặt trước các ứng dụng mô hình ngôn ngữ lớn (LLM), hoạt động theo cơ chế **hai tầng bảo vệ (Two-Tier Cascade Architecture)**:
 
 1. **Tier 1 (Bộ lọc Cú pháp - Syntactic Baseline)**: Sử dụng phương pháp vector hóa TF-IDF kết hợp mô hình phân loại tuyến tính siêu nhẹ (Linear Classifier) nhằm nhận diện các mẫu prompt injection phổ biến với độ trễ cực thấp (**P95 < 1.0 ms**).
-2. **Tier 2 (Bộ lọc Ngữ nghĩa Sâu - Semantic Transformer)**: Sử dụng Transformer tiên tiến (**DeBERTa-v3**) với cơ chế Disentangled Attention, được lượng hóa sau huấn luyện qua **ONNX Runtime INT8** nhằm phát hiện các biến thể tấn công tinh vi, jailbreak ẩn ngữ cảnh với độ trễ mục tiêu **P95 < 25 ms**.
+2. **Tier 2 (Bộ lọc Ngữ nghĩa Sâu - Semantic Transformer)**: Sử dụng Transformer tiên tiến (**DeBERTa-v3**) với cơ chế Disentangled Attention nhằm phát hiện các biến thể tấn công tinh vi, jailbreak ẩn ngữ cảnh với độ trễ tối ưu trên CPU (**P95 < 25 ms**).
 
 ---
 
@@ -30,8 +30,8 @@ flowchart TD
         T1 -- "Lành tính tin cậy (Score <= 0.15)" --> Pass1["Fast Pass trực tiếp tới LLM"]
     end
 
-    subgraph Tier2["3. Tier 2: Semantic Transformer (DeBERTa-v3 INT8)"]
-        T1 -- "Vùng nghi vấn (0.15 < Score < 0.85)" --> T2{"DeBERTa-v3 ONNX Runtime"}
+    subgraph Tier2["3. Tier 2: Semantic Transformer (DeBERTa-v3)"]
+        T1 -- "Vùng nghi vấn (0.15 < Score < 0.85)" --> T2{"DeBERTa-v3 Transformer"}
         T2 -- "Phát hiện Injection / Jailbreak" --> Block2["Chặn tấn công ngữ nghĩa"]
         T2 -- "Độ tin cậy lành tính cao" --> Pass2["Chấp thuận cho phép"]
     end
@@ -54,7 +54,7 @@ flowchart TD
 
 ---
 
-## Hệ Thống 8 Chuyên Đề Nghiên Cứu Khoa Học Trọng Điểm
+## Hệ Thống 7 Chuyên Đề Nghiên Cứu Khoa Học Trọng Điểm
 
 | Chuyên Đề Khoa Học | Trọng Tâm Nghiên Cứu | Đường Dẫn Tra Cứu |
 | :--- | :--- | :--- |
@@ -64,8 +64,7 @@ flowchart TD
 | **4. Dataset & Benchmark** | Tuyển chọn dữ liệu 3 lớp, Khử trùng lặp MinHash, Group-Aware Splitting & Đánh giá OOD | [Xem Dataset Study](dataset_study/data_curation.md) |
 | **5. Model Study** | Toán học TF-IDF, Transformer DeBERTa-v3 Disentangled Attention & Định tuyến bất định 2 tầng | [Xem Model Study](models/two_tier_architecture.md) |
 | **6. Robustness Study** | Chống chịu kỹ thuật làm mờ (Leetspeak, Homoglyphs, Base64) & Tiền xử lý chuẩn hóa 4 bước | [Xem Robustness Study](robustness/theory_and_evasion_mechanisms.md) |
-| **7. Optimization Study** | Lý thuyết lượng tử hóa INT8 PTQ, Tăng tốc ONNX Runtime Graph & Phân vị độ trễ P95/P99 | [Xem Optimization Study](optimization/quantization_math.md) |
-| **8. Evaluation & Trade-offs** | Kinh tế học cảnh báo sai (FPR Economics), Điểm hoạt động Recall@FPR1% & Đường cong biên Pareto | [Xem Evaluation Study](evaluation_study/false_positive_economics.md) |
+| **7. Evaluation & Trade-offs** | Kinh tế học cảnh báo sai (FPR Economics), Điểm hoạt động Recall@FPR1% & Đường cong biên Pareto | [Xem Evaluation Study](evaluation_study/false_positive_economics.md) |
 
 ---
 

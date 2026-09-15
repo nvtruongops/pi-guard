@@ -353,7 +353,7 @@ def step_academic_glossary_audit() -> Tuple[bool, str]:
     if not verify_script.exists():
         return True, "scripts/verify_academic_glossary.py not found. Skipped."
 
-    task1_file = ROOT_DIR / "workspaces" / "truongnv" / "reports" / "task_for_meeting_4" / "TASK_1_PROMPT_INJECTION_VS_JAILBREAK.md"
+    task1_file = ROOT_DIR / "workspaces" / "truongnv" / "reports" / "tasks_for_meeting_5" / "TASK_1_PROMPT_INJECTION_VS_JAILBREAK.md"
     if not task1_file.exists():
         return True, "No target task file found. Skipped."
 

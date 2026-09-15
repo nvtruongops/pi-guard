@@ -71,7 +71,7 @@ trigger: always_on
 > [!IMPORTANT]
 > **QUY TẮC BẮT BUỘC: TÁI SỬ DỤNG TÀI LIỆU CỐT LÕI ĐÃ LƯU TRỮ TRƯỚC KHI TÌM MỚI**:
 > 1. **BẮT BUỘC TRA CỨU REFERENCES_LOG.md TRƯỚC TIÊN**: Trước khi gọi bất kỳ công cụ MCP học thuật nào (`arxiv`, `openalex`, `semanticscholar`, `scholar-feed`) hoặc tìm kiếm tài liệu trên mạng, tất cả AI Agent và thành viên nhóm BẮT BUỘC phải tra cứu tệp [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md).
-> 2. **ƯU TIÊN TUYỆT ĐỐI 18 BÀI BÁO CỐT LÕI**: Repository đã tích hợp sẵn 18 công trình khoa học đỉnh cao (được GVHD và Hội đồng phê duyệt) bao quát đầy đủ mọi khía cạnh: Direct/Indirect Prompt Injection, DAN Jailbreak, TF-IDF N-Grams, DeBERTa-v3, Lượng hóa ONNX INT8, Đánh đổi FPR < 1.5%, Kiểm thử Độ bền Đối kháng và Nguyên lý An toàn Thông tin (Saltzer & Schroeder 1975). Khi cần dẫn chứng, BẮT BUỘC tái sử dụng các bài này kèm neo trích dẫn `[[N]](#refN)`.
+> 2. **ƯU TIÊN TUYỆT ĐỐI 17 BÀI BÁO CỐT LÕI**: Repository đã tích hợp sẵn 17 công trình khoa học đỉnh cao (được GVHD và Hội đồng phê duyệt) bao quát đầy đủ mọi khía cạnh: Direct/Indirect Prompt Injection, DAN Jailbreak, TF-IDF N-Grams, DeBERTa-v3, Đánh đổi FPR < 1.5%, Kiểm thử Độ bền Đối kháng và Nguyên lý An toàn Thông tin (Saltzer & Schroeder 1975). Khi cần dẫn chứng, BẮT BUỘC tái sử dụng các bài này kèm neo trích dẫn `[[N]](#refN)`.
 > 3. **TIÊU CHUẨN KHẮT KHE CHO BÀI BÁO MỚI**: Chỉ tìm kiếm bài báo mới khi xuất hiện kỹ thuật tấn công hoặc phương pháp phòng thủ hoàn toàn mới chưa có trong 18 bài. Mọi bài báo mới phải có bản Open-Access PDF, tải về `Final-Report/References/` và cập nhật đầy đủ metadata vào `REFERENCES_LOG.md`.
 
 ---

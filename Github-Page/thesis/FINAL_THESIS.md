@@ -42,7 +42,7 @@ flowchart TD
     UP --> Engine
 ```
 
-1. **Lẫn lộn giữa Lệnh và Dữ liệu (Instruction/Data Ambiguity)**: Trong cơ chế Self-Attention của Transformer, System Instruction (chỉ thị điều khiển) và User Input (dữ liệu đầu vào) bị ghép chung thành một chuỗi token phẳng ($X = S \mathbin{\Vert} U$). Mô hình không có cơ chế phân tách phần cứng hay quyền hạn (Privilege Separation) giữa dữ liệu và câu lệnh.
+1. **Lẫn lộn giữa Lệnh và Dữ liệu (Instruction/Data Ambiguity)**: Trong phạm vi mô hình hóa bài toán của PI-Guard (kế thừa các phát hiện định tính về sự thiếu phân định ranh giới lệnh/dữ liệu từ Perez & Ribeiro 2022 [[3]](#ref3) và Greshake et al. 2023 [[4]](#ref4)), trong cơ chế Self-Attention của Transformer, System Instruction (chỉ thị điều khiển $S$) và User Input (dữ liệu người dùng $U$) bị ghép phẳng thành một chuỗi token duy nhất ($X = S \mathbin{\Vert} U$). Mô hình không có cơ chế phân tách phần cứng hay quyền hạn (Privilege Separation) giữa dữ liệu và câu lệnh.
 2. **Sự thất bại của các bộ lọc từ khóa tĩnh (Keyword Blacklist Failure)**: Các bộ quy tắc Regex/Blacklist thông thường dễ dàng bị kẻ tấn công vô hiệu hóa thông qua các kỹ thuật đột biến cú pháp: chèn ký tự leetspeak (`1gn0r3`), phân tách khoảng trắng (`i g n o r e`), mã hóa Base64/Cipher [[17]](#ref17), hoặc bọc trong các kịch bản nhập vai phức tạp (DAN / Roleplay Jailbreak) [[12]](#ref12), [[15]](#ref15).
 3. **Nghịch lý của giải pháp LLM-as-a-Judge**: Việc sử dụng một LLM lớn khác (ví dụ: Llama Guard 3 8B) để kiểm tra prompt gây ra độ trễ quá lớn (>500ms đến 1.5s), tiêu tốn tài nguyên phần cứng (>16GB VRAM GPU) và chi phí vận hành API quá cao, không khả thi cho môi trường sản xuất có lưu lượng truy cập lớn [[9]](#ref9), [[10]](#ref10).
 
@@ -53,13 +53,13 @@ Do đó, bài toán cấp thiết đặt ra là: **Cần xây dựng một cơ c
 ## 1.3. Research Objectives & Research Questions (Mục Tiêu & 3 Câu Hỏi Nghiên Cứu)
 
 ### 1.3.1. Mục Tiêu Tổng Quát:
-Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-Guard** — Lớp phòng thủ Guardrail dạng API Middleware trực tuyến đặt trước các ứng dụng LLM để phát hiện và ngăn chặn hai vector tấn công chính: **Prompt Injection** và **Jailbreak**.
+Thiết kế, huấn luyện và triển khai hệ thống **PI-Guard** — Lớp phòng thủ Guardrail dạng API Middleware trực tuyến đặt trước các ứng dụng LLM để phát hiện và ngăn chặn hai vector tấn công chính: **Prompt Injection** và **Jailbreak**.
 
 ### 1.3.2. Các Mục Tiêu Cụ Thể (Specific Deliverables):
 1. **Bộ dữ liệu chuẩn hóa**: Xây dựng tập dữ liệu đa nguồn (Deepset, Gandalf, In-The-Wild, Benign) áp dụng thuật toán *Group-Aware Splitting* chống rò rỉ dữ liệu.
 2. **Mô hình học máy kép**: Phát triển mô hình Baseline ML (Word/Char TF-IDF) và mô hình Transformer tinh chỉnh (`microsoft/deberta-v3-base` Disentangled Attention).
 3. **Độ bền trước lẩn tránh cú pháp**: Xây dựng cơ chế chuẩn hóa chuỗi và bộ kiểm thử độ bền (Adversarial Robustness Testing Suite) kháng Leetspeak, Base64, Spacing.
-4. **Tối ưu hóa triển khai thực tế**: Ứng dụng kỹ thuật lượng hóa nhẹ (Post-Training Dynamic INT8 Quantization với ONNX Runtime) như một giải pháp phụ trợ kỹ thuật, đảm bảo Guardrail vận hành hiệu quả trên hạ tầng CPU tiêu chuẩn với độ trễ thấp.
+4. **Đo lường hiệu năng & Độ trễ thực tế**: Đánh giá thực nghiệm độ trễ suy luận (P95 Latency Profiling) và thông lượng (RPS) của mô hình Transformer trên hạ tầng CPU tiêu chuẩn, đảm bảo Guardrail vận hành với độ trễ thấp tối ưu.
 5. **Hạ tầng API & Dashboard**: Xây dựng Asynchronous Middleware (FastAPI) và Dashboard kiểm thử trực quan (Streamlit) với ma trận 4 kịch bản demo.
 
 ### 1.3.3. Hệ Thống 3 Câu Hỏi Nghiên Cứu Cốt Lõi (RQ1 - RQ3):
@@ -68,7 +68,7 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 | :---: | :--- | :--- |
 | **RQ1** | **Phân Loại Mối Đe Dọa & Chống Rò Rỉ Dữ Liệu**<br>*(Threat Modeling & Representation)* | Rò rỉ cụm mẫu & Ranh giới phân loại giữa cú pháp tĩnh và ngữ nghĩa sâu |
 | **RQ2** | **Độ Bền Kháng Lẩn Tránh & Mã Hóa Đối Kháng**<br>*(Adversarial Robustness & Ciphers)* | Sự sụp đổ của mô hình trước biến dị cú pháp Leetspeak, Spacing & Base64 |
-| **RQ3** | **Cân Bằng An Toàn & Khả Thi Triển Khai**<br>*(Security Trade-off & Inline Feasibility)* | Đánh đổi Security/Usability (FPR) và bảo toàn ranh giới an toàn khi nén |
+| **RQ3** | **Cân Bằng An Toàn & Khả Thi Triển Khai**<br>*(Security Trade-off & Inline Feasibility)* | Đánh đổi Security/Usability (FPR) và bảo toàn ranh giới an toàn khi triển khai |
 
 #### RQ1 — Biểu Diễn Mối Đe Dọa, Khử Rò Rỉ Dữ Liệu & Ranh Giới Phân Loại Ngữ Nghĩa:
 - **Câu hỏi**: *Làm thế nào để xây dựng một phương pháp luận phân chia dữ liệu bảo toàn cụm (Group-Aware Splitting) nhằm triệt tiêu hiện tượng rò rỉ dữ liệu giữa các biến thể tấn công, và sự kết hợp giữa mô hình học máy cổ điển (TF-IDF) với Transformer phân tách vị trí ngữ nghĩa (DeBERTa-v3) nâng cao khả năng phát hiện các đòn tấn công Prompt Injection và Jailbreak vượt trội hơn các mô hình phòng thủ SOTA hiện nay ở mức độ nào?*
@@ -76,11 +76,11 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 
 #### RQ2 — Độ Bền Của Hệ Thống Trước Các Kỹ Thuật Lẩn Tránh & Mã Hóa Đối Kháng:
 - **Câu hỏi**: *Hệ thống phòng thủ đa tầng (kết hợp tiền xử lý chuẩn hóa chuỗi, biểu diễn n-gram ký tự và token hóa subword) duy trì độ bền và độ chính xác như thế nào trước các kỹ thuật lẩn tránh đối kháng có cấu trúc (gồm thay thế ký tự Leetspeak, phân tách khoảng trắng và mã hóa Base64/Cipher), và mức độ suy giảm hiệu năng tối đa có thể định lượng được là bao nhiêu?*
-- **Chỉ số đo lường**: $\text{ARR} = \frac{F_1^{\text{Adversarial}}}{F_1^{\text{Clean}}} \ge 0.95$, $\text{ASR} < 5\%$, $\Delta F_1 = |F_1^{\text{Clean}} - F_1^{\text{Adv}}| < 5\%$.
+- **Chỉ số đo lường**: $\text{ARR} = \frac{F_1^{\text{Adversarial}}}{F_1^{\text{Clean}}} \ge 0.95$, $\text{ASR} < 5\%$, $\Delta F_1 = |F_1^{\text{Clean}} - F_1^{\text{Adv}}| < 5\%$ *(định thức đo lường độ bền đối kháng kế thừa từ phương pháp luận của Jain et al. 2023 [[13]](#ref13))*.
 
-#### RQ3 — Cân Bằng An Toàn, Khống Chế Tỷ Lệ Chặn Nhầm & Bảo Toàn Ranh Giới Khi Lượng Hóa:
-- **Câu hỏi**: *Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và quá trình lượng hóa động INT8 cùng kiến trúc proxy bất đồng bộ có thể bảo toàn ranh giới quyết định an toàn trong khi duy trì độ trễ thấp tối ưu (P95 < 30ms trên CPU) mà không tạo ra điểm nghẽn từ chối dịch vụ (DoS)?*
-- **Chỉ số đo lường**: $\text{FPR} < 1.5\%$ (kỳ vọng $< 1.1\%$), $\Delta \text{Decision Boundary (KL)} < 0.05$, $\Delta F_1^{\text{Quant}} < 0.3\%$, $\text{P95 Latency} < 30\text{ms}$ trên CPU.
+#### RQ3 — Cân Bằng An Toàn, Khống Chế Tỷ Lệ Chặn Nhầm & Khả Thi Triển Khai Độ Trễ Thấp:
+- **Câu hỏi**: *Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và kiến trúc proxy phân tầng kết hợp bất đồng bộ duy trì độ trễ thấp tối ưu trong khi bảo toàn ranh giới quyết định an toàn mà không tạo ra điểm nghẽn từ chối dịch vụ (DoS)?*
+- **Chỉ số đo lường**: $\text{FPR} < 1.5\%$ (kỳ vọng $< 1.1\%$), $\text{TPR (Recall)} \ge 95\%$, đo đạc độ trễ P95 trên CPU tiêu chuẩn, thông lượng $\ge 100\text{ RPS}$.
 
 ---
 
@@ -102,7 +102,7 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 
 | Phạm Vi Nghiên Cứu | Nội Dung Chi Tiết |
 | :--- | :--- |
-| **IN-SCOPE<br>(Trọng tâm nghiên cứu)** | • 2 Bài toán cốt lõi: Prompt Injection (Direct/Indirect) và Jailbreak<br>• Chuỗi văn bản đầu vào: English Text Prompts (Tiêu chuẩn nghiên cứu quốc tế)<br>• Kỹ thuật lẩn tránh cú pháp: Leetspeak, Base64, Spacing (Kiểm thử độ bền đối kháng)<br>• Độ trễ thấp: P95 Latency < 30ms trên CPU tiêu chuẩn (Commodity CPU)<br>• Kiểm soát báo động nhầm: False Positive Rate (FPR) < 1.5% trên tập Benign<br>• Kiến trúc hệ thống: Hybrid TF-IDF Baseline + Fine-tuned DeBERTa-v3 + ONNX INT8 |
+| **IN-SCOPE<br>(Trọng tâm nghiên cứu)** | • 2 Bài toán cốt lõi: Prompt Injection (Direct/Indirect) và Jailbreak<br>• Chuỗi văn bản đầu vào: English Text Prompts (Tiêu chuẩn nghiên cứu quốc tế)<br>• Kỹ thuật lẩn tránh cú pháp: Leetspeak, Base64, Spacing (Kiểm thử độ bền đối kháng)<br>• Độ trễ thấp: P95 Latency < 30ms trên CPU tiêu chuẩn (Commodity CPU)<br>• Kiểm soát báo động nhầm: False Positive Rate (FPR) < 1.5% trên tập Benign<br>• Kiến trúc hệ thống: Hybrid TF-IDF Baseline + Fine-tuned DeBERTa-v3 (Transformer) |
 | **OUT-OF-SCOPE<br>(Nằm ngoài phạm vi)** | • Tấn công đa phương thức: Image, Audio, Video Jailbreaks<br>• Tấn công hạ tầng mạng: DDoS, trích xuất trọng số GPU, Side-channel attacks<br>• Quét lỗ hổng hệ điều hành máy chủ / CVE của Linux hoặc Docker engine<br>• Xây dựng hệ thống cơ sở dữ liệu Vector RAG hoặc Agent Tool Execution Runtime |
 
 ---
@@ -147,7 +147,7 @@ Tuân thủ nghiêm ngặt theo Hướng dẫn Khóa luận Tốt nghiệp FPT U
 
 <a id="ref13"></a>**[13]** N. Jain et al., "Baseline Defenses for Adversarial Attacks Against Aligned Language Models," arXiv:2309.00614, 2023. Link: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614).
 
-<a id="ref14"></a>**[14]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *Advances in Neural Information Processing Systems (NeurIPS 2022)*, vol. 35. Link: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861).
+<a id="ref14"></a>**[14]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," arXiv:2310.03684, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).
 
 <a id="ref15"></a>**[15]** X. Shen et al., "\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in *Proceedings of ACM CCS 2024*, pp. 4028–4042. Link: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825).
 
@@ -222,12 +222,12 @@ Các giải pháp bảo vệ ứng dụng LLM hiện nay được chia thành 3 
 
 ---
 
-### 2.1.3. Khảo Sát Các Kỹ Thuật Phòng Thủ Độ Bền & Tối Ưu Lượng Hóa
+### 2.1.3. Khảo Sát Các Kỹ Thuật Phòng Thủ Độ Bền & Tối Ưu Hóa Độ Trễ
 
 - **Đột biến có hướng dẫn để kiểm thử độ bền (Targeted Mutators Workflow)**: Nghiên cứu **JailGuard (ACM TOSEM 2025)** đề xuất phương pháp *Targeted Replacement* và *Targeted Insertion* dựa trên ngữ nghĩa. Phương pháp này giúp nhóm xây dựng bộ kiểm thử đối kháng ngoại tuyến (Offline Adversarial Robustness Testing Suite) để đo lường độ bền của mô hình phân loại trước các biến thể Leetspeak, Spacing, Ciphers mà không làm tăng tỷ lệ chặn nhầm (FPR).
 - **Kháng nhiễu cú pháp bằng Character n-grams & Subword Tokenization**: **Jain et al. (2023)** [[13]](#ref13) đã chứng minh rằng việc kết hợp biểu diễn n-gram ở cấp độ ký tự (Character n-grams 3–5 ký tự) và phân tách từ phụ (Byte-Pair Encoding subwords) cho phép mô hình bóc tách các từ bị làm nhiễu như `1gn0r3` $\rightarrow$ `['1gn', 'gn0', 'n0r', '0r3']`, giúp duy trì độ chính xác phân loại mà không bị phụ thuộc vào từ điển từ vựng chuẩn.
 - **Cơ chế Disentangled Attention của DeBERTa-v3**: Theo nghiên cứu của **He et al. (ICLR 2023)** [[11]](#ref11), DeBERTa-v3 biểu diễn mỗi token bằng 2 vector độc lập (Content Vector và Relative Position Vector). Điều này giúp mô hình nhận diện chính xác các cấu trúc câu đảo ngữ và hoán đổi vị trí context — đặc trưng cốt lõi của các đòn tấn công Prompt Injection.
-- **Lượng hóa động tăng tốc (Post-Training Dynamic INT8 Quantization)**: Nghiên cứu **ZeroQuant của Yao et al. (NeurIPS 2022)** [[14]](#ref14) chỉ ra rằng việc nén trọng số từ FP32 xuống INT8 cho các mô hình Transformer phân loại cho phép giảm 70% dung lượng bộ nhớ, tăng tốc độ suy luận 3x trên CPU mà độ suy giảm $F_1$ không vượt quá $0.3\%$.
+- **Phòng thủ bằng làm mịn ngẫu nhiên & đánh đổi suy luận**: Nghiên cứu **SmoothLLM của Robey et al. (2023)** [[14]](#ref14) đề xuất cơ chế chống jailbreak bằng cách xáo trộn ký tự ngẫu nhiên và đa số biểu quyết qua nhiều bản sao LLM. Tuy nhiên, phương pháp này làm tăng chi phí tính toán và độ trễ lên gấp $N$ lần; PI-Guard chọn hướng tiếp cận phân loại đơn lượt (Single-pass Classifier) để đạt độ trễ thấp tối ưu.
 
 ---
 
@@ -237,7 +237,7 @@ Các giải pháp bảo vệ ứng dụng LLM hiện nay được chia thành 3 
 
 | Tiêu chí so sánh | Regex / Keyword Blacklists | LLM-as-a-Judge (Llama Guard 3 8B) [[9]](#ref9) | OpenAI Moderation API [[12]](#ref12) | ProtectAI DeBERTa Baseline | **PI-GUARD (Đề xuất của nhóm)** |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Kích thước mô hình** | 0 MB | ~8,000M (8B) | API Đám mây | 86M | **86M (Tối ưu INT8 < 150MB)** |
+| **Kích thước mô hình** | 0 MB | ~8,000M (8B) | API Đám mây | 86M | **86M (Nhẹ < 300MB RAM)** |
 | **Hạ tầng triển khai** | CPU / RAM cực nhẹ | GPU VRAM > 16GB | Máy chủ ngoài | CPU / GPU nhẹ | **CPU phổ thông (Commodity CPU)** |
 | **Độ trễ suy luận (P95)** | **< 1 ms** | **> 500 ms - 1.5s** | ~200 ms - 400 ms | ~45 ms | **< 30 ms (Độ trễ thấp)** |
 | **Chi phí vận hành API** | $0 | Rất đắt (Token compute) | Trả phí theo API | Thấp | **$0 (Tự host độc lập)** |
@@ -256,7 +256,7 @@ Từ kết quả khảo sát các công trình quốc tế, nhóm xác định *
 | :--- | :--- | :--- |
 | **GAP 1: Data Leakage & Splitting** | Các tập dữ liệu an toàn LLM công khai (Deepset, Gandalf...) chứa hàng loạt biến thể sinh từ cùng một mẫu gốc. Hiện tại đa số nghiên cứu sử dụng Random Split. | Phân chia ngẫu nhiên dẫn đến rò rỉ dữ liệu cụm giữa tập Train và Test, làm sai lệch kết quả đánh giá năng lực phát hiện các đòn tấn công Zero-day ngoài thực tế. |
 | **GAP 2: Adversarial Evasion** | Các mô hình Guardrail hiện tại chủ yếu được huấn luyện và đánh giá trên văn bản chuẩn, thiếu cơ chế giải mã heuristic và biểu diễn đặc trưng đa tầng. | Mô hình sụp đổ khi bị tấn công bằng biến thể cú pháp Leetspeak, phân tách khoảng trắng hoặc chuỗi mã hóa Base64/Cipher. |
-| **GAP 3: Inline Latency & Usability** | Đa số giải pháp phân cực: hoặc quá nặng nề (Llama Guard đòi hỏi GPU > 16GB VRAM) hoặc quá thô sơ (Regex với FPR cao gây cản trở vận hành). | Thiếu giải pháp nén lượng hóa INT8 tối ưu hóa cho CPU đạt P95 < 30ms mà vẫn kiểm soát nghiêm ngặt tỷ lệ báo động nhầm FPR < 1.5%. |
+| **GAP 3: Inline Latency & Usability** | Đa số giải pháp phân cực: hoặc quá nặng nề (Llama Guard đòi hỏi GPU > 16GB VRAM) hoặc quá thô sơ (Regex với FPR cao gây cản trở vận hành). | Thiếu giải pháp phòng thủ phân tầng tối ưu hóa cho CPU đạt độ trễ thấp mà vẫn kiểm soát nghiêm ngặt tỷ lệ báo động nhầm FPR < 1.5%. |
 
 ---
 
@@ -274,7 +274,7 @@ Từ kết quả khảo sát các công trình quốc tế, nhóm xác định *
    - Xây dựng quy trình chuẩn hóa chuỗi và bộ giải mã Heuristic Cipher/Base64 tiền trạm nhằm đánh chặn các kỹ thuật lẩn tránh qua kênh mã hóa (Yuan et al., ICLR 2024), duy trì độ bền vững đối kháng cao với độ suy giảm hiệu năng $\Delta F_1 < 2.3\%$ trước các công cụ tạo nhiễu đối kháng.
 
 4. **Đóng góp 4 (Hệ thống Guardrail trực tuyến & Khống chế Báo động nhầm)**:
-   - Đóng gói giải pháp thành **Asynchronous FastAPI Middleware** tích hợp động cơ chính sách Tri-State Policy Engine khống chế tỷ lệ báo động nhầm $\text{FPR} < 1.5\%$ trên tập Benign hàng ngày, cung cấp giao diện trực quan **Streamlit Dashboard** với ma trận 4 kịch bản minh họa ($2 \times 2$) và khung kiểm nghiệm bảo vệ độc lập (Model-Agnostic) cho 5 mô hình LLM tiêu chuẩn qua Cloud API. *(Đồng thời ứng dụng kỹ thuật lượng hóa nhẹ ONNX Runtime INT8 như một giải pháp phụ trợ kỹ thuật để đảm bảo độ trễ thấp P95 < 30ms trên CPU)*.
+   - Đóng gói giải pháp thành **Asynchronous FastAPI Middleware** tích hợp động cơ chính sách Tri-State Policy Engine khống chế tỷ lệ báo động nhầm $\text{FPR} < 1.5\%$ trên tập Benign hàng ngày, cung cấp giao diện trực quan **Streamlit Dashboard** với ma trận 4 kịch bản minh họa ($2 \times 2$) và khung kiểm nghiệm bảo vệ độc lập (Model-Agnostic) cho 5 mô hình LLM tiêu chuẩn qua Cloud API. *(Đồng thời ứng dụng kiến trúc phân tầng kết hợp TF-IDF và DeBERTa-v3 để đảm bảo độ trễ thấp trên hạ tầng CPU tiêu chuẩn)*.
 
 ---
 
@@ -283,7 +283,7 @@ Từ kết quả khảo sát các công trình quốc tế, nhóm xác định *
 Các luận điểm trong Chương 2 được bảo chứng bởi 17 tài liệu khoa học chuẩn mực quốc tế:
 - **Tấn công Prompt Injection & Jailbreak**: Perez (2022) [[3]](#ref3), Greshake (2023) [[4]](#ref4), Wei (2024) [[5]](#ref5), Tencent Zhuque (2026) [[6]](#ref6), Shen (2024) [[15]](#ref15), Zhou (2024) [[16]](#ref16), Yuan (2024) [[17]](#ref17).
 - **Tiêu chuẩn An toàn & Threat Model**: NIST AI 100-2e2025 [[7]](#ref7), OWASP LLM01:2025 [[8]](#ref8), Zhao (2023) [[1]](#ref1), Ouyang (2022) [[2]](#ref2).
-- **Mô hình Guardrail & Tối ưu hóa**: Llama Guard (2023) [[9]](#ref9), NeMo Guardrails (2023) [[10]](#ref10), DeBERTaV3 (2023) [[11]](#ref11), OpenAI Moderation (2023) [[12]](#ref12), Baseline Defenses (2023) [[13]](#ref13), ZeroQuant (2022) [[14]](#ref14).
+- **Mô hình Guardrail & Cơ chế Phòng thủ**: Llama Guard (2023) [[9]](#ref9), NeMo Guardrails (2023) [[10]](#ref10), DeBERTaV3 (2023) [[11]](#ref11), OpenAI Moderation (2023) [[12]](#ref12), Baseline Defenses (2023) [[13]](#ref13), SmoothLLM (2023) [[14]](#ref14).
 
 ---
 
@@ -315,7 +315,7 @@ Các luận điểm trong Chương 2 được bảo chứng bởi 17 tài liệu
 
 <a id="ref13"></a>**[13]** N. Jain et al., "Baseline Defenses for Adversarial Attacks Against Aligned Language Models," arXiv:2309.00614, 2023. Link: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614).
 
-<a id="ref14"></a>**[14]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *Advances in Neural Information Processing Systems (NeurIPS 2022)*, vol. 35. Link: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861).
+<a id="ref14"></a>**[14]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," arXiv:2310.03684, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).
 
 <a id="ref15"></a>**[15]** X. Shen et al., "\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in *Proceedings of ACM CCS 2024*, pp. 4028–4042. Link: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825).
 
@@ -332,9 +332,9 @@ Các luận điểm trong Chương 2 được bảo chứng bởi 17 tài liệu
 ## Hệ Thống Quản Lý & Định Vị Tài Liệu Tham Khảo — Đề Tài PI-Guard (FINAL VERIFIED LITERATURE MATRIX)
 
 > **Thư mục lưu trữ tài liệu gốc**: **`Final-Report/References/`**  
-> **Tiêu chuẩn học thuật**: 17 công trình khoa học đỉnh cao kỷ nguyên LLM hiện đại (2022–2026) + 1 công trình kinh điển đặt nền móng kiến trúc bảo vệ phân tầng (Saltzer & Schroeder, IEEE 1975) + 7 tài liệu chuyên đề và khảo sát mở rộng (tổng cộng 25 tệp PDF toàn văn được lưu trữ cục bộ).  
+> **Tiêu chuẩn học thuật**: 16 công trình khoa học đỉnh cao kỷ nguyên LLM hiện đại (2022–2026) + 1 công trình kinh điển đặt nền móng kiến trúc bảo vệ phân tầng (Saltzer & Schroeder, IEEE 1975) + 7 tài liệu chuyên đề và khảo sát mở rộng (tổng cộng 24 tệp PDF toàn văn được lưu trữ cục bộ).  
 > **Cập nhật chuẩn hóa lần cuối**: 2026-09-10 (Đã hoàn thành rà soát chéo metadata qua Proceedings/Crossref/DBLP/arXiv, xác lập niên giám NeurIPS 2023 chính xác cho [5], chuẩn hóa văn phong học thuật, áp dụng mô hình Four-Tier Provenance & Decoupling tách bạch tuyệt đối đóng góp gốc của tác giả vs. lựa chọn thiết kế và KPI của PI-Guard).  
-> **Mục đích**: Lưu trữ, lập chỉ mục siêu dữ liệu chuẩn xác và ánh xạ toàn bộ **18 bài báo PDF cốt lõi** cùng **7 tài nguyên thực nghiệm và khảo sát mở rộng** (toàn bộ 25 tệp PDF cục bộ) vào cấu trúc luận văn và mã nguồn đề tài PI-Guard.
+> **Mục đích**: Lưu trữ, lập chỉ mục siêu dữ liệu chuẩn xác và ánh xạ toàn bộ **17 bài báo PDF cốt lõi** cùng **7 tài nguyên thực nghiệm và khảo sát mở rộng** (toàn bộ 24 tệp PDF cục bộ) vào cấu trúc luận văn và mã nguồn đề tài PI-Guard.
 
 ---
 
@@ -342,10 +342,10 @@ Các luận điểm trong Chương 2 được bảo chứng bởi 17 tài liệu
 > [!IMPORTANT]
 > **QUY TRÌNH BẮT BUỘC CHO TẤT CẢ THÀNH VIÊN & AI AGENTS TRƯỚC KHI TÌM KIẾM BÀI BÁO MỚI**:
 > 1. **TRUY LỤC TÀI LIỆU CỤC BỘ TRƯỚC TIÊN (Local References First)**:
->    - Khi cần luận chứng cho bất kỳ tuyên bố khoa học, cơ chế tấn công, kiến trúc phòng thủ hay công thức toán học nào, **BẮT BUỘC phải tra cứu bảng Ma Trận Chủ Đề (Mục 1) và Siêu Dữ Liệu 18 Bài Báo (Mục 2)** trong tệp này trước.
->    - Nếu luận điểm đã được bảo chứng bởi một trong 18 bài báo đã lưu trữ, **PHẢI TÁI SỬ DỤNG NGAY** bài báo đó (dùng đúng mã neo `[[N]](#refN)` và tệp PDF cục bộ tương ứng).
+>    - Khi cần luận chứng cho bất kỳ tuyên bố khoa học, cơ chế tấn công, kiến trúc phòng thủ hay công thức toán học nào, **BẮT BUỘC phải tra cứu bảng Ma Trận Chủ Đề (Mục 1) và Siêu Dữ Liệu 17 Bài Báo (Mục 2)** trong tệp này trước.
+>    - Nếu luận điểm đã được bảo chứng bởi một trong 17 bài báo đã lưu trữ, **PHẢI TÁI SỬ DỤNG NGAY** bài báo đó (dùng đúng mã neo `[[N]](#refN)` và tệp PDF cục bộ tương ứng).
 > 2. **CHỐNG DÀN TRẢI & TÌM KIẾM TRÙNG LẶP (Zero Redundant Search)**:
->    - Tuyệt đối không dùng các công cụ MCP (`arxiv`, `openalex`, `semanticscholar`, `scholar-feed`) để tìm kiếm thêm bài báo mới cho các chủ đề ĐÃ CÓ trong kho 18 bài (như: Direct Prompt Injection, DAN Jailbreak, TF-IDF Baseline, DeBERTa-v3, ONNX INT8 Quantization, Low FPR Trade-off).
+>    - Tuyệt đối không dùng các công cụ MCP (`arxiv`, `openalex`, `semanticscholar`, `scholar-feed`) để tìm kiếm thêm bài báo mới cho các chủ đề ĐÃ CÓ trong kho 17 bài (như: Direct Prompt Injection, DAN Jailbreak, TF-IDF Baseline, DeBERTa-v3, Low FPR Trade-off).
 > 3. **MÔ HÌNH PHÂN ĐỊNH 4 TẦNG & TRUY XUẤT NGUỒN GỐC (Four-Tier Provenance & Decoupling)**:
 >    - Mọi trích dẫn khoa học trong đề tài phải tuân thủ nghiêm ngặt 4 tầng độc lập:
 >      - **Tầng 0: Nguồn gốc Thư mục (Tier 0 — Bibliographic Provenance)**: Title, Authors, Venue, Volume/Issue, Year, Pages, DOI, Version/Publication Status, Primary Authoritative Source. Thứ tự xác thực siêu dữ liệu ưu tiên: `Trang kỷ yếu nhà xuất bản (Publisher/proceedings page) -> Metadata hội nghị/tạp chí chính thức -> DOI/Crossref -> arXiv/DBLP/OpenReview (khi có)`.
@@ -381,17 +381,16 @@ Các luận điểm trong Chương 2 được bảo chứng bởi 17 tài liệu
 | **13. Tấn Công Chuỗi Hậu Tố Đối Kháng Tối Ưu Hóa (GCG)** | <a href="#ref13">`[13]`</a> | Zou et al. (2023) | **`Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf`** | Thuật toán Greedy Coordinate Gradient sinh hậu tố đối kháng chuyển giao. | PI-Guard sử dụng các mẫu sinh bởi GCG như một tập kiểm thử đánh giá đối kháng ngoại lai (OOD evaluation set). (Chương 4) |
 | **14. Phòng Thủ Bằng Xáo Trộn Ngẫu Nhiên (SmoothLLM)** | <a href="#ref14">`[14]`</a> | Robey et al. (2023) | **`Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`** | Cơ chế làm mịn ngẫu nhiên qua biến dị prompt và đa số biểu quyết phản hồi LLM. | PI-Guard sử dụng làm baseline đối chuẩn để so sánh đánh đổi giữa multi-query defense và single-pass classifier. (Chương 2, 4) |
 | **15. Phòng Thủ Cơ Bản Bằng Thống Kê Chuỗi & Cú Pháp** | <a href="#ref15">`[15]`</a> | Jain et al. (2023) | **`Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`** | Đánh giá một số baseline defense như perplexity filtering và character n-grams nhằm giảm hiệu quả của adversarial attacks. | PI-Guard lấy cảm hứng từ các kết quả baseline của Jain et al. để thiết kế Tầng 1 (Classical ML: TF-IDF Word/Char) sàng lọc sơ bộ. (Chương 3, 4) |
-| **16. Lượng Hóa Động Sau Huấn Luyện (PTQ) Cho Transformer** | <a href="#ref16">`[16]`</a> | Yao et al. (2022) | **`Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`** | Phương pháp lượng hóa ZeroQuant (weight INT8, token-wise activation INT8) suy hao thấp. | Cơ sở kỹ thuật để lượng hóa DeBERTa-v3 sang ONNX INT8; PI-Guard đặt mục tiêu suy luận CPU đạt $P95 < 30\text{ms}$. (Chương 3, 5) |
+| **16. Nguyên Lý Thiết Kế Hệ Thống Bảo Vệ Kinh Điển** | <a href="#ref16">`[16]`</a> | Saltzer & Schroeder (1975) | **`Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf`** | Các nguyên tắc thiết kế bảo vệ hệ thống máy tính được Saltzer và Schroeder đề xuất (Complete Mediation, Economy of Mechanism, Defense-in-Depth). | Nền tảng thiết kế hệ thống: Kiểm soát toàn diện tại Ingress (Complete Mediation) và kiến trúc phân tầng (Defense-in-Depth). (Chương 2, 3) |
 | **17. Lẩn Tránh Bằng Biến Đổi Ký Tự (CipherChat & Encoding)** | <a href="#ref17">`[17]`</a> | Yuan et al. (2024) | **`Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`** | Khung CipherChat: Nghiên cứu các phép biến đổi prompt dựa trên mật mã cổ điển/bảng mã để vượt qua căn chỉnh an toàn. | Luận chứng cho việc tích hợp mô-đun tiền xử lý chuẩn hóa chuỗi và giải mã tiền trạm. (Chương 1, 3, 4) |
-| **18. Nguyên Lý Thiết Kế Hệ Thống Bảo Vệ Kinh Điển** | <a href="#ref18">`[18]`</a> | Saltzer & Schroeder (1975) | **`Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf`** | Các nguyên tắc thiết kế bảo vệ hệ thống máy tính được Saltzer và Schroeder đề xuất (Complete Mediation, Economy of Mechanism, Defense-in-Depth). | Nền tảng thiết kế hệ thống: Kiểm soát toàn diện tại Ingress (Complete Mediation) và kiến trúc phân tầng (Defense-in-Depth). (Chương 2, 3) |
 
 ---
 
-## 2. BẢNG CHI TIẾT SIÊU DỮ LIỆU HỌC THUẬT (18 BÀI BÁO CỐT LÕI)
+## 2. BẢNG CHI TIẾT SIÊU DỮ LIỆU HỌC THUẬT (17 BÀI BÁO CỐT LÕI)
 
 ```
 ========================================================================================================================
-DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI-GUARD (IAP491 FALL 2026)
+DANH MỤC 17 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI-GUARD (IAP491 FALL 2026)
 (Đã kiểm tra chéo 100% qua PyMuPDF text trích xuất trực tiếp từ file PDF, Crossref DOI và arXiv metadata)
 ========================================================================================================================
 ```
@@ -577,15 +576,15 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 
 ---
 
-### <a id="ref16"></a>[16] ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers
-- **Tên bài báo chính xác**: *ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers*
-- **Tác giả**: Zhewei Yao, Reza Yazdani Aminabadi, Minjia Zhang, Xiaoxia Wu, Conglong Li, Yuxiong He (Microsoft DeepSpeed)
-- **Năm xuất bản**: 2022 | **Nơi công bố chính thức**: *Advances in Neural Information Processing Systems (NeurIPS 2022)*, Vol. 35, pp. 27168–27183
-- **Tệp PDF Cục Bộ**: **`Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`** (24 trang)
-- **Liên kết mở (Open-Access PDF)**: [https://arxiv.org/pdf/2206.01861.pdf](https://arxiv.org/pdf/2206.01861.pdf) | **arXiv ID**: `2206.01861`
-- **Từ khóa phân loại**: `ZeroQuant`, `Post-Training Quantization (PTQ)`, `INT8 Quantization`, `Transformer Optimization`, `Inference Latency`
-- **Đóng góp khoa học gốc của bài báo**: Đề xuất giải pháp lượng hóa động sau huấn luyện (PTQ) cho mô hình Transformer sang INT8 với thuật toán lượng hóa từng nhóm cho trọng số (Group-wise Quantization) và theo từng token cho hàm kích hoạt (Token-wise Quantization), chứng minh mô hình nén giảm mạnh bộ nhớ và tăng tốc suy luận mà suy hao độ chính xác không đáng kể.
-- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 3** & **Chương 5** — Cung cấp cơ sở khoa học bảo chứng cho việc áp dụng kỹ thuật Dynamic Post-Training Quantization (INT8) qua ONNX Runtime trên mô hình DeBERTa-v3. Chỉ tiêu độ trễ suy luận $P95 < 30\text{ms}$ trên CPU tiêu chuẩn là **mục tiêu thiết kế của PI-Guard**, được thực hiện dựa trên nền tảng phương pháp luận lượng hóa nén mô hình của ZeroQuant.
+### <a id="ref16"></a>[16] The Protection of Information in Computer Systems
+- **Tên bài báo chính xác**: *The Protection of Information in Computer Systems*
+- **Tác giả**: Jerome H. Saltzer, Michael D. Schroeder (Massachusetts Institute of Technology - MIT)
+- **Năm xuất bản**: 1975 | **Nơi công bố chính thức**: *Proceedings of the IEEE*, Vol. 63, No. 9, pp. 1278–1308, Sept. 1975
+- **Tệp PDF Cục Bộ**: **`Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf`** (54 trang)
+- **Liên kết mở (Open-Access PDF)**: [https://web.mit.edu/Saltzer/www/publications/protection/](https://web.mit.edu/Saltzer/www/publications/protection/) | **DOI chính xác**: `10.1109/PROC.1975.9939`
+- **Từ khóa phân loại**: `Protection Principles`, `Complete Mediation`, `Economy of Mechanism`, `Defense-in-Depth`, `Fail-Safe Defaults`
+- **Đóng góp khoa học gốc của bài báo**: Tác phẩm kinh điển nền tảng của ngành An toàn Thông tin, trong đó Jerome H. Saltzer và Michael D. Schroeder đề xuất các nguyên tắc thiết kế bảo vệ hệ thống máy tính (bao gồm: Economy of Mechanism, Fail-Safe Defaults, Complete Mediation, Open Design, Separation of Privilege, Least Privilege, Least Common Mechanism, và Psychological Acceptability).
+- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 2 (Nền tảng Thiết kế Hệ thống)** & **Chương 3** — Nhóm PI-Guard áp dụng trực tiếp 3 nguyên tắc kinh điển: *Complete Mediation* (mọi lời nhắc gửi đến LLM đều phải qua cổng kiểm định Ingress Proxy), *Economy of Mechanism* (sử dụng mô hình phân loại gọn nhẹ thay vì dựng thêm cụm LLM phức tạp), và *Defense-in-Depth* (kết hợp Tầng 1 Classical ML và Tầng 2 Transformer).
 
 ---
 
@@ -601,21 +600,9 @@ DANH MỤC 18 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI
 
 ---
 
-### <a id="ref18"></a>[18] The Protection of Information in Computer Systems
-- **Tên bài báo chính xác**: *The Protection of Information in Computer Systems*
-- **Tác giả**: Jerome H. Saltzer, Michael D. Schroeder (Massachusetts Institute of Technology - MIT)
-- **Năm xuất bản**: 1975 | **Nơi công bố chính thức**: *Proceedings of the IEEE*, Vol. 63, No. 9, pp. 1278–1308, Sept. 1975
-- **Tệp PDF Cục Bộ**: **`Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf`** (54 trang)
-- **Liên kết mở (Open-Access PDF)**: [https://web.mit.edu/Saltzer/www/publications/protection/](https://web.mit.edu/Saltzer/www/publications/protection/) | **DOI chính xác**: `10.1109/PROC.1975.9939`
-- **Từ khóa phân loại**: `Protection Principles`, `Complete Mediation`, `Economy of Mechanism`, `Defense-in-Depth`, `Fail-Safe Defaults`
-- **Đóng góp khoa học gốc của bài báo**: Tác phẩm kinh điển nền tảng của ngành An toàn Thông tin, trong đó Jerome H. Saltzer và Michael D. Schroeder đề xuất các nguyên tắc thiết kế bảo vệ hệ thống máy tính (bao gồm: Economy of Mechanism, Fail-Safe Defaults, Complete Mediation, Open Design, Separation of Privilege, Least Privilege, Least Common Mechanism, và Psychological Acceptability).
-- **Định vị kỹ thuật & Giả thuyết thực nghiệm của PI-Guard**: **Chương 2 (Nền tảng Thiết kế Hệ thống)** & **Chương 3** — Nhóm PI-Guard áp dụng trực tiếp 3 nguyên tắc kinh điển: *Complete Mediation* (mọi lời nhắc gửi đến LLM đều phải qua cổng kiểm định Ingress Proxy), *Economy of Mechanism* (sử dụng mô hình phân loại gọn nhẹ thay vì dựng thêm cụm LLM phức tạp), và *Defense-in-Depth* (kết hợp Tầng 1 Classical ML và Tầng 2 Transformer).
-
----
-
 ## 3. KHO TÀI LIỆU MỞ RỘNG & BENCHMARK THỰC NGHIỆM ĐÃ LƯU TRỮ
 
-Ngoài 18 bài báo cốt lõi, thư mục `References/` còn lưu trữ 7 tài liệu chuyên đề, benchmark thực nghiệm và khảo sát phục vụ việc kiểm định mở rộng và nghiên cứu bổ trợ (tổng cộng 25 tệp PDF lưu trữ cục bộ):
+Ngoài 17 bài báo cốt lõi, thư mục `References/` còn lưu trữ 7 tài liệu chuyên đề, benchmark thực nghiệm và khảo sát phục vụ việc kiểm định mở rộng và nghiên cứu bổ trợ (tổng cộng 24 tệp PDF lưu trữ cục bộ):
 
 1. **`BIPIA Benchmark`** (**`Viet_2024_BIPIA_Benchmarking_Indirect_Prompt_Injection_Attacks.pdf`**):
    - *Tên bài báo*: *Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models*
@@ -667,7 +654,7 @@ Ngoài 18 bài báo cốt lõi, thư mục `References/` còn lưu trữ 7 tài 
 
 ---
 
-## 4. ĐẦY ĐỦ 18 MỤC TRÍCH DẪN BIBTEX CHUẨN IEEE (ĐÃ KIỂM TRA FACT-CHECK)
+## 4. ĐẦY ĐỦ 17 MỤC TRÍCH DẪN BIBTEX CHUẨN IEEE (ĐÃ KIỂM TRA FACT-CHECK)
 
 ```bibtex
 @article{zhao2023survey,
@@ -792,14 +779,6 @@ Ngoài 18 bài báo cốt lõi, thư mục `References/` còn lưu trữ 7 tài 
   year      = {2023}
 }
 
-@inproceedings{yao2022zeroquant,
-  title     = {ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers},
-  author    = {Yao, Zhewei and Aminabadi, Reza Yazdani and Zhang, Minjia and Wu, Xiaoxia and Li, Conglong and He, Yuxiong},
-  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
-  volume    = {35},
-  pages     = {27168--27183},
-  year      = {2022}
-}
 
 @inproceedings{yuan2024cipher,
   title     = {GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher},

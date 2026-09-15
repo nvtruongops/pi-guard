@@ -22,7 +22,7 @@ Toàn bộ các tài liệu tham khảo dưới đây đều tuân thủ nghiêm
 | 7 | **Yuan et al. (2024)** | *GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher* | *ICLR 2024* | [arXiv Open PDF](https://arxiv.org/abs/2308.06463) | Chứng minh năng lực suy luận trên Base64/Cipher của LLM và sự thất bại của Safety RLHF. |
 | 8 | **Jain et al. (2023)** | *Baseline Defenses for Adversarial Attacks on Large Language Models* | *arXiv:2309.00614* | [arXiv Open PDF](https://arxiv.org/abs/2309.00614) | Cơ sở chứng minh tính kháng nhiễu của Character n-grams TF-IDF trước Leetspeak. |
 | 9 | **He et al. (2023)** | *DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Disentangled Attention* | *ICLR 2023* | [arXiv Open PDF](https://arxiv.org/abs/2111.09543) | Kiến trúc Transformer phân tách vector nội dung và vị trí tương đối làm Guardrail. |
-| 10 | **Yao et al. (2022)** | *ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers*| *NeurIPS 2022* | [arXiv Open PDF](https://arxiv.org/abs/2206.01861) | Thuật toán lượng hóa động INT8 tối ưu hóa bộ nhớ và độ trễ CPU cho PI-Guard. |
+| 10 | **Robey et al. (2023)** | *SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks* | *arXiv:2310.03684* | [arXiv Open PDF](https://arxiv.org/abs/2310.03684) | Cơ chế phòng thủ đối kháng bằng làm mịn ngẫu nhiên làm đối chuẩn so sánh đánh đổi. |
 
 ---
 
@@ -206,4 +206,4 @@ if __name__ == "__main__":
 <a id="ref7"></a>**[7]** Y. Yuan et al., "GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher," in *ICLR 2024*, 2024. Link: [https://arxiv.org/abs/2308.06463](https://arxiv.org/abs/2308.06463).  
 <a id="ref8"></a>**[8]** N. Jain et al., "Baseline Defenses for Adversarial Attacks on Large Language Models," *arXiv preprint arXiv:2309.00614*, 2023. Link: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614).  
 <a id="ref9"></a>**[9]** P. He et al., "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in *ICLR 2023*, 2023. Link: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543).  
-<a id="ref10"></a>**[10]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *NeurIPS 2022*, 2022. Link: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861).  
+<a id="ref10"></a>**[10]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," *arXiv preprint arXiv:2310.03684*, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).  

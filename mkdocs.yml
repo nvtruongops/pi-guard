@@ -120,7 +120,7 @@ nav:
           - "Tài Liệu & Video Tham Khảo": models/tfidf_resources.md
       - "Tier 2: Deep Transformer (DeBERTa-v3)":
           - "Lý Thuyết & Disentangled Attention": models/deberta_theory_and_math.md
-          - "Hướng Dẫn Fine-Tuning & ONNX": models/deberta_usage.md
+          - "Hướng Dẫn Fine-Tuning & Triển Khai": models/deberta_usage.md
           - "Tài Liệu & Video Tham Khảo": models/deberta_resources.md
       - "Phối Hợp 2 Tầng & Latency Tradeoffs": models/two_tier_tradeoffs.md
       - "Khảo Sát Các Guardrail SOTA": research/sota_guardrail_benchmarks.md
@@ -132,13 +132,7 @@ nav:
       - "Kiến Trúc Phòng Thủ Đa Tầng": robustness/defense_architecture_and_mitigation.md
       - "Chỉ Số Đánh Giá & Đối Sánh Thực Nghiệm": robustness/benchmarks_metrics_and_tradeoffs.md
       - "Tài Liệu, Bài Báo & Video Tham Khảo": robustness/resources_and_papers.md
-  - "7. Optimization & Quantization Study":
-      - "Toán Học Lượng Tử Hóa INT8 PTQ": optimization/quantization_math.md
-      - "ONNX Runtime & Graph Optimizations": optimization/onnx_runtime.md
-      - "Tăng Tốc Suy Luận & Thiết Kế Hệ Thống": optimization/inference_acceleration.md
-      - "Chỉ Số Đo Lường & Đánh Đổi Độ Trễ": optimization/benchmarks_tradeoffs.md
-      - "Tài Liệu, Bài Báo & Video Tham Khảo": optimization/resources_and_papers.md
-  - "8. Evaluation & FPR Economics Study":
+  - "7. Evaluation & FPR Economics Study":
       - "Kinh Tế Học FPR & Trải Nghiệm Người Dùng": evaluation_study/false_positive_economics.md
       - "Đường Cong Biên Pareto & Đánh Đổi Hệ Thống": evaluation_study/pareto_frontier.md
       - "Tài Liệu, Benchmark & Bài Báo Đánh Đổi": evaluation_study/resources_and_papers.md
@@ -149,8 +143,8 @@ nav:
       - "Chương 2: Tổng Quan Tài Liệu (Literature Review)": thesis/chapter_02_literature_review.md
       - "Luận Văn Tổng Hợp Đầy Đủ": thesis/final_thesis.md
   - "Thư Viện Bài Báo Khoa Học":
-      - "Tổng Quan 8 Bài Báo Slide & 18 Papers": references/references_overview.md
-      - "Nhật Ký 18 Bài Báo Học Thuật": references/references_log.md
+      - "Tổng Quan 8 Bài Báo Slide & 17 Papers": references/references_overview.md
+      - "Nhật Ký 17 Bài Báo Học Thuật": references/references_log.md
   - "Đội Ngũ & Hướng Dẫn":
       - "Phân Quyền Git & Workspace Rules": dev/team_governance.md
       - "Quy Chuẩn Đóng Góp (Contributing)": dev/contributing_guide.md

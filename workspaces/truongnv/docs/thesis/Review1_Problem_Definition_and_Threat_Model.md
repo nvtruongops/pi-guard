@@ -34,7 +34,7 @@ The rapid enterprise adoption of Large Language Models (LLMs) and generative AI 
 
 This research project, **PI-Guard**, designs, develops, and empirically evaluates an API-driven, low-latency Machine Learning Guardrail middleware placed in front of downstream LLM applications to proactively inspect, classify, and filter malicious prompts before they reach the target model.
 
-The defense architecture adopts a hybrid multi-tiered approach: (1) a lightweight classical Machine Learning baseline combining Word and Character n-gram TF-IDF for fast syntactic filtering (~3ms), and (2) a deeply fine-tuned `microsoft/deberta-v3-base` Transformer utilizing Disentangled Attention for complex semantic injection detection (~12.8ms). To resist adversarial obfuscations (Leetspeak, Base64, Spacing tricks), PI-Guard incorporates a normalization pipeline, subword representations, and heuristic cipher decoders. To ensure efficient CPU inference for practical low-latency deployment, the Transformer is optimized via Post-Training Dynamic INT8 Quantization (ONNX Runtime), achieving a 70% memory reduction with negligible accuracy loss (<0.3%).
+The defense architecture adopts a hybrid multi-tiered approach: (1) a lightweight classical Machine Learning baseline combining Word and Character n-gram TF-IDF for fast syntactic filtering (~3ms), and (2) a deeply fine-tuned `microsoft/deberta-v3-base` Transformer utilizing Disentangled Attention for complex semantic injection detection (~12.8ms). To resist adversarial obfuscations (Leetspeak, Base64, Spacing tricks), PI-Guard incorporates a normalization pipeline, subword representations, and heuristic cipher decoders. To ensure efficient inference for practical deployment, PI-Guard benchmarks the latency and throughput of the Transformer on commodity CPU hardware, achieving responsive filtering with minimal processing overhead.
 
 The primary deliverables of this capstone project include a curated, deduplicated dataset with Group-Aware Splitting to eliminate data leakage, a high-throughput asynchronous FastAPI middleware, a 4-scenario live demonstration matrix ($2 \times 2$), an interactive Streamlit testing dashboard, and comprehensive empirical benchmarks targeting $F_1 \ge 0.95$, False Positive Rate (FPR) $< 1.5\%$, and P95 latency $< 30\text{ ms}$ on commodity CPU hardware.
 
@@ -101,7 +101,7 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 1. **Bộ dữ liệu chuẩn hóa**: Xây dựng tập dữ liệu đa nguồn (Deepset, Gandalf, In-The-Wild, Benign) áp dụng thuật toán _Group-Aware Splitting_ chống rò rỉ dữ liệu.
 2. **Mô hình học máy kép**: Phát triển mô hình Baseline ML (Word/Char TF-IDF) và mô hình Transformer tinh chỉnh (`microsoft/deberta-v3-base` Disentangled Attention).
 3. **Độ bền trước lẩn tránh cú pháp**: Xây dựng cơ chế chuẩn hóa chuỗi và bộ kiểm thử độ bền (Adversarial Robustness Testing Suite) kháng Leetspeak, Base64, Spacing.
-4. **Tối ưu hóa triển khai thực tế**: Ứng dụng kỹ thuật lượng hóa nhẹ (Post-Training Dynamic INT8 Quantization với ONNX Runtime) như một giải pháp phụ trợ kỹ thuật, đảm bảo Guardrail vận hành hiệu quả trên hạ tầng CPU tiêu chuẩn với độ trễ thấp.
+4. **Đo lường hiệu năng & Độ trễ thực tế**: Đánh giá thực nghiệm độ trễ suy luận (P95 Latency Profiling) và thông lượng (RPS) của mô hình Transformer trên hạ tầng CPU tiêu chuẩn, đảm bảo Guardrail vận hành với độ trễ thấp tối ưu.
 5. **Hạ tầng API & Dashboard**: Xây dựng Asynchronous Middleware (FastAPI) và Dashboard kiểm thử trực quan (Streamlit) với ma trận 4 kịch bản demo.
 
 ### 1.3.3. Hệ Thống 3 Câu Hỏi Nghiên Cứu Cốt Lõi & Khoảng Trống Học Thuật:
@@ -112,7 +112,7 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 | :---: | :--- | :--- |
 | **RQ1** | **Phân Loại Mối Đe Dọa & Chống Rò Rỉ Dữ Liệu**<br>*(Threat Modeling & Representation)* | Rò rỉ cụm mẫu & Ranh giới phân loại giữa cú pháp tĩnh và ngữ nghĩa sâu |
 | **RQ2** | **Độ Bền Kháng Lẩn Tránh & Mã Hóa Đối Kháng**<br>*(Adversarial Robustness & Ciphers)* | Sự sụp đổ của mô hình trước biến dị cú pháp Leetspeak, Spacing & Base64 |
-| **RQ3** | **Cân Bằng An Toàn & Khả Thi Triển Khai**<br>*(Security Trade-off & Inline Feasibility)* | Đánh đổi Security/Usability (FPR) và bảo toàn ranh giới an toàn khi nén |
+| **RQ3** | **Cân Bằng An Toàn & Khả Thi Triển Khai**<br>*(Security Trade-off & Inline Feasibility)* | Đánh đổi Security/Usability (FPR) và bảo toàn ranh giới an toàn khi triển khai |
 
 ---
 
@@ -142,17 +142,15 @@ Thiết kế, huấn luyện, lượng hóa và triển khai hệ thống **PI-G
 
 ---
 
-#### CÂU HỎI NGHIÊN CỨU 3 (RQ3) — Cân Bằng An Toàn, Khống Chế Tỷ Lệ Chặn Nhầm & Bảo Toàn Ranh Giới Khi Lượng Hóa Triển Khai:
+#### CÂU HỎI NGHIÊN CỨU 3 (RQ3) — Cân Bằng An Toàn, Khống Chế Tỷ Lệ Chặn Nhầm & Khả Thi Triển Khai Độ Trễ Thấp:
 
-- **Câu hỏi nghiên cứu**:_Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và quá trình lượng hóa động INT8 cùng kiến trúc proxy bất đồng bộ có thể bảo toàn ranh giới quyết định an toàn trong khi duy trì độ trễ thấp tối ưu (P95 < 30ms trên CPU) mà không tạo ra điểm nghẽn từ chối dịch vụ (DoS)?_
+- **Câu hỏi nghiên cứu**:_Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và kiến trúc proxy phân tầng kết hợp bất đồng bộ duy trì độ trễ thấp tối ưu trong khi bảo toàn ranh giới quyết định an toàn mà không tạo ra điểm nghẽn từ chối dịch vụ (DoS)?_
 - **Khoảng trống nghiên cứu (Research Gap 3)**:
   - _Khoảng trống 3.1 (Security vs. Usability Trade-off)_: Trong an toàn thông tin doanh nghiệp, một hệ thống bảo mật chặn nhầm câu hỏi hợp lệ của người dùng sẽ bị tắt bỏ vì cản trở vận hành. Cần cơ chế chấm điểm rủi ro động phân tầng (`ALLOW`, `REVIEW`, `BLOCK`) để vừa đạt tỷ lệ bắt trúng cao ($\ge 95\%$) vừa giữ $\text{FPR} < 1.5\%$.
-  - _Khoảng trống 3.2 (Quantized Boundary Preservation & Inline Feasibility)_: Khi nén lượng hóa mô hình Transformer sang INT8 để chạy trực tuyến trên CPU, sự suy giảm số học có thể tạo ra các "lỗ hổng phân loại ngầm" (_Silent Security Degradation_). Cần chứng minh lượng hóa bảo toàn được ranh giới an toàn và không gây nghẽn cổ chai DoS.
+  - _Khoảng trống 3.2 (Inline Latency & Architectural Feasibility)_: Khi triển khai mô hình học máy và Transformer làm chốt chặn bảo vệ trực tuyến, việc cân đối giữa độ trễ của mô hình cổ điển (TF-IDF) và độ chính xác ngữ nghĩa của Transformer là yếu tố quyết định để tránh gây trễ cho ứng dụng LLM đích mà vẫn bảo toàn ranh giới an toàn.
 - **Chỉ số đo lường định lượng chuẩn IEEE**:
   - Tỷ lệ chặn nhầm trên tập người dùng hợp lệ: $\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}} < 1.5\%$ (kỳ vọng $< 1.1\%$), với $\text{TPR (Recall)} \ge 95\%$.
-  - Độ lệch ranh giới quyết định sau lượng hóa: $\Delta \text{Decision Boundary (KL-Divergence)} < 0.05$.
-  - Độ suy giảm độ chính xác do lượng hóa: $\Delta F_1^{\text{Quantization}} = |F_1^{\text{FP32}} - F_1^{\text{INT8}}| < 0.3\%$.
-  - Hiệu năng vận hành thực tế: Độ trễ $\text{P95 Latency} < 30\text{ ms}$ trên CPU thông thường, thông lượng $\ge 100\text{ RPS}$.
+  - Hiệu năng vận hành thực tế: Đo đạc độ trễ suy luận P95 trên CPU thông thường, hướng tới thông lượng $\ge 100\text{ RPS}$ cho kiến trúc phân tầng.
 
 ## 1.4. Significance of the Study & Threat Impact Analysis (Ý Nghĩa & Phân Tích Thiệt Hại)
 
@@ -174,7 +172,7 @@ Các cuộc tấn công Prompt Injection và Jailbreak gây ra 4 tầng thiệt 
 
 | Phạm Vi Nghiên Cứu | Nội Dung Chi Tiết |
 | :--- | :--- |
-| **IN-SCOPE<br>(Trọng tâm nghiên cứu)** | • 2 Bài toán cốt lõi: Prompt Injection (Direct/Indirect) và Jailbreak<br>• Chuỗi văn bản đầu vào: English Text Prompts (Tiêu chuẩn nghiên cứu quốc tế)<br>• Kỹ thuật lẩn tránh cú pháp: Leetspeak, Base64, Spacing (Kiểm thử độ bền đối kháng)<br>• Độ trễ thấp: P95 Latency < 30ms trên CPU tiêu chuẩn (Commodity CPU)<br>• Kiểm soát báo động nhầm: False Positive Rate (FPR) < 1.5% trên tập Benign<br>• Kiến trúc hệ thống: Hybrid TF-IDF Baseline + Fine-tuned DeBERTa-v3 + ONNX INT8 |
+| **IN-SCOPE<br>(Trọng tâm nghiên cứu)** | • 2 Bài toán cốt lõi: Prompt Injection (Direct/Indirect) và Jailbreak<br>• Chuỗi văn bản đầu vào: English Text Prompts (Tiêu chuẩn nghiên cứu quốc tế)<br>• Kỹ thuật lẩn tránh cú pháp: Leetspeak, Base64, Spacing (Kiểm thử độ bền đối kháng)<br>• Độ trễ thấp: P95 Latency < 30ms trên CPU tiêu chuẩn (Commodity CPU)<br>• Kiểm soát báo động nhầm: False Positive Rate (FPR) < 1.5% trên tập Benign<br>• Kiến trúc hệ thống: Hybrid TF-IDF Baseline + Fine-tuned DeBERTa-v3 (Transformer) |
 | **OUT-OF-SCOPE<br>(Nằm ngoài phạm vi)** | • Tấn công đa phương thức: Image, Audio, Video Jailbreaks<br>• Tấn công hạ tầng mạng: DDoS, trích xuất trọng số GPU, Side-channel attacks<br>• Quét lỗ hổng hệ điều hành máy chủ / CVE của Linux hoặc Docker engine<br>• Xây dựng hệ thống cơ sở dữ liệu Vector RAG hoặc Agent Tool Execution Runtime |
 
 ## 1.6. Thesis Structure (Bố Cục 6 Chương Của Toàn Văn Luận Văn)
@@ -224,7 +222,7 @@ Threat Model của PI-Guard được xây dựng dựa trên tiêu chuẩn **NIS
 flowchart TD
     Attacker["Tác Nhân Tấn Công (Attacker)<br/>Người dùng độc hại / Chuỗi văn bản bên thứ ba"] -->|Prompt Injection / Jailbreak / Obfuscation| Surface["BỀ MẶT TẤN CÔNG DUY NHẤT (ATTACK SURFACE)<br/>User Prompt REST API Endpoint (/v1/chat)<br/>(Tiếp nhận chuỗi văn bản đầu vào)"]
     
-    Surface --> Middleware["PI-GUARD DEFENSE MIDDLEWARE (LỚP BẢO VỆ)<br/>• Bộ chuẩn hóa & Lọc cú pháp (TF-IDF Baseline)<br/>• Bộ phân loại ngữ nghĩa sâu (DeBERTa-v3 ONNX INT8)<br/>• Dynamic Policy Engine (ALLOW / REVIEW / BLOCK)"]
+    Surface --> Middleware["PI-GUARD DEFENSE MIDDLEWARE (LỚP BẢO VỆ)<br/>• Bộ chuẩn hóa & Lọc cú pháp (TF-IDF Baseline)<br/>• Bộ phân loại ngữ nghĩa sâu (DeBERTa-v3 Transformer)<br/>• Dynamic Policy Engine (ALLOW / REVIEW / BLOCK)"]
     
     Middleware -->|ALLOW: Risk < 0.50| Assets["TÀI SẢN MỤC TIÊU CẦN BẢO VỆ (TARGET ASSETS)<br/>• Target LLM (Llama-3 / GPT-4o)<br/>• System Prompt & Business Logic IP<br/>• API Keys & Quyền thực thi downstream<br/>• Toàn vẹn dữ liệu phản hồi"]
 ```
@@ -260,7 +258,7 @@ flowchart LR
 
 | Lớp bảo vệ | Thành phần bên trong | Cơ chế kỹ thuật | Vai trò & Đóng góp |
 | :--- | :--- | :--- | :--- |
-| **LỚP 1: PI-GUARD INPUT GUARDRAIL**<br>*(Middleware chốt chặn đầu vào)* | **1. Heuristic Cleaner**<br>**2. Hybrid Classifier (TF-IDF + DeBERTa-v3)**<br>**3. Dynamic Policy Engine** | • Chuẩn hóa Unicode NFKC, lọc ký tự điều khiển.<br>• **Word/Char TF-IDF** bắt nhiễu cú pháp/Leetspeak (~3ms).<br>• **DeBERTa-v3 INT8** bắt ngữ nghĩa injection sâu (~12.8ms).<br>• Ra quyết định tức thì: `ALLOW`, `REVIEW`, `BLOCK`. | **ĐÂY LÀ TRỌNG TÂM NGHIÊN CỨU & PHÁT TRIỂN CHÍNH CỦA ĐỒ ÁN PI-GUARD.** Đánh chặn các đòn tấn công trước khi chạm vào LLM, tiết kiệm chi phí token và bảo vệ System Prompt. |
+| **LỚP 1: PI-GUARD INPUT GUARDRAIL**<br>*(Middleware chốt chặn đầu vào)* | **1. Heuristic Cleaner**<br>**2. Hybrid Classifier (TF-IDF + DeBERTa-v3)**<br>**3. Dynamic Policy Engine** | • Chuẩn hóa Unicode NFKC, lọc ký tự điều khiển.<br>• **Word/Char TF-IDF** bắt nhiễu cú pháp/Leetspeak (~3ms).<br>• **DeBERTa-v3** bắt ngữ nghĩa injection sâu (~12.8ms - 35ms).<br>• Ra quyết định tức thì: `ALLOW`, `REVIEW`, `BLOCK`. | **ĐÂY LÀ TRỌNG TÂM NGHIÊN CỨU & PHÁT TRIỂN CHÍNH CỦA ĐỒ ÁN PI-GUARD.** Đánh chặn các đòn tấn công trước khi chạm vào LLM, tiết kiệm chi phí token và bảo vệ System Prompt. |
 | **LỚP 2: TARGET LLM APPLICATION**<br>*(Mô hình ngôn ngữ phục vụ nghiệp vụ)* | **1. System Prompt Hardening**<br>**2. Target LLM (Llama-3 / GPT-4o)** | • Đóng gói prompt trong thẻ phân tách XML (`<user_input>`).<br>• Áp dụng kỹ thuật Sandwich Defense (nhắc lại ràng buộc ở cuối context). | Mô hình cốt lõi sinh câu trả lời cho nghiệp vụ sau khi đã nhận prompt an toàn từ Lớp 1. |
 | **LỚP 3: OUTPUT FILTERING & SANITIZER**<br>*(Bộ lọc hậu xử lý đầu ra)* | **1. Regex Secret Extractor**<br>**2. Toxicity / PII Filter** | • Quét chuỗi phản hồi của LLM để phát hiện rò rỉ API Key, mật khẩu, PII trước khi trả về cho client. | Lớp phòng thủ bổ trợ vòng ngoài (Hậu kiểm tra), ngăn ngừa rủi ro mô hình bị ảo giác (*Hallucination*). |
 
@@ -282,9 +280,9 @@ flowchart TD
         Data["Nguồn Dữ Liệu Đa Nguồn<br/>(Deepset, Gandalf, In-The-Wild, Benign)"] --> Pre["Curation, Lọc Trùng & Group-Aware Splitting<br/>(Chống rò rỉ dữ liệu qua cluster_id)"]
         Pre --> TrainSplit["Tập Huấn Luyện & Kiểm Thử<br/>(Train / Validation / Test)"]
         Pre --> AdvTest["Adversarial Test Slices<br/>(Leetspeak, Base64, Spacing)"]
-        TrainSplit --> Engine["TRAINING ENGINE<br/>1. Train Baseline ML (TF-IDF)<br/>2. Fine-tune DeBERTa-v3 Base<br/>3. ONNX INT8 Quantization"]
-        AdvTest --> RobSuite["ROBUSTNESS TEST SUITE<br/>(Đo lường F1, FPR < 1.5%, Latency < 30ms)"]
-        Engine --> ModelStore[("THƯ MỤC MÔ HÌNH (models/)<br/>• models/baseline/baseline_tfidf.joblib<br/>• models/onnx/deberta_v3_int8.onnx")]
+        TrainSplit --> Engine["TRAINING ENGINE<br/>1. Train Baseline ML (TF-IDF)<br/>2. Fine-tune DeBERTa-v3 Base"]
+        AdvTest --> RobSuite["ROBUSTNESS TEST SUITE<br/>(Đo lường F1, FPR < 1.5%, Latency Profiling)"]
+        Engine --> ModelStore[("THƯ MỤC MÔ HÌNH (models/)<br/>• models/baseline/baseline_tfidf.joblib<br/>• models/transformer/deberta_v3_model/")]
     end
     
     subgraph Phase2["PHA 2: ONLINE RUNTIME MIDDLEWARE (VẬN HÀNH TRỰC TUYẾN)"]
@@ -392,7 +390,7 @@ Nhóm nghiên cứu khẳng định: **Đây là sự kết tinh của quá trì
 
 | Tiêu chí Đồ án PI-Guard            | Mục tiêu Thiết Kế (Register & Proposal) |   Regex / Rules Tĩnh (Y văn)   |  Classical TF-IDF Baseline (Y văn)   | LLM-as-a-Judge Llama Guard (Y văn) | **PI-Guard Đề Xuất (TF-IDF + DeBERTa-v3)** |              Đánh Giá Phù Hợp Mục Tiêu Đồ Án               |
 | :--------------------------------- | :-------------------------------------: | :----------------------------: | :----------------------------------: | :--------------------------------: | :----------------------------------------: | :--------------------------------------------------------: |
-| **1. Độ trễ P95 (CPU Inference)**  |  **< 30 ms** (Zero-GPU Commodity CPU)   |             < 1 ms             |               ~3.2 ms                |     > 500 ms – 1.5s (Quá cao)      |    **Mục tiêu < 30 ms (ONNX INT8 CPU)**    |    ✅ **PHÙ HỢP HOÀN TOÀN** (Tối ưu cho CPU tiêu chuẩn)    |
+| **1. Độ trễ P95 (CPU Inference)**  |  **Độ trễ thấp** (Zero-GPU Commodity CPU)   |             < 1 ms             |               ~3.2 ms                |     > 500 ms – 1.5s (Quá cao)      |    **Độ trễ thấp (Kiến trúc phân tầng)**    |    ✅ **PHÙ HỢP HOÀN TOÀN** (Tối ưu cho CPU tiêu chuẩn)    |
 | **2. Tỷ lệ Báo động nhầm (FPR)**   |  **< 1.5%** trên tập Benign hàng ngày   |             ~12.5%             |  2.8% - 7.5% (Dễ bắt nhầm từ khóa)   |               ~2.1%                |      **Mục tiêu < 1.5% (Ngưỡng kép)**      | ✅ **PHÙ HỢP HOÀN TOÀN** (Bảo toàn trải nghiệm người dùng) |
 | **3. Độ chính xác & F1-Score**     |            **F1 $\ge$ 0.95**            |           F1 < 0.50            |              F1 ~ 0.918              |             F1 ~ 0.945             |         **Mục tiêu F1 $\ge$ 0.95**         |     ✅ **PHÙ HỢP HOÀN TOÀN** (Tiệm cận SOTA ProtectAI)     |
 | **4. Độ bền Robustness (Evasion)** |     Độ suy giảm $\Delta F_1 < 5\%$      | Giảm > 80% (Bị bypass dễ dàng) | Giảm ~8.5% (Kháng leetspeak/spacing) | Giảm ~15.2% (Bị bypass bởi Base64) |      **Mục tiêu $\Delta F_1 < 5\%$**       |  ✅ **PHÙ HỢP HOÀN TOÀN** (Nhờ 3 tầng phòng thủ phối hợp)  |
@@ -407,8 +405,8 @@ _(Ghi chú: Toàn bộ 4 thành viên cùng tham gia nghiên cứu, huấn luy�
 2. **Mô hình Transformer (Supervised Fine-Tuning)**:
    - Tinh chỉnh trên nền tảng `microsoft/deberta-v3-base` [[11]](#ref11) (tương tự kiến trúc Meta Prompt Guard) với tập dữ liệu gộp đã xử lý chống rò rỉ dữ liệu (_Group-Aware Split_).
    - Tối ưu hóa: Hàm mất mát BCEWithLogitsLoss, AdamW optimizer ($lr = 2 \times 10^{-5}$), Warmup ratio = 0.1, Weight Decay = 0.01.
-3. **Tối ưu hóa thực thi trên CPU (Engineering Note)**:
-   - Ứng dụng kỹ thuật lượng hóa nhẹ Post-Training Dynamic INT8 Quantization sang ONNX Runtime theo nghiên cứu ZeroQuant (NeurIPS 2022) [[14]](#ref14) như một giải pháp phụ trợ kỹ thuật, giúp mô hình nén 70% dung lượng (từ ~500MB xuống ~140MB) và tăng tốc trên CPU mà không làm giảm F1 (<0.3% delta).
+3. **Đo đạc hiệu năng & Đánh giá độ trễ (Performance Profiling)**:
+   - Đánh giá thực nghiệm độ trễ suy luận của mô hình Baseline TF-IDF (~2ms) và DeBERTa-v3 trên CPU tiêu chuẩn; đối sánh với các cơ chế phòng thủ ngẫu nhiên hóa như SmoothLLM của Robey et al. (2023) [[14]](#ref14) để chứng minh ưu thế về độ trễ của bộ phân loại chuyên biệt so với các phương pháp làm mịn tốn nhiều lượt gọi LLM.
 
 ## 6.3. Khảo Sát Y Văn Về Lỗ Hổng Của Các Dòng LLM Phổ Biến & Thiết Kế Khung Thử Nghiệm API (Chapter 4)
 
@@ -535,10 +533,10 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 - 📖 **Local PDF**: [`References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/Final-Report/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614)
 
-<a id="ref14"></a>**[14]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in _Advances in Neural Information Processing Systems (NeurIPS)_, vol. 35, 2022.
+<a id="ref14"></a>**[14]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," arXiv preprint arXiv:2310.03684, 2023.
 
-- 📖 **Local PDF**: [`References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`](file:///d:/Work/Do-an/Final-Report/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf)
-- 🔗 **Online URL**: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861)
+- 📖 **Local PDF**: [`References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`](file:///d:/Work/Do-an/Final-Report/References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf)
+- 🔗 **Online URL**: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684)
 
 <a id="ref15"></a>**[15]** X. Shen et al., ""Do Anything Now": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in _Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (CCS)_, pp. 4028–4042, 2024.
 

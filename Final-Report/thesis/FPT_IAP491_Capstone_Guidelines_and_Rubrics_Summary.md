@@ -79,7 +79,7 @@ Quy trình bảo vệ đồ án tốt nghiệp Khóa luận IAP491 trong học k
    - **Trọng số**: Chiếm **20% Process Mark** (10.0% tổng điểm đồ án).
 
 3. 🏛️ **CỘT MỐC 3: BÁO CÁO HỘI ĐỒNG 1 / HỘI ĐỒNG GIỮA KỲ (Tuần 13 / 30/11 – 06/12/2026)**:
-   - **Nội dung**: Kết quả thực nghiệm Transformer DeBERTa-v3, Lượng hóa động Post-Training Quantization (ONNX INT8), Đo đạc thực nghiệm độ bền (Robustness on Leetspeak/Base64/Spacing) và Demo Prototype API Middleware + Dashboard Streamlit.
+   - **Nội dung**: Kết quả thực nghiệm Transformer DeBERTa-v3, Đánh giá thực nghiệm độ trễ suy luận, Đo đạc thực nghiệm độ bền (Robustness on Leetspeak/Base64/Spacing) và Demo Prototype API Middleware + Dashboard Streamlit.
    - **Hồ sơ nghiệm thu**: **Report No.4 (Chapter 4: Experimental and Results)** + Hệ thống Prototype Demo hoạt động trực tiếp.
    - **Trọng số**: Chiếm **25% Process Mark** (12.5% tổng điểm đồ án).
 
@@ -94,7 +94,7 @@ flowchart TD
     S1 --> S2["Tuần 3 - 4: CỘT MỐC 1 - REVIEW 1 (GVHD)<br/>Report No.1 & Report No.2"]
     S2 --> S3["Tuần 5 - 7: Data Engineering, Group-Aware Split, Baseline ML & Chapter 3"]
     S3 --> S4["Tuần 8: CỘT MỐC 2 - REVIEW 2 (GVHD)<br/>Report No.3"]
-    S4 --> S5["Tuần 9 - 12: Fine-tuning DeBERTa-v3, ONNX INT8, Test Robustness, API & Dashboard"]
+    S4 --> S5["Tuần 9 - 12: Fine-tuning DeBERTa-v3, Test Robustness, API & Dashboard"]
     S5 --> S6["Tuần 13: CỘT MỐC 3 - BÁO CÁO HỘI ĐỒNG 1<br/>Report No.4"]
     S6 --> S7["Tuần 14: Hoàn thiện Luận văn 6 Chương, Quét Turnitin (&lt; 20%)"]
     S7 --> S8["Tuần 15: CỘT MỐC 4 - BẢO VỆ TỐT NGHIỆP FINAL<br/>Report No.5, No.6 & BẢO VỆ CHÍNH THỨC"]
@@ -211,7 +211,7 @@ Nhằm tối ưu hóa năng lực của tất cả thành viên và đảm bảo
 | :--- | :--- | :--- | :--- |
 | **Nguyễn Văn Trường (Leader)** | `workspaces/truongnv/` | Kiến trúc tổng thể, Chuẩn hóa Dữ liệu Group-Aware Split & Điều phối Luận văn | Chủ trì **Report No.1** (Intro) & **Report No.2** (Lit Review) |
 | **Nguyễn Quí Đức** | `workspaces/ducnq/` | Classical ML Baseline (TF-IDF Word/Char, Logistic, SVC, XGBoost) & Bề mặt tấn công | Phản biện Threat Model & Chủ trì **Report No.3** (Methodology) |
-| **Phạm Minh Hoàng Việt** | `workspaces/vietpmh/` | Transformer Fine-Tuning (DeBERTa-v3), Lượng hóa INT8 ONNX & Evasion Robustness | Phản biện Deep Learning & Chủ trì **Report No.4** (Experimental) |
+| **Phạm Minh Hoàng Việt** | `workspaces/vietpmh/` | Transformer Fine-Tuning (DeBERTa-v3), Đánh giá Độ trễ & Evasion Robustness | Phản biện Deep Learning & Chủ trì **Report No.4** (Experimental) |
 | **Đỗ Đoàn Duy Phương** | `workspaces/phuongddd/` | FastAPI Guardrail Middleware, Streamlit Dashboard, Kịch bản Demo & Tổng hợp Luận văn | Phản biện Attack Taxonomy & Chủ trì **Report No.5** + **Report No.6** |
 
 

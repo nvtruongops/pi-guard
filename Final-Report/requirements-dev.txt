@@ -19,9 +19,7 @@ types-requests>=2.31.0
 # Pre-commit hooks
 pre-commit>=3.7.0
 
-# Model Export & Latency Benchmarking
-onnx>=1.16.0
-onnxruntime>=1.18.0
+# System & Latency Benchmarking
 psutil>=5.9.8
 
 # Documentation Portal (Local Web Server & Offline Static Site)

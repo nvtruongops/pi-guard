@@ -87,9 +87,9 @@ Hệ thống PI-Guard phân chia Lớp 1 thành **3 phân tầng kỹ thuật li
 - **Mục tiêu**: Xử lý phần lớn lưu lượng truy cập với độ trễ cực thấp ($< 3\text{ms}$), phát hiện tức thì các mẫu prompt chứa từ khóa injection đã biết hoặc bị biến đổi Leetspeak nhẹ.
 - **Cơ sở kỹ thuật**: Thay vì dùng Word-level TF-IDF (dễ bị OOV khi từ bị biến thể), PI-Guard sử dụng **Character n-grams với ranh giới từ** (`analyzer='char_wb'`, $n \in [3, 5]$) [[6]](#ref6). Khi kẻ tấn công nhập `1gn0r3`, chuỗi được chia thành các gram con `[' 1g', '1gn', 'gn0', 'n0r', '0r3', 'r3 ']` vẫn bảo toàn độ tương đồng Cosine $\ge 2.8\times$ so với từ gốc, cho phép mô hình tuyến tính phân loại chính xác.
 
-### 3. Phân Tầng 2: Bộ Phân Loại Ngữ Nghĩa Sâu Bằng DeBERTa-v3 INT8 (Semantic Gate)
+### 3. Phân Tầng 2: Bộ Phân Loại Ngữ Nghĩa Sâu Bằng DeBERTa-v3 (Semantic Gate)
 - **Mục tiêu**: Bắt các cuộc tấn công Jailbreak phức tạp sử dụng ngữ cảnh nhập vai (DAN, Roleplay Persona, Giả lập máy ảo Terminal, Kịch bản đạo đức đối lập) mà không chứa từ khóa tấn công tường minh [[7]](#ref7).
-- **Cơ sở kỹ thuật**: Mô hình `microsoft/deberta-v3-base` (86M tham số) với kiến trúc **Disentangled Attention** [[8]](#ref8) biểu diễn từ dưới 2 vector độc lập (Nội dung và Vị trí tương đối). Mô hình được tối ưu hóa bằng **ONNX Runtime Dynamic INT8 Quantization** [[9]](#ref9), giảm kích thước từ 500MB xuống còn 133MB và đạt độ trễ P95 $< 15\text{ms}$ trên CPU thương mại thông thường.
+- **Cơ sở kỹ thuật**: Mô hình `microsoft/deberta-v3-base` (86M tham số) với kiến trúc **Disentangled Attention** [[8]](#ref8) biểu diễn từ dưới 2 vector độc lập (Nội dung và Vị trí tương đối). Mô hình được tinh chỉnh (fine-tuned) chuyên biệt cho bài toán phát hiện prompt injection và jailbreak, vận hành trực tiếp trên CPU phổ thông với độ trễ thấp tối ưu và năng lực bảo toàn ngữ nghĩa vượt trội [[9]](#ref9).
 
 ### 4. Dynamic Policy Engine (Bộ Ra Quyết Định Động)
 Hệ thống tính toán điểm rủi ro tổng hợp $R \in [0.0, 1.0]$:
@@ -193,7 +193,7 @@ graph LR
 <a id="ref6"></a>**[6]** P. Bojanowski et al., "Enriching Word Vectors with Subword Information," *Transactions of the Association for Computational Linguistics (TACL)*, vol. 5, pp. 135–146, 2017. Link: [https://arxiv.org/abs/1607.04606](https://arxiv.org/abs/1607.04606).  
 <a id="ref7"></a>**[7]** X. Shen et al., "Do Anything Now: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in *ACM CCS 2024*, 2024. Link: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825).  
 <a id="ref8"></a>**[8]** P. He et al., "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in *ICLR 2023*, 2023. Link: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543).  
-<a id="ref9"></a>**[9]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *NeurIPS 2022*, 2022. Link: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861).  
+<a id="ref9"></a>**[9]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," *arXiv preprint arXiv:2310.03684*, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).  
 <a id="ref10"></a>**[10]** OWASP GenAI Security Project, "OWASP Top 10 for Large Language Model Applications (2025 Edition)," 2025. Link: [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/).  
 <a id="ref11"></a>**[11]** N. F. Liu et al., "Lost in the Middle: How Language Models Use Long Contexts," *Transactions of the Association for Computational Linguistics*, vol. 12, pp. 157–173, 2024. Link: [https://arxiv.org/abs/2307.03172](https://arxiv.org/abs/2307.03172).  
 <a id="ref12"></a>**[12]** Y. Bai et al., "Constitutional AI: Harmlessness from AI Feedback," *arXiv preprint arXiv:2212.08073*, 2022. Link: [https://arxiv.org/abs/2212.08073](https://arxiv.org/abs/2212.08073).  

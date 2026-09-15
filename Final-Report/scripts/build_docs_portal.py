@@ -30,10 +30,10 @@ def clean_and_prepare_dir():
     """Khởi tạo và làm sạch các thư mục chuyên đề trong docs/ phục vụ MkDocs (BẢO VỆ TUYỆT ĐỐI docs/fpt_capstone_guide/)."""
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Tạo và làm sạch các thư mục con theo kiến trúc thông tin 8 Chuyên Đề Khoa Học
+    # Tạo và làm sạch các thư mục con theo kiến trúc thông tin 7 Chuyên Đề Khoa Học
     subdirs = [
         "work", "prompt_study", "attacks", "threat_defense", 
-        "dataset_study", "models", "robustness", "optimization", 
+        "dataset_study", "models", "robustness", 
         "evaluation_study", "research", "thesis", "references", 
         "dev", "javascripts", "stylesheets"
     ]
@@ -42,6 +42,10 @@ def clean_and_prepare_dir():
         if sub_path.exists():
             shutil.rmtree(sub_path)
         sub_path.mkdir(parents=True, exist_ok=True)
+
+    # Loại bỏ thư mục optimization nếu còn tồn tại từ bản build trước
+    if (DOCS_DIR / "optimization").exists():
+        shutil.rmtree(DOCS_DIR / "optimization")
 
     # Xóa index.md cũ nếu có để tạo mới
     if (DOCS_DIR / "index.md").exists():
@@ -115,7 +119,7 @@ def copy_doc(src_path: Path, dest_path: Path, title_prefix: str = ""):
 def create_homepage():
     """Tạo trang chủ (index.md) chuẩn mực học thuật, tối giản, thuần Markdown."""
     index_content = """# PI-Guard: LLM Security Guardrail
-## Hệ Thống 8 Chuyên Đề Nghiên Cứu Khoa Học & Báo Cáo Khóa Luận
+## Hệ Thống 7 Chuyên Đề Nghiên Cứu Khoa Học & Báo Cáo Khóa Luận
 
 > **Đồ án Khóa luận Tốt nghiệp Đại học FPT** — Chuyên ngành An toàn Thông tin (IA)<br>
 > **Mã đề tài**: `IAP491_FA26_PI_GUARD` | **Học kỳ**: Fall 2026<br>
@@ -128,7 +132,7 @@ def create_homepage():
 **PI-Guard** là hệ thống bảo vệ (guardrail) độc lập đặt trước các ứng dụng mô hình ngôn ngữ lớn (LLM), hoạt động theo cơ chế **hai tầng bảo vệ (Two-Tier Cascade Architecture)**:
 
 1. **Tier 1 (Bộ lọc Cú pháp - Syntactic Baseline)**: Sử dụng phương pháp vector hóa TF-IDF kết hợp mô hình phân loại tuyến tính siêu nhẹ (Linear Classifier) nhằm nhận diện các mẫu prompt injection phổ biến với độ trễ cực thấp (**P95 < 1.0 ms**).
-2. **Tier 2 (Bộ lọc Ngữ nghĩa Sâu - Semantic Transformer)**: Sử dụng Transformer tiên tiến (**DeBERTa-v3**) với cơ chế Disentangled Attention, được lượng hóa sau huấn luyện qua **ONNX Runtime INT8** nhằm phát hiện các biến thể tấn công tinh vi, jailbreak ẩn ngữ cảnh với độ trễ mục tiêu **P95 < 25 ms**.
+2. **Tier 2 (Bộ lọc Ngữ nghĩa Sâu - Semantic Transformer)**: Sử dụng Transformer tiên tiến (**DeBERTa-v3**) với cơ chế Disentangled Attention nhằm phát hiện các biến thể tấn công tinh vi, jailbreak ẩn ngữ cảnh với độ trễ tối ưu trên CPU (**P95 < 25 ms**).
 
 ---
 
@@ -146,8 +150,8 @@ flowchart TD
         T1 -- "Lành tính tin cậy (Score <= 0.15)" --> Pass1["Fast Pass trực tiếp tới LLM"]
     end
 
-    subgraph Tier2["3. Tier 2: Semantic Transformer (DeBERTa-v3 INT8)"]
-        T1 -- "Vùng nghi vấn (0.15 < Score < 0.85)" --> T2{"DeBERTa-v3 ONNX Runtime"}
+    subgraph Tier2["3. Tier 2: Semantic Transformer (DeBERTa-v3)"]
+        T1 -- "Vùng nghi vấn (0.15 < Score < 0.85)" --> T2{"DeBERTa-v3 Transformer"}
         T2 -- "Phát hiện Injection / Jailbreak" --> Block2["Chặn tấn công ngữ nghĩa"]
         T2 -- "Độ tin cậy lành tính cao" --> Pass2["Chấp thuận cho phép"]
     end
@@ -170,7 +174,7 @@ flowchart TD
 
 ---
 
-## Hệ Thống 8 Chuyên Đề Nghiên Cứu Khoa Học Trọng Điểm
+## Hệ Thống 7 Chuyên Đề Nghiên Cứu Khoa Học Trọng Điểm
 
 | Chuyên Đề Khoa Học | Trọng Tâm Nghiên Cứu | Đường Dẫn Tra Cứu |
 | :--- | :--- | :--- |
@@ -180,8 +184,7 @@ flowchart TD
 | **4. Dataset & Benchmark** | Tuyển chọn dữ liệu 3 lớp, Khử trùng lặp MinHash, Group-Aware Splitting & Đánh giá OOD | [Xem Dataset Study](dataset_study/data_curation.md) |
 | **5. Model Study** | Toán học TF-IDF, Transformer DeBERTa-v3 Disentangled Attention & Định tuyến bất định 2 tầng | [Xem Model Study](models/two_tier_architecture.md) |
 | **6. Robustness Study** | Chống chịu kỹ thuật làm mờ (Leetspeak, Homoglyphs, Base64) & Tiền xử lý chuẩn hóa 4 bước | [Xem Robustness Study](robustness/theory_and_evasion_mechanisms.md) |
-| **7. Optimization Study** | Lý thuyết lượng tử hóa INT8 PTQ, Tăng tốc ONNX Runtime Graph & Phân vị độ trễ P95/P99 | [Xem Optimization Study](optimization/quantization_math.md) |
-| **8. Evaluation & Trade-offs** | Kinh tế học cảnh báo sai (FPR Economics), Điểm hoạt động Recall@FPR1% & Đường cong biên Pareto | [Xem Evaluation Study](evaluation_study/false_positive_economics.md) |
+| **7. Evaluation & Trade-offs** | Kinh tế học cảnh báo sai (FPR Economics), Điểm hoạt động Recall@FPR1% & Đường cong biên Pareto | [Xem Evaluation Study](evaluation_study/false_positive_economics.md) |
 
 ---
 
@@ -347,19 +350,7 @@ def aggregate_all():
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "04_resources_and_papers.md",
              DOCS_DIR / "robustness" / "resources_and_papers.md")
 
-    # 8. Chuyên Đề 7: Optimization Study
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "01_quantization_theory_and_ptq_math.md",
-             DOCS_DIR / "optimization" / "quantization_math.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "02_onnx_runtime_and_graph_optimizations.md",
-             DOCS_DIR / "optimization" / "onnx_runtime.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "03_inference_acceleration_and_system_design.md",
-             DOCS_DIR / "optimization" / "inference_acceleration.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "04_benchmarks_metrics_and_tradeoffs.md",
-             DOCS_DIR / "optimization" / "benchmarks_tradeoffs.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "optimization_study" / "05_resources_and_papers.md",
-             DOCS_DIR / "optimization" / "resources_and_papers.md")
-
-    # 9. Chuyên Đề 8: Evaluation & Trade-off Study
+    # 8. Chuyên Đề 7: Evaluation & Trade-off Study
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "evaluation_and_tradeoff_study" / "01_false_positive_economics_and_ux.md",
              DOCS_DIR / "evaluation_study" / "false_positive_economics.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "evaluation_and_tradeoff_study" / "02_pareto_frontier_and_system_tradeoffs.md",
@@ -409,7 +400,7 @@ def aggregate_all():
     else:
         create_src_architecture_doc(DOCS_DIR / "dev" / "src_architecture.md")
 
-    print("\n🎉 [HOÀN TẤT] Toàn bộ 8 chuyên đề khoa học đã được chuẩn hóa và sẵn sàng cho MkDocs build!")
+    print("\n🎉 [HOÀN TẤT] Toàn bộ 7 chuyên đề khoa học đã được chuẩn hóa và sẵn sàng cho MkDocs build!")
 
 def create_src_architecture_doc(dest_path: Path):
     """Tạo tài liệu kiến trúc mã nguồn chuẩn cho giai đoạn Review 1 (Zero-Code in Final-Report)."""
@@ -434,7 +425,7 @@ def create_src_architecture_doc(dest_path: Path):
 | `src/preprocessing/` | Tiền xử lý: Làm sạch, chuẩn hóa Unicode, bóc tách Base64 |
 | `src/datasets/` | Pipeline thu thập dữ liệu, semantic deduplication & Group-Aware Split |
 | `src/models/baseline/` | Bộ phân loại TF-IDF (Word/Char N-Grams) + LogisticRegression / LinearSVC |
-| `src/models/classifier.py` | Wrapper chạy suy luận ONNX Runtime / PyTorch |
+| `src/models/classifier.py` | Wrapper chạy suy luận PyTorch / Hugging Face Transformers |
 | `src/training/` | Pipeline huấn luyện tự động (Trainer, Callbacks, Loss) |
 | `src/evaluation/` | Bộ đo lường chuẩn: F1, Precision, Recall, FPR, Latency |
 | `src/policy/` | Bộ quy tắc định tuyến bảo vệ (3-Tier Layered Defense) |

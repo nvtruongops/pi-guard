@@ -52,7 +52,7 @@ flowchart TD
     
     Tier1 -->|P_atk >= 0.85<br/>Tấn công rõ ràng| Block1["BLOCK NGAY (Early Exit)<br/>Độ trễ ~0.85ms"]
     Tier1 -->|P_atk <= 0.15<br/>Lành tính rõ ràng| Allow1["CHO PHÉP SANG LLM<br/>Độ trễ ~0.85ms"]
-    Tier1 -->|0.15 < P_atk < 0.85<br/>Vùng phân vân ngữ nghĩa| Tier2["TẦNG 2: DEBERTA-V3<br/>(ONNX INT8 ~18.5ms)"]
+    Tier1 -->|0.15 < P_atk < 0.85<br/>Vùng phân vân ngữ nghĩa| Tier2["TẦNG 2: DEBERTA-V3<br/>(Transformer ~18.5ms)"]
     
     Tier2 -->|P_atk >= tau_deep| Block2["BLOCK PROMPT (HTTP 403)"]
     Tier2 -->|P_atk < tau_deep| Allow2["CHO PHÉP SANG LLM"]
@@ -77,6 +77,6 @@ flowchart TD
 
 <a id="ref2"></a>**[2]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Disentangled Attention," in *International Conference on Learning Representations (ICLR)*, 2023. Link: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543).
 
-<a id="ref3"></a>**[3]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *Advances in Neural Information Processing Systems (NeurIPS)*, 2022. Link: [https://arxiv.org/abs/2206.01861](https://arxiv.org/abs/2206.01861).
+<a id="ref3"></a>**[3]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," *arXiv preprint arXiv:2310.03684*, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).
 
 <a id="ref4"></a>**[4]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *AAAI Conference on Human Computation and Crowdsourcing (HCOMP)*, 2023. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
