@@ -16,14 +16,25 @@ import json
 from dataclasses import dataclass, asdict
 from typing import Callable, Dict, List, Optional, Tuple, Any
 
-from jailguard_mutators import (
-    LeetspeakMutator,
-    SpacingMutator,
-    Base64Mutator,
-    ZeroWidthMutator,
-    HomoglyphMutator,
-    JailGuardCompositeMutator,
-)
+try:
+    from jailguard_mutators import (
+        LeetspeakMutator,
+        SpacingMutator,
+        Base64Mutator,
+        ZeroWidthMutator,
+        HomoglyphMutator,
+        JailGuardCompositeMutator,
+    )
+except ImportError:
+    from .jailguard_mutators import (
+        LeetspeakMutator,
+        SpacingMutator,
+        Base64Mutator,
+        ZeroWidthMutator,
+        HomoglyphMutator,
+        JailGuardCompositeMutator,
+    )
+
 
 
 @dataclass
