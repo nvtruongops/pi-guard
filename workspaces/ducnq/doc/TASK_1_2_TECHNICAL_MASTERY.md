@@ -11,7 +11,7 @@
 > 1. **Làm chủ 100% bản chất lý thuyết**: Phân biệt rạch ròi giữa **Prompt Injection** (tầng ứng dụng, không gian token phẳng $X = S \mathbin{\Vert} U$) và **Jailbreak** (tầng trọng số mô hình, xung đột mục tiêu *Competing Objectives*).
 > 2. **Cập nhật nghiên cứu tiền tuyến 2025–2026 (Research Frontier)**: Tích hợp trực tiếp các công trình chấn động thế giới từ **USENIX Security 2026** (Milad Nasr & Nicholas Carlini - Anthropic/DeepMind/OpenAI; Jaiden Fairoze - UC Berkeley), **ICLR 2026** (Jailbreak Transferability), **ACL 2025** (InjecGuard - giải mã hiện tượng Over-defense và Table 6), và **ACM TOSEM 2025** (JailGuard - bộ biến dị đối kháng).
 > 3. **Bảo vệ vững chắc ranh giới hệ thống (Scope Defense)**: Luận giải rõ ràng tại sao PI-Guard là một **External Text-level Guardrail Proxy** tại Ingress. Tầng ứng dụng chịu trách nhiệm parse email/file tài liệu để trích xuất text thô; PI-Guard chỉ nhận chuỗi text để phân loại an toàn, triệt tiêu nguy cơ phình to phạm vi (scope creep) vào việc viết mail server hay crawler.
-> 4. **Bằng chứng thực nghiệm độc quyền**: Kết nối trực tiếp lý thuyết với bộ mã nguồn kiểm thử độ bền do chính Đức xây dựng (`src/scratch_baseline_robustness_eval.py`, `src/jailguard_mutators.py`), chứng minh Word TF-IDF chết trước biến dị ký tự và Character n-grams khôi phục Recall $> 95\%$.
+> 4. **Khảo sát thực nghiệm sơ bộ**: Kết nối trực tiếp lý thuyết với bộ mã nguồn kiểm thử độ bền (`src/scratch_baseline_robustness_eval.py`, `src/jailguard_mutators.py`), minh họa hiện tượng bộ lọc từ khóa thô bị vượt qua trước biến dị ký tự và tầng chuẩn hóa ký tự giúp phục hồi đáng kể độ chính xác.
 
 ---
 
@@ -94,27 +94,27 @@ Chuẩn hóa từ tiêu chuẩn **NIST AI 100-2e2025**, ma trận **MITRE ATLAS*
 
 ---
 
-## 2. Cơ Sở Toán Học & Điểm Nghẽn Của 2 Mô Hình Tham Khảo Học Thuật
-
-### Mô Hình Tham Khảo 1: Classical ML Baseline (TF-IDF + Linear Classifier)
-- **Công trình gốc**: Neel Jain et al. (NeurIPS 2023 [[D13]](#ref-d13)), *Baseline Defenses for Adversarial Attacks on Language Models*.
-- **Cơ chế toán học**:
+## 2. Cơ Sở Lý Thuyết & Điểm Nghẽn Của 2 Hướng Tiếp Cận Tham Khảo Trong Tài Liệu
+ 
+### Hướng Tiếp Cận 1: Classical Machine Learning (Túi từ n-grams + Bộ phân loại tuyến tính)
+- **Công trình gốc trong tài liệu**: Neel Jain et al. (NeurIPS 2023 [[D13]](#ref-d13)), *Baseline Defenses for Adversarial Attacks on Language Models*.
+- **Cơ sở lý thuyết**:
   $$\text{TF-IDF}(t, d, D) = \text{TF}(t, d) \times \log\left(\frac{1 + |D|}{1 + |\{d \in D : t \in d\}|}\right) + 1$$
-  - Trích xuất đặc trưng kết hợp: Word n-grams (1, 2) và Character n-grams (`char_wb`, 3–5).
-  - Phân loại bằng mô hình tuyến tính (Logistic Regression / LinearSVC) trong không gian vector thưa $\sim 60,000$ chiều.
-- **Ưu điểm vượt trội**: Tốc độ suy luận siêu nhanh ($\sim 2.8\text{ms}$), tiêu thụ RAM tối thiểu ($\sim 25\text{MB}$), hoàn toàn không cần GPU, chống chịu rất tốt trước các biến dị cú pháp bề mặt nhờ `char_wb`.
-- **Điểm nghẽn học thuật**: **Mù ngữ nghĩa sâu (Semantic Blindness)**. Thất bại hoàn toàn trước các câu lệnh tiêm nhiễm lịch sự, hoán dụ ngữ nghĩa tinh vi hoặc các kịch bản Jailbreak đóng vai phức tạp dài hàng trăm từ.
-
-### Mô Hình Tham Khảo 2: Deep Semantic Transformer (DeBERTa-v3-base FP32)
-- **Công trình gốc**: P. He et al. (ICLR 2023), *DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing*.
+  - Trích xuất đặc trưng kết hợp theo lý thuyết: Word n-grams và Character n-grams (`char_wb`).
+  - Phân loại bằng mô hình tuyến tính (như Logistic Regression hoặc LinearSVC) trong không gian vector thưa.
+- **Ưu điểm theo lý thuyết**: Tốc độ suy luận rất nhanh trên CPU, tiêu thụ bộ nhớ tối thiểu, không cần GPU, chống chịu được biến dị cú pháp bề mặt nếu có `char_wb`.
+- **Điểm nghẽn học thuật**: **Mù ngữ nghĩa sâu (Semantic Blindness)**. Không thể nhận diện được các câu lệnh tiêm nhiễm lịch sự, hoán dụ hoặc kịch bản ngữ cảnh giả tưởng không chứa từ khóa tấn công quen thuộc.
+ 
+### Hướng Tiếp Cận 2: Deep Semantic Transformer (Đại diện tiêu biểu: Cơ chế Disentangled Attention)
+- **Công trình gốc trong tài liệu**: P. He et al. (ICLR 2023), *DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing*.
 - **Cơ chế toán học cốt lõi — Disentangled Attention**:
-  - Khác biệt hoàn toàn với BERT/RoBERTa (cộng gộp thô vector nội dung và vị trí), DeBERTa-v3 tách biệt hoàn toàn không gian biểu diễn:
+  - Khác biệt với kiến trúc gộp chung vector từ và vị trí thông thường, cơ chế này tách biệt hoàn toàn không gian biểu diễn:
     $$A_{i,j} = \mathbf{c}_i \mathbf{c}_j^T + \mathbf{c}_i \mathbf{p}_{j|i}^T + \mathbf{p}_{i|j} \mathbf{c}_j^T$$
     *(Content-to-Content + Content-to-Position + Position-to-Content)*.
-  - **Lý do chọn DeBERTa-v3**: Cơ chế Disentangled Attention giúp mô hình cực kỳ nhạy bén với **vị trí tương đối của câu lệnh** — cho phép phát hiện chính xác các mệnh lệnh tiêm nhiễm nằm ẩn sâu ở đuôi tài liệu RAG hoặc xen kẽ giữa prompt.
-  - Theo nghiên cứu mới tại **ICLR 2026** [[D3]](#ref-d3), không gian biểu diễn chung giữa các mô hình ngôn ngữ là nguồn gốc chuyển giao các đòn jailbreak, khẳng định DeBERTa-v3 là bộ trích xuất đặc trưng ngữ nghĩa lý tưởng.
-- **Ưu điểm**: Khả năng phân tích ngữ nghĩa sâu xuất sắc, đạt $F_1 > 0.97$ trên các kịch bản Jailbreak phức tạp.
-- **Điểm nghẽn học thuật**: **Dung lượng quá lớn (~500MB)** và **độ trễ trên CPU quá cao (~42.5ms)**, vượt quá ngân sách độ trễ $P_{95} < 30\text{ms}$ nếu không có giải pháp lượng hóa INT8.
+  - **Ý nghĩa học thuật**: Cơ chế này giúp mô hình nhạy bén với **vị trí tương đối của câu lệnh** — hỗ trợ phát hiện các mệnh lệnh tiêm nhiễm nằm ẩn ở đuôi tài liệu hoặc xen kẽ giữa prompt.
+  - Theo nghiên cứu tại **ICLR 2026** [[D3]](#ref-d3), không gian biểu diễn chung giữa các mô hình ngôn ngữ là nguồn gốc chuyển giao các đòn jailbreak, khẳng định việc khảo sát các họ Transformer ngữ nghĩa sâu là hướng tiếp cận nền tảng.
+- **Ưu điểm**: Khả năng phân tích ngữ nghĩa sâu xuất sắc trên các kịch bản phức tạp.
+- **Điểm nghẽn học thuật**: Dung lượng mô hình lớn và độ trễ trên CPU cao hơn, đòi hỏi các giải pháp tối ưu hóa/lượng hóa nếu đưa vào rào chắn thời gian đáp ứng thấp.
 
 ---
 
@@ -190,9 +190,12 @@ Kế thừa thuật toán sinh biến dị từ công trình của **Zhang et al
 > **Trả lời**:  
 > *"Dạ thưa Thầy, nhóm phân định rất rạch ròi ranh giới trách nhiệm giữa Tầng Ứng Dụng (Application Layer) và Tầng Rào Chắn (Guardrail Proxy): Tầng ứng dụng chịu trách nhiệm parse tệp tin PDF/DOCX hoặc nội dung email để trích xuất văn bản thô (Raw Text). Chuỗi văn bản sau khi trích xuất sẽ được nạp qua PI-Guard Proxy để phân loại an toàn trước khi gửi đến LLM. Như phân tích trong nghiên cứu InjecGuard công bố tại ACL 2025 [[D5]](#ref-d5), các danh mục Email hay Document injection thực chất là các kịch bản văn bản tổng hợp để kiểm thử mô hình. PI-Guard tập trung vào bản chất bài toán học máy phân loại văn bản, tuyệt đối không ôm đồm dựng mail server hay crawler để tránh làm phình to phạm vi (scope creep) và đảm bảo tính khả thi thực nghiệm."*
 
-### Câu 3: "Tại sao nhóm khảo sát cả 2 mô hình (TF-IDF Baseline và DeBERTa-v3) thay vì dùng luôn DeBERTa?"
+### Câu 3: "Tại sao trong tài liệu nghiên cứu (Literature Review), nhóm khảo sát cả hướng tiếp cận Classical ML lẫn Transformer thay vì chỉ tập trung vào một hướng?"
 > **Trả lời**:  
-> *"Dạ thưa Thầy, đây là bài toán đánh đổi đa mục tiêu (Multi-objective Trade-off) giữa Độ trễ, Chi phí tài nguyên và Độ chính xác ngữ nghĩa: Mô hình Baseline TF-IDF tuy mù ngữ nghĩa sâu nhưng đạt độ trễ siêu thanh (~2.8ms) và chống chịu rất tốt trước các biến dị cú pháp bề mặt nhờ Character n-grams. Ngược lại, DeBERTa-v3 hiểu ngữ nghĩa sâu nhưng độ trễ trên CPU lên tới ~42.5ms và nặng ~500MB. Việc khảo sát độc lập cả 2 mô hình tham khảo ở Task 3 là tiền đề khoa học bắt buộc để nhóm định hướng giải pháp Phân tầng (Two-Tier Routing) và Lượng hóa INT8 ở các giai đoạn tiếp theo của đồ án."*
+> *"Dạ thưa Thầy/Hội đồng, đây là khảo sát đối sánh toàn diện theo yêu cầu học thuật của đề tài:  
+> 1. Về mặt lý thuyết, các kiến trúc Transformer có khả năng hiểu ngữ nghĩa sâu rất tốt nhưng chi phí tính toán và độ trễ thường cao hơn. Trong khi đó, các mô hình học máy truyền thống (Classical ML) có ưu thế vượt trội về tốc độ suy luận nhanh và tiêu tốn rất ít tài nguyên.  
+> 2. Việc khảo sát cả hai hướng tiếp cận trong tài liệu giúp nhóm hiểu rõ bài toán đánh đổi đa mục tiêu giữa **Độ trễ (Latency)** và **Độ chính xác ngữ nghĩa (Semantic Accuracy)**.  
+> 3. Đây là tiền đề lý thuyết để trong các giai đoạn thực nghiệm tiếp theo, nhóm có cơ sở lựa chọn hoặc kết hợp mô hình phù hợp nhất nhằm đảm bảo vừa bắt được tấn công vừa đáp ứng độ trễ thấp của một rào chắn guardrail."*
 
 ### Câu 4: "Bảng số liệu đối chuẩn đối kháng trong báo cáo từ đâu ra? Dữ liệu thực nghiệm là gì?"
 > **Trả lời**:  

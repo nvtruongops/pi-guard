@@ -11,10 +11,10 @@
 > [!IMPORTANT]
 > ### 🎯 TỔNG QUAN HỌC THUẬT NHIỆM VỤ 2 (EXECUTIVE SUMMARY)
 > 1. **Khung đe dọa 5 trục chuẩn hóa (5D Threat Framework)**: Tổng hợp theo **NIST AI 100-2e2025**, **MITRE ATLAS**, công trình mới tại **USENIX Security 2026** [[D1]](#ref-d1), [[D2]](#ref-d2), **ACM TOSEM 2025** [[D6]](#ref-d6) và **ICLR 2026** [[D3]](#ref-d3) để bao quát từ cú pháp bề mặt, đòn tấn công thích ứng, phân tầng luồng dữ liệu, dấu vết n-gram/ngữ nghĩa đến bán kính thiệt hại.
-> 2. **Phân tích 2 mô hình tham khảo học thuật (Reference Models)**:
->    - **Baseline Classical ML (TF-IDF + LinearSVC/LogisticRegression)**: Siêu nhanh ($\sim 2.8\text{ms}$), chống biến dị cú pháp bề mặt cực tốt nhờ Character n-grams (`char_wb`), nhưng "mù ngữ nghĩa sâu" trước các kịch bản jailbreak tinh vi.
->    - **Deep Semantic Transformer (DeBERTa-v3-base FP32)**: Cơ chế **Disentangled Attention** bóc tách vector nội dung và vị trí, nắm bắt ngữ nghĩa tinh vi đạt $F_1 > 0.97$, nhưng dung lượng nặng (~500MB) và độ trễ CPU cao (~42.5ms), đòi hỏi lượng hóa INT8.
-> 3. **Bằng chứng thực nghiệm độc quyền của Đức**: Hiện thực hóa bộ đột biến đối kháng JailGuard (`src/jailguard_mutators.py`), chứng minh Word TF-IDF sụp đổ ($< 35\%$ Recall) trước biến dị chèn khoảng trắng/leetspeak, và tầng chuẩn hóa NFKC + Character n-grams khôi phục Recall $> 95.5\%$.
+> 2. **Phân tích 2 kiến trúc tham khảo học thuật (Candidate Reference Architectures)**:
+>    - **Kiến trúc Classical Machine Learning (Túi từ n-grams + Bộ phân loại tuyến tính)**: Tốc độ suy luận rất nhanh (~vài mili-giây), kháng biến dị cú pháp bề mặt tốt nếu có Character n-grams (`char_wb`), nhưng điểm nghẽn là "mù ngữ nghĩa sâu" trước các câu lệnh tiêm nhiễm tinh vi.
+>    - **Kiến trúc Deep Semantic Transformer (Cơ chế chú ý phân tách - Disentangled Attention)**: Bóc tách vector nội dung và vị trí, nắm bắt ngữ nghĩa tinh vi đạt $F_1 > 0.97$, nhưng dung lượng nặng (~vài trăm MB) và độ trễ CPU cao, đòi hỏi kỹ thuật tối ưu hóa/lượng hóa nếu đưa vào rào chắn thực tế.
+> 3. **Khảo sát độ bền đối kháng sơ bộ**: Hiện thực hóa bộ đột biến đối kháng JailGuard (`src/jailguard_mutators.py`), chứng minh bộ lọc mức từ thô sụp đổ trước biến dị chèn khoảng trắng/leetspeak, và tầng chuẩn hóa NFKC + Character n-grams khôi phục đáng kể khả năng nhận diện.
 
 ---
 
@@ -58,55 +58,53 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph M1 ["MÔ HÌNH 1: CLASSICAL ML BASELINE"]
+    subgraph M1 ["KIẾN TRÚC 1: CLASSICAL ML CANDIDATE"]
         direction TB
-        T1["<b>TF-IDF + LinearSVC / LogisticReg</b><br/>Neel Jain et al. (NeurIPS 2023)"]
-        P1["<b>ƯU ĐIỂM:</b><br/>• Độ trễ siêu nhanh (~2.8ms CPU)<br/>• Nhẹ (~25MB RAM), không cần GPU<br/>• Kháng biến dị ký tự nhờ char_wb"]
-        C1["<b>ĐIỂM NGHẼN:</b><br/>• Mù ngữ nghĩa sâu (Semantic Blindness)<br/>• Thất bại trước Jailbreak phức tạp"]
+        T1["<b>Túi từ n-grams + Phân loại tuyến tính</b><br/>Neel Jain et al. (NeurIPS 2023)"]
+        P1["<b>ƯU ĐIỂM:</b><br/>• Độ trễ siêu nhanh (~vài mili-giây CPU)<br/>• Nhẹ, không cần GPU<br/>• Kháng biến dị ký tự nếu dùng char_wb"]
+        C1["<b>ĐIỂM NGHẼN:</b><br/>• Mù ngữ nghĩa sâu (Semantic Blindness)<br/>• Thất bại trước đòn tấn công tinh vi"]
         T1 --> P1 --> C1
     end
 
-    subgraph M2 ["MÔ HÌNH 2: DEEP SEMANTIC TRANSFORMER"]
+    subgraph M2 ["KIẾN TRÚC 2: DEEP SEMANTIC TRANSFORMER CANDIDATE"]
         direction TB
-        T2["<b>DeBERTa-v3-base FP32</b><br/>Pengcheng He et al. (ICLR 2023)"]
-        P2["<b>ƯU ĐIỂM:</b><br/>• Disentangled Attention bóc tách Nội dung & Vị trí<br/>• F1 > 0.97 trên Jailbreak phức tạp<br/>• Bắt trúng vị trí lệnh tiêm nhiễm"]
-        C2["<b>ĐIỂM NGHẼN:</b><br/>• Nặng (~500MB)<br/>• Độ trễ CPU cao (~42.5ms > P95 target)<br/>• Đòi hỏi Lượng hóa INT8"]
+        T2["<b>Transformer với Disentangled Attention</b><br/>Pengcheng He et al. (ICLR 2023)"]
+        P2["<b>ƯU ĐIỂM:</b><br/>• Bóc tách vector Nội dung & Vị trí<br/>• Nắm bắt ngữ nghĩa tinh vi trên câu lệnh dài<br/>• Bắt trúng vị trí lệnh tiêm nhiễm"]
+        C2["<b>ĐIỂM NGHẼN:</b><br/>• Nặng (~vài trăm MB)<br/>• Độ trễ CPU cao, cần tối ưu hóa/lượng hóa<br/>• Chi phí tính toán lớn hơn"]
         T2 --> P2 --> C2
     end
 ```
 
-### 1. Mô Hình Tham Khảo 1: Classical ML Baseline (TF-IDF + Linear Classifier)
-- **Công trình gốc**: Neel Jain et al. (NeurIPS 2023 [[D13]](#ref-d13)), *Baseline Defenses for Adversarial Attacks on Language Models*.
-- **Cơ chế toán học**:
+### 1. Kiến Trúc Tham Khảo 1: Classical ML Baseline (Túi từ n-grams + Bộ phân loại tuyến tính)
+- **Công trình gốc trong tài liệu tham khảo**: Neel Jain et al. (NeurIPS 2023 [[D13]](#ref-d13)), *Baseline Defenses for Adversarial Attacks on Language Models*.
+- **Cơ sở toán học**:
   $$\text{TF-IDF}(t, d, D) = \text{TF}(t, d) \times \left[\log\left(\frac{1 + |D|}{1 + |\{d \in D : t \in d\}|}\right) + 1\right]$$
-  - Trích xuất đặc trưng đa tầng:
-    - Word n-grams: $\text{ngram\_range} = (1, 2)$ bắt cụm từ khóa ("ignore previous", "system prompt").
-    - Character n-grams với ranh giới từ: $\text{analyzer} = \text{'char\_wb'}$, $\text{ngram\_range} = (3, 5)$ bắt các phân mảnh từ khóa bị cố tình chèn khoảng trắng hoặc ký tự leetspeak.
-  - Phân loại bằng bộ phân loại tuyến tính (Linear Support Vector Classifier hoặc Logistic Regression với chuẩn hóa $L_2$).
-- **Ưu điểm vượt trội**:
-  - Tốc độ suy luận cực nhanh: $\sim 2.8\text{ms}$ trên CPU thông thường.
-  - Tiêu thụ tài nguyên tối thiểu: $\sim 25\text{MB}$ RAM, hoàn toàn độc lập với phần cứng GPU.
+  - Trích xuất đặc trưng đa tầng theo lý thuyết:
+    - Word n-grams: Bắt cụm từ khóa lộ diện ("ignore previous", "system prompt").
+    - Character n-grams với ranh giới từ: `char_wb` giúp bắt các phân mảnh từ khóa khi bị chèn khoảng trắng hoặc ký tự leetspeak.
+  - Phân loại bằng bộ phân loại tuyến tính (như Linear Support Vector Classifier hoặc Logistic Regression).
+- **Ưu điểm theo lý thuyết**:
+  - Tốc độ suy luận rất nhanh trên CPU, tiêu thụ bộ nhớ thấp, không đòi hỏi phần cứng GPU chuyên dụng.
 - **Điểm nghẽn học thuật**:
-  - **Mù ngữ nghĩa sâu (Semantic Blindness)**: Bản chất TF-IDF giả định tính độc lập có điều kiện của các túi từ (Bag-of-Words). Khi kẻ tấn công dùng từ ngữ lịch sự, phép hoán dụ, hoặc viết kịch bản giả tưởng không chứa các từ khóa tấn công quen thuộc, mô hình hoàn toàn bất lực.
+  - **Mù ngữ nghĩa sâu (Semantic Blindness)**: Bản chất túi từ giả định tính độc lập có điều kiện của các từ. Khi kẻ tấn công dùng từ ngữ lịch sự, phép hoán dụ, hoặc viết kịch bản giả tưởng không chứa từ khóa tấn công quen thuộc, mô hình tuyến tính hoàn toàn mất khả năng nhận diện.
 
 ---
 
-### 2. Mô Hình Tham Khảo 2: Deep Semantic Transformer (DeBERTa-v3-base FP32)
-- **Công trình gốc**: Pengcheng He et al. (ICLR 2023), *DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing*.
+### 2. Kiến Trúc Tham Khảo 2: Deep Semantic Transformer (Đại diện tiêu biểu: Cơ chế Disentangled Attention)
+- **Công trình gốc trong tài liệu tham khảo**: Pengcheng He et al. (ICLR 2023), *DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing*.
 - **Cơ chế toán học cốt lõi — Disentangled Attention**:
-  - Không giống như BERT/RoBERTa gộp chung vector từ và vector vị trí vào một biểu diễn duy nhất $\mathbf{x}_i = \mathbf{w}_i + \mathbf{p}_i$, DeBERTa-v3 biểu diễn mỗi token bằng hai vector độc lập: vector nội dung $\mathbf{c}_i$ và vector vị trí tương đối $\mathbf{p}_{i|j}$.
-  - Trọng số chú ý tương hỗ giữa token $i$ và token $j$ được tính toán qua 3 thành phần bóc tách:
+  - Khác với cơ chế gộp chung vector từ và vị trí thông thường $\mathbf{x}_i = \mathbf{w}_i + \mathbf{p}_i$, cơ chế Disentangled Attention biểu diễn mỗi token bằng hai vector độc lập: vector nội dung $\mathbf{c}_i$ và vector vị trí tương đối $\mathbf{p}_{i|j}$.
+  - Trọng số chú ý tương hỗ giữa token $i$ và token $j$ được bóc tách thành 3 thành phần:
     $$A_{i,j} = \mathbf{c}_i \mathbf{c}_j^T + \mathbf{c}_i \mathbf{p}_{j|i}^T + \mathbf{p}_{i|j} \mathbf{c}_j^T$$
-    - $\mathbf{c}_i \mathbf{c}_j^T$: Mức độ tương đồng nội dung giữa từ $i$ và từ $j$ (*Content-to-Content*).
-    - $\mathbf{c}_i \mathbf{p}_{j|i}^T$: Mức độ tương quan giữa nội dung từ $i$ với khoảng cách đến từ $j$ (*Content-to-Position*).
-    - $\mathbf{p}_{i|j} \mathbf{c}_j^T$: Mức độ tương quan giữa vị trí tương đối và nội dung từ $j$ (*Position-to-Content*).
-  - **Lý do chọn DeBERTa-v3 cho PI-Guard**:
-    - Cơ chế *Disentangled Attention* giúp mô hình cực kỳ nhạy bén với **vị trí ngữ cảnh của câu lệnh** — cho phép phát hiện chính xác các mệnh lệnh tiêm nhiễm nằm ở đuôi văn bản RAG dài hoặc được ngụy trang giữa các đoạn hội thoại.
-    - Theo nghiên cứu tại **ICLR 2026** [[D3]](#ref-d3), các đòn tấn công jailbreak có tính chuyển giao cao xuất phát từ không gian biểu diễn chung (shared representations) giữa các LLM, khẳng định DeBERTa-v3 là bộ trích xuất đặc trưng ngữ nghĩa lý tưởng nhất cho rào chắn guardrail.
-- **Ưu điểm**: Khả năng phân tích ngữ nghĩa sâu xuất sắc, nhận diện chuẩn xác các kịch bản Jailbreak phức tạp ($F_1 > 0.97$).
+    - $\mathbf{c}_i \mathbf{c}_j^T$: Tương đồng nội dung giữa hai từ (*Content-to-Content*).
+    - $\mathbf{c}_i \mathbf{p}_{j|i}^T$: Tương quan giữa nội dung từ $i$ với khoảng cách đến từ $j$ (*Content-to-Position*).
+    - $\mathbf{p}_{i|j} \mathbf{c}_j^T$: Tương quan giữa vị trí tương đối và nội dung từ $j$ (*Position-to-Content*).
+  - **Ý nghĩa học thuật đối với bài toán Guardrail**:
+    - Cơ chế này giúp mô hình nhạy bén với **vị trí ngữ cảnh của câu lệnh** — hỗ trợ phát hiện các mệnh lệnh tiêm nhiễm nằm ở đuôi văn bản dài hoặc bị ngụy trang trong hội thoại.
+    - Theo nghiên cứu tại **ICLR 2026** [[D3]](#ref-d3), các đòn tấn công jailbreak có tính chuyển giao cao xuất phát từ không gian biểu diễn chung (shared representations) giữa các LLM, khẳng định các họ Transformer biểu diễn ngữ nghĩa sâu là hướng tiếp cận nền tảng.
+- **Ưu điểm**: Khả năng phân tích ngữ nghĩa sâu, nhận diện tốt các kịch bản ngữ cảnh phức tạp.
 - **Điểm nghẽn học thuật**:
-  - Kích thước mô hình lớn ($\sim 500\text{MB}$ ở định dạng FP32).
-  - Độ trễ trên CPU cao ($\sim 42.5\text{ms}$), vi phạm ràng buộc $P_{95} < 30\text{ms}$ của hệ thống Proxy nếu không thực hiện lượng hóa INT8.
+  - Dung lượng mô hình lớn, độ trễ trên CPU cao hơn đáng kể so với mô hình tuyến tính, đòi hỏi phải có giải pháp tối ưu hóa (như lượng hóa hoặc chưng cất) nếu muốn đáp ứng mục tiêu thời gian phản hồi thấp của rào chắn.
 
 ---
 
@@ -182,12 +180,12 @@ Kế thừa thuật toán sinh biến dị từ công trình của **Zhang et al
 > **Trả lời**:  
 > *"Dạ thưa Thầy, vì các mô hình dựa trên từ khóa nguyên vẹn (như Word unigram) phụ thuộc hoàn toàn vào ranh giới từ xác định. Khi kẻ tấn công chèn khoảng trắng giữa các chữ cái ('i g n o r e') hoặc thay thế ký tự số ('1gn0r3'), tokenizer sẽ bẻ gãy từ thành các token đơn lẻ ngoài từ điển (Out-Of-Vocabulary / OOV). Do đó, bộ lọc hoàn toàn không bắt được dấu hiệu độc hại, dẫn đến Recall tụt về 0% và tỷ lệ lọt lưới là 100%."*
 
-### Câu 3: "Nếu DeBERTa-v3 đã phát hiện được ngữ nghĩa sâu xuất sắc với F1 > 0.97, tại sao nhóm vẫn cần khảo sát và duy trì mô hình Classical ML Baseline (TF-IDF)?"
+### Câu 3: "Tại sao trong tài liệu nghiên cứu (Literature Review), nhóm khảo sát cả hướng tiếp cận Classical ML lẫn Transformer thay vì chỉ tập trung vào một hướng?"
 > **Trả lời**:  
-> *"Dạ thưa Thầy/Hội đồng, trong thiết kế hệ thống rào chắn thực tế (Production Ingress Proxy), chúng ta phải giải quyết bài toán đánh đổi đa mục tiêu giữa **Độ trễ (Latency)**, **Chi phí tính toán (Compute Overhead)** và **Độ chính xác ngữ nghĩa (Semantic Accuracy)**:  
-> 1. DeBERTa-v3 chạy trên CPU mất $\sim 42.5\text{ms}$ và tiêu tốn nhiều tài nguyên, nếu mọi yêu cầu thông thường (vốn chiếm $> 90\%$ lưu lượng benign) đều phải qua DeBERTa thì hệ thống sẽ nghẽn cổ chai nghiêm trọng.  
-> 2. Baseline TF-IDF kết hợp Character n-grams (`char_wb`) chỉ mất $\sim 2.8\text{ms}$ và RAM chỉ $\sim 25\text{MB}$, có khả năng lọc bỏ lập tức các đòn tấn công cú pháp bề mặt (khoảng trắng, leetspeak, payload lộ liễu) mà không tốn chi phí.  
-> 3. Khảo sát độc lập cả 2 mô hình ở Task 3 là tiền đề khoa học thực nghiệm bắt buộc để nhóm xây dựng kiến trúc **Phân tầng định tuyến (Two-Tier Cascade Routing)**: Tầng 1 (TF-IDF) sàng lọc siêu tốc trong $2.8\text{ms}$; chỉ những trường hợp có độ phân vân ngữ nghĩa mới được đẩy tiếp sang Tầng 2 (DeBERTa-v3 lượng hóa INT8), đảm bảo độ trễ tổng thể $P_{95} < 30\text{ms}$."*
+> *"Dạ thưa Thầy/Hội đồng, đây là khảo sát đối sánh toàn diện theo yêu cầu học thuật của đề tài:  
+> 1. Về mặt lý thuyết, các kiến trúc Transformer có khả năng hiểu ngữ nghĩa sâu rất tốt nhưng chi phí tính toán và độ trễ thường cao hơn. Trong khi đó, các mô hình học máy truyền thống (Classical ML) có ưu thế vượt trội về tốc độ suy luận nhanh và tiêu tốn rất ít tài nguyên.  
+> 2. Việc khảo sát cả hai hướng tiếp cận trong tài liệu giúp nhóm hiểu rõ bài toán đánh đổi đa mục tiêu giữa **Độ trễ (Latency)** và **Độ chính xác ngữ nghĩa (Semantic Accuracy)**.  
+> 3. Đây là tiền đề lý thuyết để trong các giai đoạn thực nghiệm tiếp theo, nhóm có cơ sở lựa chọn hoặc kết hợp mô hình phù hợp nhất nhằm đảm bảo vừa bắt được tấn công vừa đáp ứng độ trễ thấp của một rào chắn guardrail."*
 
 ---
 

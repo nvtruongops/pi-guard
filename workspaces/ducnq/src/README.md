@@ -42,9 +42,9 @@ python workspaces/ducnq/src/scratch_baseline_robustness_eval.py
 
 ---
 
-## 🔌 3. Cách Cắm Mô Hình Mới Của Nhóm Vào Để Đo Đạc (Extensibility)
-
-Khi nhóm huấn luyện xong mô hình Baseline thực tế (scikit-learn) hoặc Transformer (`DeBERTa-v3`), các bạn có thể cắm trực tiếp hàm `predict()` của mô hình vào bộ Suite này để đo đạc chỉ trong 3 dòng code:
+## 🔌 3. Cách Cắm Mô Hình Phân Loại Của Nhóm Vào Để Đo Đạc (Extensibility)
+ 
+Bộ kiểm thử được thiết kế dạng mô đun cắm-rút (Plug-and-Play). Bất kỳ mô hình phân loại nào (Classical ML, Deep Learning hay Transformer) sau khi được huấn luyện xong đều có thể cắm trực tiếp hàm `predict()` vào bộ Suite này để đo đạc chỉ trong 3 dòng code:
 
 ```python
 from adversarial_robustness_suite import AdversarialRobustnessSuite
