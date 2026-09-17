@@ -5,7 +5,7 @@
 **Tác giả**: Nguyễn Văn Trường (Leader — MSSV: `SE182034`) | **Workspace**: `workspaces/truongnv/`  
 **Căn cứ chỉ đạo**: Biên bản cuộc họp với GVHD Trần Văn Ninh [`Final-Report/Meeting/Meeting 4_10_09_26.md`](file:///d:/Work/Do-an/Final-Report/Meeting/Meeting%204_10_09_26.md)  
 **Cổng điều phối tổng thể**: [`workspaces/truongnv/reports/tasks_for_meeting_5/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/README.md)  
-**Tệp tổng hợp gốc**: [`workspaces/truongnv/reports/tasks_for_meeting_5/TASK_3_REPRODUCIBILITY_AND_DATASETS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/TASK_3_REPRODUCIBILITY_AND_DATASETS.md)
+**Tệp tổng hợp gốc**: [`workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/TASK_3_REPRODUCIBILITY_AND_DATASETS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/TASK_3_REPRODUCIBILITY_AND_DATASETS.md)
 
 ---
 
@@ -47,9 +47,7 @@ Dưới đây là bảng đối chuẩn thông số công bố và tính khả t
 | **Độ chính xác công bố** | **Accuracy 99.4%**, **F1-Score 0.987** trên tập dữ liệu kiểm thử 467k | **Detection 98.7%**, **NotInject Accuracy 88.3%** (Khắc phục Over-defense) |
 | **Kịch bản chạy tái lập** | `python binary_classification.py` (chạy trên CPU) | `python eval_hf.py --dataset_root datasets` (chạy trên CPU) |
 
-> 📌 **Chuyển tiếp sang Task 4**:  
-> Việc so sánh thực nghiệm sự đánh đổi giữa TF-IDF và DeBERTa-v3 nhằm biện minh cho đề xuất kiến trúc cải tiến của đồ án (Định tuyến phân tầng Two-Tier Routing và Lượng hóa ZeroQuant INT8) được trình bày chi tiết tại:  
-> 👉 [`TASK_4_PIGUARD_IMPROVEMENTS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/TASK_4_PIGUARD_IMPROVEMENTS.md) và mã nguồn thực nghiệm [`task_4_experiments/run_two_tier_routing_poc.py`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_4_experiments/run_two_tier_routing_poc.py).
+> 👉 [`TASK_4_PIGUARD_IMPROVEMENTS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/TASK_4_PIGUARD_IMPROVEMENTS.md) và thực nghiệm định tuyến 2 tầng tại [`task_3_replication/run_ayub_tier1_benchmark.py`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/run_ayub_tier1_benchmark.py).
 
 ---
 
@@ -103,9 +101,6 @@ flowchart TD
 
 <a id="ref6"></a>
 - **[[6]]** N. Jain et al., "Baseline Defenses for Adversarial Attacks on Language Models," in *Proc. NeurIPS Workshop on Robustness of Few-shot and Zero-shot Learning*, 2023. [arXiv:2309.00614](https://arxiv.org/pdf/2309.00614).
-
-<a id="ref7"></a>
-- **[[7]]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *Proc. Advances in Neural Information Processing Systems (NeurIPS 2022)*, vol. 35, 2022. [arXiv:2206.01861](https://arxiv.org/pdf/2206.01861).
 
 <a id="ref10"></a>
 - **[[10]]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *Proc. AAAI Conference on Artificial Intelligence*, vol. 37, no. 12, pp. 15009–15018, 2023. [arXiv:2208.03274](https://arxiv.org/pdf/2208.03274).

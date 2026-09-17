@@ -1333,7 +1333,7 @@ Toàn đội tuân thủ phương châm làm việc song song toàn trình, sẵ
 
     refs_defense = [
         ("[7]", "P. He, J. Gao, W. Chen, \"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Disentangled Attention\", ICLR 2023."),
-        ("[8]", "Z. Yao et al., \"ZeroQuant: Efficient and Affordable Post-Training Quantization for Transformers\", NeurIPS 2022."),
+        ("[8]", "J. H. Saltzer and M. D. Schroeder, \"The Protection of Information in Computer Systems\", Proc. IEEE, 1975."),
         ("[9]", "N. Jain et al., \"Baseline Defenses for Adversarial Attacks on Language Models\", arXiv:2309.00614, 2023."),
         ("[10]", "Y. Yang et al., \"Securing the AI Agent: A Multi-Layer Agent Red Teaming Framework\", Tencent Zhuque Lab, 2026."),
         ("[11]", "OWASP Foundation, \"OWASP Top 10 for Large Language Model Applications (OWASP LLM01:2025)\", Official Standard, 2025."),

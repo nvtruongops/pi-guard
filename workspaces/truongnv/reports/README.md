@@ -24,12 +24,14 @@ workspaces/truongnv/reports/
 │       └── generate_diagrams.py          # Script Python kết xuất hình ảnh kiến trúc
 │
 ├── tasks_for_meeting_5/                  # [PHÂN HỆ 2: TOÀN BỘ NHIỆM VỤ CHUẨN BỊ BÁO CÁO MEETING 5 (17/09/2026)]
-│   ├── README.md                         # Executive Dashboard điều phối 4 nhiệm vụ tuần
-│   ├── TASK_1_PROMPT_INJECTION_VS_JAILBREAK.md  # Task 1: Phân biệt bản chất 2 bề mặt tấn công
-│   ├── TASK_2_ATTACK_VECTORS_AND_MODELS.md      # Task 2: Khung 5D & 2 mô hình tham khảo học thuật
-│   ├── TASK_3_REPRODUCIBILITY_AND_DATASETS.md   # Task 3: Báo cáo tổng thể thực nghiệm tái lập
-│   ├── TASK_4_PIGUARD_IMPROVEMENTS.md           # Task 4: 4 Giải pháp cải tiến của đồ án PI-Guard
-│   ├── TIER_1_CANDIDATE_MODELS_RESEARCH.md      # Nghiên cứu 5 ứng viên Tầng 1 (MiniLM vs TF-IDF)
+│   ├── README.md                         # Báo cáo Master Executive & Cổng điều phối tổng thể
+│   │
+│   ├── task_reports/                     # Hồ sơ 4 chuyên đề nghiên cứu chi tiết (Task 1, 2, 3, 4)
+│   │   ├── README.md
+│   │   ├── TASK_1_PROMPT_INJECTION_VS_JAILBREAK.md  # Task 1: Phân biệt bản chất 2 bề mặt tấn công
+│   │   ├── TASK_2_ATTACK_VECTORS_AND_MODELS.md      # Task 2: Khung 5D & 2 mô hình tham khảo học thuật
+│   │   ├── TASK_3_REPRODUCIBILITY_AND_DATASETS.md   # Task 3: Nghiên cứu toàn diện & tái lập y văn Task 3
+│   │   └── TASK_4_PIGUARD_IMPROVEMENTS.md           # Task 4: 3 Giải pháp cải tiến của đồ án PI-Guard
 │   │
 │   ├── task_3_replication/               # Phân hệ thực nghiệm tái lập mô hình mỏ neo PIGuard ACL 2025
 │   │   ├── README.md                     # Hướng dẫn chi tiết chạy tái lập trên máy cá nhân
@@ -41,16 +43,12 @@ workspaces/truongnv/reports/
 │   │   ├── docs/                         # Chuyên đề khảo sát lý thuyết (01, 02, 03, 04)
 │   │   └── PIGuard_ACL2025/              # Codebase gốc, .venv Python 3.10, Datasets, Notebook
 │   │
-│   ├── task_3_reproducibility/           # Tài liệu bóc tách lý thuyết & Runbook tái lập Task 3
-│   │   ├── 01_LITERATURE_ASSESSMENT_TFIDF.md
-│   │   ├── 02_CORE_ANCHOR_PIGUARD_ACL2025.md
-│   │   ├── 03_EMBEDDING_BASELINE_AYUB2024.md
-│   │   ├── 04_MEMBER_REPRODUCTION_RUNBOOK.md
-│   │   └── README.md
-│   │
-│   └── task_4_experiments/               # Phân hệ thực nghiệm PoC của Task 4 (Two-Tier Routing)
-│       ├── README.md                     # Báo cáo thực nghiệm kiểm chứng đánh đổi
-│       └── run_two_tier_routing_poc.py   # Script đo đạc TF-IDF vs DeBERTa-v3 trên NotInject
+│   └── task_3_reproducibility/           # Tài liệu bóc tách lý thuyết & Runbook tái lập Task 3
+│       ├── 01_LITERATURE_ASSESSMENT_TFIDF.md
+│       ├── 02_CORE_ANCHOR_PIGUARD_ACL2025.md
+│       ├── 03_EMBEDDING_BASELINE_AYUB2024.md
+│       ├── 04_MEMBER_REPRODUCTION_RUNBOOK.md
+│       └── README.md
 ```
 
 ---

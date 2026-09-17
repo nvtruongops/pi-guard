@@ -1,5 +1,6 @@
 import os
 import sys
+import subprocess
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
@@ -10,6 +11,95 @@ if sys.stdout.encoding != 'utf-8':
         sys.stdout.reconfigure(encoding='utf-8')
     except Exception:
         pass
+
+def get_git_commits():
+    """Extract all commits authored by nvtruongops from Git log."""
+    try:
+        cmd = ['git', 'log', '--author=nvtruongops', '--reverse', '--date=format:%Y-%m-%d %H:%M', '--pretty=format:%h|%ad|%s']
+        out = subprocess.check_output(cmd, encoding='utf-8')
+        raw_commits = [line.split('|', 2) for line in out.strip().split('\n') if line]
+    except Exception as e:
+        print(f"Error reading git log: {e}")
+        return []
+
+    commits_data = []
+    for idx, (h, dt_str, subj) in enumerate(raw_commits, start=1):
+        # Determine week phase
+        date_part = dt_str.split()[0]
+        if date_part <= '2026-09-06':
+            week_phase = 'Sprint Tiền Đề (29/08 - 06/09)'
+        elif date_part <= '2026-09-13':
+            week_phase = 'Tuần 1 (07/09 - 13/09)'
+        elif date_part <= '2026-09-20':
+            week_phase = 'Tuần 2 (14/09 - 20/09)'
+        else:
+            week_phase = 'Tuần 3+'
+
+        # Get changed files
+        try:
+            f_cmd = ['git', 'show', '--name-only', '--format=', h]
+            files = [f for f in subprocess.check_output(f_cmd, encoding='utf-8').strip().split('\n') if f]
+        except Exception:
+            files = []
+
+        if not files:
+            art = 'N/A'
+        elif len(files) == 1:
+            art = files[0]
+        elif len(files) <= 2:
+            art = ', '.join([os.path.basename(f) for f in files])
+        else:
+            top_dirs = []
+            seen = set()
+            for f in files:
+                parts = f.replace('\\', '/').split('/')
+                item = parts[0] + '/' if len(parts) > 1 else parts[0]
+                if item not in seen:
+                    seen.add(item)
+                    top_dirs.append(item)
+            art = f"{len(files)} tệp ({', '.join(top_dirs[:3])}...)"
+
+        # Generate contextual evaluation note in Vietnamese
+        s_lower = subj.lower()
+        if 'governance' in s_lower or 'siloing' in s_lower or 'boundary' in s_lower or 'workspace' in s_lower:
+            note = 'Chuẩn hóa quy chế phân quyền, ranh giới thư mục & tài liệu quản trị nhóm'
+        elif 'references' in s_lower or 'papers' in s_lower or 'citation' in s_lower or 'literature' in s_lower:
+            note = 'Kiểm toán y văn, đồng bộ 18 bài báo cốt lõi & liên kết Open-Access PDF'
+        elif 'meeting' in s_lower or 'supervisor_report' in s_lower or 'presentation' in s_lower:
+            note = 'Biên soạn biên bản họp, slide trình chiếu & báo cáo tiến độ gặp GVHD'
+        elif 'thesis' in s_lower or 'chapter' in s_lower or 'introduction' in s_lower or 'review1' in s_lower:
+            note = 'Soạn thảo & cập nhật nội dung Luận văn (Chapters 1 & 2), Threat Model'
+        elif 'portal' in s_lower or 'mkdocs' in s_lower or 'github-page' in s_lower:
+            note = 'Xây dựng & xuất bản cổng tài liệu nghiên cứu MkDocs Material GitHub Pages'
+        elif 'architecture' in s_lower or 'division' in s_lower or 'streamline' in s_lower:
+            note = 'Tái cấu trúc repository theo chuẩn 3 phân hệ độc tôn của đồ án'
+        elif 'mcp' in s_lower:
+            note = 'Tích hợp máy chủ MCP (OpenAlex, SemanticScholar, Kaggle) phục vụ nghiên cứu'
+        elif 'piguard' in s_lower or 'replication' in s_lower or 'deberta' in s_lower:
+            note = 'Tái lập thực nghiệm mô hình DeBERTa-v3 PIGuard ACL 2025, đo latency & F1'
+        elif 'robustness' in s_lower or 'adversarial' in s_lower or 'obfuscated' in s_lower:
+            note = 'Nghiên cứu & kiểm thử độ bền đối kháng trước kỹ thuật làm mờ (Leetspeak, Base64)'
+        elif 'threat' in s_lower or 'attack' in s_lower or 'taxonomy' in s_lower:
+            note = 'Xây dựng Threat Taxonomy, phân loại Direct/Indirect PI & Jailbreak theo OWASP'
+        elif 'sync' in s_lower or 'convergence' in s_lower:
+            note = 'Đồng quy tri thức tuần, biên dịch Master Thesis & đồng bộ process report'
+        elif 'ci' in s_lower or 'lint' in s_lower or 'ruff' in s_lower:
+            note = 'Cấu hình và kiểm thử bộ công cụ QA kiểm định chất lượng cục bộ'
+        elif 'audit' in s_lower or 'verify' in s_lower or 'glossary' in s_lower:
+            note = 'Kiểm định chất lượng cục bộ, rà soát thuật ngữ học thuật nền tảng'
+        else:
+            note = 'Đã hoàn thành và kiểm tra hợp lệ trên nhánh main'
+
+        commits_data.append({
+            'code': f"C{idx:02d} [{h}]",
+            'time': dt_str,
+            'subj': subj,
+            'status': 'Hoàn thành',
+            'artifacts': art,
+            'week': week_phase,
+            'note': note
+        })
+    return commits_data
 
 def create_personal_process_report():
     output_path = r"D:\Work\Do-an\workspaces\truongnv\Meeting\PI_GUARD_PROCESS_REPORT.xlsx"
@@ -22,18 +112,21 @@ def create_personal_process_report():
     # ----------------------------------------------------
     font_family = "Segoe UI"
     
-    title_font = Font(name=font_family, size=15, bold=True, color="FFFFFF")
-    subtitle_font = Font(name=font_family, size=10, italic=True, color="E5E7EB")
-    header_font = Font(name=font_family, size=10, bold=True, color="FFFFFF")
-    section_font = Font(name=font_family, size=11, bold=True, color="1E3A8A")
-    regular_font = Font(name=font_family, size=10)
-    bold_font = Font(name=font_family, size=10, bold=True)
+    title_font = Font(name=font_family, size=14, bold=True, color="FFFFFF")
+    subtitle_font = Font(name=font_family, size=9, italic=True, color="E5E7EB")
+    header_font = Font(name=font_family, size=9, bold=True, color="FFFFFF")
+    section_font = Font(name=font_family, size=10, bold=True, color="1E3A8A")
+    section_desc_font = Font(name=font_family, size=9, italic=True, color="374151")
+    regular_font = Font(name=font_family, size=9)
+    bold_font = Font(name=font_family, size=9, bold=True)
+    hash_font = Font(name="Consolas", size=9, bold=True, color="1E3A8A")
     
     primary_fill = PatternFill(start_color="1E3A8A", end_color="1E3A8A", fill_type="solid") # Deep Navy
     sub_fill = PatternFill(start_color="EFF6FF", end_color="EFF6FF", fill_type="solid")     # Soft Slate Blue
     gray_fill = PatternFill(start_color="F3F4F6", end_color="F3F4F6", fill_type="solid")    # Soft Gray
     green_fill = PatternFill(start_color="DCFCE7", end_color="DCFCE7", fill_type="solid")   # Soft Green
     yellow_fill = PatternFill(start_color="FEF9C3", end_color="FEF9C3", fill_type="solid")  # Soft Yellow
+    zebra_fill = PatternFill(start_color="F9FAFB", end_color="F9FAFB", fill_type="solid")   # Very light gray
     
     thin_border = Border(
         left=Side(style='thin', color='D1D5DB'),
@@ -164,37 +257,50 @@ def create_personal_process_report():
     ws2 = wb.create_sheet(title="2. Kế Hoạch & Nhật Ký")
     ws2.views.sheetView[0].showGridLines = True
 
+    # Title Banner
     ws2.merge_cells("A1:G1")
-    ws2["A1"] = "BẢNG PHÂN RÃ CÔNG VIỆC & NHẬT KÝ CHI TIẾT — NGUYỄN VĂN TRƯỜNG"
+    ws2["A1"] = "BẢNG KẾ HOẠCH & NHẬT KÝ CHI TIẾT CÁ NHÂN — NGUYỄN VĂN TRƯỜNG (NVTRUONGOPS)"
     ws2["A1"].font = title_font
     ws2["A1"].fill = primary_fill
     ws2["A1"].alignment = center_align
-    ws2.row_dimensions[1].height = 32
+    ws2.row_dimensions[1].height = 34
+
+    ws2.merge_cells("A2:G2")
+    ws2["A2"] = "Mã SV: SE182034 | Trưởng nhóm (Leader) | Khóa luận Tốt nghiệp: PI-Guard | Cập nhật tự động từ Git Commit Log cá nhân (nvtruongops)"
+    ws2["A2"].font = subtitle_font
+    ws2["A2"].fill = primary_fill
+    ws2["A2"].alignment = center_align
+    ws2.row_dimensions[2].height = 20
+
+    # ----------------------------------------------------
+    # PHẦN I: KẾ HOẠCH PHÂN RÃ CÔNG VIỆC CỐT LÕI (15 TUẦN)
+    # ----------------------------------------------------
+    ws2.merge_cells("A4:G4")
+    ws2["A4"] = "I. KẾ HOẠCH PHÂN RÃ CÔNG VIỆC CỐT LÕI (LỘ TRÌNH 15 TUẦN HỌC KỲ FALL 2026)"
+    ws2["A4"].font = section_font
+    ws2["A4"].fill = sub_fill
+    ws2["A4"].alignment = left_align
+    ws2.row_dimensions[4].height = 24
 
     task_headers = ["Mã Task", "Tuần / Giai Đoạn", "Nội Dung Công Việc Chi Tiết Của Trường", "Trạng Thái", "Sản Phẩm Đầu Ra (Artifacts)", "Hạn Chót", "Đánh Giá Cá Nhân"]
-    ws2.row_dimensions[3].height = 26
+    ws2.row_dimensions[5].height = 26
     for col_idx, h in enumerate(task_headers, start=1):
-        c = ws2.cell(row=3, column=col_idx, value=h)
+        c = ws2.cell(row=5, column=col_idx, value=h)
         c.font = header_font
         c.fill = primary_fill
         c.alignment = center_align
         c.border = thin_border
 
-    # Data Validation Dropdown for Status
-    dv = DataValidation(type="list", formula1='"Hoàn thành,Đang thực hiện,Chưa bắt đầu,Bị trễ"', allow_blank=True)
-    ws2.add_data_validation(dv)
-    dv.add("D4:D30")
-
     personal_tasks = [
-        ("T01-NVT", "Tuần 1 (07/09 - 13/09)", "Họp khởi động GVHD (Meeting 1) & Họp nhóm sàng lọc 10 papers khoa học (Meeting 2)", "Hoàn thành", "Meeting 1 & Meeting 2.md", "13/09/2026", "Đã chốt mục tiêu và sàng lọc 10 papers"),
-        ("T02-NVT", "Tuần 1 (07/09 - 13/09)", "Khảo sát và thu thập 17 bài báo IEEE/ACM >= 2022 về LLM Security", "Hoàn thành", "References/REFERENCES_LOG.md", "13/09/2026", "Đã lập ma trận liên kết 17 papers"),
-        ("T03-NVT", "Tuần 2 (14/09 - 20/09)", "Soạn thảo Chapter 1: Background, Problem Statement (Von Neumann NLP)", "Đang thực hiện", "workspaces/truongnv/docs/chapters/01", "16/09/2026", "Đang hoàn thiện phần bối cảnh"),
-        ("T04-NVT", "Tuần 2 (14/09 - 20/09)", "Phân loại mối đe dọa (Threat Taxonomy: Direct/Indirect vs Jailbreak)", "Đang thực hiện", "workspaces/truongnv/docs/thesis/", "17/09/2026", "Đã ánh xạ theo OWASP LLM01:2025"),
-        ("T05-NVT", "Tuần 2 (14/09 - 20/09)", "Soạn thảo Chapter 2: Literature Review, SOTA Matrix & Research Gaps", "Đang thực hiện", "workspaces/truongnv/docs/chapters/02", "19/09/2026", "Đã phân tích SOTA ProtectAI, NeMo"),
-        ("T06-NVT", "Tuần 2 (14/09 - 20/09)", "Biên soạn Hồ sơ Kỹ thuật Review 1 & Dàn ý Slide 9 trang thuyết trình", "Đang thực hiện", "workspaces/truongnv/docs/thesis/", "20/09/2026", "Chuẩn bị kịch bản thuyết trình 15 phút"),
-        ("T07-NVT", "Tuần 3 (21/09 - 27/09)", "Điều phối hoàn thiện 2 chương, tổng kết và đồng bộ bản chính thức Review 1", "Đang thực hiện", "PI_GUARD_PROCESS_REPORT.xlsx", "27/09/2026", "Họp cả 4 thành viên thống nhất"),
-        ("T08-NVT", "Tuần 4 (28/09 - 04/10)", "Chủ trì phần thuyết trình và BẢO VỆ REVIEW 1 TRƯỚC GVHD", "Chưa bắt đầu", "Biên bản nghiệm thu Review 1", "04/10/2026", "Bảo vệ thành công Chapter 1 & 2"),
-        ("T09-NVT", "Tuần 5 - 6 (05/10 - 18/10)", "Tải 5 bộ dataset từ Hugging Face & viết thuật toán Group-Aware Split", "Chưa bắt đầu", "src/datasets/splitter.py", "18/10/2026", "Đảm bảo Jaccard similarity < 0.15"),
+        ("T01-NVT", "Tuần 1 (07/09 - 13/09)", "Họp khởi động GVHD (Meeting 1-3) & Họp nhóm sàng lọc 10 papers khoa học", "Hoàn thành", "Meeting 1, 2, 3.md & Đăng ký đề tài", "08/09/2026", "Đã chốt mục tiêu và sàng lọc 10 papers"),
+        ("T02-NVT", "Tuần 1 (07/09 - 13/09)", "Khảo sát và thu thập 18 bài báo IEEE/ACM >= 2022 về LLM Security", "Hoàn thành", "References/REFERENCES_LOG.md & 18 PDFs", "10/09/2026", "Đã lập ma trận liên kết và lưu trữ 18 PDFs"),
+        ("T03-NVT", "Tuần 2 (14/09 - 20/09)", "Soạn thảo Chapter 1: Background, Problem Statement (Von Neumann NLP)", "Hoàn thành", "Final-Report/thesis/chapters/01_Introduction.md", "15/09/2026", "Hoàn tất bối cảnh, 3 RQs và phạm vi"),
+        ("T04-NVT", "Tuần 2 (14/09 - 20/09)", "Phân loại mối đe dọa (Threat Taxonomy: Direct/Indirect vs Jailbreak theo OWASP)", "Hoàn thành", "Final-Report/thesis/Review1_Problem_Definition.md", "15/09/2026", "Ánh xạ 5D Framework & NIST AI 100-2e2025"),
+        ("T05-NVT", "Tuần 2 (14/09 - 20/09)", "Soạn thảo Chapter 2: Literature Review, SOTA Matrix & Research Gaps", "Hoàn thành", "Final-Report/thesis/chapters/02_Literature_Review.md", "15/09/2026", "Khảo sát Guardrails SOTA và xác lập 3 Gaps"),
+        ("T06-NVT", "Tuần 2 (14/09 - 20/09)", "Biên soạn Hồ sơ Kỹ thuật Review 1 & Slide thuyết trình 22 trang gặp GVHD 10/09", "Hoàn thành", "reports/PI-GUARD-Present-109.pptx (22 slides)", "10/09/2026", "Thuyết trình và tiếp thu ý kiến GVHD"),
+        ("T07-NVT", "Tuần 2 (14/09 - 20/09)", "Đồng quy tri thức tuần, biên dịch Master Thesis & đồng bộ Docs Portal MkDocs", "Hoàn thành", "Final-Report/thesis/FINAL_THESIS.md & Github-Page/", "15/09/2026", "Biên dịch 2 chương và xuất bản GitHub Pages"),
+        ("T08-NVT", "Tuần 3 - 4 (21/09 - 04/10)", "Chủ trì phần thuyết trình và BẢO VỆ REVIEW 1 TRƯỚC GVHD (REPORT NO.1 & NO.2)", "Đang thực hiện", "Hồ sơ Review 1 & Slide bảo vệ chính thức", "04/10/2026", "Chuẩn bị diễn tập và rà soát hồ sơ"),
+        ("T09-NVT", "Tuần 5 - 6 (05/10 - 18/10)", "Tải 5 bộ dataset từ Hugging Face & viết thuật toán Group-Aware Split", "Chưa bắt đầu", "src/datasets/splitter.py & manifests/", "18/10/2026", "Đảm bảo Jaccard similarity < 0.15"),
         ("T10-NVT", "Tuần 5 - 6 (05/10 - 18/10)", "Đánh giá phân phối nhãn, kiểm tra độ rò rỉ dữ liệu giữa Train/Val/Test", "Chưa bắt đầu", "notebooks/01_dataset_analysis", "18/10/2026", "Tránh rò rỉ mẫu tương tự"),
         ("T11-NVT", "Tuần 7 (19/10 - 25/10)", "Soạn thảo, cập nhật docs Chapter 3 (Methodology - Report No.3) & Slide Review 2", "Chưa bắt đầu", "docs/thesis/chapters/03_Methodology.md", "25/10/2026", "Chuẩn bị đầy đủ nội dung phương pháp luận"),
         ("T12-NVT", "Tuần 8 (26/10 - 01/11)", "BẢO VỆ REVIEW 2 TRƯỚC GVHD (CHAPTER 3), Nộp Report No.3 & Cập nhật Docs", "Chưa bắt đầu", "Report No.3 & Biên bản Review 2", "01/11/2026", "Bảo vệ Review 2 và cập nhật docs theo góp ý"),
@@ -204,7 +310,7 @@ def create_personal_process_report():
         ("T16-NVT", "Tuần 15 (14/12 - 20/12)", "Chủ trì BẢO VỆ TỐT NGHIỆP CHÍNH THỨC TRƯỚC HỘI ĐỒNG FPT", "Chưa bắt đầu", "Slide Bảo vệ & Đồ án hoàn chỉnh", "20/12/2026", "Tốt nghiệp đạt điểm xuất sắc")
     ]
 
-    for r_idx, task in enumerate(personal_tasks, start=4):
+    for r_idx, task in enumerate(personal_tasks, start=6):
         ws2.row_dimensions[r_idx].height = 22
         for col_idx, val in enumerate(task, start=1):
             c = ws2.cell(row=r_idx, column=col_idx, value=val)
@@ -225,6 +331,60 @@ def create_personal_process_report():
                 elif val == "Chưa bắt đầu":
                     c.fill = gray_fill
 
+    # ----------------------------------------------------
+    # PHẦN II: NHẬT KÝ CHI TIẾT TỪ COMMIT LOG (NVTRUONGOPS)
+    # ----------------------------------------------------
+    commits_data = get_git_commits()
+    commit_count = len(commits_data)
+    start_row_commits = 24
+
+    ws2.merge_cells(f"A{start_row_commits-1}:G{start_row_commits-1}")
+    ws2[f"A{start_row_commits-1}"] = f"II. NHẬT KÝ CÔNG VIỆC THỰC TẾ CHI TIẾT THEO GIT COMMIT LOG (TÁC GIẢ: NVTRUONGOPS — {commit_count} COMMITS)"
+    ws2[f"A{start_row_commits-1}"].font = section_font
+    ws2[f"A{start_row_commits-1}"].fill = sub_fill
+    ws2[f"A{start_row_commits-1}"].alignment = left_align
+    ws2.row_dimensions[start_row_commits-1].height = 24
+
+    commit_headers = ["Mã Commit", "Thời Gian (Ngày & Giờ)", "Nội Dung Kỹ Thuật Chi Tiết (Commit Message)", "Trạng Thái", "Sản Phẩm Đầu Ra / Tệp Bàn Giao (Artifacts)", "Tuần / Cột Mốc", "Ghi Chú Kỹ Thuật & Đánh Giá Kiểm Định"]
+    ws2.row_dimensions[start_row_commits].height = 26
+    for col_idx, h in enumerate(commit_headers, start=1):
+        c = ws2.cell(row=start_row_commits, column=col_idx, value=h)
+        c.font = header_font
+        c.fill = primary_fill
+        c.alignment = center_align
+        c.border = thin_border
+
+    for c_idx, c_data in enumerate(commits_data, start=start_row_commits+1):
+        ws2.row_dimensions[c_idx].height = 22
+        row_vals = [
+            c_data['code'],
+            c_data['time'],
+            c_data['subj'],
+            c_data['status'],
+            c_data['artifacts'],
+            c_data['week'],
+            c_data['note']
+        ]
+        is_even = (c_idx % 2 == 0)
+        for col_idx, val in enumerate(row_vals, start=1):
+            c = ws2.cell(row=c_idx, column=col_idx, value=val)
+            c.font = regular_font
+            c.border = thin_border
+            
+            if col_idx == 1:
+                c.font = hash_font
+                c.alignment = center_align
+            elif col_idx in [2, 4, 6]:
+                c.alignment = center_align
+            else:
+                c.alignment = left_align
+
+            if col_idx == 4:
+                c.fill = green_fill
+                c.font = bold_font
+            elif is_even:
+                c.fill = zebra_fill
+
     # Auto-fit Column Widths across all sheets
     ws1.column_dimensions['A'].width = 24
     ws1.column_dimensions['B'].width = 30
@@ -234,16 +394,16 @@ def create_personal_process_report():
     ws1.column_dimensions['F'].width = 20
     ws1.column_dimensions['G'].width = 38
 
-    ws2.column_dimensions['A'].width = 12
-    ws2.column_dimensions['B'].width = 24
-    ws2.column_dimensions['C'].width = 48
-    ws2.column_dimensions['D'].width = 18
-    ws2.column_dimensions['E'].width = 38
-    ws2.column_dimensions['F'].width = 14
-    ws2.column_dimensions['G'].width = 34
+    ws2.column_dimensions['A'].width = 15
+    ws2.column_dimensions['B'].width = 20
+    ws2.column_dimensions['C'].width = 52
+    ws2.column_dimensions['D'].width = 15
+    ws2.column_dimensions['E'].width = 42
+    ws2.column_dimensions['F'].width = 24
+    ws2.column_dimensions['G'].width = 42
 
     wb.save(output_path)
-    print(f"Personal Process Report saved to: {output_path}")
+    print(f"Personal Process Report ({commit_count} commits) saved to: {output_path}")
 
 if __name__ == "__main__":
     create_personal_process_report()

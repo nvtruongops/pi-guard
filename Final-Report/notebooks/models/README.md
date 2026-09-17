@@ -1,5 +1,5 @@
 # THƯ MỤC TRỌNG SỐ MÔ HÌNH THỰC NGHIỆM (TRAINED MODEL CHECKPOINTS)
-## 🧠 PI-Guard Model Artifacts & INT8 ONNX Engine (`notebooks/models/`)
+## 🧠 PI-Guard Model Artifacts (`notebooks/models/`)
 
 > [!IMPORTANT]
 > **QUY TẮC QUẢN LÝ MÔ HÌNH (MODEL ARTIFACTS RULE)**:
@@ -14,6 +14,5 @@
 ```
 notebooks/models/
 ├── baseline/                      # Trọng số mô hình Scikit-Learn TF-IDF (`.joblib`, `.pkl`)
-├── transformer/                   # Checkpoint PyTorch / Hugging Face DeBERTa-v3 (`best_model/`)
-└── onnx/                          # Mô hình nén INT8 Dynamic Quantized (`model_quantized.onnx`)
+└── transformer/                   # Checkpoint PyTorch / Hugging Face DeBERTa-v3 (`best_model/`)
 ```

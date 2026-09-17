@@ -15,11 +15,3 @@ models:
     max_length: 512
     expected_latency_p95_ms: 28.0
     device: auto
-
-  deberta_v3_onnx_int8:
-    type: onnx_quantized
-    path: models/onnx/deberta_v3_int8.onnx
-    optimization_level: ORT_ENABLE_ALL
-    threads: 4
-    expected_latency_p95_ms: 14.5
-    device: cpu

@@ -29,7 +29,6 @@ CORE_ACADEMIC_TERMS = [
     "Prompt Leaking",
     "Complete Mediation",
     "Group-Aware Splitting",
-    "ZeroQuant",
     "Transformer tự hồi quy",
     "Autoregressive Transformer"
 ]

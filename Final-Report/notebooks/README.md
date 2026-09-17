@@ -30,7 +30,6 @@ notebooks/
 │   └── splits/                    # Phân chia dữ liệu (train.csv, val.csv, test.csv)
 └── models/                        # Trọng số và artifact mô hình sau huấn luyện
     ├── baseline/                  # Checkpoint TF-IDF + Logistic Regression/SVM (.joblib)
-    ├── onnx/                      # Mô hình lượng hóa INT8 ONNX Engine (P95 < 18.5ms)
     └── transformer/               # Trọng số PyTorch DeBERTa-v3 fine-tuned
 ```
 
@@ -50,8 +49,8 @@ notebooks/
 │ 02   │ `02_baseline.ipynb`             │ 🎯 Review 2     │ Huấn luyện Baseline ML:     │
 │      │                                 │ (Tuần 6 - 7)    │ TF-IDF + Logistic / SVM     │
 ├──────┼─────────────────────────────────┼─────────────────┼─────────────────────────────┤
-│ 03   │ `03_transformer_training.ipynb` │ 🏛️ Hội Đồng 1   │ Fine-tune DeBERTa-v3 & nén  │
-│      │                                 │ (Tuần 8 - 10)   │ lượng hóa INT8 ONNX Engine  │
+│ 03   │ `03_transformer_training.ipynb` │ 🏛️ Hội Đồng 1   │ Fine-tune DeBERTa-v3 cho    │
+│      │                                 │ (Tuần 8 - 10)   │ bộ lọc an toàn đầu vào      │
 ├──────┼─────────────────────────────────┼─────────────────┼─────────────────────────────┤
 │ 04   │ `04_ablation.ipynb`             │ 🏛️ Hội Đồng 1   │ Nghiên cứu triệt tiêu: đo   │
 │      │                                 │ (Tuần 11 - 12)  │ vai trò Base64 & 3L Defense │

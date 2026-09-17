@@ -114,8 +114,7 @@ Không chỉ Intel Labs, nhiều công trình bảo mật AI hàng đầu thế 
 >    - Nhóm hiện thực hóa mô hình Baseline TF-IDF (kế thừa lý thuyết của Neel Jain 2023 [[6]](#ref6) và Vasudev Majhi Intel Labs 2025 [[5]](#ref5)) **TRỰC TIẾP TRÊN CHÍNH TẬP DỮ LIỆU CỦA PIGUARD** (`datasets/NotInject`, `datasets/BIPIA`, `datasets/train.json`).
 >    - Việc đo đạc cả hai mô hình trên cùng một tập dữ liệu benchmark của ACL 2025 là phương pháp luận chặt chẽ và thuyết phục nhất trước Hội đồng FPT University:
 >      - *Baseline TF-IDF*: Chứng minh tốc độ cực nhanh (<1ms CPU), nhưng bộc lộ điểm nghẽn **Over-defense nghiêm trọng** (chặn nhầm các câu lệnh lập trình lành tính có chứa từ nhạy cảm như *"ignore"*, *"system"*).
->      - *DeBERTa-v3 PIGuard*: Chứng minh năng lực ngữ nghĩa sâu vượt trội, giải quyết Over-defense (88.3%), nhưng bộc lộ điểm nghẽn **quá nặng (~500MB FP32) và độ trễ CPU cao (~42.5ms)**.
-> 4. $\rightarrow$ **Cầu nối hoàn hảo sang Task 4**: Tạo cơ sở thực nghiệm vững chắc để đề xuất **4 giải pháp cải tiến độc quyền của PI-Guard** (Lượng hóa ZeroQuant INT8 và Định tuyến bất định 2 tầng).
+> 4. $\rightarrow$ **Cầu nối hoàn hảo sang Task 4**: Tạo cơ sở thực nghiệm vững chắc để đề xuất **các giải pháp cải tiến độc quyền của PI-Guard** (Định tuyến bất định 2 tầng và bảo toàn cụm Group-Aware Splitting).
 
 ---
 

@@ -172,6 +172,3 @@ Khi bảo vệ trước Hội đồng FPT, nhóm chỉ ra rõ ràng: Đồ án k
 
 <a id="ref4"></a>
 - **[[4]]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in *International Conference on Learning Representations (ICLR 2023)*, Kigali, Rwanda, 2023. [arXiv:2111.09543](https://arxiv.org/pdf/2111.09543).
-
-<a id="ref7"></a>
-- **[[7]]** Z. Yao et al., "ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers," in *Proc. Advances in Neural Information Processing Systems (NeurIPS 2022)*, vol. 35, 2022. [arXiv:2206.01861](https://arxiv.org/pdf/2206.01861).

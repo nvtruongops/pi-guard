@@ -178,7 +178,6 @@ Hệ thống slide được chia làm 3 phần nội dung logic chặt chẽ (Sl
 - **Nhóm 2: Cơ Chế Phòng Thủ & Kiến Trúc Bộ Lọc (Defense Mechanisms & Architecture — Slides 16–19)**:
   - **[5]** N. Jain, A. Schwarzschild, Y. Wen, G. Thattai, J. Thickstun, and T. Goldstein (2023) — *Baseline Defenses for Adversarial Attacks Against Aligned Language Models*. arXiv:2309.00614. (Nền tảng Tầng 1: Character n-grams $n=3..5$ chống Leetspeak & BPE bypass — Slides 16, 17).
   - **[6]** P. He, X. Liu, J. Gao, and W. Chen (2021/2023) — *DeBERTa: Decoding-enhanced BERT with Disentangled Attention*. ICLR 2021 / DeBERTa-v3 2023. (Nền tảng Tầng 2: Disentangled Attention tách biệt nội dung và vị trí tương đối — Slide 17).
-  - **[7]** Z. Yao, R. Y. Aminabadi, M. Zhang, X. Wu, C. Li, and Y. He (2022) — *ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers*. NeurIPS 2022, vol. 35, pp. 27168–27183. (Nền tảng Lượng hóa ONNX INT8 tăng tốc $3.2\times$ và $P95 < 22\text{ms}$ trên CPU — Slides 16, 17).
   - **[8]** J. H. Saltzer and M. D. Schroeder (1975) — *The Protection of Information in Computer Systems*. Proceedings of the IEEE, vol. 63, no. 9, pp. 1278–1308. (Nguyên lý bảo mật nền tảng: Economy of Mechanism & Complete Mediation cho thiết kế Two-Tier — Slide 18).
 
 ### SLIDE 22: Kết Luận & Lời Cảm Ơn (Thank You)
@@ -194,7 +193,6 @@ Hệ thống slide được chia làm 3 phần nội dung logic chặt chẽ (Sl
 - <a id="ref4"></a>**[4]** C. Xiao et al. and Tencent Zhuque Lab, *"Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming,"* *Tencent Security Technical Report / arXiv preprint arXiv:2606.31227*, 2026. [arXiv:2606.31227](https://arxiv.org/abs/2606.31227).
 - <a id="ref5"></a>**[5]** N. Jain, A. Schwarzschild, Y. Wen, G. Thattai, J. Thickstun, and T. Goldstein, *"Baseline Defenses for Adversarial Attacks Against Aligned Language Models,"* *arXiv preprint arXiv:2309.00614*, 2023. [arXiv:2309.00614](https://arxiv.org/abs/2309.00614).
 - <a id="ref6"></a>**[6]** P. He, X. Liu, J. Gao, and W. Chen, *"DeBERTa: Decoding-enhanced BERT with Disentangled Attention,"* in *International Conference on Learning Representations (ICLR)*, 2021/2023. [arXiv:2006.03654](https://arxiv.org/abs/2006.03654).
-- <a id="ref7"></a>**[7]** Z. Yao, R. Y. Aminabadi, M. Zhang, X. Wu, C. Li, and Y. He, *"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers,"* in *Advances in Neural Information Processing Systems (NeurIPS)*, vol. 35, 2022, pp. 27168–27183. [arXiv:2206.01861](https://arxiv.org/abs/2206.01861).
 - <a id="ref8"></a>**[8]** J. H. Saltzer and M. D. Schroeder, *"The Protection of Information in Computer Systems,"* in *Proceedings of the IEEE*, vol. 63, no. 9, pp. 1278–1308, Sept. 1975. DOI: 10.1109/PROC.1975.9939. [IEEE Xplore Open-Access](https://web.mit.edu/Saltzer/www/publications/protection/).
 
 ---
@@ -202,7 +200,7 @@ Hệ thống slide được chia làm 3 phần nội dung logic chặt chẽ (Sl
 ## 💡 IV. BỘ CÂU HỎI THƯỜNG GẶP (FAQ) DỰ KIẾN TỪ GVHD & CÁCH TRẢ LỜI
 
 ### Câu 1: Tại sao không dùng luôn Llama Guard 3 hay NeMo Guardrails có sẵn của Meta/NVIDIA?
-> **Trả lời**: Llama Guard 3 là mô hình sinh generative 8B tham số, đòi hỏi tối thiểu GPU VRAM $>16\text{GB}$ và độ trễ suy luận dao động từ $500\text{ms} - 1.5\text{s}$ cho mỗi câu hỏi. Điều này tạo ra "điểm nghẽn chi phí và độ trễ" không thể chấp nhận được đối với các ứng dụng trực tuyến cần phản hồi tức thì. PI-Guard sử dụng kiến trúc phân loại Encoder (DeBERTa-v3) tối ưu hóa ONNX INT8, chạy trực tiếp trên CPU phổ thông với độ trễ P95 $< 22\text{ms}$ và chi phí phần cứng bằng $0$ (Zero-GPU).
+> **Trả lời**: Llama Guard 3 là mô hình sinh generative 8B tham số, đòi hỏi tối thiểu GPU VRAM $>16\text{GB}$ và độ trễ suy luận dao động từ $500\text{ms} - 1.5\text{s}$ cho mỗi câu hỏi. Điều này tạo ra "điểm nghẽn chi phí và độ trễ" không thể chấp nhận được đối với các ứng dụng trực tuyến cần phản hồi tức thì. PI-Guard sử dụng kiến trúc phân loại Encoder (DeBERTa-v3) kết hợp định tuyến phân tầng Two-Tier, chạy trực tiếp trên CPU phổ thông với chi phí phần cứng tiết kiệm tối đa.
 
 ### Câu 2: Sự khác biệt bản chất giữa Prompt Injection và Jailbreak là gì? Tại sao phải phân biệt rạch ròi?
 > **Trả lời**: 
