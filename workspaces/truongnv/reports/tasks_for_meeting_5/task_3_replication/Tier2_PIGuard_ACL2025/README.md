@@ -82,6 +82,20 @@ Kết quả đo đạc độc lập bằng script [`eval_piguard_replication.py`
 | **06** | `BIPIA_code.json` | 120 | $67.58\%$ | $65.83\%$ | $-1.75\%$ | ✅ Khớp trong biên sai số |
 | **TỔNG** | **Toàn bộ Benchmark** | **1.579** | — | — | — | 🏆 **TÁI LẬP THÀNH CÔNG 100%** |
 
+### 📷 3.1. Bằng Chứng Y Văn & Biểu Đồ Đối Chuẩn Thực Nghiệm
+
+| Bằng chứng Y văn 1: Tiêu đề & Abstract Bài báo | Bằng chứng Y văn 2: Table 1 Kết quả ACL 2025 |
+| :---: | :---: |
+| ![Tiêu đề bài báo PIGuard ACL 2025](figures/01_paper_evidence/paper_p1_title_and_abstract.png) | ![Table 1 Main Results](figures/01_paper_evidence/paper_p7_table_1_main_results.png) |
+
+| Biểu đồ Thực nghiệm 1: Thẻ điểm Đối chuẩn Toàn diện | Biểu đồ Thực nghiệm 2: So sánh Paper vs Local |
+| :---: | :---: |
+| ![Thẻ điểm đối chuẩn](figures/02_empirical_plots/local_vs_paper_scorecard.png) | ![Biểu đồ cột Paper vs Local](figures/02_empirical_plots/piguard_replication_paper_vs_local_bars.png) |
+
+| Biểu đồ Thực nghiệm 3: Đường Suy giảm Overdefense | Biểu đồ Thực nghiệm 4: Hồ sơ Độ trễ CPU |
+| :---: | :---: |
+| ![Đường suy giảm Overdefense](figures/02_empirical_plots/piguard_replication_keyword_decay_curve.png) | ![Hồ sơ độ trễ CPU PIGuard](figures/02_empirical_plots/piguard_replication_latency_profile.png) |
+
 ---
 
 1. **Khẳng định khoa học**: Mô hình PIGuard (ACL 2025) tái lập thành công 100% trên toàn bộ 1.579 mẫu benchmark với đầy đủ dữ liệu đóng gói trong repo.

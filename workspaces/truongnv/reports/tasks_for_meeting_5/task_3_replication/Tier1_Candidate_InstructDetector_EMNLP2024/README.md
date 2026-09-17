@@ -1,7 +1,7 @@
 # BÁO CÁO TÁI LẬP THỰC NGHIỆM ĐỘC LẬP: INSTRUCTDETECTOR (FINDINGS OF EMNLP 2024)
 
 > **Mô hình**: InstructDetector (Phát hiện mệnh lệnh thực thi trong dữ liệu thụ động)  
-> **Bài báo gốc**: *Defending against Indirect Prompt Injection by Instruction Detection* (Findings of EMNLP 2024 / arXiv:2402.06774)  
+> **Bài báo gốc**: *Defending against Indirect Prompt Injection by Instruction Detection* (Findings of EMNLP 2024 [[1]](#ref1) / arXiv:2402.06774)  
 > **Kho mã nguồn**: [https://github.com/MYVAE/Instruction-detection](https://github.com/MYVAE/Instruction-detection)  
 > **Phân hệ**: `workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier1_Candidate_InstructDetector_EMNLP2024/`  
 > **Quy tắc Task 3**: 100% Độc lập, khép kín, sở hữu tập dữ liệu riêng tại `./datasets/`, không ghép tầng, không coupling.
@@ -67,7 +67,17 @@ Tập dữ liệu được xây dựng chuẩn mực theo benchmark **[Microsoft
 | **BIPIA In-Domain (Text Attack) Accuracy** | $99.60\%$ (với LLM Hidden State L14) | **$86.67\%$** Accuracy (Recall = $80.00\%$, F1 = $0.8571$) | 🎯 **Tương đồng**: Phát hiện rất tốt câu chỉ thị trên văn bản tự nhiên. |
 | **BIPIA Out-of-Domain (Code Attack) Accuracy** | $96.90\%$ (với LLM Hidden State L14) | **$79.00\%$** Accuracy (Recall = $58.00\%$, Clean FPR = $0.00\%$) | ⚠️ **Hiện tượng Domain Shift**: Không có vector ẩn nội bộ LLM, các ký tự code làm nhiễu bộ tách lệnh. |
 | **Attack Success Rate (Residual ASR)** | Giảm từ $84.20\%$ xuống **$0.12\%$** | Giảm từ $84.20\%$ xuống **$28.42\%$** (Giảm thiểu $66.25\%$) | 🎯 **Khẳng định giá trị phòng thủ**: Chặn đứng phần lớn đòn tấn công gián tiếp. |
-| **Độ trễ trung bình trên CPU** | Đòi hỏi GPU tính gradient / activation pass | **$4.49\text{ms}$** (P50 = $3.80\text{ms}$, P95 = $8.86\text{ms}$) | 🎯 **Siêu nhanh**: Trích xuất cú pháp nhẹ đáp ứng tuyệt đối SLA Tầng 1. |
+| **Độ trễ trung bình trên CPU** | Đòi hỏi GPU tính gradient / activation pass | **$4.49\text{ms}$** (P50 = $3.80\text{ms}$, P95 = $8.86\text{ms}$) | 🎯 **Siêu nhanh**: Trích xuất cú pháp nhẹ đáp ứng hoàn hảo SLA Tầng 1. |
+
+### 📷 4.1. Bằng Chứng Y Văn & Đồ Thị Thực Nghiệm Đối Chuẩn
+
+| Bằng chứng Y văn 1: Tiêu đề & Abstract Bài báo | Bằng chứng Y văn 2: Table 1 Kết quả BIPIA |
+| :---: | :---: |
+| ![Tiêu đề bài báo InstructDetector](figures/01_paper_evidence/instruct_p1_title_and_abstract.png) | ![Table 1 BIPIA Results](figures/01_paper_evidence/instruct_p6_table_1_bipia_results.png) |
+
+| Biểu đồ Thực nghiệm 1: Đối chuẩn Paper vs Local | Biểu đồ Thực nghiệm 2: Giảm thiểu Tỷ lệ ASR |
+| :---: | :---: |
+| ![Đối chuẩn Paper vs Local](figures/02_empirical_plots/instructdetector_replication_paper_vs_local_bars.png) | ![Mức suy giảm ASR](figures/02_empirical_plots/instructdetector_asr_reduction.png) |
 
 ---
 
@@ -85,3 +95,9 @@ Script sẽ nạp `./datasets/bipia_text_eval.json` và `./datasets/bipia_code_e
 
 1. **Khẳng định khoa học**: Ý tưởng phát hiện câu lệnh của Zhao et al. rất sáng tạo để phòng thủ Indirect Prompt Injection.
 2. **Hạn chế được phát hiện khi chạy độc lập**: Để đạt độ chính xác >96% trên cả Code, phương pháp này bắt buộc phải truy cập vào trọng số nội bộ của LLM (Layer 14 Hidden State). Nếu chạy như một Guardrail Proxy ngoài (Blackbox, không can thiệp LLM), hiệu năng trên Code sẽ bị sụt giảm do hiện tượng Domain Shift. Đây là luận điểm phản biện cực kỳ giá trị cho Hội đồng!
+
+---
+
+## 📚 7. Tài Liệu Tham Khảo (References)
+
+* <a id="ref1"></a>**[[1]]** Siyan Zhao, Dong Ge, Ryan A. Rossi, et al. 2024. *Defending against Indirect Prompt Injection by Instruction Detection*. In *Findings of the Association for Computational Linguistics: EMNLP 2024*, pages 8774–8789. arXiv:2402.06774. Open-Access PDF: [https://arxiv.org/pdf/2402.06774](https://arxiv.org/pdf/2402.06774).

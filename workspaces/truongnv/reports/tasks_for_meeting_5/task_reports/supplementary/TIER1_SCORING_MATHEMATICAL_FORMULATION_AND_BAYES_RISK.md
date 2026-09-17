@@ -33,7 +33,7 @@ Incoming Text X ──► [Dual-Space TF-IDF Vectorizer] ──► Vector thưa 
                      ▼                                        ▼                                        ▼
               P(X) ≤ 0.15                             0.15 < P(X) < 0.85                              P(X) ≥ 0.85
          🟢 FAST-PASS (82.6%)                   🟡 VÙNG BẤT ĐỊNH (17.4%)                        🔴 FAST-BLOCK
-    Tự tin lành tính tuyệt đối             Từ chối phán quyết cứng (Entropy cao)            Tự tin tấn công rõ ràng
+    Tự tin lành tính rất cao               Từ chối phán quyết cứng (Entropy cao)            Tự tin tấn công rõ ràng
      Cho qua ngay downstream LLM                  Chuyển tiếp lên Tầng 2                         Chặn & Ghi log ngay
        (Độ trễ: 0.35 - 0.47ms)                     (DeBERTa-v3 MOF INT8)                       (Độ trễ: 0.35 - 0.47ms)
 ```
@@ -57,7 +57,7 @@ $$\hat{\phi}(X) = \frac{\phi(X)}{\|\phi(X)\|_2} = \frac{\phi(X)}{\sqrt{\sum_{j=1
 $$z(X) = \mathbf{w}^T \hat{\phi}(X) + b = \sum_{j \in \text{non-zero}} w_j \cdot \hat{\phi}_j(X) + b$$
 - Thay vì phải thực hiện $25.000$ phép nhân, bộ suy luận chỉ lặp qua $k$ chỉ số có trong mảng CSR ($k \sim 30 - 150$).
 - Độ phức tạp tính toán: $\mathcal{O}(k)$ phép tính điểm thực (Floating Point Operations).
-- Thời gian thực thi đo đạc trên CPU thông thường: **$0.02\text{ms}$**!
+- Thời lượng tính toán đo đạc trên CPU thông thường: **$0.02\text{ms}$**!
 
 ### 1.3. Hiệu Chuẩn Xác Suất Platt Scaling
 Để biến đổi logit $z(X) \in (-\infty, +\infty)$ thành xác suất hậu nghiệm thực sự đáng tin cậy $P(Y = 1 \mid X) \in [0, 1]$, mô hình áp dụng thuật toán **Hiệu chuẩn Platt (Platt Scaling [[3]](#ref3))**:
@@ -65,6 +65,9 @@ $$P_{\text{calibrated}}(Y = 1 \mid X) = \sigma(A \cdot z(X) + B) = \frac{1}{1 + 
 Trong đó hai hệ số co giãn và dịch chuyển $A, B \in \mathbb{R}$ được tối ưu hóa bằng phương pháp Cực đại Hóa Hợp lý (Maximum Likelihood Estimation) trên tập kiểm định độc lập $\mathcal{D}_{\text{val}} = \{(X_i, y_i)\}_{i=1}^{M_{\text{val}}}$:
 $$\arg\min_{A, B} -\sum_{i=1}^{M_{\text{val}}} \left[ y_i \log \sigma(A z_i + B) + (1 - y_i) \log(1 - \sigma(A z_i + B)) \right]$$
 Quá trình này triệt tiêu hoàn toàn hiện tượng tự tin thái quá (Overconfidence Bias) thường thấy ở các bộ phân loại tuyến tính khi dữ liệu mất cân bằng.
+
+![Đo đạc thực nghiệm phân bố độ trễ bộ phòng vệ Baseline](../../task_3_replication/Tier1_Candidate_Jain_NeurIPS2023/figures/02_empirical_plots/jain_latency_profile.png)
+*Hình 1.1: Thực nghiệm phân bố độ trễ suy luận của các giải pháp phòng vệ cơ bản trên CPU (Jain et al., NeurIPS 2023 [[9]](#ref9)), chứng minh ưu thế của bộ phân loại thưa.*
 
 ---
 
@@ -100,6 +103,9 @@ $$\mathcal{R}(\delta) = \mathbb{E}_{X, Y}[C(\delta(X), Y)]$$
 ### 2.4. Phân Tích Vùng Bất Định ($0.15 < P(X) < 0.85$)
 - Các mẫu nằm trong khoảng này có entropy thông tin cao $H(P) = -P \log P - (1-P) \log(1-P) \approx 1$.
 - Theo **Lý thuyết Phân loại Chọn lọc (Selective Classification with a Reject Option; Geifman & El-Yaniv 2017 [[2]](#ref2))**: Thay vì ép mô hình tuyến tính đưa ra phán quyết nhị phân khi chưa đủ cơ sở chắc chắn, Tầng 1 chủ động kích hoạt cơ chế từ chối (Rejection/Escalation) để chuyển giao mẫu sang Tầng 2 (DeBERTa-v3 MOF) phân tích ngữ nghĩa sâu.
+
+![Phân bố độ trễ suy luận Tầng 1 và Tầng 2](../../task_3_replication/Tier2_PIGuard_ACL2025/figures/02_empirical_plots/piguard_replication_latency_profile.png)
+*Hình 2.1: Phân bố độ trễ suy luận thực nghiệm giữa Tầng 1 (< 0.5ms) và Tầng 2 (~18.5ms), bảo chứng cho tính tối ưu của hàm rủi ro Bayes trong phân định ngưỡng bất định.*
 
 ---
 
@@ -230,7 +236,7 @@ Theo khảo cứu toàn diện về an ninh dữ liệu LLM trên *Springer 2026
    - PI-Guard **CHỈ NHẬN CHUỖI VĂN BẢN ĐÃ ĐƯỢC TRÍCH XUẤT** để phân loại an toàn (*Benign* vs. *Prompt Injection* vs. *Jailbreak*).
 
 > 🚫 **Luận cứ bảo vệ học thuật chống phình to phạm vi (Anti-Scope Creep)**:  
-> Đề tài tốt nghiệp là **Mô hình Học máy Guardrail**, tuyệt đối không ôm đồm việc lập trình Mail Server hay Web Crawler. Nếu nhóm tự ý viết thêm module parser PDF hay crawler mạng, đề tài sẽ bị loãng thành một bài toán phát triển phần mềm ứng dụng thông thường, làm mất đi trọng tâm nghiên cứu khoa học (AI/Machine Learning Security) và vi phạm nguyên tắc chuẩn mực khi đo đạc thực nghiệm trên các bộ benchmark quốc tế mở (NotInject, WildGuard, BIPIA).
+> Đề tài tốt nghiệp là **Mô hình Học máy Guardrail**, kiên quyết không ôm đồm việc lập trình Mail Server hay Web Crawler. Nếu nhóm tự ý viết thêm module parser PDF hay crawler mạng, đề tài sẽ bị loãng thành một bài toán phát triển phần mềm ứng dụng thông thường, làm mất đi trọng tâm nghiên cứu khoa học (AI/Machine Learning Security) và vi phạm nguyên tắc chuẩn mực khi đo đạc thực nghiệm trên các bộ benchmark quốc tế mở (NotInject, WildGuard, BIPIA).
 
 ---
 

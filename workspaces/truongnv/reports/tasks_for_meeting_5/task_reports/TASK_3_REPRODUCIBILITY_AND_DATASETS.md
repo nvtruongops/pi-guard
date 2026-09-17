@@ -5,8 +5,8 @@
 **Tác giả**: Nguyễn Văn Trường (Leader — MSSV: `SE182034`) | **Workspace**: `workspaces/truongnv/`  
 **Căn cứ chỉ đạo**: Biên bản họp GVHD Thầy Trần Văn Ninh [`Final-Report/Meeting/Meeting 4_10_09_26.md`](file:///d:/Work/Do-an/Final-Report/Meeting/Meeting%204_10_09_26.md)  
 **Mã tài liệu**: `workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/TASK_3_REPRODUCIBILITY_AND_DATASETS.md`  
-**Thư mục y văn & runbook chi tiết**: [`task_3_reproducibility/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_reproducibility/README.md)  
-**Phân hệ thực nghiệm mã nguồn**: [`task_3_replication/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/README.md)
+**Chuyên đề nghiên cứu bổ trợ**: [`supplementary/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/README.md)  
+**Phòng thí nghiệm thực nghiệm & Runbook**: [`../task_3_replication/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/README.md)
 
 ---
 
@@ -46,16 +46,17 @@ Căn cứ chỉ đạo chính thức tại buổi họp Meeting 4 ngày 10/09/20
    - **Task 4**: Phân tích sự đánh đổi chuyên sâu, lý giải tại sao không dùng TF-IDF đơn lẻ và đề xuất 3 giải pháp cải tiến độc quyền của đồ án (xem chi tiết tại [`TASK_4_PIGUARD_IMPROVEMENTS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/TASK_4_PIGUARD_IMPROVEMENTS.md)).
 4. **Tách biệt ranh giới dữ liệu**: Tập dữ liệu đăng ký trong [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) thuộc về giai đoạn huấn luyện mô hình đồ án sau này (Review 2). Không tải lan man các dataset ngoài phạm vi đề tài trong Task 3.
 
-### 1.2. Ma Trận Tham Chiếu 4 Hồ Sơ Y Văn Chi Tiết `task_3_reproducibility/`
+### 1.2. Ma Trận Tham Chiếu Các Hồ Sơ Chuyên Đề Bổ Trợ & Runbook Thực Nghiệm
 
-Toàn bộ tài liệu bóc tách chi tiết và hướng dẫn lệnh được phân tách độc lập trong thư mục [`task_3_reproducibility/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_reproducibility/README.md):
+Toàn bộ tài liệu bóc tách lý thuyết chuyên sâu được lưu trữ tại thư mục [`supplementary/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/README.md), kết hợp cùng phòng thí nghiệm thực nghiệm đóng gói sẵn [`task_3_replication/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/README.md):
 
 | STT | Hồ Sơ Chuyên Đề | Tệp Tham Chiếu Trực Tiếp | Trọng Tâm Báo Cáo Kỹ Thuật Task 3 |
 | :---: | :--- | :--- | :--- |
-| **01** | **Thực Trạng Y Văn TF-IDF** | [`01_LITERATURE_ASSESSMENT_TFIDF.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_reproducibility/01_LITERATURE_ASSESSMENT_TFIDF.md) | Lý giải vì sao không có repo độc lập cho TF-IDF; mổ xẻ nghiên cứu Intel Labs (arXiv:2512.19011 [[10]](#ref10)) về độ trễ $<1\text{ms}$ CPU và ưu thế $+26\%$ F1 khi gặp xáo trộn ký tự. |
-| **02** | **Thẩm Định Mỏ Neo PIGuard** | [`02_CORE_ANCHOR_PIGUARD_ACL2025.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_reproducibility/02_CORE_ANCHOR_PIGUARD_ACL2025.md) | Thẩm định bộ ba [Paper + Code + Dataset + Checkpoint] của PIGuard (ACL 2025 [[1]](#ref1)); bóc tách DeBERTa-v3, cơ chế MOF, tập NotInject đóng gói sẵn và siêu tham số (`lr=2e-5`, `batch=32`). |
-| **03** | **Baseline Nhúng Câu Ayub** | [`03_EMBEDDING_BASELINE_AYUB2024.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_reproducibility/03_EMBEDDING_BASELINE_AYUB2024.md) | Khảo sát mô hình Baseline MiniLM + ML cổ điển (CAMLIS 2024 [[2]](#ref2)); repo GitHub `malicious-prompt-detection` và 467k mẫu dữ liệu mở trên Hugging Face. |
-| **04** | **Sổ Tay Chạy Tái Lập** | [`04_MEMBER_REPRODUCTION_RUNBOOK.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_reproducibility/04_MEMBER_REPRODUCTION_RUNBOOK.md) | Sổ tay hướng dẫn từng bước lệnh PowerShell copy-paste cho 4 thành viên clone repo và chạy lệnh đánh giá của tác giả trên máy cá nhân trước Meeting 5. |
+| **SUPP-04** | **Thực Trạng Y Văn TF-IDF** | [`supplementary/LITERATURE_ASSESSMENT_TFIDF.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/LITERATURE_ASSESSMENT_TFIDF.md) | Lý giải vì sao không có repo độc lập cho TF-IDF; mổ xẻ nghiên cứu Intel Labs (arXiv:2512.19011 [[10]](#ref10)) về độ trễ $<1\text{ms}$ CPU và ưu thế $+26\%$ F1 khi gặp xáo trộn ký tự; ảnh minh chứng từ bài báo Neel Jain (NeurIPS 2023) và đường cong suy giảm từ khóa. |
+| **SUPP-05** | **Thẩm Định Mỏ Neo PIGuard** | [`supplementary/CORE_ANCHOR_PIGUARD_ACL2025.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/CORE_ANCHOR_PIGUARD_ACL2025.md) | Thẩm định bộ ba [Paper + Code + Dataset + Checkpoint] của PIGuard (ACL 2025 [[1]](#ref1)); bóc tách DeBERTa-v3, cơ chế MOF, tập NotInject đóng gói sẵn; Báo cáo đối chuẩn độc lập 6 chiều giải trình chi tiết lý do chọn PIGuard làm mỏ neo Tầng 2. |
+| **SUPP-06** | **Baseline Nhúng Câu Ayub** | [`supplementary/REJECTED_BASELINE_AYUB_CAMLIS2024.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/REJECTED_BASELINE_AYUB_CAMLIS2024.md) | Khảo sát mô hình Baseline MiniLM + ML cổ điển (CAMLIS 2024 [[2]](#ref2)); giải trình lý do khoa học cần lưu trữ Negative Result Dossier; phân tích thực nghiệm Overdefense FPR $58.41\%$ trên NotInject và trễ $11\text{ms}$ CPU. |
+| **RUNBOOK** | **Sổ Tay Chạy Tái Lập** | [`../task_3_replication/MEMBER_REPRODUCTION_RUNBOOK.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/MEMBER_REPRODUCTION_RUNBOOK.md) | Sổ tay hướng dẫn từng bước lệnh PowerShell copy-paste cho 4 thành viên clone repo hoặc kích hoạt phòng thí nghiệm đóng gói sẵn `task_3_replication/` chạy trên máy cá nhân trước Meeting 5. |
+| **SCRIPTS** | **Bộ Công Cụ Kiểm Định API** | [`../task_3_replication/scripts/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/scripts/README.md) | Chứa 2 script Python tự động kiểm định tính sẵn sàng công khai của Bộ ba [Paper + Code + Dataset] cho cả 2 bài báo qua API (`verify_meeting4_papers.py`, `verify_piguard_paper_triad.py`). |
 
 ### 1.3. Cơ Sở Lý Thuyết An Ninh Hệ Thống & Kinh Tế Học Độ Trễ
 Theo tiêu chuẩn an toàn AI quốc tế của Viện Tiêu chuẩn và Công nghệ Quốc gia Hoa Kỳ **NIST AI 100-2e2025** [[3]](#ref3), dự án **OWASP Top 10 for LLM Applications 2025 (LLM01:2025)** [[4]](#ref4) và nguyên lý kinh điển của Saltzer & Schroeder (1975) [[5]](#ref5):
@@ -126,7 +127,7 @@ graph TD
 | **Tập dữ liệu mở** | Có (467k mẫu) | Có (HackAPrompt) | Có (600k mẫu) | Không mở toàn bộ | Có (Mẫu đánh giá) | **Có (Hợp nhất Ayub 467k + HackAPrompt 600k)** |
 | **Độ trễ P95 (CPU)** | **$45.11 - 129.5\text{ms}$** *(Vướng MiniLM)* | **$0.8 - 1.5\text{ms}$** | **$0.5 - 1.0\text{ms}$** | **$0.2\text{ms}$ (Regex) / $22\text{ms}$ (Model)** | **$10.0 - 18.0\text{ms}$** | **$< 1.62\text{ms}$ (P95: $2.01\text{ms}$)** |
 | **Tài nguyên RAM** | $\approx 350\text{ MB}$ | $< 50\text{ MB}$ | $< 30\text{ MB}$ | $\approx 500\text{ MB}$ | $\approx 400\text{ MB}$ | **$< 35\text{ MB}$** |
-| **Khả năng giải thích (XAI)** | Thấp (Vector dày đặc) | **Cực cao** (Trọng số $w_i$) | **Cực cao** | Trung bình (Luật tĩnh) | Thấp (Khoảng cách vector) | **Tuyệt đối (Trọng số $w_i$ n-gram trực quan)** |
+| **Khả năng giải thích (XAI)** | Thấp (Vector dày đặc) | **Cực cao** (Trọng số $w_i$) | **Cực cao** | Trung bình (Luật tĩnh) | Thấp (Khoảng cách vector) | **Rõ ràng (Trọng số $w_i$ n-gram trực quan)** |
 | **Độ phù hợp làm Tầng 1** | Khá (Bị trễ embedding) | Rất cao (Cơ sở lý thuyết) | Rất cao (Nguồn dữ liệu) | Cao (Kế thừa tư duy) | Trung bình | **TỐI ƯU NHẤT CHO ĐỒ ÁN** |
 
 ---
@@ -189,6 +190,9 @@ Dữ liệu trích xuất trực tiếp từ tệp thực nghiệm [`AYUB_CAMLIS
 | **PI-Guard Native TF-IDF + Logistic Regression** | TF-IDF N-Grams ($25k$ dims) | **$1.07\text{ms}$** | **$0.05\text{ms}$** | **$1.07\text{ms}$** | **$2.01\text{ms}$** | **$0.7636$** | **$87.50\%$** | **$21.24\%$** *(Tốt nhất)* |
 | **Tier 2: PIGuard DeBERTa-v3 (Đơn Lẻ)** [[1]](#ref1) | Transformer Tokenizer | — | $541.44\text{ms}$ | $582.14\text{ms}$ | $1,313.71\text{ms}$ | **$0.8420$** | $92.40\%$ | **$11.50\%$** *(Kháng Overdefense)* |
 
+![So sánh tỷ lệ báo động giả Overdefense NotInject](../task_3_replication/Tier1_REJECTED_Ayub_CAMLIS2024/figures/02_empirical_plots/ayub_overdefense_fpr_comparison.png)
+*Hình 4.1: Thực nghiệm đối chuẩn tỷ lệ báo động giả (FPR) trên tập NotInject giữa Ayub MiniLM, TF-IDF và PIGuard DeBERTa-v3.*
+
 ### 4.3. Phân Tích Hai Điểm Nghẽn Học Thuật Của Ayub (CAMLIS 2024)
 1. **Điểm nghẽn "Độ trễ Giả lập" (The Latency Fallacy in Embedding Papers)**:
    - Bài báo CAMLIS 2024 chỉ đo thời gian chạy hàm `classifier.predict()` trên các file pickle lưu sẵn vector nhúng.
@@ -235,6 +239,9 @@ flowchart TD
 | **Tỷ lệ Báo động giả trên NotInject (Overdefense)** | **$11.50\%$** | $21.53\%$ | **$11.50\%$** *(Bảo toàn hoàn hảo)* |
 | **Độ trễ Trung bình Ước tính khi Tầng 1 Lọc** | $541.44\text{ms}$ | $466.77\text{ms}$ | **Giảm mạnh trên các mẫu từ điển rõ ràng** |
 
+![So sánh thanh hiệu năng Local vs Paper](../task_3_replication/Tier2_PIGuard_ACL2025/figures/02_empirical_plots/piguard_replication_paper_vs_local_bars.png)
+*Hình 5.1: Đối chuẩn hiệu năng giữa số liệu công bố trong bài báo PIGuard ACL 2025 [[1]](#ref1) và số liệu đo đạc thực nghiệm độc lập tại phòng lab Task 3.*
+
 ---
 
 ## 6. ĐỀ XUẤT TỐI ƯU HÓA: 4 LÝ DO KHOA HỌC CHỌN TF-IDF N-GRAMS LÀM TẦNG 1
@@ -274,9 +281,9 @@ flowchart TD
 ```
 
 ### 🎯 4 Lý Do Khoa Học Vượt Trội:
-1. **Tiết kiệm Độ trễ Thực tế Tuyệt đối (Latency Dominance)**: TF-IDF chỉ tốn $1.07\text{ms}$ để trích xuất đặc trưng từ và ký tự, giúp toàn bộ pipeline Tầng 1 đạt $1.62\text{ms}$ (nhanh gấp **28 lần** so với $45.11\text{ms}$ của MiniLM).
+1. **Ưu Thế Độ Trễ Thực Tế Vượt Trội (Latency Dominance)**: TF-IDF chỉ tốn $1.07\text{ms}$ để trích xuất đặc trưng từ và ký tự, giúp toàn bộ pipeline Tầng 1 đạt $1.62\text{ms}$ (nhanh gấp **28 lần** so với $45.11\text{ms}$ của MiniLM).
 2. **Khả năng Bắt Lỗi Ký tự Đối kháng (Character Obfuscation Resilience [[TN09]](#term-char-ngram))**: TF-IDF với dải Character N-Grams (3–5 ký tự) bắt trọn các thủ thuật lách luật như chèn ký tự đặc biệt, leetspeak (`1gn0re`, `b-y-p-a-s-s`), điều mà các mô hình embedding cấp độ từ (word-level) dễ bị phân mảnh token.
-3. **Tính Minh bạch & Giải thích Được Tuyệt đối (Explainable AI - XAI)**: Trọng số $w_i$ của mô hình hồi quy Logistic cho phép xuất trực tiếp danh sách từ khóa nguy hiểm cho người quản trị trên Dashboard (`Streamlit`), trong khi vector nhúng 384 chiều của MiniLM hoàn toàn là hộp đen.
+3. **Tính Minh bạch & Khả năng Giải thích Rõ Ràng (Explainable AI - XAI)**: Trọng số $w_i$ của mô hình hồi quy Logistic cho phép xuất trực tiếp danh sách từ khóa nguy hiểm cho người quản trị trên Dashboard (`Streamlit`), trong khi vector nhúng 384 chiều của MiniLM hoàn toàn là hộp đen.
 4. **Chi phí Hạ tầng Tối thiểu (Extreme Resource Efficiency)**: Mô hình TF-IDF + LR chiếm chưa tới $35\text{MB}$ RAM, trong khi việc duy trì đồng thời 2 mô hình Transformer (MiniLM $120\text{MB}$ + DeBERTa-v3 $500\text{MB}$) gây lãng phí bộ nhớ trên các container Docker nhẹ.
 
 ---

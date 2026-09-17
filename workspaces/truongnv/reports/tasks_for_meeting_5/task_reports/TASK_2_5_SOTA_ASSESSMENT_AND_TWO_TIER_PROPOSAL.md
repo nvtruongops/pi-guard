@@ -112,6 +112,9 @@ Nhằm cung cấp cơ sở khoa học thuyết phục trước Hội đồng ph�
   - *Khiếm khuyết chí mạng*: Bài báo ACL 2025 chỉ ra rằng Prompt-Guard 86M bị dính hiện tượng **Overdefense cực đoan**: Chỉ số Overdefense Accuracy chỉ đạt **$0.88\%$** (tức là mô hình chặn nhầm tới $99.12\%$ các truy vấn lành tính có chứa từ nhạy cảm trong tập `NotInject`).
   - *Thực nghiệm độc lập tại Task 3 của nhóm PI-Guard*: Đo đạc trên CPU xác nhận độ trễ trung vị $\text{P50} = 6.54\text{ms}$, phân vị $\text{P95} = 16.57\text{ms}$. Dù nhanh hơn các mô hình lớn, mức trễ $\approx 7 - 16\text{ms}$ vẫn cao gấp 15 đến 30 lần so với bộ phân loại tuyến tính TF-IDF ($0.47\text{ms}$).
 
+![Bằng chứng y văn Meta Prompt-Guard 86M Eval Metrics](../task_3_replication/Tier1_Candidate_Meta_PromptGuard2024/figures/01_paper_evidence/meta_p6_table_eval_metrics.png)
+*Hình 2.1: Bằng chứng y văn từ Báo cáo Kỹ thuật Meta Prompt-Guard (Purple Llama 2024 [[16]](#ref16)), minh chứng các chỉ số đánh giá cơ bản và hiện tượng đánh đổi an ninh.*
+
 ---
 
 ### 2.4. Trường phái 4: Generative LLM-as-a-Judge (Meta Llama Guard 3 8B, GPT-4o)
@@ -194,6 +197,9 @@ Bảng dưới đây tổng hợp các chỉ số kỹ thuật then chốt của
 | **Báo động giả NotInject (FPR)** | $3.2\%$ | **$58.41\%$** (Trầm trọng) | **$99.12\%$** (Overdefense) | $18.4\%$ | $12.5\%$ | $24.1\%$ | **$< 1.5\%$** (Kiểm soát chặt) |
 | **Yêu cầu GPU phần cứng** | Không | Không | Khuyến nghị GPU | **Bắt buộc GPU $\ge 16\text{GB}$** | Tùy backend LLM | Máy chủ SaaS bên thứ ba | **Zero GPU (Chạy CPU thuần)** |
 | **Nguồn dữ liệu đối chuẩn** | ProtectAI Benchmark | CAMLIS 2024 + Task 3 | ACL 2025 Table 1 | ACL 2025 Table 1 | EMNLP 2023 | ACL 2025 Table 1 & 7 | Task 3 & Task 4 đo đạc |
+
+![Bằng chứng y văn PIGuard ACL 2025 Bảng 1 Đối chuẩn SOTA](../task_3_replication/Tier2_PIGuard_ACL2025/figures/01_paper_evidence/paper_p7_table_1_main_results.png)
+*Hình 3.1: Bằng chứng y văn trích từ Bảng 1 bài báo PIGuard (Hao Li et al., ACL 2025 Long Paper [[1]](#ref1)), minh chứng các chỉ số đối chuẩn định lượng giữa Prompt-Guard, Llama Guard 3 8B, Lakera Guard và PIGuard.*
 
 ---
 
@@ -309,13 +315,16 @@ $$\mathbb{E}[L] = 0.47\text{ms} + 0.174 \times 18.5\text{ms} = 0.47\text{ms} + 3
 2. *Độ trễ phân vị P95*: Vì $82.6\%$ lưu lượng kết thúc ở Tầng 1 với độ trễ $< 1\text{ms}$, phân vị P95 toàn hệ thống được kiểm soát ở mức **$19.8\text{ms} < 30\text{ms}$**, đáp ứng hoàn hảo yêu cầu REQ-01 trong Bản đăng ký đề tài.
 3. *Tiết kiệm tài nguyên máy chủ*: Vì $82.6\%$ truy vấn không chạm tới mô hình nơ-ron sâu, áp lực tính toán lên CPU giảm hơn $80\%$, cho phép một máy chủ thông thường đạt thông lượng phục vụ $> 250\text{ RPS/core}$ (Requests Per Second) mà không cần trang bị cụm máy chủ GPU đắt tiền.
 
+![Phân bố độ trễ suy luận Tầng 1 và Tầng 2](../task_3_replication/Tier2_PIGuard_ACL2025/figures/02_empirical_plots/piguard_replication_latency_profile.png)
+*Hình 4.1: Đo đạc thực nghiệm phân bố độ trễ suy luận trên CPU, làm rõ sự chênh lệch giữa Tầng 1 siêu tốc (< 0.5ms) và Tầng 2 chuyên sâu (~18.5ms).*
+
 ---
 
 ## 5. BẮC NHỊP CẦU PHƯƠNG PHÁP LUẬN SANG TASK 3: TÌM BÀI BÁO & THỰC NGHIỆM TÁI LẬP
 
 ### 5.1. Nguyên tắc Bộ Ba Công Khai (Public Triad Invariant) trong NCKH
 
-Để ý tưởng kiến trúc phân tầng 2 cấp độ được Hội đồng FPT công nhận là một công trình nghiên cứu khoa học nghiêm túc, nhóm sinh viên tuyệt đối không được phép dừng lại ở các suy diễn lý thuyết trên giấy. Theo quy chuẩn phương pháp luận học thuật, đề tài phải tuân thủ nghiêm ngặt **Nguyên Tắc Bộ Ba Công Khai (Public Triad Invariant [[TN01]](#term-public-triad))**:
+Để ý tưởng kiến trúc phân tầng 2 cấp độ được Hội đồng FPT công nhận là một công trình nghiên cứu khoa học nghiêm túc, nhóm sinh viên kiên quyết không dừng lại ở các suy diễn lý thuyết trên giấy. Theo quy chuẩn phương pháp luận học thuật, đề tài phải tuân thủ nghiêm ngặt **Nguyên Tắc Bộ Ba Công Khai (Public Triad Invariant [[TN01]](#term-public-triad))**:
 
 $$\text{Mô hình được chấp nhận} \iff \text{Có Bài Báo Đã Xuất Bản (Paper)} + \text{Có Mã Nguồn Mở (Code)} + \text{Có Dữ Liệu Công Khai (Dataset)}$$
 
@@ -353,6 +362,9 @@ Từ đề xuất kiến trúc của Task 2.5, **Task 3 (Reproducibility & Datas
    - Kiểm chứng điểm nghẽn thực tế của Ayub CAMLIS 2024 và Meta Prompt-Guard 86M.
 4. **Cung cấp dữ liệu thực nghiệm kiểm chứng giả thuyết phân tầng**: Chạy kịch bản mô phỏng kết hợp 2 tầng (Two-Tier Cascaded Evaluation) trên tập dữ liệu tổng hợp để chứng minh con số $\mathbb{E}[L] \approx 3.69\text{ms}$ và $F_1 \ge 0.94$ là hoàn toàn có thật trong thực tế, làm tiền đề bàn giao sang Task 4 hoàn thiện 4 giải pháp cải tiến độc quyền của đồ án PI-Guard.
 
+![Bảng điểm tổng hợp đối soát y văn gốc và thực nghiệm độc lập](../task_3_replication/Tier2_PIGuard_ACL2025/figures/02_empirical_plots/local_vs_paper_scorecard.png)
+*Hình 5.1: Bảng điểm tổng hợp đối soát y văn gốc (ACL 2025 [[1]](#ref1)) và kết quả thực nghiệm đo đạc độc lập tại phòng lab Task 3.*
+
 ---
 
 ### 5.4. Đánh Giá Các Khoảng Trống Phương Pháp Luận Còn Mở & Ranh Giới Nghiên Cứu (Open Methodological Gaps & Research Boundaries)
@@ -366,7 +378,7 @@ Một công trình nghiên cứu khoa học an toàn thông tin chuẩn mực kh
   - Chi phí một ca False Positive ($C_{FP}$): Chặn nhầm câu lành tính tại Tầng 1, nhưng thực tế chỉ là chuyển tiếp lên Tầng 2 để thẩm định lại, tổn thất thực tế chỉ là độ trễ gia tăng $C_{FP} = \Delta L = 18.5\text{ms}$.
 - *Công thức hình thức hóa tối ưu Bayes*:
   $$\tau_{allow}^* = \arg\min_{\tau} \left( C_{FN} \cdot \int_{0}^{\tau} p(s \mid \text{Attack}) \, ds + C_{FP} \cdot \int_{\tau}^{1} p(s \mid \text{Benign}) \, ds \right)$$
-  Do $C_{FN} \gg C_{FP}$, nghiệm tối ưu $\tau_{allow}^*$ bị đẩy mạnh về phía trái sát $0$ ($\approx 0.15$), ưu tiên tuyệt đối việc không bỏ lọt mã độc sang nhóm Fast-Pass.
+  Do $C_{FN} \gg C_{FP}$, nghiệm tối ưu $\tau_{allow}^*$ bị đẩy mạnh về phía trái sát $0$ ($\approx 0.15$), ưu tiên tối đa việc không bỏ lọt mã độc sang nhóm Fast-Pass.
 
 #### 5.4.2. Khoảng trống 2: Tấn công Đối kháng Thích ứng với Tầng 1 & Ngân sách Đột biến Tối thiểu (Adaptive Evasion & Perturbation Budget)
 - *Hiện trạng & Thách thức phản biện*: Nếu đối thủ biết trước cấu trúc 2 tầng (Mô hình đe dọa Gray-box / White-box), chúng có thể chủ động tối ưu hóa câu lệnh để hạ xác suất Tầng 1 xuống $P(x) \le 0.14$ nhằm lọt qua cửa ngõ Fast-Pass.

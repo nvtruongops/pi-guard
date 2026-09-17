@@ -36,7 +36,7 @@ Tài liệu chuyên khảo này cung cấp cái nhìn toàn diện, chuẩn mự
 Trong khoa học an toàn AI, **DAN** được định nghĩa là:
 > *"Một kỹ thuật tấn công vượt rào an toàn dựa trên thao túng vai diễn (Persona-based Jailbreak Attack), trong đó kẻ tấn công sử dụng các chỉ thị phức tạp để thiết lập một nhân cách hư cấu hoặc trạng thái hoạt động giả định, vô hiệu hóa các ràng buộc an toàn của nhà phát triển và cưỡng chế mô hình ngôn ngữ lớn tuân thủ các yêu cầu độc hại."* (Grounded in Shen et al., ACM CCS 2024 [[1]](#ref1); Wei et al., NeurIPS 2023 [[2]](#ref2)).
 
-### 1.3. Phân Biệt Tuyệt Đối Giữa DAN (Jailbreak) và Prompt Injection
+### 1.3. Phân Định Rõ Ràng Giữa DAN (Jailbreak) và Prompt Injection
 Để tránh nhầm lẫn học thuật nghiêm trọng trước Hội đồng Chấm luận văn, bảng dưới đây phân định ranh giới cốt tử giữa hai dạng tấn công:
 
 | Tiêu Chí So Sánh | Prompt Injection (Tấn Công Tiêm Lệnh) | DAN / Jailbreak (Tấn Công Vượt Rào An Toàn) |
@@ -242,6 +242,9 @@ Dựa trên phân tích tần suất từ khóa TF-IDF và đồ thị liên k�
 
 *(Trích xuất chuẩn xác từ Table 2, Shen et al., ACM CCS 2024 [[1]](#ref1), trang 7)*.
 
+![Bằng chứng y văn Meta CyberSecEval Đánh giá Rào chắn Jailbreak](../../task_3_replication/Tier1_Candidate_Meta_PromptGuard2024/figures/01_paper_evidence/meta_p8_cyberseceval_safeguards.png)
+*Hình 4.1: Bằng chứng y văn từ Báo cáo Kỹ thuật Meta CyberSecEval (2024 [[11]](#ref11)), phân tích rủi ro an toàn và đánh giá hiệu năng các rào chắn đối với Jailbreak và Prompt Injection.*
+
 ### 4.2. Con Đường Tiến Hóa 4 Thế Hệ Của Dòng Họ DAN
 
 Dựa trên dòng thời gian quan sát được từ tháng 12/2022 đến nay, dòng họ DAN đã trải qua 4 giai đoạn tiến hóa mang tính chiến thuật:
@@ -323,6 +326,9 @@ Dưới đây là số liệu đo đạc thực tế về Tỷ lệ tấn công 
 
 *(Trích xuất trực tiếp từ Table 8, Shen et al., ACM CCS 2024 [[1]](#ref1), trang 12)*.
 
+![Bằng chứng y văn Bảng 1 Thất bại Phòng thủ Jain NeurIPS 2023](../../task_3_replication/Tier1_Candidate_Jain_NeurIPS2023/figures/01_paper_evidence/jain_p6_table_1_defense_results.png)
+*Hình 5.1: Bằng chứng y văn từ Bảng 1 bài báo Neel Jain et al. (NeurIPS 2023 [[12]](#ref12)), minh chứng sự suy giảm hiệu quả của các biện pháp phòng vệ truyền thống trước tấn công đối kháng.*
+
 ### 5.2. Phân Tích Nguyên Nhân Thất Bại Dưới Góc Độ Kỹ Thuật:
 1. **Tại sao Built-in RLHF thất bại?**
    - Khi không có jailbreak, ASR-B của các kịch bản nguy hiểm rất thấp ($0.7\%$ với Fraud, $5.3\%$ với Illegal Activity). Điều này chứng minh RLHF hoạt động rất tốt với câu hỏi đơn giản.
@@ -332,7 +338,7 @@ Dưới đây là số liệu đo đạc thực tế về Tỷ lệ tấn công 
    - Mặc dù làm giảm trung bình $-43.1\%$ ASR, nhưng trước prompt DAN tối ưu nhất (ASR-Max = $99.4\%$), **tỷ lệ lọt lưới vẫn còn tới hơn $56\%$**! Nguyên nhân là các prompt DAN thế hệ mới sử dụng ngôn từ ẩn dụ, ngôn ngữ giả định học thuật hoặc bọc trong các lớp bảo vệ nhân vật, khiến bộ kiểm duyệt không phát hiện được từ khóa độc hại trực tiếp trong câu hỏi.
 3. **Tại sao NeMo-Guardrails và OpenChatKit thất bại nặng nề (giảm dưới $3.5\%$)?**
    - NeMo-Guardrails dựa trên các luồng hội thoại Colang và các cuộc gọi kiểm tra LLM nội bộ (Self-Check Rails). Khi bản thân prompt DAN đã có khả năng thao túng LLM, chính các cuộc gọi kiểm tra LLM của NeMo cũng bị lừa theo (Compounded Vulnerability).
-   - Hơn nữa, chi phí độ trễ của NeMo quá lớn ($> 500\text{ms}$), khiến nó không phù hợp để làm chốt chặn an ninh thời gian thực.
+   - Hơn nữa, chi phí độ trễ của NeMo quá lớn ($> 500\text{ms}$), khiến nó không phù hợp để làm chốt chặn an ninh độ trễ thấp (Low-Latency Ingress Guardrail).
 
 ---
 
@@ -463,3 +469,5 @@ flowchart TD
 * <a id="ref8"></a>**[[8]]** Xiaogeng Liu, Nan Xu, Muhao Chen, and Chaowei Xiao. 2023. *AutoDAN: Generating Stealthy Jailbreak Prompts on Aligned Large Language Models*. [arXiv:2310.04451 [cs.CL]](https://arxiv.org/abs/2310.04451).
 * <a id="ref9"></a>**[[9]]** Patrick Chao, Alexander Robey, Edgar Dobriban, Hamed Hassani, George J. Pappas, and Eric Wong. 2023. *Jailbreaking Black Box Large Language Models in Twenty Queries*. [arXiv:2310.08419 [cs.LG]](https://arxiv.org/abs/2310.08419).
 * <a id="ref10"></a>**[[10]]** Hao Li, Xiaogeng Liu, Ning Zhang, and Chaowei Xiao. 2025. *PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free*. In *Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025 - Long Paper)*. [arXiv:2410.22770 [cs.CR]](https://arxiv.org/abs/2410.22770). Local PDF: [`workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier2_PIGuard_ACL2025/papers/PIGuard_ACL2025_arXiv2410.22770.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier2_PIGuard_ACL2025/papers/PIGuard_ACL2025_arXiv2410.22770.pdf).
+* <a id="ref11"></a>**[[11]]** Meta AI Purple Llama Team. 2024. *Prompt Guard 86M: A Small Classifier for Prompt Injection and Jailbreak Detection*. Model Card and Technical Report, arXiv:2407.21783. Open-Access PDF: [`task_3_replication/Tier1_Candidate_Meta_PromptGuard2024/papers/Meta_PromptGuard_CyberSecEval_arXiv2407.21783.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier1_Candidate_Meta_PromptGuard2024/papers/Meta_PromptGuard_CyberSecEval_arXiv2407.21783.pdf).
+* <a id="ref12"></a>**[[12]]** Neel Jain, Avi Schwarzschild, Yuxin Wen, Gowthami Somepalli, et al. 2023. *Baseline Defenses for Adversarial Attacks Against Aligned Language Models*. In *Thirty-seventh Conference on Neural Information Processing Systems (NeurIPS 2023)*. [arXiv:2309.00614 [cs.LG]](https://arxiv.org/abs/2309.00614). Open-Access PDF: [`task_3_replication/Tier1_Candidate_Jain_NeurIPS2023/papers/Jain_NeurIPS2023_arXiv2309.00614.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier1_Candidate_Jain_NeurIPS2023/papers/Jain_NeurIPS2023_arXiv2309.00614.pdf).

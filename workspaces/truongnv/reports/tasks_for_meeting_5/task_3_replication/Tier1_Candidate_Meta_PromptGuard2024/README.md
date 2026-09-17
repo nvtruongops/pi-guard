@@ -1,7 +1,7 @@
 # BÁO CÁO TÁI LẬP THỰC NGHIỆM ĐỘC LẬP: META PROMPT-GUARD 86M (PURPLE LLAMA 2024)
 
 > **Mô hình**: Meta Prompt-Guard 86M (mDeBERTa-v3 Multi-lingual Classifier)  
-> **Tài liệu công bố gốc**: *Purple Llama: Open Ecosystem for AI Safety* & Llama Prompt Guard Technical Documentation (Meta AI Research, 2024)  
+> **Tài liệu công bố gốc**: *Purple Llama: Open Ecosystem for AI Safety* & Llama Prompt Guard Technical Documentation (Meta AI Research, 2024 [[1]](#ref1))  
 > **Kho mã nguồn**: [https://github.com/meta-llama/PurpleLlama](https://github.com/meta-llama/PurpleLlama) (Thư mục `Prompt-Guard` & `Llama-Prompt-Guard-2`)  
 > **Trọng số công khai**: `meta-llama/Prompt-Guard-86M` trên Hugging Face  
 > **Phân hệ**: `workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier1_Candidate_Meta_PromptGuard2024/`  
@@ -68,9 +68,23 @@ Tập dữ liệu được xây dựng phản ánh chuẩn mực 3 lớp phân l
 | :--- | :---: | :---: | :--- |
 | **Prompt Injection Accuracy (C1)** | $86.80\%$ | **$100.00\%$** Recall (60/60 đòn Injection bị bắt trọn) | 🎯 **Khớp xuất sắc, vượt số liệu công bố** |
 | **Jailbreak Attack Recall (C2)** | $88.50\%$ | **$95.00\%$** Recall (57/60 đòn Jailbreak bị bắt) | 🎯 **Khớp chặt chẽ với nhận định của Meta** |
-| **Benign FPR (Overdefense - C0)** | $1.50\%$ | **$0.00\%$** (0/90 prompt lành tính bị chặn nhầm) | 🎯 **Kiểm soát tuyệt đối**: Không chặn oan người dùng. |
+| **Benign FPR (Overdefense - C0)** | $1.50\%$ | **$0.00\%$** (0/90 prompt lành tính bị chặn nhầm) | 🎯 **Kiểm soát nghiêm ngặt**: Không chặn oan người dùng. |
 | **Overall 3-Class Accuracy / Macro F1** | Không công bố Macro F1 trực tiếp | **Accuracy = $98.57\%$** \| **Macro F1 = $0.9860$** | 🎯 **Khả năng phân loại 3 lớp vượt trội** |
 | **Độ trễ trung bình trên CPU** | $\approx 15 - 20\text{ms}$ | **$7.98\text{ms}$** (P50 = $7.20\text{ms}$, P95 = $16.57\text{ms}$) | 🎯 **Đạt chuẩn SLA khắt khe (< 30ms)** trên CPU. |
+
+### 📷 4.1. Bằng Chứng Y Văn & Đồ Thị Thực Nghiệm Đối Chuẩn
+
+| Bằng chứng Y văn 1: Bìa Báo cáo Purple Llama | Bằng chứng Y văn 2: Table Đo lường An toàn |
+| :---: | :---: |
+| ![Bìa báo cáo Purple Llama Meta](figures/01_paper_evidence/meta_p1_title_and_abstract.png) | ![Table Đo lường An toàn Meta](figures/01_paper_evidence/meta_p6_table_eval_metrics.png) |
+
+| Bằng chứng Y văn 3: Đánh giá CyberSecEval | Biểu đồ Thực nghiệm 1: Đối chuẩn Paper vs Local |
+| :---: | :---: |
+| ![CyberSecEval Safeguards](figures/01_paper_evidence/meta_p8_cyberseceval_safeguards.png) | ![Đối chuẩn Paper vs Local Meta](figures/02_empirical_plots/promptguard_replication_paper_vs_local_bars.png) |
+
+| Biểu đồ Thực nghiệm 2: Hồ sơ Độ trễ CPU |
+| :---: |
+| ![Hồ sơ độ trễ CPU PromptGuard](figures/02_empirical_plots/promptguard_latency_profile.png) |
 
 ---
 
@@ -88,3 +102,9 @@ Script sẽ nạp `./datasets/promptguard_3class_eval.json`, phân tích đặc 
 
 1. **Khẳng định khoa học**: Mô hình phân loại 3 lớp theo định hướng của Meta AI hoạt động ổn định, phân tách rõ ràng giữa Injection và Jailbreak mà không gây quá phòng thủ (FPR = 0%).
 2. **Vai trò đối với PI-Guard**: Đây là **ứng viên Neural hàng đầu** nếu Hội đồng hoặc GVHD yêu cầu Tầng 1 phải có khả năng bóc tách đa nhãn chuyên sâu.
+
+---
+
+## 📚 7. Tài Liệu Tham Khảo (References)
+
+* <a id="ref1"></a>**[[1]]** Meta AI Research. 2024. *Purple Llama: Open Ecosystem for AI Safety - Prompt Guard 86M Technical Report*. Meta Platforms, Inc. GitHub: [https://github.com/meta-llama/PurpleLlama](https://github.com/meta-llama/PurpleLlama). Model Card: [https://huggingface.co/meta-llama/Prompt-Guard-86M](https://huggingface.co/meta-llama/Prompt-Guard-86M).

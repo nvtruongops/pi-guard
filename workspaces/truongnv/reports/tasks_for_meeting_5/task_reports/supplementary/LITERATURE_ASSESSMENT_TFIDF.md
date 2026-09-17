@@ -1,12 +1,12 @@
-# **CHUYÊN ĐỀ 1: ĐÁNH GIÁ THỰC TRẠNG Y VĂN VỀ MÔ HÌNH TF-IDF TRONG NGHIÊN CỨU GUARDRAIL**
+# **[SUPP-04] ĐÁNH GIÁ THỰC TRẠNG Y VĂN VỀ MÔ HÌNH TF-IDF TRONG NGHIÊN CỨU GUARDRAIL**
 ## ĐỀ TÀI: A MACHINE-LEARNING GUARDRAIL FOR DETECTING PROMPT INJECTION AND JAILBREAK ATTACKS ON LLM APPLICATIONS (PI-GUARD)
 **Tác giả**: Nguyễn Văn Trường (Leader — MSSV: `SE182034`) | **Workspace**: `workspaces/truongnv/`  
-**Cổng điều phối chuyên đề Task 3**: [`workspaces/truongnv/reports/tasks_for_meeting_5/task_3_reproducibility/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_reproducibility/README.md)
+**Cổng điều phối hồ sơ nghiên cứu**: [`workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/README.md) | **Báo cáo kỹ thuật gốc**: [`../TASK_3_REPRODUCIBILITY_AND_DATASETS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/TASK_3_REPRODUCIBILITY_AND_DATASETS.md)
 
 ---
 
 > [!TIP]
-> ### 📌 TÓM TẮT ĐIỀU HÀNH CHUYÊN ĐỀ 1 (EXECUTIVE SUMMARY)
+> ### 📌 TÓM TẮT ĐIỀU HÀNH CHUYÊN ĐỀ SUPP-04 (EXECUTIVE SUMMARY)
 > - **Thực trạng học thuật**: TF-IDF + Logistic Regression là kỹ thuật máy học cổ điển (Standard Textbook Baseline, chỉ mất 5 dòng lệnh `scikit-learn`). Trong cộng đồng AI An toàn, không ai tạo một repository GitHub riêng chỉ để chứa TF-IDF, và các hội nghị đỉnh cao (ACL, NeurIPS, IEEE S&P) không chấp nhận bài báo nào có phương pháp đề xuất chính là standalone TF-IDF trong năm 2024–2026.
 > - **Công trình nghiên cứu sâu nhất về TF-IDF cho Guardrail**: Bài báo của **Vasudev Majhi et al. (Intel Labs, arXiv:2512.19011, Tháng 12/2025)** [[5]](#ref5) chứng minh TF-IDF N-grams trên CPU đạt độ trễ **$< 1\text{ms}$**, $F_1$ tiệm cận Transformer, và đặc biệt **vượt trội hơn Transformer +26% F1 khi gặp chuỗi xáo trộn ký tự (Character Perturbation, Leetspeak, Typo)**.
 > - **Điểm nghẽn thực tế**: Bản PDF của Intel Labs hiện **chưa công khai link GitHub repository**.
@@ -96,6 +96,15 @@ Không chỉ Intel Labs, nhiều công trình bảo mật AI hàng đầu thế 
    - Nghiên cứu cơ chế phòng thủ đối kháng cho LLM.
    - Sử dụng `char_wb` (Character Word-Boundary TF-IDF, n-gram 3–5) để chứng minh khả năng phòng thủ chống lại các chuỗi ký tự ngẫu nhiên của tấn công GCG (*Greedy Coordinate Gradient*).
    - Mã nguồn được đặt chung trong thư mục benchmark đối kháng tổng thể của nhóm tác giả, không có repo độc lập cho TF-IDF.
+
+### 📸 Bằng chứng ảnh trích xuất từ bài báo Jain et al. (NeurIPS 2023):
+
+![Tiêu đề bài báo Jain NeurIPS 2023](../../task_3_replication/Tier1_Candidate_Jain_NeurIPS2023/figures/01_paper_evidence/jain_p1_title_and_abstract.png)
+*Hình 1: Tiêu đề và Abstract bài báo Neel Jain et al. (NeurIPS 2023 [[6]](#ref6)) công bố giải pháp phòng thủ đối chuẩn (Baseline Defenses).*
+
+![Bảng kết quả phòng thủ của Jain NeurIPS 2023](../../task_3_replication/Tier1_Candidate_Jain_NeurIPS2023/figures/01_paper_evidence/jain_p6_table_1_defense_results.png)
+*Hình 2: Bảng 1 (Table 1) trong bài báo Jain et al. chỉ ra các giải pháp đối chuẩn phân loại tần suất từ/ký tự có thể giảm tỷ lệ tấn công thành công ASR đáng kể trên CPU mà không cần nạp mô hình lớn.*
+
 2. **Perez & Ribeiro (NeurIPS 2022 [[3]](#ref3))** — *"Ignore Previous Prompt: Attack Techniques For Language Models"*:
    - Bài báo đầu tiên định danh đòn tấn công Prompt Injection.
    - Sử dụng mô hình phân loại chuỗi n-grams kết hợp Naive Bayes / Logistic Regression để làm đối chuẩn so sánh với mô hình ngôn ngữ sinh.
@@ -114,7 +123,12 @@ Không chỉ Intel Labs, nhiều công trình bảo mật AI hàng đầu thế 
 >    - Nhóm hiện thực hóa mô hình Baseline TF-IDF (kế thừa lý thuyết của Neel Jain 2023 [[6]](#ref6) và Vasudev Majhi Intel Labs 2025 [[5]](#ref5)) **TRỰC TIẾP TRÊN CHÍNH TẬP DỮ LIỆU CỦA PIGUARD** (`datasets/NotInject`, `datasets/BIPIA`, `datasets/train.json`).
 >    - Việc đo đạc cả hai mô hình trên cùng một tập dữ liệu benchmark của ACL 2025 là phương pháp luận chặt chẽ và thuyết phục nhất trước Hội đồng FPT University:
 >      - *Baseline TF-IDF*: Chứng minh tốc độ cực nhanh (<1ms CPU), nhưng bộc lộ điểm nghẽn **Over-defense nghiêm trọng** (chặn nhầm các câu lệnh lập trình lành tính có chứa từ nhạy cảm như *"ignore"*, *"system"*).
-> 4. $\rightarrow$ **Cầu nối hoàn hảo sang Task 4**: Tạo cơ sở thực nghiệm vững chắc để đề xuất **các giải pháp cải tiến độc quyền của PI-Guard** (Định tuyến bất định 2 tầng và bảo toàn cụm Group-Aware Splitting).
+> 4. $\rightarrow$ **Cầu nối phương pháp luận trực tiếp sang Task 4**: Tạo cơ sở thực nghiệm vững chắc để đề xuất **các giải pháp cải tiến độc quyền của PI-Guard** (Định tuyến bất định 2 tầng kết hợp TF-IDF làm bộ lọc nhanh Tầng 1 và DeBERTa-v3 MOF làm bộ thẩm định Tầng 2).
+
+### 📸 Bằng chứng thực nghiệm về hiện tượng Overdefense trên Baseline từ khóa:
+
+![Đường cong suy giảm độ chính xác theo số lượng từ khóa kích hoạt](../../task_3_replication/Tier2_PIGuard_ACL2025/figures/02_empirical_plots/piguard_replication_keyword_decay_curve.png)
+*Hình 3: Thực nghiệm độc lập chứng minh độ chính xác của các mô hình dựa trên từ khóa (Keyword/TF-IDF) suy giảm nhanh chóng khi số lượng từ kích hoạt trong câu lành tính tăng lên (NotInject 1 -> 2 -> 3 trigger words), đòi hỏi mô hình ngữ nghĩa sâu DeBERTa-v3 làm chốt chặn Tầng 2.*
 
 ---
 
@@ -136,4 +150,4 @@ Không chỉ Intel Labs, nhiều công trình bảo mật AI hàng đầu thế 
 - **[[6]]** N. Jain et al., "Baseline Defenses for Adversarial Attacks on Language Models," in *Proc. NeurIPS Workshop on Robustness of Few-shot and Zero-shot Learning*, 2023. [arXiv:2309.00614](https://arxiv.org/pdf/2309.00614).
 
 <a id="ref21"></a>
-- **[[21]]** G. Salton and C. Buckley, "Term-weighting approaches in automatic text retrieval," *Information Processing & Management*, vol. 24, no. 5, pp. 513–523, 1988. [DOI: 10.1016/0306-4573(88)90021-0](https://doi.org/10.1016/0306-4573(88)90021-0).
+- **[[21]]** G. Salton and C. Buckley, "Term-weighting approaches in automatic text retrieval," *Information Processing & Management*, vol. 24, no. 5, pp. 513–523, 1988. DOI: `10.1016/0306-4573(88)90021-0` | [Semantic Scholar Open Access](https://www.semanticscholar.org/paper/e50a316f97c9a405aa000d883a633bd5707f1a34).

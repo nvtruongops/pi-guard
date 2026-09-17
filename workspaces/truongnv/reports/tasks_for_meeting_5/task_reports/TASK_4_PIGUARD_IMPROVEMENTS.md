@@ -80,6 +80,9 @@ Dưới đây là bảng tổng hợp toàn diện kết quả đo đạc thực
 | **04** | **InstructDetector**<br>*(EMNLP 2024 [[15]](#ref15))* | Findings EMNLP<br>[arXiv:2402.06774](https://arxiv.org/abs/2402.06774) | Hidden-State Residual Probing trên tầng ẩn LLM | 160 mẫu<br>(BIPIA Text/Code) | P50: **$3.97\text{ms}$**<br>P95: **$8.86\text{ms}$** | Acc = **$86.67\%$** (Text)<br>Acc = **$79.00\%$** (Code) | **$6.67\%$**<br>(Clean Text) | 🎯 **REPLICATED_VERIFIED**:<br>Phát hiện tiêm lệnh gián tiếp tốt, nhưng vi phạm nguyên tắc Black-box Proxy vì đòi hỏi can thiệp vào tầng ẩn LLM đích. |
 | **05** | **Li et al. (PIGuard)**<br>*(ACL 2025 Long Paper [[1]](#ref1))* | ACL 2025 Long<br>[arXiv:2410.22770](https://arxiv.org/abs/2410.22770) | DeBERTa-v3-base + Mitigating Overdefense for Free (MOF) | 1.579 mẫu<br>(WildGuard, NotInject, BIPIA) | P50: **$80.93\text{ms}$**<br>P95: **$102.11\text{ms}$** | NotInject = **$88.50\%$**<br>WildGuard = **$76.11\%$** | **$11.50\%$**<br>(NotInject) | 🏆 **CHAMPION TẦNG 2**:<br>Khớp $100\%$ công bố bài báo tại Table 1 & Table 7. Năng lực ngữ nghĩa sâu vượt trội, giải quyết Overdefense; cần Tầng 1 che chắn độ trễ. |
 
+![Bằng chứng y văn Bảng 1 PIGuard ACL 2025](../task_3_replication/Tier2_PIGuard_ACL2025/figures/01_paper_evidence/paper_p7_table_1_main_results.png)
+*Hình 2.1: Bằng chứng y văn trích từ Bảng 1 bài báo Hao Li et al. (ACL 2025 Long Paper [[1]](#ref1)), minh chứng hiệu năng và chi phí của các mô hình đối chuẩn.*
+
 ---
 
 ### 2.2. Phân tích nguyên nhân thất bại và lý do loại bỏ Ayub CAMLIS 2024
@@ -87,7 +90,7 @@ Dưới đây là bảng tổng hợp toàn diện kết quả đo đạc thực
 Mô hình của Ayub & Majumdar (CAMLIS 2024 [[2]](#ref2)) được cộng đồng chú ý vì công bố mã nguồn mở và tập dữ liệu lớn ($467.000$ mẫu). Tuy nhiên, khi nhóm triển khai thực nghiệm độc lập tại [`task_3_replication/Tier1_REJECTED_Ayub_CAMLIS2024/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier1_REJECTED_Ayub_CAMLIS2024/), mô hình bộc lộ **2 điểm nghẽn chí tử** khiến nhóm quyết định **loại bỏ hoàn toàn khỏi Tầng 1**:
 
 1. **Điểm nghẽn độ trễ trích xuất đặc trưng (Feature Extraction Latency Bottleneck)**:
-   - Trong bài báo gốc, tác giả Ayub chỉ đo thời gian thực thi của bộ phân loại (Logistic Regression/Random Forest) trên các vector NumPy đã được trích xuất sẵn ($< 0.1\text{ms}$).
+   - Trong bài báo gốc, tác giả Ayub chỉ đo thời lượng thực thi của bộ phân loại (Logistic Regression/Random Forest) trên các vector NumPy đã được trích xuất sẵn ($< 0.1\text{ms}$).
    - Trong môi trường vận hành thực tế của một Ingress Guardrail Proxy, chuỗi prompt gửi đến bắt buộc phải trải qua bước mã hóa sang không gian nhúng ngữ nghĩa qua `Sentence-Transformers all-MiniLM-L6-v2`.
    - Kết quả đo đạc thực nghiệm của nhóm cho thấy: Khâu trích xuất vector MiniLM tiêu tốn **$42.73\text{ms}$ (P95 lên tới $119.41\text{ms}$)** trên CPU! Khâu này chiếm hơn $99\%$ tổng thời gian xử lý của mô hình, khiến hệ thống không thể đáp ứng tiêu chuẩn $\text{P95} < 30\text{ms}$ (REQ-1).
 2. **Điểm nghẽn báo động giả nghiêm trọng (Catastrophic Overdefense Bias [[TN04]](#term-overdefense-mitigation))**:
@@ -197,7 +200,7 @@ flowchart TD
 ```
 
 #### Ý nghĩa vận hành của 3 trạng thái:
-1. **Trạng thái 1: FAST ALLOW ($P \le 0.15$) — Tự tin lành tính tuyệt đối**:
+1. **Trạng thái 1: FAST ALLOW ($P \le 0.15$) — Tự tin lành tính rất cao**:
    - Áp dụng cho các truy vấn đàm thoại, câu hỏi kiến thức phổ thông, logic toán học (*"Thủ đô của Việt Nam là gì?"*, *"Viết hàm tính giai thừa bằng Python"*).
    - **Hành động**: Chuyển thẳng tới downstream LLM trong vòng **$0.47\text{ms}$**. Người dùng không cảm nhận bất kỳ độ trễ nào từ rào chắn.
 2. **Trạng thái 2: FAST BLOCK ($P \ge 0.85$) — Tự tin tấn công rõ ràng**:
@@ -346,6 +349,9 @@ $$\mathbb{E}[\text{Latency}] = 0.826 \times 0.47\text{ms} + 0.174 \times (0.47\t
 - **Độ trễ trung bình toàn hệ thống**: Chỉ còn **$\sim 3.7\text{ms}$** (nhanh hơn **25 lần** so với việc chạy DeBERTa-v3 đơn lẻ)!
 - **Độ trễ phân vị 95 (P95 Latency)**: Đo đạc thực tế chỉ đạt **$19.8\text{ms}$**, thỏa mãn xuất sắc tiêu chuẩn an toàn $\text{P95} < 30\text{ms}$ (REQ-1).
 
+![Đo đạc thực nghiệm phân bố độ trễ Tầng 1 vs Tầng 2](../task_3_replication/Tier2_PIGuard_ACL2025/figures/02_empirical_plots/piguard_replication_latency_profile.png)
+*Hình 4.1: Đo đạc thực nghiệm phân bố độ trễ suy luận trên CPU, chứng minh ưu thế vượt trội của cơ chế định tuyến hai tầng so với Transformer đơn lẻ.*
+
 ---
 
 ### 4.3. Nén tỷ lệ báo động giả (FPR < 1.5%) thông qua Disentangled Attention
@@ -448,7 +454,7 @@ $$\text{Action}(x) = \begin{cases}
 #### 2. Tối ưu hóa hiệu năng tổng hợp:
 - **Xử lý tại Tầng 1**: **$82.6\%$** lưu lượng được giải quyết trong **$0.47\text{ms}$**.
 - **Chuyển tiếp Tầng 2**: Chỉ **$17.4\%$** lưu lượng bất định cần kích hoạt DeBERTa-v3.
-- **Kết quả đo đạc**: Độ trễ trung bình $\approx 3.7\text{ms}$, P95 $= 19.8\text{ms}$, F1 bảo toàn tuyệt đối ở mức **$0.9416$**.
+- **Kết quả đo đạc**: Độ trễ trung bình $\approx 3.7\text{ms}$, P95 $= 19.8\text{ms}$, F1 bảo toàn nguyên vẹn ở mức **$0.9416$**.
 
 ---
 
@@ -461,6 +467,9 @@ PI-Guard thiết kế mô-đun tiền xử lý chuẩn hóa nhẹ (*Lightweight 
 2. **Zero-Width Character Sanitizer**: Quét và bóc tách triệt để $100\%$ các byte vô hình (`\u200B`, `\u200C`, `\u200D`, `\uFEFF`) thường được dùng để băm nhỏ các từ khóa nhạy cảm.
 3. **Regex Decoder Shunt**: Tự động giải mã các chuỗi ngụy trang Base64, Hex, hoặc Leetspeak cơ bản trước khi đẩy vào bộ trích xuất đặc trưng TF-IDF.
 - **Chi phí thời gian**: Toàn bộ khâu tiền xử lý chỉ tiêu tốn **$0.12\text{ms}$/prompt**, nhưng giúp cải thiện hơn $26\%$ độ nhạy phát hiện trước các biến thể tấn công xáo trộn ký tự.
+
+![Đường cong suy giảm từ khóa đối kháng](../task_3_replication/Tier2_PIGuard_ACL2025/figures/02_empirical_plots/piguard_replication_keyword_decay_curve.png)
+*Hình 5.1: Đường cong suy giảm từ khóa đối kháng khi gặp xáo trộn ký tự, chứng minh sự cần thiết của Heuristic Scrubber kết hợp Character N-grams.*
 
 ---
 
@@ -487,7 +496,7 @@ Bảng dưới đây so sánh toàn diện kiến trúc PI-Guard với các gi�
 
 ### 6.2. Cơ Sở Bằng Chứng Khoa Học & Truy Nguyên Bốn Tầng (Scholarly Grounding & Four-Tier Provenance)
 
-Nhằm đảm bảo tính minh bạch học thuật tuyệt đối và loại bỏ hoàn toàn các nhận định suy đoán không có bảo chứng, dưới đây là xuất xứ chi tiết của từng số liệu trong Bảng 6.1:
+Nhằm đảm bảo tính minh bạch học thuật cao nhất và loại bỏ hoàn toàn các nhận định suy đoán không có bảo chứng, dưới đây là xuất xứ chi tiết của từng số liệu trong Bảng 6.1:
 
 #### 1. Bằng chứng đối chuẩn Llama Guard 3 (8B) (Meta AI 2024 [[19]](#ref19)):
 - **Nguồn xuất xứ chính thức**:

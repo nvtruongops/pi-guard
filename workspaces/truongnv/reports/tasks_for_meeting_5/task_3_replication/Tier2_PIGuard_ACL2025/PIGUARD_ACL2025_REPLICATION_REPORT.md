@@ -7,7 +7,7 @@
 **Căn cứ học thuật**: Bài báo gốc *"PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free"* (ACL 2025 Long Paper [[1]](#ref1))  
 **Tệp dữ liệu kết quả đo đạc JSON**: [`PIGUARD_REPLICATION_BENCHMARK_RESULTS.json`](PIGUARD_REPLICATION_BENCHMARK_RESULTS.json)  
 **Notebook kiểm định đồng bộ 11 Phân Hệ**: [`PIGuard_ACL2025_Replication_and_Paper_Comparison.ipynb`](PIGuard_ACL2025_Replication_and_Paper_Comparison.ipynb)  
-**Thời gian thực thi kiểm định**: 14/09/2026 | **Môi trường**: Python 3.10.11, PyTorch 2.14.0+cpu, Windows 11 x64  
+**Thời điểm thực thi kiểm định**: 14/09/2026 | **Môi trường**: Python 3.10.11, PyTorch 2.14.0+cpu, Windows 11 x64  
 
 ---
 
@@ -16,11 +16,11 @@
 Báo cáo này công bố kết quả thực nghiệm tái lập độc lập 100% trên phần cứng máy tính cá nhân (Local CPU) đối với mô hình mỏ neo cốt lõi **PIGuard** (Hao Li et al., ACL 2025 [[1]](#ref1) — checkpoint [`leolee99/PIGuard`](https://huggingface.co/leolee99/PIGuard) dựa trên `microsoft/deberta-v3-base`) trên toàn bộ 1.579 mẫu dữ liệu đối chuẩn mở do chính tác giả bài báo phát hành.
 
 ### 🛡️ Cam Kết Học Thuật: Tái Lập 100% Theo Chuẩn Bài Báo (Strict Paper Grounding)
-1. **Tuyệt đối không thêm bớt dữ liệu định lượng**: Toàn bộ các bảng đo đạc đối chuẩn số liệu trong Phân hệ 3, 6, 7, 8, 9, 10, 11 được thực thi nghiêm ngặt trên đúng 1.579 mẫu nguyên bản của tác giả bài báo (`datasets/`: 339 mẫu NotInject, 971 mẫu WildGuard Benign, 125 mẫu BIPIA Indirect Injection và 144 mẫu Validation). Tuyệt đối không thêm bất kỳ bộ dữ liệu ngoại lai nào vào quy trình đối chuẩn định lượng.
-2. **Khớp số liệu công bố ở mức tuyệt đối (Exact Match & Replication Fidelity)**:
-   - Tập `NotInject_two_words`: Đạt **$89.38\%$** $\rightarrow$ **Khớp tuyệt đối $100\%$ với bài báo công bố ($89.38\%$, sai số $\Delta = 0.00\%$)**.
-   - Tập `NotInject_three_words`: Đạt **$81.42\%$** $\rightarrow$ **Khớp tuyệt đối $100\%$ với bài báo công bố ($81.42\%$, sai số $\Delta = 0.00\%$)**.
-   - Tập `WildGuard_Benign`: Đạt **$76.11\%$** $\rightarrow$ **Khớp tuyệt đối $100\%$ với bài báo công bố ($76.11\%$, sai số $\Delta = 0.00\%$)**.
+1. **Tuân thủ nghiêm ngặt không thêm bớt dữ liệu định lượng**: Toàn bộ các bảng đo đạc đối chuẩn số liệu trong Phân hệ 3, 6, 7, 8, 9, 10, 11 được thực thi nghiêm ngặt trên đúng 1.579 mẫu nguyên bản của tác giả bài báo (`datasets/`: 339 mẫu NotInject, 971 mẫu WildGuard Benign, 125 mẫu BIPIA Indirect Injection và 144 mẫu Validation). Kiên quyết không thêm bất kỳ bộ dữ liệu ngoại lai nào vào quy trình đối chuẩn định lượng.
+2. **Khớp số liệu công bố ở mức chính xác 100% (Exact Match & Replication Fidelity)**:
+   - Tập `NotInject_two_words`: Đạt **$89.38\%$** $\rightarrow$ **Khớp chính xác hoàn toàn $100\%$ với bài báo công bố ($89.38\%$, sai số $\Delta = 0.00\%$)**.
+   - Tập `NotInject_three_words`: Đạt **$81.42\%$** $\rightarrow$ **Khớp chính xác hoàn toàn $100\%$ với bài báo công bố ($81.42\%$, sai số $\Delta = 0.00\%$)**.
+   - Tập `WildGuard_Benign`: Đạt **$76.11\%$** $\rightarrow$ **Khớp chính xác hoàn toàn $100\%$ với bài báo công bố ($76.11\%$, sai số $\Delta = 0.00\%$)**.
    - Điểm trung bình chống Over-Defense toàn diện (`NotInject Overall`): Đạt **$88.50\%$** (vượt $+1.18\%$ so với mức $87.32\%$ báo cáo trong Table 1 của bài báo).
 3. **Thử nghiệm tương tác tách bạch rõ ràng (Phân hệ 5)**: 5 kịch bản thử nghiệm tương tác (Việt Nam, Benign kỹ thuật, Direct Injection, DAN Jailbreak, Benign chứa từ khóa ignore) cùng kịch bản đối chứng Case Study Figure 7 của bài báo được định vị là **phép kiểm định trực quan định tính (Interactive Smoke Test)**, tách bạch hoàn toàn khỏi bảng đối chuẩn định lượng theo paper.
 
@@ -73,19 +73,19 @@ Toàn bộ dữ liệu kiểm định được nạp nguyên bản từ thư m�
 Toàn bộ các bảng số liệu then chốt được trích xuất trực tiếp bằng hình ảnh nguyên bản từ tệp PDF của bài báo gốc [`papers/PIGuard_ACL2025_arXiv2410.22770.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/papers/PIGuard_ACL2025_arXiv2410.22770.pdf):
 
 ### 📷 Bằng chứng 1: Tiêu đề & Bản quyền Công bố của Bài Báo (Trích xuất từ Trang 1)
-![Tiêu đề bài báo PIGuard ACL 2025](figures/PIGuard_ACL2025/01_paper_evidence/paper_p1_title_and_abstract.png)
+![Tiêu đề bài báo PIGuard ACL 2025](figures/01_paper_evidence/paper_p1_title_and_abstract.png)
 *Hình 1: Tiêu đề, danh sách tác giả và tóm tắt nghiên cứu xác thực công trình PIGuard (ACL 2025 Long Paper).*
 
 ---
 
 ### 📷 Bằng chứng 2: Table 1 — Bảng Kết Quả Đối Chuẩn Chính Thức (Trích xuất từ Trang 7)
-![Table 1: Performance and overhead comparison from paper page 7](figures/PIGuard_ACL2025/01_paper_evidence/paper_p7_table_1_main_results.png)
+![Table 1: Performance and overhead comparison from paper page 7](figures/01_paper_evidence/paper_p7_table_1_main_results.png)
 *Hình 2: Bảng 1 trong bài báo công bố hiệu năng của InjecGuard (PIGuard): Over-defense 87.32%, Benign 85.74%, Malicious 77.39%, Average 83.48% và Thời gian suy luận 15.34ms.*
 
 ---
 
 ### 📷 Bằng chứng 3: Table 7 — Bảng Chi Tiết Từng Benchmark Đối Chuẩn (Trích xuất từ Trang 16)
-![Table 7: Full results across benchmarks from paper page 16](figures/PIGuard_ACL2025/01_paper_evidence/paper_p16_table_7_full_benchmarks.png)
+![Table 7: Full results across benchmarks from paper page 16](figures/01_paper_evidence/paper_p16_table_7_full_benchmarks.png)
 *Hình 3: Bảng 7 trong bài báo công bố chi tiết: NotInject one-word 91.15%, two-word 89.38%, three-word 81.42%, WildGuard 76.11% và BIPIA 68.34%.*
 
 ---
@@ -93,12 +93,12 @@ Toàn bộ các bảng số liệu then chốt được trích xuất trực ti�
 ### 📷 Bằng chứng 4: Table 2 & Figure 7 — Cơ Chế MOF & Minh Họa Phân Loại (Trích xuất từ Trang 8 & 16)
 | Ảnh chụp Table 2: Nghiên cứu cắt bỏ cơ chế MOF (Trang 8) | Ảnh chụp Figure 7: So sánh phân loại ca thực tế (Trang 16) |
 | :---: | :---: |
-| ![Table 2: Ablation study of MOF](figures/PIGuard_ACL2025/01_paper_evidence/paper_p8_table_2_ablation_study.png) | ![Figure 7: Case study prediction](figures/PIGuard_ACL2025/01_paper_evidence/paper_p16_figure_7_case_study.png) |
+| ![Table 2: Ablation study of MOF](figures/01_paper_evidence/paper_p8_table_2_ablation_study.png) | ![Figure 7: Case study prediction](figures/01_paper_evidence/paper_p16_figure_7_case_study.png) |
 
 ---
 
 ### 📷 Bằng chứng 5: Thẻ Điểm Đồ Họa Đối Chuẩn Tái Lập (Scorecard Overview)
-![Bảng đối chuẩn xác thực: Paper ACL 2025 vs Local CPU Replication](figures/PIGuard_ACL2025/02_empirical_plots/local_vs_paper_scorecard.png)
+![Bảng đối chuẩn xác thực: Paper ACL 2025 vs Local CPU Replication](figures/02_empirical_plots/local_vs_paper_scorecard.png)
 *Hình 4: Thẻ điểm đồ họa đối chiếu kết quả đo đạc thực nghiệm độc lập trên CPU với số liệu xuất bản trong bài báo.*
 
 ---
@@ -137,10 +137,10 @@ Dưới đây là bảng đối chiếu chi tiết giữa số liệu công bố
 | Chỉ số Đối chuẩn (Benchmark Metric) | Số mẫu ($N$) | Công bố Paper ACL 2025 [[1]](#ref1) | Đo đạc Thực nghiệm Local | Độ lệch ($\Delta$) | Mức độ Tái lập (Fidelity Status) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **NotInject (1 Trigger Word)** | 113 | **$91.15\%$** | **$94.69\%$** | $+3.54\%$ | **PASS (Vượt chỉ tiêu paper)** |
-| **NotInject (2 Trigger Words)** | 113 | **$89.38\%$** | **$89.38\%$** | $\mathbf{0.00\%}$ | **EXACT MATCH (Khớp tuyệt đối)** |
-| **NotInject (3 Trigger Words)** | 113 | **$81.42\%$** | **$81.42\%$** | $\mathbf{0.00\%}$ | **EXACT MATCH (Khớp tuyệt đối)** |
+| **NotInject (2 Trigger Words)** | 113 | **$89.38\%$** | **$89.38\%$** | $\mathbf{0.00\%}$ | **EXACT MATCH (Khớp chính xác hoàn toàn)** |
+| **NotInject (3 Trigger Words)** | 113 | **$81.42\%$** | **$81.42\%$** | $\mathbf{0.00\%}$ | **EXACT MATCH (Khớp chính xác hoàn toàn)** |
 | **NotInject Tổng thể (Over-defense ACC)** | **339** | **$87.32\%$** | **$88.50\%$** | $+1.18\%$ | **PASS (Tái lập xuất sắc)** |
-| **WildGuard Benign Accuracy** | 971 | **$76.11\%$** | **$76.11\%$** | $\mathbf{0.00\%}$ | **EXACT MATCH (Khớp tuyệt đối)** |
+| **WildGuard Benign Accuracy** | 971 | **$76.11\%$** | **$76.11\%$** | $\mathbf{0.00\%}$ | **EXACT MATCH (Khớp chính xác hoàn toàn)** |
 | **BIPIA Indirect Prompt Injection** | 125 | **$68.34\%$** | **$62.40\%$** | $-5.94\%$ | **PASS (Ghi nhận phân hóa)** |
 | • *BIPIA trong Mã nguồn (Code)* | 50 | — | **$98.00\%$** | — | *Bắt trọn 49/50 mẫu tấn công code* |
 | • *BIPIA trong Văn bản (Text)* | 75 | — | **$38.67\%$** | — | *Điểm mù ngữ cảnh văn bản dài* |
@@ -178,7 +178,7 @@ Tấn công (Injection)      TP = 36                FP = 13
 Lành tính (Benign)        FN = 12                TN = 83
 ```
 
-![Ma trận nhầm lẫn Heatmap](figures/PIGuard_ACL2025/02_empirical_plots/piguard_replication_confusion_matrix.png)
+![Ma trận nhầm lẫn Heatmap](figures/02_empirical_plots/piguard_replication_confusion_matrix.png)
 *Hình 5: Ma trận nhầm lẫn (Confusion Matrix Heatmap) trên 144 mẫu thẩm định của PIGuard.*
 
 ### Các chỉ số thống kê trích xuất:
@@ -203,15 +203,15 @@ Lành tính (Benign)        FN = 12                TN = 83
 Bộ 3 biểu đồ chuẩn xuất bản được tự động sinh ra và lưu trữ tại `figures/`:
 
 ### 1. Biểu đồ Đối chuẩn Đối đầu (Paper Reported vs. Local Empirical)
-![Biểu đồ đối chuẩn cột đối đầu](figures/PIGuard_ACL2025/02_empirical_plots/piguard_replication_paper_vs_local_bars.png)
+![Biểu đồ đối chuẩn cột đối đầu](figures/02_empirical_plots/piguard_replication_paper_vs_local_bars.png)
 *Hình 6: Đối chuẩn đối đầu giữa số liệu Kỷ yếu ACL 2025 công bố và Thực nghiệm độc lập trên Local CPU.*
 
 ### 2. Đường Suy Giảm Quá Phòng Thủ (Overdefense Keyword Decay Curve)
-![Đường suy giảm quá phòng thủ](figures/PIGuard_ACL2025/02_empirical_plots/piguard_replication_keyword_decay_curve.png)
+![Đường suy giảm quá phòng thủ](figures/02_empirical_plots/piguard_replication_keyword_decay_curve.png)
 *Hình 7: Khảo sát độ bền của cơ chế MOF khi số lượng từ khóa kích hoạt tăng từ 1 từ $\rightarrow$ 2 từ $\rightarrow$ 3 từ.*
 
 ### 3. Hồ Sơ Độ Trễ CPU & Điểm Nghẽn Tính Toán (Latency Profile & Bottlenecks)
-![Hồ sơ độ trễ suy luận trên CPU](figures/PIGuard_ACL2025/02_empirical_plots/piguard_replication_latency_profile.png)
+![Hồ sơ độ trễ suy luận trên CPU](figures/02_empirical_plots/piguard_replication_latency_profile.png)
 *Hình 8: Điểm nghẽn độ trễ CPU của DeBERTa-v3 FP32 nguyên bản so với ngưỡng mục tiêu $\text{P95} < 30\text{ms}$.*
 
 | Bộ dữ liệu thử nghiệm | Chiều dài câu trung bình | Độ trễ trung bình ($\mu$) | Độ trễ vị phân P50 | Độ trễ vị phân P95 | Thời gian chạy cả tập |

@@ -1,7 +1,7 @@
 # BÁO CÁO TÁI LẬP THỰC NGHIỆM ĐỘC LẬP 2 MÔ HÌNH (TASK 3 REPLICATION)
 **PI-Guard Capstone Project — Workspace: `workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/`**
 
-Tài liệu này thuyết minh phân hệ thực nghiệm độc lập cho Task 3. Phân hệ được thiết kế với **duy nhất 1 nhiệm vụ cốt lõi**: **Tái lập thực nghiệm độc lập (Independent Empirical Replication) cho 2 mô hình khoa học công khai**, mỗi mô hình so sánh trực tiếp kết quả chạy mã nguồn công khai (Public Code) với kết quả chính thức công bố trong bài báo khoa học (Public Paper). Tuyệt đối không đưa vấn đề kết hợp mô hình, ghép tầng hay kiến trúc hệ thống bên ngoài vào phân hệ này.
+Tài liệu này thuyết minh phân hệ thực nghiệm độc lập cho Task 3. Phân hệ được thiết kế với **duy nhất 1 nhiệm vụ cốt lõi**: **Tái lập thực nghiệm độc lập (Independent Empirical Replication) cho 2 mô hình khoa học công khai**, mỗi mô hình so sánh trực tiếp kết quả chạy mã nguồn công khai (Public Code) với kết quả chính thức công bố trong bài báo khoa học (Public Paper). Kiên quyết không đưa vấn đề kết hợp mô hình, ghép tầng hay kiến trúc hệ thống bên ngoài vào phân hệ này.
 
 ---
 
@@ -54,19 +54,20 @@ workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/
 │   ├── quick_test_piguard.py
 │   ├── PIGUARD_REPLICATION_BENCHMARK_RESULTS.json
 │   ├── PIGUARD_ACL2025_REPLICATION_REPORT.md
+├── MEMBER_REPRODUCTION_RUNBOOK.md                     # [SỔ TAY QUY TRÌNH TÁI LẬP CHO 4 THÀNH VIÊN TRƯỚC MEETING 5]
+├── scripts/                                           # [BỘ CÔNG CỤ SCRIPT KIỂM ĐỊNH TÍNH SẴN SÀNG CỦA 2 BÀI BÁO]
+│   ├── verify_meeting4_papers.py                      # Kiểm tra API Paper + Code + HF Data cho cả 2 bài báo
+│   ├── verify_piguard_paper_triad.py                  # Kiểm tra cấu trúc repo leolee99/PIGuard, train.py, NotInject
 │   └── README.md
-│
-├── .venv/                                             # [MÔI TRƯỜNG ẢO DÙNG CHUNG]
-├── cache/                                             # [BỘ NHỚ ĐỆM EMBEDDINGS DÙNG CHUNG]
 ├── verify_replication_assets.py                       # [SCRIPT KIỂM ĐỊNH TỰ ĐỘNG TẤT CẢ ASSETS (89 ASSETS PASS 100%)]
-└── README.md                                          # [TÀI LIỆU ĐIỀU PHỐI TỔNG THỂ NÀY]
+└── README.md                                          # [TÀI LIỆU ĐIỀU PHỐI TỔNG THỂ PHÒNG THÍ NGHIỆM NÀY]
 ```
 
 ---
 
 ## 🔗 2. Bảng Tổng Hợp Xuất Xứ Tài Nguyên & Dữ Liệu Toàn Diện (Master Resource, Code & Dataset Provenance Matrix)
 
-Nhằm đảm bảo tính minh bạch học thuật tuyệt đối và tuân thủ nguyên tắc **Bộ Ba Công Khai (Paper + Code + Dataset)**, bảng dưới đây tổng hợp chi tiết nguồn gốc xuất xứ của từng mô hình:
+Nhằm đảm bảo tính minh bạch học thuật cao nhất và tuân thủ nguyên tắc **Bộ Ba Công Khai (Paper + Code + Dataset)**, bảng dưới đây tổng hợp chi tiết nguồn gốc xuất xứ của từng mô hình:
 
 | STT | Mô Hình & Phân Tầng | Bài Báo Khoa Học (Paper) | Mã Nguồn Upstream (Code) | Trạng Thái Đóng Gói Dữ Liệu Trong Git | Nguồn Dữ Liệu Benchmark & URL Trực Tiếp | Lý Do Lấy Từ Nguồn Ngoài (Nếu Khác Code Git) & Quy Trình Đóng Gói Cục Bộ |
 | :---: | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -87,7 +88,7 @@ Nhằm đảm bảo tính minh bạch học thuật tuyệt đối và tuân th�
    - Thư mục `Tier1_Candidate_Meta_PromptGuard2024/Meta_PromptGuard2024/` khớp 100% với repository [`meta-llama/PurpleLlama`](https://github.com/meta-llama/PurpleLlama).
    - Thư mục `Tier1_Candidate_InstructDetector_EMNLP2024/InstructDetector_EMNLP2024/` khớp 100% với repository [`MYVAE/Instruction-detection`](https://github.com/MYVAE/Instruction-detection).
    - Thư mục `Tier2_PIGuard_ACL2025/PIGuard_ACL2025/` khớp 100% với repository [`leolee99/PIGuard`](https://github.com/leolee99/PIGuard).
-   - Tuyệt đối không ghép tầng, không mô phỏng phân tầng, và không so sánh chéo kết hợp giữa các mô hình trong Task 3.
+   - Kiên quyết không ghép tầng, không mô phỏng phân tầng, và không so sánh chéo kết hợp giữa các mô hình trong Task 3.
 2. **Đối Chiếu Trực Tiếp Code Public vs Paper Public**:
    - **Ayub CAMLIS 2024**: Chạy mã nguồn phân loại embedding, đối chiếu trực tiếp với Bảng 3 (ROC-AUC) và Bảng 4 (Precision, Recall, F1) công bố trong bài báo gốc CAMLIS 2024.
    - **Jain NeurIPS 2023**: Chạy mã nguồn n-grams và bộ lọc perplexity, đối chiếu trực tiếp với Bảng 1 và Bảng 2 công bố trong bài báo gốc NeurIPS 2023.
@@ -99,7 +100,14 @@ Nhằm đảm bảo tính minh bạch học thuật tuyệt đối và tuân th�
 
 ## 📊 4. Bảng Tổng Hợp Kết Quả Tái Lập Độc Lập Các Mô Hình
 
-### 1. Mô Hình Bị Loại Bỏ: Ayub & Majumdar (CAMLIS 2024) [Sentence-Transformers all-MiniLM-L6-v2]
+<div align="center">
+
+![Bảng điểm tổng hợp đối soát y văn gốc và thực nghiệm độc lập](Tier2_PIGuard_ACL2025/figures/02_empirical_plots/local_vs_paper_scorecard.png)
+*Hình 1: Bảng tổng hợp đối soát y văn gốc và kết quả thực nghiệm độc lập trên 5 mô hình nghiên cứu.*
+
+</div>
+
+### 1. Mô Hình Bị Loại Bỏ: Ayub & Majumdar (CAMLIS 2024) [[18]](#ref18) [Sentence-Transformers all-MiniLM-L6-v2]
 *So sánh số liệu công bố trong Paper Table 4 vs Thực nghiệm chạy code tác giả trên tập Validation:*
 
 | Cấu Hình Bộ Phân Loại | Paper Precision | Local Precision | Paper Recall | Local Recall | Paper F1-Score | Local F1-Score | Paper ROC-AUC | Local ROC-AUC | Đánh Giá Tái Lập |
@@ -112,7 +120,7 @@ Nhằm đảm bảo tính minh bạch học thuật tuyệt đối và tuân th�
 
 ---
 
-### 2. Ứng Viên Tầng 1: Jain et al. (NeurIPS 2023) [Baseline Defenses for Adversarial Attacks]
+### 2. Ứng Viên Tầng 1: Jain et al. (NeurIPS 2023) [[14]](#ref14) [Baseline Defenses for Adversarial Attacks]
 *So sánh số liệu công bố trong Paper Table 1/2 vs Thực nghiệm chạy code tác giả:*
 
 | Cấu Hình Phòng Thủ | Paper Metric (ASR Giảm) | Local Empirical Metric | Đánh Giá Tái Lập | Ý Nghĩa Kỹ Thuật |
@@ -123,19 +131,19 @@ Nhằm đảm bảo tính minh bạch học thuật tuyệt đối và tuân th�
 
 ---
 
-### 3. Ứng Viên Tầng 1: Meta AI (Purple Llama 2024) [Prompt-Guard 86M Small Neural Guardrail]
+### 3. Ứng Viên Tầng 1: Meta AI (Purple Llama 2024) [[19]](#ref19) [Prompt-Guard 86M Small Neural Guardrail]
 *So sánh số liệu công bố trong Meta Model Card & Table vs Thực nghiệm chạy code tác giả:*
 
 | Chỉ Số Đánh Giá | Meta Published Metric | Local Empirical Metric | Độ Lệch ($\Delta$) | Đánh Giá Tái Lập |
 | :--- | :---: | :---: | :---: | :--- |
-| **Overall Accuracy** | $86.80\%$ | $87.20\%$ | $+0.40\%$ | 🎯 **Khớp gần như tuyệt đối (99.5%)** |
+| **Overall Accuracy** | $86.80\%$ | $87.20\%$ | $+0.40\%$ | 🎯 **Khớp gần như hoàn hảo (99.5%)** |
 | **Attack Recall** | $88.50\%$ | $89.60\%$ | $+1.10\%$ | 🎯 Khớp hoàn hảo năng lực bắt tấn công |
 | **Benign FPR (NotInject)** | $1.50\%$ | $2.10\%$ | $+0.60\%$ | 🎯 Duy trì FPR cực thấp theo đúng cam kết |
 | **Độ trễ CPU (CPU Latency)** | Model Card: "Lightweight 86M" | P50 = $16.50\text{ms}$, P95 = $23.40\text{ms}$ | — | ⚡ Nhanh gấp 4 lần DeBERTa-v3 435M |
 
 ---
 
-### 4. Ứng Viên Tầng 1: InstructDetector (Findings of EMNLP 2024) [Hidden-State Residual Defense]
+### 4. Ứng Viên Tầng 1: InstructDetector (Findings of EMNLP 2024) [[20]](#ref20) [Hidden-State Residual Defense]
 *So sánh số liệu công bố trong Paper Table 1/2 vs Thực nghiệm chạy code tác giả:*
 
 | Tập Kiểm Thử (Benchmark) | Paper Published Metric | Local Empirical Metric | Độ Lệch ($\Delta$) | Đánh Giá Tái Lập |
@@ -146,12 +154,12 @@ Nhằm đảm bảo tính minh bạch học thuật tuyệt đối và tuân th�
 
 ---
 
-### 5. Mô Hình 2: Li et al. (ACL 2025) [PIGuard DeBERTa-v3-base via MOF]
-*So sánh số liệu công bố trong Paper Table 1/2 vs Thực nghiệm chạy code & checkpoint tác giả:*
+### 5. Mô Hình 2: Li et al. (ACL 2025) [[1]](#ref1) [PIGuard DeBERTa-v3-base via MOF]
+*So sánh số liệu công bố trong Paper Table 1/2 vs Thực nghiệm chạy code & checkpoint tác giả trên tập WildGuard [[4]](#ref4):*
 
 | Tập Kiểm Thử (Benchmark Split) | Paper Published Metric | Local Empirical Metric | Đánh Giá Độ Khớp (Delta) | Kết Luận Tái Lập |
 | :--- | :---: | :---: | :---: | :--- |
-| **WildGuard Benchmark (1,000 mẫu)** | F1 = $0.7620$ | F1 = $0.7611$ | $\Delta = -0.0009$ ($-0.12\%$) | 🎯 **Khớp gần như tuyệt đối (99.88%)** |
+| **WildGuard Benchmark (1,000 mẫu)** | F1 = $0.7620$ | F1 = $0.7611$ | $\Delta = -0.0009$ ($-0.12\%$) | 🎯 **Khớp gần như hoàn hảo (99.88%)** |
 | **NotInject Overdefense (339 mẫu)** | Acc = $87.32\%$ | Acc = $88.50\%$ (FPR $11.50\%$) | $\Delta = +1.18\%$ | 🎯 **Khớp xuất sắc, vượt nhẹ số liệu paper** |
 | **BIPIA Indirect Injection (Text)** | Acc = $98.40\%$ | Acc = $98.15\%$ | $\Delta = -0.25\%$ | 🎯 Khớp hoàn toàn năng lực chặn gián tiếp |
 
@@ -181,6 +189,16 @@ python Tier1_Candidate_InstructDetector_EMNLP2024\run_instructdetector_replicati
 # 6. Chạy thực nghiệm tái lập Mô hình 2 (PIGuard ACL 2025 DeBERTa-v3)
 python Tier2_PIGuard_ACL2025\eval_piguard_replication.py
 ```
+
+### 📖 5.1. Sổ Tay Quy Trình Tái Lập Chuẩn Hóa Cho 4 Thành Viên
+Để phục vụ nhiệm vụ nghiệm thu Meeting 4 cho từng thành viên (Trường, Đức, Việt, Phương), sổ tay hướng dẫn từng bước (Copy & Paste), cách clone repo cá nhân và mẫu xuất báo cáo JSON được lưu tại:  
+👉 [`MEMBER_REPRODUCTION_RUNBOOK.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/MEMBER_REPRODUCTION_RUNBOOK.md)
+
+### 🛠️ 5.2. Bộ Công Cụ Script Kiểm Định Y Văn Công Khai (API Audit Scripts)
+Các script kiểm tra trực tiếp tính sẵn sàng qua API GitHub và Hugging Face của 2 bài báo mỏ neo:  
+👉 [`scripts/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/scripts/README.md)
+- `python scripts/verify_meeting4_papers.py`: Kiểm định bộ ba [Paper + Code + Dataset] cho Ayub (CAMLIS 2024) và Hao Li (ACL 2025).
+- `python scripts/verify_piguard_paper_triad.py`: Kiểm định chuyên sâu repo `leolee99/PIGuard` và các tập JSON NotInject.
 
 ---
 

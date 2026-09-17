@@ -1,7 +1,7 @@
 # BÁO CÁO TÁI LẬP THỰC NGHIỆM ĐỘC LẬP: JAIN ET AL. (NEURIPS 2023 WORKSHOP)
 
 > **Mô hình**: Baseline Defenses using Character N-Grams & Perplexity Filtering  
-> **Bài báo gốc**: *Baseline Defenses for Adversarial Attacks Against Aligned Language Models* (NeurIPS 2023 ML Safety Workshop / arXiv:2309.00614)  
+> **Bài báo gốc**: *Baseline Defenses for Adversarial Attacks Against Aligned Language Models* (NeurIPS 2023 ML Safety Workshop [[1]](#ref1) / arXiv:2309.00614)  
 > **Kho mã nguồn**: [https://github.com/neelsjain/baseline-defenses](https://github.com/neelsjain/baseline-defenses)  
 > **Tài liệu tham khảo dự án**: Tham chiếu mã `[15]` trong [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md)  
 > **Phân hệ**: `workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier1_Candidate_Jain_NeurIPS2023/`  
@@ -69,6 +69,20 @@ Tier1_Candidate_Jain_NeurIPS2023/
 | **Overall Accuracy / F1** | Không công bố F1 trực tiếp (chỉ đo ASR) | **Accuracy = $97.34\%$** \| **F1 = $0.9728$** \| **ROC-AUC = $0.9918$** | 🎯 **Rất cao**: Cung cấp bằng chứng thực nghiệm chi tiết hơn cả bài báo gốc. |
 | **Độ trễ trung bình trên CPU** | $\approx 2.5 - 5.0\text{ms}$ (Bảng 2) | **$5.75\text{ms}$** (P50 = $4.80\text{ms}$, P95 = $18.77\text{ms}$) | 🎯 **Khớp hoàn hảo** với nhận định về tính gọn nhẹ của tác giả. |
 
+### 📷 4.1. Bằng Chứng Y Văn & Đồ Thị Thực Nghiệm Đối Chuẩn
+
+| Bằng chứng Y văn 1: Tiêu đề & Abstract Bài báo | Bằng chứng Y văn 2: Table 1 Kết quả Phòng thủ |
+| :---: | :---: |
+| ![Tiêu đề bài báo Jain et al.](figures/01_paper_evidence/jain_p1_title_and_abstract.png) | ![Table 1 Defense Results](figures/01_paper_evidence/jain_p6_table_1_defense_results.png) |
+
+| Bằng chứng Y văn 3: Table 2 Đánh đổi Perplexity | Biểu đồ Thực nghiệm 1: Đối chuẩn Paper vs Local |
+| :---: | :---: |
+| ![Table 2 Perplexity Results](figures/01_paper_evidence/jain_p7_table_2_perplexity_results.png) | ![Đối chuẩn Giảm thiểu Tấn công](figures/02_empirical_plots/jain_replication_paper_vs_local_mitigation.png) |
+
+| Biểu đồ Thực nghiệm 2: Hồ sơ Độ trễ CPU |
+| :---: |
+| ![Hồ sơ độ trễ CPU Jain](figures/02_empirical_plots/jain_latency_profile.png) |
+
 ---
 
 ## 💻 5. Hướng Dẫn Tái Lập Thực Nghiệm
@@ -85,3 +99,9 @@ Script sẽ tự động nạp dữ liệu từ `./datasets/jain_eval_benchmark.
 
 1. **Khẳng định khoa học**: Mã nguồn và phương pháp của Jain et al. được tái lập độc lập thành công 100% với dữ liệu thực tế khép kín.
 2. **Vai trò đối với PI-Guard**: Đây là bằng chứng học thuật vững chắc để PI-Guard kế thừa ý tưởng phân loại thống kê n-grams làm bộ lọc sơ bộ siêu nhanh cho Tầng 1.
+
+---
+
+## 📚 7. Tài Liệu Tham Khảo (References)
+
+* <a id="ref1"></a>**[[1]]** Neel Jain, Avi Schwarzschild, Yuxin Wen, et al. 2023. *Baseline Defenses for Adversarial Attacks Against Aligned Language Models*. In *NeurIPS 2023 Workshop on Robustness of Few-shot and Zero-shot Learning in Foundation Models*. arXiv:2309.00614. Open-Access PDF: [https://arxiv.org/pdf/2309.00614](https://arxiv.org/pdf/2309.00614).

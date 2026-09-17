@@ -165,6 +165,13 @@ Toàn bộ văn bản sau ghép nối được bộ Tokenizer bóc tách thành 
 > - **Trong hệ điều hành & cơ sở dữ liệu truyền thống**: Có cơ chế phân tách đặc quyền phần cứng rạch ròi ([NX-bit](#term-nx-bit) [[TN2]](#term-nx-bit), Ring 0 vs. Ring 3, [Prepared Statements](#term-prepared-statements) [[TN3]](#term-prepared-statements)). Dữ liệu người dùng $U$ không bao giờ có thể "biến hình" thành mã lệnh thực thi.
 > - **Trong mô hình Transformer tự hồi quy**: **Hoàn toàn không có cờ phân quyền token**. Đối với ma trận Self-Attention, Token 1 của lập trình viên và Token 40 của kẻ tấn công có **vị thế bình đẳng 100%**. Token ở cuối chuỗi được hưởng lợi từ hiệu ứng chú ý thiên lệch (*Recency Bias*) và ngữ nghĩa mệnh lệnh cưỡng chế mạnh, khiến LLM lãng quên chỉ thị ban đầu và răm rắp thực thi yêu cầu của kẻ tấn công!
 
+### 📷 Minh Chứng Y Văn: Điểm Mù Ngữ Cảnh và Phân Định Ranh Giới (Li et al. ACL 2025 [[10]](#ref10))
+
+| Bằng chứng Y văn: Case Study Phân loại Chỉ thị và Dữ liệu RAG |
+| :---: |
+| ![Figure 7 Case Study Prediction](../task_3_replication/Tier2_PIGuard_ACL2025/figures/01_paper_evidence/paper_p16_figure_7_case_study.png) |
+| *Hình 1.1: Trích xuất Figure 7 từ bài báo PIGuard (ACL 2025 [[10]](#ref10)): Minh họa việc phân biệt giữa câu lệnh hợp lệ và câu lệnh tiêm nhiễm giả mạo trong ngữ cảnh phẳng.* |
+
 ---
 
 ### 4.2. Cơ Chế Tiêm Nhiễm Gián Tiếp Qua Tải Lên Tệp Tin (File Upload & Document Parsing Ingress)
@@ -312,7 +319,7 @@ Nghiên cứu của Wei et al. chỉ ra rằng các kỹ thuật Jailbreak khai 
 
 ## 6. NGUYÊN LÝ "MÔ HÌNH AN TOÀN 100% VẪN DÍNH PROMPT INJECTION"
 
-Một trong những nhận định sâu sắc nhất mà Trưởng nhóm cần bảo vệ trước Hội đồng chấm là: **Tại sao một LLM đã đạt độ an toàn tuyệt đối trước mọi đòn Jailbreak vẫn có thể bị Prompt Injection đánh bại dễ dàng?**
+Một trong những nhận định sâu sắc nhất mà Trưởng nhóm cần bảo vệ trước Hội đồng chấm là: **Tại sao một LLM đã đạt độ an toàn rất cao trước mọi đòn Jailbreak vẫn có thể bị Prompt Injection đánh bại dễ dàng?**
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
@@ -430,6 +437,7 @@ Toàn bộ các nội dung kỹ thuật chuyên sâu về mô hình toán học,
 - <a id="ref5"></a>**[[5]]** A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in *Proc. NeurIPS*, vol. 36, 2023. [arXiv:2307.02483](https://arxiv.org/pdf/2307.02483.pdf).
 - <a id="ref7"></a>**[[7]]** NIST, "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations," *NIST Trustworthy and Responsible AI*, NIST AI 100-2e2025, 2025. DOI: `10.6028/NIST.AI.100-2e2025`.
 - <a id="ref8"></a>**[[8]]** OWASP, "OWASP Top 10 for Large Language Model Applications," *OWASP Foundation*, LLM01:2025, 2025. [GitHub: OWASP/www-project-top-10-for-large-language-model-applications](https://github.com/OWASP/www-project-top-10-for-large-language-model-applications).
+- <a id="ref10"></a>**[[10]]** H. Li, X. Liu, N. Zhang, and C. Xiao, "PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free," in *Proc. 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025)*, arXiv:2410.22770, 2024. [arXiv:2410.22770](https://arxiv.org/pdf/2410.22770.pdf).
 - <a id="ref11"></a>**[[11]]** X. Shen et al., "Do Anything Now: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in *Proc. ACM CCS*, 2024. [arXiv:2308.03825](https://arxiv.org/pdf/2308.03825.pdf).
 - <a id="ref13"></a>**[[13]]** A. Zou et al., "Universal and Transferable Adversarial Attacks on Aligned Language Models," *arXiv preprint arXiv:2307.15043*, 2023. [arXiv:2307.15043](https://arxiv.org/pdf/2307.15043.pdf).
 - <a id="ref17"></a>**[[17]]** Y. Yuan et al., "GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher," in *Proc. ICLR*, 2024. [arXiv:2308.06463](https://arxiv.org/pdf/2308.06463.pdf).

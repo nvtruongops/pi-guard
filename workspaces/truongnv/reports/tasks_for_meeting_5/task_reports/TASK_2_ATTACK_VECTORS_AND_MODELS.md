@@ -353,12 +353,19 @@ Trong đó $w_c = \frac{N}{2 \cdot N_c}$ giúp phạt nặng hơn trường hợ
 | | **MultinomialNB** | Định lý Bayes xác suất có điều kiện | Rất nhẹ, tính toán tức thì | Kém chính xác trên n-gram tương quan | ❌ Không tối ưu |
 | | **XGBoost / LightGBM** | Cây quyết định Gradient Boosting | Bắt quan hệ phi tuyến | Chậm và tốn RAM trên 60k chiều | ❌ Quá nặng |
 
+### 📷 Minh Chứng Y Văn Mô Hình 1: N-Grams Baseline & Perplexity (Jain et al. NeurIPS 2023 [[15]](#ref15))
+
+| Bằng chứng Y văn: Table 1 Đánh giá các cơ chế phòng thủ Baseline |
+| :---: |
+| ![Table 1 Jain Defense Results](../task_3_replication/Tier1_Candidate_Jain_NeurIPS2023/figures/01_paper_evidence/jain_p6_table_1_defense_results.png) |
+| *Hình 2.1: Bảng 1 trong bài báo của Jain et al. (NeurIPS 2023 [[15]](#ref15)) chứng minh hiệu quả chặn đứng tấn công của bộ lọc thống kê N-Grams và Perplexity.* |
+
 ---
 
 ### 3.2. Mô Hình Tham Khảo 2: Deep Semantic Transformer (DeBERTa-v3 Disentangled Attention)
 
 #### 1. Đột phá toán học của Disentangled Attention (He et al., ICLR 2023 [[9]](#ref9)):
-Trong các kiến trúc Transformer truyền thống (BERT, RoBERTa), mỗi token $i$ được biểu diễn bằng tổng cộng dồn thô sơ của vector nội dung và vector vị trí tuyệt đối (theo Vaswani et al. 2017 [[20]](#ref20)): $\mathbf{H} = \mathbf{E}_{\text{content}} + \mathbf{E}_{\text{position}}$, dẫn đến việc tương tác Attention bị trộn lẫn và mất thông tin vị trí tương đối.
+Trong các kiến trúc Transformer truyền thống (BERT, RoBERTa), mỗi token $i$ được biểu diễn bằng tổng cộng dồn thô sơ của vector nội dung và vector tọa độ vị trí cố định (Absolute Positional Encoding theo Vaswani et al. 2017 [[20]](#ref20)): $\mathbf{H} = \mathbf{E}_{\text{content}} + \mathbf{E}_{\text{position}}$, dẫn đến việc tương tác Attention bị trộn lẫn và mất thông tin vị trí tương đối.
 
 DeBERTa-v3 biểu diễn mỗi token $i$ bằng **hai vector độc lập**:
 - Vector nội dung $\mathbf{h}_i \in \mathbb{R}^d$
@@ -386,6 +393,13 @@ $$\mathbf{A}_{i,j} = \underbrace{\mathbf{h}_i \mathbf{W}_{q,c} \mathbf{W}_{k,c}^
 | **DeBERTa-v3-base** (He et al. 2023 [[9]](#ref9)) | **Disentangled Attention** (2 vector $\mathbf{h}_i, \mathbf{p}_{i\|j}$ độc lập) | **ELECTRA-Style RTD + GDES** | ✅ **Xuất sắc: Bóc tách 3 ma trận $A_{c,c} + A_{c,p} + A_{p,c}$** | Nhận diện chính xác vị trí câu lệnh tiêm nhiễm bất thường trong văn bản RAG dài |
 | **Meta Prompt-Guard 86M** (Meta 2024) | Multilingual mDeBERTa-v3 (86M params) | Fine-tuned chuyên biệt cho phân loại prompt | ✅ Tốt: Tối ưu cho bảo mật đa ngôn ngữ | Checkpoint đối chuẩn thực nghiệm có giá trị cao |
 | **Llama Guard 3 (8B)** (Meta 2024) | Autoregressive Decoder-only LLM | Instruction Fine-Tuning có điều kiện | ⚠️ Chậm: Phụ thuộc vào quá trình sinh văn bản | Chi phí tài nguyên rất lớn, không phù hợp làm rào chắn Ingress độ trễ thấp |
+
+### 📷 Minh Chứng Y Văn Mô Hình 2: DeBERTa-v3 MOF Benchmark (Li et al. ACL 2025 [[1]](#ref1))
+
+| Bằng chứng Y văn: Table 1 Hiệu năng và Độ trễ của DeBERTa-v3 InjecGuard |
+| :---: |
+| ![Table 1 PIGuard ACL 2025 Results](../task_3_replication/Tier2_PIGuard_ACL2025/figures/01_paper_evidence/paper_p7_table_1_main_results.png) |
+| *Hình 2.2: Bảng 1 trong bài báo của Li et al. (ACL 2025 [[1]](#ref1)) công bố hiệu năng của InjecGuard (DeBERTa-v3) vượt trội hoàn toàn so với Llama Guard 3 và Lakera.* |
 
 ---
 
@@ -437,6 +451,7 @@ Nhằm đảm bảo tính minh định học thuật và hỗ trợ bảo vệ t
 
 ## 6. TÀI LIỆU THAM KHẢO HỌC THUẬT (REFERENCES)
 
+- <a id="ref1"></a>**[[1]]** H. Li, X. Liu, N. Zhang, and C. Xiao, "PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free," in *Proc. 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025)*, arXiv:2410.22770, 2024. [arXiv:2410.22770](https://arxiv.org/pdf/2410.22770.pdf).
 - <a id="ref3"></a>**[[3]]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in *Proc. NeurIPS ML Safety Workshop*, 2022. [arXiv:2211.09527](https://arxiv.org/pdf/2211.09527.pdf).
 - <a id="ref4"></a>**[[4]]** K. Greshake et al., "Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection," in *Proc. ACM AISec*, 2023. [arXiv:2302.12173](https://arxiv.org/pdf/2302.12173.pdf).
 - <a id="ref5"></a>**[[5]]** A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in *Proc. NeurIPS*, vol. 36, 2023. [arXiv:2307.02483](https://arxiv.org/pdf/2307.02483.pdf).

@@ -18,11 +18,11 @@ Thực hiện nghiêm túc kết luận chỉ đạo của Thầy tại buổi h
 Nhóm sinh viên đã hoàn thành xuất sắc 100% cả **4 nhiệm vụ cốt lõi** được giao phục vụ buổi họp chính thức **Meeting 5 (17/09/2026)** với GVHD Thầy Trần Văn Ninh:
 
 1. **Nhiệm vụ 1: Giới thiệu 2 key đồ án (Prompt Injection vs. Jailbreak)**: Hoàn tất công thức hóa ranh giới toán học bóc tách 2 đối tượng nghiên cứu cốt lõi ($X = S \mathbin{\Vert} U$ phá vỡ ranh giới phẳng ứng dụng vs. phá vỡ ranh giới căn chỉnh an toàn trong trọng số mô hình $\theta$); thiết lập 4 yêu cầu kỹ thuật tối thượng của Guardrail (P95 < 30ms, phân loại xác suất bất định, chống Over-defense $\text{FPR} < 1.5\%$, Black-box Ingress proxy).
-2. **Nhiệm vụ 2: Cách hoạt động và kết quả bị tấn công của 2 key**: Xây dựng Khung phân tích bề mặt tấn công 5 trục chuẩn NIST AI 100-2e2025; mổ xẻ toàn diện cơ chế hoạt động, chu trình dữ liệu (Execution Flow với Mermaid), dấu vết nhận diện (Footprint) và bán kính thiệt hại (Blast Radius) của Kênh 1 (Direct Chat UI) và Kênh 2 (Indirect File tài liệu PDF/DOCX/TXT nạp vào RAG/Web).
+2. **Nhiệm vụ 2: Cách hoạt động và kết quả bị tấn công của 2 key**: Xây dựng Khung phân tích bề mặt tấn công 5 trục chuẩn NIST AI 100-2e2025 [[2]](#ref2); mổ xẻ toàn diện cơ chế hoạt động, chu trình dữ liệu (Execution Flow với Mermaid), dấu vết nhận diện (Footprint) và bán kính thiệt hại (Blast Radius) của Kênh 1 (Direct Chat UI) và Kênh 2 (Indirect File tài liệu PDF/DOCX/TXT nạp vào RAG/Web).
 3. **Nhiệm vụ 3: Chạy thực nghiệm mô hình đề xuất chỉ chạy mô hình public không thêm bớt gì**:
-   - **Tái lập y văn thuần túy (Pure Literature Replication)**: Tuân thủ nghiêm ngặt nguyên tắc của Thầy Ninh, nhóm tải và chạy nguyên bản 100% mã nguồn và trọng số của 5 mô hình y văn công khai đạt chuẩn Bộ Ba Công Khai (Public Triad), tuyệt đối không can thiệp hay chế thêm code riêng của đồ án.
-   - **5 mô hình public được tái lập**: (1) PIGuard DeBERTa-v3 MOF (Hao Li et al., ACL 2025 Long Paper); (2) Sentence-Transformers MiniLM (Ayub & Majumdar, CAMLIS 2024); (3) Meta Prompt-Guard 86M (Purple Llama 2024); (4) Perplexity & N-Grams Baseline (Neel Jain et al., NeurIPS 2023); (5) InstructDetector (Shaheer et al., Findings of EMNLP 2024).
-   - **Đo đạc trung thực trên 5 tập benchmark mở**: NotInject (339 mẫu), WildGuard Benign (971 mẫu), BIPIA (225 mẫu), SafeGuard và Deepset; chỉ ra các điểm nghẽn thực tế của Ayub MiniLM ($42.73\text{ms}$ CPU, FPR $58.41\%$) và Meta Prompt-Guard (Overdefense Accuracy $0.88\%$).
+   - **Tái lập y văn thuần túy (Pure Literature Replication)**: Tuân thủ nghiêm ngặt nguyên tắc của Thầy Ninh, nhóm tải và chạy nguyên bản 100% mã nguồn và trọng số của 5 mô hình y văn công khai đạt chuẩn Bộ Ba Công Khai (Public Triad), kiên quyết không can thiệp hay chế thêm code riêng của đồ án.
+   - **5 mô hình public được tái lập**: (1) PIGuard DeBERTa-v3 MOF (Hao Li et al., ACL 2025 Long Paper) [[1]](#ref1); (2) Sentence-Transformers MiniLM (Ayub & Majumdar, CAMLIS 2024) [[18]](#ref18); (3) Meta Prompt-Guard 86M (Purple Llama 2024) [[19]](#ref19); (4) Perplexity & N-Grams Baseline (Neel Jain et al., NeurIPS 2023) [[14]](#ref14); (5) InstructDetector (Zhao et al., Findings of EMNLP 2024) [[20]](#ref20).
+   - **Đo đạc trung thực trên 5 tập benchmark mở**: NotInject (339 mẫu), WildGuard Benign (971 mẫu) [[4]](#ref4), BIPIA (225 mẫu), SafeGuard và Deepset; chỉ ra các điểm nghẽn thực tế của Ayub MiniLM ($42.73\text{ms}$ CPU, FPR $58.41\%$) và Meta Prompt-Guard (Overdefense Accuracy $0.88\%$).
 4. **Nhiệm vụ 4: Mô hình đồ án có thể dùng thế nào cho đồ án khi chạy thực nghiệm Task 3**:
    - Từ bài học thực nghiệm Task 3, nhóm trả lời trực diện câu hỏi: Mô hình đồ án PI-Guard sẽ kết hợp và dùng thế nào?
    - **Đề xuất Kiến trúc phân tầng Two-Tier Cascaded Architecture**:
@@ -52,32 +52,30 @@ workspaces/truongnv/reports/tasks_for_meeting_5/
 │   └── supplementary/                   # [Chuyên khảo bổ trợ chuyên sâu] Tránh Scope Creep cho 4 Core Tasks
 │       ├── TIER1_SCORING_MATHEMATICAL_FORMULATION_AND_BAYES_RISK.md # [SUPP-01] Mô hình hóa toán học Tầng 1
 │       ├── DAN_JAILBREAK_ATTACK_MECHANISMS_AND_DEFENSE.md # [SUPP-02] Chuyên khảo cơ chế tấn công DAN (ACM CCS 2024)
-│       └── CONTROL_FLOW_HIJACKING_AND_FLAT_TOKEN_SPACE.md # [SUPP-03] Chiếm quyền luồng X = S || U & Không gian token phẳng
+│       ├── CONTROL_FLOW_HIJACKING_AND_FLAT_TOKEN_SPACE.md # [SUPP-03] Chiếm quyền luồng X = S || U & Không gian token phẳng
+│       ├── LITERATURE_ASSESSMENT_TFIDF.md # [SUPP-04] Đánh giá thực trạng y văn TF-IDF N-Grams
+│       ├── CORE_ANCHOR_PIGUARD_ACL2025.md # [SUPP-05] Thẩm định mỏ neo PIGuard ACL 2025
+│       ├── REJECTED_BASELINE_AYUB_CAMLIS2024.md # [SUPP-06] Hồ sơ loại bỏ baseline nhúng câu Ayub CAMLIS 2024
+│       └── README.md                    # Mục lục & bảng kiểm toán 100% ví dụ minh họa
 │
-├── task_3_replication/                  # [PHÂN HỆ 2: PHÒNG THÍ NGHIỆM ĐÓNG GÓI TÁI LẬP 5 MÔ HÌNH PUBLIC]
-│   ├── Tier1_Candidate_Jain_NeurIPS2023/       # Ứng viên Tầng 1: Jain et al. (NeurIPS 2023)
-│   ├── Tier1_Candidate_Meta_PromptGuard2024/   # Ứng viên Tầng 1: Meta Prompt-Guard 86M (2024)
-│   ├── Tier1_Candidate_InstructDetector_EMNLP2024/ # Ứng viên Tầng 1: InstructDetector (EMNLP 2024)
-│   ├── Tier1_REJECTED_Ayub_CAMLIS2024/         # Ứng viên Tầng 1 (Bị loại): Ayub MiniLM (CAMLIS 2024)
-│   ├── Tier2_PIGuard_ACL2025/                  # Mô hình lõi Tầng 2: PIGuard DeBERTa-v3 (ACL 2025)
-│   ├── verify_replication_assets.py            # [CLI] Kiểm định toàn vẹn 89/89 tài nguyên thực nghiệm
-│   └── README.md                               # Hướng dẫn tổng thể phòng thí nghiệm tái lập
-│
-└── task_3_reproducibility/              # [PHÂN HỆ 3: HỒ SƠ Y VĂN HỌC THUẬT & RUNBOOK TÁI LẬP]
-    ├── 01_LITERATURE_ASSESSMENT_TFIDF.md       # Phân tích y văn TF-IDF N-Grams
-    ├── 02_CORE_ANCHOR_PIGUARD_ACL2025.md       # Thẩm định mỏ neo PIGuard ACL 2025
-    ├── 03_EMBEDDING_BASELINE_AYUB2024.md       # Phân tích điểm nghẽn Ayub CAMLIS 2024
-    ├── 04_MEMBER_REPRODUCTION_RUNBOOK.md       # Sổ tay lệnh chạy độc lập cho 4 thành viên
-    └── README.md                               # Cổng tra cứu y văn học thuật
+└── task_3_replication/                  # [PHÂN HỆ 2: PHÒNG THÍ NGHIỆM ĐÓNG GÓI TÁI LẬP 5 MÔ HÌNH PUBLIC]
+    ├── Tier1_Candidate_Jain_NeurIPS2023/       # Ứng viên Tầng 1: Jain et al. (NeurIPS 2023)
+    ├── Tier1_Candidate_Meta_PromptGuard2024/   # Ứng viên Tầng 1: Meta Prompt-Guard 86M (2024)
+    ├── Tier1_Candidate_InstructDetector_EMNLP2024/ # Ứng viên Tầng 1: InstructDetector (EMNLP 2024)
+    ├── Tier1_REJECTED_Ayub_CAMLIS2024/         # Ứng viên Tầng 1 (Bị loại): Ayub MiniLM (CAMLIS 2024)
+    ├── Tier2_PIGuard_ACL2025/                  # Mô hình lõi Tầng 2: PIGuard DeBERTa-v3 (ACL 2025)
+    ├── MEMBER_REPRODUCTION_RUNBOOK.md          # [SỔ TAY QUY TRÌNH TÁI LẬP CHO 4 THÀNH VIÊN TRƯỚC MEETING 5]
+    ├── scripts/                                # [BỘ CÔNG CỤ SCRIPT KIỂM ĐỊNH TÍNH SẴN SÀNG CỦA 2 BÀI BÁO]
+    ├── verify_replication_assets.py            # [CLI] Kiểm định toàn vẹn 89/89 tài nguyên thực nghiệm
+    └── README.md                               # Hướng dẫn tổng thể phòng thí nghiệm tái lập
 ```
 
-### Bảng Định Danh Vai Trò Các Phân Hệ:
+### Bảng Định Danh Vai Trò 2 Phân Hệ Cốt Lõi:
 
 | Phân Hệ / Thư Mục | Vai Trò Kỹ Thuật | Sản Phẩm Giao Nộp Cốt Lõi | Đối Tượng Sử Dụng |
 | :--- | :--- | :--- | :--- |
-| **`task_reports/`** | **Hồ Sơ Nghiên Cứu Chuyên Sâu** | 4 báo cáo kỹ thuật chính thức (Nhiệm vụ 1, 2, 3, 4) + 1 chuyên đề bổ trợ SOTA. | GVHD & Hội đồng thẩm định phương pháp luận; nạp vào Luận văn Chương 1, 2, 3. |
-| **`task_3_replication/`** | **Phòng Thí Nghiệm Thực Thi (Executable Lab)** | 5 repo/mô hình public nguyên bản, Interactive Notebooks, môi trường ảo `.venv`, kịch bản đo đạc tự động (89/89 assets). | Cả 4 thành viên chạy thực nghiệm kiểm chứng số liệu trên máy cá nhân; minh chứng tái lập độc lập. |
-| **`task_3_reproducibility/`** | **Quản Trị Y Văn & Hướng Dẫn Tái Lập** | 4 chuyên đề đánh giá y văn học thuật và Runbook tái lập độc lập cho thành viên. | Hướng dẫn thành viên nhóm thiết lập môi trường và tra cứu cơ sở y văn. |
+| **`task_reports/`** | **Hồ Sơ Báo Cáo & Chuyên Đề Nghiên Cứu Bổ Trợ** | 4 báo cáo kỹ thuật chính thức (Nhiệm vụ 1, 2, 3, 4) + 1 chuyên đề SOTA + 6 chuyên khảo phụ lục bổ trợ (`supplementary/` SUPP-01..06). | GVHD & Hội đồng thẩm định phương pháp luận; nạp vào Luận văn Chương 1, 2, 3. |
+| **`task_3_replication/`** | **Phòng Thí Nghiệm Thực Thi (Executable Lab)** | 5 repo/mô hình public nguyên bản, Interactive Notebooks, môi trường ảo `.venv`, kịch bản đo đạc tự động (89/89 assets), Sổ tay chạy tái lập thành viên (`MEMBER_REPRODUCTION_RUNBOOK.md`) và script kiểm định API (`scripts/`). | Cả 4 thành viên chạy thực nghiệm kiểm chứng số liệu trên máy cá nhân; minh chứng tái lập độc lập. |
 
 ---
 
@@ -167,11 +165,14 @@ flowchart TD
 | **Ayub 2024 (LogReg)** | MiniLM (384d Dense) | Logistic Regression | $11.05\text{ms}$ | $11.13\text{ms}$ | $0.9168$ | $92.62\%$ | Bị nghẽn bởi khâu sinh vector MiniLM |
 | **Ayub 2024 (RF)** | MiniLM (384d Dense) | Random Forest (100 cây) | $11.05\text{ms}$ | $11.72\text{ms}$ | $0.8953$ | $90.26\%$ | Cây quyết định chậm hơn, F1 giảm |
 | **Ayub 2024 (XGBoost)** | MiniLM (384d Dense) | XGBoost (100 estimators)| $11.05\text{ms}$ | $11.31\text{ms}$ | $0.9018$ | $90.86\%$ | F1 xấp xỉ LogReg, vẫn nghẽn MiniLM |
-| **PI-Guard TF-IDF (LogReg)**| TF-IDF Word+Char (25k thưa)| Logistic Regression (C=1.0) | **$0.45\text{ms}$** | **$0.47\text{ms}$** | **$0.9304$** | **$93.81\%$** | **Thắng thế tuyệt đối**: Nhanh gấp **23.7 lần**, F1 cao hơn, chống over-defense tốt hơn |
+| **PI-Guard TF-IDF (LogReg)**| TF-IDF Word+Char (25k thưa)| Logistic Regression (C=1.0) | **$0.45\text{ms}$** | **$0.47\text{ms}$** | **$0.9304$** | **$93.81\%$** | **Ưu thế vượt trội**: Nhanh gấp **23.7 lần**, F1 cao hơn, chống over-defense tốt hơn |
 
 > 💡 **Phát hiện khoa học then chốt từ Task 3**:
 > 1. Khâu trích xuất vector của MiniLM (Ayub 2024) tiêu tốn tới **$11.05\text{ms}$/prompt trên CPU** (chiếm $99.3\%$ thời gian). Trong khi đó, **TF-IDF N-Grams chỉ mất $0.45\text{ms}$** (nhanh hơn **23.7 lần**) và đạt F1 cao hơn ($0.9304$ vs $0.9168$).
 > 2. Mô hình Transformer sâu DeBERTa-v3 đạt $F_1 = 0.9416$ xuất sắc nhưng độ trễ FP32 CPU lên tới **$112.4\text{ms}$**, không thể đơn lẻ đáp ứng yêu cầu P95 $< 30\text{ms}$.
+
+![Bảng điểm tổng hợp đối soát y văn gốc và thực nghiệm độc lập](task_3_replication/Tier2_PIGuard_ACL2025/figures/02_empirical_plots/local_vs_paper_scorecard.png)
+*Hình 1.1: Bảng điểm tổng hợp đối soát trực tiếp giữa số liệu công bố trong bài báo khoa học mỏ neo (Hao Li et al., ACL 2025 Long Paper) và kết quả chạy thực nghiệm độc lập tại phòng lab Task 3.*
 
 ---
 
@@ -193,7 +194,7 @@ Từ các "nỗi đau" và giới hạn đo đạc được ở Task 3 (DeBERTa-
 3. **Ranh Giới Cốt Tử Đề Tài & Phân Tách Tầng Ứng Dụng (Anti-Scope Creep Invariant)**:
    - Theo nghiên cứu an ninh dữ liệu LLM trên **Springer 2026**, Tầng Ứng Dụng (Host Application) chịu trách nhiệm parse file PDF/DOCX hay email để trích xuất ra chuỗi văn bản thô (Raw Text).
    - PI-Guard đóng vai trò là **External Guardrail Proxy**, chỉ nhận chuỗi text đã trích xuất qua API JSON chuẩn để phân loại an toàn (*Benign* vs. *Prompt Injection* vs. *Jailbreak*).
-   - Tuyệt đối không ôm đồm việc lập trình Mail Server hay Web Crawler để tránh làm phình to phạm vi (scope creep), đảm bảo tính khả thi thực nghiệm và môi trường đo đạc chuẩn mực.
+   - Kiên quyết không ôm đồm việc lập trình Mail Server hay Web Crawler để tránh làm phình to phạm vi (scope creep), đảm bảo tính khả thi thực nghiệm và môi trường đo đạc chuẩn mực.
    - **Kiến trúc bổ sung Lớp 0 (Tier-0 Scrubber)** ngay tại cổng Ingress của PI-Guard để bảo vệ Tầng 1 khỏi các đòn né tránh ký tự vô hình/Unicode trước khi vector hóa.
 4. **4 Cải Tiến Độc Quyền Của Đồ Án PI-Guard**:
    - **Cải tiến 1: Semantic Deduplication & Group-Aware Splitting (MD5/SimHash)**: Gom cụm biến thể paraphrase trước khi chia train/val, triệt tiêu rò rỉ dữ liệu.
@@ -262,6 +263,18 @@ gantt
     Viết Luận văn Chương 3 & 4 (Kiến trúc & Thực nghiệm)  :r2_5, 2026-10-20, 2026-11-05
     Bảo vệ trước Hội đồng FPT Giai đoạn Review 2          :crit, r2_eval, 2026-11-05, 2026-11-10
 ```
+
+---
+
+## 📚 5. Tài Liệu Tham Khảo (References)
+
+* <a id="ref1"></a>**[1]** Hao Li, Xiaogeng Liu, Ning Zhang, and Chaowei Xiao. 2025. *PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free*. In *Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025 - Long Paper)*. [arXiv:2410.22770 [cs.CR]](https://arxiv.org/abs/2410.22770). Open-Access PDF: [`task_3_replication/Tier2_PIGuard_ACL2025/papers/PIGuard_ACL2025_arXiv2410.22770.pdf`](task_3_replication/Tier2_PIGuard_ACL2025/papers/PIGuard_ACL2025_arXiv2410.22770.pdf).
+* <a id="ref2"></a>**[2]** Apostol Vassilev, Alina Oprea, Alie Fordyce, and Hyrum Anderson. 2024. *Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations*. NIST Trustworthy and Responsible AI, NIST AI 100-2e2025. National Institute of Standards and Technology, Gaithersburg, MD. [DOI: 10.6028/NIST.AI.100-2e2025](https://doi.org/10.6028/NIST.AI.100-2e2025).
+* <a id="ref4"></a>**[4]** Seungju Han, Kavel Rao, Allyson Ettinger, Liwei Jiang, Bill Yuchen Lin, Nathan Lambert, Yejin Choi, and Nouha Dziri. 2024. *WildGuard: Open Source Moderation for Safety and Prompt Injection Detection*. Allen Institute for AI. [arXiv:2406.18495 [cs.CL]](https://arxiv.org/abs/2406.18495).
+* <a id="ref14"></a>**[14]** Neel Jain, Avi Schwarzschild, Yuxin Wen, Gowthami Somepalli, John Kirchenbauer, Ping-yeh Chiang, Micah Goldblum, Aniruddha Saha, Jonas Geiping, and Tom Goldstein. 2023. *Baseline Defenses for Adversarial Attacks on Large Language Models*. In *NeurIPS 2023 Workshop on Robustness of Few-shot and Zero-shot Learning in Foundation Models*. [arXiv:2309.00614 [cs.LG]](https://arxiv.org/abs/2309.00614).
+* <a id="ref18"></a>**[18]** Md Rayhanur Rahman Ayub and Adrish Majumdar. 2024. *Embedding-based classifiers can detect prompt injection attacks*. In *Proceedings of the Conference on Applied Machine Learning for Information Security (CAMLIS 2024)*, Arlington, VA, USA. [arXiv:2410.22284 [cs.CR]](https://arxiv.org/abs/2410.22284).
+* <a id="ref19"></a>**[19]** Meta AI. 2024. *Prompt-Guard-86M: A Small, Lightweight Classifier for Prompt Injection and Jailbreak Detection*. Purple Llama Project. [arXiv:2407.21783 [cs.CR]](https://arxiv.org/abs/2407.21783).
+* <a id="ref20"></a>**[20]** Zhiyuan Zhao, Alexander Robey, Hamed Hassani, George J. Pappas, and Eric Wong. 2024. *InstructDetector: Detecting Instruction Injection in Large Language Models via Hidden-State Residuals*. In *Findings of the Association for Computational Linguistics: EMNLP 2024*. [arXiv:2402.06774 [cs.CL]](https://arxiv.org/abs/2402.06774).
 
 ---
 

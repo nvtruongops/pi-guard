@@ -66,6 +66,20 @@ Tier1_REJECTED_Ayub_CAMLIS2024/
 | **MiniLM + Random Forest** | **$0.849$** | $0.3898$ | **$0.853$** | $0.4792$ | **$0.851$** | $0.4299$ | **$0.730$** | **$0.7142$** | ✅ **Khớp kết luận cốt lõi**: Random Forest cho AUC cao nhất. |
 | **MiniLM + XGBoost** | $0.820$ | $0.3913$ | $0.829$ | $0.5625$ | $0.824$ | $0.4615$ | $0.687$ | $0.6780$ | ✅ Khớp thứ bậc trung gian giữa LR và RF. |
 
+### 📷 3.1. Bằng Chứng Y Văn & Biểu Đồ Đối Chuẩn Thực Nghiệm
+
+| Bằng chứng Y văn 1: Tiêu đề & Abstract Bài báo | Bằng chứng Y văn 2: Table 3 & 4 Kết quả CAMLIS 2024 |
+| :---: | :---: |
+| ![Tiêu đề bài báo Ayub et al.](figures/01_paper_evidence/ayub_p1_title_and_abstract.png) | ![Table 3 & 4 CAMLIS 2024](figures/01_paper_evidence/ayub_p7_table_3_and_4_results.png) |
+
+| Biểu đồ Thực nghiệm 1: Đối chuẩn Paper vs Local | Biểu đồ Thực nghiệm 2: Quá phòng thủ NotInject |
+| :---: | :---: |
+| ![Đối chuẩn Paper vs Local Ayub](figures/02_empirical_plots/ayub_replication_paper_vs_local_bars.png) | ![Overdefense FPR Comparison](figures/02_empirical_plots/ayub_overdefense_fpr_comparison.png) |
+
+| Biểu đồ Thực nghiệm 3: Hồ sơ Phân tách Độ trễ CPU |
+| :---: |
+| ![Hồ sơ độ trễ CPU Ayub](figures/02_empirical_plots/ayub_latency_profile.png) |
+
 ---
 
 ## 🔬 4. Lý Do Khoa Học & Bằng Chứng Loại Bỏ Mô Hình (Architectural Rejection Proof)
