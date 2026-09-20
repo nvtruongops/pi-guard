@@ -1,9 +1,5 @@
 # WORKSPACE CÁ NHÂN — NGUYỄN VĂN TRƯỜNG (LEADER)
-## Không Gian Quản Lý Dữ Liệu, Hồ Sơ Kỹ Thuật & Đồng Quy Tri Thức Toàn Nhóm
-
-> [!IMPORTANT]
-> **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  
-> Cả 4 thành viên đều triển khai thử nghiệm toàn trình full-pipeline trong workspace cá nhân. Tại đây, Leader vừa trực tiếp làm kỹ thuật vừa đóng vai trò điều phối tiến độ, tổng hợp các kết quả thực nghiệm tối ưu của các thành viên sau các buổi họp đối chiếu để chốt và merge ra cây thư mục chung của dự án.
+**PI-Guard Capstone Project** | Quản lý dữ liệu, hồ sơ kỹ thuật và đồng quy thực nghiệm toàn nhóm.
 
 ---
 
@@ -21,31 +17,19 @@
   - [`Final-Report/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/Final-Report/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md): *(Dùng chung toàn nhóm)* Tóm tắt quy chế và tiêu chí chấm điểm FPT IAP491.
   - [`docs/thesis/FINAL_THESIS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FINAL_THESIS.md): Bản biên dịch toàn văn các chương Review 1.
 
-- 🛡️ **Chuyên Đề Nghiên Cứu Tấn Công (Attack Study Suite — 100% Academic Grounding)**:
-  - [`docs/attack_study/00_overview_threat_and_scope/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/attack_study/00_overview_threat_and_scope/): Lịch sử tiến hóa (Causal LM vs Instruction Tuning) & Phân tích ranh giới kỹ thuật.
-  - [`docs/attack_study/01_prompt_injection/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/attack_study/01_prompt_injection/): Cơ chế ranh giới phẳng ($X = S \mathbin{\Vert} U$) & Toàn bộ 13 biến thể Direct / Indirect Injection.
-  - [`docs/attack_study/02_modern_jailbreak_attacks/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/attack_study/02_modern_jailbreak_attacks/): 4 trường phái cốt lõi (DAN, Roleplay, VM, Cipher), Master Taxonomy 10 họ Jailbreak và 26 Toán tử Tencent.
+- 🔬 **Phân Hệ Nghiên Cứu Khoa Học Kỹ Thuật ([`docs/research/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/README.md) — 100% Academic Grounding)**:
+  - 🔤 [`docs/research/prompt_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/prompt_study/): Chuyên đề 1 — Cơ sở LLM, Cấu trúc Prompt, Phân cấp chỉ thị & Ranh giới phẳng ($X = S \mathbin{\Vert} U$).
+  - 🛡️ [`docs/research/attack_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/): Chuyên đề 2 — Cơ chế Prompt Injection (Direct/Indirect) & Modern Jailbreak Taxonomy (DAN, VM, 26 Toán tử Tencent).
+  - 🎯 [`docs/research/threat_and_defense_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/threat_and_defense_study/): Chuyên đề 3 — Threat Model (NIST AI 100-2e2025, OWASP LLM01, STRIDE) & Kiến trúc phòng thủ 3 lớp Saltzer-Schroeder.
+  - 📊 [`docs/research/dataset_and_benchmark_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dataset_and_benchmark_study/): Chuyên đề 4 — Data Curation, Cân bằng lớp & Group-Aware Splitting chống rò rỉ dữ liệu.
+  - 🔬 [`docs/research/model_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/model_study/): Chuyên đề 5 — TF-IDF Baseline (char_wb), DeBERTa-v3 Transformer & Kiến trúc phối hợp Cascade Two-Tier.
+  - 🧱 [`docs/research/robustness_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/robustness_study/): Chuyên đề 6 — Độ bền đối kháng, Phân mảnh tokenizer BPE & Kỹ thuật lẩn tránh (Base64, Leetspeak, Spacing).
+  - ⚖️ [`docs/research/evaluation_and_tradeoff_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/evaluation_and_tradeoff_study/): Chuyên đề 7 — Kinh tế học False Positive Rate ($\text{FPR} < 1.5\%$), Pareto Frontier & Đánh đổi kỹ thuật.
+  - 🔍 [`docs/research/comparative_analysis/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/comparative_analysis/): Chuyên khảo đối chuẩn SOTA Guardrails, Lỗ hổng Target LLM APIs & Báo cáo Tencent 2026.
 
-- 🎯 **Chuyên Đề Threat Model & Phòng Thủ Đa Tầng (Threat & Defense Study Suite — Review 1 Items 3 & 4)**:
-  - [`docs/threat_and_defense_study/01_threat_model_and_attack_surface.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/01_threat_model_and_attack_surface.md): Mô hình hóa đe dọa (NIST AI 100-2e2025, OWASP LLM01, STRIDE/DREAD), 3 hồ sơ Attacker và 4 điểm chạm Attack Surface.
-  - [`docs/threat_and_defense_study/02_multi_layer_defense_architecture.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/02_multi_layer_defense_architecture.md): Phân tích 3 lớp bảo vệ (Lớp 1 PI-Guard Input Gateway, Lớp 2 Target LLM Enclosure, Lớp 3 Output Sanitizer & Canary Token) theo Saltzer & Schroeder.
-  - [`docs/threat_and_defense_study/03_comparative_matrix_and_tradeoffs.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/03_comparative_matrix_and_tradeoffs.md): Bảng so sánh định lượng 6 phương pháp và phân tích sâu 3 đánh đổi kỹ thuật (Security vs Latency vs FPR).
-  - [`docs/threat_and_defense_study/04_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/threat_and_defense_study/04_resources_and_papers.md): Bảng 10 papers bình duyệt, video bài giảng oEmbed và mã nguồn Python mẫu thực nghiệm 3 lớp bảo vệ.
-
-- 🧱 **Chuyên Đề Nghiên Cứu Độ Bền & Lẩn Tránh (Robustness Study Suite — 100% Academic Grounding)**:
-  - [`docs/robustness_study/01_theory_and_evasion_mechanisms.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/robustness_study/01_theory_and_evasion_mechanisms.md): Cơ sở lý thuyết, lỗ hổng phân mảnh token (BPE/WordPiece) và 3 kỹ thuật cốt lõi (Leetspeak, Base64, Spacing).
-  - [`docs/robustness_study/02_defense_architecture_and_mitigation.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/robustness_study/02_defense_architecture_and_mitigation.md): Kiến trúc phòng thủ 3 tầng (Tầng 0: Tiền xử lý & Khử nhiễu, Tầng 1: Character n-grams TF-IDF, Tầng 2: DeBERTa-v3 tăng cường đối kháng).
-  - [`docs/robustness_study/03_benchmarks_metrics_and_tradeoffs.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/robustness_study/03_benchmarks_metrics_and_tradeoffs.md): Hệ thống tiêu chí định lượng ($\Delta F_1$, ASR, FPR, Latency), bảng đối sánh thực nghiệm và phân tích đánh đổi.
-  - [`docs/robustness_study/04_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/robustness_study/04_resources_and_papers.md): Tài liệu học thuật chuẩn mực, video bài giảng YouTube oEmbed và hướng dẫn chạy mã nguồn thực nghiệm.
-
-- 🔬 **Chuyên Đề Mô Hình & Toán Học (Model Study Suite — 100% Academic Grounding)**:
-  - [`docs/model_study/01_tfidf_syntactic_baseline/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/model_study/01_tfidf_syntactic_baseline/): Cơ sở toán học TF-IDF, Character n-grams (`char_wb`), Luhn (1958), Spärck Jones (1972) và Jain et al. (2023).
-  - [`docs/model_study/02_deberta_v3_semantic_classifier/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/model_study/02_deberta_v3_semantic_classifier/): Toán học Disentangled Attention (He et al., ICLR 2023) và Lượng hóa động ONNX INT8 (Yao et al., NeurIPS 2022).
-  - [`docs/model_study/03_two_tier_pipeline_coordination/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/model_study/03_two_tier_pipeline_coordination/): Nguyên lý phối hợp 2 mô hình (Cascade Defense) giải quyết triệt để 3 đánh đổi kỹ thuật.
-
-- 📚 **Tài liệu tham khảo & Nghiên cứu Đối sánh SOTA**:
+- 📚 **Tài liệu tham khảo & Thư viện Nghiên cứu**:
   - [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truongnv/References/REFERENCES_LOG.md): Bảng ma trận 18 bài báo chuẩn (100% >= 2022).
-  - [`docs/research/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/): Báo cáo đối sánh đa mô hình LLM mục tiêu, Tencent 2026 và luận giải kiến trúc kép Hybrid.
+  - [`docs/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/README.md): Cổng tài liệu tổng quan phân định 2 phân hệ `research/` và `thesis/`.
 
 ---
 

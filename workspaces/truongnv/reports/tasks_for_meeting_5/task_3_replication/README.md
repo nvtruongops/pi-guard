@@ -1,7 +1,9 @@
-# BÁO CÁO TÁI LẬP THỰC NGHIỆM ĐỘC LẬP 2 MÔ HÌNH (TASK 3 REPLICATION)
-**PI-Guard Capstone Project — Workspace: `workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/`**
+# BÁO CÁO TÁI LẬP THỰC NGHIỆM ĐỘC LẬP (TASK 3 REPLICATION)
+**Workspace**: [`workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/)
 
-Tài liệu này thuyết minh phân hệ thực nghiệm độc lập cho Task 3. Phân hệ được thiết kế với **duy nhất 1 nhiệm vụ cốt lõi**: **Tái lập thực nghiệm độc lập (Independent Empirical Replication) cho 2 mô hình khoa học công khai**, mỗi mô hình so sánh trực tiếp kết quả chạy mã nguồn công khai (Public Code) với kết quả chính thức công bố trong bài báo khoa học (Public Paper). Kiên quyết không đưa vấn đề kết hợp mô hình, ghép tầng hay kiến trúc hệ thống bên ngoài vào phân hệ này.
+> Trước buổi họp tuần sau (Meeting 5), cả 4 thành viên bắt buộc phải chạy độc lập được 2 mô hình tham khảo cho mô hình đồ án trên máy cá nhân và có số liệu thực nghiệm cụ thể!
+
+Tái lập thực nghiệm độc lập cho các mô hình công khai, đối chiếu trực tiếp mã nguồn (Public Code) với bài báo khoa học (Public Paper), không đưa kiến trúc ghép tầng vào phân hệ này.
 
 ---
 
@@ -191,7 +193,7 @@ python Tier2_PIGuard_ACL2025\eval_piguard_replication.py
 ```
 
 ### 📖 5.1. Sổ Tay Quy Trình Tái Lập Chuẩn Hóa Cho 4 Thành Viên
-Để phục vụ nhiệm vụ nghiệm thu Meeting 4 cho từng thành viên (Trường, Đức, Việt, Phương), sổ tay hướng dẫn từng bước (Copy & Paste), cách clone repo cá nhân và mẫu xuất báo cáo JSON được lưu tại:  
+Hướng dẫn tái lập độc lập từng bước và xuất báo cáo JSON:  
 👉 [`MEMBER_REPRODUCTION_RUNBOOK.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/MEMBER_REPRODUCTION_RUNBOOK.md)
 
 ### 🛠️ 5.2. Bộ Công Cụ Script Kiểm Định Y Văn Công Khai (API Audit Scripts)

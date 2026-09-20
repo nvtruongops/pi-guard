@@ -67,3 +67,5 @@ Toàn bộ các video dưới đây đều đã được xác thực trạng th�
 <a id="ref4"></a>**[4]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in *NeurIPS 2022 Workshop on ML Safety*, 2022. Link: [https://arxiv.org/abs/2211.09527](https://arxiv.org/abs/2211.09527).
 
 <a id="ref5"></a>**[5]** K. Lee et al., "Deduplicating Training Data Makes Language Models Better," in *ACL Conference*, 2022. Link: [https://arxiv.org/abs/2107.06499](https://arxiv.org/abs/2107.06499).
+
+<a id="ref6"></a>**[6]** Y. Liu, Y. Jia, J. Jia, D. Song, and N. Z. Gong, "DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks," in *Proceedings of the 2025 IEEE Symposium on Security and Privacy (SP '25)*, 2025. Link: [https://github.com/liu00222/Open-Prompt-Injection](https://github.com/liu00222/Open-Prompt-Injection).

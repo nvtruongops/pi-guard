@@ -1,13 +1,9 @@
-# MASTER REPORTS & TECHNICAL GATEWAY — WORKSPACE TRƯƠNGNV
-**PI-Guard Capstone Project — Khóa luận Tốt nghiệp An toàn Thông tin (IAP491), Đại học FPT**  
-**Chủ nhiệm phân hệ**: Nguyễn Văn Trường (Leader — MSSV: `SE182034`)  
-**Thư mục làm việc**: [`workspaces/truongnv/reports/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/)
+# MASTER REPORTS & TECHNICAL GATEWAY — TRƯƠNGNV
+**PI-Guard** | Nguyễn Văn Trường (`SE182034`) | [`workspaces/truongnv/reports/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/)
 
 ---
 
-## 🏛️ 1. Tổng Quan Cấu Trúc Phân Hệ Báo Cáo & Nhiệm Vụ Kỹ Thuật
-
-Thư mục `workspaces/truongnv/reports/` được quy hoạch chuẩn mực thành **2 Phân Hệ Theo Kỳ Họp Tiến Độ** phục vụ quá trình làm việc với Giảng viên Hướng dẫn (GVHD) Thầy Trần Văn Ninh và Hội đồng Chấm luận văn:
+## 🏛️ 1. Cấu Trúc Phân Hệ Báo Cáo Tiến Độ
 
 ```text
 workspaces/truongnv/reports/
@@ -58,5 +54,5 @@ workspaces/truongnv/reports/
 | Phân Hệ | Mục Tiêu & Phạm Vi Nghiên Cứu | Đường Dẫn Chính Thức | Trạng Thái |
 | :--- | :--- | :--- | :---: |
 | **Phân Hệ 1 (Meeting 4 Archive)** | Lưu trữ bản trình chiếu 22 slide, báo cáo kịch bản thuyết trình và 12 hình ảnh minh chứng đã bảo vệ trực tiếp trước GVHD ngày 10/09/2026. | [`report_for_meeting_4/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/README.md) | **ĐÃ HOÀN THÀNH** |
-| **Phân Hệ 2 (Meeting 5 Tasks)** | Hệ thống 4 báo cáo kỹ thuật chuyên sâu (Task 1–4), khảo sát ứng viên Tầng 1, và toàn bộ phân hệ thực nghiệm tái lập mô hình mỏ neo PIGuard ACL 2025 trên máy cá nhân theo chỉ đạo của GVHD. | [`tasks_for_meeting_5/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/README.md) | **ĐANG TRIỂN KHAI** |
+| **Phân Hệ 2 (Meeting 5 Tasks)** | 4 báo cáo kỹ thuật (Task 1–4) và phân hệ thực nghiệm tái lập độc lập các mô hình y văn trên máy cá nhân. | [`tasks_for_meeting_5/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/README.md) | **ĐÃ SẴN SÀNG** |
 | **Thực Nghiệm Tái Lập (Task 3)** | Mã nguồn, dữ liệu 43MB, môi trường ảo Python 3.10, Jupyter notebook và kết quả đo đạc 1.579 mẫu tái lập PIGuard (ACL 2025). | [`tasks_for_meeting_5/task_3_replication/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/README.md) | **SẴN SÀNG KIỂM ĐỊNH** |

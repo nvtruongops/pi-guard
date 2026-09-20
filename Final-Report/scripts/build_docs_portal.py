@@ -275,97 +275,97 @@ def aggregate_all():
              DOCS_DIR / "work" / "meeting_3.md")
 
     # 2. Chuyên Đề 1: Prompt Study
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "prompt_study" / "01_llm_foundations_and_token_generation.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "prompt_study" / "01_llm_foundations_and_token_generation.md",
              DOCS_DIR / "prompt_study" / "llm_foundations.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "prompt_study" / "02_prompt_structure_and_chat_formats.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "prompt_study" / "02_prompt_structure_and_chat_formats.md",
              DOCS_DIR / "prompt_study" / "prompt_structure.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "prompt_study" / "03_instruction_hierarchy_and_flat_boundary.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "prompt_study" / "03_instruction_hierarchy_and_flat_boundary.md",
              DOCS_DIR / "prompt_study" / "instruction_hierarchy.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "prompt_study" / "04_resources_and_papers.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "prompt_study" / "04_resources_and_papers.md",
              DOCS_DIR / "prompt_study" / "resources_and_papers.md")
 
     # 3. Chuyên Đề 2: Attack Study
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "00_overview_threat_and_scope" / "history_and_evolution.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "attack_study" / "00_overview_threat_and_scope" / "history_and_evolution.md",
              DOCS_DIR / "attacks" / "history_and_evolution.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "00_overview_threat_and_scope" / "scope_and_boundary_analysis.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "attack_study" / "00_overview_threat_and_scope" / "scope_and_boundary_analysis.md",
              DOCS_DIR / "attacks" / "scope_and_boundary_analysis.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "01_prompt_injection" / "how_it_works_and_mechanisms.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "attack_study" / "01_prompt_injection" / "how_it_works_and_mechanisms.md",
              DOCS_DIR / "attacks" / "pi_how_it_works.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "01_prompt_injection" / "taxonomy_and_variants.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "attack_study" / "01_prompt_injection" / "taxonomy_and_variants.md",
              DOCS_DIR / "attacks" / "pi_taxonomy_and_variants.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "01_prompt_injection" / "resources_and_papers.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "attack_study" / "01_prompt_injection" / "resources_and_papers.md",
              DOCS_DIR / "attacks" / "pi_resources_and_papers.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "archetypes_and_mechanisms.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "attack_study" / "02_modern_jailbreak_attacks" / "archetypes_and_mechanisms.md",
              DOCS_DIR / "attacks" / "jb_archetypes_and_mechanisms.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "datasets_benchmarks_and_taxonomy.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "attack_study" / "02_modern_jailbreak_attacks" / "datasets_benchmarks_and_taxonomy.md",
              DOCS_DIR / "attacks" / "jb_datasets_and_benchmarks.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "advanced_variants_and_operators.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "attack_study" / "02_modern_jailbreak_attacks" / "advanced_variants_and_operators.md",
              DOCS_DIR / "attacks" / "jb_advanced_variants_and_operators.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "attack_study" / "02_modern_jailbreak_attacks" / "resources_and_papers.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "attack_study" / "02_modern_jailbreak_attacks" / "resources_and_papers.md",
              DOCS_DIR / "attacks" / "jb_resources_and_papers.md")
 
     # 4. Chuyên Đề 3: Threat & Defense Study
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "threat_and_defense_study" / "01_threat_model_and_attack_surface.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "threat_and_defense_study" / "01_threat_model_and_attack_surface.md",
              DOCS_DIR / "threat_defense" / "threat_model_and_attack_surface.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "threat_and_defense_study" / "02_multi_layer_defense_architecture.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "threat_and_defense_study" / "02_multi_layer_defense_architecture.md",
              DOCS_DIR / "threat_defense" / "multi_layer_defense_architecture.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "threat_and_defense_study" / "03_comparative_matrix_and_tradeoffs.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "threat_and_defense_study" / "03_comparative_matrix_and_tradeoffs.md",
              DOCS_DIR / "threat_defense" / "comparative_matrix_and_tradeoffs.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "threat_and_defense_study" / "04_resources_and_papers.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "threat_and_defense_study" / "04_resources_and_papers.md",
              DOCS_DIR / "threat_defense" / "resources_and_papers.md")
 
     # 5. Chuyên Đề 4: Dataset & Benchmark Study
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "dataset_and_benchmark_study" / "01_data_curation_and_class_balance.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "dataset_and_benchmark_study" / "01_data_curation_and_class_balance.md",
              DOCS_DIR / "dataset_study" / "data_curation.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "dataset_and_benchmark_study" / "02_group_aware_splitting_and_ood.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "dataset_and_benchmark_study" / "02_group_aware_splitting_and_ood.md",
              DOCS_DIR / "dataset_study" / "group_aware_splitting.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "dataset_and_benchmark_study" / "03_resources_and_papers.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "dataset_and_benchmark_study" / "03_resources_and_papers.md",
              DOCS_DIR / "dataset_study" / "resources_and_papers.md")
 
     # 6. Chuyên Đề 5: Model Study
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "03_two_tier_pipeline_coordination" / "how_it_works_and_architecture.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "model_study" / "03_two_tier_pipeline_coordination" / "how_it_works_and_architecture.md",
              DOCS_DIR / "models" / "two_tier_architecture.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "03_two_tier_pipeline_coordination" / "benchmark_and_tradeoffs.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "model_study" / "03_two_tier_pipeline_coordination" / "benchmark_and_tradeoffs.md",
              DOCS_DIR / "models" / "two_tier_tradeoffs.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "01_tfidf_syntactic_baseline" / "theory_and_math.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "model_study" / "01_tfidf_syntactic_baseline" / "theory_and_math.md",
              DOCS_DIR / "models" / "tfidf_theory_and_math.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "01_tfidf_syntactic_baseline" / "how_it_works_and_usage.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "model_study" / "01_tfidf_syntactic_baseline" / "how_it_works_and_usage.md",
              DOCS_DIR / "models" / "tfidf_usage.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "01_tfidf_syntactic_baseline" / "resources_and_videos.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "model_study" / "01_tfidf_syntactic_baseline" / "resources_and_videos.md",
              DOCS_DIR / "models" / "tfidf_resources.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "theory_and_math.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "model_study" / "02_deberta_v3_semantic_classifier" / "theory_and_math.md",
              DOCS_DIR / "models" / "deberta_theory_and_math.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "how_it_works_and_usage.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "model_study" / "02_deberta_v3_semantic_classifier" / "how_it_works_and_usage.md",
              DOCS_DIR / "models" / "deberta_usage.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "model_study" / "02_deberta_v3_semantic_classifier" / "resources_and_videos.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "model_study" / "02_deberta_v3_semantic_classifier" / "resources_and_videos.md",
              DOCS_DIR / "models" / "deberta_resources.md")
 
     # 7. Chuyên Đề 6: Robustness & Evasion Study
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "01_theory_and_evasion_mechanisms.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "robustness_study" / "01_theory_and_evasion_mechanisms.md",
              DOCS_DIR / "robustness" / "theory_and_evasion_mechanisms.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "02_defense_architecture_and_mitigation.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "robustness_study" / "02_defense_architecture_and_mitigation.md",
              DOCS_DIR / "robustness" / "defense_architecture_and_mitigation.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "03_benchmarks_metrics_and_tradeoffs.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "robustness_study" / "03_benchmarks_metrics_and_tradeoffs.md",
              DOCS_DIR / "robustness" / "benchmarks_metrics_and_tradeoffs.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "robustness_study" / "04_resources_and_papers.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "robustness_study" / "04_resources_and_papers.md",
              DOCS_DIR / "robustness" / "resources_and_papers.md")
 
     # 8. Chuyên Đề 7: Evaluation & Trade-off Study
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "evaluation_and_tradeoff_study" / "01_false_positive_economics_and_ux.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "evaluation_and_tradeoff_study" / "01_false_positive_economics_and_ux.md",
              DOCS_DIR / "evaluation_study" / "false_positive_economics.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "evaluation_and_tradeoff_study" / "02_pareto_frontier_and_system_tradeoffs.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "evaluation_and_tradeoff_study" / "02_pareto_frontier_and_system_tradeoffs.md",
              DOCS_DIR / "evaluation_study" / "pareto_frontier.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "evaluation_and_tradeoff_study" / "03_resources_and_papers.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "evaluation_and_tradeoff_study" / "03_resources_and_papers.md",
              DOCS_DIR / "evaluation_study" / "resources_and_papers.md")
 
-    # Research Docs
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "State_of_the_Art_Guardrail_and_Jailbreak_Benchmarks_Analysis.md",
+    # Research Docs & Comparative Analysis
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "comparative_analysis" / "State_of_the_Art_Guardrail_and_Jailbreak_Benchmarks_Analysis.md",
              DOCS_DIR / "research" / "sota_guardrail_benchmarks.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "Target_LLM_API_Benchmark_and_Vulnerability_Analysis.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "comparative_analysis" / "Target_LLM_API_Benchmark_and_Vulnerability_Analysis.md",
              DOCS_DIR / "research" / "target_llm_vulnerabilities.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "Tencent2026_Paper_Analysis_and_Mapping_to_PIGuard.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "comparative_analysis" / "Tencent2026_Paper_Analysis_and_Mapping_to_PIGuard.md",
              DOCS_DIR / "research" / "tencent2026_paper_analysis.md")
-    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md",
+    copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "comparative_analysis" / "Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md",
              DOCS_DIR / "research" / "why_dual_model_architecture.md")
 
     # Luận văn & Báo cáo Review

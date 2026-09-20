@@ -1,46 +1,58 @@
-# BÁO CÁO TỔNG HỢP TIẾN ĐỘ & CỔNG ĐIỀU HÀNH 4 NHIỆM VỤ MEETING 5
-## (TASKS FOR MEETING 5 — MASTER REPORT & REPOSITORY GATEWAY)
-
-### ĐỀ TÀI: A MACHINE-LEARNING GUARDRAIL FOR DETECTING PROMPT INJECTION AND JAILBREAK ATTACKS ON LLM APPLICATIONS (PI-GUARD)
-- **Giảng viên hướng dẫn**: Thầy Trần Văn Ninh
-- **Sinh viên thực hiện**: Nguyễn Văn Trường (Trưởng nhóm — MSSV: `SE182034`)
-- **Phân hệ quản lý**: `workspaces/truongnv/reports/tasks_for_meeting_5/`
-- **Căn cứ chỉ đạo**: Biên bản họp Meeting 4 ngày 10/09/2026 ([`Final-Report/Meeting/Meeting 4_10_09_26.md`](file:///d:/Work/Do-an/Final-Report/Meeting/Meeting%204_10_09_26.md)) và Bản đăng ký đề tài ([`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md))
+# BÁO CÁO TIẾN ĐỘ 4 NHIỆM VỤ MEETING 5
+**Đề tài**: PI-Guard | **GVHD**: Thầy Trần Văn Ninh  
+**Thực hiện**: Nguyễn Văn Trường (`SE182034` - Điều phối & Task 3), Nguyễn Quí Đức (`SE182283` - Task 1 & 2), Phạm Minh Hoàng Việt (`SE182292` - Loại bỏ Encoding), Đỗ Đoàn Duy Phương (`SE182375` - Y văn 4 bài báo)  
+**Workspace**: [`workspaces/truongnv/reports/tasks_for_meeting_5/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/)
 
 ---
 
-## Executive Summary (Tóm Tắt Báo Cáo Dành Cho GVHD)
+## Executive Summary
 
-Kính gửi Thầy **Trần Văn Ninh**,
+> [!IMPORTANT]
+> ### 👥 TIẾN TRÌNH & PHÂN CÔNG NHIỆM VỤ THÀNH VIÊN KHI BÁO CÁO MEETING 5:
+> - **Nguyễn Quí Đức**: Nghiên cứu **Task 1 & Task 2** (phân biệt 2 key đồ án: Prompt Injection vs. Jailbreak, phân tích cách thức hoạt động & bề mặt tấn công qua 2 kênh Ingress: Direct Chat vs. Indirect File/RAG).
+> - **Đỗ Đoàn Duy Phương**: Thu thập, nghiên cứu và thêm **4 bài báo khoa học mới** vào kho y văn trong git commit (Hackett et al. ACL 2025 Workshop LLMSEC, Jacob et al. ACM CCS 2024, Liu et al. IEEE S&P 2025, Li & Liu ACL 2025), kiểm định metadata xuất bản và cập nhật [`REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md).
+> - **Phạm Minh Hoàng Việt**: Tìm hiểu **cơ chế mô hình loại bỏ encoding** (Base64, Hexadecimal, Leetspeak, ciphers) và kỹ thuật chuẩn hóa chuỗi.
+> - **Nguyễn Văn Trường**: Thực hiện **Task 3** trong `workspaces/truongnv/` (chạy thực nghiệm 5 mô hình y văn public nguyên bản trên 5 tập benchmark mở, đối soát số liệu khớp bài báo ACL 2025).
 
-Thực hiện nghiêm túc kết luận chỉ đạo của Thầy tại buổi họp Meeting 4 ngày 10/09/2026: *"Một mô hình dùng trong đồ án học thuật chuẩn mực phải tìm được mã nguồn và tập dữ liệu công bố, tải về và chạy được trên máy để nắm chắc các thiết lập siêu tham số và số liệu thực nghiệm. Khi đó mới đủ cơ sở khoa học để đưa vào đồ án và đề xuất cải tiến. Trước buổi họp tuần sau (Meeting 5), cả 4 thành viên bắt buộc phải chạy độc lập được 2 mô hình tham khảo trên máy cá nhân và có số liệu thực nghiệm cụ thể!"*
+Báo cáo tiến độ 4 nhiệm vụ Meeting 5 (17/09/2026 - 19/09/2026):
 
-Nhóm sinh viên đã hoàn thành xuất sắc 100% cả **4 nhiệm vụ cốt lõi** được giao phục vụ buổi họp chính thức **Meeting 5 (17/09/2026)** với GVHD Thầy Trần Văn Ninh:
-
-1. **Nhiệm vụ 1: Giới thiệu 2 key đồ án (Prompt Injection vs. Jailbreak)**: Hoàn tất công thức hóa ranh giới toán học bóc tách 2 đối tượng nghiên cứu cốt lõi ($X = S \mathbin{\Vert} U$ phá vỡ ranh giới phẳng ứng dụng vs. phá vỡ ranh giới căn chỉnh an toàn trong trọng số mô hình $\theta$); thiết lập 4 yêu cầu kỹ thuật tối thượng của Guardrail (P95 < 30ms, phân loại xác suất bất định, chống Over-defense $\text{FPR} < 1.5\%$, Black-box Ingress proxy).
-2. **Nhiệm vụ 2: Cách hoạt động và kết quả bị tấn công của 2 key**: Xây dựng Khung phân tích bề mặt tấn công 5 trục chuẩn NIST AI 100-2e2025 [[2]](#ref2); mổ xẻ toàn diện cơ chế hoạt động, chu trình dữ liệu (Execution Flow với Mermaid), dấu vết nhận diện (Footprint) và bán kính thiệt hại (Blast Radius) của Kênh 1 (Direct Chat UI) và Kênh 2 (Indirect File tài liệu PDF/DOCX/TXT nạp vào RAG/Web).
-3. **Nhiệm vụ 3: Chạy thực nghiệm mô hình đề xuất chỉ chạy mô hình public không thêm bớt gì**:
-   - **Tái lập y văn thuần túy (Pure Literature Replication)**: Tuân thủ nghiêm ngặt nguyên tắc của Thầy Ninh, nhóm tải và chạy nguyên bản 100% mã nguồn và trọng số của 5 mô hình y văn công khai đạt chuẩn Bộ Ba Công Khai (Public Triad), kiên quyết không can thiệp hay chế thêm code riêng của đồ án.
-   - **5 mô hình public được tái lập**: (1) PIGuard DeBERTa-v3 MOF (Hao Li et al., ACL 2025 Long Paper) [[1]](#ref1); (2) Sentence-Transformers MiniLM (Ayub & Majumdar, CAMLIS 2024) [[18]](#ref18); (3) Meta Prompt-Guard 86M (Purple Llama 2024) [[19]](#ref19); (4) Perplexity & N-Grams Baseline (Neel Jain et al., NeurIPS 2023) [[14]](#ref14); (5) InstructDetector (Zhao et al., Findings of EMNLP 2024) [[20]](#ref20).
-   - **Đo đạc trung thực trên 5 tập benchmark mở**: NotInject (339 mẫu), WildGuard Benign (971 mẫu) [[4]](#ref4), BIPIA (225 mẫu), SafeGuard và Deepset; chỉ ra các điểm nghẽn thực tế của Ayub MiniLM ($42.73\text{ms}$ CPU, FPR $58.41\%$) và Meta Prompt-Guard (Overdefense Accuracy $0.88\%$).
-4. **Nhiệm vụ 4: Mô hình đồ án có thể dùng thế nào cho đồ án khi chạy thực nghiệm Task 3**:
-   - Từ bài học thực nghiệm Task 3, nhóm trả lời trực diện câu hỏi: Mô hình đồ án PI-Guard sẽ kết hợp và dùng thế nào?
-   - **Đề xuất Kiến trúc phân tầng Two-Tier Cascaded Architecture**:
-     - *Tầng 1*: Dùng Heuristic Scrubber + Dual-Space TF-IDF N-Grams (Word 1-3 + Char_wb 3-5) + Logistic Regression làm bộ lọc nhanh CPU ($\tau_1 \le 0.5\text{ms}$), giải phóng an toàn **$82.6\%$** lưu lượng qua Tri-State Routing ($P \le 0.15$ cho qua ngay; $P \ge 0.85$ chặn ngay).
-     - *Tầng 2*: Dùng DeBERTa-v3 MOF lượng tử hóa ONNX INT8 ($\tau_2 \approx 18.5\text{ms}$) chỉ thẩm định **$17.4\%$** truy vấn mập mờ trong vùng bất định ($0.15 < P < 0.85$).
-     - *Hiệu năng kỳ vọng*: Đưa độ trễ kỳ vọng về **$3.69\text{ms}$** (P95 $< 20\text{ms}$), bảo toàn F1 $0.9416$, kiểm soát $\text{FPR} < 1.5\%$, Zero GPU.
-   - **4 Cải tiến độc quyền của PI-Guard**: (1) Group-Aware Splitting MD5; (2) Dynamic Class-Weighted Loss; (3) Two-Tier Uncertainty Routing; (4) Heuristic Scrubber.
-   - *(Kèm Chuyên đề Bổ trợ SOTA & Ranh giới nghiên cứu `TASK_2_5_SOTA_ASSESSMENT_AND_TWO_TIER_PROPOSAL.md` làm cơ sở đối chuẩn lý luận vững chắc cho Nhiệm vụ 4).*
+1. **Nhiệm vụ 1: Giới thiệu 2 key đồ án (Prompt Injection vs. Jailbreak)**: Phân định ranh giới toán học $X = S \mathbin{\Vert} U$ (phá vỡ ranh giới phẳng ứng dụng) vs. phá vỡ ranh giới căn chỉnh an toàn trong trọng số $\theta$; xác lập 4 yêu cầu kỹ thuật Guardrail: P95 < 30ms, phân loại xác suất bất định, chống Over-defense $\text{FPR} < 1.5\%$, Black-box Ingress proxy.
+2. **Nhiệm vụ 2: Cách hoạt động và kết quả bị tấn công của 2 key**: Khung 5 trục NIST AI 100-2e2025 [[2]](#ref2); phân tích luồng thực thi, footprint và blast radius của Kênh 1 (Direct Chat) và Kênh 2 (Indirect File/RAG).
+3. **Nhiệm vụ 3: Chạy thực nghiệm mô hình public nguyên bản**:
+   - Tải và chạy nguyên bản 100% mã nguồn và trọng số của 5 mô hình y văn công khai đạt chuẩn Paper + Code + Data, không can thiệp code riêng.
+   - 5 mô hình: (1) PIGuard DeBERTa-v3 MOF (ACL 2025) [[1]](#ref1); (2) Sentence-Transformers MiniLM (CAMLIS 2024) [[18]](#ref18); (3) Meta Prompt-Guard 86M (2024) [[19]](#ref19); (4) Perplexity & N-Grams (NeurIPS 2023) [[14]](#ref14); (5) InstructDetector (EMNLP 2024) [[20]](#ref20).
+   - Đo đạc trên 5 benchmark mở: NotInject (339 mẫu), WildGuard Benign (971 mẫu) [[4]](#ref4), BIPIA (225 mẫu), SafeGuard, Deepset; chỉ ra hạn chế của Ayub MiniLM ($42.73\text{ms}$ CPU, FPR $58.41\%$) và Meta Prompt-Guard (Overdefense Accuracy $0.88\%$).
+4. **Nhiệm vụ 4: Mô hình đồ án có thể dùng thế nào từ thực nghiệm Task 3**:
+   - Đề xuất Kiến trúc Two-Tier Cascaded:
+     - *Tầng 1*: Heuristic Scrubber + Dual-Space TF-IDF N-Grams + Logistic Regression lọc nhanh CPU ($\tau_1 \le 0.5\text{ms}$), giải phóng **$82.6\%$** lưu lượng qua Tri-State Routing ($P \le 0.15$ cho qua; $P \ge 0.85$ chặn).
+     - *Tầng 2*: DeBERTa-v3 MOF ONNX INT8 ($\tau_2 \approx 18.5\text{ms}$) thẩm định **$17.4\%$** truy vấn bất định ($0.15 < P < 0.85$).
+     - *Hiệu năng kỳ vọng*: Độ trễ trung bình **$3.69\text{ms}$** (P95 $< 20\text{ms}$), F1 $0.9416$, $\text{FPR} < 1.5\%$, Zero GPU.
+   - 4 cải tiến: (1) Group-Aware Splitting MD5; (2) Dynamic Class-Weighted Loss; (3) Two-Tier Uncertainty Routing; (4) Heuristic Scrubber.
 
 ---
 
 ## 📂 SƠ ĐỒ HỆ THỐNG & VAI TRÒ CÁC PHÂN HỆ THƯ MỤC
 
-Thư mục `tasks_for_meeting_5/` được quy hoạch theo chuẩn module hóa nghiêm ngặt: **Tại root chỉ có duy nhất file `README.md` đóng vai trò là Báo cáo Master kiêm Cổng điều phối tổng thể**, dẫn trực tiếp đến các thư mục chuyên trách:
+Thư mục `tasks_for_meeting_5/` được quy hoạch theo chuẩn module hóa nghiêm ngặt: **Tại root gồm Báo cáo Master `README.md`, Bộ Slide chính thức `PI-GUARD-Present-Meeting-5.pptx` và Cẩm nang thuyết trình `MEETING_5_SLIDE_DECK_GUIDE.md`**, dẫn trực tiếp đến các thư mục chuyên trách:
 
 ```text
 workspaces/truongnv/reports/tasks_for_meeting_5/
 ├── README.md                            # [BÁO CÁO MASTER EXECUTIVE & CỔNG ĐIỀU PHỐI TỔNG THỂ]
+├── PI-GUARD-Present-Meeting-5.pptx      # [BỘ SLIDE THUYẾT TRÌNH CHÍNH THỨC MEETING 5 - 31 SLIDES 16:9 LIGHT THEME]
+├── PI-GUARD-Present-Meeting-5-EN.pptx   # [BỘ SLIDE THUYẾT TRÌNH TIẾNG ANH MEETING 5 - 31 SLIDES 16:9 LIGHT THEME]
+├── MEETING_5_SLIDE_DECK_GUIDE.md        # [CẨM NANG THUYẾT TRÌNH, LỜI THOẠI SPEAKER NOTES & PHẢN BIỆN HỘI ĐỒNG]
+│
+├── tools/                               # [BỘ CÔNG CỤ TỰ ĐỘNG HÓA BIÊN DỊCH SLIDE & HÌNH ẢNH]
+│   ├── generate_meeting_5_presentation.py # [CLI] Sinh tự động 31 slide PowerPoint song ngữ bằng python-pptx
+│   ├── generate_diagrams.py             # [CLI] Sinh 4 sơ đồ kiến trúc đồ họa pixel-perfect bằng PIL
+│   └── audit_pptx.py                    # [CLI] Kiểm toán danh sách đen thuật ngữ học thuật tự động (100% PASS)
+│
+├── figures/                             # [KHO HÌNH ẢNH, SƠ ĐỒ & BIỂU ĐỒ ĐỐI CHUẨN THỰC NGHIỆM]
+│   ├── diagram_two_tier_architecture.png # Sơ đồ kiến trúc phân tầng Two-Tier Cascaded Guardrail
+│   ├── diagram_flat_token_space.png     # Sơ đồ căn nguyên lỗ hổng không gian token phẳng X = S || U
+│   ├── diagram_5d_threat_framework.png  # Sơ đồ khung phân tích mối đe dọa 5 trục NIST AI 100-2e2025
+│   ├── diagram_tri_state_distribution.png # Phân bổ động học định tuyến bất định 3 trạng thái
+│   └── [13 biểu đồ thực nghiệm y văn]    # Scorecard, độ trễ, overdefense và so sánh bài báo gốc
 │
 ├── task_reports/                        # [PHÂN HỆ 1: 4 BÁO CÁO KỸ THUẬT MASTER & CHUYÊN ĐỀ BỔ TRỢ]
 │   ├── README.md                        # Mục lục và hướng dẫn tra cứu 4 task chính thức
@@ -51,7 +63,7 @@ workspaces/truongnv/reports/tasks_for_meeting_5/
 │   ├── TASK_2_5_SOTA_ASSESSMENT_AND_TWO_TIER_PROPOSAL.md # [Chuyên đề bổ trợ] Đánh giá SOTA & Ranh giới nghiên cứu
 │   └── supplementary/                   # [Chuyên khảo bổ trợ chuyên sâu] Tránh Scope Creep cho 4 Core Tasks
 │       ├── TIER1_SCORING_MATHEMATICAL_FORMULATION_AND_BAYES_RISK.md # [SUPP-01] Mô hình hóa toán học Tầng 1
-│       ├── DAN_JAILBREAK_ATTACK_MECHANISMS_AND_DEFENSE.md # [SUPP-02] Chuyên khảo cơ chế tấn công DAN (ACM CCS 2024)
+│       ├── JAILBREAK_TAXONOMY_CASE_STUDIES_AND_DEFENSE.md # [SUPP-02] Chuyên khảo 4 trường phái Jailbreak, dòng họ DAN & 10 Case Studies
 │       ├── CONTROL_FLOW_HIJACKING_AND_FLAT_TOKEN_SPACE.md # [SUPP-03] Chiếm quyền luồng X = S || U & Không gian token phẳng
 │       ├── LITERATURE_ASSESSMENT_TFIDF.md # [SUPP-04] Đánh giá thực trạng y văn TF-IDF N-Grams
 │       ├── CORE_ANCHOR_PIGUARD_ACL2025.md # [SUPP-05] Thẩm định mỏ neo PIGuard ACL 2025
@@ -70,10 +82,12 @@ workspaces/truongnv/reports/tasks_for_meeting_5/
     └── README.md                               # Hướng dẫn tổng thể phòng thí nghiệm tái lập
 ```
 
-### Bảng Định Danh Vai Trò 2 Phân Hệ Cốt Lõi:
+### Bảng Định Danh Vai Trò Các Phân Hệ Cốt Lõi:
 
 | Phân Hệ / Thư Mục | Vai Trò Kỹ Thuật | Sản Phẩm Giao Nộp Cốt Lõi | Đối Tượng Sử Dụng |
 | :--- | :--- | :--- | :--- |
+| **`PI-GUARD-Present-Meeting-5.pptx`** & **`PI-GUARD-Present-Meeting-5-EN.pptx`** & **`MEETING_5_SLIDE_DECK_GUIDE.md`** | **Bộ Slide Trình Chiếu & Cẩm Nang Thuyết Trình Chính Thức (Song Ngữ)** | 31 Slide Widescreen 16:9 Light Theme chuẩn mực học thuật, bổ sung 3 slide ví dụ thực chiến (Direct/Indirect PI & Jailbreak), làm rõ toán học TF-IDF và cơ sở lý luận 3 mức xác suất. | Cả nhóm thuyết trình trước GVHD Thầy Trần Văn Ninh tại Meeting 5; bảo vệ miệng trước Hội đồng. |
+| **`tools/` & `figures/`** | **Bộ Công Cụ Tự Động Hóa & Kho Đồ Họa 4K** | `generate_meeting_5_presentation.py` (tạo PPTX), `generate_diagrams.py` (sinh 4 sơ đồ kiến trúc), `audit_pptx.py` (kiểm toán danh sách đen 100% PASS), kèm 17 tệp đồ họa và biểu đồ y văn. | Tự động hóa tái tạo 100% tài nguyên slide và đồ họa độ phân giải cao; kiểm toán học thuật. |
 | **`task_reports/`** | **Hồ Sơ Báo Cáo & Chuyên Đề Nghiên Cứu Bổ Trợ** | 4 báo cáo kỹ thuật chính thức (Nhiệm vụ 1, 2, 3, 4) + 1 chuyên đề SOTA + 6 chuyên khảo phụ lục bổ trợ (`supplementary/` SUPP-01..06). | GVHD & Hội đồng thẩm định phương pháp luận; nạp vào Luận văn Chương 1, 2, 3. |
 | **`task_3_replication/`** | **Phòng Thí Nghiệm Thực Thi (Executable Lab)** | 5 repo/mô hình public nguyên bản, Interactive Notebooks, môi trường ảo `.venv`, kịch bản đo đạc tự động (89/89 assets), Sổ tay chạy tái lập thành viên (`MEMBER_REPRODUCTION_RUNBOOK.md`) và script kiểm định API (`scripts/`). | Cả 4 thành viên chạy thực nghiệm kiểm chứng số liệu trên máy cá nhân; minh chứng tái lập độc lập. |
 
@@ -205,7 +219,7 @@ Từ các "nỗi đau" và giới hạn đo đạc được ở Task 3 (DeBERTa-
 > 📚 **Bổ trợ cơ sở lý luận & chuyên khảo khoa học (MONO-2.5, SUPP-01 & SUPP-02)**:
 > - **Chuyên đề SOTA & Ranh giới nghiên cứu (MONO-2.5)**: Khảo cứu 6 trường phái SOTA quốc tế (ACL 2025), chứng minh Thế lưỡng nan Pareto và chỉ ra 6 khoảng trống phương pháp luận cốt tử. Chi tiết xem tại [`TASK_2_5_SOTA_ASSESSMENT_AND_TWO_TIER_PROPOSAL.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/TASK_2_5_SOTA_ASSESSMENT_AND_TWO_TIER_PROPOSAL.md).
 > - **Chuyên khảo Toán học Tầng 1 & Rủi ro Bayes (SUPP-01)**: Độc lập hóa công thức vector thưa CSR $\mathcal{O}(k)$, hiệu chuẩn Platt Scaling, ma trận chi phí Bayes $C_{FP} \gg C_{\text{compute}}$, và phép tính 3 Key mẫu nhằm tránh làm phình to phạm vi (Scope Creep) của Task 4. Chi tiết xem tại [`supplementary/TIER1_SCORING_MATHEMATICAL_FORMULATION_AND_BAYES_RISK.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/TIER1_SCORING_MATHEMATICAL_FORMULATION_AND_BAYES_RISK.md).
-> - **Chuyên khảo Cơ chế Tấn công DAN & Chiến lược Đánh chặn (SUPP-02)**: Mổ xẻ toàn diện cơ chế hoạt động của dòng họ Jailbreak DAN kinh điển: 2 nguyên lý lỗi căn chỉnh Competing Objectives & Mismatched Generalization (Wei et al. NeurIPS 2023); Giải phẫu 5 khối chức năng ngữ nghĩa; Khảo sát thực nghiệm 1,405 prompt in-the-wild và 11 quần thể tiến hóa 4 thế hệ (Shen et al. ACM CCS 2024); Đánh giá nguyên nhân thất bại của OpenAI Moderation & NeMo-Guardrails; và Thiết kế phòng thủ phân tầng của PI-Guard (Heuristic Scrubber + Dual-Space TF-IDF N-Grams $\le 0.4\text{ms}$ + DeBERTa-v3 MOF). Chi tiết xem tại [`supplementary/DAN_JAILBREAK_ATTACK_MECHANISMS_AND_DEFENSE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/DAN_JAILBREAK_ATTACK_MECHANISMS_AND_DEFENSE.md).
+> - **Chuyên khảo 4 Trường Phái Jailbreak, Dòng Họ DAN & 10 Ca Điển Hình (SUPP-02)**: Khảo sát toàn diện 4 trường phái Jailbreak (Persona/Roleplay, Automated/Gradient GCG, Obfuscation/Ciphers, Context Saturation); Mổ xẻ chi tiết 10 case studies thực tế kèm cấu trúc prompt nguyên bản; Tích hợp trọn vẹn chuyên khảo cơ chế hoạt động của archetype Jailbreak DAN kinh điển (Shen et al. ACM CCS 2024, 1.405 prompt in-the-wild, 11 quần thể tiến hóa 4 thế hệ); 2 nguyên lý lỗi căn chỉnh Competing Objectives & Mismatched Generalization (Wei et al. NeurIPS 2023); Đánh giá thất bại của OpenAI Moderation & NeMo-Guardrails; và Thiết kế phòng thủ phân tầng của PI-Guard (Heuristic Scrubber + Dual-Space TF-IDF N-Grams $\le 0.4\text{ms}$ + DeBERTa-v3 MOF + Group-Aware Splitting MD5). Chi tiết xem tại [`supplementary/JAILBREAK_TAXONOMY_CASE_STUDIES_AND_DEFENSE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/JAILBREAK_TAXONOMY_CASE_STUDIES_AND_DEFENSE.md).
 
 ---
 
@@ -276,6 +290,4 @@ gantt
 * <a id="ref19"></a>**[19]** Meta AI. 2024. *Prompt-Guard-86M: A Small, Lightweight Classifier for Prompt Injection and Jailbreak Detection*. Purple Llama Project. [arXiv:2407.21783 [cs.CR]](https://arxiv.org/abs/2407.21783).
 * <a id="ref20"></a>**[20]** Zhiyuan Zhao, Alexander Robey, Hamed Hassani, George J. Pappas, and Eric Wong. 2024. *InstructDetector: Detecting Instruction Injection in Large Language Models via Hidden-State Residuals*. In *Findings of the Association for Computational Linguistics: EMNLP 2024*. [arXiv:2402.06774 [cs.CL]](https://arxiv.org/abs/2402.06774).
 
----
-
-*Cổng điều phối và báo cáo tổng hợp được duy trì và kiểm định tự động bởi Leader Nguyễn Văn Trường phục vụ buổi họp chính thức Meeting 5 ngày 17/09/2026.*
+*Báo cáo tiến độ chuẩn bị Meeting 5 (17/09/2026).*

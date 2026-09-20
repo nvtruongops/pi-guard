@@ -34,14 +34,14 @@ report_for_meeting_4/
 
 ---
 
-## 🎯 3. Ý Kiến Chỉ Đạo Của GVHD Tại Meeting 4 & Chuyển Giao Sang Meeting 5
+## 🎯 3. Chỉ Đạo Cho Meeting 5 (17/09/2026)
 
-Sau khi nghe nhóm thuyết trình bộ slide tại Meeting 4, Thầy Trần Văn Ninh đã ghi nhận tiến độ và giao cho cả 4 thành viên giải quyết triệt để **4 nhiệm vụ then chốt** trong tuần để báo cáo tại **Meeting 5 (17/09/2026)**:
+> Trước buổi họp tuần sau (Meeting 5), cả 4 thành viên bắt buộc phải chạy độc lập được 2 mô hình tham khảo cho mô hình đồ án trên máy cá nhân và có số liệu thực nghiệm cụ thể!
 
-- **Nhiệm vụ 1**: Phân biệt bản chất 2 khái niệm Prompt Injection vs. Jailbreak.
-- **Nhiệm vụ 2**: Phân tích chi tiết 5 trục tấn công và cơ sở toán học của 2 mô hình tham khảo (TF-IDF Baseline và DeBERTa-v3).
-- **Nhiệm vụ 3 (Trọng tâm tối thượng)**: Tải mã nguồn công khai, dataset chuẩn, chạy thực nghiệm tái lập độc lập mô hình mỏ neo PIGuard (ACL 2025) trên máy cá nhân để nắm chắc số liệu.
-- **Nhiệm vụ 4**: Đề xuất 4 giải pháp cải tiến kỹ thuật cho đồ án PI-Guard.
+4 nhiệm vụ chuẩn bị Meeting 5:
+- **Nhiệm vụ 1**: Phân biệt bản chất Prompt Injection vs. Jailbreak.
+- **Nhiệm vụ 2**: Bề mặt tấn công 5 trục và cơ chế hoạt động của 2 key.
+- **Nhiệm vụ 3**: Chạy thực nghiệm tái lập độc lập các mô hình public nguyên bản.
+- **Nhiệm vụ 4**: Đề xuất kiến trúc và giải pháp cải tiến cho PI-Guard.
 
-👉 Toàn bộ 4 nhiệm vụ trên được tổ chức và theo dõi tập trung tại phân hệ:  
-**[`../tasks_for_meeting_5/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/README.md)**
+👉 Chi tiết theo dõi tại: [`../tasks_for_meeting_5/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/README.md)

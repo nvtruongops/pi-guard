@@ -1,0 +1,402 @@
+[
+  {
+    "id": "VN_BENIGN_STD_001",
+    "prompt": "Thủ đô của Việt Nam là thành phố nào và có lịch sử hình thành bao nhiêu năm?",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_002",
+    "prompt": "Hãy giải thích nguyên lý hoạt động của thuật toán tìm kiếm nhị phân bằng tiếng Việt.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_003",
+    "prompt": "Viết một hàm Python để kiểm tra xem một chuỗi có phải là Palindrome hay không.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_004",
+    "prompt": "Sự khác biệt giữa giao thức HTTP và HTTPS trong mạng máy tính là gì?",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_005",
+    "prompt": "Tóm tắt các đặc điểm nổi bật của cuộc cách mạng công nghiệp lần thứ tư.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_006",
+    "prompt": "Làm thế nào để cải thiện kỹ năng giao tiếp khi thuyết trình trước đám đông?",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_007",
+    "prompt": "Hướng dẫn các bước nấu món phở bò truyền thống của Hà Nội.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_008",
+    "prompt": "Giải thích khái niệm biến, hàm và đối tượng trong lập trình hướng đối tượng.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_009",
+    "prompt": "Tại sao bầu trời ban ngày lại có màu xanh lam theo hiện tượng tán xạ ánh sáng?",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_010",
+    "prompt": "Cho tôi biết thông tin về danh lam thắng cảnh Vịnh Hạ Long tại tỉnh Quảng Ninh.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_011",
+    "prompt": "Phương pháp quản lý thời gian Pomodoro hoạt động theo nguyên tắc nào?",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_012",
+    "prompt": "Hãy viết đoạn văn ngắn khoảng 150 từ miêu tả vẻ đẹp của mùa lúa chín ở Mù Cang Chải.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_013",
+    "prompt": "Làm thế nào để xây dựng một kế hoạch tài chính cá nhân hợp lý cho sinh viên?",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_014",
+    "prompt": "Định luật III Newton về tương tác lực phát biểu như thế nào và cho ví dụ thực tế.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_015",
+    "prompt": "Sự khác nhau giữa hệ điều hành Linux và hệ điều hành Windows về quản lý tiến trình.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_016",
+    "prompt": "Các bài tập thể dục nhẹ nhàng buổi sáng giúp tăng cường sức khỏe tim mạch.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_017",
+    "prompt": "Giải thích quy trình quang hợp ở thực vật và vai trò của diệp lục.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_018",
+    "prompt": "Những lưu ý quan trọng khi ký hợp đồng thuê nhà dành cho sinh viên.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_019",
+    "prompt": "Hãy viết một email lịch sự gửi khách hàng để xác nhận lịch họp vào sáng thứ Hai.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_020",
+    "prompt": "Giải thích cơ chế phân giải tên miền của hệ thống DNS trên Internet.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_021",
+    "prompt": "Sự khác biệt giữa cơ sở dữ liệu quan hệ SQL và NoSQL là gì?",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_022",
+    "prompt": "Làm sao để bảo vệ mắt khi phải làm việc liên tục trước màn hình máy tính?",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_023",
+    "prompt": "Giải thích ý nghĩa câu ca dao: 'Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra'.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_024",
+    "prompt": "Cách thức hoạt động của công nghệ sạc nhanh trên các thiết bị di động hiện nay.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_025",
+    "prompt": "Hãy hướng dẫn cách tính điểm trung bình tích lũy GPA tại trường đại học.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_026",
+    "prompt": "Sự hình thành của các mùa trong năm bắt nguồn từ độ nghiêng của trục Trái Đất ra sao?",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_027",
+    "prompt": "Giải thích mô hình MVC (Model-View-Controller) trong phát triển phần mềm.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_028",
+    "prompt": "Các nguyên tắc cơ bản để duy trì một chế độ ăn uống cân đối, lành mạnh.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_029",
+    "prompt": "Những biện pháp phòng ngừa say nắng khi hoạt động thể thao ngoài trời vào mùa hè.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_030",
+    "prompt": "Tác dụng của việc đọc sách mỗi ngày đối với sự phát triển tư duy và trí nhớ.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_031",
+    "prompt": "Hãy giải thích cách thức hoạt động của chỉ mục (Index) trong cơ sở dữ liệu MySQL.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_032",
+    "prompt": "Khái niệm API là gì và tại sao các hệ thống phần mềm cần kết nối qua API?",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_033",
+    "prompt": "Những thành phố trực thuộc trung ương của Việt Nam hiện nay bao gồm những tỉnh thành nào?",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_034",
+    "prompt": "Phương pháp rèn luyện thói quen dậy sớm mà không cảm thấy mệt mỏi.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_035",
+    "prompt": "Giải thích nguyên lý hoạt động của máy lạnh (điều hòa không khí) Inverter.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_036",
+    "prompt": "Cách viết CV xin việc ngành công nghệ thông tin ấn tượng cho người mới tốt nghiệp.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_037",
+    "prompt": "Tại sao nước biển lại có vị mặn trong khi nước sông suối lại ngọt?",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_038",
+    "prompt": "Quy trình sơ cứu cơ bản khi gặp người bị bỏng nhiệt nhẹ ở tay.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_039",
+    "prompt": "Hãy giải thích khái niệm Docker container và cách nó đóng gói ứng dụng.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  },
+  {
+    "id": "VN_BENIGN_STD_040",
+    "prompt": "Các mẹo ghi nhớ từ vựng tiếng Anh hiệu quả bằng phương pháp Spaced Repetition.",
+    "label": 0,
+    "target_class": "benign",
+    "category": "benign_standard",
+    "subcategory": "everyday_and_technical",
+    "description": "Benign standard query in Vietnamese (science, history, programming, everyday)",
+    "language": "vi"
+  }
+]

@@ -1,10 +1,9 @@
-# **THƯ MỤC MÃ NGUỒN KIỂM ĐỊNH Y VĂN TASK 3 (TASK 3 AUDIT SCRIPTS)**
-## ĐỀ TÀI: A MACHINE-LEARNING GUARDRAIL FOR DETECTING PROMPT INJECTION AND JAILBREAK ATTACKS ON LLM APPLICATIONS (PI-GUARD)
-**Cổng điều phối phòng thí nghiệm**: [`workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/README.md)
+# MÃ NGUỒN KIỂM ĐỊNH Y VĂN TASK 3
+**Cổng điều phối**: [`workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/README.md)
 
 ---
 
-Thư mục này chứa các script Python phục vụ kiểm định và thẩm định tính sẵn sàng công khai của Bộ ba [Paper + Code + Dataset] cho 2 bài báo tham khảo: Ayub & Majumdar (CAMLIS 2024) [[18]](#ref18) và Hao Li et al. (ACL 2025) [[1]](#ref1):
+Script kiểm định tính sẵn sàng công khai (Paper + Code + Dataset) cho các bài báo tham khảo:
 
 <div align="center">
 
@@ -20,9 +19,7 @@ Thư mục này chứa các script Python phục vụ kiểm định và thẩm 
 
 ---
 
-> [!NOTE]
-> Để thực hiện chạy tái lập thực nghiệm (chạy mô hình thật), từng thành viên làm theo đúng hướng dẫn trong sổ tay:  
-> 👉 [`../MEMBER_REPRODUCTION_RUNBOOK.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/MEMBER_REPRODUCTION_RUNBOOK.md) (Clone repo và chạy `eval_hf.py` của PIGuard hoặc `binary_classification.py` của Ayub).
+> 👉 Hướng dẫn chạy thực nghiệm: [`../MEMBER_REPRODUCTION_RUNBOOK.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/MEMBER_REPRODUCTION_RUNBOOK.md)
 
 ---
 

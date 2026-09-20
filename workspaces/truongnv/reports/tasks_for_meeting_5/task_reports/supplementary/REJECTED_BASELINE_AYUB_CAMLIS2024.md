@@ -2,18 +2,17 @@
 ## (REJECTED BASELINE EMPIRICAL DOSSIER — NEGATIVE RESULT EVIDENCE FOR DEFENSE)
 ### ĐỀ TÀI: A MACHINE-LEARNING GUARDRAIL FOR DETECTING PROMPT INJECTION AND JAILBREAK ATTACKS ON LLM APPLICATIONS (PI-GUARD)
 **Tác giả**: Nguyễn Văn Trường (Leader — MSSV: `SE182034`) | **Workspace**: `workspaces/truongnv/`  
-**Căn cứ nhiệm vụ**: Nghiệm thu kết luận chỉ đạo của GVHD Thầy Trần Văn Ninh tại Meeting 4 (Chạy mô hình tham khảo 1 trên máy cá nhân)  
+**Nhiệm vụ**: Thực nghiệm tái lập mô hình tham khảo 1 trên máy cá nhân phục vụ Meeting 5  
 **Cổng điều phối hồ sơ nghiên cứu**: [`workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/supplementary/README.md) | **Báo cáo kỹ thuật gốc**: [`../TASK_3_REPRODUCIBILITY_AND_DATASETS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_reports/TASK_3_REPRODUCIBILITY_AND_DATASETS.md)  
 **Phân hệ thực nghiệm đối chiếu**: [`workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier1_REJECTED_Ayub_CAMLIS2024/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier1_REJECTED_Ayub_CAMLIS2024/)
 
 ---
 
 > [!CAUTION]
-> ### ⚡ BẢN CHẤT CỐT LÕI CỦA HỒ SƠ CHUYÊN ĐỀ SUPP-06 (TẠI SAO PHẢI CÓ FILE NÀY DÙ MÔ HÌNH BỊ REJECT?)
-> **Nhiều người sẽ đặt câu hỏi: "Mô hình này đã bị loại bỏ (reject) khỏi pipeline thì tại sao nhóm vẫn phải tạo hồ sơ tài liệu chuyên đề riêng?"**
+> ### ⚡ BẢN CHẤT CỐT LÕI CỦA HỒ SƠ CHUYÊN ĐỀ SUPP-06 (NEGATIVE RESULT DOSSIER)
 > 
-> Nhóm khẳng định đây là **Hồ sơ Bằng chứng Phủ định (Negative Result Dossier) có giá trị sống còn** phục vụ 3 mục đích học thuật then chốt:
-> 1. **Nghiệm thu chỉ đạo của GVHD Thầy Trần Văn Ninh tại Meeting 4**: Thầy giao nhiệm vụ bắt buộc cả 4 thành viên phải chạy được 2 mô hình tham khảo trên máy. Tài liệu này là biên bản chứng minh nhóm ĐÃ THỰC HIỆN NGHIÊM TÚC việc tải về, chạy thực tế và có số liệu cụ thể cho mô hình tham khảo 1.
+> Nhóm lưu giữ **Hồ sơ Bằng chứng Phủ định (Negative Result Dossier)** phục vụ 3 mục đích:
+> 1. **Nghiệm thu nhiệm vụ chạy thực nghiệm độc lập Meeting 5**: Minh chứng thực nghiệm độc lập cho mô hình tham khảo 1 trên máy cá nhân với số liệu đối chuẩn cụ thể.
 > 2. **Vũ khí phòng thủ học thuật trước Hội đồng phản biện FPT**: Khi Hội đồng chất vấn *"Tại sao Tầng 1 các em dùng TF-IDF cổ điển mà không dùng Sentence Embedding hiện đại (như MiniLM, GTE) kết hợp Random Forest/XGBoost (bài báo CAMLIS 2024 công bố F1 0.987)?"* $\rightarrow$ Nhóm dùng chính số liệu đo đạc thực tế trong file này để chứng minh: **Mô hình của Ayub bị Overdefense nặng (FPR 58.41% trên NotInject) và trễ 11.02ms CPU**, từ đó bảo vệ tính đúng đắn khi chọn TF-IDF ($\le 0.5\text{ms}$).
 > 3. **Cơ sở cho phần Ablation Study & Comparison with Literature trong Luận văn**: Đáp ứng trực tiếp yêu cầu Chương 4 (Report No.4 — chiếm 25% điểm quá trình) về việc so sánh đối chuẩn với các giải pháp y văn.
 

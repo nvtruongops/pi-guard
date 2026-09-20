@@ -48,3 +48,5 @@ Toàn bộ các video dưới đây đều đã được xác thực trạng th�
 <a id="ref4"></a>**[4]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," *arXiv preprint arXiv:2310.03684*, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).
 
 <a id="ref5"></a>**[5]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Disentangled Attention," in *International Conference on Learning Representations (ICLR)*, 2023. Link: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543).
+
+<a id="ref6"></a>**[6]** D. Jacob, H. Alzahrani, Z. Hu, B. Alomair, and D. Wagner, "PromptShield: Deployable Detection for Prompt Injection Attacks," in *Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (CCS '24)*, 2024, pp. 4247–4261. Link: [https://arxiv.org/abs/2407.13656](https://arxiv.org/abs/2407.13656).

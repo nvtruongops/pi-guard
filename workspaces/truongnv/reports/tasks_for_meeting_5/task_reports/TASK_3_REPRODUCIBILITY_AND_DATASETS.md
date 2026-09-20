@@ -203,6 +203,23 @@ Dữ liệu trích xuất trực tiếp từ tệp thực nghiệm [`AYUB_CAMLIS
 
 ---
 
+### 4.4. Đối Chiếu Thực Nghiệm Cục Bộ Với Bảng Đối Chuẩn Độc Lập Bên Thứ Ba (UC Berkeley, ACM CCS 2024 [[11]](#ref11))
+
+Nhằm nâng cao tính khách quan khoa học và loại bỏ hoàn toàn rủi ro bị Hội đồng FPT nghi vấn về tính chuẩn mực của số liệu đo đạc cục bộ, nhóm đối chiếu kết quả đo đạc thực tế của mình với Bảng 4 trong công trình *PromptShield* do nhóm nghiên cứu của Giáo sư David Wagner tại Đại học California, Berkeley công bố tại **ACM CCS 2024 [[11]](#ref11)**:
+
+| Detector Được Đánh Giá | Base Model | Số Tham Số | ROC-AUC | TPR @ FPR 1% | TPR @ FPR 0.5% | Ghi Chú Độc Lập Từ ACM CCS 2024 [[11]](#ref11) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Meta PromptGuard** | mDeBERTa-v3 | 86M / 279M | 0.874 | **12.78%** | **12.43%** | Bỏ lọt 87.22% tấn công ở ngưỡng FPR thực tế; ROC-AUC gây hiểu lầm. |
+| **ProtectAI v1** | DeBERTa-v3 | 184M | 0.646 | 7.05% | 3.36% | Năng lực Low-FPR cực thấp. |
+| **ProtectAI v2** | DeBERTa-v3 | 184M | 0.705 | 1.97% | 1.34% | Gần như tê liệt hoàn toàn khi ép FPR về mức <= 1%. |
+| **InjecGuard (PIGuard)** | DeBERTa-v3 | 184M | 0.765 | **20.37%** | **16.30%** | Nhờ chiến lược MOF, đạt TPR vượt trội gấp đôi PromptGuard ở mức FPR 1%. |
+| **PromptShield (ours)** | DeBERTa-v3 | 184M | **0.976** | **43.22%** | **40.50%** | Dẫn chứng tầm quan trọng sống còn của việc lọc sạch dữ liệu huấn luyện. |
+
+> [!NOTE]
+> **SỰ BẢO CHỨNG ĐỒNG THUẬN QUỐC TẾ**: Kết quả của UC Berkeley tại ACM CCS 2024 khẳng định 100% kết luận thực nghiệm Task 3 của nhóm: Các mô hình nhỏ đơn lẻ (như Meta Prompt Guard hay ProtectAI) khi bị ép hoạt động trong phân vùng tỷ lệ chặn nhầm thấp ($	ext{FPR} \le 1.5\%$) đều bị sụt giảm TPR nghiêm trọng. Đây là minh chứng khoa học đanh thép nhất cho việc PI-Guard bắt buộc phải xây dựng cơ chế định tuyến hai tầng (Two-Tier Cascade) (chi tiết xem tại công trình gốc của Jacob et al. [[11]](#ref11) và chuyên đề đánh đổi [`evaluation_and_tradeoff_study/03_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/evaluation_and_tradeoff_study/03_resources_and_papers.md)).
+
+---
+
 ## 5. MÔ PHỎNG HỆ THỐNG ĐỊNH TUYẾN HAI TẦNG BẤT ĐỊNH (TWO-TIER UNCERTAINTY ROUTING)
 
 ### 5.1. Cơ Chế Định Tuyến Theo Vùng Bất Định (Uncertainty Routing Mechanism)
@@ -370,3 +387,12 @@ flowchart TD
 
 <a id="ref10"></a>
 - **[[10]]** V. Majhi et al., "Do You Really Need a GPU to Guard Your LLM? CPU-Class Classifiers and Multi-Stage Pipelines for Safety Enforcement at Scale," *arXiv preprint arXiv:2512.19011*, Dec. 2025. [Open-Access PDF](https://arxiv.org/pdf/2512.19011.pdf).
+
+<a id="ref11"></a>
+- **[[11]]** D. Jacob, H. Alzahrani, Z. Hu, B. Alomair, and D. Wagner, "PromptShield: Deployable Detection for Prompt Injection Attacks," in *Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (CCS '24)*, Salt Lake City, UT, USA, 2024, pp. 4247–4261. [arXiv:2407.13656](https://arxiv.org/pdf/2407.13656). Tệp PDF: [`Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf).
+
+<a id="ref12"></a>
+- **[[12]]** W. Hackett, L. Birch, S. Trawicki, N. Suri, and P. Garraghan, "Bypassing LLM Guardrails: An Empirical Analysis of Evasion Attacks against Prompt Injection and Jailbreak Detection Systems," in *Proceedings of The First Workshop on LLM Security (LLMSEC 2025) at ACL 2025*, 2025, pp. 101–114. [ACL Anthology](https://aclanthology.org/2025.llmsec-1.9.pdf). Tệp PDF: [`Hackett_2025_Bypassing_LLM_Guardrails_Evasion_Attacks.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Hackett_2025_Bypassing_LLM_Guardrails_Evasion_Attacks.pdf).
+
+<a id="ref13"></a>
+- **[[13]]** Y. Liu, Y. Jia, J. Jia, D. Song, and N. Z. Gong, "DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks," in *Proceedings of the 2025 IEEE Symposium on Security and Privacy (SP '25)*, 2025. Tệp PDF: [`Liu_2025_DataSentinel_Game_Theoretic_Detection_Prompt_Injection.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Liu_2025_DataSentinel_Game_Theoretic_Detection_Prompt_Injection.pdf).

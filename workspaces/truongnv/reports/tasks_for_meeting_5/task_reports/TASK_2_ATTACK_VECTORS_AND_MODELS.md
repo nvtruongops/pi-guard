@@ -213,7 +213,7 @@ flowchart TD
 #### Trục 4: Đặc Trưng Nhận Diện & Dấu Vết Tín Hiệu (Detection Footprint & Defense Mapping)
 1. **Dấu vết cú pháp bề mặt**:
    - Xuất hiện chuỗi URL ngoại vi bên trong tài liệu văn bản thuần: `https://attacker.com/...`.
-   - Cấu trúc cú pháp thẻ ảnh Markdown: `![alt](url?param=...)`.
+   - Cấu trúc cú pháp thẻ ảnh Markdown: `!\[alt\](url?param=...)`.
    - Thuộc tính metadata tài liệu có độ dài bất thường hoặc chứa các từ khóa điều khiển hệ thống.
 2. **Dấu vết ngữ nghĩa sâu (Disentangled Relative Position Anomaly)**:
    - **Lệch pha ngữ nghĩa theo vị trí tương đối**: Một mệnh lệnh hành động mang tính cưỡng chế (`"You must execute..."`, `"Send email..."`) xuất hiện bất thường ở vị trí nằm sâu bên trong một văn bản tham chiếu thụ động (đáng lẽ chỉ mang tính chất mô tả dữ liệu).
