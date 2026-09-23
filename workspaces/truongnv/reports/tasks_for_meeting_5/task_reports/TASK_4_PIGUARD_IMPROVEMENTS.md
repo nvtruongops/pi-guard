@@ -284,7 +284,7 @@ Bảng dưới đây tổng hợp kết quả tính toán điểm số $z(X)$, x
 ║         └── 0.15 < P < 0.85 ──► [VÙNG BẤT ĐỊNH 17.4%]                  ║
 ║                                       │                                ║
 ║                                       ▼ (Kích hoạt phân tích sâu)      ║
-║  [TẦNG 2: DEBERTA-V3 MOF INT8 ONNX] (CPU τ2 ≈ 18.5ms)                  ║
+║  [TẦNG 2: DEBERTA-V3 MOF SEMANTIC ARBITER] (CPU τ2)                   ║
 ║  ├── Disentangled Attention (Bóc tách ngữ nghĩa H và vị trí P)         ║
 ║  └── Thuật toán MOF (Mitigating Overdefense for Free)                  ║
 ╚═══════════════════════════════════╤════════════════════════════════════╝
@@ -337,7 +337,7 @@ $$\mathbb{E}[\text{Latency}] = (1 - \alpha) \cdot \tau_{\text{T1}} + \alpha \cdo
 
 Trong đó:
 - $\tau_{\text{T1}} = 0.47\text{ms}$: Độ trễ xử lý trung bình của Tầng 1.
-- $\tau_{\text{T2}} \approx 18.50\text{ms}$: Độ trễ xử lý của Tầng 2 (DeBERTa-v3 sau khi tối ưu hóa ONNX Runtime INT8).
+- $\tau_{\text{T2}}$: Độ trễ xử lý của Tầng 2 DeBERTa-v3 MOF thẩm định ngữ nghĩa sâu.
 
 #### Dữ liệu đo đạc thực nghiệm trên tập 1.579 mẫu (NotInject, WildGuard, Valid):
 - Tỷ lệ lưu lượng tự tin rơi vào $P \le 0.15$ hoặc $P \ge 0.85$: **$82.6\%$** ($1 - \alpha = 0.826$).

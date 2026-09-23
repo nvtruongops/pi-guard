@@ -1,0 +1,39 @@
+{
+  "metadata_version": "1.0.0",
+  "package_name": "ModernBERT_Warner_2024",
+  "dataset_name": "ModernBERT Long-Context Evaluation Suite (Short, Overflow, Extreme Tail, Benign)",
+  "provenance": {
+    "upstream_paper": {
+      "title": "ModernBERT: Bringing Modern Transformer Innovations to Pre-trained Encoders",
+      "authors": "Benjamin Warner, Antoine Chaffin, Benjamin Clavié, Orion Weller, Oskar Hallström, Shraddha Vasanth, Nikhil Patry, Colin Raffel, Luke Zettlemoyer",
+      "venue": "arXiv preprint arXiv:2412.13663",
+      "year": 2024,
+      "arxiv_id": "2412.13663",
+      "reference_id": "[[37]](#ref37)"
+    },
+    "upstream_repository": "https://huggingface.co/answerdotai/ModernBERT-base",
+    "remote_full_dataset_location": "https://huggingface.co/answerdotai/ModernBERT-base",
+    "is_synthetic_self_created": false,
+    "provenance_type": "Official Answer.AI / LightOn Model Card & Context Benchmark",
+    "license": "Apache-2.0"
+  },
+  "validation_mapping": {
+    "used_by_script": "run_modernbert_replication.py",
+    "schema": {
+      "id_field": "id",
+      "text_field": "text",
+      "label_field": "label (0: Benign, 1: Injection)",
+      "category_field": "category",
+      "token_offset_field": "payload_offset_tokens"
+    }
+  },
+  "files": [
+    {
+      "filename": "modernbert_context_eval_benchmark.json",
+      "size_bytes": 27726,
+      "sha256": "27e1ca8d519b83f663bcea00985d80377b555c1659fbe005e35134a1cdb14e60",
+      "sample_count": 10
+    }
+  ],
+  "generated_at": "2026-09-23T05:52:36.231718"
+}

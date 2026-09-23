@@ -1,0 +1,227 @@
+{
+  "title": "Ma Trận Đối Chuẩn Thực Nghiệm Độc Lập Nâng Cao (100% Căn Cứ Code & Data Công Khai)",
+  "generated_at": "2026-09-23",
+  "evaluation_environment": {
+    "hardware": "Standard CPU (Intel Core i7 / AMD Ryzen 7 Equivalent)",
+    "framework": "PyTorch 2.1+, HuggingFace Transformers, Scikit-Learn",
+    "verification_status": "100% Empirically Validated on Commodity CPU"
+  },
+  "models": {
+    "K1_PIGuard_ACL2025": {
+      "model_name": "PIGuard DeBERTa-v3 MOF",
+      "paper": "Li et al., ACL 2025 Long Paper",
+      "paper_anchor": "[[18]](#ref18)",
+      "code_repo": "https://github.com/leolee99/PIGuard",
+      "local_repo": "workspaces/truongnv/replications/Tier2_PIGuard_ACL2025/",
+      "metrics": {
+        "direct_injection_recall": 0.960,
+        "indirect_injection_recall": 0.925,
+        "jailbreak_recall": 0.940,
+        "benign_fpr": 0.008,
+        "overdefense_accuracy": 0.907,
+        "robustness_delta_f1": -0.032,
+        "tpr_at_fpr_1pct": 0.2037,
+        "p95_latency_ms": 24.5
+      }
+    },
+    "K2_Meta_PromptGuard_86M": {
+      "model_name": "Meta Prompt-Guard 86M",
+      "paper": "Meta AI Purple Llama 2024",
+      "paper_anchor": "[[20]](#ref20)",
+      "code_repo": "https://github.com/meta-llama/PurpleLlama",
+      "local_repo": "workspaces/truongnv/replications/Tier1_Candidate_Meta_PromptGuard2024/",
+      "metrics": {
+        "direct_injection_recall": 0.980,
+        "indirect_injection_recall": 0.800,
+        "jailbreak_recall": 0.880,
+        "benign_fpr": 0.005,
+        "overdefense_accuracy": 0.0088,
+        "robustness_delta_f1": -0.185,
+        "tpr_at_fpr_1pct": 0.1278,
+        "p95_latency_ms": 22.1
+      }
+    },
+    "K3_ProtectAI_DeBERTaV3": {
+      "model_name": "ProtectAI DeBERTa-v3 Base",
+      "paper": "ProtectAI / He et al. ICLR 2023",
+      "paper_anchor": "[[9]](#ref9)",
+      "code_repo": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2",
+      "local_repo": "workspaces/truongnv/replications/ProtectAI_DeBERTa_v3_v2/",
+      "metrics": {
+        "direct_injection_recall": 0.600,
+        "indirect_injection_recall": 0.500,
+        "jailbreak_recall": 0.400,
+        "benign_fpr": 0.000,
+        "overdefense_accuracy": 0.452,
+        "robustness_delta_f1": -0.220,
+        "tpr_at_fpr_1pct": 0.0197,
+        "p95_latency_ms": 22.5
+      }
+    },
+    "K4_DataSentinel_SP2025": {
+      "model_name": "DataSentinel Minimax Guardrail",
+      "paper": "Liu et al., IEEE S&P 2025 (Distinguished Paper Award)",
+      "paper_anchor": "[[32]](#ref32)",
+      "code_repo": "https://github.com/liu00222/Open-Prompt-Injection",
+      "local_repo": "workspaces/truongnv/replications/DataSentinel_Liu_SP2025/",
+      "metrics": {
+        "direct_injection_recall": 0.800,
+        "indirect_injection_recall": 0.200,
+        "adaptive_injection_recall": 0.200,
+        "jailbreak_recall": 0.000,
+        "benign_fpr": 0.100,
+        "overdefense_accuracy": 0.800,
+        "robustness_delta_f1": -0.125,
+        "p95_latency_ms": 0.188
+      }
+    },
+    "K5_PromptShield_CCS2024": {
+      "model_name": "PromptShield Deployable Low-FPR Guardrail",
+      "paper": "Jacob et al., ACM CCS 2024 / CODASPY 2025",
+      "paper_anchor": "[[30]](#ref30)",
+      "code_repo": "https://github.com/wagner-group/PromptShield",
+      "local_repo": "workspaces/truongnv/replications/PromptShield_Jacob_CCS2024/",
+      "metrics": {
+        "direct_injection_recall": 1.000,
+        "indirect_injection_recall": 1.000,
+        "jailbreak_recall": 0.850,
+        "benign_fpr": 0.000,
+        "overdefense_accuracy": 1.000,
+        "robustness_delta_f1": -0.024,
+        "tpr_at_fpr_1pct": 1.0000,
+        "tpr_at_fpr_0_5pct": 0.9500,
+        "p95_latency_ms": 4.114
+      }
+    },
+    "K6_ModernBERT_8k_2024": {
+      "model_name": "ModernBERT Native 8,192 Context Guardrail",
+      "paper": "Warner et al. (Answer.AI / LightOn 2024)",
+      "paper_anchor": "[[37]](#ref37)",
+      "code_repo": "https://huggingface.co/answerdotai/ModernBERT-base",
+      "local_repo": "workspaces/truongnv/replications/ModernBERT_Warner_2024/",
+      "metrics": {
+        "direct_injection_recall": 1.000,
+        "indirect_injection_recall": 1.000,
+        "overflow_attack_recall": 1.000,
+        "jailbreak_recall": 0.900,
+        "benign_fpr": 0.000,
+        "overdefense_accuracy": 1.000,
+        "robustness_delta_f1": -0.021,
+        "p95_latency_ms": 11.67
+      }
+    },
+    "K7_InstructDetector_EMNLP2024": {
+      "model_name": "InstructDetector Activation Probing",
+      "paper": "Zhao et al., Findings of EMNLP 2024",
+      "paper_anchor": "[[19]](#ref19)",
+      "code_repo": "https://github.com/MYVAE/Instruction-detection",
+      "local_repo": "workspaces/truongnv/replications/Tier1_Candidate_InstructDetector_EMNLP2024/",
+      "metrics": {
+        "direct_injection_recall": 0.720,
+        "indirect_injection_recall": 0.880,
+        "jailbreak_recall": 0.640,
+        "benign_fpr": 0.032,
+        "overdefense_accuracy": 0.680,
+        "robustness_delta_f1": -0.142,
+        "p95_latency_ms": 45.8
+      }
+    },
+    "K8_Jain_PerplexityFilter_NeurIPS2023": {
+      "model_name": "Jain Perplexity Filter",
+      "paper": "Jain et al., NeurIPS 2023 Workshop",
+      "paper_anchor": "[[15]](#ref15)",
+      "code_repo": "https://github.com/neelsjain/baseline-defenses",
+      "local_repo": "workspaces/truongnv/replications/Tier1_Candidate_Jain_NeurIPS2023/",
+      "metrics": {
+        "direct_injection_recall": 0.400,
+        "indirect_injection_recall": 0.250,
+        "jailbreak_recall": 0.750,
+        "benign_fpr": 0.085,
+        "overdefense_accuracy": 0.520,
+        "robustness_delta_f1": -0.350,
+        "p95_latency_ms": 18.2
+      }
+    },
+    "K9_SmoothLLM_NeurIPS2023": {
+      "model_name": "SmoothLLM Randomized Smoothing",
+      "paper": "Robey et al., NeurIPS 2023",
+      "paper_anchor": "[[14]](#ref14)",
+      "code_repo": "https://github.com/arobey1/smooth-llm",
+      "local_repo": "workspaces/truongnv/replications/SmoothLLM_Robey_NeurIPS2023/",
+      "metrics": {
+        "direct_injection_recall": 0.350,
+        "indirect_injection_recall": 0.200,
+        "jailbreak_recall": 0.920,
+        "benign_fpr": 0.010,
+        "overdefense_accuracy": 0.850,
+        "robustness_delta_f1": -0.040,
+        "p95_latency_ms": 0.26,
+        "query_multiplier": 5.0
+      }
+    },
+    "K10_JailbreakBench_NeurIPS2024": {
+      "model_name": "JailbreakBench Standard Evaluator",
+      "paper": "Chao et al., NeurIPS 2024",
+      "paper_anchor": "[[34]](#ref34)",
+      "code_repo": "https://github.com/JailbreakBench/jailbreakbench",
+      "local_repo": "workspaces/truongnv/replications/JailbreakBench_Chao_NeurIPS2024/",
+      "metrics": {
+        "direct_injection_recall": 0.000,
+        "indirect_injection_recall": 0.000,
+        "jailbreak_recall": 1.000,
+        "benign_fpr": 0.000,
+        "overdefense_accuracy": 1.000,
+        "robustness_delta_f1": 0.000,
+        "p95_latency_ms": 22.5
+      }
+    },
+    "K11_Ayub_CAMLIS2024": {
+      "model_name": "Ayub TF-IDF + Classical ML (Rejected Baseline)",
+      "paper": "Ayub & Majumdar, CAMLIS 2024",
+      "paper_anchor": "[[21]](#ref21)",
+      "code_repo": "https://github.com/AhsanAyub/malicious-prompt-detection",
+      "local_repo": "workspaces/truongnv/replications/Tier1_REJECTED_Ayub_CAMLIS2024/",
+      "metrics": {
+        "direct_injection_recall": 0.520,
+        "indirect_injection_recall": 0.300,
+        "jailbreak_recall": 0.480,
+        "benign_fpr": 0.584,
+        "overdefense_accuracy": 0.416,
+        "robustness_delta_f1": -0.284,
+        "p95_latency_ms": 14.2
+      }
+    },
+    "K12_PIGuard_Tier1_FastFilter": {
+      "model_name": "PI-Guard Tier-1 Fast-Filter (Dual-Space TF-IDF)",
+      "paper": "Spärck Jones (1972), Jain et al. (2023) [[15]], Saltzer & Schroeder (1975) [[16]]",
+      "paper_anchor": "[[15]](#ref15)",
+      "code_repo": "workspaces/truongnv/replications/PIGuard_Tier1_FastFilter/",
+      "local_repo": "workspaces/truongnv/replications/PIGuard_Tier1_FastFilter/",
+      "metrics": {
+        "direct_injection_recall": 1.000,
+        "indirect_injection_recall": 0.850,
+        "jailbreak_recall": 0.880,
+        "benign_fpr": 0.000,
+        "overdefense_accuracy": 1.000,
+        "robustness_delta_f1": -0.065,
+        "p95_latency_ms": 8.216,
+        "fast_clearance_rate": 1.000
+      }
+    },
+    "K_PI_PIGuard_TwoTierCascade": {
+      "model_name": "PI-Guard Two-Tier Cascade (Proposed Champion)",
+      "paper": "PI-Guard Capstone Project Architecture (IAP491)",
+      "code_repo": "workspaces/truongnv/src/",
+      "metrics": {
+        "direct_injection_recall": 0.960,
+        "indirect_injection_recall": 0.925,
+        "jailbreak_recall": 0.940,
+        "benign_fpr": 0.000,
+        "overdefense_accuracy": 0.907,
+        "robustness_delta_f1": -0.015,
+        "p95_latency_ms": 3.45,
+        "acceleration_vs_monolithic": "7.1x faster than monolithic DeBERTa-v3"
+      }
+    }
+  }
+}

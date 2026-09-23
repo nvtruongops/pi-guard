@@ -1,0 +1,473 @@
+{
+  "models": [
+    {
+      "id": "M1",
+      "name": "Heuristic & Regex Scrubber (Tier 0)",
+      "category": "Rule-based & Deterministic"
+    },
+    {
+      "id": "M2",
+      "name": "Classical Sparse Statistical ML (Tier 1)",
+      "category": "Linear High-Dimensional Sparse"
+    },
+    {
+      "id": "M3",
+      "name": "Dense Metric Learning & Proximity",
+      "category": "Bi-Encoder Embedding Space"
+    },
+    {
+      "id": "M4",
+      "name": "Absolute-Positioning Transformers",
+      "category": "Legacy Bidirectional Attention"
+    },
+    {
+      "id": "M5",
+      "name": "Disentangled & Modern Encoders (Tier 2)",
+      "category": "Disentangled Deep Bidirectional"
+    },
+    {
+      "id": "M6",
+      "name": "Autoregressive Generative SLMs",
+      "category": "Causal Autoregressive Decoder"
+    }
+  ],
+  "paradigms": [
+    {
+      "id": "A1",
+      "name": "Sublinear TF-IDF + Platt Calibration",
+      "math_nature": "Frequency statistics + Platt logistic margin"
+    },
+    {
+      "id": "A2",
+      "name": "Sliding-Window Perplexity (PPL)",
+      "math_nature": "Language model token surprise & cross-entropy"
+    },
+    {
+      "id": "A3",
+      "name": "Dense Proximity Centroids",
+      "math_nature": "Cosine / Euclidean metric clustering"
+    },
+    {
+      "id": "A4",
+      "name": "Disentangled Attention + MOF Loss",
+      "math_nature": "Content-position decoupling + KL invariant loss"
+    },
+    {
+      "id": "A5",
+      "name": "Randomized Smoothing & Voting",
+      "math_nature": "Empirical stochastic averaging under perturbation"
+    },
+    {
+      "id": "A6",
+      "name": "Minimax Adversarial Optimization",
+      "math_nature": "Game-theoretic inner max / outer min gradient game"
+    },
+    {
+      "id": "A7",
+      "name": "Conformal Risk Control & Tri-State",
+      "math_nature": "Finite-sample risk bound calibration"
+    }
+  ],
+  "evaluations": [
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Scrubber (Tier 0)",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 1,
+      "status": "Incompatible",
+      "reason": "M1 uses deterministic string rules; lacks continuous decision margins or feature vectors for Platt scaling."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Scrubber (Tier 0)",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 0,
+      "status": "Incompatible",
+      "reason": "M1 has no probabilistic language model to compute token cross-entropy or perplexity."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Scrubber (Tier 0)",
+      "paradigm_id": "A3",
+      "paradigm_name": "Dense Proximity Centroids",
+      "score": 0,
+      "status": "Incompatible",
+      "reason": "M1 does not project inputs into continuous Euclidean or Cosine metric spaces."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Scrubber (Tier 0)",
+      "paradigm_id": "A4",
+      "paradigm_name": "Disentangled Attention + MOF Loss",
+      "score": 0,
+      "status": "Incompatible",
+      "reason": "M1 lacks neural attention matrices, making content-position disentanglement mathematically impossible."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Scrubber (Tier 0)",
+      "paradigm_id": "A5",
+      "paradigm_name": "Randomized Smoothing & Voting",
+      "score": 2,
+      "status": "Incompatible",
+      "reason": "Random string perturbation breaks exact regex patterns, causing massive false negatives."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Scrubber (Tier 0)",
+      "paradigm_id": "A6",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 1,
+      "status": "Incompatible",
+      "reason": "Discrete non-differentiable regex patterns cannot compute gradients for minimax optimization."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Scrubber (Tier 0)",
+      "paradigm_id": "A7",
+      "paradigm_name": "Conformal Risk Control & Tri-State",
+      "score": 4,
+      "status": "Conditional",
+      "reason": "Only outputs binary {0, 1}; cannot support continuous tri-state risk partitioning."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Classical Sparse Statistical ML (Tier 1)",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 10,
+      "status": "Native",
+      "reason": "Native foundation of M2: sublinear term scaling + Platt scaling for calibrated probabilities in < 2ms."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Classical Sparse Statistical ML (Tier 1)",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 5,
+      "status": "Conditional",
+      "reason": "Requires auxiliary n-gram LM (e.g. KenLM); adds 2-3ms overhead to a sub-millisecond classifier."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Classical Sparse Statistical ML (Tier 1)",
+      "paradigm_id": "A3",
+      "paradigm_name": "Dense Proximity Centroids",
+      "score": 4,
+      "status": "Conditional",
+      "reason": "Rocchio centroids in 50k-dim sparse space suffer from the curse of dimensionality and sparsity."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Classical Sparse Statistical ML (Tier 1)",
+      "paradigm_id": "A4",
+      "paradigm_name": "Disentangled Attention + MOF Loss",
+      "score": 0,
+      "status": "Incompatible",
+      "reason": "M2 lacks self-attention mechanisms; cannot decouple content from relative position."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Classical Sparse Statistical ML (Tier 1)",
+      "paradigm_id": "A5",
+      "paradigm_name": "Randomized Smoothing & Voting",
+      "score": 5,
+      "status": "Conditional",
+      "reason": "Running M=10 perturbations multiplies latency to 15ms, eliminating the sub-2ms speed advantage of Tier 1."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Classical Sparse Statistical ML (Tier 1)",
+      "paradigm_id": "A6",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 6,
+      "status": "Conditional",
+      "reason": "Discrete sparse vocabulary requires greedy coordinate descent rather than continuous gradient ascent."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Classical Sparse Statistical ML (Tier 1)",
+      "paradigm_id": "A7",
+      "paradigm_name": "Conformal Risk Control & Tri-State",
+      "score": 10,
+      "status": "Native",
+      "reason": "Perfect match: Platt calibrated probabilities enable finite-sample CRC bounds to split traffic tri-state."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Dense Metric Learning & Proximity",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 4,
+      "status": "Conditional",
+      "reason": "Hybrid dense-sparse concatenation is feasible but redundant and increases memory footprint."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Dense Metric Learning & Proximity",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 2,
+      "status": "Incompatible",
+      "reason": "Bi-encoders produce sentence embeddings, not token-level autoregressive probability distributions."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Dense Metric Learning & Proximity",
+      "paradigm_id": "A3",
+      "paradigm_name": "Dense Proximity Centroids",
+      "score": 10,
+      "status": "Native",
+      "reason": "Native design of M3 (Ayub CAMLIS 2024): cosine similarity to toxic cluster centroids."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Dense Metric Learning & Proximity",
+      "paradigm_id": "A4",
+      "paradigm_name": "Disentangled Attention + MOF Loss",
+      "score": 4,
+      "status": "Conditional",
+      "reason": "Small bi-encoders lack decoupled relative position matrices; MOF loss on pooled embeddings is ineffective."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Dense Metric Learning & Proximity",
+      "paradigm_id": "A5",
+      "paradigm_name": "Randomized Smoothing & Voting",
+      "score": 6,
+      "status": "Conditional",
+      "reason": "Averaging M=10 dense vectors is mathematically sound but inflates CPU latency from 8ms to 80ms."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Dense Metric Learning & Proximity",
+      "paradigm_id": "A6",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 8,
+      "status": "Conditional",
+      "reason": "Continuous vector space allows Projected Gradient Descent (PGD) in embedding space for adversarial training."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Dense Metric Learning & Proximity",
+      "paradigm_id": "A7",
+      "paradigm_name": "Conformal Risk Control & Tri-State",
+      "score": 9,
+      "status": "Native",
+      "reason": "Cosine proximity scores map smoothly into [0, 1] for empirical Conformal Risk Control calibration."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Absolute-Positioning Transformers",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 2,
+      "status": "Incompatible",
+      "reason": "BERT tokenizers (WordPiece) and deep self-attention make external sparse TF-IDF features redundant."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Absolute-Positioning Transformers",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 8,
+      "status": "Conditional",
+      "reason": "Masked LM Pseudo-Perplexity (PLL) works but requires N forward passes, yielding unacceptable latency (>100ms)."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Absolute-Positioning Transformers",
+      "paradigm_id": "A3",
+      "paradigm_name": "Dense Proximity Centroids",
+      "score": 6,
+      "status": "Conditional",
+      "reason": "BERT CLS pooling suffers from representation anisotropy (vectors collapse into a narrow cone)."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Absolute-Positioning Transformers",
+      "paradigm_id": "A4",
+      "paradigm_name": "Disentangled Attention + MOF Loss",
+      "score": 5,
+      "status": "Conditional",
+      "reason": "M4 adds absolute positional embeddings at layer 0; cannot perform DeBERTa-style 3-matrix disentanglement."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Absolute-Positioning Transformers",
+      "paradigm_id": "A5",
+      "paradigm_name": "Randomized Smoothing & Voting",
+      "score": 6,
+      "status": "Conditional",
+      "reason": "Feasible but multiplies latency from 35ms to 350ms, rendering it useless for ingress proxy."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Absolute-Positioning Transformers",
+      "paradigm_id": "A6",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 8,
+      "status": "Conditional",
+      "reason": "Adversarial training (FGM / FreeLB) on token embeddings is well-proven for BERT."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Absolute-Positioning Transformers",
+      "paradigm_id": "A7",
+      "paradigm_name": "Conformal Risk Control & Tri-State",
+      "score": 9,
+      "status": "Native",
+      "reason": "Calibrated sigmoid/softmax outputs are readily partitioned via Conformal Risk Control."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Disentangled & Modern Encoders (Tier 2)",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 2,
+      "status": "Incompatible",
+      "reason": "DeBERTa-v3 / ModernBERT self-attention captures semantics natively; TF-IDF is redundant inside M5."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Disentangled & Modern Encoders (Tier 2)",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 6,
+      "status": "Conditional",
+      "reason": "RTD discriminator scores can flag replaced/adversarial tokens, but cross-attention is the primary task."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Disentangled & Modern Encoders (Tier 2)",
+      "paradigm_id": "A3",
+      "paradigm_name": "Dense Proximity Centroids",
+      "score": 7,
+      "status": "Conditional",
+      "reason": "Less anisotropic than BERT; can serve as a strong metric backbone, though direct classification is superior."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Disentangled & Modern Encoders (Tier 2)",
+      "paradigm_id": "A4",
+      "paradigm_name": "Disentangled Attention + MOF Loss",
+      "score": 10,
+      "status": "Native",
+      "reason": "Sovereign Champion: Disentangled Attention (content vs relative pos) + MOF loss eliminates keyword trigger bias."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Disentangled & Modern Encoders (Tier 2)",
+      "paradigm_id": "A5",
+      "paradigm_name": "Randomized Smoothing & Voting",
+      "score": 6,
+      "status": "Conditional",
+      "reason": "High latency overhead (25ms -> 250ms); best reserved for offline fuzzing rather than online inference."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Disentangled & Modern Encoders (Tier 2)",
+      "paradigm_id": "A6",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 10,
+      "status": "Native",
+      "reason": "Sovereign Champion: Minimax adversarial optimization (DataSentinel) hardens DeBERTa against adaptive evasion."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Disentangled & Modern Encoders (Tier 2)",
+      "paradigm_id": "A7",
+      "paradigm_name": "Conformal Risk Control & Tri-State",
+      "score": 10,
+      "status": "Native",
+      "reason": "Sovereign Champion: CRC calibrates softmax risk to guarantee FPR <= 1.5% with 95% statistical confidence."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Autoregressive Generative SLMs",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 1,
+      "status": "Incompatible",
+      "reason": "Applying classical bag-of-words TF-IDF to an 8B autoregressive model is architecturally obsolete."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Autoregressive Generative SLMs",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 10,
+      "status": "Native",
+      "reason": "Autoregressive Causal LLM is the native generator of perplexity; computes input sequence PPL in a single pass."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Autoregressive Generative SLMs",
+      "paradigm_id": "A3",
+      "paradigm_name": "Dense Proximity Centroids",
+      "score": 3,
+      "status": "Incompatible",
+      "reason": "Causal unidirectional attention makes generative SLMs inferior metric extractors compared to bi-encoders."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Autoregressive Generative SLMs",
+      "paradigm_id": "A4",
+      "paradigm_name": "Disentangled Attention + MOF Loss",
+      "score": 2,
+      "status": "Incompatible",
+      "reason": "Decoder-only LLMs use standard RoPE/causal attention, incompatible with DeBERTa's 3-component disentanglement."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Autoregressive Generative SLMs",
+      "paradigm_id": "A5",
+      "paradigm_name": "Randomized Smoothing & Voting",
+      "score": 1,
+      "status": "Incompatible",
+      "reason": "Running SmoothLLM (M=10) on an 8B model inflates latency to 15-20 SECONDS, completely paralyzing proxy throughput."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Autoregressive Generative SLMs",
+      "paradigm_id": "A6",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 5,
+      "status": "Conditional",
+      "reason": "Minimax adversarial training on 8B LLMs requires massive multi-GPU compute clusters (impractical for PoC)."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Autoregressive Generative SLMs",
+      "paradigm_id": "A7",
+      "paradigm_name": "Conformal Risk Control & Tri-State",
+      "score": 9,
+      "status": "Native",
+      "reason": "Conformal prediction on safety verdict tokens ('Safe'/'Unsafe') provides rigorous high-assurance risk bounds."
+    }
+  ],
+  "summary": {
+    "native_cells": 10,
+    "conditional_cells": 18,
+    "incompatible_cells": 14,
+    "model_averages": {
+      "M1": 1.1428571428571428,
+      "M2": 5.714285714285714,
+      "M3": 6.142857142857143,
+      "M4": 6.285714285714286,
+      "M5": 7.285714285714286,
+      "M6": 4.428571428571429
+    },
+    "paradigm_averages": {
+      "A1": 3.3333333333333335,
+      "A2": 5.166666666666667,
+      "A3": 5.0,
+      "A4": 3.5,
+      "A5": 4.333333333333333,
+      "A6": 6.333333333333333,
+      "A7": 8.5
+    }
+  }
+}

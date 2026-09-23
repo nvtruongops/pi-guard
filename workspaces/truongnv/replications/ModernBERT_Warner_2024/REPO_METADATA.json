@@ -1,0 +1,39 @@
+{
+  "repository_name": "ModernBERT",
+  "upstream_git_url": "https://github.com/AnswerDotAI/ModernBERT",
+  "commit_hash": "c6d942312f1b0b24d423628b8e477a3e97c7038f",
+  "branch": "main",
+  "authors": [
+    "Benjamin Warner",
+    "Antoine Chaffin",
+    "Benjamin Clavié",
+    "Orion Weller",
+    "Oskar Hallström",
+    "Sourab Mangrulkar",
+    "Alexis Lebrun"
+  ],
+  "affiliations": [
+    "Answer.AI",
+    "LightOn"
+  ],
+  "paper": {
+    "title": "Smarter, Better, Faster, Longer: A Modern Bidirectional Encoder for Fast, Memory Efficient, and Long Context Representation",
+    "venue": "Answer.AI Technical Report & Hugging Face Collection",
+    "arxiv": "https://arxiv.org/abs/2412.13663",
+    "local_pdf": "papers/Warner_2024_ModernBERT_Brings_Modern_Transformers_To_Encoders.pdf"
+  },
+  "model_hub": "https://huggingface.co/answerdotai/ModernBERT-base",
+  "license": "Apache-2.0",
+  "provenance": {
+    "is_upstream_pure_clone": true,
+    "is_synthetic_self_created": false,
+    "upstream_subfolder": "ModernBERT"
+  },
+  "modules_exported": [
+    "src.flex_bert",
+    "src.hf_bert",
+    "sequence_classification.py",
+    "benchmark.py",
+    "eval.py"
+  ]
+}

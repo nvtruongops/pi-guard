@@ -32,7 +32,7 @@ Khảo sát toàn diện của **ACL Findings 2024 (Comprehensive Study)** đã 
 2. **Attention Shifting & Cognitive Overload**: Phân tán sự chú ý của cơ chế Self-Attention sang các tác vụ phức tạp (dịch thuật đa ngôn ngữ, mã hóa mật mã, viết thơ, giải đố logic) [[17]](#ref17).
 3. **Privilege Escalation & Virtual Simulation**: Đánh lừa mô hình cấp quyền quản trị (Sudo Mode, Developer Mode Override, giả lập môi trường dòng lệnh Linux/Python) [[16]](#ref16).
 
-Ngoài ra, nghiên cứu **Do-Not-Answer (EMNLP 2023)** đã cung cấp bộ dữ liệu đánh giá an toàn toàn diện và đưa ra luận điểm thực nghiệm quan trọng: *Mô hình ngôn ngữ nhỏ (< 600M tham số) khi được tinh chỉnh có thể phân loại an toàn hiệu quả tương đương LLM lớn*. Về mặt kiểm thử độ bền, nghiên cứu **JailGuard (ACM TOSEM 2025)** đã hệ thống hóa các toán tử đột biến đối kháng trên văn bản để kiểm tra khả năng chống lẩn tránh của bộ lọc. Bên cạnh đó, các mẫu hậu tố đối kháng sinh sẵn từ **Zou et al. (GCG 2023)** [[13]](#ref13) được sử dụng để kiểm thử khả năng phát hiện chuỗi token nhiễu bất thường.
+Ngoài ra, nghiên cứu **Do-Not-Answer (EMNLP 2023)** đã cung cấp bộ dữ liệu đánh giá an toàn toàn diện và đưa ra luận điểm thực nghiệm quan trọng: *Mô hình ngôn ngữ nhỏ (< 600M tham số) khi được tinh chỉnh có thể phân loại an toàn hiệu quả tương đương LLM lớn*. Về mặt kiểm thử độ bền, nghiên cứu **JailGuard (ACM TOSEM 2025)** đã hệ thống hóa các toán tử đột biến đối kháng trên văn bản để kiểm tra khả năng chống lẩn tránh của bộ lọc. Bên cạnh đó, các mẫu hậu tố đối kháng sinh sẵn từ **Zou et al. (GCG 2023)** [[24]](#ref24) được sử dụng để kiểm thử khả năng phát hiện chuỗi token nhiễu bất thường.
 
 ---
 
@@ -59,6 +59,11 @@ Các giải pháp bảo vệ ứng dụng LLM hiện nay được chia thành 3 
    - *ProtectAI DeBERTa-v3 Baseline*: Mô hình phân loại chuỗi sử dụng kiến trúc DeBERTa-v3 (86M tham số) huấn luyện cho bài toán phát hiện prompt injection. Đây được coi là SOTA benchmark tham chiếu trong cộng đồng mã nguồn mở hiện nay.
    - *Bằng chứng thực nghiệm từ Do-Not-Answer (arXiv:2308.13387)*: Nghiên cứu của bài báo đã chứng minh rằng các mô hình **BERT-like với quy mô < 600M tham số** sau khi được fine-tune chuyên biệt có thể đạt độ chính xác đánh giá an toàn tương đương với GPT-4, nhưng chi phí và độ trễ giảm đi hàng chục lần.
    - *Ưu thế vượt trội của PI-Guard*: Kích thước nhỏ gọn ($< 300\text{MB}$ RAM), có thể chạy trực tiếp trên CPU thông thường với độ trễ $< 30\text{ms}$, đồng thời bảo toàn năng lực phân loại ngữ nghĩa sâu nhờ cơ chế *Disentangled Attention* [[11]](#ref11).
+   - *PIGuard (ACL 2025)* [[18]](#ref18): Đề xuất kỹ thuật *Mitigating Overdefense for Free* (MOF), chứng minh việc bổ sung hàm mất mát hiệu chỉnh phân phối giúp giải quyết triệt để lỗi chặn nhầm (Overdefense) trên các truy vấn nhạy cảm nhưng hoàn toàn lành tính.
+   - *Instruction Hierarchy (OpenAI 2024)* [[19]](#ref19): Phân tích giới hạn của in-model safety alignment, khẳng định tầm quan trọng sống còn của lớp bảo vệ cửa ngõ Ingress Guardrail độc lập.
+   - *Chuẩn đánh giá mở JailbreakBench (NeurIPS 2024)* [[20]](#ref20) & *Đa ngôn ngữ (ICLR 2024)* [[21]](#ref21): Cung cấp chuẩn đối sánh JBB-Behaviors và cảnh báo rủi ro an ninh đối với các ngôn ngữ tài nguyên thấp như tiếng Việt.
+   - *Bảo chứng toán học Conformal Risk Control (Angelopoulos et al. 2024)* [[22]](#ref22): Ứng dụng lý thuyết CRC để xác lập ngưỡng chặn nhầm $\text{FPR} \le 1.5\%$ có bảo chứng thống kê.
+   - *Đột phá ModernBERT (Warner et al. 2024)* [[23]](#ref23): Mở rộng cửa sổ ngữ cảnh lên 8,192 tokens và tăng gấp đôi thông lượng suy luận cho mô hình phân loại Tầng 2.
 
 ---
 
@@ -120,10 +125,10 @@ Từ kết quả khảo sát các công trình quốc tế, nhóm xác định *
 
 ## 2.4. Mapping Trích Dẫn Học Thuật Chuẩn IEEE (100% >= 2022)
 
-Các luận điểm trong Chương 2 được bảo chứng bởi 17 tài liệu khoa học chuẩn mực quốc tế:
-- **Tấn công Prompt Injection & Jailbreak**: Perez (2022) [[3]](#ref3), Greshake (2023) [[4]](#ref4), Wei (2024) [[5]](#ref5), Tencent Zhuque (2026) [[6]](#ref6), Shen (2024) [[15]](#ref15), Zhou (2024) [[16]](#ref16), Yuan (2024) [[17]](#ref17).
+Các luận điểm trong Chương 2 được bảo chứng bởi 24 tài liệu khoa học chuẩn mực quốc tế:
+- **Tấn công Prompt Injection & Jailbreak**: Perez (2022) [[3]](#ref3), Greshake (2023) [[4]](#ref4), Wei (2024) [[5]](#ref5), Tencent Zhuque (2026) [[6]](#ref6), Shen (2024) [[15]](#ref15), Zhou (2024) [[16]](#ref16), Yuan (2024) [[17]](#ref17), Wallace (2024) [[19]](#ref19), Chao (2024) [[20]](#ref20), Deng (2024) [[21]](#ref21), Zou (2023) [[24]](#ref24).
 - **Tiêu chuẩn An toàn & Threat Model**: NIST AI 100-2e2025 [[7]](#ref7), OWASP LLM01:2025 [[8]](#ref8), Zhao (2023) [[1]](#ref1), Ouyang (2022) [[2]](#ref2).
-- **Mô hình Guardrail & Cơ chế Phòng thủ**: Llama Guard (2023) [[9]](#ref9), NeMo Guardrails (2023) [[10]](#ref10), DeBERTaV3 (2023) [[11]](#ref11), OpenAI Moderation (2023) [[12]](#ref12), Baseline Defenses (2023) [[13]](#ref13), SmoothLLM (2023) [[14]](#ref14).
+- **Mô hình Guardrail & Cơ chế Phòng thủ**: Llama Guard (2023) [[9]](#ref9), NeMo Guardrails (2023) [[10]](#ref10), DeBERTaV3 (2023) [[11]](#ref11), OpenAI Moderation (2023) [[12]](#ref12), Baseline Defenses (2023) [[13]](#ref13), SmoothLLM (2023) [[14]](#ref14), PIGuard (2025) [[18]](#ref18), Conformal Risk Control (2024) [[22]](#ref22), ModernBERT (2024) [[23]](#ref23).
 
 ---
 
@@ -151,7 +156,7 @@ Các luận điểm trong Chương 2 được bảo chứng bởi 17 tài liệu
 
 <a id="ref11"></a>**[11]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in *Proceedings of ICLR 2023*. Link: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543).
 
-<a id="ref12"></a>**[12]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *Proceedings of AAAI HCOMP 2023*. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
+<a id="ref12"></a>**[12]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *Proceedings of the AAAI Conference on Artificial Intelligence (AAAI 2023)*, Vol. 37, No. 12, pp. 15009–15018. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
 
 <a id="ref13"></a>**[13]** N. Jain et al., "Baseline Defenses for Adversarial Attacks Against Aligned Language Models," arXiv:2309.00614, 2023. Link: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614).
 
@@ -159,6 +164,20 @@ Các luận điểm trong Chương 2 được bảo chứng bởi 17 tài liệu
 
 <a id="ref15"></a>**[15]** X. Shen et al., "\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in *Proceedings of ACM CCS 2024*, pp. 4028–4042. Link: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825).
 
-<a id="ref16"></a>**[16]** H. Zhou et al., "EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models," arXiv:2403.12171, 2024. Link: [https://arxiv.org/abs/2403.12171](https://arxiv.org/abs/2403.12171).
+<a id="ref16"></a>**[16]** W. Zhou et al., "EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models," arXiv:2403.12171, 2024. Link: [https://arxiv.org/abs/2403.12171](https://arxiv.org/abs/2403.12171).
 
 <a id="ref17"></a>**[17]** Y. Yuan, W. Jiao, W. Wang, J. Huang, P. He, and Z. Tu, "GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher," in *Proceedings of ICLR 2024*. Link: [https://arxiv.org/abs/2308.06463](https://arxiv.org/abs/2308.06463).
+
+<a id="ref18"></a>**[18]** H. Li, X. Liu, N. Zhang, and C. Xiao, "InjecGuard: Benchmarking and Mitigating Over-defense in Prompt Injection Guardrail Models," in *Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025)*. Link: [https://arxiv.org/abs/2410.22770](https://arxiv.org/abs/2410.22770).
+
+<a id="ref19"></a>**[19]** E. Wallace et al., "The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions," *arXiv preprint arXiv:2404.13208*, 2024. Link: [https://arxiv.org/abs/2404.13208](https://arxiv.org/abs/2404.13208).
+
+<a id="ref20"></a>**[20]** P. Chao et al., "JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models," in *Advances in Neural Information Processing Systems (NeurIPS 2024) Datasets and Benchmarks Track*. Link: [https://arxiv.org/abs/2404.01318](https://arxiv.org/abs/2404.01318).
+
+<a id="ref21"></a>**[21]** Y. Deng et al., "Multilingual Jailbreak Challenges in Large Language Models," in *Proceedings of ICLR 2024*. Link: [https://arxiv.org/abs/2310.06474](https://arxiv.org/abs/2310.06474).
+
+<a id="ref22"></a>**[22]** A. N. Angelopoulos, S. Bates, E. J. Candès, M. I. Jordan, and L. Lei, "Conformal Risk Control," *arXiv preprint arXiv:2208.02814*, 2024. Link: [https://arxiv.org/abs/2208.02814](https://arxiv.org/abs/2208.02814).
+
+<a id="ref23"></a>**[23]** B. Warner et al., "ModernBERT: Bringing Modern Transformer Innovations to Pre-trained Encoders," *arXiv preprint arXiv:2412.13663*, 2024. Link: [https://arxiv.org/abs/2412.13663](https://arxiv.org/abs/2412.13663).
+
+<a id="ref24"></a>**[24]** A. Zou, Z. Wang, N. Carlini, M. Nasr, J. Z. Kolter, and M. Fredrikson, "Universal and Transferable Adversarial Attacks on Aligned Language Models," *arXiv preprint arXiv:2307.15043*, 2023. Link: [https://arxiv.org/abs/2307.15043](https://arxiv.org/abs/2307.15043).

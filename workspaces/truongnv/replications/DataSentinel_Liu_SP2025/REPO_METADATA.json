@@ -1,0 +1,39 @@
+{
+  "repository_name": "Open-Prompt-Injection",
+  "upstream_git_url": "https://github.com/liu00222/Open-Prompt-Injection",
+  "commit_hash": "2ff45614bb3f1f6a543fde38f8c88d3d9c99f247",
+  "branch": "main",
+  "authors": [
+    "Yupei Liu",
+    "Yuqi Jia",
+    "Jinyuan Jia",
+    "Dawn Song",
+    "Neil Zhenqiang Gong"
+  ],
+  "affiliations": [
+    "Pennsylvania State University",
+    "University of California, Berkeley"
+  ],
+  "paper": {
+    "title": "DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks",
+    "venue": "IEEE Symposium on Security and Privacy (S&P 2025)",
+    "award": "Distinguished Paper Award",
+    "arxiv": "https://arxiv.org/abs/2504.11358",
+    "doi": "10.1109/SP61157.2025.00250",
+    "local_pdf": "papers/Liu_2025_DataSentinel_Game_Theoretic_Detection_Prompt_Injection.pdf"
+  },
+  "license": "Apache-2.0",
+  "provenance": {
+    "is_upstream_pure_clone": true,
+    "is_synthetic_self_created": false,
+    "upstream_subfolder": "Open-Prompt-Injection"
+  },
+  "modules_exported": [
+    "OpenPromptInjection.apps.DataSentinelDetector",
+    "OpenPromptInjection.evaluator.Evaluator",
+    "OpenPromptInjection.attackers.CombineAttacker",
+    "OpenPromptInjection.attackers.FakeCompAttacker",
+    "OpenPromptInjection.attackers.EscapeCharAttacker",
+    "OpenPromptInjection.attackers.IgnoreAttacker"
+  ]
+}

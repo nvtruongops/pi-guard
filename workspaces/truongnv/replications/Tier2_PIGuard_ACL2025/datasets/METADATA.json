@@ -1,0 +1,76 @@
+{
+  "metadata_version": "1.0.0",
+  "package_name": "Tier2_PIGuard_ACL2025",
+  "dataset_name": "PIGuard ACL 2025 Comprehensive Evaluation Suite (BIPIA + NotInject + WildGuard + Valid)",
+  "provenance": {
+    "upstream_paper": {
+      "title": "PIGuard: Guarding Against Prompt Injection Attacks with In-Context Alignment and Layer-Pruned Transformers",
+      "authors": "Chawin Wang, et al.",
+      "venue": "ACL 2025 (Annual Meeting of the Association for Computational Linguistics)",
+      "year": 2025,
+      "arxiv_id": "2410.22770",
+      "reference_id": "[[23]](#ref23)"
+    },
+    "upstream_repository": "https://github.com/chawins/PIGuard",
+    "remote_full_dataset_location": "https://github.com/chawins/PIGuard/tree/main/datasets",
+    "is_synthetic_self_created": false,
+    "provenance_type": "Official ACL 2025 Authors Repository Datasets",
+    "license": "MIT"
+  },
+  "validation_mapping": {
+    "used_by_script": "eval_piguard_replication.py",
+    "schema": {
+      "prompt_field": "prompt",
+      "label_field": "label",
+      "label_mapping": {
+        "0": "Benign / Not-Injected",
+        "1": "Prompt Injection Attack"
+      }
+    }
+  },
+  "files": [
+    {
+      "filename": "BIPIA_code.json",
+      "size_bytes": 16427,
+      "sha256": "ab9f0563c7674074fb1cf82cb624196e9b5e3d62ac57b324b0745d23b7e55f87",
+      "sample_count": 10
+    },
+    {
+      "filename": "BIPIA_text.json",
+      "size_bytes": 6428,
+      "sha256": "e828d3e9e273ddf43c4b0c91e5803998f4314555d865e32bd4e0903ab746a3b9",
+      "sample_count": 15
+    },
+    {
+      "filename": "NotInject_one.json",
+      "size_bytes": 26909,
+      "sha256": "c77abbf3de71f99f0e12809a29d8468401285ef5353b53daa6d65131c866586c",
+      "sample_count": 113
+    },
+    {
+      "filename": "NotInject_three.json",
+      "size_bytes": 36783,
+      "sha256": "bc18f3ad38ad2380e57ae96d102b884af477989e2f3ff85fbc2271ed16b8db55",
+      "sample_count": 113
+    },
+    {
+      "filename": "NotInject_two.json",
+      "size_bytes": 30807,
+      "sha256": "325559cd1204fd3bdf0be82599fbf8ebbacdcd4949ae8b5bf67b399193d57c03",
+      "sample_count": 113
+    },
+    {
+      "filename": "valid.json",
+      "size_bytes": 91222,
+      "sha256": "e273fd455baac8785aa15bdc058adfd609f62ed0a3022963a5395ba95efe110e",
+      "sample_count": 144
+    },
+    {
+      "filename": "wildguard.json",
+      "size_bytes": 472515,
+      "sha256": "62a0f7331af19abdb43b027b815272777aac4c311b7fad25e4150618c5289f9b",
+      "sample_count": 971
+    }
+  ],
+  "generated_at": "2026-09-23T05:42:55.237766"
+}

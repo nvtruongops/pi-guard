@@ -77,7 +77,7 @@ flowchart LR
         direction TB
         M10["03/2024: Zhou (EasyJailbreak)<br/>Framework đột biến đối kháng"]
         M11["04/2024: Crescendo (Microsoft)<br/>Tấn công leo thang đa lượt"]
-        M12["05/2024: Shen et al. (ACM CCS)<br/>Khảo sát 15,140 mẫu DAN"]
+        M12["05/2024: Shen et al. (ACM CCS)<br/>1,405 jailbreaks / 15,140 prompts"]
         M13["10/2024: Yuan et al. (ICLR)<br/>Cipher Attack (Base64/ROT13)"]
         M10 --> M11 --> M12 --> M13
     end

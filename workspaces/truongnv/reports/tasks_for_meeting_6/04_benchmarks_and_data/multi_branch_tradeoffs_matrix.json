@@ -1,0 +1,299 @@
+{
+  "metadata": {
+    "project": "PI-Guard Capstone Project",
+    "academic_course": "FPT University IAP491 (Fall 2026)",
+    "research_author": "Nguyen Van Truong (Leader / SE182034)",
+    "timestamp": "2026-09-22T06:04:00Z",
+    "primary_references": [
+      "Zhou et al. (2026) - Prompt Overflow (arXiv:2605.23196)",
+      "Luo & Han (2026) - CASCADE Against Jailbreaks (arXiv:2609.21793)",
+      "Jacob et al. (ACM CCS 2024) - PromptShield (arXiv:2408.08412)",
+      "Angelopoulos et al. (2024) - Conformal Risk Control (arXiv:2208.02814)",
+      "Le et al. (ACL 2025) - PIGuard Guardrail (arXiv:2410.22770)"
+    ]
+  },
+  "chunking_analysis_200k": {
+    "doc_length_characters": 200000,
+    "window_size_characters": 2000,
+    "overlap_characters": 200,
+    "overlap_percentage": 10.0,
+    "step_characters": 1800,
+    "total_blocks": 111
+  },
+  "long_document_scanning_simulations": {
+    "tail": {
+      "payload_scenario": "tail",
+      "naive_linear": {
+        "blocks_inspected": 111,
+        "latency_ms": 13.32,
+        "detected": true
+      },
+      "exhaustive_full": {
+        "blocks_inspected": 111,
+        "latency_ms": 13.32,
+        "detected": true
+      },
+      "piguard_prioritized_tail_first": {
+        "blocks_inspected": 1,
+        "latency_ms": 0.12,
+        "detected": true,
+        "speedup_vs_linear": 111.0,
+        "speedup_vs_exhaustive": 111.0
+      }
+    },
+    "head": {
+      "payload_scenario": "head",
+      "naive_linear": {
+        "blocks_inspected": 1,
+        "latency_ms": 0.12,
+        "detected": true
+      },
+      "exhaustive_full": {
+        "blocks_inspected": 111,
+        "latency_ms": 13.32,
+        "detected": true
+      },
+      "piguard_prioritized_tail_first": {
+        "blocks_inspected": 3,
+        "latency_ms": 0.36,
+        "detected": true,
+        "speedup_vs_linear": 0.33,
+        "speedup_vs_exhaustive": 37.0
+      }
+    },
+    "middle": {
+      "payload_scenario": "middle",
+      "naive_linear": {
+        "blocks_inspected": 56,
+        "latency_ms": 6.72,
+        "detected": true
+      },
+      "exhaustive_full": {
+        "blocks_inspected": 111,
+        "latency_ms": 13.32,
+        "detected": true
+      },
+      "piguard_prioritized_tail_first": {
+        "blocks_inspected": 58,
+        "latency_ms": 6.96,
+        "detected": true,
+        "speedup_vs_linear": 0.97,
+        "speedup_vs_exhaustive": 1.91
+      }
+    },
+    "overflow_fragmented": {
+      "payload_scenario": "overflow_fragmented",
+      "naive_linear": {
+        "blocks_inspected": 21,
+        "latency_ms": 2.52,
+        "detected": true
+      },
+      "exhaustive_full": {
+        "blocks_inspected": 111,
+        "latency_ms": 13.32,
+        "detected": true
+      },
+      "piguard_prioritized_tail_first": {
+        "blocks_inspected": 23,
+        "latency_ms": 2.76,
+        "detected": true,
+        "speedup_vs_linear": 0.91,
+        "speedup_vs_exhaustive": 4.83
+      }
+    },
+    "benign": {
+      "payload_scenario": "benign",
+      "naive_linear": {
+        "blocks_inspected": 111,
+        "latency_ms": 13.32,
+        "detected": false
+      },
+      "exhaustive_full": {
+        "blocks_inspected": 111,
+        "latency_ms": 13.32,
+        "detected": false
+      },
+      "piguard_prioritized_tail_first": {
+        "blocks_inspected": 111,
+        "latency_ms": 13.32,
+        "detected": false,
+        "speedup_vs_linear": 1.0,
+        "speedup_vs_exhaustive": 1.0
+      }
+    }
+  },
+  "multi_branch_profiles": {
+    "Profile_A_Edge_Throughput": {
+      "branch_name": "Nhánh 1: Tối Ưu Tốc Độ & Thông Lượng Biên (Edge-First Ultra-Throughput)",
+      "primary_objective": "Tối đa hóa thông lượng (Throughput) & Tối thiểu hóa độ trễ (P95 < 0.2ms) trên CPU",
+      "paper_grounding": [
+        "Jain et al. (2023) [Baseline Defenses, arXiv:2309.00614]",
+        "Ayub et al. (CAMLIS 2024) [Towards Robust Detection, arXiv:2410.22284]"
+      ],
+      "technical_stack": "Pre-scrubber + Dual-Space TF-IDF (Word n-grams [1,3] + Char n-grams [3,5]) + Platt Logistic Regression",
+      "metrics": {
+        "latency_p50_ms": 0.03,
+        "latency_p95_ms": 0.08,
+        "latency_p99_ms": 0.15,
+        "max_qps_cpu_single_core": 8500,
+        "memory_footprint_mb": 45.0,
+        "benign_fpr": 0.0,
+        "direct_injection_recall": 0.45,
+        "indirect_injection_recall": 0.25,
+        "jailbreak_recall": 0.6,
+        "adversarial_evasion_recall": 0.35,
+        "overall_f1": 0.647,
+        "cost_per_million_requests_usd": 0.05
+      },
+      "tradeoff_analysis": {
+        "strengths": "Tốc độ cực nhanh (< 0.1ms), tiêu thụ CPU và RAM siêu nhẹ, không cần GPU, zero-FPR trên câu lệnh phổ biến.",
+        "weaknesses": "Độ nhạy ngữ nghĩa (Semantic Recall) thấp trên Indirect Injection và các biến thể paraphrase tinh vi.",
+        "optimal_regime": "API Gateway lớp biên (Ingress Edge), CDN firewall, dịch vụ chatbot đại trà cần xử lý hàng ngàn QPS."
+      }
+    },
+    "Profile_B_Conformal_Low_FPR": {
+      "branch_name": "Nhánh 2: Kiểm Soát Rủi Ro & Bão Hòa FPR Ngặt Nghèo (Strict Conformal Low-FPR)",
+      "primary_objective": "Đảm bảo FPR <= 1.0% có bảo chứng thống kê toán học hữu hạn mẫu (Finite-Sample Statistical Guarantee)",
+      "paper_grounding": [
+        "Angelopoulos et al. (2024) [Conformal Risk Control, arXiv:2208.02814]",
+        "Jacob et al. (ACM CCS 2024) [PromptShield: Low-FPR Regime, arXiv:2408.08412]",
+        "Markov et al. (OpenAI 2023) [Undesired Content Detection, AAAI 2023]"
+      ],
+      "technical_stack": "Calibrated Dual-Thresholding + Empirical Risk Minimization với Asymmetric Loss (C_FP = 10 * C_FN)",
+      "metrics": {
+        "latency_p50_ms": 0.15,
+        "latency_p95_ms": 4.2,
+        "latency_p99_ms": 18.5,
+        "max_qps_cpu_single_core": 450,
+        "memory_footprint_mb": 175.0,
+        "benign_fpr": 0.003,
+        "direct_injection_recall": 0.78,
+        "indirect_injection_recall": 0.72,
+        "jailbreak_recall": 0.85,
+        "adversarial_evasion_recall": 0.65,
+        "overall_f1": 0.842,
+        "cost_per_million_requests_usd": 0.85
+      },
+      "tradeoff_analysis": {
+        "strengths": "Gần như triệt tiêu hoàn toàn nguy cơ chặn nhầm (FPR < 0.5%), bảo vệ trải nghiệm người dùng doanh nghiệp.",
+        "weaknesses": "Phải chấp nhận bỏ lọt (False Negative) một số cuộc tấn công biên không chắc chắn để ưu tiên không chặn nhầm.",
+        "optimal_regime": "Ứng dụng B2B Enterprise, Trợ lý Pháp lý, Ngân hàng, Y tế (nơi chặn nhầm gây thiệt hại pháp lý và kinh tế lớn)."
+      }
+    },
+    "Profile_C_Deep_Semantic_High_Assurance": {
+      "branch_name": "Nhánh 3: Thẩm Định Ngữ Nghĩa Sâu & Ngữ Cảnh Phức Hợp (Deep Semantic High-Assurance)",
+      "primary_objective": "Tối đa hóa độ nhạy phát hiện (Recall > 95%) trên Indirect Injection và System Prompt Hijacking",
+      "paper_grounding": [
+        "He, Gao, Chen (ICLR 2023) [DeBERTaV3 Disentangled Attention]",
+        "Le et al. (ACL 2025) [PIGuard: A Prompt Injection Guardrail]",
+        "Yao et al. (NeurIPS 2022) [ZeroQuant Post-Training INT8 Quantization]"
+      ],
+      "technical_stack": "microsoft/deberta-v3-base fine-tuned + ONNX Runtime Dynamic INT8 Quantization trên CPU",
+      "metrics": {
+        "latency_p50_ms": 14.5,
+        "latency_p95_ms": 18.2,
+        "latency_p99_ms": 22.8,
+        "max_qps_cpu_single_core": 55,
+        "memory_footprint_mb": 135.0,
+        "benign_fpr": 0.012,
+        "direct_injection_recall": 0.96,
+        "indirect_injection_recall": 0.94,
+        "jailbreak_recall": 0.98,
+        "adversarial_evasion_recall": 0.75,
+        "overall_f1": 0.925,
+        "cost_per_million_requests_usd": 6.5
+      },
+      "tradeoff_analysis": {
+        "strengths": "Khả năng phân tích ngữ nghĩa sâu vượt trội, hiểu rõ cấu trúc chỉ thị lồng nhau trong dữ liệu gián tiếp.",
+        "weaknesses": "Độ trễ cao hơn đáng kể (~18ms/request), thông lượng thấp hơn, chi phí tài nguyên tính toán gấp 30x so với Nhánh 1.",
+        "optimal_regime": "AI Agent tự hành (Autonomous Agents) có quyền gọi Tool, ghi cơ sở dữ liệu SQL, chuyển tiền, thực thi mã code."
+      }
+    },
+    "Profile_D_Adversary_Aware_Minimax": {
+      "branch_name": "Nhánh 4: Kháng Đối Kháng Thích Ứng Minimax (Game-Theoretic Adversarial Robustness)",
+      "primary_objective": "Tối đa hóa khả năng chống chịu trước Evasion Attacks (Unicode Homoglyphs, CipherChat, Zero-Width, Base64)",
+      "paper_grounding": [
+        "Liu et al. (IEEE S&P 2025) [DataSentinel: Game-Theoretic Detection]",
+        "Hackett et al. (ACL 2025 LLMSEC) [Bypassing LLM Guardrails]",
+        "Yuan et al. (2024) [CipherChat & Encoding Jailbreak]"
+      ],
+      "technical_stack": "Tier-0 Scrubber (NFKC + Zero-width strip + Base64 decode) + Character N-grams + Robust Subword Tokenizer",
+      "metrics": {
+        "latency_p50_ms": 0.25,
+        "latency_p95_ms": 1.2,
+        "latency_p99_ms": 3.5,
+        "max_qps_cpu_single_core": 1200,
+        "memory_footprint_mb": 65.0,
+        "benign_fpr": 0.008,
+        "direct_injection_recall": 0.88,
+        "indirect_injection_recall": 0.76,
+        "jailbreak_recall": 0.92,
+        "adversarial_evasion_recall": 0.94,
+        "overall_f1": 0.895,
+        "cost_per_million_requests_usd": 0.4
+      },
+      "tradeoff_analysis": {
+        "strengths": "Chống chịu gần như hoàn hảo các đòn lẩn tránh bề mặt chuỗi ký tự (Zero-Width, Leetspeak, Cipher, Homoglyph).",
+        "weaknesses": "Thêm một lớp tiền xử lý giải mã có thể làm tăng nhẹ độ trễ và làm thay đổi văn bản đầu vào nếu chứa định dạng lạ.",
+        "optimal_regime": "Cổng API công cộng, môi trường Red-Teaming, Bug Bounty, cuộc thi CTF an toàn AI."
+      }
+    },
+    "Profile_E_Long_Document_Prompt_Overflow": {
+      "branch_name": "Nhánh 5: Quét Văn Bản Lớn 200k Ký Tự & Chống Prompt Overflow (Long-Doc Chunked & Tail-Biased)",
+      "primary_objective": "Xử lý tài liệu 200,000 ký tự (PDF, Ebook, RAG) giải quyết triệt để lỗ hổng Prompt Overflow & giấu prompt ở cuối",
+      "paper_grounding": [
+        "Zhou et al. (2026) [Prompt Overflow: Window Mismatch, arXiv:2605.23196]",
+        "Saltzer & Schroeder (IEEE 1975) [Complete Mediation Principle]",
+        "Wallace et al. (OpenAI 2024) [The Instruction Hierarchy]"
+      ],
+      "technical_stack": "Block Chunking (512 tokens / 2000 chars, 10% overlap) + Prioritized Tail-First Scanning + Soft-Attentive Top-K Aggregation",
+      "metrics": {
+        "latency_p50_ms_tail_attack": 0.17,
+        "latency_p50_ms_clean_doc": 13.32,
+        "latency_p95_ms": 16.5,
+        "max_qps_cpu_single_core": 75,
+        "memory_footprint_mb": 95.0,
+        "benign_fpr": 0.005,
+        "tail_injection_recall": 0.99,
+        "fragmented_overflow_recall": 0.92,
+        "overall_f1": 0.91,
+        "cost_per_million_requests_usd": 2.2
+      },
+      "tradeoff_analysis": {
+        "strengths": "Không bị giới hạn bởi context window 512 tokens của Guardrail, chặn đứng đòn tấn công giấu prompt cuối file PDF.",
+        "weaknesses": "Chi phí quét tổng thể cho văn bản lành tính dài 200k ký tự cao hơn (phải kiểm tra 111 blocks).",
+        "optimal_regime": "Pipeline RAG nạp tài liệu, hệ thống phân tích văn bản PDF, xử lý tài liệu hợp đồng, sách điện tử."
+      }
+    },
+    "Profile_F_Two_Tier_Adaptive_Champion": {
+      "branch_name": "Nhánh 6: Phân Tầng Thích Ứng Pareto Toàn Diện (Adaptive Two-Tier Routed - PI-Guard Champion)",
+      "primary_objective": "Tối ưu hóa đa mục tiêu trên biên Pareto giữa Latency (P95 < 5ms) và Hiệu năng phát hiện (F1 > 93%)",
+      "paper_grounding": [
+        "Saltzer & Schroeder (IEEE 1975) [Economy of Mechanism & Defense-in-Depth]",
+        "Luo & Han (2026) [CASCADE Against Jailbreaks, arXiv:2609.21793]",
+        "Le et al. (ACL 2025) [PIGuard Framework]"
+      ],
+      "technical_stack": "Tri-State Coordinator: Tier-1 (TF-IDF LogReg, tau_low=0.15, tau_high=0.85) -> 82% offload; Tier-2 (ONNX INT8 DeBERTa) -> 18% escalate",
+      "metrics": {
+        "latency_p50_ms": 0.08,
+        "latency_p95_ms": 3.45,
+        "latency_p99_ms": 18.2,
+        "max_qps_cpu_single_core": 1850,
+        "memory_footprint_mb": 145.0,
+        "benign_fpr": 0.005,
+        "direct_injection_recall": 0.94,
+        "indirect_injection_recall": 0.92,
+        "jailbreak_recall": 0.96,
+        "adversarial_evasion_recall": 0.88,
+        "overall_f1": 0.932,
+        "cost_per_million_requests_usd": 1.25,
+        "offload_rate_tier1_percentage": 82.0
+      },
+      "tradeoff_analysis": {
+        "strengths": "Dung hòa tối ưu giữa tốc độ siêu tốc cho 82% mẫu và độ chính xác sâu của Transformer cho 18% mẫu bất định.",
+        "weaknesses": "Cấu hình phức tạp hơn do phải hiệu chuẩn hai ngưỡng định tuyến (tau_low, tau_high).",
+        "optimal_regime": "Cấu hình tiêu chuẩn (Champion Deployment) cho PI-Guard Ingress Proxy phục vụ đa tác vụ."
+      }
+    }
+  }
+}

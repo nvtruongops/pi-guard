@@ -59,7 +59,7 @@ Kho mã nguồn chính thức được tác giả công bố tại Footnote 1 v�
       ├── BIPIA_code.json       # Benchmark tấn công gián tiếp trong mã nguồn
       ├── PINT.json             # Benchmark tổng hợp (chat, documents, injection)
       ├── wildguard.json        # Dữ liệu đối sánh từ Allen AI WildGuard
-      ├── train.json            # Tập huấn luyện tổng hợp (~43.4 MB)
+      ├── train.json            # Tập huấn luyện tổng hợp upstream (~43.4 MB, chỉ dùng khi train lại)
       └── valid.json            # Tập thẩm định (144 mẫu)
   ```
 
@@ -107,8 +107,8 @@ Bộ dữ liệu độc quyền do các tác giả ACL 2025 thiết kế để k
 ### 4.2. Bộ dữ liệu kiểm thử tấn công gián tiếp (Indirect Prompt Injection)
 - `datasets/BIPIA_text.json` & `datasets/BIPIA_code.json`: Gồm các đoạn văn bản và mã nguồn chứa payload gián tiếp chèn vào context, kiểm thử năng lực nhận diện câu lệnh độc giấu trong tài liệu RAG.
 
-### 4.3. Tập dữ liệu huấn luyện mở rộng
-- `datasets/train.json` (kích thước **43,398,735 bytes ~ 43.4 MB**): Tập dữ liệu lớn tổng hợp từ 20 nguồn dữ liệu an toàn mở kết hợp các mẫu tăng cường bằng LLM.
+### 4.3. Tập dữ liệu huấn luyện mở rộng trong bài báo gốc
+- `datasets/train.json` (kích thước **43,398,735 bytes ~ 43.4 MB** trên upstream): Tập dữ liệu lớn tổng hợp từ 20 nguồn an toàn mở kết hợp các mẫu tăng cường bằng LLM được tác giả dùng để tiền huấn luyện. (Trong môi trường thực nghiệm cục bộ của đồ án, nhóm tải pre-trained checkpoint chính thức và chỉ nạp 7 tập benchmark kiểm thử để đánh giá mô hình, lược bỏ file `train.json` do chưa đến giai đoạn thiết lập dataset huấn luyện cho đồ án).
 
 ### 📸 Bằng chứng cấu trúc tập dữ liệu và đánh giá từ bài báo:
 ![Table 7 Full Benchmarks trong bài báo PIGuard ACL 2025](../../task_3_replication/Tier2_PIGuard_ACL2025/figures/01_paper_evidence/paper_p16_table_7_full_benchmarks.png)

@@ -1,0 +1,39 @@
+{
+  "metadata_version": "1.0.0",
+  "package_name": "DataSentinel_Liu_SP2025",
+  "dataset_name": "Open-Prompt-Injection Evaluation Benchmark (Direct, Adaptive, Benign, Overdefense)",
+  "provenance": {
+    "upstream_paper": {
+      "title": "DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks",
+      "authors": "Yupei Liu, Yuqi Jia, Jinyuan Jia, Dawn Song, Neil Zhenqiang Gong",
+      "venue": "IEEE Symposium on Security and Privacy (S&P 2025)",
+      "year": 2025,
+      "doi": "10.1109/SP61157.2025.00250",
+      "reference_id": "[[32]](#ref32)"
+    },
+    "upstream_repository": "https://github.com/liu00222/Open-Prompt-Injection",
+    "remote_full_dataset_location": "https://github.com/liu00222/Open-Prompt-Injection",
+    "is_synthetic_self_created": false,
+    "provenance_type": "Official IEEE S&P 2025 Upstream Repository Release",
+    "license": "Apache-2.0"
+  },
+  "validation_mapping": {
+    "used_by_script": "run_datasentinel_replication.py",
+    "schema": {
+      "id_field": "id",
+      "text_field": "text",
+      "label_field": "label (0: Benign, 1: Injection)",
+      "category_field": "category",
+      "adaptive_field": "is_adaptive"
+    }
+  },
+  "files": [
+    {
+      "filename": "datasentinel_eval_benchmark.json",
+      "size_bytes": 4770,
+      "sha256": "b084ca210db226a166b9dfbbd5bba9f0cad71570cf152663a39744e4a40fd4c0",
+      "sample_count": 20
+    }
+  ],
+  "generated_at": "2026-09-23T05:52:36.225218"
+}

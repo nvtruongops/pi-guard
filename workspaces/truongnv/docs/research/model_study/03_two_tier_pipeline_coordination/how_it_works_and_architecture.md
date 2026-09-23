@@ -14,7 +14,7 @@ Nếu một hệ thống Guardrail chỉ sử dụng một mô hình đơn lẻ,
 | Tình Huống | Ưu Điểm | Thất Bại Cố Hữu |
 | :--- | :--- | :--- |
 | **Chỉ dùng TF-IDF Baseline** | Độ trễ thấp (~0.85ms), chặn đứng Leetspeak và Spacing hiệu quả. | Thiếu hiểu biết ngữ nghĩa sâu $\to$ Tỷ lệ báo động nhầm (FPR) lên tới 15–25%. Các câu hỏi nghiên cứu hợp lệ bị chặn nhầm. |
-| **Chỉ dùng DeBERTa-v3** | Hiểu ngữ cảnh sâu sắc, giảm thiểu báo động nhầm (FPR < 1.0%). | Subword BPE bị điểm mù Token Fragmentation (Jain et al., 2023). Kẻ tấn công có thể chèn ký tự biến dị để né tránh. Độ trễ: Mọi request đều phải chạy qua 12 tầng Transformer (~18.5ms). |
+| **Chỉ dùng DeBERTa-v3** | Hiểu ngữ cảnh sâu sắc, giảm thiểu báo động nhầm (FPR < 1.0%). | Subword BPE bị điểm mù Token Fragmentation (Jain et al., 2023) [[1]](#ref1). Kẻ tấn công có thể chèn ký tự biến dị để né tránh, trong khi các cơ chế ngẫu nhiên hóa như SmoothLLM (Robey et al., 2023) [[3]](#ref3) lại gây bùng nổ độ trễ suy luận. Độ trễ: Mọi request đều phải chạy qua 12 tầng Transformer (~18.5ms). |
 | **Giải Pháp PI-Guard: Phối Hợp 2 Tầng (Cascade)** | **Tầng 1 (TF-IDF)**: Đánh chặn nhanh tấn công thô trong ~0.85ms.<br>**Tầng 2 (DeBERTa-v3 INT8)**: Phân xử ngữ cảnh tinh vi, khống chế FPR. | Kết quả thực nghiệm: Độ trễ P95 < 22ms, FPR < 1.0%, F1 > 0.96, hoạt động hiệu quả trên CPU. |
 
 ---
@@ -23,7 +23,7 @@ Nếu một hệ thống Guardrail chỉ sử dụng một mô hình đơn lẻ,
 
 Cho chuỗi prompt đầu vào $x \in \mathcal{X}$, mô hình Tầng 1 (TF-IDF + Linear Classifier) xuất ra vector xác suất $\hat{\mathbf{p}}^{(1)}(x) = [\hat{p}_0^{(1)}, \hat{p}_1^{(1)}, \hat{p}_2^{(1)}]$, trong đó xác suất tấn công tổng hợp là $P_{\text{atk}}^{(1)}(x) = \hat{p}_1^{(1)}(x) + \hat{p}_2^{(1)}(x)$.
 
-Quy tắc ra quyết định phân tầng và chuyển tiếp được định nghĩa như sau [[1]](#ref1):
+Trong phạm vi mô hình hóa của PI-Guard, quy tắc ra quyết định phân tầng và chuyển tiếp được định nghĩa như sau:
 
 $$\text{Decision}(x) = \begin{cases} 
 \text{BLOCK (Early Exit)}, & \text{nếu } P_{\text{atk}}^{(1)}(x) \ge \tau_{\text{high}} \\
@@ -31,7 +31,7 @@ $$\text{Decision}(x) = \begin{cases}
 \text{ROUTING TO TIER-2 (DeBERTa-v3)}, & \text{nếu } \tau_{\text{low}} < P_{\text{atk}}^{(1)}(x) < \tau_{\text{high}}
 \end{cases}$$
 
-Khi chuyển sang Tầng 2, mô hình DeBERTa-v3 xuất ra xác suất ngữ nghĩa sâu $\hat{\mathbf{p}}^{(2)}(x)$, và quyết định cuối cùng được xác định tại ngưỡng hiệu chuẩn $\tau_{\text{deep}}$ [[2]](#ref2):
+Khi chuyển sang Tầng 2, mô hình Transformer DeBERTa-v3 [[2]](#ref2) xuất ra xác suất ngữ nghĩa sâu $\hat{\mathbf{p}}^{(2)}(x)$, và quyết định cuối cùng được xác định tại ngưỡng hiệu chuẩn $\tau_{\text{deep}}$:
 
 $$\text{Final Decision}(x) = \begin{cases}
 \text{BLOCK (HTTP 403)}, & \text{nếu } P_{\text{atk}}^{(2)}(x) \ge \tau_{\text{deep}} \\
@@ -73,10 +73,10 @@ flowchart TD
 
 ## 5. Tài Liệu Tham Khảo Học Thuật (Academic References)
 
-<a id="ref1"></a>**[1]** N. Jain et al., "Baseline Defenses for Adversarial Attacks Against Aligned Language Models," *arXiv preprint arXiv:2309.00614*, 2023. Link: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614).
+<a id="ref1"></a>**[1]** N. Jain et al., "Baseline Defenses for Adversarial Attacks Against Aligned Language Models," *arXiv preprint arXiv:2309.00614*, Sep. 2023. Open-Access: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614).
 
-<a id="ref2"></a>**[2]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Disentangled Attention," in *International Conference on Learning Representations (ICLR)*, 2023. Link: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543).
+<a id="ref2"></a>**[2]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Disentangled Attention," in *Proceedings of the 11th International Conference on Learning Representations (ICLR)*, May 2023. Open-Access: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543).
 
-<a id="ref3"></a>**[3]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," *arXiv preprint arXiv:2310.03684*, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).
+<a id="ref3"></a>**[3]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," *arXiv preprint arXiv:2310.03684*, Oct. 2023. Open-Access: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).
 
-<a id="ref4"></a>**[4]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *AAAI Conference on Human Computation and Crowdsourcing (HCOMP)*, 2023. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
+<a id="ref4"></a>**[4]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *Proceedings of the AAAI Conference on Artificial Intelligence*, vol. 37, no. 12, pp. 15009–15018, Jun. 2023. DOI: 10.1609/aaai.v37i12.26796. Open-Access: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).

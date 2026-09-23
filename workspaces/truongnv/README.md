@@ -13,7 +13,11 @@
   - [`reports/report_for_meeting_4/PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/PI-GUARD-Present-109.pptx): Slide thuyết trình tiến độ phục vụ buổi gặp Giáo viên Hướng dẫn (10/09/2026 - 22 slide, Dark Slate Navy).
   - [`reports/report_for_meeting_4/SUPERVISOR_REPORT_10_09_2026.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/SUPERVISOR_REPORT_10_09_2026.md): Đề cương tóm lược slide-by-slide & kịch bản báo cáo tiến độ gặp GVHD (10/09/2026).
   - [`reports/report_for_meeting_4/figures/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/figures/README.md): Danh mục 12 hình ảnh minh chứng trích từ slide báo cáo GVHD Meeting 4.
-  - [`reports/tasks_for_meeting_5/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/README.md): **Hồ sơ 4 nhiệm vụ kỹ thuật chuẩn bị Meeting 5** (Task 1: Phân biệt PI/Jailbreak, Task 2: 5D Framework & Reference Models, Task 3: Thực nghiệm tái lập PIGuard ACL 2025, Task 4: 4 Giải pháp cải tiến).
+  - [`reports/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/README.md): Cổng điều hướng phân hệ báo cáo tiến độ qua các mốc (Meeting 4, 5, 6 và Báo cáo tổng luận SOTA).
+  - [`reports/RESEARCH_ML_GUARDRAIL_SOTA_TO_PROJECT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/RESEARCH_ML_GUARDRAIL_SOTA_TO_PROJECT.md): Báo cáo tổng luận khoa học SOTA Guardrail, phổ mô hình 4 thế hệ, 5 chiều đánh đổi biên và phân tích thực nghiệm ứng dụng cho PI-Guard.
+  - [`reports/tasks_for_meeting_5/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/README.md): **Hồ sơ 4 nhiệm vụ kỹ thuật Meeting 5** (Task 1: Phân biệt PI/Jailbreak, Task 2: 5D Framework & Reference Models, Task 3: Thực nghiệm tái lập PIGuard ACL 2025, Task 4: 4 Giải pháp cải tiến).
+  - [`reports/tasks_for_meeting_6/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/README.md): **Hồ sơ nhiệm vụ kỹ thuật Meeting 6** (4 bài báo nâng cấp, bộ mô hình thực nghiệm, kịch bản benchmark và bộ unit tests).
+    - [`reports/tasks_for_meeting_6/TASK_MODEL_FREEZING_RESEARCH_STANDARDS_AND_GAP_AUDIT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/TASK_MODEL_FREEZING_RESEARCH_STANDARDS_AND_GAP_AUDIT.md): **Hồ sơ nhiệm vụ chuẩn mực nghiên cứu & Gap Audit đóng băng mô hình** (8 bước chuẩn mực IEEE/FPT, 6 khoảng trống thực nghiệm, và Actionable Checklist).
   - [`Final-Report/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/Final-Report/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md): *(Dùng chung toàn nhóm)* Tóm tắt quy chế và tiêu chí chấm điểm FPT IAP491.
   - [`docs/thesis/FINAL_THESIS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FINAL_THESIS.md): Bản biên dịch toàn văn các chương Review 1.
 
@@ -26,6 +30,10 @@
   - 🧱 [`docs/research/robustness_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/robustness_study/): Chuyên đề 6 — Độ bền đối kháng, Phân mảnh tokenizer BPE & Kỹ thuật lẩn tránh (Base64, Leetspeak, Spacing).
   - ⚖️ [`docs/research/evaluation_and_tradeoff_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/evaluation_and_tradeoff_study/): Chuyên đề 7 — Kinh tế học False Positive Rate ($\text{FPR} < 1.5\%$), Pareto Frontier & Đánh đổi kỹ thuật.
   - 🔍 [`docs/research/comparative_analysis/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/comparative_analysis/): Chuyên khảo đối chuẩn SOTA Guardrails, Lỗ hổng Target LLM APIs & Báo cáo Tencent 2026.
+
+- 🧪 **Trung Tâm Tái Lập Y Văn & Baselines ([`replications/`](file:///d:/Work/Do-an/workspaces/truongnv/replications/README.md))**:
+  - Quản lý tập trung **đúng 5 mô hình tái lập y văn upstream nguyên bản** có đầy đủ 100% Bộ Ba Công Khai (Public Code + Paper + Dataset): `PIGuard ACL 2025`, `Meta PromptGuard 2024`, `Jain NeurIPS 2023`, `InstructDetector EMNLP 2024`, `Ayub CAMLIS 2024`.
+  - Đi kèm toàn bộ Interactive Notebooks, Datasets, Scripts kiểm định và Sổ tay tái lập (`MEMBER_REPRODUCTION_RUNBOOK.md`).
 
 - 📚 **Tài liệu tham khảo & Thư viện Nghiên cứu**:
   - [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truongnv/References/REFERENCES_LOG.md): Bảng ma trận 18 bài báo chuẩn (100% >= 2022).

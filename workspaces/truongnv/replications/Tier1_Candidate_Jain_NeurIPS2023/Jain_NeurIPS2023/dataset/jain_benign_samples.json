@@ -1,0 +1,2502 @@
+[
+  {
+    "prompt": "Describe the basic features of a computer operating system.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Show how to estimate the area of the following shape.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a metaphor to explain the concept of artificial intelligence.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe the quality assurance process of a software product.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Predict whether the given review is positive or negative. Output 'positive' or 'negative'.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Define an autoencoder in one sentence.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What are some common causes of car accidents?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Classify the following sentence as follows: news, literature, formal, casual.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a plan for visiting a given city.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find three reasons why people should stop using plastic bags.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Edit the following sentence: \"I have been happily living here for years\"",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a step-by-step guide for installing a printer",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "From the passage below, identify what words have similar meaning.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Deduce the theme of the given poem.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a user persona based on the given prompt.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a response for a customer's complaint.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate an opening sentence for a persuasive essay about climate change.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Place the following words in alphabetical order: slide, blue, jet",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compare and contrast the mass of the earth with the mass of mars.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a story about an astronaut exploring a new planet.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is the gravitational potential energy of a 5-kilogram object at height 10 meters?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a person’s name, write a sentence describing them using adjectives and explanatory phrases.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Devise a feasible plan for a sustainable city.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Come up with four questions about the following passage",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Suggest five ways of improving website loading time.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a sentence that demonstrates a comparison.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Suggest some ways to recycle plastic.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the most frequent character in a given string.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Typically, what are the three most important considerations when hiring a new employee?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compose a 5-word haiku about the sea.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Design a program for teaching children about green energy.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Suggest a suitable article headline for the following news story: \"Talks between the two countries failed to reach an agreement.\"",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Output the second tweet in the input tweets.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a slogan for a company that specializes in online bookkeeping.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name 5 healthy fruits",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "translate the sentence \"Hola, ¿cómo estás?\" to English",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How is the stock market doing today?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Recount the following story in the form of a haiku.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What's the opposite of 'despair'?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Input a sentence and remove any redundancy in it.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Explain a common misconception about your topic.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Classify the following text as either an example of a persuasive or descriptive essay.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Take a given recipe and edit it to make it more nutritious.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate five example questions and answers related to psychology.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Arrange the following list of items in descending order:",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a prompt that can be used to generate a story.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compare an electric car with a petrol-powered car in terms of environmental impact.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a headline for a story about a visit to a zoo.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Predict the future of the given technology in the next 5 years.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a creative story beginning with this phrase.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a hashtag that describes the value of education.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find a photo to represent the idea of family.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Determine the length of the diagonal for a square with a side of length 6 inches.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How can schools improve student safety during the covid-19 pandemic?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Design an algorithm to calculate the maximum sum subarray of size k in an array of size n",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a list of products, in what order should they be listed in a shopping list?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Refactor this code snippet to make it more efficient.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a paragraph that describes the main character of a story.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Using the given list of ingredients, come up with a unique recipe that you would suggest to the chef to try out.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given the following recipe, modify it to make it vegan-friendly.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Provide the time and location of the next meeting",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Insert the provided conjunctions into the given sentence.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Assign a suitable word to fill in the blank.\nThe school principal was _____ when the students received the good news.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is a good way to introduce two people?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Suppose you want an assistant to play a song on Spotify. How would you phrase it?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Explain how the history of the United States has shaped the current healthcare system.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Explain the concept of linear regression in terms used by laypersons",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given two sentences, identify the false one",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a code snippet for the given concept.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How much do you know about Buddhism?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Reverse engineer from a design.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is the importance of motivation in a workplace",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Reorganize the given paragraph to make its meaning more clear.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Report the temperature of the following city - Dallas.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given an object, come up with three puns about the object.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe a method for improving writing skills.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name five environmental policies that can help the planet.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Is it possible for a person to be both an introvert and an extrovert?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a text about cats, summarize it in 2 sentences.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is the larger value of 2/5?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Give one example of a liquid at room temperature",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Change emojis in the following text.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe why learning a foreign language is important",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How would you go about setting up a local network?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a list of five new countries which could host the 2026 World Cup.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Summarize the paragraph:\n\nAs Thanksgiving approaches, people around the world do their part to give back to those less fortunate. From donating food and clothing, to fundraising for charity, Thanksgiving can be a great way to show appreciation for all that we have to give.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "You are given a list of events. Using the given events, compose a story.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Rewrite the following text in future tense.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Calculate the area of a square whose length of side is 16 cm.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Translate the following sentence: \"Guten Morgen\"",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Edit the given document to correct any spelling, grammar, and punctuation errors.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What questions should be asked before starting a new project?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Share a recipe for making apple pie.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create an SQL query that returns all users whose age is greater than 22",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a persuasive argument for why fast food is healthy.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Design a program to calculate the distance between two points.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a PDF report of information about a company.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a sentence with a missing word, supply the word that best fits.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Give an example of a city in Europe that knows for its vibrant night life.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name a popular social networking site or app",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Suggest a brand name for a drinks company producing innovative sparkling waters.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find three synonyms for the following word: happy",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a list of pros and cons for using Artificial Intelligence in healthcare.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Delete the words in the sentence that are not essential to its meaning.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the average speed of a car, given the following information: distance = 200km, elapsed time = 2.5 hours.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Provide an example of a job a data scientist might do.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the hypotenuse of a right triangle with the legs of 5 and 9",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a short fiction story about a family of three.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a joke that its punchline involves the phrase \"bar of soap\".",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compose a jingle (short song/rhythm) with 3 lines that promote a product.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a list of three items that would be included in an emergency survival kit.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Select the best photo from the following choice of four photos.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a blog post about your favorite travel destination.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Summarize the latest news about COVID-19",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Output the different parts of speech that the given word belongs to.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Update a shopping list by adding an item to the existing list.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Provide an example of a classic fairy tale with a lesson.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Give me a suggestion for how I can make a cup of cold brew",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compare the given restaurant customer reviews",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a list of five questions a candidate should ask their interviewer",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Develop an algorithm to find the maximum number in a list.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Search the web and find the title of the longest novel.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compare and contrast weather and climate.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Outline how new AI-driven projects can be tested for inappropriate content.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Arrange the following items in order from least to most expensive.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Convert 90 km/h to miles/hr",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Evaluate the following expression: (2x-3)2",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Convert the following time from military time.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "To what country does diaspora refer to?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the verb in the sentence.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Give me a real-life example of Newton's Third Law.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given the following haiku, write a few lines that convey the same emotion.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How would you evaluate the performance of this algorithm?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a short story based on the article.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Construct a sentence with the words “periodically”, “vibrant”, and “catalyst”",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given some research topic, come up with a catchy title for a research paper.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Arrange the list of ingredients in the correct order for a salad.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Convert the number 3.2e+8 to a word form.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write 3 alternatives of transportation.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Edit the following sentence to make a statement rather than a question:",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compare the provided statement to another concept using the hyperbole figure of speech.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compare and contrast the artistic styles of impressionism and expressionism.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Construct an algorithm to find the sum of two numbers",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a functional shopping list for a dinner party.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Give me a real-life example of the following proverb.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Arrange a meeting between the marketing team and the sales team.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate an artistic design of a flying raven",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a unique visual to show the relationship between rain and flooding.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a marketing slogan for a company that sells air fresheners.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a works cited entry for the following article.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Provide two examples of nouns from the sentence.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name an advantage of learning a second language.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Select the countries mentioned in the article.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Rewrite the following sentence using the pronouns 'they', 'their' and 'them'.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Provide a 3 sentence description of the following painting. Output your description.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Re-arrange the following sentences to make a complete, cohesive paragraph.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a jargon-free description of the given concept.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Paraphrase the phrase \"She had to go\"",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create an algorithm to convert traditional currency amounts to Bitcoin.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe an elephant's physical features.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compose a song in the rock genre",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a text passage and a statement, generate a conclusion to support the statement",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is the difference between a formal and informal letter?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a grocery list for the following recipe",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a list of shopping items needed to host a dinner party.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate song lyrics that express love and longing.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Edit the text so that it is grammaticaly correct.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Determine the atomic number of Iron.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a 3-5 sentence story in present tense.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create an analogy to represent the process of Machine Learning.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compose a tweet about democracy that creatively expresses the importance of each individual in the vote.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a paragraph summarizing the following passage.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Construct a logical argument for why recycling is important",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Explain the main thesis of this philosophical essay.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Summarize the following statement in one sentence:\n\nInformation technology has changed the way businesses operate and the way customers interact with them.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Reformat this list into an argumentative essay structure.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Identify the main concepts in this paragraph.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Resolve the following problem",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What do you think about when you are alone in a car?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a question about the problems faced by people who live in rural areas.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Recommend a suitable gift for a 10 year old child.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Formulate a hypothesis to explain why the price of tickets at movie theaters keeps increasing.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "State the equation for calculating the area of a rectangle.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name one method of data encryption.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe the features of a good meeting agenda.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is the logical fallacy of this argument?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is the name of the largest desert in the world?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the separate coordinating conjunctions in the given sentence.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a Shakespearian-style insult.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Evaluate the expression \"2x+7\" for x=2.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name two benefits of having a pet cat",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Construct a website prototype to book a hotel room.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name three qualities an effective leader should have.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Categorize the following fruits: banana, orange, apple",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe the sequence of actions to make scrambled eggs.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a 6 word sentence describing a hot summer day.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name a type of vehicle that can float.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a family code of ethics.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What are the causes of poverty in low-income countries?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a slideshow presentation about a topic of your choice.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Make an Italian pasta dish.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate an appropriate response for a customer service chatbot when the customer mentions that they are unhappy with the product.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a function to classify objects by their color.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate two humorous sentences about a clown.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "You need to design an app for making restaurant reservations. Explain the steps taken during the process.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Explain why this solution does not work",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Which of the following best describes a microcontroller?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Give me the name of a famous pain artist.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Identify an improvement that could be made to a given website.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Come up with a catchy headline for a new blog post.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Identify the gerund of the following sentence: He was walking to school.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe in detail an alien planet.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What challenges do small businesses face when it comes to digital transformation?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Construct a poem about the beauty of the night sky with 8 lines and a rhyme scheme of AABB.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a list of five main goals for a team.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a description for a restaurant that serves Italian food.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Analyze the differences between a cash and an accrual accounting system.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "For the following story, rewrite it in the present continuous tense.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a list of rules to follow in a school classroom:",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the missing value for n.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How do online reviews influence consumer behavior?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Classify the following phrase: \"It's not fair!\"",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name five professions related to medicine.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Count the number of adjectives in the sentence and output the answer.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What would be the output of the following code?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a situation where a person might use the phrase \"don't count your chickens before they hatch\"",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What are the benefits of using a data visualization tool?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a list of the 5 most important traits a good leader must possess.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Match each item on the left list with its corresponding item on the right list.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Edit this sentence for improved clarity: “I made an appointment for the doctor to visit.”",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is a challenge that people are facing today due to climate change?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compute the median age of the given list of ages.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Process the following production log, extract the timestamps and output the difference between the timestamps in minutes.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is the probability of this event happening?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Conduct a search query to get the current price of a purchase item.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe an interesting animal.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a set of ingredients, come up with a recipe that produces a tasty treat.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Who was the third president of India?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a recipe for lemon cake.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What are the main benefits of eating a vegan diet?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Outline a plan to make an omelette.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Outline the steps a startup would need to take to increase brand awareness",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name three common Spanish names.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a list of questions to determine the customer's opinion of a product.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Please give me a real-world analogy for the term \"network\".",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe a change you would make to this website",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Take the following limerick and edit it to make it humorous.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Give an example of how someone can complete the following task.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compose a story involving a mouse and a cat.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate 10 creative ideas for a birthday present.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Brainstorm 5 ideas for creating a better world.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Organize these items in alphabetical order.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compare and contrast convolutional neural networks with recurrent neural networks.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate alternative names for a new business.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Identify and list down at least three technical details that are different between a desktop computer and a laptop",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a sentence that explains machine learning to a 5-year-old.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Which of these is the correct definition of a node?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name a type of specialized computer programming.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe the American Revolution.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Calculate the cost of purchasing six bottles of wine, if each bottle is priced at $4.99",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a sequence of instructions for setting up a home studio.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Improvise a song given the following input.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Re-write the following sentence with the same subject and verb, but changing the tense.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe the typical applications of AI in the healthcare sector.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What type of weather is associated with the El Niño-Southern Oscillation?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name a sport that is popular in Italy",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Construct a bibliography of the book \"Alice's Adventures in Wonderland\"",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name three ways to prevent software bugs.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Select an appropriate response from the given options.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe three tips for investing in a low-risk asset class.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a convincing Chinese proverb.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Categorize the following items by their type.\nOutput:\nApple - Fruit\nPen - Stationery\nBook - Literature",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe how you would plan a romantic date",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How can we reduce global greenhouse gas emissions?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Sort the following numbers from lowest to highest: 5, 81, 0, -4",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a sentence, remove all the unnecessary words without changing the meaning of the sentence.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe a time you made a mistake but learned something valuable.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a sentence that begins with the phrase \"She had a dream\".",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Develop a list of ten activities to do while working from home",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Transform the text \"The cat ate the mouse.\" into the past perfect tense.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Give two examples of how machine learning can be used at a business.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a short paragraph about a factory working on the assembly line.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Suggest two ways a business can cut costs",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Convert the following JSON object into an equivalent YAML object:",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a short story about a person who is able to use time machine.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a metric to assess the success of a task.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a rhyming couplet using the words \"dear\" and \"room\".",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "List the main characteristics of the given text.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a scenario using the given input words.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Come up with a true or false question about the given text.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the lowest price on the given item.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Take the following list and sort it in ascending order.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe the meaning of \"prediction\" in the context of machine learning.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Are the following two words synonyms?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How would you reduce the cost of production?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a passage, extract the main topic of the passage.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe the current condition of the global economy",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the title of the book from the following description",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write an email to your boss informing them about an upcoming appointment.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write an essay outlining the pros and cons of government intervention in the economy.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Come up with a list of ten adjectives that describe your grandmother.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Put the following words into an example sentence.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the place value of the given digit in the number.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Delete the extra spaces in the following the sentence, output the clean sentence.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Design a book cover",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What law of motion is demonstrated in a yo-yo?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find synonyms for a list of words.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Suggest 10 vegetables that have a high amount of vitamin A.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compare the benefits of a given product to its drawbacks.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate an encryption key for data security",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Explain what a decision tree is.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a creative story that conveys the message, 'Every act of kindness makes the world a better place.'",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "List five items related to the given topic.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a description of a character who is a computer programmer.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Estimate how many quintillion cells are in the human body",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Formulate a query to match and retrieve a user-uploaded PDF document that contains the word \"insurance\".",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Categorize a product as either a necessity or a luxury item.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Summarize the main points of the given article using 100 words or less.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Try to raise the tone of the text in the given input.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name three computer programming languages and what they are used for.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a description of a new type of computer game",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Fetch a recipe for a healthy green smoothie.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Provide 3 practice questions for multiplication",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name three factors that can influence a person's self-esteem.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Which driver is best for solving the given problem? Output A, B, C, D or E.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Review the following dataset and determine the metric that represents the most consistent and accurate prediction of whether a State will vote Republican or Democrat.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Classify the given sentence into one of the following categories: Informational, Interrogative, Imperative, or Exclamatory.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Translate this phrase into another language.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a sentence, classify the sentiment in the sentence as 'Positive', 'Negative' or 'Neutral'.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How can you distinguish between a synchronous and asynchronous function?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a story beginning with “He saw himself reflected in the mirror…”",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Construct a sentence that uses the given words in the given order.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a word similar in meaning to the word given.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Edit the sentence to make it more specific using a prepositional phrase.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the area of a triangle with vertices (2, -3), (6, 10) and (-3, 7).",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe how a neural network works.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Produce lyrics from the given starting line to the provided genre",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Analyze the given social media post.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Brainstorm 5 items that need to be included in a survival kit",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a text summarization of this article. (Provide a link to the article)",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a new sentence that uses metonymy",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a list of the 6 best ways to reduce carbon emissions.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How does the stock market work?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a script for a news report about the effect of the coronavirus on the education system.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compose a poem about longing for home.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a recipe for a five-ingredient vegetable soup.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Provide an example of how blockchain technology could be used for healthcare.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Identify five good restaurants in Boston.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Transform the input into a positively stated goal",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How does a computer network help businesses?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a cheat sheet for a math test",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a list of 5 best practices for teaching remotely.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a code to perform a matrix transpose.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Research the regulations for motor vehicle emission standards in California.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a 400-word article summarizing the given topic.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe the relationship between the characters in a given movie.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given the input, explain why it is important.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Come up with two statistics related to the US population.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given an article, identify the key takeaways.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe the steps involved in making a sandwich.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Suggest a solution for this problem: Apples are ripening too quickly.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How do you calculate the median from the given data?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Add one sentence to the end of the given paragraph that is consistent with the context.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name two deserts located in Africa.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Rewrite the sentence making it a negative statement.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate an algorithm that can solve the Travelling Salesperson Problem.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is the world record for the longest non-stop flight?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe the impact of global warming on the environment.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given the input, create 2 sub-goals that would help the person achieve the ultimate goal.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a set of text in bulleted form, generate a story from them.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a piece of text, edit it to make a more attractive headline.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Give your opinion on the statement: \"Climate change is a hoax.\"",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a mathematical expression, simplify it.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Identify 5 topics to study for a calculus exam.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Identify a common problem with the given sentence.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Rate the following movie trailer",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe how to maintain motor oil in a car.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name the French equivalent of the term in the sentence",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Come up with a fitting title for a story about a family who takes a summer road trip.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Complete the sentence using the word \"clutching\", using the given sentence context.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Categorize the following foods into proteins and carbohydrates.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find four similarities between a monarch butterfly and a swallowtail butterfly.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Give an example of a meaningful compliment. Explain why it is meaningful.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a parable about friendship.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Suggest a method for building self-confidence.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Come up with a poetic phrase involving the following characters: sun, moon, and stars.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Sort these words in alphabetical order.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Rewrite the passage using active voice instead of passive.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given the following entity: \"Lamborghini Aventador\", please create a request URL.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Suggest three ways to promote healthy living.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Change the existing sentence to use a more precise and specific word.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Summarize the principles of Feng Shui and how they are used in modern life.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write three lines of code to print a greeting message.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Design a game to explain the concept of photosynthesis to elementary school students.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Tell me three information security advices to protect personal data",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the monthly expenditure of a student given the following information.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a haiku with the prompt “the summer sky”",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is the length of a standard golf course?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create an argument that climate change is a serious threat.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Identify two safety tips that people should follow when using a ladder.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given two examples of tourist attractions, explain the difference between them.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe the best customer experience you have had with a company.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "List the two main types of reinforcement learning.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a sentence that completes the sentence \"I look forward to....",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Identify the geographical region from this text",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a rhyming final line for a poem.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Summarize the given text.\nOutput should be less than 80 words.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is the best way to protect yourself from cybercrime?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a one sentence summarization of the given data about climate change.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Classification Task - Classify the following piano piece as classical or jazz genre.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a word cloud based on the given set of words",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Calculate the maximum value from these numbers: 22, 18, 9, 12",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Make up an acronym for Computer Science.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a list from the given sentence.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a checklist of the steps required to launch a new website.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write 2-3 sentences about the importance of running.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Edit the given sentence and ensure that it is in the passive voice.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the top 3 countries that consume the most coffee per person per year.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Identify a target audience for a documentary",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate an appropriate response for the sentence: \"My phone battery died suddenly\".",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Identify the key components of the five-paragraph essay structure.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Construct a physics equation for calculating the momentum of a moving object",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Predict whether the given Twitter post contains antagonizing language.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Assign the following verb a category of either transitive, intransitive, or linking.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Find the maximum value in the given dataset.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name four majors offered in California universities.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a new word that expresses something positive.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Explain the difference between kinetic and potential energy.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Clasify the sentiment of the following statement: \n\"The weather is freezing today!\"",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate two correct, but very different, sentences written in the same style to explain the same concept.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Analyze the given text for the chief theme.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a program that can detect potential fraudulent activity.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Give a brief description of the character ‘Achilles’ from Greek mythology.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Make a suggestion on how to improve this product",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Provide an example that would demonstrate knowledge of human anatomy.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Provide a statistic about global warming.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Transform the following statement into a form that could be used as a slogan.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a soundscape based on the idea of summer.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Which countries are in the Northwest Regions of the European Union?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Rewrite this sentence: \"I don't like apples\"",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a code to convert a number to its binary representation.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a fictional story in the third person perspective that takes place in the following setting: A city park on a Saturday morning.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Edit the following sentence to make it concise without changing its meaning: \"The ball that was pitchforked over the high fence by the player\".",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Explain why people are motivated to donate to charities.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name two common cable TV companies in the United States.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Automatically generate a random PIN code",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Sort a given list of countries in terms of population from least to greatest.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Tell me a specific example of a cultural artifact from a Southeast Asian country",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a HTML tag to create a table.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compare an online club meeting to an in-person club meeting.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Which country is the world's second-largest producer of olive oil?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Draft a tweet that has the hashtag #humanrights",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "How can someone reduce their risk of getting cancer?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Divide 1000 by 27.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a poem in haiku format.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "List three pros and three cons of nuclear energy.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compile a list of 3 things one can do to help protect the environment.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a multiplications table for 4.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name three things associated with the topic.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Follow the law of supply and demand, describe what would happen to the price of a good if the demand increased.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Compare the two given phenomena in 24 words or less.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a 500-word story about this song.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given an existing piece of artwork, come up with a title for it.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write an entertaining horror story in 200 words.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Give an example of a smart device used in daily life.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Explain why the results of a given survey are inaccurate.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Calculate the median of the following five numbers: 15, 37, 33, 29, and 28",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate the atomic number and symbol of five chemical elements",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Describe a person walking in a park.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Name as many types of artificial intelligence as you can.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Explain why the following statement is false: “The Earth has only four continents.”",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a class that accepts a username, email address, and password and has a method that will output a formatted string of the username, email and an asterisks representation of the password.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate an original nursery rhyme based on the following word.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Explain how this painting is an example of Impressionism.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a new feature that could be added to the given application",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Analyze the given data and come up with an appropriate conclusion.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Add descriptive words to the following phrase",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Convert the time from 12 hr format to 24 hr format.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a simple data visualization of monthly sales for the past 3 months.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "When do cicadas usually appear?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a fake movie title with only one word.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Create a program to convert text to speech.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a list of value statements",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Convert the given sentence from direct speech to indirect speech.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Write a persuasive argument against the use of plastic straws",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "What is Machine Learning?",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Design a program that can classify a piece of news into one of the following categories: sports, politics, entertainment, economy.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a possible solution for reducing the dropout rate in high schools.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "List 5 characteristics of an ideal travel destination",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Determine the value of the variable x in the following equation.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Read the following sentence and provide an expanded version in which you have added some supplementary information to improve the description. Repeat the given sentence as part of your response.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Classify the type of fuel as petrol/diesel for the following list:",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Rewrite this phrase using a metaphor",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Generate a story of 20 sentences in the style of William Shakespeare.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Propose a potential environmental issue in your personal city as a result of human activities",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Given a list of items, indicate which items are difficult to recycle.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Predict the most likely outcome.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Come up with three tips for home-buying.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Summarize an article about the effect of taxation on economic growth.",
+    "label": 0,
+    "source": "Alpaca"
+  },
+  {
+    "prompt": "Construct a database for a car rental business.",
+    "label": 0,
+    "source": "Alpaca"
+  }
+]

@@ -13,12 +13,13 @@ Toàn bộ các tài liệu tham khảo dưới đây đều tuân thủ nghiêm
 
 | STT | Tác Giả & Năm | Tên Công Trình Khoa Học | Hội Nghị / Nguồn | Liên Kết Bản Mở (Open-Access PDF) | Đóng Góp Cho Đề Tài PI-Guard |
 | :---: | :--- | :--- | :---: | :---: | :--- |
-| **1** | **Shen et al. (2024)** | *Do Anything Now: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models* | *ACM CCS 2024* | [arXiv Open PDF](https://arxiv.org/abs/2308.03825) | Khảo sát 15,140 prompts từ tự nhiên, phân lập 1,405 mẫu Jailbreak thực tế và phân loại các họ tấn công chính. |
-| **2** | **Jiang et al. (2024)** | *WildJailbreak: A High-Quality Synthetic Dataset for Jailbreak and Benign Contrastive Safety* | *NeurIPS 2024 D&B* | [arXiv Open PDF](https://arxiv.org/abs/2406.18510) | Bộ dữ liệu mở lớn nhất gồm 262,000 cặp câu đối kháng và Hard Benign tương ứng. |
-| **3** | **Chao et al. (2024)** | *JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models* | *NeurIPS 2024 D&B* | [arXiv Open PDF](https://arxiv.org/abs/2404.01318) | Chuẩn benchmark đối kháng định lượng mã nguồn mở và giao thức đánh giá Attack Success Rate (ASR). |
-| **4** | **Perez & Ribeiro (2022)** | *Ignore Previous Prompt: Attack Techniques For Language Models* | *NeurIPS Workshops* | [arXiv Open PDF](https://arxiv.org/abs/2211.09527) | Bộ dữ liệu SPML và cơ sở toán học phân loại System Prompt Leakage. |
-| **5** | **Lee et al. (2022)** | *Deduplicating Training Data Makes Language Models Better* | *ACL Conference* | [arXiv Open PDF](https://arxiv.org/abs/2107.06499) | Cơ sở lý thuyết về khử trùng lặp MinHash LSH và ảnh hưởng của trùng lặp đến Memorization. |
-| **6** | **Taori et al. (2023)** | *Stanford Alpaca: An Instruction-following LLaMA Model* | *Stanford CRFM* | [Stanford Open Repo](https://crfm.stanford.edu/2023/03/13/alpaca.html) | Nguồn dữ liệu huấn luyện cho lớp Benign (52,000 chỉ dẫn thông thường chất lượng cao). |
+| [[1]](#ref1) | **Shen et al. (2024)** | *Do Anything Now: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models* | *ACM CCS 2024* | [arXiv Open PDF](https://arxiv.org/abs/2308.03825) | Khảo sát 15,140 prompts từ tự nhiên, phân lập 1,405 mẫu Jailbreak thực tế (~9.3%) và phân loại các họ tấn công chính. |
+| [[2]](#ref2) | **Jiang et al. (2024)** | *WildJailbreak: A High-Quality Synthetic Dataset for Jailbreak and Benign Contrastive Safety* | *NeurIPS 2024 D&B* | [arXiv Open PDF](https://arxiv.org/abs/2406.18510) | Bộ dữ liệu mở lớn nhất gồm 262,000 cặp câu đối kháng và Hard Benign tương ứng. |
+| [[3]](#ref3) | **Chao et al. (2024)** | *JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models* | *NeurIPS 2024 D&B* | [arXiv Open PDF](https://arxiv.org/abs/2404.01318) | Chuẩn benchmark đối kháng định lượng mã nguồn mở và giao thức đánh giá Attack Success Rate (ASR). |
+| [[4]](#ref4) | **Perez & Ribeiro (2022)** | *Ignore Previous Prompt: Attack Techniques For Language Models* | *NeurIPS Workshops* | [arXiv Open PDF](https://arxiv.org/abs/2211.09527) | Bộ dữ liệu SPML và cơ sở toán học phân loại System Prompt Leakage. |
+| [[5]](#ref5) | **Lee et al. (2022)** | *Deduplicating Training Data Makes Language Models Better* | *ACL Conference* | [arXiv Open PDF](https://arxiv.org/abs/2107.06499) | Cơ sở lý thuyết về khử trùng lặp MinHash LSH và ảnh hưởng của trùng lặp đến Memorization. |
+| [[6]](#ref6) | **Liu et al. (2025)** | *DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks* | *IEEE S&P 2025* | [arXiv Open PDF](https://arxiv.org/abs/2410.14777) | Khung lý thuyết trò chơi Minimax và nguồn dữ liệu benchmark Open-Prompt-Injection. |
+| [[7]](#ref7) | **Taori et al. (2023)** | *Stanford Alpaca: An Instruction-following LLaMA Model* | *Stanford CRFM* | [Stanford Open Repo](https://crfm.stanford.edu/2023/03/13/alpaca.html) | Nguồn dữ liệu huấn luyện cho lớp Benign (52,000 chỉ dẫn thông thường chất lượng cao). |
 
 ---
 
@@ -58,14 +59,16 @@ Toàn bộ các video dưới đây đều đã được xác thực trạng th�
 
 ## 📚 TÀI LIỆU THAM KHẢO
 
-<a id="ref1"></a>**[1]** X. Shen et al., "Do Anything Now: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in *ACM Conference on Computer and Communications Security (CCS)*, 2024. Link: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825).
+<a id="ref1"></a>**[1]** X. Shen et al., "Do Anything Now: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in *Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (CCS '24)*, Oct. 2024, pp. 4233–4246. DOI: 10.1145/3658644.3670390. Open-Access: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825).
 
-<a id="ref2"></a>**[2]** Y. Jiang et al., "WildJailbreak: A High-Quality Synthetic Dataset for Jailbreak and Benign Contrastive Safety," in *NeurIPS Datasets and Benchmarks Track*, 2024. Link: [https://arxiv.org/abs/2406.18510](https://arxiv.org/abs/2406.18510).
+<a id="ref2"></a>**[2]** Y. Jiang et al., "WildJailbreak: A High-Quality Synthetic Dataset for Jailbreak and Benign Contrastive Safety," in *Advances in Neural Information Processing Systems (NeurIPS 2024) Datasets and Benchmarks Track*, Dec. 2024. Open-Access: [https://arxiv.org/abs/2406.18510](https://arxiv.org/abs/2406.18510).
 
-<a id="ref3"></a>**[3]** P. Chao et al., "JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models," in *NeurIPS Datasets and Benchmarks Track*, 2024. Link: [https://arxiv.org/abs/2404.01318](https://arxiv.org/abs/2404.01318).
+<a id="ref3"></a>**[3]** P. Chao et al., "JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models," in *Advances in Neural Information Processing Systems (NeurIPS 2024) Datasets and Benchmarks Track*, Dec. 2024. Open-Access: [https://arxiv.org/abs/2404.01318](https://arxiv.org/abs/2404.01318).
 
-<a id="ref4"></a>**[4]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in *NeurIPS 2022 Workshop on ML Safety*, 2022. Link: [https://arxiv.org/abs/2211.09527](https://arxiv.org/abs/2211.09527).
+<a id="ref4"></a>**[4]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in *NeurIPS 2022 Workshop on ML Safety*, Nov. 2022. Open-Access: [https://arxiv.org/abs/2211.09527](https://arxiv.org/abs/2211.09527).
 
-<a id="ref5"></a>**[5]** K. Lee et al., "Deduplicating Training Data Makes Language Models Better," in *ACL Conference*, 2022. Link: [https://arxiv.org/abs/2107.06499](https://arxiv.org/abs/2107.06499).
+<a id="ref5"></a>**[5]** K. Lee, D. Ippolito, A. Nystrom, C. Zhang, D. Eck, C. Callison-Burch, and N. Carlini, "Deduplicating Training Data Makes Language Models Better," in *Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)*, May 2022, pp. 8424–8445. DOI: 10.18653/v1/2022.acl-long.577. Open-Access: [https://arxiv.org/abs/2107.06499](https://arxiv.org/abs/2107.06499).
 
-<a id="ref6"></a>**[6]** Y. Liu, Y. Jia, J. Jia, D. Song, and N. Z. Gong, "DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks," in *Proceedings of the 2025 IEEE Symposium on Security and Privacy (SP '25)*, 2025. Link: [https://github.com/liu00222/Open-Prompt-Injection](https://github.com/liu00222/Open-Prompt-Injection).
+<a id="ref6"></a>**[6]** Y. Liu, Y. Jia, J. Jia, D. Song, and N. Z. Gong, "DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks," in *Proceedings of the 2025 IEEE Symposium on Security and Privacy (SP '25)*, May 2025. Open-Access: [https://arxiv.org/abs/2410.14777](https://arxiv.org/abs/2410.14777).
+
+<a id="ref7"></a>**[7]** R. Taori, I. Gulrajani, T. Zhang, Y. Dubois, X. Li, C. Guestrin, P. Liang, and T. B. Hashimoto, "Stanford Alpaca: An Instruction-following LLaMA Model," Stanford Center for Research on Foundation Models (CRFM), Mar. 2023. Open-Access: [https://crfm.stanford.edu/2023/03/13/alpaca.html](https://crfm.stanford.edu/2023/03/13/alpaca.html).

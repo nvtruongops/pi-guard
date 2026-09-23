@@ -1,0 +1,41 @@
+{
+  "metadata_version": "1.0.0",
+  "package_name": "Tier1_Candidate_Meta_PromptGuard2024",
+  "dataset_name": "Meta CyberSecEval 3 / Prompt-Guard 3-Class Evaluation Suite",
+  "provenance": {
+    "upstream_paper": {
+      "title": "Prompt-Guard: A Micro-Model for Prompt Injection and Jailbreak Detection",
+      "authors": "Meta AI Security Team",
+      "venue": "CyberSecEval 3 Technical Report",
+      "year": 2024,
+      "arxiv_id": "2407.21772",
+      "reference_id": "[[15]](#ref15)"
+    },
+    "upstream_repository": "https://github.com/meta-llama/PurpleLlama (CyberSecEval)",
+    "remote_full_dataset_location": "https://github.com/meta-llama/PurpleLlama/tree/main/Cyber-Sec-Eval",
+    "is_synthetic_self_created": false,
+    "provenance_type": "Official Meta PurpleLlama Public Security Benchmark",
+    "license": "Llama 3 Community License / BSD-3-Clause"
+  },
+  "validation_mapping": {
+    "used_by_script": "run_promptguard_replication.py",
+    "schema": {
+      "prompt_field": "prompt",
+      "label_field": "label",
+      "label_mapping": {
+        "0": "Benign",
+        "1": "Prompt Injection",
+        "2": "Jailbreak"
+      }
+    }
+  },
+  "files": [
+    {
+      "filename": "promptguard_3class_eval.json",
+      "size_bytes": 653310,
+      "sha256": "8f00a063e184517ecf5b5a1fc813e70959803012c0f100b209c69dc2a71b77ba",
+      "sample_count": 700
+    }
+  ],
+  "generated_at": "2026-09-23T05:42:55.182583"
+}

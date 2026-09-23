@@ -97,7 +97,7 @@ graph TD
 
 | Tên Bộ Dữ Liệu | Bài Báo Khoa Học & Đơn Vị | Quy Mô | Trọng Tâm Khảo Sát | Ứng Dụng Trong Đồ Án PI-Guard |
 | :--- | :--- | :---: | :--- | :--- |
-| **In-The-Wild Prompts** | **Shen et al. (ACM CCS 2024)**<br>[arXiv:2308.03825](https://arxiv.org/abs/2308.03825) | 15,140 mẫu | DAN thực tế từ Reddit/Discord | **Tập dữ liệu huấn luyện & kiểm thử cốt lõi** |
+| **In-The-Wild Prompts** | **Shen et al. (ACM CCS 2024)**<br>[arXiv:2308.03825](https://arxiv.org/abs/2308.03825) | 1,405 jailbreaks / 15,140 mẫu (~9.3%) | DAN thực tế từ Reddit/Discord | **Tập dữ liệu huấn luyện & kiểm thử cốt lõi** |
 | **Do-Not-Answer** | **Wang et al. (2023)**<br>[arXiv:2308.13387](https://arxiv.org/abs/2308.13387) | 936 câu hỏi | 5 Vùng rủi ro, 12 danh mục cấm | Bộ câu hỏi chuẩn mực đánh giá tỷ lệ từ chối |
 | **HarmBench** | **Mazeika et al. (CAIS 2024)**<br>[arXiv:2402.04249](https://arxiv.org/abs/2402.04249) | 510 hành vi | Tự động đo ASR (Attack Success Rate) | Đối chuẩn kiểm định mô hình phòng vệ |
 | **JailbreakBench** | **Chao et al. (2024)**<br>[arXiv:2404.01318](https://arxiv.org/abs/2404.01318) | Chuẩn hóa mở | Leaderboard các phương pháp GCG/PAIR | Tham chiếu hiệu năng chống tấn công đối kháng |

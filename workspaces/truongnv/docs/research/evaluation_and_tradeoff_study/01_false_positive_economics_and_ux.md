@@ -35,7 +35,7 @@ flowchart TD
 
 ## II. CƠ SỞ TOÁN HỌC: CÁC CHỈ SỐ ĐO LƯỜNG TẠI ĐIỂM HOẠT ĐỘNG (OPERATING POINT METRICS)
 
-Để đo lường chính xác hiệu năng an ninh trong điều kiện phân phối lệch, đồ án **PI-Guard** sử dụng hệ thống chỉ số chuẩn hóa theo tiêu chuẩn công nghiệp:
+Để đo lường chính xác hiệu năng an ninh trong điều kiện phân phối lệch, đồ án **PI-Guard** sử dụng hệ thống chỉ số chuẩn hóa theo tiêu chuẩn công nghiệp và hướng dẫn phân loại giảm thiểu rủi ro của NIST AI 100-2e2025 [[4]](#ref4):
 
 ### 1. Tỷ Lệ Cảnh Báo Sai Trên Tập Lành Tính (False Positive Rate - FPR)
 Cho tập mẫu lành tính $D_{\text{benign}}$, số lượng mẫu bị gán nhãn nhầm thành tấn công (Lớp 1 hoặc Lớp 2) là $\text{FP}$, số lượng mẫu được phân loại đúng là $\text{TN}$:
@@ -166,10 +166,10 @@ if __name__ == "__main__":
 
 ## TÀI LIỆU THAM KHẢO
 
-<a id="ref1"></a>**[1]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *AAAI Conference on Human Computation and Crowdsourcing (HCOMP)*, 2023. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
+<a id="ref1"></a>**[1]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *Proceedings of the AAAI Conference on Artificial Intelligence (AAAI 2023)*, Vol. 37, No. 12, pp. 15009–15018. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
 
 <a id="ref2"></a>**[2]** H. Inan et al., "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations," *arXiv preprint arXiv:2312.06674*, 2023. Link: [https://arxiv.org/abs/2312.06674](https://arxiv.org/abs/2312.06674).
 
 <a id="ref3"></a>**[3]** C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, "On Calibration of Modern Neural Networks," in *International Conference on Machine Learning (ICML)*, 2017. Link: [https://arxiv.org/abs/1706.04599](https://arxiv.org/abs/1706.04599).
 
-<a id="ref4"></a>**[4]** NIST, "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations," *NIST AI 100-2e2025*, 2025. Link: [https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf).
+<a id="ref4"></a>**[4]** A. Vassilev et al., "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations," *National Institute of Standards and Technology (NIST)*, NIST Trustworthy and Responsible AI Report NIST.AI.100-2e2025, 2025. Link: [https://csrc.nist.gov/pubs/ai/100/2/e2025/final](https://csrc.nist.gov/pubs/ai/100/2/e2025/final).

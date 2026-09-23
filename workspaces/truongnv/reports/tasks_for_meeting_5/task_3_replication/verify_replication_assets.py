@@ -33,8 +33,11 @@ def main():
 
     assets = [
         # 1. Global / Shared Infrastructure
-        (".venv/Scripts/python.exe", 10_000, False),
+        (sys.executable, 10_000, False),
         ("README.md", 500, False),
+        ("INDEX_AND_MAPPING_TO_REPLICATIONS.md", 500, False),
+        ("backward_mapping.json", 100, False),
+        ("MEMBER_REPRODUCTION_RUNBOOK.md", 500, False),
 
         # 2. Tier 1 Subsystem: Ayub et al. (CAMLIS 2024) [REJECTED CANDIDATE]
         ("Tier1_REJECTED_Ayub_CAMLIS2024/README.md", 500, False),
@@ -74,13 +77,11 @@ def main():
         ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/PIGuard.py", 500, False),
         ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/eval.py", 1000, False),
         ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/eval_hf.py", 1000, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/train.py", 1000, False),
         ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/params.py", 500, False),
         ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/util.py", 500, False),
         ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/requirements.txt", 500, False),
 
-        # 3.2 Datasets in PIGuard_ACL2025
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/datasets/train.json", 10_000_000, False),
+        # 3.2 Benchmark Datasets in PIGuard_ACL2025 (Evaluation suites only)
         ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/datasets/valid.json", 10_000, False),
         ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/datasets/NotInject_one.json", 5_000, False),
         ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/datasets/NotInject_two.json", 5_000, False),

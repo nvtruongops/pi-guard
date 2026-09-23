@@ -1,0 +1,47 @@
+{
+  "metadata_version": "1.0.0",
+  "package_name": "Tier1_Candidate_InstructDetector_EMNLP2024",
+  "dataset_name": "BIPIA Benchmark (Indirect Prompt Injection Attacks - Text & Code)",
+  "provenance": {
+    "upstream_paper": {
+      "title": "InstructDetector: Defending against Indirect Prompt Injection through Instruction-Tuned Classifier",
+      "authors": "Zhao et al.",
+      "venue": "EMNLP 2024 Findings",
+      "year": 2024,
+      "arxiv_id": "2402.06774",
+      "reference_id": "[[18]](#ref18)"
+    },
+    "upstream_repository": "https://github.com/ebsi-ai/BIPIA & https://huggingface.co/datasets/EBSI/BIPIA",
+    "remote_full_dataset_location": "https://huggingface.co/datasets/EBSI/BIPIA",
+    "is_synthetic_self_created": false,
+    "provenance_type": "Official EMNLP 2024 BIPIA Public Evaluation Benchmark",
+    "license": "MIT"
+  },
+  "validation_mapping": {
+    "used_by_script": "run_instructdetector_replication.py",
+    "schema": {
+      "prompt_field": "prompt",
+      "label_field": "label",
+      "domain_field": "domain",
+      "label_mapping": {
+        "0": "Clean / Benign Task",
+        "1": "Indirect Prompt Injection (Eavesdropping, Fingerprinting, Exfiltration)"
+      }
+    }
+  },
+  "files": [
+    {
+      "filename": "bipia_code_eval.json",
+      "size_bytes": 29293,
+      "sha256": "58b29ce192d9f9f5abf4f9345646c3bddf3d0a7606685232050abeb3949f8774",
+      "sample_count": 100
+    },
+    {
+      "filename": "bipia_text_eval.json",
+      "size_bytes": 25308,
+      "sha256": "174df93cce696572b9e5465d74a3a74780a2544772fa7b6d7bbee4a9a4f0fc8b",
+      "sample_count": 150
+    }
+  ],
+  "generated_at": "2026-09-23T05:42:55.193763"
+}

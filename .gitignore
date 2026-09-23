@@ -70,6 +70,10 @@ tests/adversarial/**/*.jsonl
 Final-Report/tests/adversarial/*.jsonl
 Final-Report/tests/adversarial/**/*.jsonl
 !Final-Report/tests/adversarial/**/.gitkeep
+# Upstream raw replication datasets (PromptShield heavy predibase/training corpora)
+workspaces/**/PromptShield/data/
+workspaces/**/PromptShield/camera_ready_datasets/
+workspaces/**/PromptShield/libs/InjecGuard/datasets/
 
 # Environment & Secrets
 .env

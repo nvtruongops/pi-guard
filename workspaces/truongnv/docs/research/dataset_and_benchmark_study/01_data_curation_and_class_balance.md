@@ -59,7 +59,7 @@ Nhóm nghiên cứu PI-Guard tích hợp và tuyển chọn dữ liệu từ 5 b
 
 | STT | Bộ Dữ Liệu | Tác Giả & Năm | Hội Nghị / Nguồn | Quy Mô Khai Thác | Đặc Điểm Cốt Lõi |
 | :---: | :--- | :--- | :---: | :---: | :--- |
-| **1** | **In-The-Wild Jailbreak** | Shen et al. (2024) [[3]](#ref3) | *ACM CCS 2024* | 15,140 prompts | Mẫu Jailbreak thu thập thực tế từ Reddit, Discord với các biến thể DAN, Roleplay phức tạp. |
+| **1** | **In-The-Wild Jailbreak** | Shen et al. (2024) [[3]](#ref3) | *ACM CCS 2024* | 1,405 jailbreak / 15,140 prompts | Mẫu Jailbreak thu thập thực tế từ Reddit, Discord với các biến thể DAN, Roleplay phức tạp. |
 | **2** | **WildJailbreak** | Jiang et al. (2024) [[4]](#ref4) | *NeurIPS 2024 D&B* | 262,000 prompts | Bộ dữ liệu mở lớn nhất gồm cả Adversarial Jailbreak và Hard Benign tương ứng (Adversarial Contrastive Pairs). |
 | **3** | **SPML Dataset** | Perez & Ribeiro (2022) [[1]](#ref1) | *NeurIPS 2022* | 8,500 prompts | Tập mẫu System Prompt Leakage và Goal Hijacking kinh điển. |
 | **4** | **JailbreakBench** | Chao et al. (2024) [[5]](#ref5) | *NeurIPS 2024* | 2,000 prompts | Chuẩn đánh giá định lượng cho các thuật toán tấn công đối kháng (GCG, PAIR, AutoDAN). |

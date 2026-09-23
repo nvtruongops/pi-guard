@@ -21,7 +21,7 @@ flowchart LR
 ```
 
 ### 1. Hiện Tượng "Thổi Phồng Điểm Số Ảo" (Artificially Inflated Metrics)
-- Kẻ tấn công thường tạo ra hàng chục biến thể dựa trên một mẫu prompt cơ sở (ví dụ: DAN v1 đến DAN v12, hoặc các chuỗi tiền tố đóng vai thẩm vấn viên).
+- Kẻ tấn công thường tạo ra hàng chục biến thể dựa trên một mẫu prompt cơ sở (ví dụ: DAN v1 đến DAN v12 theo khảo sát thực tế của Shen et al. [[5]](#ref5), hoặc các chuỗi tiền tố đóng vai thẩm vấn viên).
 - Nếu áp dụng Random Split, các biến thể của cùng một mẫu cơ sở sẽ xuất hiện đồng thời ở cả tập Train và Test.
 - **Hệ quả**: Mô hình chỉ cần "ghi nhớ" (memorize) cụm từ nhận diện đặc trưng của mẫu gốc là có thể đạt điểm số $F_1 > 99\%$ trên tập Test. Tuy nhiên, khi đối mặt với một chiến thuật tấn công hoàn toàn mới ngoài thực tế (Zero-Day Jailbreak), độ chính xác thực tế sẽ sụp đổ nghiêm trọng xuống dưới $60\%$ [[2]](#ref2).
 
@@ -161,10 +161,10 @@ if __name__ == "__main__":
 
 <a id="ref1"></a>**[1]** K. S. Bowman, "Measuring Progress on Scalable Oversight for Large Language Models," in *NeurIPS Foundation Models Workshop*, 2023. Link: [https://arxiv.org/abs/2211.03540](https://arxiv.org/abs/2211.03540).
 
-<a id="ref2"></a>**[2]** A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in *Advances in Neural Information Processing Systems (NeurIPS)*, 2024. Link: [https://arxiv.org/abs/2307.02483](https://arxiv.org/abs/2307.02483).
+<a id="ref2"></a>**[2]** A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in *Advances in Neural Information Processing Systems 36 (NeurIPS 2023)*, vol. 36, pp. 80079–80110, 2023. Link: [https://arxiv.org/abs/2307.02483](https://arxiv.org/abs/2307.02483).
 
 <a id="ref3"></a>**[3]** Y. Yuan et al., "GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher," in *International Conference on Learning Representations (ICLR)*, 2024. Link: [https://arxiv.org/abs/2308.06463](https://arxiv.org/abs/2308.06463).
 
 <a id="ref4"></a>**[4]** A. Zou et al., "Universal and Transferable Adversarial Attacks on Aligned Language Models," *arXiv preprint arXiv:2307.15043*, 2023. Link: [https://arxiv.org/abs/2307.15043](https://arxiv.org/abs/2307.15043).
 
-<a id="ref5"></a>**[5]** X. Shen et al., "Do Anything Now: Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in *ACM Conference on Computer and Communications Security (CCS)*, 2024. Link: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825).
+<a id="ref5"></a>**[5]** X. Shen et al., "\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in *Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (ACM CCS '24)*, pp. 4172–4186, 2024. Link: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825).

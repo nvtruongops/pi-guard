@@ -1,0 +1,38 @@
+{
+  "metadata_version": "1.0.0",
+  "package_name": "PIGuard_Tier1_FastFilter",
+  "dataset_name": "PI-Guard Tier-1 Fast-Filter Routing Benchmark Suite",
+  "provenance": {
+    "upstream_paper": {
+      "title": "Baseline Defenses for Adversarial Attacks Against Aligned Language Models",
+      "authors": "Neel Jain, Avi Schwarzschild, Yuxin Wen et al.",
+      "venue": "NeurIPS 2023 Workshop",
+      "year": 2023,
+      "arxiv_id": "2309.00614",
+      "reference_id": "[[15]](#ref15)"
+    },
+    "upstream_repository": "https://github.com/neelsjain/baseline-defenses",
+    "remote_full_dataset_location": "https://github.com/neelsjain/baseline-defenses",
+    "is_synthetic_self_created": false,
+    "provenance_type": "Curated Classical ML Routing Suite (Spärck Jones 1972, Jain 2023, Saltzer 1975)",
+    "license": "MIT"
+  },
+  "validation_mapping": {
+    "used_by_script": "run_tier1_fastfilter_replication.py",
+    "schema": {
+      "id_field": "id",
+      "text_field": "text",
+      "label_field": "label (0: Benign, 1: Injection)",
+      "category_field": "category"
+    }
+  },
+  "files": [
+    {
+      "filename": "tier1_fastfilter_eval_benchmark.json",
+      "size_bytes": 3343,
+      "sha256": "77d927026cfebbeab32d2653cd4a6934a9fb7786f53c5383837e40915a0b522f",
+      "sample_count": 18
+    }
+  ],
+  "generated_at": "2026-09-23T05:52:36.234559"
+}

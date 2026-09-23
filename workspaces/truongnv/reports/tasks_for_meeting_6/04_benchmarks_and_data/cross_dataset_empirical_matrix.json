@@ -1,0 +1,206 @@
+{
+  "M1_Baseline_Regex": {
+    "D1_PIGuard_Valid": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 10.42,
+      "mean_latency_ms": 0.1
+    },
+    "D2_BIPIA_Indirect": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 100.0,
+      "mean_latency_ms": 0.02
+    },
+    "D3_JailbreakBench": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 100.0,
+      "mean_latency_ms": 0.02
+    },
+    "D4_DataSentinel_OpenPI": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 10.0,
+      "mean_latency_ms": 0.03
+    },
+    "D5_NotInject_Code": {
+      "metric_type": "Overdefense_Accuracy",
+      "score": 100.0,
+      "fpr_pct": 0.0,
+      "mean_latency_ms": 0.04
+    },
+    "D6_WildGuard_Benign": {
+      "metric_type": "False_Positive_Rate",
+      "fpr_pct": 0.0,
+      "pass_rate_pct": 100.0,
+      "mean_latency_ms": 0.03
+    }
+  },
+  "M2_Jain_Perplexity": {
+    "D1_PIGuard_Valid": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 35.42,
+      "mean_latency_ms": 0.07
+    },
+    "D2_BIPIA_Indirect": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 24.0,
+      "mean_latency_ms": 0.02
+    },
+    "D3_JailbreakBench": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 100.0,
+      "mean_latency_ms": 0.01
+    },
+    "D4_DataSentinel_OpenPI": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 10.0,
+      "mean_latency_ms": 0.01
+    },
+    "D5_NotInject_Code": {
+      "metric_type": "Overdefense_Accuracy",
+      "score": 78.0,
+      "fpr_pct": 22.0,
+      "mean_latency_ms": 0.01
+    },
+    "D6_WildGuard_Benign": {
+      "metric_type": "False_Positive_Rate",
+      "fpr_pct": 5.0,
+      "pass_rate_pct": 95.0,
+      "mean_latency_ms": 0.01
+    }
+  },
+  "M3_Meta_PromptGuard_86M": {
+    "D1_PIGuard_Valid": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 60.42,
+      "mean_latency_ms": 0.04
+    },
+    "D2_BIPIA_Indirect": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 100.0,
+      "mean_latency_ms": 0.01
+    },
+    "D3_JailbreakBench": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 100.0,
+      "mean_latency_ms": 0.01
+    },
+    "D4_DataSentinel_OpenPI": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 80.0,
+      "mean_latency_ms": 0.01
+    },
+    "D5_NotInject_Code": {
+      "metric_type": "Overdefense_Accuracy",
+      "score": 89.0,
+      "fpr_pct": 11.0,
+      "mean_latency_ms": 0.01
+    },
+    "D6_WildGuard_Benign": {
+      "metric_type": "False_Positive_Rate",
+      "fpr_pct": 12.0,
+      "pass_rate_pct": 88.0,
+      "mean_latency_ms": 0.01
+    }
+  },
+  "M4_DataSentinel_Minimax": {
+    "D1_PIGuard_Valid": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 29.17,
+      "mean_latency_ms": 0.03
+    },
+    "D2_BIPIA_Indirect": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 98.0,
+      "mean_latency_ms": 0.0
+    },
+    "D3_JailbreakBench": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 1.0,
+      "mean_latency_ms": 0.01
+    },
+    "D4_DataSentinel_OpenPI": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 80.0,
+      "mean_latency_ms": 0.0
+    },
+    "D5_NotInject_Code": {
+      "metric_type": "Overdefense_Accuracy",
+      "score": 93.0,
+      "fpr_pct": 7.0,
+      "mean_latency_ms": 0.0
+    },
+    "D6_WildGuard_Benign": {
+      "metric_type": "False_Positive_Rate",
+      "fpr_pct": 2.0,
+      "pass_rate_pct": 98.0,
+      "mean_latency_ms": 0.0
+    }
+  },
+  "M5_Tier1_FastFilter": {
+    "D1_PIGuard_Valid": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 83.33,
+      "mean_latency_ms": 9.9
+    },
+    "D2_BIPIA_Indirect": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 24.0,
+      "mean_latency_ms": 6.65
+    },
+    "D3_JailbreakBench": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 0.0,
+      "mean_latency_ms": 7.34
+    },
+    "D4_DataSentinel_OpenPI": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 0.0,
+      "mean_latency_ms": 7.09
+    },
+    "D5_NotInject_Code": {
+      "metric_type": "Overdefense_Accuracy",
+      "score": 100.0,
+      "fpr_pct": 0.0,
+      "mean_latency_ms": 6.94
+    },
+    "D6_WildGuard_Benign": {
+      "metric_type": "False_Positive_Rate",
+      "fpr_pct": 0.0,
+      "pass_rate_pct": 100.0,
+      "mean_latency_ms": 6.7
+    }
+  },
+  "M_PI_PIGuard_Cascade": {
+    "D1_PIGuard_Valid": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 83.33,
+      "mean_latency_ms": 11.21
+    },
+    "D2_BIPIA_Indirect": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 100.0,
+      "mean_latency_ms": 6.88
+    },
+    "D3_JailbreakBench": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 100.0,
+      "mean_latency_ms": 6.59
+    },
+    "D4_DataSentinel_OpenPI": {
+      "metric_type": "Attack_Detection_Recall",
+      "recall_pct": 70.0,
+      "mean_latency_ms": 6.29
+    },
+    "D5_NotInject_Code": {
+      "metric_type": "Overdefense_Accuracy",
+      "score": 100.0,
+      "fpr_pct": 0.0,
+      "mean_latency_ms": 6.29
+    },
+    "D6_WildGuard_Benign": {
+      "metric_type": "False_Positive_Rate",
+      "fpr_pct": 0.0,
+      "pass_rate_pct": 100.0,
+      "mean_latency_ms": 7.68
+    }
+  }
+}

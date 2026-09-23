@@ -1,0 +1,70 @@
+{
+  "metadata_version": "1.0.0",
+  "package_name": "Tier1_REJECTED_Ayub_CAMLIS2024",
+  "dataset_name": "Ayub CAMLIS 2024 Evaluation Suite (WildGuard + NotInject + Split)",
+  "provenance": {
+    "upstream_paper": {
+      "title": "Model-Agnostic Detection of Prompt Injection Attacks Using Sentence Embeddings",
+      "authors": "Md. Ahsan Ayub, et al.",
+      "venue": "CAMLIS 2024 (Conference on Applied Machine Learning for Information Security)",
+      "year": 2024,
+      "arxiv_id": "2410.22284",
+      "reference_id": "[[24]](#ref24)"
+    },
+    "upstream_repository": "https://github.com/chawins/PIGuard (Benchmark Suite) & https://huggingface.co/datasets/allenai/wildguard",
+    "remote_full_dataset_location": "https://huggingface.co/datasets/allenai/wildguard",
+    "is_synthetic_self_created": false,
+    "provenance_type": "Official Public Benchmark Splits (WildGuard / NotInject / In-Distribution Valid)",
+    "license": "Apache-2.0 / MIT"
+  },
+  "validation_mapping": {
+    "used_by_script": "run_ayub_tier1_benchmark.py",
+    "schema": {
+      "prompt_field": "prompt",
+      "label_field": "label",
+      "label_mapping": {
+        "0": "Benign / Not-Injected",
+        "1": "Prompt Injection Attack"
+      }
+    }
+  },
+  "files": [
+    {
+      "filename": "NotInject_one.json",
+      "size_bytes": 26909,
+      "sha256": "c77abbf3de71f99f0e12809a29d8468401285ef5353b53daa6d65131c866586c",
+      "sample_count": 113
+    },
+    {
+      "filename": "NotInject_three.json",
+      "size_bytes": 36783,
+      "sha256": "bc18f3ad38ad2380e57ae96d102b884af477989e2f3ff85fbc2271ed16b8db55",
+      "sample_count": 113
+    },
+    {
+      "filename": "NotInject_two.json",
+      "size_bytes": 30807,
+      "sha256": "325559cd1204fd3bdf0be82599fbf8ebbacdcd4949ae8b5bf67b399193d57c03",
+      "sample_count": 113
+    },
+    {
+      "filename": "train.json",
+      "size_bytes": 116149,
+      "sha256": "6b3078e69a15c60620a004fbfdd2ad81ac56676a6c247e8d51decd0fc865086e",
+      "sample_count": 344
+    },
+    {
+      "filename": "valid.json",
+      "size_bytes": 91222,
+      "sha256": "e273fd455baac8785aa15bdc058adfd609f62ed0a3022963a5395ba95efe110e",
+      "sample_count": 144
+    },
+    {
+      "filename": "wildguard.json",
+      "size_bytes": 472515,
+      "sha256": "62a0f7331af19abdb43b027b815272777aac4c311b7fad25e4150618c5289f9b",
+      "sample_count": 971
+    }
+  ],
+  "generated_at": "2026-09-23T05:42:55.003390"
+}

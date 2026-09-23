@@ -1,0 +1,53 @@
+{
+  "metadata_version": "1.0.0",
+  "package_name": "SmoothLLM_Robey_NeurIPS2023",
+  "dataset_name": "SmoothLLM NeurIPS 2023 Official Behaviors Suite (LLaMA-2 & Vicuna GCG Controls)",
+  "provenance": {
+    "upstream_paper": {
+      "title": "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks",
+      "authors": "Alexander Robey, Eric Wong, Hamed Hassani, George J. Pappas",
+      "venue": "NeurIPS 2023",
+      "year": 2023,
+      "arxiv_id": "2310.03684",
+      "reference_id": "[[14]](#ref14)"
+    },
+    "upstream_repository": "https://github.com/arobey1/smooth-llm",
+    "remote_full_dataset_location": "https://github.com/arobey1/smooth-llm/tree/main/data",
+    "is_synthetic_self_created": false,
+    "provenance_type": "Official NeurIPS 2023 Upstream Repository Release (data/*.json)",
+    "license": "MIT"
+  },
+  "validation_mapping": {
+    "used_by_script": "run_smoothllm_replication.py",
+    "schema": {
+      "goal_field": "goal",
+      "target_field": "target",
+      "control_field": "controls / control",
+      "label_mapping": {
+        "goal": "Harmful Jailbreak Intent (AdvBenchmark)",
+        "control": "Adversarial Suffix Perturbation (GCG)"
+      }
+    }
+  },
+  "files": [
+    {
+      "filename": "llama2_behaviors.json",
+      "size_bytes": 2721,
+      "sha256": "f96d53e113bb3b839c6d0c9d4b2f3ab611e5b8fb4fd4a1cc68fb852f271cf286",
+      "sample_count": 3
+    },
+    {
+      "filename": "smoothllm_eval_benchmark.json",
+      "size_bytes": 5217,
+      "sha256": "166a3d9f43319bcda6f8ad93965d3ba0f98ea46cc334e8a8a15f2745dc8cb4b9",
+      "sample_count": 10
+    },
+    {
+      "filename": "vicuna_behaviors.json",
+      "size_bytes": 2659,
+      "sha256": "7396b50e123775b7d7080b2c475240401fb8e41ff1f91f9d0491663a01cb4ead",
+      "sample_count": 3
+    }
+  ],
+  "generated_at": "2026-09-23T05:42:55.261548"
+}

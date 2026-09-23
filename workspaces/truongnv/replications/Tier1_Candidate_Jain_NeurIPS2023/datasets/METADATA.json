@@ -1,0 +1,52 @@
+{
+  "metadata_version": "1.0.0",
+  "package_name": "Tier1_Candidate_Jain_NeurIPS2023",
+  "dataset_name": "Jain NeurIPS 2023 Baseline Defenses Evaluation Suite (GCG + AdvGLUE + Alpaca)",
+  "provenance": {
+    "upstream_paper": {
+      "title": "Baseline Defenses for Adversarial Attacks Against Aligned Language Models",
+      "authors": "Neel Jain, Avi Schwarzschild, Yuxin Wen, Gowthami Somepalli, John Dickerson, Pratyush Maini",
+      "venue": "NeurIPS 2023",
+      "year": 2023,
+      "arxiv_id": "2309.00614",
+      "reference_id": "[[13]](#ref13)"
+    },
+    "upstream_repository": "https://github.com/arobey1/smooth-llm & https://github.com/llm-attacks/llm-attacks",
+    "remote_full_dataset_location": "https://github.com/arobey1/smooth-llm/tree/main/data",
+    "is_synthetic_self_created": false,
+    "provenance_type": "Official NeurIPS 2023 AdvBenchmark & Alpaca Public Releases",
+    "license": "MIT"
+  },
+  "validation_mapping": {
+    "used_by_script": "run_jain_replication.py",
+    "schema": {
+      "prompt_field": "prompt",
+      "label_field": "label",
+      "label_mapping": {
+        "0": "Benign Query (Alpaca / LMSYS)",
+        "1": "Adversarial Suffix / Jailbreak Attack (GCG / AdvGLUE)"
+      }
+    }
+  },
+  "files": [
+    {
+      "filename": "jain_attack_samples.json",
+      "size_bytes": 1032321,
+      "sha256": "e68706cc2fd9fd66cda7fc6f525bf621f873f85d2f9ad45dd24b9e127aa57507",
+      "sample_count": 503
+    },
+    {
+      "filename": "jain_benign_samples.json",
+      "size_bytes": 65981,
+      "sha256": "ebe1bbb5c3e05bd1da27c01cd6700a734bb13764c9f0a253a5b82a97edacbe7d",
+      "sample_count": 500
+    },
+    {
+      "filename": "jain_eval_benchmark.json",
+      "size_bytes": 1098299,
+      "sha256": "ed546fe00cdf68a3bd65905d4a728eb315b8f8466504252e3fb6c64c49bc9b07",
+      "sample_count": 1003
+    }
+  ],
+  "generated_at": "2026-09-23T05:42:55.123518"
+}

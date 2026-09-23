@@ -1,0 +1,39 @@
+{
+  "repository_name": "PIGuard",
+  "upstream_git_url": "https://github.com/leolee99/PIGuard",
+  "commit_hash": "1b5751e88bf7475acbedfc8eda795ce060307c84",
+  "branch": "main",
+  "authors": [
+    "Hao Li",
+    "Xiaogeng Liu",
+    "Ning Zhang",
+    "Chaowei Xiao"
+  ],
+  "affiliations": [
+    "University of Wisconsin-Madison",
+    "Washington University in St. Louis"
+  ],
+  "paper": {
+    "title": "PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free",
+    "venue": "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025 Long Paper)",
+    "arxiv": "https://arxiv.org/abs/2410.22770",
+    "acl_anthology": "https://aclanthology.org/2025.acl-long.1468.pdf",
+    "local_pdf": "papers/PIGuard_ACL2025_arXiv2410.22770.pdf"
+  },
+  "tier_role": "Tier-1 Fast Ingress Clearance & Rejection Filter (Dual-Space TF-IDF + Platt Calibration grounded in Spärck Jones 1972 & Jain NeurIPS 2023)",
+  "dataset_hub": "https://huggingface.co/datasets/leolee99/NotInject",
+  "license": "MIT",
+  "provenance": {
+    "is_upstream_pure_clone": true,
+    "is_synthetic_self_created": false,
+    "upstream_subfolder": "PIGuard_ACL2025"
+  },
+  "modules_exported": [
+    "PIGuard.py",
+    "eval.py",
+    "eval_hf.py",
+    "train.py",
+    "util.py",
+    "params.py"
+  ]
+}

@@ -1,0 +1,1872 @@
+{
+  "metadata": {
+    "title": "Expanded 12x14 Architectural-Algorithmic Compatibility Matrix",
+    "academic_grounding": "Luo & Han CASCADE (19x15), Jacob PromptShield (Low-FPR <=1%), NIST AI RMF, ISO/IEC/IEEE 42010",
+    "total_models": 12,
+    "total_paradigms": 14,
+    "total_cells": 168,
+    "status_distribution": {
+      "native": 46,
+      "conditional": 84,
+      "incompatible": 38
+    }
+  },
+  "models": [
+    {
+      "id": "M1",
+      "name": "Heuristic & Regex Sanitizer",
+      "family": "Rule-Based",
+      "ref": "Saltzer [16], Yuan [17], Hackett [31]"
+    },
+    {
+      "id": "M2",
+      "name": "Toxic Lexicon & Bloom Filters",
+      "family": "Rule-Based",
+      "ref": "Lakera Guard, Llama Guard Blocklist"
+    },
+    {
+      "id": "M3",
+      "name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "family": "Classical ML",
+      "ref": "Jain [15], Spärck Jones"
+    },
+    {
+      "id": "M4",
+      "name": "Subword & Char N-Gram SVMs (char_wb)",
+      "family": "Classical ML",
+      "ref": "Jain [15], Ayub [21]"
+    },
+    {
+      "id": "M5",
+      "name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "family": "Classical ML",
+      "ref": "Ayub & Majumdar CAMLIS 2024 [21]"
+    },
+    {
+      "id": "M6",
+      "name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "family": "Metric Learning",
+      "ref": "Ayub [21], Sentence-BERT"
+    },
+    {
+      "id": "M7",
+      "name": "Hidden-State & Activation Probes",
+      "family": "Internal Probing",
+      "ref": "Wen InstructDetector [19], RAP-ID [29]"
+    },
+    {
+      "id": "M8",
+      "name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "family": "Transformer Encoder",
+      "ref": "Devlin 2019, Liu 2019, Jain [15]"
+    },
+    {
+      "id": "M9",
+      "name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "family": "Transformer Encoder",
+      "ref": "He [9], Li InjecGuard ACL 2025 [18]"
+    },
+    {
+      "id": "M10",
+      "name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "family": "Transformer Encoder",
+      "ref": "Meta [20], Deng MultiJail [35]"
+    },
+    {
+      "id": "M11",
+      "name": "Long-Context Modern Encoders (ModernBERT)",
+      "family": "Transformer Encoder",
+      "ref": "Warner et al. 2024 [37]"
+    },
+    {
+      "id": "M12",
+      "name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "family": "Generative SLM",
+      "ref": "Inan [7], Rebedea [8], Padhi [38]"
+    }
+  ],
+  "paradigms": [
+    {
+      "id": "A1",
+      "name": "Sublinear TF-IDF + Platt Calibration",
+      "domain": "Statistical & Syntactic"
+    },
+    {
+      "id": "A2",
+      "name": "Sliding-Window Perplexity (PPL)",
+      "domain": "Statistical & Syntactic"
+    },
+    {
+      "id": "A3",
+      "name": "Char-Level Typographical Anomaly",
+      "domain": "Statistical & Syntactic"
+    },
+    {
+      "id": "A4",
+      "name": "Dense Contrastive Metric Centroids",
+      "domain": "Embedding & Geometry"
+    },
+    {
+      "id": "A5",
+      "name": "Hidden-State & Activation Gradient",
+      "domain": "Internal Mechanics"
+    },
+    {
+      "id": "A6",
+      "name": "Disentangled Content-Position Attention",
+      "domain": "Neural Architecture"
+    },
+    {
+      "id": "A7",
+      "name": "Mitigating Overdefense (MOF) KL Loss",
+      "domain": "Optimization & Loss"
+    },
+    {
+      "id": "A8",
+      "name": "Randomized Smoothing Majority Voting",
+      "domain": "Stochastic Robustness"
+    },
+    {
+      "id": "A9",
+      "name": "Minimax Adversarial Optimization",
+      "domain": "Game Theory & Robustness"
+    },
+    {
+      "id": "A10",
+      "name": "Conformal Risk Control (CRC) Bounds",
+      "domain": "Statistical Calibration"
+    },
+    {
+      "id": "A11",
+      "name": "Low-FPR ROC Threshold Interpolation",
+      "domain": "Operational Economics"
+    },
+    {
+      "id": "A12",
+      "name": "Hierarchical Instruction Privilege",
+      "domain": "Architectural Isolation"
+    },
+    {
+      "id": "A13",
+      "name": "Head-and-Tail Priority Chunking",
+      "domain": "Context Window Scaling"
+    },
+    {
+      "id": "A14",
+      "name": "Multi-Turn Contextual Drift Tracking",
+      "domain": "Temporal & Session State"
+    }
+  ],
+  "model_rankings": [
+    {
+      "model_id": "M9",
+      "name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "family": "Transformer Encoder",
+      "avg_score": 7.785714285714286,
+      "native_count": 5,
+      "incompatible_count": 1
+    },
+    {
+      "model_id": "M11",
+      "name": "Long-Context Modern Encoders (ModernBERT)",
+      "family": "Transformer Encoder",
+      "avg_score": 7.714285714285714,
+      "native_count": 7,
+      "incompatible_count": 1
+    },
+    {
+      "model_id": "M10",
+      "name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "family": "Transformer Encoder",
+      "avg_score": 7.571428571428571,
+      "native_count": 5,
+      "incompatible_count": 1
+    },
+    {
+      "model_id": "M7",
+      "name": "Hidden-State & Activation Probes",
+      "family": "Internal Probing",
+      "avg_score": 6.642857142857143,
+      "native_count": 1,
+      "incompatible_count": 1
+    },
+    {
+      "model_id": "M8",
+      "name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "family": "Transformer Encoder",
+      "avg_score": 6.428571428571429,
+      "native_count": 1,
+      "incompatible_count": 1
+    },
+    {
+      "model_id": "M6",
+      "name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "family": "Metric Learning",
+      "avg_score": 6.285714285714286,
+      "native_count": 2,
+      "incompatible_count": 1
+    },
+    {
+      "model_id": "M4",
+      "name": "Subword & Char N-Gram SVMs (char_wb)",
+      "family": "Classical ML",
+      "avg_score": 6.0,
+      "native_count": 5,
+      "incompatible_count": 2
+    },
+    {
+      "model_id": "M12",
+      "name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "family": "Generative SLM",
+      "avg_score": 5.857142857142857,
+      "native_count": 4,
+      "incompatible_count": 4
+    },
+    {
+      "model_id": "M3",
+      "name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "family": "Classical ML",
+      "avg_score": 5.571428571428571,
+      "native_count": 4,
+      "incompatible_count": 2
+    },
+    {
+      "model_id": "M5",
+      "name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "family": "Classical ML",
+      "avg_score": 4.714285714285714,
+      "native_count": 0,
+      "incompatible_count": 3
+    },
+    {
+      "model_id": "M1",
+      "name": "Heuristic & Regex Sanitizer",
+      "family": "Rule-Based",
+      "avg_score": 2.642857142857143,
+      "native_count": 1,
+      "incompatible_count": 10
+    },
+    {
+      "model_id": "M2",
+      "name": "Toxic Lexicon & Bloom Filters",
+      "family": "Rule-Based",
+      "avg_score": 2.357142857142857,
+      "native_count": 0,
+      "incompatible_count": 11
+    }
+  ],
+  "paradigm_rankings": [
+    {
+      "paradigm_id": "A10",
+      "name": "Conformal Risk Control (CRC) Bounds",
+      "domain": "Statistical Calibration",
+      "avg_score": 8.25,
+      "native_count": 8
+    },
+    {
+      "paradigm_id": "A11",
+      "name": "Low-FPR ROC Threshold Interpolation",
+      "domain": "Operational Economics",
+      "avg_score": 7.58,
+      "native_count": 5
+    },
+    {
+      "paradigm_id": "A13",
+      "name": "Head-and-Tail Priority Chunking",
+      "domain": "Context Window Scaling",
+      "avg_score": 7.58,
+      "native_count": 3
+    },
+    {
+      "paradigm_id": "A12",
+      "name": "Hierarchical Instruction Privilege",
+      "domain": "Architectural Isolation",
+      "avg_score": 6.58,
+      "native_count": 2
+    },
+    {
+      "paradigm_id": "A3",
+      "name": "Char-Level Typographical Anomaly",
+      "domain": "Statistical & Syntactic",
+      "avg_score": 6.42,
+      "native_count": 2
+    },
+    {
+      "paradigm_id": "A9",
+      "name": "Minimax Adversarial Optimization",
+      "domain": "Game Theory & Robustness",
+      "avg_score": 6.42,
+      "native_count": 3
+    },
+    {
+      "paradigm_id": "A14",
+      "name": "Multi-Turn Contextual Drift Tracking",
+      "domain": "Temporal & Session State",
+      "avg_score": 6.33,
+      "native_count": 2
+    },
+    {
+      "paradigm_id": "A4",
+      "name": "Dense Contrastive Metric Centroids",
+      "domain": "Embedding & Geometry",
+      "avg_score": 5.25,
+      "native_count": 1
+    },
+    {
+      "paradigm_id": "A2",
+      "name": "Sliding-Window Perplexity (PPL)",
+      "domain": "Statistical & Syntactic",
+      "avg_score": 5.0,
+      "native_count": 1
+    },
+    {
+      "paradigm_id": "A7",
+      "name": "Mitigating Overdefense (MOF) KL Loss",
+      "domain": "Optimization & Loss",
+      "avg_score": 5.0,
+      "native_count": 3
+    },
+    {
+      "paradigm_id": "A8",
+      "name": "Randomized Smoothing Majority Voting",
+      "domain": "Stochastic Robustness",
+      "avg_score": 4.75,
+      "native_count": 0
+    },
+    {
+      "paradigm_id": "A5",
+      "name": "Hidden-State & Activation Gradient",
+      "domain": "Internal Mechanics",
+      "avg_score": 4.5,
+      "native_count": 1
+    },
+    {
+      "paradigm_id": "A1",
+      "name": "Sublinear TF-IDF + Platt Calibration",
+      "domain": "Statistical & Syntactic",
+      "avg_score": 3.83,
+      "native_count": 2
+    },
+    {
+      "paradigm_id": "A6",
+      "name": "Disentangled Content-Position Attention",
+      "domain": "Neural Architecture",
+      "avg_score": 3.67,
+      "native_count": 2
+    }
+  ],
+  "evaluations": [
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 1,
+      "status": "Incompatible",
+      "justification": "Deterministic string matching lacks continuous margin z for Platt calibration."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "No language model distribution to compute token perplexity."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A3",
+      "paradigm_name": "Char-Level Typographical Anomaly",
+      "score": 10,
+      "status": "Native",
+      "justification": "Native domain: Regex directly decodes homoglyphs, zero-width, base64, and leetspeak."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A4",
+      "paradigm_name": "Dense Contrastive Metric Centroids",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "No continuous metric space representation."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A5",
+      "paradigm_name": "Hidden-State & Activation Gradient",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "No internal neural layers or activations."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A6",
+      "paradigm_name": "Disentangled Content-Position Attention",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "No attention matrices to decouple content and position."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A7",
+      "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "Non-differentiable rules cannot optimize KL divergence invariant loss."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A8",
+      "paradigm_name": "Randomized Smoothing Majority Voting",
+      "score": 2,
+      "status": "Incompatible",
+      "justification": "Perturbation breaks exact string signatures, creating massive false negatives."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A9",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 1,
+      "status": "Incompatible",
+      "justification": "Discrete non-differentiable rules cannot compute minimax gradients."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A10",
+      "paradigm_name": "Conformal Risk Control (CRC) Bounds",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Only binary outputs {0, 1}; lacks continuous risk scores for tri-state conformal partitioning."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A11",
+      "paradigm_name": "Low-FPR ROC Threshold Interpolation",
+      "score": 3,
+      "status": "Incompatible",
+      "justification": "Fixed binary rules produce discrete ROC steps, cannot smoothly interpolate low-FPR."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A12",
+      "paradigm_name": "Hierarchical Instruction Privilege",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Can detect and sanitize delimiters (XML/Markdown tags) prior to model ingestion."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A13",
+      "paradigm_name": "Head-and-Tail Priority Chunking",
+      "score": 8,
+      "status": "Native",
+      "justification": "Executes fast head/tail string truncation and regex regex scan in < 0.1ms."
+    },
+    {
+      "model_id": "M1",
+      "model_name": "Heuristic & Regex Sanitizer",
+      "paradigm_id": "A14",
+      "paradigm_name": "Multi-Turn Contextual Drift Tracking",
+      "score": 3,
+      "status": "Incompatible",
+      "justification": "Stateless regex cannot track semantic drift trajectories across conversational turns."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 2,
+      "status": "Incompatible",
+      "justification": "Binary hash lookups do not map to continuous TF-IDF vector margins."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "No language model probabilities."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A3",
+      "paradigm_name": "Char-Level Typographical Anomaly",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Detects forbidden tokens, but homoglyphs cause false negative hash misses."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A4",
+      "paradigm_name": "Dense Contrastive Metric Centroids",
+      "score": 1,
+      "status": "Incompatible",
+      "justification": "Exact hash keys cannot measure continuous cosine distance."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A5",
+      "paradigm_name": "Hidden-State & Activation Gradient",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "No neural activations."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A6",
+      "paradigm_name": "Disentangled Content-Position Attention",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "No attention mechanism."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A7",
+      "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "Non-trainable static dictionary."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A8",
+      "paradigm_name": "Randomized Smoothing Majority Voting",
+      "score": 2,
+      "status": "Incompatible",
+      "justification": "Stochastic noise causes hash lookup misses."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A9",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 1,
+      "status": "Incompatible",
+      "justification": "Non-differentiable hash table."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A10",
+      "paradigm_name": "Conformal Risk Control (CRC) Bounds",
+      "score": 3,
+      "status": "Incompatible",
+      "justification": "Cannot calibrate risk thresholds on deterministic hash hit/miss."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A11",
+      "paradigm_name": "Low-FPR ROC Threshold Interpolation",
+      "score": 2,
+      "status": "Incompatible",
+      "justification": "Step-function ROC curve with high false positive trigger rates."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A12",
+      "paradigm_name": "Hierarchical Instruction Privilege",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Can enforce prohibited keyword blacklists on specific prompt fields."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A13",
+      "paradigm_name": "Head-and-Tail Priority Chunking",
+      "score": 8,
+      "status": "Native",
+      "justification": "O(1) hash lookups on 200k char chunks execute in sub-millisecond time."
+    },
+    {
+      "model_id": "M2",
+      "model_name": "Toxic Lexicon & Bloom Filters",
+      "paradigm_id": "A14",
+      "paradigm_name": "Multi-Turn Contextual Drift Tracking",
+      "score": 3,
+      "status": "Incompatible",
+      "justification": "Stateless dictionary matching cannot model multi-turn contextual accumulation."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 10,
+      "status": "Native",
+      "justification": "Native core: Sublinear word TF-IDF + Platt logistic margin produces optimal calibrated scores in 1.2ms."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Requires auxiliary n-gram LM; adds latency overhead to sub-millisecond inference."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A3",
+      "paradigm_name": "Char-Level Typographical Anomaly",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Word-level n-grams are vulnerable to character mutations and leetspeak."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A4",
+      "paradigm_name": "Dense Contrastive Metric Centroids",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Sparse centroids in 50k-dim space suffer from sparsity and curse of dimensionality."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A5",
+      "paradigm_name": "Hidden-State & Activation Gradient",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "Linear model has no deep hidden states or attention gradients."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A6",
+      "paradigm_name": "Disentangled Content-Position Attention",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "Lacks self-attention mechanism."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A7",
+      "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Linear weights lack capacity to absorb KL invariant loss without massive accuracy drop."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A8",
+      "paradigm_name": "Randomized Smoothing Majority Voting",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Running M=10 iterations multiplies latency to 12ms, defeating fast filter purpose."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A9",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Discrete vocabulary requires greedy coordinate ascent rather than continuous SGD."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A10",
+      "paradigm_name": "Conformal Risk Control (CRC) Bounds",
+      "score": 10,
+      "status": "Native",
+      "justification": "Platt calibrated output perfectly supports Conformal Risk Control to partition traffic at FPR < 1.5%."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A11",
+      "paradigm_name": "Low-FPR ROC Threshold Interpolation",
+      "score": 9,
+      "status": "Native",
+      "justification": "Continuous logistic margin enables clean ROC threshold interpolation down to FPR 0.5%."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A12",
+      "paradigm_name": "Hierarchical Instruction Privilege",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Can train separate weight heads for system vs user prompt sections."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A13",
+      "paradigm_name": "Head-and-Tail Priority Chunking",
+      "score": 10,
+      "status": "Native",
+      "justification": "Super-fast linear scoring (<0.1ms/block) enables real-time scanning of 200k documents with early stopping."
+    },
+    {
+      "model_id": "M3",
+      "model_name": "Sparse Linear Word ML (TF-IDF + LogReg)",
+      "paradigm_id": "A14",
+      "paradigm_name": "Multi-Turn Contextual Drift Tracking",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Can concatenate past turn TF-IDF vectors, but lacks semantic nuance."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 9,
+      "status": "Native",
+      "justification": "Combines character n-gram frequencies (3-5 chars) with linear/kernel decision margins."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Char-level perplexity can be approximated but adds computation overhead."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A3",
+      "paradigm_name": "Char-Level Typographical Anomaly",
+      "score": 10,
+      "status": "Native",
+      "justification": "Native champion for typographical anomaly: char_wb captures leetspeak, punctuation obfuscation, and typos."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A4",
+      "paradigm_name": "Dense Contrastive Metric Centroids",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "High-dimensional sparse char n-gram centroids suffer from sparsity."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A5",
+      "paradigm_name": "Hidden-State & Activation Gradient",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "Linear SVM has no deep internal activations."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A6",
+      "paradigm_name": "Disentangled Content-Position Attention",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "No self-attention mechanism."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A7",
+      "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Convex SVM formulation does not naturally accommodate MOF KL loss."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A8",
+      "paradigm_name": "Randomized Smoothing Majority Voting",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Inherent robustness to character perturbation makes randomized smoothing partially redundant."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A9",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Adversarial training via greedy char flips improves boundary robustness."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A10",
+      "paradigm_name": "Conformal Risk Control (CRC) Bounds",
+      "score": 9,
+      "status": "Native",
+      "justification": "Platt/Isotonic calibrated SVM margins allow finite-sample CRC risk bounding."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A11",
+      "paradigm_name": "Low-FPR ROC Threshold Interpolation",
+      "score": 9,
+      "status": "Native",
+      "justification": "Allows fine-grained threshold interpolation in the low-FPR regime."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A12",
+      "paradigm_name": "Hierarchical Instruction Privilege",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Can weight character n-grams from privileged fields differently."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A13",
+      "paradigm_name": "Head-and-Tail Priority Chunking",
+      "score": 10,
+      "status": "Native",
+      "justification": "Fast feature extraction (<0.2ms/block) makes it ideal for Tier 1 block scanning of long documents."
+    },
+    {
+      "model_id": "M4",
+      "model_name": "Subword & Char N-Gram SVMs (char_wb)",
+      "paradigm_id": "A14",
+      "paradigm_name": "Multi-Turn Contextual Drift Tracking",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Limited context retention across multi-turn sessions."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Random Forest outputs tree vote probabilities, but uncalibrated leaf distributions require isotonic regression."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Inefficient for sequence probability modeling."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A3",
+      "paradigm_name": "Char-Level Typographical Anomaly",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Captures non-linear feature interactions but memory scales poorly with char n-grams."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A4",
+      "paradigm_name": "Dense Contrastive Metric Centroids",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Tree partitioning differs from metric distance spaces."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A5",
+      "paradigm_name": "Hidden-State & Activation Gradient",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "No continuous hidden representations."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A6",
+      "paradigm_name": "Disentangled Content-Position Attention",
+      "score": 0,
+      "status": "Incompatible",
+      "justification": "No attention mechanism."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A7",
+      "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
+      "score": 2,
+      "status": "Incompatible",
+      "justification": "Tree splits are non-differentiable; cannot optimize continuous MOF KL loss."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A8",
+      "paradigm_name": "Randomized Smoothing Majority Voting",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Bagging already provides variance reduction; extra smoothing inflates CPU latency to 40ms."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A9",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Non-differentiable trees make continuous adversarial optimization difficult."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A10",
+      "paradigm_name": "Conformal Risk Control (CRC) Bounds",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Tree probabilities can be conformalized but suffer from step discontinuities."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A11",
+      "paradigm_name": "Low-FPR ROC Threshold Interpolation",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Step-wise ROC curves make extreme low-FPR interpolation sub-optimal (Ayub CAMLIS 2024)."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A12",
+      "paradigm_name": "Hierarchical Instruction Privilege",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Requires hand-crafted feature engineering for instruction hierarchies."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A13",
+      "paradigm_name": "Head-and-Tail Priority Chunking",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Tree inference is slower than linear models (3-5ms/block), causing latency accumulation on 200k docs."
+    },
+    {
+      "model_id": "M5",
+      "model_name": "Shallow Tree Ensembles (TF-IDF + RF)",
+      "paradigm_id": "A14",
+      "paradigm_name": "Multi-Turn Contextual Drift Tracking",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Concatenating multi-turn trees causes exponential feature explosion."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Concatenating dense embeddings with sparse TF-IDF is redundant and memory-heavy."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 2,
+      "status": "Incompatible",
+      "justification": "Bi-encoders output pooled vectors, not autoregressive next-token distributions."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A3",
+      "paradigm_name": "Char-Level Typographical Anomaly",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Sentence embeddings partially smooth out character anomalies, blinding the model to unicode tricks."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A4",
+      "paradigm_name": "Dense Contrastive Metric Centroids",
+      "score": 10,
+      "status": "Native",
+      "justification": "Native design (Ayub [21]): Cosine distance to toxic cluster centroids in continuous R^384."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A5",
+      "paradigm_name": "Hidden-State & Activation Gradient",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Can extract intermediate layer embeddings, but pooling discards token-level trajectories."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A6",
+      "paradigm_name": "Disentangled Content-Position Attention",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Uses standard Multi-Head Attention without content-position disentanglement."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A7",
+      "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Contrastive loss can enforce invariance, but lacks token-level MOF attribution."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A8",
+      "paradigm_name": "Randomized Smoothing Majority Voting",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Averaging M=10 dense vectors is mathematically sound but inflates CPU latency to 80ms."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A9",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Continuous vector space allows Projected Gradient Descent (PGD) in embedding space."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A10",
+      "paradigm_name": "Conformal Risk Control (CRC) Bounds",
+      "score": 9,
+      "status": "Native",
+      "justification": "Cosine proximity scores map smoothly into [0, 1] for empirical Conformal Risk Control."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A11",
+      "paradigm_name": "Low-FPR ROC Threshold Interpolation",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Dense clustering yields smooth ROC, but hubness problem causes high false positive floor (10-15%)."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A12",
+      "paradigm_name": "Hierarchical Instruction Privilege",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Cross-attention between privileged and untrusted prompt is absent in bi-encoders."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A13",
+      "paradigm_name": "Head-and-Tail Priority Chunking",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Embedding 50 blocks of 512 tokens requires 400ms on CPU, violating low-latency constraints."
+    },
+    {
+      "model_id": "M6",
+      "model_name": "Dense Bi-Encoder Embeddings (MiniLM)",
+      "paradigm_id": "A14",
+      "paradigm_name": "Multi-Turn Contextual Drift Tracking",
+      "score": 8,
+      "status": "Native",
+      "justification": "Cosine similarity between turn vectors tracks semantic drift trajectory cleanly."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 3,
+      "status": "Incompatible",
+      "justification": "Linear probes operate on continuous hidden dimensions, not external TF-IDF features."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Hidden state norms correlate with perplexity spikes."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A3",
+      "paradigm_name": "Char-Level Typographical Anomaly",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Subword tokenizers fragment character anomalies before reaching hidden layers."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A4",
+      "paradigm_name": "Dense Contrastive Metric Centroids",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Probes measure separation of hidden vectors across instruction-following regimes."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A5",
+      "paradigm_name": "Hidden-State & Activation Gradient",
+      "score": 10,
+      "status": "Native",
+      "justification": "Native domain (InstructDetector [19], RAP-ID [29]): Probing residual stream activations and attention entropy."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A6",
+      "paradigm_name": "Disentangled Content-Position Attention",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Evaluates internal attention weights, but does not restructure the underlying attention formula."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A7",
+      "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Can penalize trigger-sensitive hidden neurons during probe training."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A8",
+      "paradigm_name": "Randomized Smoothing Majority Voting",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Hidden state variance under perturbation measures model stability."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A9",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Adversarial gradients can be backpropagated directly to probe representations."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A10",
+      "paradigm_name": "Conformal Risk Control (CRC) Bounds",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Probe logits can be calibrated using conformal prediction."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A11",
+      "paradigm_name": "Low-FPR ROC Threshold Interpolation",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Provides smooth ROC curves for low-FPR tuning."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A12",
+      "paradigm_name": "Hierarchical Instruction Privilege",
+      "score": 8,
+      "status": "Native",
+      "justification": "Explicitly measures how privileged system instructions are overwritten in hidden layers."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A13",
+      "paradigm_name": "Head-and-Tail Priority Chunking",
+      "score": 4,
+      "status": "Conditional",
+      "justification": "Requires full forward passes of underlying LLM, making 200k char scanning prohibitively slow."
+    },
+    {
+      "model_id": "M7",
+      "model_name": "Hidden-State & Activation Probes",
+      "paradigm_id": "A14",
+      "paradigm_name": "Multi-Turn Contextual Drift Tracking",
+      "score": 8,
+      "status": "Native",
+      "justification": "Tracks representation shifts across multiple conversational forward passes."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 2,
+      "status": "Incompatible",
+      "justification": "Deep self-attention renders external bag-of-words TF-IDF obsolete and redundant."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Pseudo-Perplexity via Masked LM is effective but requires N forward passes (>100ms)."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A3",
+      "paradigm_name": "Char-Level Typographical Anomaly",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Subword BPE/WordPiece tokenization is blinded by character mutations (Hackett [31])."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A4",
+      "paradigm_name": "Dense Contrastive Metric Centroids",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "[CLS] token pooling suffers from representation anisotropy (narrow cone collapse)."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A5",
+      "paradigm_name": "Hidden-State & Activation Gradient",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Can probe intermediate layers, though later layers suffer from trigger word over-fitting."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A6",
+      "paradigm_name": "Disentangled Content-Position Attention",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Absolute position embeddings are added to token embeddings at layer 0; cannot disentangle relative vectors."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A7",
+      "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "MOF loss on output logits helps, but fixed absolute position limits semantic decoupling."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A8",
+      "paradigm_name": "Randomized Smoothing Majority Voting",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "SmoothLLM M=10 inflates latency from 35ms to 350ms on CPU."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A9",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "FGM / FreeLB adversarial training on token embeddings significantly hardens BERT."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A10",
+      "paradigm_name": "Conformal Risk Control (CRC) Bounds",
+      "score": 9,
+      "status": "Native",
+      "justification": "Softmax risk scores are readily calibrated via Conformal Risk Control."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A11",
+      "paradigm_name": "Low-FPR ROC Threshold Interpolation",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Supports ROC interpolation, but trigger word bias creates false positive bumps at low FPR."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A12",
+      "paradigm_name": "Hierarchical Instruction Privilege",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Segment embeddings (token_type_ids) provide rudimentary two-level privilege separation."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A13",
+      "paradigm_name": "Head-and-Tail Priority Chunking",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Scanning 200k chars requires ~40 forward passes, taking ~1.2s on CPU without early stopping."
+    },
+    {
+      "model_id": "M8",
+      "model_name": "Legacy Absolute Encoders (BERT/RoBERTa)",
+      "paradigm_id": "A14",
+      "paradigm_name": "Multi-Turn Contextual Drift Tracking",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Cross-turn attention is bounded by 512 token context window."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 2,
+      "status": "Incompatible",
+      "justification": "Disentangled attention captures full contextual semantics; TF-IDF is redundant inside M9."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "RTD discriminator scores flag replaced tokens, acting as a learned perplexity proxy."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A3",
+      "paradigm_name": "Char-Level Typographical Anomaly",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Subword tokenizer requires Tier-0 Heuristic Scrubber to prevent unicode blindness."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A4",
+      "paradigm_name": "Dense Contrastive Metric Centroids",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Produces less anisotropic embeddings than BERT, though end-to-end classification is superior."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A5",
+      "paradigm_name": "Hidden-State & Activation Gradient",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Intermediate disentangled representations provide clean gradient signals for probing."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A6",
+      "paradigm_name": "Disentangled Content-Position Attention",
+      "score": 10,
+      "status": "Native",
+      "justification": "Sovereign Champion: Decouples content and relative position across 3 attention matrices (He ICLR 2023)."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A7",
+      "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
+      "score": 10,
+      "status": "Native",
+      "justification": "Sovereign Champion: MOF KL loss (Li ACL 2025) eliminates keyword trigger bias while preserving F1 > 0.95."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A8",
+      "paradigm_name": "Randomized Smoothing Majority Voting",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "SmoothLLM is redundant due to MOF robustness, and M=10 raises latency to 250ms."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A9",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 10,
+      "status": "Native",
+      "justification": "Sovereign Champion: Minimax optimization (DataSentinel) hardens DeBERTa against adaptive evasion."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A10",
+      "paradigm_name": "Conformal Risk Control (CRC) Bounds",
+      "score": 10,
+      "status": "Native",
+      "justification": "Sovereign Champion: Finite-sample CRC calibrates softmax output to rigorously bound FPR <= 1.5%."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A11",
+      "paradigm_name": "Low-FPR ROC Threshold Interpolation",
+      "score": 10,
+      "status": "Native",
+      "justification": "Produces smooth, monotonic ROC curves achieving TPR >= 90% at FPR <= 1.0% (PromptShield criteria)."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A12",
+      "paradigm_name": "Hierarchical Instruction Privilege",
+      "score": 8,
+      "status": "Native",
+      "justification": "Relative position attention cleanly preserves boundary distinctions between system and user prompts."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A13",
+      "paradigm_name": "Head-and-Tail Priority Chunking",
+      "score": 8,
+      "status": "Native",
+      "justification": "Combined with Tier 1 Early-Stopping, M9 only inspects ambiguous tail/head blocks, keeping latency < 25ms."
+    },
+    {
+      "model_id": "M9",
+      "model_name": "Disentangled Encoders (DeBERTa-v3-base)",
+      "paradigm_id": "A14",
+      "paradigm_name": "Multi-Turn Contextual Drift Tracking",
+      "score": 8,
+      "status": "Native",
+      "justification": "High-capacity representation models multi-turn prompt context within 512 token budget."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 2,
+      "status": "Incompatible",
+      "justification": "Multilingual tokenizer and self-attention supersede statistical n-grams."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Cross-lingual token prediction acts as multilingual perplexity filter."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A3",
+      "paradigm_name": "Char-Level Typographical Anomaly",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Larger vocabulary (250k tokens) captures diverse scripts, though unicode evasion still requires Tier 0."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A4",
+      "paradigm_name": "Dense Contrastive Metric Centroids",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Cross-lingual semantic clustering maps Vietnamese and English attacks to shared manifolds."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A5",
+      "paradigm_name": "Hidden-State & Activation Gradient",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Cross-lingual alignment can be inspected via hidden state probes."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A6",
+      "paradigm_name": "Disentangled Content-Position Attention",
+      "score": 10,
+      "status": "Native",
+      "justification": "Disentangled attention generalises across diverse word-order typologies (SVO vs SOV)."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A7",
+      "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
+      "score": 9,
+      "status": "Native",
+      "justification": "MOF loss prevents over-defense on translated sensitive keywords across languages (Deng ICLR 2024)."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A8",
+      "paradigm_name": "Randomized Smoothing Majority Voting",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Perturbation in low-resource languages can shift tokens out-of-vocabulary."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A9",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 9,
+      "status": "Native",
+      "justification": "Cross-lingual minimax optimization hardens model against multilingual code-switching evasion."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A10",
+      "paradigm_name": "Conformal Risk Control (CRC) Bounds",
+      "score": 10,
+      "status": "Native",
+      "justification": "CRC provides separate calibration thresholds per language to guarantee global FPR <= 1.5%."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A11",
+      "paradigm_name": "Low-FPR ROC Threshold Interpolation",
+      "score": 9,
+      "status": "Native",
+      "justification": "Maintains high TPR under low-FPR constraints across both English and Vietnamese."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A12",
+      "paradigm_name": "Hierarchical Instruction Privilege",
+      "score": 8,
+      "status": "Native",
+      "justification": "Enforces privilege boundaries across mixed-language prompts."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A13",
+      "paradigm_name": "Head-and-Tail Priority Chunking",
+      "score": 8,
+      "status": "Native",
+      "justification": "Protects long translated documents via block chunking with early stopping."
+    },
+    {
+      "model_id": "M10",
+      "model_name": "Multilingual Disentangled (mDeBERTa/PG86M)",
+      "paradigm_id": "A14",
+      "paradigm_name": "Multi-Turn Contextual Drift Tracking",
+      "score": 8,
+      "status": "Native",
+      "justification": "Tracks conversational language-switching drift across multiple turns."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 2,
+      "status": "Incompatible",
+      "justification": "FlashAttention-2 and RoPE make external statistical features completely redundant."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Can compute sequence likelihood over extended context."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A3",
+      "paradigm_name": "Char-Level Typographical Anomaly",
+      "score": 6,
+      "status": "Conditional",
+      "justification": "Standard subword tokenizer requires front-end heuristic scrubbing."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A4",
+      "paradigm_name": "Dense Contrastive Metric Centroids",
+      "score": 7,
+      "status": "Conditional",
+      "justification": "Global pooled embeddings capture document-level semantic representations."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A5",
+      "paradigm_name": "Hidden-State & Activation Gradient",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "GeGLU activations provide rich non-linear hidden representations for probing."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A6",
+      "paradigm_name": "Disentangled Content-Position Attention",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Uses Rotary Position Embeddings (RoPE); structurally different from DeBERTa disentanglement but solves relative position."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A7",
+      "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
+      "score": 9,
+      "status": "Native",
+      "justification": "MOF invariant loss applies directly to 8,192 token classification head."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A8",
+      "paradigm_name": "Randomized Smoothing Majority Voting",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Smoothing across 8k tokens is computationally expensive."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A9",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 9,
+      "status": "Native",
+      "justification": "FlashAttention enables fast adversarial gradient computation over long contexts."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A10",
+      "paradigm_name": "Conformal Risk Control (CRC) Bounds",
+      "score": 10,
+      "status": "Native",
+      "justification": "Conformal Risk Control calibrates long-context document risk scores directly."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A11",
+      "paradigm_name": "Low-FPR ROC Threshold Interpolation",
+      "score": 10,
+      "status": "Native",
+      "justification": "Enables precise ROC threshold interpolation for long RAG documents."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A12",
+      "paradigm_name": "Hierarchical Instruction Privilege",
+      "score": 9,
+      "status": "Native",
+      "justification": "Native 8,192 window allows end-to-end modeling of complex system prompts, RAG context, and user input."
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A13",
+      "paradigm_name": "Head-and-Tail Priority Chunking",
+      "score": 10,
+      "status": "Native",
+      "justification": "Sovereign Champion: Native 8,192 window eliminates the need for block chunking on documents up to 32k characters!"
+    },
+    {
+      "model_id": "M11",
+      "model_name": "Long-Context Modern Encoders (ModernBERT)",
+      "paradigm_id": "A14",
+      "paradigm_name": "Multi-Turn Contextual Drift Tracking",
+      "score": 9,
+      "status": "Native",
+      "justification": "Fits entire multi-turn conversation histories (10+ turns) in a single forward pass without sliding window truncation."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A1",
+      "paradigm_name": "Sublinear TF-IDF + Platt Calibration",
+      "score": 1,
+      "status": "Incompatible",
+      "justification": "TF-IDF is obsolete for 2B-8B autoregressive generative language models."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A2",
+      "paradigm_name": "Sliding-Window Perplexity (PPL)",
+      "score": 10,
+      "status": "Native",
+      "justification": "Native champion: Autoregressive causal decoder computes exact token perplexity in a single forward pass."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A3",
+      "paradigm_name": "Char-Level Typographical Anomaly",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Slow token-by-token generation is ineffective for surface character anomaly detection."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A4",
+      "paradigm_name": "Dense Contrastive Metric Centroids",
+      "score": 3,
+      "status": "Incompatible",
+      "justification": "Causal unidirectional attention produces poor sentence-level metric embeddings."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A5",
+      "paradigm_name": "Hidden-State & Activation Gradient",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Hidden states can be probed, but generative reasoning is the primary output."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A6",
+      "paradigm_name": "Disentangled Content-Position Attention",
+      "score": 2,
+      "status": "Incompatible",
+      "justification": "Decoder-only LLMs use standard RoPE / causal attention, incompatible with 3-matrix disentanglement."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A7",
+      "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Can use DPO/RLHF to reduce over-defense, but fine-tuning requires massive compute."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A8",
+      "paradigm_name": "Randomized Smoothing Majority Voting",
+      "score": 1,
+      "status": "Incompatible",
+      "justification": "Disastrous Latency: M=10 perturbations on an 8B model takes 15-20 SECONDS, paralyzing real-time ingress."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A9",
+      "paradigm_name": "Minimax Adversarial Optimization",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Minimax adversarial training on 8B LLMs requires massive multi-GPU compute clusters."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A10",
+      "paradigm_name": "Conformal Risk Control (CRC) Bounds",
+      "score": 9,
+      "status": "Native",
+      "justification": "Conformal prediction on safety verdict tokens ('Safe'/'Unsafe') provides rigorous high-assurance risk bounds."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A11",
+      "paradigm_name": "Low-FPR ROC Threshold Interpolation",
+      "score": 8,
+      "status": "Conditional",
+      "justification": "Token log-probabilities allow threshold interpolation, but latency restricts real-time tuning."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A12",
+      "paradigm_name": "Hierarchical Instruction Privilege",
+      "score": 10,
+      "status": "Native",
+      "justification": "Native reasoning: Understands complex instruction hierarchies via in-context policy reasoning."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A13",
+      "paradigm_name": "Head-and-Tail Priority Chunking",
+      "score": 5,
+      "status": "Conditional",
+      "justification": "Scanning 200k documents by chunking into an 8B model incurs enormous GPU memory and tens of seconds latency."
+    },
+    {
+      "model_id": "M12",
+      "model_name": "Generative Safety SLMs (Granite/LlamaGuard)",
+      "paradigm_id": "A14",
+      "paradigm_name": "Multi-Turn Contextual Drift Tracking",
+      "score": 10,
+      "status": "Native",
+      "justification": "Native multi-turn reasoning: Full causal attention models subtle Crescendo escalation trajectories across turns."
+    }
+  ]
+}

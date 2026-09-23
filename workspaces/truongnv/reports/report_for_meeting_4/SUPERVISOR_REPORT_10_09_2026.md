@@ -178,6 +178,7 @@ Hệ thống slide được chia làm 3 phần nội dung logic chặt chẽ (Sl
 - **Nhóm 2: Cơ Chế Phòng Thủ & Kiến Trúc Bộ Lọc (Defense Mechanisms & Architecture — Slides 16–19)**:
   - **[5]** N. Jain, A. Schwarzschild, Y. Wen, G. Thattai, J. Thickstun, and T. Goldstein (2023) — *Baseline Defenses for Adversarial Attacks Against Aligned Language Models*. arXiv:2309.00614. (Nền tảng Tầng 1: Character n-grams $n=3..5$ chống Leetspeak & BPE bypass — Slides 16, 17).
   - **[6]** P. He, X. Liu, J. Gao, and W. Chen (2021/2023) — *DeBERTa: Decoding-enhanced BERT with Disentangled Attention*. ICLR 2021 / DeBERTa-v3 2023. (Nền tảng Tầng 2: Disentangled Attention tách biệt nội dung và vị trí tương đối — Slide 17).
+   - **[7]** Z. Yao et al. (2022) — *ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers*. In NeurIPS 2022. (Nền tảng lượng hóa ONNX INT8 tối ưu hóa suy luận CPU — Slide 17).
   - **[8]** J. H. Saltzer and M. D. Schroeder (1975) — *The Protection of Information in Computer Systems*. Proceedings of the IEEE, vol. 63, no. 9, pp. 1278–1308. (Nguyên lý bảo mật nền tảng: Economy of Mechanism & Complete Mediation cho thiết kế Two-Tier — Slide 18).
 
 ### SLIDE 22: Kết Luận & Lời Cảm Ơn (Thank You)
@@ -193,6 +194,7 @@ Hệ thống slide được chia làm 3 phần nội dung logic chặt chẽ (Sl
 - <a id="ref4"></a>**[4]** C. Xiao et al. and Tencent Zhuque Lab, *"Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming,"* *Tencent Security Technical Report / arXiv preprint arXiv:2606.31227*, 2026. [arXiv:2606.31227](https://arxiv.org/abs/2606.31227).
 - <a id="ref5"></a>**[5]** N. Jain, A. Schwarzschild, Y. Wen, G. Thattai, J. Thickstun, and T. Goldstein, *"Baseline Defenses for Adversarial Attacks Against Aligned Language Models,"* *arXiv preprint arXiv:2309.00614*, 2023. [arXiv:2309.00614](https://arxiv.org/abs/2309.00614).
 - <a id="ref6"></a>**[6]** P. He, X. Liu, J. Gao, and W. Chen, *"DeBERTa: Decoding-enhanced BERT with Disentangled Attention,"* in *International Conference on Learning Representations (ICLR)*, 2021/2023. [arXiv:2006.03654](https://arxiv.org/abs/2006.03654).
+- <a id="ref7"></a>**[7]** Z. Yao et al., *"ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers,"* in *Advances in Neural Information Processing Systems (NeurIPS 2022)*, vol. 35, pp. 27168–27183. [arXiv:2206.01861](https://arxiv.org/abs/2206.01861).
 - <a id="ref8"></a>**[8]** J. H. Saltzer and M. D. Schroeder, *"The Protection of Information in Computer Systems,"* in *Proceedings of the IEEE*, vol. 63, no. 9, pp. 1278–1308, Sept. 1975. DOI: 10.1109/PROC.1975.9939. [IEEE Xplore Open-Access](https://web.mit.edu/Saltzer/www/publications/protection/).
 
 ---

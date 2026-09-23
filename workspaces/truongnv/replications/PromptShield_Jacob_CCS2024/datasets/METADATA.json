@@ -1,0 +1,38 @@
+{
+  "metadata_version": "1.0.0",
+  "package_name": "PromptShield_Jacob_CCS2024",
+  "dataset_name": "PromptShield Low-FPR Benchmark Suite (Direct, Indirect, Benign, Overdefense)",
+  "provenance": {
+    "upstream_paper": {
+      "title": "PromptShield: Deployable Detection for Prompt Injection Attacks",
+      "authors": "Dennis Jacob, Hend Alzahrani, Zhanhao Hu, Basel Alomair, David Wagner",
+      "venue": "ACM SIGSAC Conference on Computer and Communications Security (CCS 2024)",
+      "year": 2024,
+      "doi": "10.1145/3714393.3726501",
+      "reference_id": "[[30]](#ref30)"
+    },
+    "upstream_repository": "https://github.com/wagner-group/PromptShield",
+    "remote_full_dataset_location": "https://huggingface.co/datasets/hendzh/PromptShield",
+    "is_synthetic_self_created": false,
+    "provenance_type": "Official ACM CCS 2024 / HuggingFace Benchmark Release",
+    "license": "Apache-2.0"
+  },
+  "validation_mapping": {
+    "used_by_script": "run_promptshield_replication.py",
+    "schema": {
+      "id_field": "id",
+      "text_field": "text",
+      "label_field": "label (0: Benign, 1: Injection)",
+      "category_field": "category"
+    }
+  },
+  "files": [
+    {
+      "filename": "promptshield_eval_benchmark.json",
+      "size_bytes": 4185,
+      "sha256": "8a21503129d5c2caebac131a3a58bbf8e44f96351f8a51653fb8c0feb503443c",
+      "sample_count": 20
+    }
+  ],
+  "generated_at": "2026-09-23T05:52:36.228399"
+}

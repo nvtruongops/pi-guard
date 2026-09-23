@@ -14,13 +14,12 @@
 ```
 src/
 ├── preprocessing/                 # Tiền xử lý: Làm sạch, chuẩn hóa Unicode, bóc tách Base64
-├── datasets/                      # Pipeline cào data, deduplication & Group-Aware Split
-├── models/                        # Trình bao bọc suy luận (Baseline ML & DeBERTa INT8 ONNX)
-│   ├── baseline/                  # Bộ phân loại TF-IDF + LogisticRegression / LinearSVC
-│   └── classifier.py              # Wrapper chạy suy luận ONNX Runtime / PyTorch
-├── training/                      # Pipeline huấn luyện tự động (Trainer, Callbacks, Loss)
+├── models/                        # Trình bao bọc suy luận (Baseline ML & Transformer INT8 ONNX)
+│   ├── classifier.py              # Wrapper chạy suy luận ONNX Runtime / PyTorch
+│   ├── frontier_tradeoff_guardrails.py # Đối chuẩn các mô hình guardrail
+│   └── transformer_models.py      # Các lớp nạp kiến trúc Transformer
 ├── evaluation/                    # Bộ đo lường chuẩn: F1, Precision, Recall, FPR, Latency
-├── policy/                        # Bộ quy tắc định tuyến bảo vệ (3-Tier Layered Defense)
+├── policy/                        # Bộ quy tắc định tuyến bảo vệ (Layered Defense Routing)
 ├── api/                           # Dịch vụ FastAPI Middleware & LLM Proxy (/v1/chat)
 ├── dashboard/                     # Giao diện Streamlit giám sát & kiểm thử trực quan
 ├── llm/                           # Kết nối Target LLM Cloud APIs (Groq, OpenAI, Gemini)

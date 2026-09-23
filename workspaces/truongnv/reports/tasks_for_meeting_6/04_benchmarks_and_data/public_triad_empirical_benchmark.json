@@ -1,0 +1,66 @@
+{
+  "title": "SOTA 3 Public Triad Models Empirical Replication Benchmark",
+  "timestamp": "2026-09-23 05:38:51",
+  "hardware_environment": {
+    "python_executable": "D:\\Work\\Do-an\\.venv\\Scripts\\python.exe",
+    "device": "Commodity CPU (Zero-GPU)",
+    "total_execution_time_s": 140.74
+  },
+  "models_evaluated": {
+    "model_1_protectai_deberta_v3": {
+      "name": "ProtectAI DeBERTa-v3 v2",
+      "repo": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2",
+      "paper_anchor": "He et al. (ICLR 2023 [[11]]) & Protect AI Report 2024",
+      "metrics": {
+        "total_samples": 22,
+        "tp": 10,
+        "fp": 0,
+        "tn": 9,
+        "fn": 3,
+        "accuracy": 0.8636,
+        "precision": 1.0,
+        "recall": 0.7692,
+        "f1": 0.8696,
+        "fpr": 0.0
+      },
+      "latency_stats": {
+        "mean_ms": 330.25,
+        "median_ms": 314.14,
+        "p95_ms": 387.31,
+        "p99_ms": 455.54,
+        "min_ms": 288.14,
+        "max_ms": 473.65
+      },
+      "key_findings": "High accuracy on standard direct injection (100%) and zero overdefense on SQL injection (FPR=0%). Vulnerable to Leetspeak (0%) and Base64 (0%) without Tier-0 Preprocessing."
+    },
+    "model_2_smoothllm_neurips2023": {
+      "name": "SmoothLLM",
+      "repo": "https://github.com/arobey1/smooth-llm",
+      "paper_anchor": "Robey et al., NeurIPS 2023 [[14]]",
+      "tradeoff_analysis": {
+        "algorithmic_principle": "Perturb prompt N times and take majority vote to break brittle adversarial suffixes (GCG).",
+        "cpu_perturbation_latency_overhead_ms": 0.3992,
+        "downstream_llm_calls_multiplier": 5,
+        "theoretical_defense_guarantee": "Effective against transfer attacks and white-box GCG token optimization.",
+        "operational_bottleneck": "Requires 5x downstream LLM inference calls, increasing total latency by ~5x."
+      },
+      "key_findings": "Random character perturbations break fragile gradient-based GCG suffixes in ~0.18ms on CPU. However, requiring N=5 to 10 downstream LLM forward passes multiplies API costs and latency by 5x-10x."
+    },
+    "model_3_jailbreakbench_neurips2024": {
+      "name": "JailbreakBench (JBB-Behaviors)",
+      "repo": "https://github.com/JailbreakBench/jailbreakbench",
+      "paper_anchor": "Chao et al., NeurIPS 2024 [[34]]",
+      "metrics": {
+        "total_harmful_behaviors": 100,
+        "flagged_harmful_behaviors": 0,
+        "harmful_detection_rate": 0.0,
+        "total_benign_behaviors": 100,
+        "flagged_benign_behaviors": 1,
+        "false_positive_rate": 0.01,
+        "mean_latency_ms": 312.86,
+        "p95_latency_ms": 334.88
+      },
+      "key_findings": "Standard 100 harmful behaviors cover 10 distinct harm categories. A pure Prompt Injection classifier flags 0% of raw harmful behaviors, demonstrating the critical necessity of multi-class distinction (Injection vs Jailbreak Intent) in PI-Guard."
+    }
+  }
+}

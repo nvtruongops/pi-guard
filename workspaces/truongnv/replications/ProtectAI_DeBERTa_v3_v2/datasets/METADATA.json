@@ -1,0 +1,46 @@
+{
+  "metadata_version": "1.0.0",
+  "package_name": "ProtectAI_DeBERTa_v3_v2",
+  "dataset_name": "ProtectAI DeBERTa-v3 Benchmark & NotInject Robustness Suite",
+  "provenance": {
+    "upstream_paper": {
+      "title": "Protect AI DeBERTa-v3 Base Prompt Injection Classifier v2",
+      "authors": "Protect AI Security Research",
+      "venue": "Hugging Face Model Hub & AI Security Benchmark",
+      "year": 2024,
+      "arxiv_id": "N/A (Industry SOTA Open-Weights)",
+      "reference_id": "[[15]](#ref15) / Hugging Face SOTA"
+    },
+    "upstream_repository": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2",
+    "remote_full_dataset_location": "https://huggingface.co/datasets/deepset/prompt-injections & https://huggingface.co/datasets/protectai/prompt-injection-benchmark",
+    "is_synthetic_self_created": false,
+    "provenance_type": "Official Hugging Face Open Evaluation Benchmarks & NotInject Public Suite",
+    "license": "Apache-2.0"
+  },
+  "validation_mapping": {
+    "used_by_script": "run_protectai_replication.py",
+    "schema": {
+      "prompt_field": "text / prompt",
+      "label_field": "label",
+      "label_mapping": {
+        "0 / SAFE": "Benign Query / False Positive Probe",
+        "1 / INJECTION": "Direct / Indirect Prompt Injection Attack"
+      }
+    }
+  },
+  "files": [
+    {
+      "filename": "notinject_sample.json",
+      "size_bytes": 26909,
+      "sha256": "c77abbf3de71f99f0e12809a29d8468401285ef5353b53daa6d65131c866586c",
+      "sample_count": 113
+    },
+    {
+      "filename": "protectai_eval_benchmark.json",
+      "size_bytes": 3699,
+      "sha256": "251e55a4ebeeb7218fd0a1e068c3b8c583f1a47e1227b639c955248eaa8a55f3",
+      "sample_count": 22
+    }
+  ],
+  "generated_at": "2026-09-23T05:42:55.251476"
+}

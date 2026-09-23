@@ -9,7 +9,7 @@
 
 ## I. BÀI TOÁN TỐI ƯU HÓA ĐA MỤC TIÊU TRONG THIẾT KẾ GUARDRAIL
 
-Trong việc triển khai lớp bảo vệ an ninh cửa ngõ (**External Guardrail Proxy**) cho các ứng dụng LLM trong môi trường công nghiệp, nhóm kỹ sư bảo mật luôn phải đối mặt với xung đột tam giác giữa 3 mục tiêu kỹ thuật:
+Trong việc triển khai lớp bảo vệ an ninh cửa ngõ (**External Guardrail Proxy**) cho các ứng dụng LLM trong môi trường công nghiệp (như định hướng của NVIDIA NeMo Guardrails [[3]](#ref3)), nhóm kỹ sư bảo mật luôn phải đối mặt với xung đột tam giác giữa 3 mục tiêu kỹ thuật:
 
 ```mermaid
 flowchart TD
@@ -32,12 +32,12 @@ flowchart TD
 
 ## II. ĐƯỜNG CONG BIÊN PARETO (THE PARETO EFFICIENCY FRONTIER)
 
-Một giải pháp kiến trúc được gọi là **Tối ưu Pareto (Pareto Optimal)** nếu không thể cải thiện bất kỳ một tiêu chí nào (ví dụ: giảm độ trễ) mà không làm suy giảm ít nhất một tiêu chí khác (ví dụ: giảm độ chính xác an ninh hoặc tăng lượng RAM tiêu thụ) [[1]](#ref1).
+Một giải pháp kiến trúc được gọi là **Tối ưu Pareto (Pareto Optimal)** nếu không thể cải thiện bất kỳ một tiêu chí nào (ví dụ: giảm độ trễ) mà không làm suy giảm ít nhất một tiêu chí khác (ví dụ: giảm độ chính xác an ninh hoặc tăng lượng RAM tiêu thụ) [[1]](#ref1). Đối với các giải pháp phòng thủ đối kháng như làm mịn ngẫu nhiên SmoothLLM (Robey et al. [[4]](#ref4)), cái giá phải trả là tăng độ trễ lên gấp nhiều lần do phải gọi LLM lặp lại.
 
 ```mermaid
 graph LR
     subgraph "Không Gian Đánh Đổi Hiệu Năng (Trade-off Space)"
-        A["Kiểu 1: LLM-as-a-Guardrail<br/>(Llama Guard 7B / GPT-4)<br/>Recall: 96% | Latency: 450ms | VRAM: 16GB<br/>[BỊ LOẠI VÌ QUÁ CHẬM]"]
+        A["Kiểu 1: LLM-as-a-Guardrail & SmoothLLM<br/>(Llama Guard [[2]](#ref2), NeMo [[3]](#ref3), SmoothLLM [[4]](#ref4))<br/>Recall: 96% | Latency: 450ms+ | VRAM: 16GB<br/>[BỊ LOẠI VÌ QUÁ CHẬM]"]
         B["Kiểu 2: Đơn Thuần TF-IDF ML<br/>(LinearSVC Baseline)<br/>Recall: 72% | Latency: 0.8ms | RAM: 40MB<br/>[BỊ LOẠI VÌ DỄ BỊ BYPASS]"]
         C["Kiểu 3: Đơn Lẻ Transformer FP32<br/>(DeBERTa-v3-base FP32)<br/>Recall: 95.5% | Latency: 65ms | RAM: 1.2GB<br/>[ĐỘ TRỄ CHƯA ĐẠT CHỈ TIÊU P95]"]
         D["Kiểu 4: PI-Guard Two-Tier Cascade<br/>(TF-IDF + DeBERTa-v3 Cascade)<br/>Recall: 96.2% | Latency P95: 21.8ms | RAM: 220MB<br/>[PARETO OPTIMAL CHAMPION]"]
@@ -145,12 +145,46 @@ if __name__ == "__main__":
 
 ---
 
+## IV. MỞ RỘNG KHÔNG GIAN ĐÁNH ĐỔI: 5 PHÂN NHÁNH NGHIÊN CỨU SOTA VƯỢT RA NGOÀI ĐỘ TRỄ NÔNG
+
+Bên cạnh bài toán tối ưu 3 chiều truyền thống (Recall vs. Latency vs. Memory), các nghiên cứu bảo mật LLM giai đoạn 2024–2026 chỉ ra rằng việc thuần túy ép độ trễ xuống dưới 30ms trên từng câu đơn lẻ sẽ khiến hệ thống mắc vào **"Bẫy phòng thủ nông" (The Shallow Defense Trap)**:
+1. **Mù ngụy trang (Obfuscation Blindness)**: Vô hiệu hóa bởi Base64, Hex, Leetspeak, Unicode Zero-Width [[5]](#ref5).
+2. **Mù ngôn ngữ thứ hai (Language Disparity)**: Lỗ hổng tấn công bằng tiếng Việt và chuyển mã Anh-Việt [[6]](#ref6).
+3. **Bất lực trước tấn công đa lượt (Multi-Turn Crescendo)**: Tấn công leo thang 3–5 lượt hội thoại làm tê liệt bộ lọc đơn lượt [[7]](#ref7).
+4. **Hộp đen thiếu giải trình (Lack of Explainability)**: Không giải trình được lý do chặn cho kiểm toán an ninh SOC [[8]](#ref8).
+
+### Ma trận 5 phân nhánh nghiên cứu đánh đổi chủ động:
+
+| Phân nhánh nghiên cứu SOTA | Bài toán giải quyết | Chi phí đánh đổi (Latency & FPR) | Giá trị an ninh vượt trội mang lại | Công trình bảo chứng tiêu biểu |
+| :--- | :--- | :--- | :--- | :--- |
+| **1. Multi-Stage De-obfuscation** | Giải mã đa tầng: Base64, Hex, ROT13, Leetspeak, Unicode Zero-Width | **+5 – 15ms** độ trễ tiền xử lý | Giảm thiểu tối đa các đòn jailbreak bằng mã hóa / ẩn token | Yuan et al. (ICLR 2024) [[5]](#ref5) |
+| **2. Multilingual & Code-Switching** | Bắt tấn công bằng tiếng Việt, ngôn ngữ tài nguyên thấp và pha trộn Anh-Việt | **+15 – 25ms** độ trễ (mô hình mDeBERTa / XLM-R) | Xóa bỏ lỗ hổng vượt rào bằng ngôn ngữ thứ hai; bảo vệ ứng dụng tiếng Việt | Deng et al. (ICLR 2024) [[6]](#ref6) |
+| **3. Multi-Turn Session Tracking** | Bắt tấn công leo thang nhiều bước; theo dõi độ trôi dạt ngữ cảnh (Semantic Drift) | **+20 – 40ms** độ trễ; cần bộ nhớ trạng thái | Chặn đứng kỹ thuật tấn công đa lượt Crescendo | Russinovich et al. (Microsoft 2024) [[7]](#ref7) |
+| **4. Explainable Safety Reasoning** | Suy luận CoT, phân loại theo danh mục OWASP LLM01, CWE-200, MLCommons | **+50 – 100ms** độ trễ (SLM Guardrail) | Cung cấp lý do giải trình minh bạch cho SOC/Audit | Padhi et al. (IBM 2024) [[8]](#ref8) |
+| **5. Agentic Data Flow & Taint Analysis** | Tách bạch luồng dữ liệu System/User vs. Dữ liệu không tin cậy từ Tool/RAG | Tăng theo độ dài văn bản truy xuất RAG | Ngăn chặn tấn công tiêm nhiễm gián tiếp (Indirect Prompt Injection) | Wallace et al. (OpenAI 2024) [[9]](#ref9) |
+
+Mô hình **Kiến trúc Phòng thủ Thích ứng (Adaptive Multi-Tier Defense Cascade)** của PI-Guard kết hợp hài hòa cả hai luồng:
+- **Fast Path (~75% lưu lượng)**: TF-IDF + ModernBERT / DeBERTa-v3 duy trì độ trễ thấp $< 20\text{ms}$ và $\text{FPR} \le 1.5\%$.
+- **Deep Path (~25% lưu lượng bất thường)**: Kích hoạt de-obfuscation, multilingual analysis và trọng tài cấp cao khi phát hiện dấu hiệu bất thường.
+
+---
+
 ## TÀI LIỆU THAM KHẢO
 
-<a id="ref1"></a>**[1]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *AAAI Conference on Human Computation and Crowdsourcing (HCOMP)*, 2023. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
+<a id="ref1"></a>**[1]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *Proceedings of the AAAI Conference on Artificial Intelligence*, vol. 37, no. 12, pp. 15009–15018, Jun. 2023. DOI: 10.1609/aaai.v37i12.26796. Open-Access: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
 
 <a id="ref2"></a>**[2]** H. Inan et al., "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations," *arXiv preprint arXiv:2312.06674*, 2023. Link: [https://arxiv.org/abs/2312.06674](https://arxiv.org/abs/2312.06674).
 
-<a id="ref3"></a>**[3]** T. Rebedea et al., "NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications," in *Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)*, 2023. Link: [https://arxiv.org/abs/2310.10501](https://arxiv.org/abs/2310.10501).
+<a id="ref3"></a>**[3]** T. Rebedea et al., "NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications," in *Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing: System Demonstrations*, Dec. 2023, pp. 431–445. DOI: 10.18653/v1/2023.emnlp-demo.40. Open-Access: [https://arxiv.org/abs/2310.10501](https://arxiv.org/abs/2310.10501).
 
 <a id="ref4"></a>**[4]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," *arXiv preprint arXiv:2310.03684*, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).
+
+<a id="ref5"></a>**[5]** Y. Yuan et al., "GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher," in *Proceedings of ICLR 2024*. Link: [https://arxiv.org/abs/2308.06463](https://arxiv.org/abs/2308.06463).
+
+<a id="ref6"></a>**[6]** Y. Deng et al., "Multilingual Jailbreak Challenges in Large Language Models," in *Proceedings of ICLR 2024*. Link: [https://arxiv.org/abs/2310.06474](https://arxiv.org/abs/2310.06474).
+
+<a id="ref7"></a>**[7]** M. Russinovich, A. Salem, and R. Eldan, "Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack," *arXiv preprint arXiv:2404.01833*, 2024. Link: [https://arxiv.org/abs/2404.01833](https://arxiv.org/abs/2404.01833).
+
+<a id="ref8"></a>**[8]** I. Padhi et al., "Granite Guardian: A Family of Open Models for Content Safety and Risk Detection," *arXiv preprint arXiv:2412.07724*, 2024. Link: [https://arxiv.org/abs/2412.07724](https://arxiv.org/abs/2412.07724).
+
+<a id="ref9"></a>**[9]** E. Wallace et al., "The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions," *arXiv preprint arXiv:2404.13208*, 2024. Link: [https://arxiv.org/abs/2404.13208](https://arxiv.org/abs/2404.13208).

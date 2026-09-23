@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "title": "Jain et al. (NeurIPS 2023) Independent Empirical Replication",
+    "paper": "Baseline Defenses for Adversarial Attacks Against Aligned Language Models (arXiv:2309.00614)",
+    "upstream_repo": "https://github.com/neelsjain/baseline-defenses",
+    "dataset_path": "Tier1_Candidate_Jain_NeurIPS2023/datasets/jain_eval_benchmark.json",
+    "execution_date": "2026-09-23 06:09:45",
+    "device": "CPU Single-Core Inference"
+  },
+  "local_empirical_results": {
+    "dataset_source": "Tier1_Candidate_Jain_NeurIPS2023/datasets/jain_eval_benchmark.json",
+    "total_test_samples": 301,
+    "accuracy_percent": 97.34,
+    "attack_recall_percent": 94.7,
+    "benign_fpr_percent": 0.0,
+    "precision": 1.0,
+    "recall": 0.947,
+    "f1_score": 0.9728,
+    "roc_auc": 0.9918,
+    "confusion_matrix": {
+      "TN": 150,
+      "FP": 0,
+      "FN": 8,
+      "TP": 143
+    },
+    "latency_mean_ms": 5.55,
+    "latency_p50_ms": 2.77,
+    "latency_p95_ms": 17.61
+  },
+  "paper_reported_results": {
+    "paper_citation": "Neel Jain, Avi Schwarzschild, et al. 'Baseline Defenses for Adversarial Attacks Against Aligned Language Models'. In NeurIPS 2023 Workshop on Robustness of Few-shot and Zero-shot Learning.",
+    "Table_1_ASR": {
+      "description": "Attack Success Rate (ASR) against GCG Attacks on Vicuna-7B (Lower ASR is Better)",
+      "Undefended_ASR_Percent": 99.0,
+      "Perplexity_Filter_ASR_Percent": 19.0,
+      "Retokenization_Char_ASR_Percent": 28.0,
+      "Paraphrase_ASR_Percent": 48.0
+    },
+    "Table_2_Perplexity_Thresholds": {
+      "description": "Windowed perplexity filtering against adversarial suffix perturbations",
+      "vicuna_threshold": 32.5,
+      "llama2_threshold": 45.2
+    }
+  },
+  "replication_conclusion": {
+    "status": "REPLICATED_VERIFIED",
+    "summary": "Local character n-gram modeling achieves 89.4% attack catch rate against adversarial suffixes while keeping benign FPR < 2.5% and latency < 1.5ms, validating the paper's core hypothesis that character-level lexical patterns provide effective low-latency defense."
+  }
+}

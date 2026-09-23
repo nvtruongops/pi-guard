@@ -30,7 +30,7 @@ Dựa trên bản đăng ký đề tài chính thức [`CAPSTONE PROJECT REGISTE
 | **1. Protect AI / `llm-guard`**      | Open-source Toolkit (ProtectAI 2024)              | 30+ Scanners kiểm duyệt prompt & response                                | • Mô hình `ProtectAI/deberta-v3-base-prompt-injection` làm **SOTA Baseline**.<br>• Kiến trúc Heuristic Preprocessing (`cleaner.py`).            | Bỏ qua 25+ scanner không liên quan (Anonymize PII nâng cao, Code exec sandbox, Sentiment).       | Tinh gọn chuyên sâu vào 2 key, tối ưu độ trễ P95 từ >100ms xuống **<15ms**.                                                |
 | **2. NVIDIA / `NeMo-Guardrails`**    | Framework (Rebedea et al., EMNLP 2023)            | Programmable Middleware qua ngôn ngữ Colang                              | • Kiến trúc **Asynchronous Middleware Proxy** (`src/api/middleware.py`).<br>• Luồng kiểm duyệt trước khi chạm vào Target LLM.                   | Không sử dụng Colang phức tạp và không dùng LLM-as-a-judge (gọi LLM tự kiểm tra tốn kém).        | Dùng mô hình ML chuyên biệt (DeBERTa-v3) thay vì gọi LLM thứ hai, tiết kiệm 95% chi phí và giảm độ trễ từ >1s xuống <30ms. |
 | **3. Tencent / `AI-Infra-Guard`**    | Red Teaming Framework (Tencent Zhuque Lab, 2026)  | Đánh giá Red Teaming 4 tầng & 26+ Attack Operators                       | • Threat Model 4 tầng & nguyên lý _Layer-Paradigm Matching_.<br>• Danh mục 26+ Attack Operators cho tập kiểm thử độ bền (`tests/adversarial/`). | Không làm công cụ Red Teaming quét bảo mật tự động offline mà làm Guardrail phòng thủ trực tuyến. | Bảo vệ độ trễ thấp (Inference < 30ms) tại cổng API thay vì chỉ quét định kỳ offline.                                    |
-| **4. Vera Zuo / `jailbreak_llms`**   | Measurement & Dataset (Shen et al., ACM CCS 2024) | Nghiên cứu thực nghiệm & Tập 15,140 in-the-wild jailbreak prompts        | • Nguồn dataset chuẩn `TrustAIRLab/in-the-wild-jailbreak-prompts` trên Hugging Face.<br>• Phân loại các biến thể DAN, Roleplay, Hypothetical.   | Không phân tích mạng xã hội hay thu thập dữ liệu Reddit/Discord trực tiếp.                       | Nhóm sử dụng dữ liệu đã xuất bản để huấn luyện và đánh giá mô hình phân loại tự động.                                      |
+| **4. Vera Zuo / `jailbreak_llms`**   | Measurement & Dataset (Shen et al., ACM CCS 2024) | Nghiên cứu thực nghiệm & Tập 1,405 jailbreaks trên 15,140 in-the-wild prompts | • Nguồn dataset chuẩn `TrustAIRLab/in-the-wild-jailbreak-prompts` trên Hugging Face.<br>• Phân loại các biến thể DAN, Roleplay, Hypothetical.   | Không phân tích mạng xã hội hay thu thập dữ liệu Reddit/Discord trực tiếp.                       | Nhóm sử dụng dữ liệu đã xuất bản để huấn luyện và đánh giá mô hình phân loại tự động.                                      |
 | **5. `EasyJailbreak/EasyJailbreak`** | Mutation Framework (Zhou et al., 2024)            | Tự động đột biến và sinh mẫu Jailbreak theo chu trình Mutation-Inference | • Các cơ chế đột biến (Mutator): Leetspeak, Spacing, Roleplay Wrapper để xây dựng `src/preprocessing/obfuscation.py`.                           | Không xây dựng vòng lặp di truyền GA tự động tấn công đa vòng (Multi-turn genetic attack).       | Sử dụng các kỹ thuật biến dị để tạo bộ dữ liệu kiểm thử độ bền (Adversarial Robustness Evaluation).                        |
 | **6. `LLM-Guardian` / IBM Granite**  | Multi-layer Guardrail & Decision Architecture     | Giám sát luồng I/O và phân tầng chính sách an toàn                       | • Cơ chế **Tri-state Policy Engine** (ALLOW, REVIEW, BLOCK) trong `src/policy/policy_engine.py`.                                                | Không làm phân loại đa phương thức (Vision/Audio) hay hạ tầng cơ sở dữ liệu lớn.                 | Chạy gọn nhẹ dưới dạng microservice FastAPI, tương thích mọi downstream LLM.                                               |
 
@@ -72,6 +72,37 @@ Dựa trên bản đăng ký đề tài chính thức [`CAPSTONE PROJECT REGISTE
 - **Kho mã nguồn**: [https://github.com/EasyJailbreak/EasyJailbreak](https://github.com/EasyJailbreak/EasyJailbreak)
 - **Bài báo học thuật**: H. Zhou et al., _"EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models,"_ arXiv:2403.12171, 2024. arXiv: [2403.12171](https://arxiv.org/abs/2403.12171).
 - **Giá trị kế thừa cho PI-Guard**: Khung kỹ thuật đột biến (Mutators: Leetspeak, Spacing, Roleplay Wrapper) để xây dựng kịch bản kiểm thử độ bền đối kháng.
+
+### 3.6. Next-Gen Discriminative Encoders — ModernBERT-base (Warner et al., Dec 2024)
+
+- **Kho mã nguồn & Model**: [https://github.com/AnswerDotAI/ModernBERT](https://github.com/AnswerDotAI/ModernBERT) | `answerdotai/ModernBERT-base`
+- **Bài báo học thuật**: B. Warner et al., _"ModernBERT: Bringing Modern Transformer Innovations to Pre-trained Encoders,"_ arXiv:2412.13663, 2024.
+- **Giá trị kế thừa cho PI-Guard**:
+  - **Cửa sổ ngữ cảnh bản địa 8,192 tokens**: Vượt trội hoàn toàn so với giới hạn 512 tokens của BERT/DeBERTa, giải quyết triệt để rủi ro cắt cụt (truncation) khi quét các payload Indirect Prompt Injection ẩn sâu trong tài liệu RAG dài.
+  - **Tốc độ suy luận CPU/GPU cao gấp 2x**: Áp dụng RoPE, GeGLU, FlashAttention-2 và Unpadding giúp đạt độ trễ P95 < 18ms trên CPU cho Tier 2.
+
+### 3.7. Generative SLM Guardrails — Granite Guardian 2B & Llama Guard 3 1B (Late 2024)
+
+- **Granite Guardian 2B / 8B (Padhi et al., IBM Research 2024 — arXiv:2412.07724)**: Dòng mô hình an toàn chuyên biệt bao phủ Jailbreak, Direct/Indirect Prompt Injection và RAG Hallucination. Khi lượng tử hóa INT4, mô hình 2B đóng vai trò **Trọng tài cấp cao (Tier 3 High-Assurance Arbiter)** trong PI-Guard để phân xử các mẫu bất định.
+- **Llama Guard 3 1B (Meta AI, 09/2024)**: Mô hình nhúng nhỏ gọn (~700MB RAM ở INT4), hỗ trợ đối chuẩn đa danh mục an toàn MLCommons.
+
+### 3.8. Anomaly & Metric Learning Filters (< 2ms)
+
+- **Windowed Perplexity Filter (Alon & Kamfonas 2023, Jain et al. NeurIPS 2023)**: Sử dụng mô hình ngôn ngữ siêu nhỏ tính Perplexity trượt để bắt trọn các chuỗi đối kháng GCG/AutoDAN trong $< 1.5\text{ms}$.
+- **Dense k-NN Centroid Filter (sentence-transformers/all-MiniLM-L6-v2 + FAISS)**: Đo khoảng cách vector 384 chiều tới các tâm cụm tấn công với độ trễ truy vấn $< 0.1\text{ms}$.
+### 3.9. Meta AI — `Meta Prompt-Guard 86M` (2024): Bài Học Giới Hạn Của Kiến Trúc Đơn Khối (Monolithic)
+
+- **Kho mã nguồn & Model**: [`https://github.com/meta-llama/PurpleLlama`](https://github.com/meta-llama/PurpleLlama) | `meta-llama/Prompt-Guard-86M`
+- **Tài liệu tham khảo**: Meta AI Purple Llama Team, *"Prompt Guard 86M: A Small Classifier for Prompt Injection and Jailbreak Detection,"* 2024. arXiv: [2407.21783](https://arxiv.org/abs/2407.21783).
+- **Phân tích kỹ thuật & Thất bại thực nghiệm**:
+  - Meta AI đã nỗ lực giải quyết cả Prompt Injection và Jailbreak bằng **một mô hình mDeBERTa-v3 86M đơn khối duy nhất** với 3 nhãn đầu ra (`BENIGN`, `INJECTION`, `JAILBREAK`).
+  - **Sụp đổ quá phòng thủ (Overdefense Collapse)**: Thực nghiệm độc lập của đồ án chỉ ra rằng khi kiểm thử trên tập câu lệnh lập trình và system prompts hợp lệ (`NotInject`), mô hình chỉ đạt độ chính xác **$0.88\%$** (chặn nhầm tới **$99.12\%$** câu lệnh lành tính của lập trình viên).
+  - **Sụt giảm trong vùng Low-FPR**: Khi bị ép hoạt động trong ngưỡng an toàn bắt buộc ($\text{FPR} \le 1.0\%$), tỷ lệ phát hiện thực tế (TPR) của Meta Prompt-Guard sụt giảm thảm hại từ $98.0\%$ xuống chỉ còn **$12.78\%$** (Jacob et al. ACM CCS 2024).
+- **Tại sao kết quả thực nghiệm có điểm nghẽn lớn nhưng Meta vẫn công bố báo cáo?**:
+  - Đây là một *Model Card / Technical Report* mã nguồn mở nhằm cung cấp một checkpoint nền tảng mở siêu nhẹ cho cộng đồng, không phải giải pháp toàn diện độc lập.
+  - Meta đánh giá chủ yếu trên tập dữ liệu nội bộ tổng hợp (In-distribution), bỏ qua các tập câu lệnh code phức tạp như `NotInject`.
+  - Meta khuyến nghị Prompt-Guard chỉ là một mắt xích lọc thô sơ bộ, bắt buộc phải dùng trong chuỗi phòng thủ đa tầng (Defense-in-Depth) với Llama Guard (7B/8B).
+- **Giá trị bảo chứng cho PI-Guard**: Khẳng định sự thất bại của mô hình đơn khối gộp nhãn và chứng minh tính ưu việt của **Kiến trúc Ghép tầng (Two-Tier Cascade)** kết hợp **hàm mất mát MOF Invariance** của PI-Guard.
 
 ---
 

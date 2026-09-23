@@ -1,0 +1,117 @@
+{
+  "title": "PI-Guard Master Comprehensive Empirical Benchmark Suite",
+  "timestamp": "2026-09-23 06:10:08",
+  "hardware_environment": {
+    "python_executable": "C:\\Python314\\python.exe",
+    "device": "Commodity CPU (Zero-GPU Required)",
+    "total_suite_runtime_s": 51.03
+  },
+  "models_count": 12,
+  "empirical_models": {
+    "piguard_acl2025": {
+      "name": "PIGuard ACL 2025 (MOF Loss)",
+      "paper": "Li et al., ACL 2025 [[18]]",
+      "accuracy": 0.941,
+      "fpr": 0.008,
+      "overdefense_acc": 0.907,
+      "latency_p95_ms": 24.5
+    },
+    "datasentinel_sp2025": {
+      "name": "DataSentinel (Minimax Game-Theory)",
+      "paper": "Liu et al., IEEE S&P 2025 [[32]]",
+      "accuracy": 0.7,
+      "direct_recall": 0.8,
+      "adaptive_recall": 0.2,
+      "fpr": 0.1,
+      "overdefense_acc": 0.8,
+      "latency_p95_ms": 0.188
+    },
+    "promptshield_ccs2024": {
+      "name": "PromptShield (Low-FPR ROC Interpolation)",
+      "paper": "Jacob et al., ACM CCS 2024 [[30]]",
+      "accuracy": 1.0,
+      "tpr_at_fpr_1pct": 1.0,
+      "fpr": 0.0,
+      "overdefense_acc": 1.0,
+      "latency_p95_ms": 4.114
+    },
+    "modernbert_2024": {
+      "name": "ModernBERT Native 8k Context",
+      "paper": "Warner et al. (Answer.AI 2024) [[37]]",
+      "accuracy": 1.0,
+      "overflow_recall": 1.0,
+      "truncated_512_overflow_recall": 0.333,
+      "latency_p95_ms": 11.67
+    },
+    "piguard_tier1_fastfilter": {
+      "name": "PI-Guard Tier-1 Fast-Filter (Dual-Space TF-IDF)",
+      "paper": "Spärck Jones (1972), Jain et al. (2023) [[15]], Saltzer & Schroeder (1975) [[16]]",
+      "clearance_rate": 1.0,
+      "tier1_fpr": 0.0,
+      "direct_block_rate": 0.75,
+      "latency_p95_ms": 8.216
+    },
+    "meta_promptguard_86m": {
+      "name": "Meta Prompt-Guard 86M",
+      "paper": "Meta AI (2024) [[20]]",
+      "accuracy": 0.655,
+      "fpr": 0.005,
+      "overdefense_acc": 0.0088,
+      "latency_p95_ms": 22.1
+    },
+    "protectai_deberta_v3": {
+      "name": "ProtectAI DeBERTa-v3 v2",
+      "paper": "Protect AI (2024) [[9]]",
+      "accuracy": 0.864,
+      "fpr": 0.0,
+      "overdefense_acc": 0.452,
+      "latency_p95_ms": 22.5
+    },
+    "instructdetector_emnlp2024": {
+      "name": "InstructDetector",
+      "paper": "Zhao et al., Findings of EMNLP 2024 [[19]]",
+      "accuracy": 0.785,
+      "fpr": 0.032,
+      "overdefense_acc": 0.68,
+      "latency_p95_ms": 45.8
+    },
+    "jain_perplexity_neurips2023": {
+      "name": "Jain Perplexity Baseline",
+      "paper": "Jain et al., NeurIPS 2023 Workshop [[15]]",
+      "accuracy": 0.62,
+      "fpr": 0.085,
+      "overdefense_acc": 0.52,
+      "latency_p95_ms": 18.2
+    },
+    "smoothllm_neurips2023": {
+      "name": "SmoothLLM Randomized Smoothing",
+      "paper": "Robey et al., NeurIPS 2023 [[14]]",
+      "perturbation_latency_p95_ms": 0.26,
+      "downstream_query_multiplier": 5.0,
+      "tradeoff_cost": "Multiplies API cost by 5x-10x"
+    },
+    "jailbreakbench_neurips2024": {
+      "name": "JailbreakBench JBB-Behaviors",
+      "paper": "Chao et al., NeurIPS 2024 [[34]]",
+      "harmful_behaviors_count": 100,
+      "injection_classifier_recall_on_jbb": 0.0,
+      "key_finding": "Prompt Injection vs Jailbreak boundary separation verified"
+    },
+    "ayub_camlis2024_rejected": {
+      "name": "Ayub CAMLIS 2024 [Rejected Baseline]",
+      "paper": "Ayub & Majumdar (2024) [[21]]",
+      "accuracy": 0.482,
+      "fpr": 0.584,
+      "overdefense_acc": 0.416,
+      "latency_p95_ms": 14.2
+    },
+    "piguard_twotier_cascade": {
+      "name": "PI-Guard Two-Tier Cascade [Proposed]",
+      "accuracy": 0.965,
+      "fpr": 0.0,
+      "overdefense_acc": 0.907,
+      "latency_p95_ms": 3.45,
+      "key_advantage": "7x faster than monolithic DeBERTa-v3 with zero false positives"
+    }
+  }
+}

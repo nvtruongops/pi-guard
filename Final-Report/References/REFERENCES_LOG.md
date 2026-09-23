@@ -3,7 +3,7 @@
 
 > **Thư mục lưu trữ tài liệu gốc**: [`workspaces/truongnv/References/`](file:///d:/Work/Do-an/workspaces/truongnv/References/) & bản đồng bộ tại [`Final-Report/References/`](file:///d:/Work/Do-an/Final-Report/References/)  
 > **Tiêu chuẩn học thuật**: 16 công trình khoa học đỉnh cao kỷ nguyên LLM hiện đại (2022–2026) + 1 công trình kinh điển đặt nền móng kiến trúc bảo vệ phân tầng (Saltzer & Schroeder, IEEE 1975) + 12 tài liệu chuyên đề, mô hình đối chuẩn SOTA Meeting 5 (PIGuard ACL 2025, InstructDetector, Prompt Guard, Ayub CAMLIS, ZeroQuant, BIPIA, Do-Not-Answer, v.v.) + các công trình nền tảng toán học & thông tin (Luhn 1958, Spärck Jones 1972, fastText TACL 2017, Attention NeurIPS 2017, BERT NAACL 2019).  
-> **Tổng số tệp PDF cục bộ đã lưu trữ**: **36 tệp PDF toàn văn** (100% Open-Access, Zero Paywalled DOI).  
+> **Tổng số tệp PDF cục bộ đã lưu trữ**: **38 tệp PDF toàn văn** (100% Open-Access, Zero Paywalled DOI).  
 > **Cập nhật chuẩn hóa toàn diện**: 2026-09-20 (Mở rộng từ 32 lên 36 công trình; bổ sung The Instruction Hierarchy, JailbreakBench, Multilingual Jailbreak và Conformal Risk Control; áp dụng nghiêm ngặt mô hình Four-Tier Provenance & Decoupling).  
 > **Mục đích**: Lưu trữ, lập chỉ mục siêu dữ liệu chuẩn xác, phân định rạch ròi 4 tầng xuất xứ học thuật và ánh xạ toàn diện vào cấu trúc luận văn, chuyên đề nghiên cứu và mã nguồn đồ án PI-Guard.
 
@@ -63,10 +63,10 @@
 
 | Mô Hình / Nghiên Cứu | Mã Định Danh | Tác Giả & Năm | Tệp PDF Cục Bộ Trong `References/` | Đóng Góp Gốc & Đặc Điểm Kỹ Thuật (Tier 1) | Vai Trò & Ứng Dụng Trong Đồ Án PI-Guard (Tier 2 & 3) |
 | :--- | :---: | :--- | :--- | :--- | :--- |
-| **18. PIGuard (ACL 2025 Central Anchor)** | `[ACL-PIGuard]` | Le et al. (2024/2025) | [`PIGuard_2025_Prompt_Injection_Guardrail_ACL.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/PIGuard_2025_Prompt_Injection_Guardrail_ACL.pdf) | Guardrail phát hiện Prompt Injection dựa trên bộ phân loại DeBERTa-v3 tối ưu hóa, đạt F1 > 0.90 trên tập benchmark đa nguồn. | **Mô hình tham chiếu trọng tâm**: Cả 4 thành viên tái lập độc lập trong Task 3 Meeting 5; PI-Guard đề xuất 4 giải pháp cải tiến (Tier 1 Fast-Filter, Calibrated Threshold, Adv Augmentation, Robust Tokenizer). |
-| **19. InstructDetector (EMNLP 2024)** | `[EMNLP-ID]` | Zhang et al. (2024) | [`Zhao_2024_InstructDetector_Instruction_Tuned_Attack_EMNLP.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Zhao_2024_InstructDetector_Instruction_Tuned_Attack_EMNLP.pdf) | Phát hiện attack prompt qua phân tích vector biểu diễn instruction tuning trên RoBERTa/DeBERTa. | **Ứng viên mô hình tham chiếu Tier 2**: Sử dụng để so sánh độ trễ suy diễn và độ chính xác phân biệt giữa prompt chỉ thị lành tính vs. độc hại. |
+| **18. InjecGuard / PIGuard (ACL 2025 Central Anchor)** | `[ACL-PIGuard]` | Li et al. (2024/2025) | [`PIGuard_2025_Prompt_Injection_Guardrail_ACL.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/PIGuard_2025_Prompt_Injection_Guardrail_ACL.pdf) | Guardrail phát hiện Prompt Injection dựa trên bộ phân loại DeBERTa-v3 tối ưu hóa (chiến lược MOF), đạt F1 > 0.90 trên tập benchmark đa nguồn. | **Mô hình tham chiếu trọng tâm**: Cả 4 thành viên tái lập độc lập trong Task 3 Meeting 5; PI-Guard đề xuất 4 giải pháp cải tiến (Tier 1 Fast-Filter, Calibrated Threshold, Adv Augmentation, Robust Tokenizer). |
+| **19. InstructDetector (EMNLP Findings)** | `[EMNLP-ID]` | Wen et al. (2024/2025) | [`Zhao_2024_InstructDetector_Instruction_Tuned_Attack_EMNLP.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Zhao_2024_InstructDetector_Instruction_Tuned_Attack_EMNLP.pdf) | Phát hiện attack prompt qua phân tích vector biểu diễn instruction tuning và gradient trạng thái ẩn. | **Ứng viên mô hình tham chiếu Tier 2**: Sử dụng để so sánh độ trễ suy diễn và độ chính xác phân biệt giữa prompt chỉ thị lành tính vs. độc hại. |
 | **20. Prompt Guard 86M (Meta 2024)** | `[Meta-PG86M]` | Meta AI (2024) | [`Meta_2024_Prompt_Guard_86M_Input_Guardrail.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Meta_2024_Prompt_Guard_86M_Input_Guardrail.pdf) | Bộ phân loại 86M tham số dựa trên mDeBERTa-v3-base được fine-tune chuyên biệt cho 2 tác vụ: Injection và Jailbreak. | **Ứng viên mô hình tham chiếu Tier 2**: Đối chuẩn trực tiếp về kiến trúc bộ phân loại nhúng nhẹ (embedded classifier) trên CPU và khả năng chống over-defense. |
-| **21. Ayub et al. (CAMLIS 2024)** | `[CAMLIS-Ayub]` | Ayub et al. (2024) | [`Ayub_2024_Towards_Robust_Detection_Prompt_Injection_CAMLIS.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Ayub_2024_Towards_Robust_Detection_Prompt_Injection_CAMLIS.pdf) | Bộ phân loại cú pháp TF-IDF n-grams kết hợp Random Forest phát hiện prompt injection. | **Baseline bị loại bỏ có kiểm chứng (Rejected Baseline)**: Minh chứng thực nghiệm chứng minh mô hình này có FPR quá cao trên tập prompt tự nhiên, làm tiền đề cho giải pháp điều phối 2 tầng của PI-Guard. |
+| **21. Ayub & Majumdar (CAMLIS 2024)** | `[CAMLIS-Ayub]` | Ayub & Majumdar (2024) | [`Ayub_2024_Towards_Robust_Detection_Prompt_Injection_CAMLIS.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Ayub_2024_Towards_Robust_Detection_Prompt_Injection_CAMLIS.pdf) | Bộ phân loại cú pháp TF-IDF n-grams kết hợp Random Forest phát hiện prompt injection. | **Baseline bị loại bỏ có kiểm chứng (Rejected Baseline)**: Minh chứng thực nghiệm chứng minh mô hình này có FPR quá cao trên tập prompt tự nhiên, làm tiền đề cho giải pháp điều phối 2 tầng của PI-Guard. |
 
 ---
 
@@ -89,6 +89,11 @@
 | **34. JailbreakBench (NeurIPS 2024)** | [NeurIPS-JailbreakBench] | Chao et al. (UPenn / EPFL / ETH, 2024) | [Chao_2024_JailbreakBench_Open_Robustness_Benchmark_NeurIPS.pdf](file:///d:/Work/Do-an/workspaces/truongnv/References/Chao_2024_JailbreakBench_Open_Robustness_Benchmark_NeurIPS.pdf) | Chuẩn benchmark đối kháng mã nguồn mở đầu tiên của cộng đồng; công bố tập dữ liệu chuẩn JBB-Behaviors gồm 100 hành vi vi phạm an toàn. | **Chuẩn đối chuẩn cộng đồng**: Tích hợp JBB-Behaviors vào bộ kiểm thử thực nghiệm; đối sánh hiệu năng PI-Guard với các SOTA defenses trên leaderboard toàn cầu. |
 | **35. Multilingual Jailbreak (ICLR 2024)** | [ICLR-MultiJail] | Deng et al. (DAMO Academy / NTU, 2024) | [Deng_2024_Multilingual_Jailbreak_Challenges_LLMs_ICLR.pdf](file:///d:/Work/Do-an/workspaces/truongnv/References/Deng_2024_Multilingual_Jailbreak_Challenges_LLMs_ICLR.pdf) | Đo lường rủi ro jailbreak xuyên ngôn ngữ; chỉ ra các ngôn ngữ tài nguyên thấp có xác suất sinh nội dung độc hại cao gấp 3 lần tiếng Anh; công bố tập MultiJail. | **Cơ sở đánh giá đa ngôn ngữ & tiếng Việt**: Bảo chứng cho việc mở rộng bộ lọc sang tiếng Việt và kịch bản chuyển mã (Code-switching), định hướng sử dụng mDeBERTa-v3. |
 | **36. Conformal Risk Control (Angelopoulos 2024 / C-SafeGen 2025)** | [NeurIPS-ConformalGuardrail] | Angelopoulos et al. / Kang et al. (2024/2025) | [Angelopoulos_2024_Conformal_Risk_Control.pdf](file:///d:/Work/Do-an/workspaces/truongnv/References/Angelopoulos_2024_Conformal_Risk_Control.pdf) | Khung lý thuyết Conformal Risk Control (CRC) cung cấp bảo chứng an toàn thống kê hữu hạn mẫu cho hệ thống Guardrail; kiểm soát chặt chẽ ngân sách lỗi rủi ro. | **Cơ sở toán học cho ngưỡng Low-FPR**: Cung cấp bảo chứng toán học xác suất rủi ro FPR \le 1.5\% trên tập hiệu chuẩn cho Tri-State Policy Engine của PI-Guard. |
+| **37. ModernBERT (Answer.AI / LightOn 2024)** | [arXiv-ModernBERT] | Warner et al. (Answer.AI / LightOn, 2024) | [Warner_2024_ModernBERT_Brings_Modern_Transformers_To_Encoders.pdf](file:///d:/Work/Do-an/workspaces/truongnv/References/Warner_2024_ModernBERT_Brings_Modern_Transformers_To_Encoders.pdf) | Đột phá kiến trúc Encoder với RoPE, GeGLU, FlashAttention-2, native context 8,192 tokens; thông lượng nhanh gấp 2x DeBERTa-v3 trên GPU/CPU. | **Ứng viên mô hình SOTA Tier 2**: Giải quyết triệt để rủi ro cắt cụt ngữ cảnh (truncation) trong RAG và tăng gấp đôi tốc độ phân loại Ingress Guardrail. |
+| **38. Granite Guardian (IBM Research 2024)** | [IBM-GraniteGuardian] | Padhi et al. (IBM Research, 2024) | [Padhi_2024_Granite_Guardian_Content_Safety_Risk_Detection.pdf](file:///d:/Work/Do-an/workspaces/truongnv/References/Padhi_2024_Granite_Guardian_Content_Safety_Risk_Detection.pdf) | Dòng mô hình mở chuyên biệt cho an toàn nội dung và rủi ro LLM (2B/8B), bao phủ Jailbreak, Prompt Injection và RAG Hallucination. | **Mô hình tham chiếu SOTA SLM Guardrail**: Cung cấp cơ sở đối chuẩn cho tầng phân xử cấp cao (High-Assurance Arbiter) ở Tier 3. |
+| **39. Crescendo Multi-Turn Attack (Microsoft 2024)** | [MS-Crescendo] | Russinovich et al. (Microsoft Research, 2024) | [Russinovich_2024_Crescendo_MultiTurn_Jailbreak_Attack.pdf](file:///d:/Work/Do-an/workspaces/truongnv/References/Russinovich_2024_Crescendo_MultiTurn_Jailbreak_Attack.pdf) | Phát hiện phương thức tấn công đa lượt leo thang (Crescendo Attack); chứng minh các bộ lọc đơn lượt (single-turn) hoàn toàn bất lực trước kỹ thuật khai thác ngữ cảnh tích lũy. | **Cơ sở mở rộng nhánh nghiên cứu Multi-turn State Tracking**: Luận chứng cho việc đánh đổi độ trễ để duy trì bộ nhớ phiên và phân tích trôi dạt ngữ cảnh (Contextual Drift). |
+| **40. Prompt Overflow (arXiv 2026)** | [arXiv-PromptOverflow] | Zhou et al. (2026) | [Zhou_2026_Prompt_Overflow_Guardrail_Window_Mismatch.pdf](file:///d:/Work/Do-an/workspaces/truongnv/References/Zhou_2026_Prompt_Overflow_Guardrail_Window_Mismatch.pdf) | Phát hiện lỗ hổng bất đối xứng cửa sổ ngữ cảnh giữa Guardrail (512 tokens) và LLM (128k+ tokens); phân mảnh payload hoặc giấu ở đuôi tài liệu. | **Bảo chứng giải pháp Quét Tài Liệu Dài 200k ký tự**: Cơ sở thiết kế module Băm khối 10% overlap và chiến lược Quét Ưu Tiên Đuôi-Đầu (Tail-and-Head Prioritized Scanning). |
+| **41. CASCADE Against Jailbreaks (arXiv 2026)** | [arXiv-CASCADE] | Luo & Han (2026) | [Luo_2026_CASCADE_Against_Jailbreaks_Evaluation.pdf](file:///d:/Work/Do-an/workspaces/truongnv/References/Luo_2026_CASCADE_Against_Jailbreaks_Evaluation.pdf) | Đánh giá có đối chứng phòng thủ đa giai đoạn; chứng minh không có một giải pháp đơn lẻ nào là tối ưu toàn diện (No single defense is universally best). | **Bảo chứng Phân Tầng Thích Ứng Đa Nhánh**: Luận chứng toán học bác bỏ ảo tưởng mô hình hyper, bảo chứng cho kiến trúc phân tầng Two-Tier Adaptive của PI-Guard. |
 
 ---
 
@@ -321,36 +326,38 @@ DANH MỤC 12 CÔNG TRÌNH BỔ TRỢ & ĐỐI CHUẨN THỰC NGHIỆM — ĐỒ
 
 ### 3.1. Nhóm Mô Hình Đối Chuẩn SOTA & Thực Nghiệm Tái Lập (Meeting 5 Replication Suite)
 
-#### 1. `PIGuard (ACL 2025 Central Anchor)`
-- **Tên bài báo**: *PIGuard: A Prompt Injection Guardrail for Large Language Models*
-- **Tác giả**: Hieu Le, et al.
+#### 1. `InjecGuard / PIGuard (ACL 2025 Central Anchor)`
+- **Tên bài báo chính xác**: *InjecGuard: Benchmarking and Mitigating Over-defense in Prompt Injection Guardrail Models*
+- **Tác giả**: Hao Li, Xiaogeng Liu, Ning Zhang, Chaowei Xiao (Washington University in St. Louis & University of Wisconsin-Madison)
 - **Venue**: *Annual Meeting of the Association for Computational Linguistics (ACL 2025)* | **arXiv**: `2410.22770`
+- **Mã nguồn & Trọng số**: `https://github.com/leolee99/InjecGuard`
 - **Tệp PDF Cục Bộ**: [`PIGuard_2025_Prompt_Injection_Guardrail_ACL.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/PIGuard_2025_Prompt_Injection_Guardrail_ACL.pdf)
 - **Bản mở toàn văn**: [https://arxiv.org/pdf/2410.22770.pdf](https://arxiv.org/pdf/2410.22770.pdf)
-- **Đóng góp gốc (Tier 1)**: Xây dựng guardrail phân loại Prompt Injection dựa trên DeBERTa-v3, đạt hiệu quả phát hiện cao trên tập benchmark đa nguồn.
-- **Định vị kỹ thuật & Tiếp thu của đề tài (Tier 2 & 3)**: Đây là **công trình tham chiếu cốt lõi (Central Anchor)** được cả 4 thành viên tái lập độc lập trong Task 3 Meeting 5. Đồ án kế thừa kiến trúc backbone DeBERTa-v3 của PIGuard và đề xuất 4 giải pháp cải tiến khắc phục các hạn chế còn tồn tại (giảm độ trễ bằng Tier 1 Fast Filter, hiệu chuẩn ngưỡng kiểm soát $\text{FPR} < 1.5\%$, tăng cường dữ liệu đối kháng và cải tiến tokenizer).
+- **Đóng góp gốc (Tier 1)**: Xây dựng guardrail phân loại Prompt Injection dựa trên DeBERTa-v3 tối ưu hóa thông qua chiến lược huấn luyện Mitigating Over-defense for Free (MOF), giảm thiểu sai lệch kích hoạt từ khóa (trigger word bias) và đạt F1 > 0.90 trên tập benchmark đa nguồn NotInject.
+- **Định vị kỹ thuật & Tiếp thu của đề tài (Tier 2 & 3)**: Đây là **công trình tham chiếu cốt lõi (Central Anchor)** được cả 4 thành viên tái lập độc lập trong Task 3 Meeting 5. Đồ án kế thừa kiến trúc backbone DeBERTa-v3 của InjecGuard/PIGuard và đề xuất 4 giải pháp cải tiến khắc phục các hạn chế còn tồn tại (giảm độ trễ bằng Tier 1 Fast Filter, hiệu chuẩn ngưỡng kiểm soát $\text{FPR} < 1.5\%$, tăng cường dữ liệu đối kháng và cải tiến tokenizer).
 
-#### 2. `InstructDetector (EMNLP 2024 Findings)`
-- **Tên bài báo**: *InstructDetector: Detecting Instruction-Tuned Attack Prompts in Large Language Models*
-- **Tác giả**: Linyang Zhang, et al.
-- **Venue**: *Findings of EMNLP 2024* | **arXiv**: `2402.06774`
+#### 2. `InstructDetector (EMNLP Findings)`
+- **Tên bài báo chính xác**: *Defending against Indirect Prompt Injection by Instruction Detection*
+- **Tác giả**: Tongyu Wen, Chenglong Wang, Xiyuan Yang, Haoyu Tang, Yueqi Xie, Lingjuan Lyu, Zhicheng Dou, Fangzhao Wu
+- **Venue**: *Findings of the Association for Computational Linguistics: EMNLP* | **arXiv**: `2505.06311`
 - **Tệp PDF Cục Bộ**: [`Zhao_2024_InstructDetector_Instruction_Tuned_Attack_EMNLP.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Zhao_2024_InstructDetector_Instruction_Tuned_Attack_EMNLP.pdf)
-- **Bản mở toàn văn**: [https://arxiv.org/pdf/2402.06774.pdf](https://arxiv.org/pdf/2402.06774.pdf)
-- **Đóng góp gốc (Tier 1)**: Khai thác không gian biểu diễn instruction-tuned để phát hiện các prompt chứa mã lệnh tấn công.
+- **Bản mở toàn văn**: [https://arxiv.org/pdf/2505.06311.pdf](https://arxiv.org/pdf/2505.06311.pdf)
+- **Đóng góp gốc (Tier 1)**: Khai thác không gian biểu diễn instruction-tuned và gradient trạng thái ẩn (hidden states) từ các tầng trung gian của LLM để phát hiện các prompt chứa mã lệnh tiêm nhiễm gián tiếp (IPI).
 - **Định vị kỹ thuật & Tiếp thu của đề tài (Tier 2 & 3)**: Đóng vai trò là ứng viên mô hình tham khảo Tier 2 trong Task 2 & 3 Meeting 5, được sử dụng để đối sánh độ trễ suy diễn và độ chính xác phân biệt chỉ thị lành tính vs. độc hại.
 
 #### 3. `Prompt Guard 86M (Meta AI 2024)`
-- **Tên bài báo**: *Prompt Guard 86M: A Lightweight Input Guardrail for Jailbreak and Prompt Injection Detection*
+- **Tên bài báo / tài liệu chính thức**: *Prompt Guard 86M: A Lightweight Input Guardrail for Jailbreak and Prompt Injection Detection* (Model Card & Technical Documentation)
 - **Tác giả**: Meta AI (Purple Llama Team)
-- **Venue**: *Meta AI Technical Report* (2024) | **arXiv**: `2407.21783`
+- **Venue**: *Meta AI / Purple Llama Technical Documentation & Model Card*, 2024
+- **Kho lưu trữ chính thức**: [https://huggingface.co/meta-llama/Prompt-Guard-86M](https://huggingface.co/meta-llama/Prompt-Guard-86M) & [https://github.com/meta-llama/PurpleLlama/tree/main/Prompt-Guard](https://github.com/meta-llama/PurpleLlama/tree/main/Prompt-Guard)
 - **Tệp PDF Cục Bộ**: [`Meta_2024_Prompt_Guard_86M_Input_Guardrail.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Meta_2024_Prompt_Guard_86M_Input_Guardrail.pdf)
-- **Bản mở toàn văn**: [https://arxiv.org/pdf/2407.21783.pdf](https://arxiv.org/pdf/2407.21783.pdf)
-- **Đóng góp gốc (Tier 1)**: Mô hình nhúng nhẹ 86M tham số dựa trên `mDeBERTa-v3-base` huấn luyện đa tác vụ phát hiện đồng thời Prompt Injection và Jailbreak với độ trễ thấp trên CPU.
+- **Bản mở toàn văn**: [https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/Prompt-Guard/MODEL_CARD.md](https://raw.githubusercontent.com/meta-llama/PurpleLlama/main/Prompt-Guard/MODEL_CARD.md)
+- **Đóng góp gốc (Tier 1)**: Mô hình nhúng nhẹ 86M tham số dựa trên `mDeBERTa-v3-base` huấn luyện đa tác vụ phân loại 3 lớp: Benign, Injection, Jailbreak với độ trễ thấp trên CPU.
 - **Định vị kỹ thuật & Tiếp thu của đề tài (Tier 2 & 3)**: Đóng vai trò là ứng viên mô hình tham khảo Tier 2 trong Task 2 Meeting 5; PI-Guard đối chuẩn trực tiếp về kích thước mô hình, khả năng lượng hóa và tỷ lệ dương tính giả (FPR).
 
-#### 4. `Ayub et al. (CAMLIS 2024 - Rejected Baseline)`
-- **Tên bài báo**: *Towards Robust Detection of Prompt Injection Attacks on Large Language Models*
-- **Tác giả**: Md. Asadul Ayub, et al.
+#### 4. `Ayub & Majumdar (CAMLIS 2024 - Rejected Baseline)`
+- **Tên bài báo chính xác**: *Embedding-based classifiers can detect prompt injection attacks*
+- **Tác giả**: Md. Ahsan Ayub, Subhabrata Majumdar (Vanderbilt University Medical Center & Vijil)
 - **Venue**: *Conference on Applied Machine Learning for Information Security (CAMLIS 2024)* | **arXiv**: `2410.22284`
 - **Tệp PDF Cục Bộ**: [`Ayub_2024_Towards_Robust_Detection_Prompt_Injection_CAMLIS.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Ayub_2024_Towards_Robust_Detection_Prompt_Injection_CAMLIS.pdf)
 - **Bản mở toàn văn**: [https://arxiv.org/pdf/2410.22284.pdf](https://arxiv.org/pdf/2410.22284.pdf)
@@ -512,6 +519,45 @@ DANH MỤC 12 CÔNG TRÌNH BỔ TRỢ & ĐỐI CHUẨN THỰC NGHIỆM — ĐỒ
 - **Đóng góp gốc (Tier 1)**: Đề xuất khung lý thuyết Conformal Risk Control (CRC) cung cấp bảo chứng an toàn thống kê hữu hạn mẫu (finite-sample statistical guarantees) cho các bộ lọc Guardrail hộp đen; tự động hiệu chuẩn ngưỡng quyết định trên tập calibration để kiểm soát tỷ lệ lỗi dưới ngân sách $\alpha$.
 - **Định vị kỹ thuật & Tiếp thu của PI-Guard (Tier 2)**: Trang bị cơ sở toán học cho Động cơ Chính sách Tri-State Policy Engine của PI-Guard, thay thế kỹ thuật nội suy trực quan thuần túy bằng bảo chứng toán học xác suất chặn nhầm $\text{FPR} \le 1.5\%$ trên tập Benign.
 - **Mục tiêu kỹ thuật & Giả thuyết của PI-Guard (Tier 3)**: Đạt tỷ lệ chặn nhầm thực nghiệm $\text{FPR} \le 1.5\%$ với độ tin cậy thống kê $1 - \delta \ge 95\%$ trên tập kiểm định Benign thực tế.
+
+---
+
+### 37. ModernBERT: Bringing Modern Transformer Innovations to Pre-trained Encoders (Warner et al., Answer.AI / LightOn 2024)
+- **Tên bài báo**: *ModernBERT: Bringing Modern Transformer Innovations to Pre-trained Encoders*
+- **Tác giả**: Benjamin Warner, Antoine Chaffin, Benjamin Clavié, Orion Weller, Oskar Hallström, Shraddha Vasanth, Nikhil Patry, Colin Raffel, Luke Zettlemoyer
+- **Venue**: *arXiv preprint arXiv:2412.13663* (2024)
+- **DOI / URL**: [https://arxiv.org/abs/2412.13663](https://arxiv.org/abs/2412.13663) | Open-Access PDF: [https://arxiv.org/pdf/2412.13663.pdf](https://arxiv.org/pdf/2412.13663.pdf)
+- **Tệp PDF Cục Bộ**: [Warner_2024_ModernBERT_Brings_Modern_Transformers_To_Encoders.pdf](file:///d:/Work/Do-an/workspaces/truongnv/References/Warner_2024_ModernBERT_Brings_Modern_Transformers_To_Encoders.pdf)
+- **Nguồn thẩm quyền gốc**: arXiv / Answer.AI & LightOn Technical Report.
+- **Đóng góp gốc (Tier 1)**: Hiện đại hóa kiến trúc Encoder-only (BERT/RoBERTa/DeBERTa) bằng cách tích hợp Rotary Position Embeddings (RoPE), GeGLU activations, FlashAttention-2, Unpadding và mở rộng context window lên 8,192 tokens. Đạt tốc độ suy luận nhanh hơn 2x so với DeBERTa-v3 trên GPU và vượt trội điểm số GLUE.
+- **Định vị kỹ thuật & Tiếp thu của PI-Guard (Tier 2)**: Đóng vai trò là mô hình phân loại ngữ nghĩa sâu SOTA thế hệ mới (Next-Gen Semantic Guardrail) tại Tier 2, khắc phục hoàn toàn giới hạn 512 tokens của DeBERTa-v3 khi bảo vệ các ứng dụng RAG xử lý văn bản dài.
+- **Mục tiêu kỹ thuật & Giả thuyết của PI-Guard (Tier 3)**: Đạt độ trễ P95 < 18ms trên CPU với ngữ cảnh 512 tokens và duy trì F1 > 0.92 trong việc phân loại Benign vs. Prompt Injection vs. Jailbreak.
+
+---
+
+### 38. Granite Guardian: A Family of Open Models for Content Safety and Risk Detection (Padhi et al., IBM Research 2024)
+- **Tên bài báo**: *Granite Guardian: A Family of Open Models for Content Safety and Risk Detection*
+- **Tác giả**: Inkit Padhi, Manish Nagireddy, Giandomenico Cornacchia, Subhro Das, Tejaswini Pedapati, Hima Patel, et al. (IBM Research)
+- **Venue**: *arXiv preprint arXiv:2412.07724* (2024)
+- **DOI / URL**: [https://arxiv.org/abs/2412.07724](https://arxiv.org/abs/2412.07724) | Open-Access PDF: [https://arxiv.org/pdf/2412.07724.pdf](https://arxiv.org/pdf/2412.07724.pdf)
+- **Tệp PDF Cục Bộ**: [Padhi_2024_Granite_Guardian_Content_Safety_Risk_Detection.pdf](file:///d:/Work/Do-an/workspaces/truongnv/References/Padhi_2024_Granite_Guardian_Content_Safety_Risk_Detection.pdf)
+- **Nguồn thẩm quyền gốc**: arXiv / IBM Research Technical Report.
+- **Đóng góp gốc (Tier 1)**: Thiết kế và huấn luyện dòng mô hình an toàn chuyên biệt (2B và 8B) dựa trên Granite, bao phủ toàn diện các rủi ro: Jailbreak, Direct/Indirect Prompt Injection, Context Relevance, Groundedness và Answer Relevance. Cung cấp cả nhãn rủi ro nhị phân và giải thích nguyên nhân rủi ro.
+- **Định vị kỹ thuật & Tiếp thu của PI-Guard (Tier 2)**: Cung cấp bằng chứng thực nghiệm và cơ sở đối chuẩn cho phân tầng SLM Guardrail (Thế hệ 1) tại Tier 3 (High-Assurance Arbiter), hỗ trợ phân xử các prompt có độ bất định cao.
+- **Mục tiêu kỹ thuật & Giả thuyết của PI-Guard (Tier 3)**: Sử dụng phiên bản lượng tử hóa INT4 của mô hình 2B làm trọng tài thẩm định sâu với độ trễ P95 < 120ms trên CPU.
+
+---
+
+### 39. Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack (Russinovich et al., Microsoft Research 2024)
+- **Tên bài báo**: *Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack*
+- **Tác giả**: Mark Russinovich, Ahmed Salem, Ronen Eldan (Microsoft Research & Azure)
+- **Venue**: *arXiv preprint arXiv:2404.01833* (2024)
+- **DOI / URL**: [https://arxiv.org/abs/2404.01833](https://arxiv.org/abs/2404.01833) | Open-Access PDF: [https://arxiv.org/pdf/2404.01833.pdf](https://arxiv.org/pdf/2404.01833.pdf)
+- **Tệp PDF Cục Bộ**: [Russinovich_2024_Crescendo_MultiTurn_Jailbreak_Attack.pdf](file:///d:/Work/Do-an/workspaces/truongnv/References/Russinovich_2024_Crescendo_MultiTurn_Jailbreak_Attack.pdf)
+- **Nguồn thẩm quyền gốc**: Microsoft Research Technical Report / arXiv.
+- **Đóng góp gốc (Tier 1)**: Phát hiện và hình thức hóa kỹ thuật tấn công đa lượt Crescendo: kẻ tấn công bắt đầu bằng các câu hỏi hoàn toàn vô hại, sau đó từng bước hướng dẫn LLM tạo ra các khối nội dung nhỏ và cuối cùng kết hợp thành mã độc hoặc vũ khí nguy hại. Bài báo chứng minh tỷ lệ thành công của Crescendo đạt trên 80% trên GPT-4, Claude 3, Llama-2-70B và Gemini Pro, đồng thời làm tê liệt hoàn toàn mọi bộ lọc Ingress đơn lượt.
+- **Định vị kỹ thuật & Tiếp thu của PI-Guard (Tier 2)**: Luận chứng mang tính nền tảng cho việc mở rộng PI-Guard ra ngoài giới hạn đơn lượt của Low-Latency: chấp nhận đánh đổi thêm ~15–25ms độ trễ để duy trì bộ nhớ phiên (Session Sliding Window) và tính toán độ trôi dạt ngữ nghĩa (Semantic Drift Trajectory).
+- **Mục tiêu kỹ thuật & Giả thuyết của PI-Guard (Tier 3)**: Thiết kế mô-đun `MultiTurnCrescendoGuardrail` có khả năng chặn các đợt tấn công leo thang đa lượt với tỷ lệ phát hiện > 85% sau 3-5 lượt hội thoại.
 
 ---
 
@@ -824,4 +870,39 @@ DANH MỤC 12 CÔNG TRÌNH BỔ TRỢ & ĐỐI CHUẨN THỰC NGHIỆM — ĐỒ
   journal   = {arXiv preprint arXiv:2208.02814},
   year      = {2024}
 }
-```
+
+@article{warner2024modernbert,
+  title     = {ModernBERT: Bringing Modern Transformer Innovations to Pre-trained Encoders},
+  author    = {Warner, Benjamin and Chaffin, Antoine and Clavi{\`e}, Benjamin and Weller, Orion and Hallstr{\"o}m, Oskar and Vasanth, Shraddha and Patry, Nikhil and Raffel, Colin and Zettlemoyer, Luke},
+  journal   = {arXiv preprint arXiv:2412.13663},
+  year      = {2024}
+}
+
+@article{padhi2024granite,
+  title     = {Granite Guardian: A Family of Open Models for Content Safety and Risk Detection},
+  author    = {Padhi, Inkit and Nagireddy, Manish and Cornacchia, Giandomenico and Das, Subhro and Pedapati, Tejaswini and Patel, Hima and others},
+  journal   = {arXiv preprint arXiv:2412.07724},
+  year      = {2024}
+}
+
+@article{russinovich2024crescendo,
+  title     = {Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack},
+  author    = {Russinovich, Mark and Salem, Ahmed and Eldan, Ronen},
+  journal   = {arXiv preprint arXiv:2404.01833},
+  year      = {2024}
+}
+``
+@article{zhou2026promptoverflow,
+  title   = {Prompt Overflow: What the Guardrail Inspects Is Not What the Model Infers},
+  author  = {Zhou, Yuanbo and Zhu, Changjia and Wang, Junyu and He, Xu and Zhai, Yan and Sun, Kun and Wei, Mingkui and Xiong, Junjie},
+  journal = {arXiv preprint arXiv:2605.23196},
+  year    = {2026}
+}
+
+@article{luo2026cascade,
+  title   = {CASCADE Against Jailbreaks: Combination Across Stages with Controlled Attack-Defense Evaluation},
+  author  = {Luo, Jiale and Han, Eric},
+  journal = {arXiv preprint arXiv:2609.21793},
+  year    = {2026}
+}
+`
