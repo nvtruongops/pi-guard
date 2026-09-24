@@ -180,6 +180,17 @@ Khi Hội đồng bảo vệ tốt nghiệp đặt câu hỏi: *"Tại sao dùng
 
 ---
 
+## 📖 BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG (ACADEMIC CONCEPT GLOSSARY)
+
+| Mã Neo | Thuật Ngữ & Khái Niệm | Định Nghĩa Khoa Học Bản Chất | Bối Cảnh & Phép Tương Quan Đối Chiếu Trong PI-Guard | Nguồn Gốc & Tài Liệu Tham Chiếu |
+| :---: | :--- | :--- | :--- | :--- |
+| **TN1** | **Disentangled Attention Mechanism** | Cơ chế phân tách biểu diễn nội dung và vị trí tương đối thành 2 vector độc lập, tính toán 3 ma trận attention riêng biệt. | Trọng tâm lý giải ưu thế vượt trội của DeBERTa-v3 trong việc nhận diện hoán đổi vị trí câu lệnh tiêm nhiễm. | He et al. (ICLR 2023) [[9]](#ref9). |
+| **TN2** | **Flat Token Space ($X = S \mathbin{\Vert} U$)** | Hiện tượng chuỗi chỉ thị ($S$) và dữ liệu ($U$) bị nối chuỗi phẳng thành mảng token duy nhất trong Transformer. | Là điểm mù cố hữu khiến LLM và LLM-as-a-Judge dễ bị Prompt Injection. PI-Guard giải quyết bằng kiến trúc phân loại ngoài. | Perez & Ribeiro (2022) [[3]](#ref3); Greshake et al. (2023) [[4]](#ref4). |
+| **TN3** | **Character n-grams (`char_wb`)** | Kỹ thuật trích xuất đặc trưng chuỗi con ký tự trượt bên trong ranh giới từ. | Bịt kín điểm mù Token Fragmentation Evasion (Leetspeak, Spacing) của Transformer với độ trễ cực thấp (~3.2ms). | Bojanowski et al. (2017) [[6]](#ref6); Jain et al. (2023) [[7]](#ref7). |
+| **TN4** | **Two-Tier Cascade Defense** | Kiến trúc phối hợp phân tầng: Tầng 1 lọc cú pháp nhanh (TF-IDF), Tầng 2 phân loại ngữ nghĩa sâu (DeBERTa-v3). | Bù trừ hoàn hảo giữa tốc độ và độ chính xác, kéo FPR xuống dưới 1.1% và P95 < 30ms trên CPU. | Saltzer & Schroeder (1975); Kiến trúc PI-Guard. |
+
+---
+
 ## VIII. TÀI LIỆU THAM KHẢO HỌC THUẬT (VERIFIED ACADEMIC REFERENCES)
 
 <a id="ref1"></a>**[1]** W. X. Zhao et al., "A Survey of Large Language Models," *arXiv preprint arXiv:2303.18223*, 2023. Link: [https://arxiv.org/abs/2303.18223](https://arxiv.org/abs/2303.18223).
@@ -212,5 +223,7 @@ Khi Hội đồng bảo vệ tốt nghiệp đặt câu hỏi: *"Tại sao dùng
 
 <a id="ref17"></a>**[17]** Y. Yuan, W. Jiao, W. Wang, J. Huang, P. He, and Z. Tu, "GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher," in *Proceedings of the 12th International Conference on Learning Representations (ICLR 2024)*. Link: [https://arxiv.org/abs/2308.06463](https://arxiv.org/abs/2308.06463).
 
+<a id="ref20"></a>**[20]** Meta AI, "Prompt Guard: A Small Model for Input Guardrails," *Meta AI Technical Documentation & Purple Llama Project*, 2024. Link: [https://github.com/meta-llama/llama-guard](https://github.com/meta-llama/llama-guard).
+
 ---
-*Tài liệu này được soạn thảo và lưu trữ tại `workspaces/truongnv/docs/research/Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md` nhằm phục vụ công tác bảo vệ đồ án tốt nghiệp IAP491 Đại học FPT.*
+*Tài liệu này được soạn thảo và lưu trữ tại `workspaces/truongnv/docs/research/comparative_analysis/Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md` nhằm phục vụ công tác bảo vệ đồ án tốt nghiệp IAP491 Đại học FPT.*

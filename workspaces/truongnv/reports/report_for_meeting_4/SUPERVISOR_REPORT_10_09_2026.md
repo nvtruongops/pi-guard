@@ -186,6 +186,19 @@ Hệ thống slide được chia làm 3 phần nội dung logic chặt chẽ (Sl
 
 ---
 
+## 📖 BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG (ACADEMIC CONCEPT GLOSSARY)
+
+| Mã Neo | Thuật Ngữ & Khái Niệm | Định Nghĩa Khoa Học Bản Chất | Bối Cảnh & Phép Tương Quan Đối Chiếu Trong PI-Guard | Nguồn Gốc & Tài Liệu Tham Chiếu |
+| :---: | :--- | :--- | :--- | :--- |
+| **TN1** | **Von Neumann Architecture (Kiến Trúc Von Neumann)** | Kiến trúc máy tính lưu trữ chung Dữ liệu và Mã lệnh trong cùng không gian bộ nhớ. | Minh họa nguyên nhân gốc rễ của Prompt Injection: LLM không có ranh giới phần cứng tách lệnh khỏi dữ liệu. | John von Neumann (1945); K. Thompson (1984). |
+| **TN2** | **Flat Token Space (Không Gian Token Phẳng)** | Chuỗi chỉ thị ($S$) và dữ liệu ($U$) bị nối chuỗi phẳng thành mảng token duy nhất ($X = S \mathbin{\Vert} U$). | Token của dữ liệu có thể lấn át token của chỉ thị trong ma trận Self-Attention. PI-Guard thanh tra dữ liệu tại Ingress. | Perez & Ribeiro (2022) [[1]](#ref1); Greshake et al. (2023) [[3]](#ref3). |
+| **TN3** | **Goal Hijacking & Prompt Leaking** | Hai hình thái tấn công Direct Prompt Injection: chiếm đoạt mục tiêu ứng dụng và đánh cắp system prompt. | Cơ sở định nghĩa hai kịch bản tấn công ứng dụng trong đề tài PI-Guard. | Perez & Ribeiro (NeurIPS 2022) [[1]](#ref1). |
+| **TN4** | **Competing Objectives & Mismatched Generalization** | Hai cơ chế thất bại căn chỉnh an toàn: xung đột mục tiêu hữu ích/vô hại và năng lực hiểu vượt xa tập an toàn. | Cơ sở lý luận giải thích tại sao LLM dễ bị jailbreak qua đóng vai DAN hoặc mã hóa Cipher/Base64. | Wei et al. (NeurIPS 2023); Shen et al. (CCS 2024) [[2]](#ref2). |
+| **TN5** | **Complete Mediation Principle** | Nguyên lý bảo mật đòi hỏi mọi truy cập đều phải qua kiểm soát toàn diện không có ngoại lệ. | Cơ sở kiến trúc đặt PI-Guard làm Ingress Guardrail kiểm tra toàn bộ prompt trước khi tới LLM. | Saltzer & Schroeder (IEEE Proc. 1975) [[8]](#ref8). |
+| **TN6** | **Disentangled Attention Mechanism** | Cơ chế phân tách vector nội dung và vector vị trí tương đối của token trong DeBERTa. | Giúp mô hình Tầng 2 bóc tách cấu trúc ngữ nghĩa đảo câu trong prompt injection tinh vi. | Pengcheng He et al. (ICLR 2021/2023) [[6]](#ref6). |
+
+---
+
 ## 📚 III. TÀI LIỆU THAM KHẢO TRÍCH DẪN TRONG SLIDE (REFERENCES)
 
 - <a id="ref1"></a>**[1]** F. Perez and I. Ribeiro, *"Ignore Previous Prompt: Attack Techniques For Language Models,"* in *NeurIPS ML Safety Workshop*, 2022. [arXiv:2211.09527](https://arxiv.org/abs/2211.09527).

@@ -1,0 +1,12 @@
+# Model checkpoints & large binary weights (>50MB)
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+spm.model
+
+# Python & testing caches
+__pycache__/
+*.py[cod]
+.pytest_cache/

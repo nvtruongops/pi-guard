@@ -54,7 +54,6 @@ def test_long_document_200k():
     assert res["verdict"] == "BENIGN", f"Expected BENIGN but got {res['verdict']}"
     assert res["total_blocks"] > 100, f"Expected > 100 blocks but got {res['total_blocks']}"
     print("\n[PASS] test_long_document_200k successfully verified with ZERO memory crash!")
-    return res
 
 if __name__ == "__main__":
     test_long_document_200k()

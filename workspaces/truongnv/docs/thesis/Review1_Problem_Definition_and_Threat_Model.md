@@ -17,12 +17,12 @@
 
 ---
 
-### Group Members (Collaborative Full-Pipeline Paradigm: "Ai cũng làm -> Tham khảo nhau -> Chốt kết quả"):
+### GROUP MEMBERS:
 
-1. **Nguyễn Văn Trường (Leader)** — Student ID: `SE182034` _(Architecture & Full-Pipeline Exploration)_
-2. **Nguyễn Quí Đức** — Student ID: `SE182087` _(Machine Learning & Full-Pipeline Exploration)_
-3. **Phạm Minh Hoàng Việt** — Student ID: `SE181851` _(Deep Learning & Full-Pipeline Exploration)_
-4. **Đỗ Đoàn Duy Phương** — Student ID: `SE180235` _(System Engineering & Full-Pipeline Exploration)_
+1. **Nguyễn Văn Trường (Leader)** — Student ID: `SE182034`
+2. **Nguyễn Quí Đức** — Student ID: `SE182087`
+3. **Phạm Minh Hoàng Việt** — Student ID: `SE181851`
+4. **Đỗ Đoàn Duy Phương** — Student ID: `SE180235`
 
 **Supervisor**: Trần Văn Ninh
 
@@ -56,7 +56,7 @@ The primary deliverables of this capstone project include a curated, deduplicate
 - [SECTION 4: 3-TIER LAYERED DEFENSE, 2-PHASE ARCHITECTURE & ROBUSTNESS DESIGN](#section-4-3-tier-layered-defense-2-phase-architecture-robustness-design)
 - [SECTION 5: 4-SCENARIO ILLUSTRATIVE PROBLEM & PROPOSED DEFENSE MATRIX](#section-5-4-scenario-illustrative-problem-proposed-defense-matrix)
 - [SECTION 6: LITERATURE REVIEW ON GUARDRAIL APPROACHES & MODEL SELECTION RATIONALE](#section-6-literature-review-on-guardrail-approaches-model-selection-rationale)
-  - [_Chuyên khảo Luận giải: Tại sao dùng TF-IDF Baseline & DeBERTa-v3?_](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md)
+  - [_Chuyên khảo Luận giải: Tại sao dùng TF-IDF Baseline & DeBERTa-v3?_](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/comparative_analysis/Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md)
 - [SECTION 7: QUANTITATIVE TARGETS & EVALUATION METRICS](#section-7-quantitative-targets-evaluation-metrics)
 - [SECTION 8: VERIFIED ACADEMIC REFERENCES (100% >= 2022)](#section-8-verified-academic-references-100-2022)
 
@@ -501,43 +501,67 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 | **False Positive Rate (FPR)**               |    **$< 1.5\%$ (Kỳ vọng $< 1.1\%$)**     | Không chặn nhầm các câu hỏi hợp lệ của người dùng hàng ngày[[12]](#ref12)                 |
 | **Inference Latency (P95)**                 | **$< 30\text{ ms}$ trên CPU tiêu chuẩn** | Đảm bảo không làm nghẽn cổ chai thời gian phản hồi của ứng dụng AI                        |
 | **Độ bền với Leetspeak / Spacing / Base64** |        **F1 Degradation $< 5\%$**        | Duy trì khả năng nhận diện khi payload bị làm nhiễu cú pháp[[13]](#ref13), [[17]](#ref17) |
-| **Mức nén bộ nhớ (RAM / Disk)**             |  **Giảm $> 65\%$ ($< 150\text{ MB}$)**   | Cho phép triển khai microservice nhẹ trên mọi hạ tầng Container / Edge[[14]](#ref14)      |
+| **Mức nén bộ nhớ (RAM / Disk)**             |  **Giảm $> 65\%$ ($< 150\text{ MB}$)**   | Cho phép triển khai microservice nhẹ trên mọi hạ tầng Container / Edge qua tối ưu hóa lượng hóa mô hình (Post-Training Quantization) |
+
+---
+
+## BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG (ACADEMIC CONCEPT GLOSSARY)
+
+> [!NOTE]
+> ### 📖 Vai Trò Của Bảng Giải Nghĩa Thuật Ngữ Học Thuật
+> Nhằm phục vụ tốt nhất cho việc đánh giá học thuật và bảo vệ đồ án trước Hội đồng chấm tốt nghiệp (Academic Council) theo quy chuẩn [`.agents/rules/academic-terminology-and-glossary-standards.md`](file:///d:/Work/Do-an/.agents/rules/academic-terminology-and-glossary-standards.md), bảng dưới đây phân tích chi tiết các khái niệm và phép so sánh liên ngành xuất hiện trong báo cáo theo 4 trường thông tin chuẩn mực:
+
+| Mã Neo | Thuật Ngữ & Khái Niệm | Định Nghĩa Khoa Học Bản Chất | Bối Cảnh & Phép Tương Quan Đối Chiếu Trong PI-Guard | Nguồn Gốc & Tài Liệu Tham Chiếu |
+| :---: | :--- | :--- | :--- | :--- |
+| <a id="term-von-neumann"></a>**TN1** | **Von Neumann Architecture (Kiến Trúc Von Neumann)** | Mô hình kiến trúc máy tính nền tảng nơi Dữ liệu và Mã lệnh thực thi cùng lưu trữ chung trong một không gian bộ nhớ vật lý duy nhất. | **Phép đối sánh cội nguồn**: Trình bày tại Mục 1.2 để minh họa căn nguyên của Prompt Injection: LLM không có kênh phần cứng riêng biệt để tách câu lệnh hệ thống khỏi dữ liệu người dùng. | John von Neumann (1945), *"First Draft of a Report on the EDVAC"*; K. Thompson (1984). |
+| <a id="term-nx-bit"></a>**TN2** | **NX-bit / W^X (No-Execute Bit / Write XOR Execute)** | Cơ chế bảo vệ bộ nhớ mức phần cứng CPU (Memory Page Protection) đánh dấu các phân vùng dữ liệu (`.data`, Stack, Heap) là không thể thực thi mã, ngăn chặn triệt để tấn công chèn shellcode thực thi lệnh (Buffer Overflow). | **Phép đối sánh giải pháp**: Nêu tại Mục 1.2 và Section 4. Trong hệ điều hành hiện đại, vấn đề chèn mã đã được giải quyết bằng cờ phần cứng. Ngược lại, kiến trúc Transformer hiện nay chưa có cơ chế phần cứng tương đương để đánh dấu token của người dùng $U$ là "Non-Executable Token". | AMD Enhanced Virus Protection (EVP) & Intel XD-bit (2004); OpenBSD W^X Security Policy. |
+| <a id="term-prepared-statements"></a>**TN3** | **Prepared Statements (Truy Vấn Tham Số Hóa)** | Kỹ thuật trong hệ quản trị cơ sở dữ liệu quan hệ (RDBMS) tách biệt hoàn toàn pha biên dịch cú pháp câu lệnh SQL và pha truyền nạp dữ liệu người dùng qua các biến tham số hóa riêng biệt (Placeholders). | **Phép đối sánh tương phản**: Nêu tại Section 2. Trong SQL, dữ liệu người dùng không bao giờ có thể trở thành cú pháp điều khiển nhờ Prepared Statements. Tuy nhiên trong LLM, không thể có "Prepared Prompt" vì câu lệnh hệ thống ($S$) và dữ liệu người dùng ($U$) bị nối phẳng thành một chuỗi token duy nhất ($X = S \Vert U$), bắt buộc phải dùng rào chắn ngoại vi (PI-Guard). | Tiêu chuẩn ISO/IEC 9075 (SQL); OWASP SQL Injection Prevention Cheat Sheet. |
+| <a id="term-flat-token-space"></a>**TN4** | **Flat Token Space (Không Gian Token Phẳng)** | Hiện tượng chuỗi chỉ thị hệ thống ($S$) và dữ liệu người dùng ($U$) bị nối chuỗi (*concatenation*) thành một mảng token duy nhất ($X = S \mathbin{\Vert} U$) và cùng tham gia vào ma trận Self-Attention với quyền hạn tương đương. | **Căn nguyên kỹ thuật cốt lõi**: Trình bày tại Mục 1.2 và Section 2. Là gốc rễ khiến LLM bị Prompt Injection, vì các token của dữ liệu người dùng $U$ có toàn quyền tương tác ma trận chú ý ($QK^T$) để làm lu mờ hoặc ghi đè biểu diễn của token chỉ thị $S$. PI-Guard giải quyết bằng cách thanh tra $U$ độc lập trước khi nạp vào LLM. | Perez & Ribeiro (NeurIPS 2022) [[3]](#ref3); Greshake et al. (ACM AISec 2023) [[4]](#ref4). |
+| <a id="term-goal-hijacking"></a>**TN5** | **Goal Hijacking (Chiếm Đoạt Mục Tiêu Ứng Dụng)** | Kỹ thuật tiêm lệnh ép LLM bỏ qua mục tiêu nghiệp vụ ban đầu để thực hiện một mục tiêu trái phép do kẻ tấn công chỉ định. | **Kịch bản thiệt hại 1**: Trình bày tại Mục 1.1, 1.4 và Section 2. Gây tổn hại nghiêm trọng về tính toàn vẹn (Integrity) của ứng dụng tích hợp LLM. | Perez & Ribeiro (2022) [[3]](#ref3). |
+| <a id="term-prompt-leaking"></a>**TN6** | **Prompt Leaking (Đánh Cắp Chỉ Thị Ẩn)** | Kỹ thuật tấn công ép mô hình in ra nguyên văn System Prompt, bí mật kinh doanh hoặc API keys nhúng trong bối cảnh. | **Kịch bản thiệt hại 2**: Trình bày tại Mục 1.1, 1.4 và Section 2. Gây tổn hại nghiêm trọng về tính bí mật (Confidentiality) và quyền sở hữu trí tuệ của doanh nghiệp. | Perez & Ribeiro (2022) [[3]](#ref3); OWASP LLM01:2025 [[8]](#ref8). |
+| <a id="term-competing-objectives"></a>**TN7** | **Competing Objectives (Xung Đột Mục Tiêu Căn Chỉnh)** | Trạng thái mâu thuẫn nội tại khi mô hình phải tối ưu hóa đồng thời hai mục tiêu đối nghịch: Tính hữu ích (*Helpfulness*) và Tính vô hại (*Harmlessness*). | **Cơ chế gốc của Jailbreak 1**: Trình bày tại Mục 1.1 và Section 2. Kẻ tấn công tạo dựng các kịch bản khẩn cấp hoặc nghiên cứu học thuật để kích hoạt tối đa tính *Helpfulness*, ép mô hình hạ thấp và vô hiệu hóa rào cản *Harmlessness*. | Alexander Wei, Nika Haghtalab, Jacob Steinhardt (NeurIPS 2023) [[5]](#ref5). |
+| <a id="term-mismatched-generalization"></a>**TN8** | **Mismatched Generalization (Tổng Quát Hóa Lệch)** | Năng lực biểu diễn và giải mã ngôn ngữ tổng quát của mô hình vượt xa phạm vi dữ liệu an toàn mà mô hình được tinh chỉnh (*Safety Fine-Tuning*). | **Cơ chế gốc của Jailbreak 2**: Trình bày tại Mục 1.2 và Section 4. Khi payload được mã hóa Base64 hoặc Leetspeak, mô hình vẫn hiểu ý đồ nhưng rào cản an toàn không kích hoạt. | Wei et al. (NeurIPS 2023) [[5]](#ref5); Yuan et al. (ICLR 2024) [[17]](#ref17); Zou et al. (2023) [[18]](#ref18). |
+| <a id="term-refusal-boundary"></a>**TN9** | **Refusal Boundary (Ranh Giới Từ Chối An Toàn)** | Siêu mặt phẳng quyết định (Decision Boundary) trong không gian tham số của mô hình nền tảng, xác định ngưỡng kích hoạt câu trả lời từ chối chuẩn (*Refusal Action*) trước các yêu cầu vi phạm đạo đức/pháp luật. | **Ranh giới phân biệt PI vs. Jailbreak**: Trình bày tại Section 2. Jailbreak cố tình bẻ gãy ranh giới này; ngược lại Prompt Injection lách qua ranh giới này hoàn toàn mà không bị phát hiện vì bản thân câu lệnh tiêm nhiễm không chứa từ ngữ độc hại. | Long Ouyang et al. (InstructGPT / NeurIPS 2022); Shen et al. (ACM CCS 2024) [[15]](#ref15). |
+| <a id="term-complete-mediation"></a>**TN10** | **Complete Mediation Principle (Nguyên Lý Kiểm Soát Toàn Diện)** | Nguyên lý an toàn hệ thống đòi hỏi mọi truy cập vào đối tượng được bảo vệ đều phải được kiểm tra và xác thực mà không có lối tắt ngoại lệ. | **Cơ sở kiến trúc Ingress Guardrail**: Trình bày tại Mục 1.2 và Section 4. PI-Guard đóng vai trò chốt chặn bắt buộc trước mọi truy vấn gửi tới LLM. | Saltzer & Schroeder, *"The Protection of Information in Computer Systems"*, IEEE 1975. |
+| <a id="term-disentangled-attention"></a>**TN11** | **Disentangled Attention Mechanism (Cơ Chế Chú Ý Phân Tách)** | Cơ chế attention trong DeBERTa biểu diễn mỗi token bằng 2 vector riêng biệt: nội dung (Content) và vị trí tương đối (Relative Position). | **Cơ sở lựa chọn mô hình Tầng 2**: Trình bày tại Section 4 và Section 6. Giúp PI-Guard nhận diện chính xác các cấu trúc đảo ngữ và hoán đổi vị trí câu lệnh tiêm nhiễm trong prompt. | Pengcheng He et al. (ICLR 2023) [[11]](#ref11). |
+| <a id="term-group-aware-splitting"></a>**TN12** | **Group-Aware Splitting (Phân Tách Dữ Liệu Bảo Toàn Cụm)** | Phương pháp phân chia tập dữ liệu train/val/test theo cụm kịch bản ngữ nghĩa thay vì phân chia ngẫu nhiên, đảm bảo toàn bộ biến thể của một mẫu tấn công chỉ nằm trong một tập. | **Giải pháp kỹ thuật Gap 1**: Trình bày tại Mục 1.3 và Section 7. Triệt tiêu hiện tượng rò rỉ dữ liệu giữa train và test ($\text{Inter-cluster Jaccard} < 0.15$). | Shen et al. (ACM CCS 2024) [[15]](#ref15); Phương pháp luận kỹ nghệ dữ liệu PI-Guard. |
+| <a id="term-autoregressive-transformer"></a>**TN13** | **Autoregressive Transformer (Mô Hình Transformer Tự Hồi Quy)** | Kiến trúc mạng nơ-ron Transformer sinh chuỗi tuần tự theo phân phối xác suất có điều kiện $P(y_t \mid y_{<t}, X)$. | **Cơ sở kiến trúc mô hình**: Trình bày tại Mục 1.2 và Section 2. Giải thích lý do tại sao LLM không thể tự kiểm tra an toàn cấu trúc như compiler. | A. Vaswani et al. (NeurIPS 2017); Radford et al. (OpenAI GPT series, 2019). |
 
 ---
 
 # SECTION 8: VERIFIED ACADEMIC REFERENCES (100% >= 2022)
 
-> 📑 **Nhật ký & Ma trận ánh xạ chi tiết**: Xem tại [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md)
-> 📂 **Thư mục lưu trữ 17 file PDF gốc**: [`d:/Work/Do-an/References/`](file:///d:/Work/Do-an/Final-Report/References/)
+> 📑 **Nhật ký & Ma trận ánh xạ chi tiết**: Xem tại [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truongnv/References/REFERENCES_LOG.md)
+> 📂 **Thư mục lưu trữ 17 file PDF gốc**: [`workspaces/truongnv/References/`](file:///d:/Work/Do-an/workspaces/truongnv/References/)
 
 <a id="ref1"></a>**[1]** W. X. Zhao et al., "A Survey of Large Language Models," _IJCAI / arXiv preprint arXiv:2303.18223_, 2023.
 
-- 📖 **Local PDF**: [`References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf`](file:///d:/Work/Do-an/Final-Report/References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf)
+- 📖 **Local PDF**: [`References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2303.18223](https://arxiv.org/abs/2303.18223)
 
 <a id="ref2"></a>**[2]** L. Ouyang et al., "Training language models to follow instructions with human feedback," in _Advances in Neural Information Processing Systems (NeurIPS)_, vol. 35, pp. 27730–27744, 2022.
 
-- 📖 **Local PDF**: [`References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`](file:///d:/Work/Do-an/Final-Report/References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf)
+- 📖 **Local PDF**: [`References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2203.02155](https://arxiv.org/abs/2203.02155)
 
 <a id="ref3"></a>**[3]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in _NeurIPS 2022 Workshop on ML Safety_, 2022.
 
-- 📖 **Local PDF**: [`References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf`](file:///d:/Work/Do-an/Final-Report/References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf)
-- 🔗 **Online URL**: [https://arxiv.org/abs/2206.05600](https://arxiv.org/abs/2206.05600)
+- 📖 **Local PDF**: [`References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf)
+- 🔗 **Online URL**: [https://arxiv.org/abs/2211.09527](https://arxiv.org/abs/2211.09527)
 
 <a id="ref4"></a>**[4]** K. Greshake, S. Abdelnabi, S. Mishra, C. Endres, T. Holz, and M. Fritz, "Not what you've signed up for: Compromising Real-World LLM Applications with Indirect Prompt Injection," in _Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISEC)_, pp. 79–90, 2023.
 
-- 📖 **Local PDF**: [`References/Greshake_2023_Indirect_Prompt_Injection.pdf`](file:///d:/Work/Do-an/Final-Report/References/Greshake_2023_Indirect_Prompt_Injection.pdf)
+- 📖 **Local PDF**: [`References/Greshake_2023_Indirect_Prompt_Injection.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Greshake_2023_Indirect_Prompt_Injection.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2302.12173](https://arxiv.org/abs/2302.12173)
 
 <a id="ref5"></a>**[5]** A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in _Advances in Neural Information Processing Systems 36 (NeurIPS 2023)_, vol. 36, pp. 80079–80110, 2023.
 
-- 📖 **Local PDF**: [`References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/Final-Report/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf)
+- 📖 **Local PDF**: [`References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2307.02483](https://arxiv.org/abs/2307.02483)
 
 <a id="ref6"></a>**[6]** Y. Yang, X. Zheng, H. Wu, H. Cheng, X. Shi, J. Guo, B. Yang, Y. Zhou, X. Wu, and Z. Ying, "Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming," _Tencent Zhuque Lab Technical Report_, arXiv preprint arXiv:2606.31227, Jun. 2026.
 
-- 📖 **Local PDF**: [`References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`](file:///d:/Work/Do-an/Final-Report/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf)
+- 📖 **Local PDF**: [`References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2606.31227](https://arxiv.org/abs/2606.31227)
 
 <a id="ref7"></a>**[7]** A. Vassilev, A. R. Oprea, C. E. Fordyce, and H. Anderson, "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations," _National Institute of Standards and Technology (NIST)_, NIST Trustworthy and Responsible AI Report NIST.AI.100-2e2025, Jan. 2025.
@@ -550,50 +574,50 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 
 <a id="ref9"></a>**[9]** H. Inan et al., "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations," _Meta AI Technical Report_, arXiv preprint arXiv:2312.06674, Dec. 2023.
 
-- 📖 **Local PDF**: [`References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf`](file:///d:/Work/Do-an/Final-Report/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf)
+- 📖 **Local PDF**: [`References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2312.06674](https://arxiv.org/abs/2312.06674)
 
 <a id="ref10"></a>**[10]** T. Rebedea et al., "NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications," in _Proceedings of EMNLP: System Demonstrations_, pp. 431–444, 2023.
 
-- 📖 **Local PDF**: [`References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`](file:///d:/Work/Do-an/Final-Report/References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf)
+- 📖 **Local PDF**: [`References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/NVIDIA_2023_NeMo_Guardrails_Toolkit.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2310.10501](https://arxiv.org/abs/2310.10501)
 
 <a id="ref11"></a>**[11]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in _Proceedings of the 11th International Conference on Learning Representations (ICLR)_, 2023.
 
-- 📖 **Local PDF**: [`References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`](file:///d:/Work/Do-an/Final-Report/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf)
+- 📖 **Local PDF**: [`References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543)
 
 <a id="ref12"></a>**[12]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in _Proceedings of the AAAI Conference on Artificial Intelligence (AAAI 2023)_, Vol. 37, No. 12, pp. 15009–15018, 2023.
 
-- 📖 **Local PDF**: [`References/OpenAI_2023_Undesired_Content_Detection.pdf`](file:///d:/Work/Do-an/Final-Report/References/OpenAI_2023_Undesired_Content_Detection.pdf)
+- 📖 **Local PDF**: [`References/OpenAI_2023_Undesired_Content_Detection.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/OpenAI_2023_Undesired_Content_Detection.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274)
 
 <a id="ref13"></a>**[13]** N. Jain et al., "Baseline Defenses for Adversarial Attacks Against Aligned Language Models," arXiv preprint arXiv:2309.00614, 2023.
 
-- 📖 **Local PDF**: [`References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/Final-Report/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf)
+- 📖 **Local PDF**: [`References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614)
 
 <a id="ref14"></a>**[14]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," arXiv preprint arXiv:2310.03684, 2023.
 
-- 📖 **Local PDF**: [`References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`](file:///d:/Work/Do-an/Final-Report/References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf)
+- 📖 **Local PDF**: [`References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684)
 
 <a id="ref15"></a>**[15]** X. Shen et al., ""Do Anything Now": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in _Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (CCS)_, pp. 4028–4042, 2024.
 
-- 📖 **Local PDF**: [`References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`](file:///d:/Work/Do-an/Final-Report/References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf)
+- 📖 **Local PDF**: [`References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Shen_2024_Do_Anything_Now_Jailbreak_Prompts_In_The_Wild.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825) (DOI: `10.1145/3658644.3670388`)
 
 <a id="ref16"></a>**[16]** W. Zhou et al., "EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models," arXiv preprint arXiv:2403.12171, 2024.
 
-- 📖 **Local PDF**: [`References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf`](file:///d:/Work/Do-an/Final-Report/References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf)
+- 📖 **Local PDF**: [`References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Zhou_2024_EasyJailbreak_Unified_Framework.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2403.12171](https://arxiv.org/abs/2403.12171)
 
 <a id="ref17"></a>**[17]** Y. Yuan, W. Jiao, W. Wang, J. Huang, P. He, and Z. Tu, "GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher," in _Proceedings of the 12th International Conference on Learning Representations (ICLR)_, 2024.
 
-- 📖 **Local PDF**: [`References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`](file:///d:/Work/Do-an/Final-Report/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf)
+- 📖 **Local PDF**: [`References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2308.06463](https://arxiv.org/abs/2308.06463)
 
 <a id="ref18"></a>**[18]** A. Zou, Z. Wang, N. Carlini, M. Nasr, J. Z. Kolter, and M. Fredrikson, "Universal and Transferable Adversarial Attacks on Aligned Language Models," *arXiv preprint arXiv:2307.15043*, 2023.
 
-- 📖 **Local PDF**: [`References/Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf`](file:///d:/Work/Do-an/Final-Report/References/Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf)
+- 📖 **Local PDF**: [`References/Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2307.15043](https://arxiv.org/abs/2307.15043)

@@ -37,11 +37,20 @@ class HuggingFaceGuardrailClassifier(BaseGuardrailClassifier):
         self._initialize()
 
     def _initialize(self):
+        # Base/embedding checkpoints (như all-MiniLM-L6-v2 hay mdeberta-v3-base) không có sẵn
+        # classification head cho prompt injection trừ khi được nạp từ trọng số đã fine-tune cục bộ.
+        if self.model_type in ["minilm", "multilingual_mdeberta"] and not os.path.exists(self.model_id):
+            self.is_real_model = False
+            return
+
         try:
             from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
             tokenizer = AutoTokenizer.from_pretrained(self.model_id, local_files_only=False)
             model = AutoModelForSequenceClassification.from_pretrained(self.model_id, local_files_only=False)
-            self.pipeline = pipeline("text-classification", model=model, tokenizer=tokenizer, return_all_scores=True)
+            try:
+                self.pipeline = pipeline("text-classification", model=model, tokenizer=tokenizer, top_k=None)
+            except Exception:
+                self.pipeline = pipeline("text-classification", model=model, tokenizer=tokenizer)
             self.is_real_model = True
         except Exception:
             # Chế độ Fallback: Mô phỏng dựa trên đặc trưng nhận diện ngữ nghĩa của checkpoint tương ứng
@@ -59,12 +68,12 @@ class HuggingFaceGuardrailClassifier(BaseGuardrailClassifier):
             results = self.pipeline(texts)
             scores = []
             for res in results:
-                # Tìm xác suất của nhãn Malicious / Injection / Jailbreak
+                items = res if isinstance(res, list) else [res]
                 malicious_score = 0.0
-                for item in res:
-                    label = item["label"].lower()
+                for item in items:
+                    label = str(item.get("label", "")).lower()
                     if "injection" in label or "jailbreak" in label or label in ["label_1", "label_2", "attack"]:
-                        malicious_score = max(malicious_score, float(item["score"]))
+                        malicious_score = max(malicious_score, float(item.get("score", 0.0)))
                 scores.append(malicious_score)
             return scores
 

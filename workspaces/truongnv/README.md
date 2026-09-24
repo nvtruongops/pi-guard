@@ -16,8 +16,12 @@
   - [`reports/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/README.md): Cổng điều hướng phân hệ báo cáo tiến độ qua các mốc (Meeting 4, 5, 6 và Báo cáo tổng luận SOTA).
   - [`reports/RESEARCH_ML_GUARDRAIL_SOTA_TO_PROJECT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/RESEARCH_ML_GUARDRAIL_SOTA_TO_PROJECT.md): Báo cáo tổng luận khoa học SOTA Guardrail, phổ mô hình 4 thế hệ, 5 chiều đánh đổi biên và phân tích thực nghiệm ứng dụng cho PI-Guard.
   - [`reports/tasks_for_meeting_5/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/README.md): **Hồ sơ 4 nhiệm vụ kỹ thuật Meeting 5** (Task 1: Phân biệt PI/Jailbreak, Task 2: 5D Framework & Reference Models, Task 3: Thực nghiệm tái lập PIGuard ACL 2025, Task 4: 4 Giải pháp cải tiến).
-  - [`reports/tasks_for_meeting_6/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/README.md): **Hồ sơ nhiệm vụ kỹ thuật Meeting 6** (4 bài báo nâng cấp, bộ mô hình thực nghiệm, kịch bản benchmark và bộ unit tests).
-    - [`reports/tasks_for_meeting_6/TASK_MODEL_FREEZING_RESEARCH_STANDARDS_AND_GAP_AUDIT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/TASK_MODEL_FREEZING_RESEARCH_STANDARDS_AND_GAP_AUDIT.md): **Hồ sơ nhiệm vụ chuẩn mực nghiên cứu & Gap Audit đóng băng mô hình** (8 bước chuẩn mực IEEE/FPT, 6 khoảng trống thực nghiệm, và Actionable Checklist).
+  - [`reports/tasks_for_meeting_6/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/README.md): **Hồ sơ nhiệm vụ kỹ thuật Meeting 6** (Bộ tài liệu tổng hợp, mô hình thực nghiệm, kịch bản benchmark và bộ unit tests).
+    - [`reports/tasks_for_meeting_6/03_reports_and_executive_briefs/MASTER_RESEARCH_SYNTHESIS_REPORT_MEETING_6.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/MASTER_RESEARCH_SYNTHESIS_REPORT_MEETING_6.md): **Báo Cáo Tổng Hợp Nghiên Cứu Master Toàn Diện** (100% Un-mocked, Thống kê Wilson CIs, McNemar Tests, Kháng đối kháng thích ứng & Slide Deck).
+    - [`reports/tasks_for_meeting_6/03_reports_and_executive_briefs/COMPREHENSIVE_PUBLIC_MODELS_BENCHMARK_AND_RESEARCH_EVALUATION.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/COMPREHENSIVE_PUBLIC_MODELS_BENCHMARK_AND_RESEARCH_EVALUATION.md): **Báo Cáo Đối Chuẩn Chuyên Sâu 12 Mô Hình Public & Luận Cứ Lựa Chọn** (Bóc tách toán học, điểm mù thực nghiệm, Overdefense Collapse, AST-MOF).
+    - [`reports/tasks_for_meeting_6/03_reports_and_executive_briefs/COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md): **Hồ Sơ Bảo Vệ Hội Đồng & Gap Audit Đóng Băng Mô Hình** (8 bước chuẩn mực IEEE, 5 Key phấn đấu cốt lõi, 3 Ranh giới ngoài tầm với).
+    - [`reports/tasks_for_meeting_6/02_compatibility_and_tradeoffs/DECISION_AND_COMPARISON_MATRICES.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/02_compatibility_and_tradeoffs/DECISION_AND_COMPARISON_MATRICES.md): **Bộ Ma Trận Ra Quyết Định Đa Tiêu Chí** (4 Ma trận đối chuẩn: Kiến trúc, Hàm mất mát, Cửa sổ 200k và Định tuyến bất định).
+    - [`reports/tasks_for_meeting_6/scripts/reproduce_all_benchmarks.py`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/scripts/reproduce_all_benchmarks.py): **Kịch bản Tái lập Tự động 1-Lệnh** (Master 1-Click Reproducibility Script).
   - [`Final-Report/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/Final-Report/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md): *(Dùng chung toàn nhóm)* Tóm tắt quy chế và tiêu chí chấm điểm FPT IAP491.
   - [`docs/thesis/FINAL_THESIS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FINAL_THESIS.md): Bản biên dịch toàn văn các chương Review 1.
 
@@ -34,6 +38,12 @@
 - 🧪 **Trung Tâm Tái Lập Y Văn & Baselines ([`replications/`](file:///d:/Work/Do-an/workspaces/truongnv/replications/README.md))**:
   - Quản lý tập trung **đúng 5 mô hình tái lập y văn upstream nguyên bản** có đầy đủ 100% Bộ Ba Công Khai (Public Code + Paper + Dataset): `PIGuard ACL 2025`, `Meta PromptGuard 2024`, `Jain NeurIPS 2023`, `InstructDetector EMNLP 2024`, `Ayub CAMLIS 2024`.
   - Đi kèm toàn bộ Interactive Notebooks, Datasets, Scripts kiểm định và Sổ tay tái lập (`MEMBER_REPRODUCTION_RUNBOOK.md`).
+
+- 🏛️ **Phân Hệ Báo Cáo Tiến Độ & Cột Mốc ([`reports/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/README.md))**:
+  - Lưu trữ hồ sơ nghiên cứu và sản phẩm thực nghiệm qua các cột mốc:
+    - [`reports/report_for_meeting_4/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/): Cột mốc Meeting 4 (4 Task nghiên cứu mối đe dọa 5D, tính tái lập dữ liệu, cải tiến phòng thủ).
+    - [`reports/tasks_for_meeting_5/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/): Cột mốc Meeting 5 (Tái lập thực nghiệm PIGuard ACL 2025, đối chuẩn 4 mô hình ứng viên).
+    - [`reports/tasks_for_meeting_6/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/): Cột mốc Meeting 6 Đóng Băng Mô Hình & Kiểm Định Hoàn Tất (Kiến trúc Two-Tier Cascade, Dynamic Class-Weighted Loss, Group-Aware Splitting MD5, Benchmark 520 samples).
 
 - 📚 **Tài liệu tham khảo & Thư viện Nghiên cứu**:
   - [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truongnv/References/REFERENCES_LOG.md): Bảng ma trận 18 bài báo chuẩn (100% >= 2022).

@@ -43,12 +43,11 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
 │       └── Đối chuẩn thực nghiệm 12 mô hình độc lập (D1-D6), 6 nhánh đánh đổi B1-B6, 200k chunking & 4 figures
 │
 ├── 03_reports_and_executive_briefs/                   # [PHÂN HỆ 3: HỒ SƠ BÁO CÁO ĐIỀU HÀNH & BẢO VỆ HỘI ĐỒNG]
-│   ├── EXECUTIVE_PROGRESS_REPORT_MEETING_6.md
-│   │   └── Báo cáo tiến độ điều hành Meeting 6 chuẩn Markdown (đồng bộ hoàn hảo với bản Word)
-│   ├── COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md
-│   │   └── Hồ sơ Gap Audit 8 bước, 5 Key phấn đấu, 3 Giới hạn ngoài tầm với & Quyết định Đóng băng mô hình
-│   └── RESEARCH_REPORT_MEETING_6.docx
-│       └── Báo cáo định dạng Microsoft Word chính thức nộp GVHD ThS. Trần Văn Ninh
+│   ├── MASTER_RESEARCH_SYNTHESIS_REPORT_MEETING_6.md  # [MỚI] Báo cáo Tổng hợp Master Toàn diện (Chuẩn Publication/Thesis)
+│   ├── SLIDE_DECK_MEETING_6.md                        # [MỚI] Khung Slide Báo cáo Tiến độ Meeting 6
+│   ├── EXECUTIVE_PROGRESS_REPORT_MEETING_6.md         # Báo cáo tiến độ điều hành Meeting 6 chuẩn Markdown (Un-mocked)
+│   ├── COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md     # Hồ sơ Gap Audit 8 bước, 5 Key phấn đấu, 3 Giới hạn ngoài tầm với
+│   └── RESEARCH_REPORT_MEETING_6.docx                 # Báo cáo định dạng Microsoft Word chính thức nộp GVHD ThS. Trần Văn Ninh
 │
 ├── 04_benchmarks_and_data/                            # [PHÂN HỆ 4: DỮ LIỆU ĐO ĐẠC SỐ HÓA JSON & CATALOG]
 │   ├── README.md                                      # Catalog giải thích nguồn gốc, generator script & schema 8 file JSON
@@ -56,7 +55,7 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
 │   ├── compatibility_matrix_expanded_12x14.json       # Dữ liệu số hóa 168 giao điểm ma trận mở rộng 12x14
 │   ├── grounded_empirical_matrix.json                 # Dữ liệu đối chuẩn 12 mô hình thực nghiệm CPU
 │   ├── multi_branch_tradeoffs_matrix.json             # Dữ liệu phân tích đánh đổi 6 nhánh cấu hình vận hành
-│   ├── cross_dataset_empirical_matrix.json            # Dữ liệu kiểm thử chéo 6 mô hình trên D1-D6
+│   ├── cross_dataset_empirical_matrix.json            # Dữ liệu kiểm thử chéo 6 mô hình trên D1-D6 (Un-mocked, Wilson CIs)
 │   ├── comprehensive_empirical_benchmark_suite.json   # Dữ liệu tổng hợp tải và độ trễ CPU
 │   ├── experimental_models_benchmark_report.json      # Báo cáo đo đạc chi tiết các baseline thử nghiệm
 │   └── public_triad_empirical_benchmark.json          # Báo cáo kiểm chứng nguyên tắc Bộ Ba Công Khai
@@ -68,9 +67,16 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
 │   ├── tier2_semantic_arbiter.py                      # Tầng 2: DeBERTa-v3 MOF Invariant phân loại ngữ nghĩa an toàn
 │   └── tier1_tfidf_model.joblib                       # Trọng số mô hình Tầng 1 đã huấn luyện thực tế (861.3 KB)
 │
-├── tests/                                             # [BỘ KIỂM THỬ TỰ ĐỘNG PYTEST]
-│   ├── test_long_document_200k.py                     # Kiểm thử quét tài liệu 200k ký tự sạch & đo độ trễ P95 CPU
-│   └── test_hidden_prompt_at_tail.py                  # Kiểm thử bắt đòn tấn công giấu ở cuối trang tài liệu (111x speedup)
+├── scripts/                                           # [PHÂN HỆ TOOLING & TỰ ĐỘNG HÓA TÁI LẬP]
+│   ├── reproduce_all_benchmarks.py                    # [MỚI] Script 1-Click Tự động Tái lập 100% Thực nghiệm & Biểu đồ
+│   ├── run_cross_dataset_benchmark.py                 # Runner đo đạc 600 mẫu test D1-D6 & McNemar test
+│   ├── generate_benchmark_figures.py                  # Trình sinh 4 biểu đồ khoa học tự động
+│   └── ...                                            # Các công cụ tính toán ma trận tương thích
+│
+├── tests/                                             # [BỘ KIỂM THỬ TỰ ĐỘNG PYTEST - 3/3 TESTS PASSED]
+│   ├── test_adaptive_token_dilution.py                # Kiểm thử đối kháng Gray-box Token Dilution & OOV Gate (PASS)
+│   ├── test_hidden_prompt_at_tail.py                  # Kiểm thử bắt tấn công giấu đuôi 200k chars tăng tốc 4.6x (PASS)
+│   └── test_long_document_200k.py                     # Kiểm thử văn bản lớn 200k chars 149 blocks không OOM (PASS)
 │
 ├── data/                                              # [DỮ LIỆU KIỂM THỬ THỰC TẾ]
 │   ├── sample_benign_200k.txt                         # Mẫu văn bản lành tính 200,000 ký tự

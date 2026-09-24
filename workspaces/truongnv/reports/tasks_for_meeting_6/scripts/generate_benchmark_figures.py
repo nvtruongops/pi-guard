@@ -72,7 +72,8 @@ def plot_fig2_cross_dataset_heatmap(matrix_data=None):
     matrix_file = os.path.join(BENCHMARKS_DIR, "cross_dataset_empirical_matrix.json")
     if matrix_data is None and os.path.exists(matrix_file):
         with open(matrix_file, "r", encoding="utf-8") as f:
-            matrix_data = json.load(f)
+            raw_data = json.load(f)
+            matrix_data = raw_data.get("models_matrix", raw_data)
 
     if not matrix_data:
         print("[-] Skipping Figure 2: matrix data not yet available.")
@@ -80,19 +81,15 @@ def plot_fig2_cross_dataset_heatmap(matrix_data=None):
 
     models = [
         "M1_Baseline_Regex",
-        "M2_Jain_Perplexity",
-        "M3_Meta_PromptGuard_86M",
-        "M4_DataSentinel_Minimax",
-        "M5_Tier1_FastFilter",
-        "M_PI_PIGuard_Cascade"
+        "M2_Tier1_TFIDF_Platt",
+        "M3_DeBERTa_V3_Standalone",
+        "M4_PIGuard_Cascade_TwoTier"
     ]
     model_labels = [
-        "M1: Heuristic Regex",
-        "M2: Jain Perplexity (2023)",
-        "M3: Meta Prompt-Guard 86M",
-        "M4: DataSentinel (S&P 2025)",
-        "M5: Tier-1 FastFilter",
-        "M-PI: PI-Guard Cascade"
+        "M1: Baseline Regex",
+        "M2: Tier-1 TF-IDF Platt",
+        "M3: DeBERTa-v3 Standalone",
+        "M4: PI-Guard Two-Tier Cascade"
     ]
     datasets = [
         "D1_PIGuard_Valid",
@@ -147,7 +144,7 @@ def plot_fig2_cross_dataset_heatmap(matrix_data=None):
     cbar = fig.colorbar(cax, fraction=0.046, pad=0.04)
     cbar.set_label('Performance Metric (%): Recall / Code Acc / Benign Pass Rate', fontweight='bold')
 
-    plt.title('Figure 2: Empirical Cross-Dataset Benchmark Matrix (6 Models x 6 Upstream Datasets)',
+    plt.title('Figure 2: Empirical Cross-Dataset Benchmark Matrix (4 Models x 6 Upstream Datasets)',
               fontweight='bold', fontsize=12, pad=20)
     plt.tight_layout()
     out_path = os.path.join(FIGURES_DIR, "fig2_cross_dataset_heatmap.png")

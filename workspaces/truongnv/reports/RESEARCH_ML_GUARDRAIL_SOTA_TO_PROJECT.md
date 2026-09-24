@@ -205,7 +205,19 @@ Toàn bộ các mô hình và thuật toán đã được triển khai đầy đ
 
 ---
 
+## 📖 BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG (ACADEMIC CONCEPT GLOSSARY)
+
+| Mã Neo | Thuật Ngữ & Khái Niệm | Định Nghĩa Khoa Học Bản Chất | Bối Cảnh & Phép Tương Quan Đối Chiếu Trong PI-Guard | Nguồn Gốc & Tài Liệu Tham Chiếu |
+| :---: | :--- | :--- | :--- | :--- |
+| **TN1** | **Conformal Risk Control (CRC)** | Khung lý thuyết thống kê xác lập ngưỡng phân loại có bảo chứng toán học với cận trên rủi ro kỳ vọng không vượt quá mức $\alpha$ định trước. | Giúp PI-Guard kiểm soát tỷ lệ chặn nhầm $\text{FPR} \le 1.5\%$ trên các truy vấn lành tính mà không cần dựa vào trực giác chủ quan. | Angelopoulos et al. (2024); Kang et al. (NeurIPS 2025). |
+| **TN2** | **Disentangled Attention Mechanism** | Cơ chế phân tách biểu diễn nội dung và vị trí tương đối thành 2 vector riêng biệt trong DeBERTa. | Giúp mô hình Tầng 2 bóc tách cấu trúc cú pháp đảo ngữ và hoán đổi vị trí câu lệnh tiêm nhiễm tinh vi. | He et al. (ICLR 2023). |
+| **TN3** | **Two-Tier Adaptive Defense Cascade** | Kiến trúc định tuyến thích ứng kết hợp bộ lọc cú pháp nhanh (Tầng 1) và mô hình ngữ nghĩa sâu (Tầng 2). | Cho phép giải quyết triệt để sự đánh đổi giữa độ trễ cực thấp (< 30ms) và năng lực phát hiện tấn công tinh vi. | Saltzer & Schroeder (1975); Kiến trúc PI-Guard. |
+| **TN4** | **Post-Training Quantization (Dynamic INT8 PTQ)** | Kỹ thuật lượng hóa tham số trọng số từ Float32 sang Int8 sau huấn luyện nhằm giảm kích thước mô hình và tăng tốc độ suy luận CPU. | Giúp mô hình DeBERTa-v3 chạy với độ trễ thấp và giảm hơn 65% bộ nhớ trên phần cứng CPU thông thường. | Yao et al. (NeurIPS 2022 ZeroQuant). |
+
+---
+
 ## 📚 TÀI LIỆU THAM KHẢO (REFERENCES)
 
-* <a id="ref30"></a>**[30]** D. Jacob, H. Alzahrani, Z. Hu, B. Alomair, and D. Wagner. 2024. *PromptShield: Deployable Detection for Prompt Injection Attacks*. In *Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (CCS '24)*, pages 4247–4261. [arXiv:2407.13656](https://arxiv.org/pdf/2407.13656). Local PDF: [`References/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf`](file:///d:/Work/Do-an/Final-Report/References/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf).
+* <a id="ref30"></a>**[30]** D. Jacob, H. Alzahrani, Z. Hu, B. Alomair, and D. Wagner. 2024. *PromptShield: Deployable Detection for Prompt Injection Attacks*. In *Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security (CCS '24)*, pages 4247–4261. [arXiv:2407.13656](https://arxiv.org/pdf/2407.13656). Local PDF: [`References/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf).
+
 

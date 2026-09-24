@@ -97,7 +97,7 @@ Prompt Guard offers several key benefits when integrated into LLM pipelines:
 
 - **Detection of Common Attack Patterns:** Prompt Guard can reliably identify and block widely-used injection techniques (e.g. variants of “ignore previous instructions”).
 - **Additional Layer of Defense:** Prompt Guard complements existing safety and security measures implemented via model training and harmful content guardrails by targeting specific types of malicious prompts, such as DAN prompts, designed to evade those existing defenses.
-- **Proactive Monitoring:** Prompt Guard also serves as an external monitoring tool, not only defending against real-time adversarial attacks but also aiding in the detection and analysis of misuse patterns. It helps identify bad actors and patterns of misuse, enabling proactive measures to enhance the overall security of LLM pipelines.
+- **Proactive Monitoring:** Prompt Guard also serves as an external monitoring tool, not only defending against online low-latency adversarial attacks but also aiding in the detection and analysis of misuse patterns. It helps identify bad actors and patterns of misuse, enabling proactive measures to enhance the overall security of LLM pipelines.
 
 ## Limitations
 

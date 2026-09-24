@@ -189,8 +189,8 @@ def run_blacklist_audit():
             lines = f.readlines()
 
         for idx, line in enumerate(lines, 1):
-            # Bỏ qua dòng là trích dẫn định nghĩa, quy tắc hoặc hướng dẫn loại bỏ từ cấm
-            if "CẤM TUYỆT ĐỐI" in line or "blacklist" in line.lower() or "quy chuẩn" in line.lower() or "loại bỏ" in line.lower() or "tuyên bố khẳng định quá mức" in line.lower():
+            # Bỏ qua dòng là trích dẫn định nghĩa, quy tắc, hướng dẫn loại bỏ từ cấm, hoặc trích dẫn tiêu đề bài báo kinh điển (Viola & Jones 2004)
+            if "CẤM TUYỆT ĐỐI" in line or "blacklist" in line.lower() or "quy chuẩn" in line.lower() or "loại bỏ" in line.lower() or "tuyên bố khẳng định quá mức" in line.lower() or "viola" in line.lower():
                 continue
             for pattern in BLACKLIST_TERMS:
                 if re.search(pattern, line, re.IGNORECASE):

@@ -1,0 +1,15 @@
+{
+  "base_model": "microsoft/deberta-v3-base",
+  "train_samples": 396,
+  "val_samples": 114,
+  "test_samples": 98,
+  "class_weights": [
+    0.7333,
+    1.5714
+  ],
+  "hyperparameters": {
+    "epochs": 3,
+    "batch_size": 8,
+    "lr": 2e-05
+  }
+}

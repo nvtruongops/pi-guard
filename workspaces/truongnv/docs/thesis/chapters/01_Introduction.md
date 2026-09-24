@@ -97,6 +97,25 @@ Tuân thủ nghiêm ngặt theo Hướng dẫn Khóa luận Tốt nghiệp FPT U
 
 ---
 
+## BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG (ACADEMIC CONCEPT GLOSSARY)
+
+> [!NOTE]
+> ### 📖 Vai Trò Của Bảng Giải Nghĩa Thuật Ngữ Học Thuật
+> Nhằm phục vụ tốt nhất cho việc đánh giá học thuật và bảo vệ đồ án trước Hội đồng chấm tốt nghiệp (Academic Council) theo quy chuẩn [`.agents/rules/academic-terminology-and-glossary-standards.md`](file:///d:/Work/Do-an/.agents/rules/academic-terminology-and-glossary-standards.md), bảng dưới đây phân tích chi tiết các khái niệm và phép so sánh liên ngành xuất hiện trong Chương 1 theo 4 trường thông tin chuẩn mực:
+
+| Mã Neo | Thuật Ngữ & Khái Niệm | Định Nghĩa Khoa Học Bản Chất | Bối Cảnh & Phép Tương Quan Đối Chiếu Trong PI-Guard | Nguồn Gốc & Tài Liệu Tham Chiếu |
+| :---: | :--- | :--- | :--- | :--- |
+| <a id="term-von-neumann"></a>**TN1** | **Von Neumann Architecture (Kiến Trúc Von Neumann)** | Mô hình kiến trúc máy tính nền tảng nơi Dữ liệu và Mã lệnh thực thi cùng lưu trữ chung trong một không gian bộ nhớ vật lý duy nhất. | **Phép đối sánh cội nguồn**: Trình bày tại Mục 1.2 để minh họa căn nguyên của Prompt Injection: LLM không có kênh phần cứng riêng biệt để tách câu lệnh hệ thống khỏi dữ liệu người dùng. | John von Neumann (1945), *"First Draft of a Report on the EDVAC"*; K. Thompson (1984). |
+| <a id="term-flat-token-space"></a>**TN2** | **Flat Token Space (Không Gian Token Phẳng)** | Hiện tượng chuỗi chỉ thị hệ thống ($S$) và dữ liệu người dùng ($U$) bị nối chuỗi (*concatenation*) thành một mảng token duy nhất ($X = S \mathbin{\Vert} U$) và cùng tham gia vào ma trận Self-Attention với quyền hạn tương đương. | **Căn nguyên kỹ thuật cốt lõi**: Trình bày tại Mục 1.2. Kẻ tấn công có thể chèn các token điều khiển ghi đè chỉ thị hệ thống. PI-Guard giải quyết bằng cách thanh tra $U$ độc lập trước khi nạp vào LLM. | Perez & Ribeiro (NeurIPS 2022) [[3]](#ref3); Greshake et al. (ACM AISec 2023) [[4]](#ref4). |
+| <a id="term-goal-hijacking"></a>**TN3** | **Goal Hijacking (Chiếm Đoạt Mục Tiêu Ứng Dụng)** | Kỹ thuật tiêm lệnh ép LLM bỏ qua mục tiêu nghiệp vụ ban đầu để thực hiện một mục tiêu trái phép do kẻ tấn công chỉ định. | **Kịch bản thiệt hại 1**: Trình bày tại Mục 1.1 và 1.4.1. Gây tổn hại nghiêm trọng về tính toàn vẹn (Integrity) của ứng dụng tích hợp LLM. | Perez & Ribeiro (2022) [[3]](#ref3). |
+| <a id="term-prompt-leaking"></a>**TN4** | **Prompt Leaking (Đánh Cắp Chỉ Thị Ẩn)** | Kỹ thuật tấn công ép mô hình in ra nguyên văn System Prompt, bí mật kinh doanh hoặc API keys nhúng trong bối cảnh. | **Kịch bản thiệt hại 2**: Trình bày tại Mục 1.1 và 1.4.1. Gây tổn hại nghiêm trọng về tính bí mật (Confidentiality) và quyền sở hữu trí tuệ của doanh nghiệp. | Perez & Ribeiro (2022) [[3]](#ref3); OWASP LLM01:2025 [[8]](#ref8). |
+| <a id="term-competing-objectives"></a>**TN5** | **Competing Objectives (Xung Đột Mục Tiêu Căn Chỉnh)** | Trạng thái mâu thuẫn nội tại khi mô hình phải tối ưu hóa đồng thời hai mục tiêu đối nghịch: Tính hữu ích (*Helpfulness*) và Tính vô hại (*Harmlessness*). | **Cơ chế gốc của Jailbreak**: Trình bày tại Mục 1.1. Kẻ tấn công dùng kịch bản khẩn cấp hoặc nghiên cứu để kích hoạt *Helpfulness*, ép mô hình hạ rào cản *Harmlessness*. | Alexander Wei, Nika Haghtalab, Jacob Steinhardt (NeurIPS 2023) [[5]](#ref5). |
+| <a id="term-mismatched-generalization"></a>**TN6** | **Mismatched Generalization (Tổng Quát Hóa Lệch)** | Năng lực biểu diễn và giải mã ngôn ngữ tổng quát của mô hình vượt xa phạm vi dữ liệu an toàn mà mô hình được tinh chỉnh (*Safety Fine-Tuning*). | **Cơ chế lẩn tránh cú pháp**: Trình bày tại Mục 1.2 và RQ2. Khi payload được mã hóa Base64 hoặc Leetspeak, mô hình vẫn hiểu ý đồ nhưng rào cản an toàn không kích hoạt. | Wei et al. (NeurIPS 2023) [[5]](#ref5); Yuan et al. (ICLR 2024) [[17]](#ref17). |
+| <a id="term-group-aware-splitting"></a>**TN7** | **Group-Aware Splitting (Phân Tách Dữ Liệu Bảo Toàn Cụm)** | Phương pháp phân chia tập dữ liệu train/val/test theo cụm kịch bản ngữ nghĩa thay vì phân chia ngẫu nhiên, đảm bảo toàn bộ biến thể của một mẫu tấn công chỉ nằm trong một tập. | **Giải pháp kỹ thuật RQ1**: Trình bày tại Mục 1.3. Triệt tiêu rò rỉ dữ liệu giữa train và test ($\text{Inter-cluster Jaccard} < 0.15$), bảo đảm đánh giá khách quan. | Shen et al. (ACM CCS 2024) [[15]](#ref15); Phương pháp luận kỹ nghệ dữ liệu PI-Guard. |
+| <a id="term-complete-mediation"></a>**TN8** | **Complete Mediation Principle (Nguyên Lý Kiểm Soát Toàn Diện)** | Nguyên lý an toàn hệ thống đòi hỏi mọi truy cập vào đối tượng được bảo vệ đều phải được kiểm tra và xác thực mà không có lối tắt ngoại lệ. | **Cơ sở kiến trúc Ingress Guardrail**: Trình bày tại Mục 1.2 và 1.3. PI-Guard đóng vai trò chốt chặn bắt buộc trước mọi truy vấn gửi tới LLM. | Saltzer & Schroeder, *"The Protection of Information in Computer Systems"*, IEEE 1975. |
+
+---
+
 ## References (Tài Liệu Tham Khảo Học Thuật)
 
 <a id="ref1"></a>**[1]** W. X. Zhao et al., "A Survey of Large Language Models," *arXiv preprint arXiv:2303.18223*, 2023. Link: [https://arxiv.org/abs/2303.18223](https://arxiv.org/abs/2303.18223).
