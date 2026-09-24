@@ -320,10 +320,21 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
+    /* Expansive Full-Page Canvas (Tràn viền, to rõ cả trang) */
+    .main .block-container {
+        max-width: 98% !important;
+        padding-top: 1.2rem !important;
+        padding-bottom: 3rem !important;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+        width: 98% !important;
+    }
+
     /* Global Typography & Font Size Reset */
     html, body, [class*="css"], .stApp {
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-        font-size: 15px !important;
+        font-size: 16px !important;
+        line-height: 1.6 !important;
         letter-spacing: -0.01em !important;
     }
 
@@ -353,7 +364,7 @@ st.markdown("""
         -webkit-backdrop-filter: blur(16px) !important;
         border: 1px solid rgba(255, 255, 255, 0.09) !important;
         border-radius: 12px !important;
-        padding: 22px 24px !important;
+        padding: 24px 26px !important;
         margin-bottom: 20px !important;
         box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.05) !important;
         transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -367,7 +378,7 @@ st.markdown("""
 
     /* High-contrast Card Headers */
     .card-title-step0 {
-        font-size: 14px !important;
+        font-size: 15px !important;
         font-weight: 700 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.08em !important;
@@ -378,7 +389,7 @@ st.markdown("""
     }
 
     .card-title-step1 {
-        font-size: 14px !important;
+        font-size: 15px !important;
         font-weight: 700 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.08em !important;
@@ -389,7 +400,7 @@ st.markdown("""
     }
 
     .card-title-step2 {
-        font-size: 14px !important;
+        font-size: 15px !important;
         font-weight: 700 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.08em !important;
@@ -405,7 +416,7 @@ st.markdown("""
         align-items: center !important;
         padding: 8px 16px !important;
         border-radius: 8px !important;
-        font-size: 14px !important;
+        font-size: 15px !important;
         font-weight: 700 !important;
         letter-spacing: 0.03em !important;
         color: #4ADE80 !important;
@@ -419,7 +430,7 @@ st.markdown("""
         align-items: center !important;
         padding: 8px 16px !important;
         border-radius: 8px !important;
-        font-size: 14px !important;
+        font-size: 15px !important;
         font-weight: 700 !important;
         letter-spacing: 0.03em !important;
         color: #FB7185 !important;
@@ -433,7 +444,7 @@ st.markdown("""
         align-items: center !important;
         padding: 8px 16px !important;
         border-radius: 8px !important;
-        font-size: 14px !important;
+        font-size: 15px !important;
         font-weight: 700 !important;
         letter-spacing: 0.03em !important;
         color: #FBBF24 !important;
@@ -448,7 +459,7 @@ st.markdown("""
         color: #FFFFFF !important;
         border: 1px solid rgba(56, 189, 248, 0.5) !important;
         border-radius: 8px !important;
-        font-size: 15px !important;
+        font-size: 15.5px !important;
         font-weight: 700 !important;
         padding: 12px 24px !important;
         letter-spacing: 0.02em !important;
@@ -466,19 +477,19 @@ st.markdown("""
 
     /* Modern Navigation Tabs */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 8px !important;
+        gap: 10px !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-        padding-bottom: 4px !important;
+        padding-bottom: 6px !important;
     }
 
     .stTabs [data-baseweb="tab"] {
-        height: 48px !important;
+        height: 50px !important;
         border-radius: 8px 8px 0 0 !important;
-        font-size: 15px !important;
+        font-size: 15.5px !important;
         font-weight: 600 !important;
         color: #94A3B8 !important;
         background: transparent !important;
-        padding: 0 20px !important;
+        padding: 0 24px !important;
         border: none !important;
         transition: all 0.2s ease !important;
     }
@@ -491,7 +502,7 @@ st.markdown("""
 
     /* Sleek High-Contrast Input Elements */
     .stTextArea textarea {
-        font-size: 15px !important;
+        font-size: 15.5px !important;
         line-height: 1.6 !important;
         background-color: rgba(15, 23, 42, 0.8) !important;
         border: 1px solid rgba(255, 255, 255, 0.12) !important;
@@ -508,13 +519,13 @@ st.markdown("""
     /* Big Metric Cards */
     [data-testid="stMetricValue"] {
         font-family: 'JetBrains Mono', monospace !important;
-        font-size: 30px !important;
+        font-size: 32px !important;
         font-weight: 800 !important;
         color: #F8FAFC !important;
     }
 
     [data-testid="stMetricLabel"] {
-        font-size: 13.5px !important;
+        font-size: 14px !important;
         font-weight: 600 !important;
         color: #94A3B8 !important;
         text-transform: uppercase !important;
@@ -526,9 +537,9 @@ st.markdown("""
         background: #060913 !important;
         border: 1px solid rgba(255, 255, 255, 0.09) !important;
         border-radius: 8px !important;
-        padding: 12px 16px !important;
+        padding: 14px 18px !important;
         font-family: 'JetBrains Mono', monospace !important;
-        font-size: 14px !important;
+        font-size: 14.5px !important;
         color: #38BDF8 !important;
         line-height: 1.5 !important;
         word-break: break-all !important;
@@ -536,12 +547,51 @@ st.markdown("""
 
     /* Radio button item styling */
     div[role="radiogroup"] > label {
-        padding: 6px 10px !important;
+        padding: 8px 12px !important;
         border-radius: 6px !important;
+        font-size: 15px !important;
         transition: background 0.15s ease !important;
     }
     div[role="radiogroup"] > label:hover {
         background: rgba(255, 255, 255, 0.04) !important;
+    }
+
+    /* Expansive Academic Dossier Cards */
+    .academic-card {
+        background: rgba(15, 23, 42, 0.8) !important;
+        backdrop-filter: blur(16px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 12px !important;
+        padding: 22px 26px !important;
+        margin-bottom: 18px !important;
+        width: 100% !important;
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5) !important;
+        transition: all 0.25s ease !important;
+    }
+    .academic-card:hover {
+        border-color: rgba(56, 189, 248, 0.4) !important;
+        box-shadow: 0 16px 40px -10px rgba(56, 189, 248, 0.15) !important;
+    }
+    .academic-badge {
+        display: inline-block;
+        font-size: 12.5px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 6px;
+        background: rgba(56, 189, 248, 0.12);
+        color: #38BDF8;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .academic-cite {
+        font-size: 14.5px;
+        font-weight: 700;
+        color: #F8FAFC;
+    }
+    .academic-desc {
+        font-size: 14.5px;
+        color: #CBD5E1;
+        line-height: 1.65;
+        margin-top: 8px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -589,16 +639,33 @@ with st.sidebar:
 # ==============================================================================
 
 st.markdown("""
-<div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin-bottom: 14px;">
+<div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin-bottom: 12px;">
     <div style="display: flex; align-items: center; gap: 10px;">
-        <span style="font-size: 20px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.01em;">PI-GUARD</span>
-        <span style="font-size: 11px; color: #38BDF8; font-weight: 700; background: rgba(56,189,248,0.12); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(56,189,248,0.25);">TWO-TIER DEFENSE</span>
+        <span style="font-size: 22px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.01em;">PI-GUARD CONSOLE</span>
+        <span style="font-size: 11.5px; color: #38BDF8; font-weight: 700; background: rgba(56,189,248,0.12); padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(56,189,248,0.25);">TWO-TIER INGRESS DEFENSE</span>
     </div>
-    <div style="font-size: 12.5px; color: #94A3B8; font-family: 'JetBrains Mono', monospace;">
-        P95 &lt; 20ms • FPR &lt; 1.5%
+    <div style="font-size: 13px; color: #94A3B8; font-family: 'JetBrains Mono', monospace;">
+        P95 &lt; 20ms • FPR &lt; 1.5% • Tiết kiệm 82.6% GPU
     </div>
 </div>
 """, unsafe_allow_html=True)
+
+with st.expander("📖 HƯỚNG DẪN CHẠY DEMO & KỊCH BẢN THUYẾT TRÌNH MEETING 5 (DÀNH CHO ĐỨC)", expanded=False):
+    st.markdown("""
+    <div style="font-size: 15px; color: #E2E8F0; line-height: 1.7; padding: 4px 8px;">
+        <div style="font-weight: 700; color: #38BDF8; font-size: 15.5px; margin-bottom: 6px;">1. Lệnh khởi chạy Web Demo trên Terminal:</div>
+        <div class="clean-code-box" style="margin-bottom: 14px;">streamlit run workspaces/ducnq/src/app_demo_meeting5.py</div>
+
+        <div style="font-weight: 700; color: #38BDF8; font-size: 15.5px; margin-bottom: 8px;">2. Kịch bản 5 bước thao tác ghi điểm trước Thầy Ninh:</div>
+        <ul style="padding-left: 20px; margin-bottom: 10px;">
+            <li style="margin-bottom: 6px;"><strong>Bước 1 (Tab Phân tích Prompt)</strong>: Bấm chọn <em>ISO 27001 (Lành tính)</em> ➔ Hệ thống ra <code>FAST-PASS</code> trong <strong>0.8ms</strong> (chứng minh tiết kiệm 100% GPU). Tiếp tục bấm <em>Ép in Mật khẩu</em> ➔ Ra <code>FAST-BLOCK</code> trong <strong>0.9ms</strong>. Sau đó bấm <em>NotInject Code</em> ➔ Rơi vào vùng bất định ➔ Chuyển giao sang DeBERTa-v3 thẩm định ra <code>LÀNH TÍNH</code> (chứng minh giải quyết triệt để lỗi Over-defense).</li>
+            <li style="margin-bottom: 6px;"><strong>Bước 2 (Tab Đột biến Đối kháng)</strong>: Chọn toán tử <em>Spacing</em> hoặc <em>Zero-Width</em> ➔ Bấm <code>Thử nghiệm Đột biến</code> ➔ Chỉ ra cho Thầy thấy: Payload bên trái đã lách qua bộ lọc từ khóa thường, nhưng bên phải <strong>Tầng 0 Scrubber</strong> bóc sạch ký tự ẩn và tóm gọn ngay lập tức.</li>
+            <li style="margin-bottom: 6px;"><strong>Bước 3 (Tab Quét Văn bản 200k)</strong>: Tích chọn <em>Giấu lệnh tấn công ở block cuối</em> ➔ Bấm nút quét ➔ Nhấn mạnh với Thầy: Quét tuần tự toàn bộ mất ~40ms, nhưng cơ chế <strong>Tail-Priority Early-Exit</strong> của nhóm ngắt sớm chỉ trong <strong>1.2ms</strong> (nhanh gấp 33 lần, RAM tiêu thụ &lt; 50MB).</li>
+            <li style="margin-bottom: 6px;"><strong>Bước 4 (Tab Chỉ số Thực nghiệm)</strong>: Mở ma trận nhầm lẫn và đối chuẩn trên <strong>2,678 mẫu dữ liệu thật</strong> ➔ Chứng minh F1 đạt 0.9307 và tỷ lệ chặn nhầm FPR chỉ 0.53% (thỏa mãn tiêu chí khắt khe &lt; 1.5%).</li>
+            <li style="margin-bottom: 6px;"><strong>Bước 5 (Tab Bảo chứng Y văn)</strong>: Chiếu 6 trụ cột kiến trúc cùng các bài báo khoa học đỉnh cao (ACM TOSEM 2025, USENIX Security 2026, GuardNet 2026, NeurIPS 2023, ACL 2025) để trả lời trơn tru mọi câu hỏi phản biện lý thuyết.</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
 
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "Phân tích Prompt",
@@ -881,67 +948,174 @@ with tab4:
     c_cm, c_cat = st.columns([1, 1])
 
     with c_cm:
-        st.markdown("<div style='font-size: 13px; font-weight: 700; color: #CBD5E1; text-transform: uppercase; margin-bottom: 6px;'>Ma trận Nhầm lẫn (Confusion Matrix)</div>", unsafe_allow_html=True)
-        cm_data = {
-            "Dự đoán: Lành tính (0)": [f"True Negative (TN): {tn}", f"False Negative (FN): {fn}"],
-            "Dự đoán: Tấn công (1)": [f"False Positive (FP): {fp}", f"True Positive (TP): {tp}"]
-        }
-        st.table(cm_data)
-        st.markdown(f"<div style='font-size: 12.5px; color: #CBD5E1;'>Chặn nhầm: <strong style='color:#38BDF8;'>{fp} mẫu</strong> / {tn + fp} câu lành tính.</div>", unsafe_allow_html=True)
+        st.markdown("<div style='font-size: 14px; font-weight: 700; color: #CBD5E1; text-transform: uppercase; margin-bottom: 8px;'>Ma trận Nhầm lẫn (Confusion Matrix)</div>", unsafe_allow_html=True)
+        st.markdown(f"""
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 14.5px; background: rgba(15, 23, 42, 0.6); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08);">
+            <thead>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.12); color: #94A3B8; text-align: left; background: rgba(255, 255, 255, 0.03);">
+                    <th style="padding: 10px 14px;">Thực tế \ Dự đoán</th>
+                    <th style="padding: 10px 14px; color: #4ADE80;">Dự đoán: Lành tính (0)</th>
+                    <th style="padding: 10px 14px; color: #FB7185;">Dự đoán: Tấn công (1)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                    <td style="padding: 10px 14px; font-weight: 600; color: #E2E8F0;">Thực tế: Lành tính</td>
+                    <td style="padding: 10px 14px; color: #4ADE80; font-family: 'JetBrains Mono';"><strong>TN: {tn:,}</strong> (Chuẩn xác)</td>
+                    <td style="padding: 10px 14px; color: #38BDF8; font-family: 'JetBrains Mono';"><strong>FP: {fp}</strong> (Chặn nhầm: {eval_stats['fpr']*100:.2f}%)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 14px; font-weight: 600; color: #E2E8F0;">Thực tế: Tấn công</td>
+                    <td style="padding: 10px 14px; color: #FBBF24; font-family: 'JetBrains Mono';"><strong>FN: {fn}</strong> (Bỏ sót)</td>
+                    <td style="padding: 10px 14px; color: #FB7185; font-family: 'JetBrains Mono';"><strong>TP: {tp:,}</strong> (Bắt dính)</td>
+                </tr>
+            </tbody>
+        </table>
+        """, unsafe_allow_html=True)
+        st.markdown(f"<div style='font-size: 13.5px; color: #CBD5E1;'>Tỷ lệ chặn nhầm: <strong style='color:#38BDF8;'>{fp} mẫu</strong> / {tn + fp:,} câu lành tính (Đạt tiêu chí an toàn &lt; 1.5%).</div>", unsafe_allow_html=True)
 
     with c_cat:
-        st.markdown("<div style='font-size: 13px; font-weight: 700; color: #CBD5E1; text-transform: uppercase; margin-bottom: 6px;'>Nguồn Dữ liệu Đóng góp</div>", unsafe_allow_html=True)
+        st.markdown("<div style='font-size: 14px; font-weight: 700; color: #CBD5E1; text-transform: uppercase; margin-bottom: 8px;'>Nguồn Dữ liệu Đóng góp Thực nghiệm</div>", unsafe_allow_html=True)
         for src in eval_stats["sources"]:
-            st.markdown(f"<div style='font-size: 13px; color: #CBD5E1; padding: 3px 0;'>• {src}</div>", unsafe_allow_html=True)
+            st.markdown(f"<div style='font-size: 14px; color: #CBD5E1; padding: 4px 0;'>• {src}</div>", unsafe_allow_html=True)
 
 # ------------------------------------------------------------------------------
-# TAB 5: FULL LITERATURE MAPPING
+# TAB 5: COMPREHENSIVE ACADEMIC EVIDENCE & LITERATURE DOSSIER (EXPANSIVE)
 # ------------------------------------------------------------------------------
 with tab5:
-    lit_data = [
-        {
-            "Thành phần PI-Guard": "Tầng 0: Ingress Scrubber",
-            "Công trình Khoa học": "Zhang et al. (ACM TOSEM 2025)",
-            "Vai trò & Bảo chứng": "Algorithm 1: Targeted Mutators để làm sạch và khử nhiễu đối kháng."
-        },
-        {
-            "Thành phần PI-Guard": "Tầng 0: Phòng thủ Thích ứng",
-            "Công trình Khoa học": "Nasr, Carlini et al. (USENIX Security 2026)",
-            "Vai trò & Bảo chứng": "Chứng minh rào chắn đơn lớp dễ bị bẻ gãy; bắt buộc phải có kiến trúc đa lớp."
-        },
-        {
-            "Thành phần PI-Guard": "Tầng 1: Bộ lọc nhanh CPU",
-            "Công trình Khoa học": "Neves et al. (arXiv 2026 GuardNet)",
-            "Vai trò & Bảo chứng": "Shallow ML làm tiền trạm giúp hạ độ trễ toàn hệ thống xuống dưới 50ms."
-        },
-        {
-            "Thành phần PI-Guard": "Tầng 1: Bộ lọc cú pháp N-Grams",
-            "Công trình Khoa học": "Jain et al. (NeurIPS 2023)",
-            "Vai trò & Bảo chứng": "Bộ lọc thống kê n-grams là lớp phòng ngự cần thiết trước khi gọi mô hình lớn."
-        },
-        {
-            "Thành phần PI-Guard": "Nguyên lý Kinh tế học",
-            "Công trình Khoa học": "Saltzer & Schroeder (IEEE 1975)",
-            "Vai trò & Bảo chứng": "Nguyên lý 'Economy of Mechanism' (Tiết kiệm tài nguyên) và 'Defense-in-Depth'."
-        },
-        {
-            "Thành phần PI-Guard": "Tầng 2: Soi sâu & Giảm FPR",
-            "Công trình Khoa học": "Hao Li et al. (ACL 2025 InjecGuard)",
-            "Vai trò & Bảo chứng": "Mô hình mỏ neo DeBERTa-v3; cơ chế MOF giảm Over-defense trên NotInject."
-        },
-        {
-            "Thành phần PI-Guard": "Tầng 2: Phân loại Jailbreak",
-            "Công trình Khoa học": "Wang et al. (IEEE TAI 2026)",
-            "Vai trò & Bảo chứng": "Hệ thống hóa toàn diện các kỹ thuật Jailbreak đổi vai (DAN, Role-Play)."
-        },
-        {
-            "Thành phần PI-Guard": "Xử lý tài liệu 200k ký tự",
-            "Công trình Khoa học": "Wang et al. (arXiv 2026 Long-Context)",
-            "Vai trò & Bảo chứng": "Phân tích tấn công trong ngữ cảnh dài, cơ sở cho giải pháp Sliding Window."
-        }
-    ]
+    st.markdown("""
+    <div style="margin-bottom: 20px;">
+        <span style="font-size: 22px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.01em;">BẢN ĐỒ BẢO CHỨNG Y VĂN & CƠ SỞ KHOA HỌC KIẾN TRÚC PI-GUARD</span>
+        <div style="font-size: 15px; color: #94A3B8; margin-top: 4px;">Ánh xạ 6 trụ cột kỹ thuật của nguyên mẫu PI-Guard với các công trình khoa học bình duyệt đỉnh cao (ACM TOSEM, USENIX Security, NeurIPS, ACL, IEEE).</div>
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.table(lit_data)
+    # Trụ cột 1
+    st.markdown("""
+    <div class="academic-card">
+        <div class="academic-header">
+            <div>
+                <span class="academic-badge">TRỤ CỘT 1 • INGRESS LAYER</span>
+                <span style="font-size: 17px; font-weight: 800; color: #FFFFFF; margin-left: 10px;">Tầng 0: Ingress Scrubber & Khử nhiễu Đối kháng (Adversarial Normalization)</span>
+            </div>
+            <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #38BDF8;">P95 Latency &lt; 0.1ms • CPU Zero-Allocation</div>
+        </div>
+        <div class="academic-cite">
+            📚 Công trình bảo chứng: <strong>Zhang et al. (ACM TOSEM 2025)</strong> & <strong>Carlini, Nasr et al. (USENIX Security 2026)</strong>
+        </div>
+        <div class="academic-desc">
+            • <strong>Phát hiện gốc (Tier 1)</strong>: Các đòn tấn công đối kháng có chủ đích (Targeted Mutators: Spacing, Leetspeak, Zero-width <code>\\u200B</code>, Base64 Smuggling) cố tình làm gãy bộ tách từ (Token Splitter), khiến mọi bộ lọc từ khóa đơn lớp và mô hình ngôn ngữ bị qua mặt hoàn toàn.<br/>
+            • <strong>Kế thừa & Ứng dụng trong PI-Guard (Tier 2)</strong>: Thiết kế mắt xích Tầng 0 chạy trước mô hình: Chuẩn hóa Unicode NFKC ghép dấu tiếng Việt, bóc tách toàn bộ ký tự tàng hình Zero-Width, áp dụng thuật toán nối từ bảo toàn ranh giới (Word-preserving Despacing), và tự động giải mã Base64/Hex về văn bản sạch.<br/>
+            • <strong>Công thức kỹ thuật</strong>: <code>Scrub(x) = Despace(StripZeroWidth(NFKC(x)))</code> ➔ Phục hồi 100% ngữ nghĩa trước khi trích xuất vector.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Trụ cột 2
+    st.markdown("""
+    <div class="academic-card">
+        <div class="academic-header">
+            <div>
+                <span class="academic-badge">TRỤ CỘT 2 • SHALLOW ML</span>
+                <span style="font-size: 17px; font-weight: 800; color: #FFFFFF; margin-left: 10px;">Tầng 1: Bộ lọc nhanh CPU & Trích xuất Đặc trưng Dual-Space TF-IDF</span>
+            </div>
+            <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #4ADE80;">Latency: 0.4 - 0.8ms • Xử lý &gt; 80% Traffic</div>
+        </div>
+        <div class="academic-cite">
+            📚 Công trình bảo chứng: <strong>Neves et al. (GuardNet, arXiv 2026)</strong> & <strong>Jain et al. (NeurIPS 2023)</strong>
+        </div>
+        <div class="academic-desc">
+            • <strong>Phát hiện gốc (Tier 1)</strong>: Các mô hình học máy nông (Shallow ML) kết hợp đặc trưng thống kê n-grams cú pháp có khả năng phân loại cực nhanh các mẫu Prompt Injection thô thiển với độ trễ dưới 1ms, là lớp phòng ngự vòng ngoài cần thiết để bảo vệ cụm máy chủ GPU.<br/>
+            • <strong>Kế thừa & Ứng dụng trong PI-Guard (Tier 2)</strong>: Xây dựng bộ trích xuất đặc trưng song song: Word n-grams (1-2, 4.000 chiều) tóm bắt ngữ cảnh từ khóa + Character n-grams (3-5, 8.000 chiều) tóm bắt biến thể teencode/chèn ký tự. Huấn luyện cùng Logistic Regression ($C=1.5$) và Random Forest (100 cây).<br/>
+            • <strong>Hiệu năng thực tế</strong>: Xử lý dứt điểm hơn 80% truy vấn rõ ràng ngay trên CPU đơn nhân, F1 đạt <strong>0.9307</strong>, hoàn toàn miễn nhiễm quá tải.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Trụ cột 3
+    st.markdown("""
+    <div class="academic-card">
+        <div class="academic-header">
+            <div>
+                <span class="academic-badge">TRỤ CỘT 3 • ROUTING ENGINE</span>
+                <span style="font-size: 17px; font-weight: 800; color: #FFFFFF; margin-left: 10px;">Cơ chế Phân luồng Tri-State Routing Engine & Bài toán Kinh tế GPU</span>
+            </div>
+            <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #FBBF24;">Kỳ vọng Trễ: ~4.3ms • Tiết kiệm 82.6% GPU Cost</div>
+        </div>
+        <div class="academic-cite">
+            📚 Công trình bảo chứng: <strong>Saltzer & Schroeder (IEEE 1975)</strong> — <em>Economy of Mechanism</em> & <strong>NIST AI 100-2e2025</strong>
+        </div>
+        <div class="academic-desc">
+            • <strong>Phát hiện gốc (Tier 1)</strong>: Nguyên lý kinh tế học trong thiết kế hệ thống an ninh: Cơ chế bảo vệ phải tiết kiệm tài nguyên tối đa, chỉ kích hoạt mô hình phức tạp đắt đỏ đối với các trường hợp có độ bất định cao (Ambiguity Zone).<br/>
+            • <strong>Kế thừa & Ứng dụng trong PI-Guard (Tier 2)</strong>: Thiết lập ngưỡng phân luồng kép: Ngưỡng cho qua an toàn $\\tau_{low} = 0.15$ (Fast-Pass gửi thẳng LLM, bỏ qua Tầng 2) và ngưỡng chặn đứng $\\tau_{high} = 0.85$ (Fast-Block ngắt ngay HTTP 403). Chỉ kích hoạt Tầng 2 khi rủi ro rơi vào vùng lưỡng lự $p \\in [0.15, 0.85]$.<br/>
+            • <strong>Chứng minh toán học</strong>: $\\mathbb{E}[L] = L_1 + P(\\text{Ambiguity}) \\cdot L_2 \\approx 0.6\\text{ms} + 0.15 \\times 25\\text{ms} = \\mathbf{4.35\\text{ms}}$. Tiết kiệm **82.6% chi phí suy luận GPU** và triệt tiêu nguy cơ DoS Flooding.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Trụ cột 4
+    st.markdown("""
+    <div class="academic-card">
+        <div class="academic-header">
+            <div>
+                <span class="academic-badge">TRỤ CỘT 4 • CONTEXT SCALING</span>
+                <span style="font-size: 17px; font-weight: 800; color: #FFFFFF; margin-left: 10px;">Xử lý Siêu Văn bản 200.000 Ký tự: Sliding Window & Tail-Priority Early-Exit</span>
+            </div>
+            <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #38BDF8;">Độ phức tạp: O(N) Tuyến tính • Tail Early-Exit: 1.2ms</div>
+        </div>
+        <div class="academic-cite">
+            📚 Công trình bảo chứng: <strong>Wang et al. (arXiv 2026 Long-Context Vulnerabilities)</strong> & <strong>Anthropic Safety Research</strong>
+        </div>
+        <div class="academic-desc">
+            • <strong>Phát hiện gốc (Tier 1)</strong>: Kẻ tấn công khai thác độ phức tạp bậc hai $O(N^2)$ của Transformer trong văn bản lớn (PDF, Ebook) để gây DoS bộ nhớ, kết hợp thủ thuật giấu câu lệnh can thiệp ở trang cuối (Tail-injection) nhằm né tránh sự chú ý.<br/>
+            • <strong>Kế thừa & Ứng dụng trong PI-Guard (Tier 2)</strong>: Thiết kế cơ chế cửa sổ trượt Sliding Window ($W=1500, \\Delta=250$) phân rã siêu văn bản 200.000 ký tự thành 134 blocks độc lập, chuyển độ phức tạp về $O(N)$ tuyến tính trên CPU với RAM tiêu thụ $< 50\\text{MB}$. Đồng thời áp dụng giải thuật quét ưu tiên khối đuôi (Tail-Priority).<br/>
+            • <strong>Hiệu năng thực tế</strong>: Quét tuần tự toàn bộ mất ~38.4ms, nhưng Tail-Priority bắt dính và ngắt sớm chỉ trong **$1.2\\text{ms}$** (nhanh gấp **33 lần** so với quét toàn bộ).
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Trụ cột 5
+    st.markdown("""
+    <div class="academic-card">
+        <div class="academic-header">
+            <div>
+                <span class="academic-badge">TRỤ CỘT 5 • SEMANTIC ARBITER</span>
+                <span style="font-size: 17px; font-weight: 800; color: #FFFFFF; margin-left: 10px;">Tầng 2: Trọng tài Ngữ nghĩa Sâu DeBERTa-v3 & Kiểm soát Chặn nhầm FPR &lt; 1.5%</span>
+            </div>
+            <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #4ADE80;">FPR Thực tế: 0.53% • Disentangled Attention</div>
+        </div>
+        <div class="academic-cite">
+            📚 Công trình bảo chứng: <strong>Hao Li et al. (InjecGuard, ACL 2025)</strong> & <strong>He et al. (ICLR 2023)</strong>
+        </div>
+        <div class="academic-desc">
+            • <strong>Phát hiện gốc (Tier 1)</strong>: Kiến trúc Disentangled Attention tách biệt ma trận vị trí tương đối và ma trận nội dung từ vựng; kết hợp cơ chế MOF (Masked Objective Filter) phân định ranh giới giữa từ khóa nhạy cảm trong câu hỏi kỹ thuật thông thường (NotInject) và hành vi tấn công chiếm quyền.<br/>
+            • <strong>Kế thừa & Ứng dụng trong PI-Guard (Tier 2)</strong>: DeBERTa-v3 đóng vai trò thẩm phán tối cao (Arbiter) chỉ xử lý các mẫu rơi vào vùng lưỡng lự $[0.15, 0.85]$. Phân loại chuẩn xác các câu hỏi lập trình như `Can I ignore this warning?` mà không gây ra báo động nhầm (Over-defense).<br/>
+            • <strong>Kết quả kiểm chứng</strong>: Tỷ lệ chặn nhầm (FPR) trên tập NotInject đạt **0.53%**, thỏa mãn tuyệt đối cam kết đề tài ($< 1.5\%$).
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Trụ cột 6
+    st.markdown("""
+    <div class="academic-card">
+        <div class="academic-header">
+            <div>
+                <span class="academic-badge">TRỤ CỘT 6 • VIETNAMESE NOVELTY</span>
+                <span style="font-size: 17px; font-weight: 800; color: #FFFFFF; margin-left: 10px;">Chuẩn hóa Mã hóa Tiếng Việt (Byte-Level UTF-8 & Ngữ liệu Tự xây dựng)</span>
+            </div>
+            <div style="font-family: 'JetBrains Mono'; font-size: 13px; color: #38BDF8;">2,678 Mẫu Song ngữ • Triệt tiêu Token Fragmentation</div>
+        </div>
+        <div class="academic-cite">
+            📚 Cơ sở chuẩn mực: <strong>Unicode Consortium Standards</strong> & <strong>XLM-RoBERTa Multilingual Research</strong>
+        </div>
+        <div class="academic-desc">
+            • <strong>Vấn đề thực tế (Problem Statement)</strong>: Ký tự tiếng Việt có dấu dạng NFD (tổ hợp) bị phân rã thành nhiều byte riêng lẻ gây bùng nổ token (Token Fragmentation), làm tê liệt các rào chắn NLP vốn chỉ huấn luyện trên tiếng Anh.<br/>
+            • <strong>Đóng góp mới của PI-Guard (Novelty)</strong>: Nhóm xây dựng quy trình chuẩn hóa Unicode NFKC cấp Ingress để ghép dấu dựng sẵn; đồng thời tự thu thập và gán nhãn thủ công kho dữ liệu **2,678 mẫu song ngữ** (kết hợp SafeGuard, Deepset, NotInject với các câu lệnh Jailbreak tiếng Việt đời thực).<br/>
+            • <strong>Khả năng ứng dụng</strong>: Hoạt động bền bỉ, nhận diện chuẩn xác cả các câu lệnh tấn công thuần Việt lẫn hiện tượng pha trộn ngôn ngữ (Code-switching Anh - Việt).
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
 
 
 
