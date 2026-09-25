@@ -1,0 +1,26 @@
+{
+  "author": "Pham Minh Hoang Viet (vietpmh)",
+  "task": "Task 4 (Meeting 6): Hidden Prompt at Tail Defense Solution",
+  "document_length_chars": 200000,
+  "total_blocks": 149,
+  "sequential_scan": {
+    "strategy": "Sequential Scan",
+    "total_blocks": 149,
+    "blocks_scanned": 1,
+    "blocks_saved": 148,
+    "detected_at_block": 0,
+    "verdict": "BLOCK",
+    "elapsed_ms": 175.096
+  },
+  "tail_prioritized_scan": {
+    "strategy": "Tail-and-Head Prioritized Scan",
+    "total_blocks": 149,
+    "blocks_scanned": 1,
+    "blocks_saved": 148,
+    "detected_at_block": 148,
+    "verdict": "BLOCK",
+    "elapsed_ms": 88.611
+  },
+  "speedup_factor": "1.98x",
+  "blocks_saved_pct": 0.0
+}

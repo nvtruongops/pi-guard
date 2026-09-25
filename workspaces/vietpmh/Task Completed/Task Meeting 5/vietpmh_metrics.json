@@ -1,0 +1,84 @@
+{
+  "member_id": "SE181467",
+  "member_name": "Pham Minh Hoang Viet",
+  "workspace": "workspaces/vietpmh",
+  "evaluation_timestamp": "2026-09-16T12:52:49+0700",
+  "hardware_specs": {
+    "os": "Windows 10 (AMD64)",
+    "cpu": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "cpu_count_logical": 12,
+    "cpu_count_physical": 6,
+    "ram_gb": 15.71,
+    "python_version": "3.11.9"
+  },
+  "model_1_ayub_camlis_2024_results": {
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2 (384d)",
+    "local_repo_path": "workspaces/vietpmh/Task Completed/Task Meeting 5/malicious-prompt-detection",
+    "embedding_latency_ms": 2.44,
+    "paper_reported_metrics_camlis_2024": {
+      "dataset_total_prompts": 467057,
+      "minilm_random_forest": {
+        "precision": 0.849,
+        "recall": 0.853,
+        "f1_score": 0.851
+      },
+      "minilm_xgboost": {
+        "precision": 0.820,
+        "recall": 0.829,
+        "f1_score": 0.824
+      },
+      "openai_random_forest": {
+        "precision": 0.867,
+        "recall": 0.867,
+        "f1_score": 0.867
+      }
+    },
+    "replication_benchmark_on_official_dataset": {
+      "dataset_source": "ahsanayub/malicious-prompts (200 official samples: 157 benign, 43 malicious)",
+      "embedding_latency_ms": 22.87,
+      "random_forest": {
+        "test_accuracy": 0.875,
+        "f1_score": 0.2857,
+        "precision": 1.0,
+        "recall": 0.1667,
+        "fpr": 0.0,
+        "train_time_ms": 182.93,
+        "total_cpu_latency_ms": 23.04
+      },
+      "logistic_regression": {
+        "test_accuracy": 0.85,
+        "f1_score": 0.0,
+        "fpr": 0.0,
+        "train_time_ms": 3.97,
+        "total_cpu_latency_ms": 22.87
+      }
+    }
+  },
+  "model_2_piguard_acl_2025_results": {
+    "architecture": "microsoft/deberta-v3-base (86M params)",
+    "local_repo_path": "workspaces/vietpmh/Task Completed/Task Meeting 5/PIGuard",
+    "checkpoint": "leolee99/PIGuard",
+    "replication_benchmark_on_official_dataset": {
+      "dataset_source": "leolee99/NotInject (100 official benchmark samples)",
+      "notinject_accuracy": 0.98,
+      "false_positive_rate": 0.02,
+      "mean_confidence": 0.9876,
+      "mean_cpu_latency_ms": 103.98,
+      "p50_cpu_latency_ms": 101.82,
+      "p95_cpu_latency_ms": 112.33,
+      "category_accuracy": {
+        "Technique Queries": 0.923,
+        "Multilingual": 1.0,
+        "Common Queries": 0.98,
+        "Virtual Creation": 1.0
+      },
+      "paper_reported_notinject_acc": 0.883
+    }
+  },
+  "task_4_two_tier_routing_poc": {
+    "fast_path_routed_ratio": 0.7,
+    "deep_path_routed_ratio": 0.3,
+    "combined_estimated_cpu_latency_ms": 4.99,
+    "speedup_vs_pure_deberta_fp32": 8.51
+  }
+}

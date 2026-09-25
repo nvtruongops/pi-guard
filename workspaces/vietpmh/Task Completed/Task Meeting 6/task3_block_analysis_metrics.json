@@ -1,0 +1,87 @@
+{
+  "document_length_chars": 200000,
+  "total_blocks_created": 149,
+  "block_size_configured": 1500,
+  "overlap_configured": 150,
+  "character_level_metadata": {
+    "total_chars": 5000,
+    "shannon_entropy": 4.1776,
+    "unprintable_count": 0,
+    "unprintable_ratio": 0.0,
+    "has_high_entropy": false
+  },
+  "total_processing_time_ms": 46.568,
+  "amortized_latency_per_block_ms": 0.313,
+  "blocks_preview": [
+    {
+      "block_index": 0,
+      "start_char": 0,
+      "end_char": 1500,
+      "detected_codecs": [],
+      "has_suspicious_marker": false
+    },
+    {
+      "block_index": 1,
+      "start_char": 1350,
+      "end_char": 2850,
+      "detected_codecs": [],
+      "has_suspicious_marker": false
+    },
+    {
+      "block_index": 2,
+      "start_char": 2700,
+      "end_char": 4200,
+      "detected_codecs": [],
+      "has_suspicious_marker": false
+    },
+    {
+      "block_index": 3,
+      "start_char": 4050,
+      "end_char": 5550,
+      "detected_codecs": [],
+      "has_suspicious_marker": false
+    },
+    {
+      "block_index": 4,
+      "start_char": 5400,
+      "end_char": 6900,
+      "detected_codecs": [],
+      "has_suspicious_marker": false
+    },
+    {
+      "block_index": 144,
+      "start_char": 194400,
+      "end_char": 195900,
+      "detected_codecs": [],
+      "has_suspicious_marker": false
+    },
+    {
+      "block_index": 145,
+      "start_char": 195750,
+      "end_char": 197250,
+      "detected_codecs": [],
+      "has_suspicious_marker": false
+    },
+    {
+      "block_index": 146,
+      "start_char": 197100,
+      "end_char": 198600,
+      "detected_codecs": [],
+      "has_suspicious_marker": false
+    },
+    {
+      "block_index": 147,
+      "start_char": 198450,
+      "end_char": 199950,
+      "detected_codecs": [],
+      "has_suspicious_marker": false
+    },
+    {
+      "block_index": 148,
+      "start_char": 199800,
+      "end_char": 200000,
+      "detected_codecs": [],
+      "has_suspicious_marker": false
+    }
+  ]
+}
