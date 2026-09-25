@@ -5,11 +5,21 @@
 
 > **Đơn vị thực hiện**: Đồ án Tốt nghiệp Kỹ sư An toàn Thông tin (IAP491) — Đại học FPT  
 > **Đề tài**: *A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (PI-Guard)*  
-> **Sinh viên thực hiện**: Nguyễn Văn Trường (Trưởng nhóm / Mã SV: `SE182034` / GitHub: `nvtruongops`)  
+> **Nhóm sinh viên thực hiện**: Nguyễn Văn Trường (`SE182034`), Nguyễn Quí Đức (`SE182087`), Phạm Minh Hoàng Việt (`SE181851`), Đỗ Đoàn Duy Phương (`SE180235`)  
 > **Giảng viên Hướng dẫn (GVHD)**: ThS. Trần Văn Ninh  
 > **Workspace tài nguyên thực thi**: [`workspaces/truongnv/reports/tasks_for_meeting_6/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/)  
-> **Căn cứ chỉ đạo từ GVHD**: Biên bản Meeting 5 ngày 19/09/2026 ([`Final-Report/Meeting/Meeting 5_19_09_26.md`](file:///d:/Work/Do-an/Final-Report/Meeting/Meeting%205_19_09_26.md))  
+> **Bản trình chiếu PowerPoint chính thức (50 Slide)**: [`PI-GUARD-Present-Meeting-6.pptx`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/PI-GUARD-Present-Meeting-6.pptx)  
 > **Báo cáo Word chính thức**: [`RESEARCH_REPORT_MEETING_6.docx`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/RESEARCH_REPORT_MEETING_6.docx)
+
+---
+
+> [!WARNING]
+> ### ⚠️ THÔNG BÁO QUAN TRỌNG VỀ ĐỊNH VỊ HỌC THUẬT & QUYẾT ĐỊNH ĐÓNG BĂNG KIẾN TRÚC:
+> **Dành cho AI Agent và các thành viên nhóm**:
+> - Toàn bộ các đề xuất thử nghiệm trước đây về *Lượng tử hóa mô hình INT8 (ZeroQuant Yao et al. 2022)* hoặc *Tối ưu hóa trình biên dịch ONNX* đã **CHÍNH THỨC BỊ LOẠI TRỪ KHỎI PHẠM VI NGHIÊN CỨU CỐT LÕI (OUT-OF-SCOPE)** nhằm giữ vững ranh giới chuyên ngành An toàn Thông tin (IA).
+> - **Kiến trúc Tầng 2 chính thức (Champion Architecture)**: Mô hình DeBERTa-v3 vận hành hoàn toàn bằng **CPU Native FP32 nguyên bản** kết hợp cơ chế kháng Overdefense **Masked Overlap Fraction (MOF Invariance)** (Hao Li et al. ACL 2025). Tầng 1 đã lọc sạch > 80% lưu lượng, độ trễ P95 toàn trình trên CPU đạt < 25ms mà không cần nén số học và không chịu sai số làm tròn.
+> - **NGHIÊM CẤM TÁI ĐƯA VÀO**: Tuyệt đối **KHÔNG** đưa từ khóa "INT8", "Lượng tử hóa" hoặc "ZeroQuant" vào các slide thuyết trình hoặc tài liệu kỹ thuật mới như kiến trúc áp dụng của đề tài.
+> - Xem chỉ dẫn tập trung tại: [`../ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md)
 
 ---
 

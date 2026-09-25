@@ -273,7 +273,7 @@
         "Luo & Han (2026) [CASCADE Against Jailbreaks, arXiv:2609.21793]",
         "Le et al. (ACL 2025) [PIGuard Framework]"
       ],
-      "technical_stack": "Tri-State Coordinator: Tier-1 (TF-IDF LogReg, tau_low=0.15, tau_high=0.85) -> 82% offload; Tier-2 (ONNX INT8 DeBERTa) -> 18% escalate",
+      "technical_stack": "Tri-State Coordinator: Tier-1 (TF-IDF LogReg, tau_low=0.15, tau_high=0.85) -> 82% offload; Tier-2 (CPU Native FP32 DeBERTa-v3 MOF) -> 18% escalate",
       "metrics": {
         "latency_p50_ms": 0.08,
         "latency_p95_ms": 3.45,

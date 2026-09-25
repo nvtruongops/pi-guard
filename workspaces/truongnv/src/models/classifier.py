@@ -92,3 +92,36 @@ class DummyClassifier(BaseGuardrailClassifier):
             else:
                 scores.append(self.default_score)
         return scores
+
+
+class ChampionCascadeClassifier(BaseGuardrailClassifier):
+    """
+    Champion Two-Tier Cascade Classifier for PI-Guard.
+    Integrates Tier-0 Ingress Scrubber, Fail-Safe OOV Density Gate,
+    Tier-1 Dual-Space TF-IDF Platt Classifier, and Tier-2 DeBERTa-v3 Semantic Arbiter.
+    """
+
+    def __init__(self, theta_low: float = 0.15, theta_high: float = 0.85):
+        from src.models.cascade import TwoTierCascadeGuardrail
+        self.guardrail = TwoTierCascadeGuardrail(theta_low=theta_low, theta_high=theta_high)
+
+    def load(self, path: str) -> None:
+        pass
+
+    def predict_score(self, texts: str | list[str]) -> list[float]:
+        if isinstance(texts, str):
+            texts = [texts]
+        scores = []
+        for text in texts:
+            res = self.guardrail.inspect_query(text)
+            scores.append(float(res["final_score"]))
+        return scores
+
+    def inspect_detailed(self, text: str) -> dict:
+        """Returns complete tier-by-tier inspection dictionary."""
+        return self.guardrail.inspect_query(text)
+
+    def inspect_long_document(self, text: str, strategy: str = "head_tail_priority") -> dict:
+        """Inspects document up to 200k chars with prioritized block scanning."""
+        return self.guardrail.inspect_long_document(text, strategy=strategy)
+

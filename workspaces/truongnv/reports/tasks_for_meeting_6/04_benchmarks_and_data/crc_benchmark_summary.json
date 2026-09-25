@@ -1,0 +1,50 @@
+[
+  {
+    "alpha": 0.005,
+    "target_fpr_pct": 0.5,
+    "tau_low": 0.446126407161287,
+    "tau_high": 0.7894445910681118,
+    "empirical_fpr": 0.0038461538461538464,
+    "guarantee_met": true
+  },
+  {
+    "alpha": 0.01,
+    "target_fpr_pct": 1.0,
+    "tau_low": 0.2988222793153711,
+    "tau_high": 0.7894445910681118,
+    "empirical_fpr": 0.007692307692307693,
+    "guarantee_met": true
+  },
+  {
+    "alpha": 0.015,
+    "target_fpr_pct": 1.5,
+    "tau_low": 0.26678502662513787,
+    "tau_high": 0.7894445910681118,
+    "empirical_fpr": 0.011538461538461539,
+    "guarantee_met": true
+  },
+  {
+    "alpha": 0.02,
+    "target_fpr_pct": 2.0,
+    "tau_low": 0.2345117088991979,
+    "tau_high": 0.7894445910681118,
+    "empirical_fpr": 0.019230769230769232,
+    "guarantee_met": true
+  },
+  {
+    "alpha": 0.03,
+    "target_fpr_pct": 3.0,
+    "tau_low": 0.20803697473088442,
+    "tau_high": 0.7894445910681118,
+    "empirical_fpr": 0.026923076923076925,
+    "guarantee_met": true
+  },
+  {
+    "alpha": 0.05,
+    "target_fpr_pct": 5.0,
+    "tau_low": 0.17410359863040573,
+    "tau_high": 0.7894445910681118,
+    "empirical_fpr": 0.046153846153846156,
+    "guarantee_met": true
+  }
+]

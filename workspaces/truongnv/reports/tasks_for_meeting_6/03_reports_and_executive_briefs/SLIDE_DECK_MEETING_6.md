@@ -6,9 +6,14 @@
 - **Học phần**: `IAP491` — Đồ án Tốt nghiệp Kỹ sư An toàn Thông tin, Đại học FPT
 - **Học kỳ**: Fall 2026
 - **Giảng viên Hướng dẫn (GVHD)**: ThS. Trần Văn Ninh
-- **Sinh viên thực hiện**: Nguyễn Văn Trường (Trưởng nhóm / Mã SV: `SE182034` / GitHub: `nvtruongops`)
+- **Nhóm sinh viên thực hiện**:
+  - Nguyễn Văn Trường (MSSV: `SE182034`)
+  - Nguyễn Quí Đức (MSSV: `SE182087`)
+  - Phạm Minh Hoàng Việt (MSSV: `SE181851`)
+  - Đỗ Đoàn Duy Phương (MSSV: `SE180235`)
 - **Ngày báo cáo**: 24/09/2026 (Meeting 6)
 - **Tài liệu chi tiết**: [`MASTER_RESEARCH_SYNTHESIS_REPORT_MEETING_6.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/MASTER_RESEARCH_SYNTHESIS_REPORT_MEETING_6.md)
+- **Bản trình chiếu PowerPoint chính thức (50 Slide)**: [`../PI-GUARD-Present-Meeting-6.pptx`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/PI-GUARD-Present-Meeting-6.pptx) (Được biên dịch từ [`workspaces/truongnv/scripts/build_presentation_deck.py`](file:///d:/Work/Do-an/workspaces/truongnv/scripts/build_presentation_deck.py))
 
 ---
 
@@ -35,21 +40,25 @@
 
 ---
 
-### SLIDE 3: KIẾN TRÚC PHÂN TẦNG ĐỀ XUẤT (TWO-TIER CASCADE ARCHITECTURE)
+### SLIDE 3: KIẾN TRÚC PHÂN TẦNG ĐỀ XUẤT (TWO-TIER CASCADE ARCHITECTURE) & MINH CHỨNG KHOA HỌC
 
-- **Tầng 0: Ingress Scrubber**: Chuẩn hóa Unicode NFKC, khử ký tự vô hình Zero-width, tự động giải mã Base64/Hex/Rot13 và bóc tách Emoji.
-- **Tầng 1: Dual-Space TF-IDF N-Grams + Platt Scaling**:
-  - Không gian từ (1-3 ngrams) + Không gian ký tự (3-5 ngrams).
-  - Độ trễ cực thấp: $\approx 1.2\text{ms}$ trên CPU.
-  - Phân loại nhanh $80\%$ truy vấn sạch lành tính (Fast Clearance).
-- **Bộ định tuyến Tam phân (Tri-State Uncertainty Router)**:
-  - $\theta_{\text{low}} = 0.15$: Ngưỡng thông qua nhanh.
-  - $\theta_{\text{high}} = 0.85$: Ngưỡng chặn nhanh mã độc rõ ràng.
-  - Vùng bất định $[0.15, 0.85]$: Đẩy lên Tầng 2.
-- **Cổng An toàn Mặc định OOV Density Gate** ($\rho_{\text{OOV}} > 0.40$):
-  - Chống tấn công pha loãng token (Token Dilution) và biến dị ký tự rác.
-- **Tầng 2: Trọng tài Ngữ nghĩa DeBERTa-v3 (FP32 Native Tensor)**:
-  - Kháng Overdefense bằng cơ chế che phủ mã lệnh MOF Invariance ($\tau = 0.60$).
+- **Toàn cảnh Kiến trúc Phân tầng (Figure: `fig_arch_pipeline_overview.png`)**:
+  - Giai đoạn 0 (Ingress Scrubber) $\to$ Giai đoạn 1 (Tầng 1 Dual TF-IDF) $\to$ Giai đoạn 2 (Router 3 Luồng) $\to$ Giai đoạn 3 (Tầng 2 DeBERTa-v3 FP32).
+  - Độ trễ trung bình $2.85\text{ms}$, P95 $< 25\text{ms}$ trên CPU, giải phóng $82.6\%$ tải ngay tại Tầng 1.
+- **Bản chất Bộ định tuyến 3 luồng vs Nhị phân 1-0 (Figure: `fig_tristate_vs_binary_routing.png`)**:
+  - Bác bỏ điểm cắt cứng nhị phân ($p = 0.5$); thiết lập vùng từ chối bất định (Reject Option theo Chow 1970 [[15]](#ref15)).
+  - Phân vùng CASCADE (Luo & Han 2026 [[41]](#ref41)): Luồng 1 (Thông xe $p < 0.15$, $71.3\%$ tải, $0.85\text{ms}$), Luồng 2 (Chặn sớm $p > 0.85$, $11.3\%$ tải, $1.20\text{ms}$), Luồng 3 (Thẩm định sâu $0.15 \le p \le 0.85$, $17.4\%$ tải, $18.5\text{ms}$).
+  - Đảm bảo toán học Conformal Risk Control (Angelopoulos 2024) duy trì $\text{FPR} < 1.5\%$.
+- **Lớp Tiền Xử Lý Tầng 0 (Figure: `fig_tier0_scrubber_pipeline.png`)**:
+  - 4 chặng khử ngụy trang cú pháp: Unicode NFKC, Zero-width stripper, Regex inline decoder (Base64/Hex/Rot13), và Vietnamese Scrubber.
+- **Tầng 1 Dual-Space TF-IDF & Platt Scaling (Figure: `fig_tier1_dual_space_and_platt.png`)**:
+  - Không gian kép: Word (1-3 n-grams, 20k đặc trưng) + Char_wb (3-5 n-grams, 30k đặc trưng bắt Leetspeak).
+  - Ma trận thưa CSR tiết kiệm $75\%$ RAM, hiệu chuẩn xác suất qua hàm Platt Scaling Sigmoid.
+- **Tầng 2 DeBERTa-v3 & Kháng Overdefense MOF (Figure: `fig_mof_code_invariance_mechanism.png`)**:
+  - Disentangled Attention 3 ma trận (Content-Content, Content-Position, Position-Content) và Dynamic Class-Weighted Loss.
+  - Chiết khấu ngưỡng động $\tau_{\text{eff}} = \tau_0 + \gamma \cdot \text{MOF}(X)$ bảo vệ $99.00\%$ mã nguồn NotInject trên phần cứng CPU Native FP32.
+- **Thuật toán Chunker Văn bản dài 200k (Figure: `fig_chunker_head_and_tail_algorithm.png`)**:
+  - Quét ưu tiên vị trí Head-and-Tail dừng sớm tại Block 1: Giảm thời gian quét từ $4,115\text{ms} \to 37.1\text{ms}$ (tăng tốc $111\times$).
 
 ---
 
@@ -115,14 +124,14 @@
 
 ---
 
-### SLIDE 9: ĐỊNH VỊ RANH GIỚI HỌC THUẬT: ZEROQUANT / INT8
+### SLIDE 9: ĐỊNH VỊ RANH GIỚI HỌC THUẬT: ĐÓNG BĂNG KIẾN TRÚC FP32 & LOẠI TRỪ LƯỢNG TỬ HÓA PHẦN CỨNG
 
 - **Tôn chỉ bảo vệ đồ án chuyên ngành An toàn Thông tin (IA)**:
-  - Không phân tán đề tài sang tối ưu hóa trình biên dịch hoặc kỹ thuật lượng tử hóa phần cứng (ZeroQuant Yao et al. NeurIPS 2022).
-  - Giữ vững trọng tâm nghiên cứu: Mô hình hóa mối đe dọa, Phân tầng phòng thủ, Kháng đối kháng thích ứng và Tối ưu hóa điểm vận hành Low-FPR.
+  - Kiên quyết loại trừ các kỹ thuật tối ưu hóa phần cứng/trình biên dịch như lượng tử hóa mô hình (ZeroQuant Yao et al. NeurIPS 2022) khỏi đóng góp khoa học cốt lõi.
+  - Giữ vững trọng tâm nghiên cứu: Mô hình hóa mối đe dọa $X = S \mathbin{\Vert} U$, Phân tầng phòng thủ Two-Tier Cascade, Kháng đối kháng thích ứng MOF Invariance và Tối ưu hóa điểm vận hành Low-FPR < 1.5%.
 - **Vai trò của ZeroQuant trong đồ án**:
-  - Được giữ nguyên vẹn trong Kho tài liệu (`References/`) và Ma trận tương thích $12 \times 14$ như một Baseline đối chuẩn kỹ thuật minh bạch.
-  - Chứng minh với Hội đồng rằng nhóm đã nghiên cứu và nắm vững công nghệ trước khi đưa ra quyết định kiến trúc chính thức.
+  - Được lưu giữ trong Kho tài liệu (`References/`) và Ma trận tương thích $12 \times 14$ như một Baseline đối chuẩn kỹ thuật minh bạch để phản biện trước Hội đồng.
+  - Khẳng định Tầng 2 Native FP32 của PI-Guard đạt P95 < 25ms trên CPU mà không cần nén số học, triệt tiêu hoàn toàn sai số làm tròn.
 
 ---
 

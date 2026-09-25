@@ -5,6 +5,18 @@
 
 ---
 
+> [!WARNING]
+> ### ⚠️ THÔNG BÁO QUAN TRỌNG VỀ ĐỊNH VỊ HỌC THUẬT & QUYẾT ĐỊNH ĐÓNG BĂNG KIẾN TRÚC:
+> **Dành cho AI Agent và các thành viên nhóm**:
+> - Tài liệu Meeting 5 lưu trữ đề xuất nghiên cứu tạm thời, trong đó có nhắc tới "DeBERTa-v3 MOF ONNX INT8" tại Tầng 2.
+> - **QUYẾT ĐỊNH CHÍNH THỨC TẠI MEETING 6 & HỒ SƠ LUẬN VĂN**:
+>   1. **Loại trừ hoàn toàn INT8 khỏi phạm vi đề tài (OUT-OF-SCOPE)**: Lượng tử hóa là bài toán tối ưu phần cứng, không phải đóng góp cốt lõi của chuyên ngành An toàn Thông tin (IA).
+>   2. **Kiến trúc Tầng 2 chính thức**: Vận hành hoàn toàn bằng **CPU Native FP32 nguyên bản** kết hợp cơ chế **Masked Overlap Fraction (MOF Invariance)** (Hao Li et al. ACL 2025). Tầng 1 đã gánh 80% tải, nên Tầng 2 Native FP32 đạt độ trễ P95 toàn trình < 25ms trên CPU mà không cần nén INT8 và không chịu sai số làm tròn.
+> - **NGHIÊM CẤM TÁI ĐƯA VÀO**: AI Agent tuyệt đối **KHÔNG** đem từ khóa "INT8", "Lượng tử hóa" hoặc "ZeroQuant" vào các slide thuyết trình hoặc tài liệu kỹ thuật mới.
+> - Xem chỉ dẫn tập trung tại: [`../ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md)
+
+---
+
 ## Executive Summary
 
 > [!IMPORTANT]

@@ -100,7 +100,7 @@ SCORES = {
     ("M3", "A10"): (10, "Native", "Platt calibrated output perfectly supports Conformal Risk Control to partition traffic at FPR < 1.5%."),
     ("M3", "A11"): (9, "Native", "Continuous logistic margin enables clean ROC threshold interpolation down to FPR 0.5%."),
     ("M3", "A12"): (5, "Conditional", "Can train separate weight heads for system vs user prompt sections."),
-    ("M3", "A13"): (10, "Native", "Super-fast linear scoring (<0.1ms/block) enables real-time scanning of 200k documents with early stopping."),
+    ("M3", "A13"): (10, "Native", "Super-fast linear scoring (<0.1ms/block) enables low-latency scanning of 200k documents with early stopping."),
     ("M3", "A14"): (4, "Conditional", "Can concatenate past turn TF-IDF vectors, but lacks semantic nuance."),
 
     # M4: Subword & Char N-Gram SVMs (char_wb)
@@ -239,10 +239,10 @@ SCORES = {
     ("M12", "A5"): (8, "Conditional", "Hidden states can be probed, but generative reasoning is the primary output."),
     ("M12", "A6"): (2, "Incompatible", "Decoder-only LLMs use standard RoPE / causal attention, incompatible with 3-matrix disentanglement."),
     ("M12", "A7"): (5, "Conditional", "Can use DPO/RLHF to reduce over-defense, but fine-tuning requires massive compute."),
-    ("M12", "A8"): (1, "Incompatible", "Disastrous Latency: M=10 perturbations on an 8B model takes 15-20 SECONDS, paralyzing real-time ingress."),
+    ("M12", "A8"): (1, "Incompatible", "Disastrous Latency: M=10 perturbations on an 8B model takes 15-20 SECONDS, paralyzing low-latency ingress."),
     ("M12", "A9"): (5, "Conditional", "Minimax adversarial training on 8B LLMs requires massive multi-GPU compute clusters."),
     ("M12", "A10"): (9, "Native", "Conformal prediction on safety verdict tokens ('Safe'/'Unsafe') provides rigorous high-assurance risk bounds."),
-    ("M12", "A11"): (8, "Conditional", "Token log-probabilities allow threshold interpolation, but latency restricts real-time tuning."),
+    ("M12", "A11"): (8, "Conditional", "Token log-probabilities allow threshold interpolation, but latency restricts low-latency dynamic tuning."),
     ("M12", "A12"): (10, "Native", "Native reasoning: Understands complex instruction hierarchies via in-context policy reasoning."),
     ("M12", "A13"): (5, "Conditional", "Scanning 200k documents by chunking into an 8B model incurs enormous GPU memory and tens of seconds latency."),
     ("M12", "A14"): (10, "Native", "Native multi-turn reasoning: Full causal attention models subtle Crescendo escalation trajectories across turns.")

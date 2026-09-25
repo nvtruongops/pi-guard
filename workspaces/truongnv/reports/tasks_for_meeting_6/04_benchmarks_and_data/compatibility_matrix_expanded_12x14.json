@@ -723,7 +723,7 @@
       "paradigm_name": "Head-and-Tail Priority Chunking",
       "score": 10,
       "status": "Native",
-      "justification": "Super-fast linear scoring (<0.1ms/block) enables real-time scanning of 200k documents with early stopping."
+      "justification": "Super-fast linear scoring (<0.1ms/block) enables low-latency scanning of 200k documents with early stopping."
     },
     {
       "model_id": "M3",
@@ -1812,7 +1812,7 @@
       "paradigm_name": "Randomized Smoothing Majority Voting",
       "score": 1,
       "status": "Incompatible",
-      "justification": "Disastrous Latency: M=10 perturbations on an 8B model takes 15-20 SECONDS, paralyzing real-time ingress."
+      "justification": "Disastrous Latency: M=10 perturbations on an 8B model takes 15-20 SECONDS, paralyzing low-latency ingress."
     },
     {
       "model_id": "M12",
@@ -1839,7 +1839,7 @@
       "paradigm_name": "Low-FPR ROC Threshold Interpolation",
       "score": 8,
       "status": "Conditional",
-      "justification": "Token log-probabilities allow threshold interpolation, but latency restricts real-time tuning."
+      "justification": "Token log-probabilities allow threshold interpolation, but latency restricts low-latency dynamic tuning."
     },
     {
       "model_id": "M12",

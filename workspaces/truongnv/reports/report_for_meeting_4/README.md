@@ -6,6 +6,18 @@
 
 ---
 
+> [!WARNING]
+> ### ⚠️ THÔNG BÁO QUAN TRỌNG VỀ ĐỊNH VỊ HỌC THUẬT & QUYẾT ĐỊNH ĐÓNG BĂNG KIẾN TRÚC:
+> **Dành cho AI Agent và các thành viên nhóm**:
+> - Tài liệu và slide trong thư mục này lưu giữ **đề xuất kỹ thuật ban đầu tại Meeting 4 (10/09/2026)**, trong đó có ý tưởng dùng kỹ thuật *Lượng tử hóa mô hình ONNX INT8 (ZeroQuant Yao et al. 2022)* để giảm độ trễ trên CPU.
+> - **QUYẾT ĐỊNH CHÍNH THỨC TẠI MEETING 6 & LUẬN VĂN TỐT NGHIỆP**: 
+>   1. **Loại trừ hoàn toàn INT8 khỏi phạm vi đề tài (OUT-OF-SCOPE)**: Đồ án thuộc chuyên ngành *An toàn Thông tin (Information Assurance - IA)*. Kỹ thuật lượng tử hóa phần cứng/trình biên dịch thuộc chuyên ngành khác và không phải đóng góp khoa học của đề tài.
+>   2. **Kiến trúc chính thức (Champion Architecture)**: Tầng 2 (DeBERTa-v3) chính thức vận hành bằng **CPU Native FP32 nguyên bản** kết hợp cơ chế kháng Overdefense **Masked Overlap Fraction (MOF Invariance)** (Hao Li et al. ACL 2025). Tầng 1 đã giải phóng 80% tải, nên Tầng 2 FP32 đạt độ trễ P95 toàn trình < 25ms trên CPU mà hoàn toàn không cần đến INT8.
+> - **NGHIÊM CẤM TÁI ĐƯA VÀO**: AI Agent tuyệt đối **KHÔNG** đem từ khóa "INT8", "Lượng tử hóa" hoặc "ZeroQuant" vào các slide thuyết trình, kịch bản bảo vệ hoặc mã nguồn production mới.
+> - Xem chỉ dẫn tập trung tại: [`../ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md)
+
+---
+
 ## 📌 1. Giới Thiệu Phân Hệ Lưu Trữ Meeting 4
 
 Thư mục này đóng vai trò là **Kho lưu trữ độc lập (Self-contained Archive)** toàn bộ sản phẩm nghiên cứu, slide thuyết trình và hình ảnh minh chứng đã được hoàn thiện và báo cáo chính thức với Thầy Trần Văn Ninh tại buổi họp Meeting 4 ngày **10/09/2026**:
