@@ -1,10 +1,10 @@
 {
   "author": "Pham Minh Hoang Viet (vietpmh)",
   "task": "Task 2 (Meeting 6): Two-Tier Combination Mechanism",
-  "timestamp": "2026-09-25T15:01:28+0700",
+  "timestamp": "2026-09-25T22:05:13+0700",
   "total_test_samples": 150,
-  "notinject_overdefense_acc_pct": 98.0,
-  "ayub_test_acc_pct": 37.0,
+  "notinject_overdefense_acc_pct": 96.0,
+  "ayub_test_acc_pct": 77.0,
   "routing_breakdown": {
     "tier1_fast_allow": 27,
     "tier1_fast_block": 0,
@@ -13,8 +13,8 @@
     "tier2_escalated_ratio_pct": 82.0
   },
   "latency_stats_cpu_ms": {
-    "mean": 102.292,
-    "p50": 111.181,
-    "p95": 192.821
+    "mean": 11.679,
+    "p50": 7.841,
+    "p95": 26.658
   }
 }

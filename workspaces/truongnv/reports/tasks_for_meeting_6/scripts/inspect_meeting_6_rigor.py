@@ -79,13 +79,6 @@ def audit_markdown_files():
 def audit_empirical_artifacts():
     print("[*] Auditing empirical evidence and artifacts...")
     artifacts = {
-        "Src: Tier 0 Scrubber": BASE_DIR / "src" / "tier0_ingress_scrubber.py",
-        "Src: Block Chunker": BASE_DIR / "src" / "block_chunker.py",
-        "Src: Tier 1 Fast Filter": BASE_DIR / "src" / "tier1_fast_filter.py",
-        "Src: Tier 2 Semantic Arbiter": BASE_DIR / "src" / "tier2_semantic_arbiter.py",
-        "Weights: Tier 1 Joblib": BASE_DIR / "src" / "tier1_tfidf_model.joblib",
-        "Data: 200k Benign": BASE_DIR / "data" / "sample_benign_200k.txt",
-        "Data: 200k Tail Attack": BASE_DIR / "data" / "sample_malicious_tail_200k.txt",
         "Data: Cross-Dataset D1": BASE_DIR / "data" / "cross_dataset_suite" / "D1_piguard_valid.json",
         "Data: Cross-Dataset D2": BASE_DIR / "data" / "cross_dataset_suite" / "D2_bipia_indirect.json",
         "Data: Cross-Dataset D3": BASE_DIR / "data" / "cross_dataset_suite" / "D3_jailbreakbench_100.json",
@@ -93,12 +86,10 @@ def audit_empirical_artifacts():
         "Data: Cross-Dataset D5": BASE_DIR / "data" / "cross_dataset_suite" / "D5_notinject_overdefense.json",
         "Data: Cross-Dataset D6": BASE_DIR / "data" / "cross_dataset_suite" / "D6_wildguard_complex_benign.json",
         "Benchmark: Matrix JSON": BASE_DIR / "04_benchmarks_and_data" / "cross_dataset_empirical_matrix.json",
-        "Figure 1: Early Stopping 200k": BASE_DIR / "figures" / "fig1_early_stopping_latency_200k.png",
-        "Figure 2: Cross Dataset Heatmap": BASE_DIR / "figures" / "fig2_cross_dataset_heatmap.png",
-        "Figure 3: Overdefense Tradeoff": BASE_DIR / "figures" / "fig3_overdefense_and_lowfpr_tradeoff.png",
-        "Figure 4: Component Ablation": BASE_DIR / "figures" / "fig4_ablation_study_breakdown.png",
-        "Test: Long Doc 200k": BASE_DIR / "tests" / "test_long_document_200k.py",
-        "Test: Hidden Tail Injection": BASE_DIR / "tests" / "test_hidden_prompt_at_tail.py",
+        "Figure: OWASP NIST Taxonomy": BASE_DIR / "figures" / "fig_owasp_nist_taxonomy.png",
+        "Figure: Flat Token Space": BASE_DIR / "figures" / "fig_threat_model_flat_token_space.png",
+        "Figure: 5-Axis Radar": BASE_DIR / "figures" / "fig_nist_5axis_radar.png",
+        "Figure: SOTA Overdefense Gap": BASE_DIR / "figures" / "fig_sota_overdefense_gap.png",
     }
     missing = []
     for name, path in artifacts.items():

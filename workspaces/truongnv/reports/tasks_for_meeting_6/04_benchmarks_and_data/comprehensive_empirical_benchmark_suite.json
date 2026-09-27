@@ -6,7 +6,7 @@
     "device": "Commodity CPU (Zero-GPU Required)",
     "total_suite_runtime_s": 51.03
   },
-  "models_count": 12,
+  "models_count": 10,
   "empirical_models": {
     "piguard_acl2025": {
       "name": "PIGuard ACL 2025 (MOF Loss)",
@@ -42,14 +42,6 @@
       "overflow_recall": 1.0,
       "truncated_512_overflow_recall": 0.333,
       "latency_p95_ms": 11.67
-    },
-    "piguard_tier1_fastfilter": {
-      "name": "PI-Guard Tier-1 Fast-Filter (Dual-Space TF-IDF)",
-      "paper": "Spärck Jones (1972), Jain et al. (2023) [[15]], Saltzer & Schroeder (1975) [[16]]",
-      "clearance_rate": 1.0,
-      "tier1_fpr": 0.0,
-      "direct_block_rate": 0.75,
-      "latency_p95_ms": 8.216
     },
     "meta_promptguard_86m": {
       "name": "Meta Prompt-Guard 86M",
@@ -104,14 +96,6 @@
       "fpr": 0.584,
       "overdefense_acc": 0.416,
       "latency_p95_ms": 14.2
-    },
-    "piguard_twotier_cascade": {
-      "name": "PI-Guard Two-Tier Cascade [Proposed]",
-      "accuracy": 0.965,
-      "fpr": 0.0,
-      "overdefense_acc": 0.907,
-      "latency_p95_ms": 3.45,
-      "key_advantage": "7x faster than monolithic DeBERTa-v3 with zero false positives"
     }
   }
 }

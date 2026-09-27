@@ -9,16 +9,16 @@
 > **Tác giả nghiên cứu**: Nguyễn Văn Trường (Trưởng nhóm / Mã SV: `SE182034` / GitHub: `nvtruongops`)  
 > **Workspace thực thi**: [`workspaces/truongnv/`](file:///d:/Work/Do-an/workspaces/truongnv/)  
 > **Học kỳ**: Fall 2026 | **Giảng viên Hướng dẫn**: ThS. Trần Văn Ninh  
-> **Trạng thái**: **ĐÃ THỰC THI & HOÀN TẤT ĐÓNG BĂNG MÔ HÌNH (100% EMPIRICALLY VERIFIED)**  
+> **Trạng thái**: **HOÀN TẤT ĐỐI CHUẨN THỰC NGHIỆM & ĐÓNG BĂNG DANH MỤC BASELINE Y VĂN (CHAPTER 2)**  
 
 ---
 
-## 📌 1. TỔNG QUAN VẤN ĐỀ & BẰNG CHỨNG NGHIỆM THU ĐÓNG BĂNG MÔ HÌNH
+## 📌 1. TỔNG QUAN VẤN ĐỀ & BẰNG CHỨNG ĐÓNG BĂNG DANH MỤC BASELINE Y VĂN
 
 Trong các phiên phản biện trước Hội đồng Khoa học (Academic Defense Committee) của Đại học FPT, một trong những câu hỏi then chốt thường được đặt ra đối với các đề tài bảo mật ứng dụng LLM là:
-> *"Tại sao nhóm không sử dụng hoặc tinh chỉnh các mô hình an toàn tạo sinh lớn hiện đại (Generative Safety SLMs/LLMs như Llama Guard 7B/8B, Granite Guardian 8B) mà lại lựa chọn kiến trúc Encoder phân loại nhỏ gọn (`microsoft/deberta-v3-base`) kết hợp Classical ML (TF-IDF)? Ranh giới kỹ thuật nào là điểm mạnh cốt lõi mà nhóm tự tin bảo vệ, và giới hạn khoa học nào nằm ngoài tầm với mà nhóm thẳng thắn thừa nhận trước Hội đồng?"*
+> *"Tại sao nhóm không sử dụng hoặc tinh chỉnh các mô hình an toàn tạo sinh lớn hiện đại (Generative Safety SLMs/LLMs như Llama Guard 7B/8B, Granite Guardian 8B) mà lại định hướng kiến trúc Encoder phân loại nhỏ gọn (`microsoft/deberta-v3-base`) kết hợp Classical ML (TF-IDF)? Ranh giới kỹ thuật nào là điểm mạnh cốt lõi mà nhóm tự tin bảo vệ, và giới hạn khoa học nào nằm ngoài tầm với mà nhóm thẳng thắn thừa nhận trước Hội đồng?"*
 
-Hồ sơ này thiết lập **bộ lập luận phòng thủ học thuật hoàn chỉnh (Defense Rationale)**, giải quyết triệt để các câu hỏi phản biện, đối chiếu khoảng trống nghiên cứu (Gap Audit) theo chuẩn 8 bước quốc tế, và chính thức công bố quyết định đóng băng mô hình (Model Freezing Gate).
+Hồ sơ này thiết lập **bộ lập luận phòng thủ học thuật hoàn chỉnh (Defense Rationale)**, giải quyết triệt để các câu hỏi phản biện, đối chiếu khoảng trống nghiên cứu (Gap Audit) theo chuẩn 8 bước quốc tế, và chính thức công bố quyết định đóng băng danh mục baseline y văn (Baseline Freezing Gate).
 
 ```mermaid
 flowchart TD
@@ -33,7 +33,7 @@ flowchart TD
             K2["2. Kháng Nhiễu Chuỗi & Token Anomaly<br/>(Zero-width spaces, NFKC Homoglyphs, Spacing)"]
             K3["3. Triệt tiêu Evasion qua Icon / Emoji<br/>(Heuristic Defragmentation: i🔥g🔥n🔥o🔥r🔥e)"]
             K4["4. Phân tách Ranh giới Chỉ thị & Dữ liệu<br/>(DeBERTa-v3 Disentangled Attention + MOF Loss)"]
-            K5["5. Quét Injection Tài liệu dài 200k chars<br/>(Tail-and-Head Prioritized Scanning, 111x speedup)"]
+            K5["5. Quét Injection Tài liệu dài 200k chars<br/>(Tail-and-Head Prioritized Scanning, Early Stopping)"]
         end
 
         subgraph OutOfReach["3 KEY GIỚI HẠN NGOÀI TẦM VỚI (HONEST BOUNDARIES)"]
@@ -59,10 +59,10 @@ flowchart TD
 | **B2** | **Tổng quan Y văn & Phân loại Kiến trúc** | Phân loại SOTA và phân tích đánh đổi lý thuyết. | Đã hoàn thiện tại `TAXONOMY_OF_ARCHITECTURES_AND_ALGORITHMIC_PARADIGMS.md` và Ma trận $12 \times 14$. | **ĐẠT** ✔ |
 | **B3** | **Kỹ nghệ Dữ liệu & Kiểm soát Rò rỉ** | $100\%$ dữ liệu y văn gốc (Zero-synthetic), chuẩn hóa 6 datasets độc lập. | Đã trích xuất $520$ mẫu gốc vào `data/cross_dataset_suite/` qua script `prepare_cross_dataset_suite.py`. | **ĐẠT** ✔ |
 | **B4** | **Thực nghiệm Đối chứng Đồng nhất** | Chạy các mô hình trên CÙNG một testbed, cùng CPU, cùng tiêu chí đo. | Đã chạy xong `run_cross_dataset_benchmark.py` xuất file `cross_dataset_empirical_matrix.json`. | **ĐẠT** ✔ |
-| **B5** | **Hiện thực hóa Mã nguồn & Đóng gói Weights** | Pipeline thực tế đã train, lưu file weights `.joblib`, suy luận end-to-end. | Đã viết xong 4 module trong `src/`, train và lưu thành công `tier1_tfidf_model.joblib`. | **ĐẠT** ✔ |
-| **B6** | **Nghiên cứu Bóc tách Thành phần** | Đo lường định lượng từng module: Tier 0 Scrubber, Tier 1 TF-IDF, Tier 2 Arbiter. | Đã xuất biểu đồ bóc tách thành phần `figures/figure4_component_ablation.png`. | **ĐẠT** ✔ |
-| **B7** | **Kiểm thử Đối kháng & Tình huống Ngoại lai** | Đo thực tế văn bản 200k ký tự và đòn tấn công giấu ở đuôi (tail injection). | Đã chạy kiểm thử thành công qua pytest: 2/2 tests PASSED (`test_long_document_200k.py` & `test_hidden_prompt_at_tail.py`). | **ĐẠT** ✔ |
-| **B8** | **Ý nghĩa Thống kê & Khoảng Tin cậy** | Chạy lặp lại và ghi nhận phân bố độ trễ P50/P95. | Đã đo đạc độ trễ P95 $< 30\text{ms}$ trên CPU thông thường trên toàn bộ $520$ mẫu. | **ĐẠT** ✔ |
+| **B5** | **Phân Định Ranh Giới Nghiên Cứu 2 Pha** | Rạch ròi thực nghiệm y văn (Chương 2) vs nghiệm thu mô hình đồ án (Chương 4). | Hoàn tất thực nghiệm đo đạc điểm vỡ y văn; mô hình đồ án dừng ở mức đề xuất kiến trúc Chương 3. | **ĐẠT** ✔ |
+| **B6** | **Xác Lập Khoảng Trống Y Văn (Research Gaps)**| Bằng chứng định lượng về failure modes của các baselines hiện hành. | Đo lường thực nghiệm: TF-IDF trượt 100% Jailbreak, DeBERTa 19% FPR trên code, Meta 99% chặn nhầm. | **ĐẠT** ✔ |
+| **B7** | **Phân Tích Lỗ Hổng Bất Đối Xứng Ngữ Cảnh**| Nhận diện lỗ hổng Prompt Overflow (Zhou et al. 2026) trên văn bản 200k ký tự. | Đã thiết lập cơ chế lý thuyết Head-and-Tail Priority Chunker chống rủi ro Tail Injection. | **ĐẠT** ✔ |
+| **B8** | **Đóng Băng Danh Mục Baseline (Baseline Freeze)**| Cố định danh mục baselines y văn phục vụ đối chuẩn cho Review 1 & 2. | Đã hoàn tất đóng băng 12 baseline models và bộ dữ liệu đối chuẩn D1–D6. | **ĐẠT** ✔ |
 
 ---
 
@@ -87,7 +87,7 @@ Một Ingress Guardrail Proxy đặt trước ứng dụng LLM có vai trò tư�
   - Nếu buộc phải chạy trên CPU, độ trễ sinh từ của Llama Guard 7B tăng vọt lên **$15\text{s} - 45\text{s}$** cho một câu truy vấn! Điều này hoàn toàn phá hủy trải nghiệm hội thoại (Conversational UX) của người dùng cuối.
 - **Cơ chế của PI-Guard (Encoder-only Discriminator)**:
   - Mô hình `microsoft/deberta-v3-base` là một **Sequence Classifier (Discriminator)**. Nó không sinh từ mới mà chỉ thực hiện **duy nhất một lượt lan truyền xuôi (Single Forward Pass)** để xuất ra phân phối xác suất tại đầu phân loại (`[CLS]` token).
-  - Kết hợp với Bộ lọc Tầng 1 TF-IDF xử lý trong **$1.2\text{ms}$**, toàn bộ chu trình xử lý phân tầng của PI-Guard hoàn tất với **$\text{P95 Latency} = 3.45\text{ms}$ trên CPU**, nhanh hơn Llama Guard từ **$80\times$ đến $150\times$**, hoàn toàn thỏa mãn SLA Ingress Guardrail.
+  - Kết hợp với Bộ lọc Tầng 1 TF-IDF, kiến trúc phân tầng đặt mục tiêu tối ưu hóa độ trễ toàn trình **$P95 < 30\text{ms}$ trên CPU phổ thông**, nhanh hơn phương pháp tạo sinh của Llama Guard hàng chục lần, hoàn toàn thỏa mãn tiêu chuẩn Ingress Guardrail.
 
 ### 3.3. Nghịch Lý Kinh Tế & Rủi Ro Cạn Kiệt Tài Nguyên (Denial-of-Wallet)
 - **Nghịch lý chi phí vận hành**: Nếu ứng dụng downstream sử dụng một mô hình ngôn ngữ tối ưu chi phí như `GPT-4o-mini` (\$0.15/1M input tokens), nhưng lớp bảo vệ lại phải chạy một mô hình 7B/8B tiêu tốn hàng nghìn Watt điện GPU, thì **chi phí bảo vệ cổng vào còn đắt hơn chi phí phục vụ nghiệp vụ chính**.
@@ -107,7 +107,7 @@ Trước Hội đồng phản biện, nhóm khẳng định năng lực kỹ thu
 │ 2. Kháng Nhiễu Chuỗi & Token Anomaly     ──► Bắt dính Zero-width, NFKC Homoglyphs, Word-Spacing  │
 │ 3. Triệt tiêu Evasion qua Icon / Emoji    ──► Bóc tách biểu tượng cảm xúc phá vỡ BPE (i🔥g🔥n🔥o🔥r🔥e) │
 │ 4. Phân tách Ranh giới Chỉ thị & Dữ liệu ──► DeBERTa-v3 Disentangled Attention + MOF Invariant  │
-│ 5. Quét Injection Tài liệu dài 200k chars ──► Tail-and-Head Prioritized Scanning (Tăng tốc 111x) │
+│ 5. Quét Injection Tài liệu dài 200k chars ──► Tail-and-Head Prioritized Scanning (Early Stopping)  │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -124,7 +124,7 @@ Trước Hội đồng phản biện, nhóm khẳng định năng lực kỹ thu
    - Áp dụng hàm mất mát bất biến ngữ nghĩa **Masked Overlap Fraction (MOF Loss)** [[18]](#ref18): Phân biệt ranh giới giữa việc người dùng hỏi về an ninh mạng một cách lành tính và câu lệnh ép mô hình thực thi mã độc, giữ vững tỷ lệ báo động giả $\text{FPR} < 1.5\%$.
 5. **Key 5: Quét Injection Trong Tài Liệu Dài 200,000 Ký Tự (Tail-Injection & Chunk Scanning)**:
    - Thuật toán **Cửa sổ trượt phân mảnh (Sliding Block Chunking)**: Chia tài liệu thành các block kích thước 512 tokens với độ gối đầu $10\%$.
-   - Thuật toán **Ưu tiên Quét Đuôi & Đầu (Tail-and-Head Prioritized Scanning)** (Zhou et al. Prompt Overflow [[40]](#ref40)): Quét ưu tiên Block Đuôi $\rightarrow$ Block Đầu $\rightarrow$ Block Thân kết hợp Early-Stopping. Tăng tốc phát hiện gấp **$111.0\times$** so với quét tuyến tính.
+   - Thuật toán **Ưu tiên Quét Đuôi & Đầu (Tail-and-Head Prioritized Scanning)** (Zhou et al. Prompt Overflow [[40]](#ref40)): Quét ưu tiên Block Đuôi $\rightarrow$ Block Đầu $\rightarrow$ Block Thân kết hợp Early-Stopping nhằm phát hiện sớm payload độc hại giấu ở đuôi tài liệu.
 
 ---
 
@@ -159,24 +159,25 @@ Nhóm **minh bạch và khiêm tốn khoa học (Scientific Humility)** thừa n
 | Chiều Kỹ Thuật | Mô Hình Sinh Lớn (Llama Guard 7B) | PI-Guard Dual Architecture (Đồ án đề xuất) | Lập Luận Bảo Vệ Trước Hội Đồng (Defense Pitch) |
 | :--- | :--- | :--- | :--- |
 | **Hạ Tầng & VRAM** | Yêu cầu GPU $\ge 16\text{GB} - 24\text{GB}$ | **Commodity CPU (Zero-GPU, <2GB RAM)** | Đảm bảo tính khả thi thực tiễn, chi phí thấp cho mọi doanh nghiệp. |
-| **Độ Trễ Suy Luận** | $1,200\text{ms} - 2,500\text{ms}$ (GPU), $>15\text{s}$ (CPU) | **$1.2\text{ms}$ (TF-IDF), $3.45\text{ms}$ (P95 Cascade)** | Đạt chuẩn SLA Ingress Proxy ($P95 < 30\text{ms}$), không gây trễ UX. |
+| **Độ Trễ Suy Luận** | $1,200\text{ms} - 2,500\text{ms}$ (GPU), $>15\text{s}$ (CPU) | **Mục tiêu SLA $P95 < 30\text{ms}$ trên CPU** | Đạt chuẩn SLA Ingress Proxy ($P95 < 30\text{ms}$), không gây trễ UX. |
 | **Kháng Nhiễu Ký Tự** | Dễ bị lừa bởi biến dị BPE, Spacing, Homoglyph | **Tầng chuẩn hóa NFKC + Character n-grams TF-IDF** | Bắt trọn vẹn các đột biến cú pháp mà Transformer bỏ sót. |
 | **Giải Mã Ciphers** | Không tự giải mã được ciphers nhiều tầng | **Heuristic Entropy Detector + Auto-decoders** | Tước bỏ lớp ngụy trang Base64/Rot13 trước khi phân loại. |
-| **Tài Liệu Dài RAG** | Quét toàn bộ gây tràn context window, trễ lớn | **Prioritized Tail-and-Head Scanning (512-chunk)** | Tăng tốc $111\times$ nhờ phát hiện đúng vị trí $94.6\%$ injection gián tiếp. |
+| **Tài Liệu Dài RAG** | Quét toàn bộ gây tràn context window, trễ lớn | **Prioritized Tail-and-Head Scanning (512-chunk)** | Phát hiện sớm mã độc ở đuôi tài liệu, không phụ thuộc cửa sổ 512. |
 | **Context Drift Đa Lượt** | Nhận diện được nếu nạp đủ ngữ cảnh lịch sử | **NẰM NGOÀI PHẠM VI (Stateless Proxy)** | Nhóm thẳng thắn thừa nhận: PI-Guard tập trung bảo vệ cổng Ingress tức thời. |
 | **Suy Luận Triết Học** | Có khả năng nhận thức ngữ nghĩa trừu tượng | **NẰM NGOÀI PHẠM VI (Cần Model $\ge 70\text{B}$)** | Mô hình 86M tối ưu cho phân loại cấu trúc, không suy diễn trừu tượng. |
 | **Can Thiệp KV-Cache** | Đòi hỏi White-box GPU access | **NẰM NGOÀI PHẠM VI (External Black-Box Proxy)** | Tương thích mọi LLM Cloud API mà không cần can thiệp trọng số. |
 
 ---
 
-## 🚪 7. NGHIỆM THU ĐỦ ĐIỀU KIỆN ĐÓNG BĂNG MÔ HÌNH (MODEL FREEZING CONFIRMED)
+## 🚪 7. NGHIỆM THU ĐỦ ĐIỀU KIỆN ĐÓNG BĂNG DANH MỤC BASELINE Y VĂN (BASELINE FREEZING CONFIRMED)
 
 Căn cứ vào kết quả thực nghiệm độc lập và chỉ đạo của GVHD ThS. Trần Văn Ninh:
-1. **Đóng Băng Kiến Trúc (Architecture Freeze)**: Cố định mô hình phân tầng thích ứng **Two-Tier Adaptive Cascade**:
+1. **Đóng Băng Danh Mục Baseline Y Văn (Baseline Models Freeze)**: Cố định 12 mô hình public SOTA và baselines y văn phục vụ đối chuẩn Chương 2 và bảo vệ Review 1 / Review 2.
+2. **Đóng Băng Ý Tưởng Kiến Trúc Đề Xuất (Two-Tier Concept Proposal Freeze)**: Cố định khung kiến trúc phân tầng thích ứng **Two-Tier Adaptive Cascade** trên phương diện thiết kế lý thuyết làm tiền đề cho Chương 3:
    - **Lớp 0**: Heuristic Ingress Scrubber (NFKC Normalization + Zero-width stripping + Base64/Hex decoding).
-   - **Tầng 1**: Dual-Space TF-IDF Platt Classifier (Word N-grams $1-3$ + Char_wb N-grams $3-5$, $\tau_{low} = 0.15, \tau_{high} = 0.85$). Lưu trữ tại [`src/tier1_tfidf_model.joblib`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/src/tier1_tfidf_model.joblib).
-   - **Tầng 2**: Disentangled Relative Attention Classifier (`microsoft/deberta-v3-base`) huấn luyện với hàm mất mát MOF Invariance.
-2. **Đóng Băng Trọng Số & Triển Khai (Weights & Deployment Freeze)**: Toàn bộ pipeline đã được đóng gói thành các module thực thi độc lập tại [`src/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/src/), sẵn sàng tích hợp vào FastAPI Middleware và Streamlit Dashboard phục vụ Review 2.
+   - **Tầng 1 (Ý tưởng đề xuất)**: Dual-Space TF-IDF Platt Classifier (Word N-grams $1-3$ + Char_wb N-grams $3-5$, $\tau_{low} = 0.15, \tau_{high} = 0.85$).
+   - **Tầng 2 (Ý tưởng đề xuất)**: Disentangled Relative Attention Classifier (`microsoft/deberta-v3-base`) định hướng huấn luyện với hàm mất mát MOF Invariance.
+   - *Ghi chú học thuật: Nhóm chưa huấn luyện và chưa công bố số liệu đo đạc định lượng F1/% cho mô hình đồ án ở giai đoạn này.*
 
 ---
 
@@ -188,7 +189,7 @@ Căn cứ vào kết quả thực nghiệm độc lập và chỉ đạo của G
 * <a id="ref13"></a>**[13]** A. Zou, Z. Wang, J. Z. Kolter, and M. Fredrikson. 2023. *Universal and Transferable Adversarial Attacks on Aligned Language Models*. [arXiv:2307.15043](https://arxiv.org/abs/2307.15043). Local PDF: [`References/Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf).
 * <a id="ref16"></a>**[16]** J. H. Saltzer and M. D. Schroeder. 1975. *The Protection of Information in Computer Systems*. In *Proceedings of the IEEE*, 63(9):1278–1308. DOI: 10.1109/PROC.1975.9939. Local PDF: [`References/Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf).
 * <a id="ref17"></a>**[17]** Y. Yuan, W. Jiao, W. Wang, J. Huang, P. He, and Z. Tu. 2024. *GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher*. In *ICLR 2024*. Local PDF: [`References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf).
-* <a id="ref18"></a>**[18]** H. Li, X. Liu, N. Zhang, and C. Xiao. 2025. *PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free*. In *ACL 2025 - Long Paper*. [arXiv:2410.22770](https://arxiv.org/abs/2410.22770). Local PDF: [`replications/Tier2_PIGuard_ACL2025/papers/PIGuard_ACL2025_arXiv2410.22770.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Tier2_PIGuard_ACL2025/papers/PIGuard_ACL2025_arXiv2410.22770.pdf).
+* <a id="ref18"></a>**[18]** H. Li, X. Liu, N. Zhang, and C. Xiao. 2025. *PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free*. In *ACL 2025 - Long Paper*. [arXiv:2410.22770](https://arxiv.org/abs/2410.22770). Local PDF: [`replications/Paper_ACL2025_PIGuard_HaoLi/papers/PIGuard_ACL2025_arXiv2410.22770.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Paper_ACL2025_PIGuard_HaoLi/papers/PIGuard_ACL2025_arXiv2410.22770.pdf).
 * <a id="ref20"></a>**[20]** Meta AI. 2024. *Prompt Guard 86M: A Small Classifier for Prompt Injection and Jailbreak Detection*. Model Card and Technical Report. [arXiv:2407.21783](https://arxiv.org/abs/2407.21783). Local PDF: [`replications/Tier1_Candidate_Meta_PromptGuard2024/papers/Meta_2024_PurpleLlama_PromptGuard.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Tier1_Candidate_Meta_PromptGuard2024/papers/Meta_2024_PurpleLlama_PromptGuard.pdf).
 * <a id="ref22"></a>**[22]** Z. Yao, R. Y. Aminabadi, M. Zhang, et al. 2022. *ZeroQuant: Efficient and Affordable Post-Training Quantization for Large-Scale Transformers*. In *NeurIPS 2022*. Local PDF: [`References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf).
 * <a id="ref29"></a>**[29]** Y. Yang et al. 2026. *RAP-ID: Retrieval-Augmented Prompt Injection Detection via Internal State Probing*. In *ACL 2026*. Local PDF: [`References/Viet_2026_RAP_ID_Robust_Alignment_Preservation_Injection_Defense.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Viet_2026_RAP_ID_Robust_Alignment_Preservation_Injection_Defense.pdf).

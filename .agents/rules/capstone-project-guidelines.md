@@ -121,6 +121,22 @@ trigger: always_on
 
 ---
 
+## 🔬 STRICT RULE: PHÂN ĐỊNH 2 GIAI ĐOẠN THỰC NGHIỆM TRONG TIẾN TRÌNH ĐỒ ÁN (ZERO METHODOLOGICAL CONFUSION)
+
+> [!IMPORTANT]
+> **QUY CHUẨN BẮT BUỘC: PHÂN BIỆT THỰC NGHIỆM Y VĂN (CHƯƠNG 2) VÀ THỰC NGHIỆM ĐÁNH GIÁ MÔ HÌNH NHÓM (CHƯƠNG 4)**:
+> 1. **Giai đoạn 1: Thực nghiệm Tái lập Y văn & Tìm Khoảng trống Nghiên cứu (Literature Replication — Phục vụ Chương 2)**:
+>    - Chạy thực nghiệm đo đạc các mô hình nền tảng đã xuất bản trong y văn (TF-IDF N-grams, ProtectAI DeBERTa-v3, Meta Prompt-Guard, Llama Guard).
+>    - **Bản chất**: Thực nghiệm khám phá (*Exploratory Experiments*) nhằm đo lường điểm vỡ kỹ thuật (*Failure Modes*): TF-IDF trượt 100% Jailbreak, DeBERTa đơn khối dính 19% FPR trên code, Meta chặn nhầm 99% benign code, lỗ hổng tràn ngữ cảnh 200k tokens.
+>    - **Mục đích**: Cung cấp bằng chứng thực nghiệm cho **Mục 2.3 (Research Gaps)**, làm tiền đề khoa học vững chắc để mở ra **Chương 3 (Methodology — Đề xuất Kiến trúc Two-Tier Cascade của nhóm)**.
+> 2. **Giai đoạn 2: Thực nghiệm Đánh giá & Nghiệm thu Mô hình Nhóm (Proposed Model Evaluation — Phục vụ Chương 4 / Report No.4 ở Tuần 13)**:
+>    - Chạy thực nghiệm đối chuẩn trên chính mô hình **PI-Guard Champion (Two-Tier Cascade)** đã hoàn thiện, so sánh trực tiếp với các Baselines ở Chương 2.
+>    - **Mục đích**: Nghiệm thu các chỉ số KPI cam kết (F1 > 0.98, FPR < 1.5%, CPU Latency P95 < 30ms, Evasion Robustness) trước Hội đồng.
+> 3. **Quy tắc Trình bày Slide Tiến độ (Meeting Deck Narrative Invariant)**:
+>    - Mọi bài slide báo cáo tiến độ tuần (Meeting 5 & 6) BẮT BUỘC phải đi theo logic quy nạp (*Evidence-First*): **Thực nghiệm Baseline (chỉ ra lỗi vỡ trước)** $\to$ **Đề xuất Kiến trúc Mô hình Nhóm (giải pháp khắc phục sau)**. Tuyệt đối không đảo ngược thứ tự.
+
+---
+
 ## Parallel Full-Pipeline Exploration & Knowledge Convergence Paradigm
 
 > **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  

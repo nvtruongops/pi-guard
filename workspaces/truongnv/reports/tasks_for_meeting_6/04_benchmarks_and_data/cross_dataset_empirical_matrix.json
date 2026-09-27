@@ -1,12 +1,11 @@
 {
   "metadata": {
-    "title": "PI-Guard Master Cross-Dataset Empirical Benchmark",
+    "title": "PI-Guard Literature Baselines Cross-Dataset Empirical Benchmark (Chapter 2 Replication)",
     "eval_date": "2026-09-24",
     "total_samples": 520,
     "hardware": "Commodity CPU (Zero-GPU)",
     "statistical_methods": [
-      "Wilson Score 95% Confidence Interval",
-      "McNemar Chi-Square Paired Test (df=1)"
+      "Wilson Score 95% Confidence Interval"
     ]
   },
   "models_matrix": {
@@ -201,105 +200,6 @@
         "mean_latency_ms": 317.13,
         "p95_latency_ms": 414.11
       }
-    },
-    "M4_PIGuard_Cascade_TwoTier": {
-      "D1_PIGuard_Valid": {
-        "metric_type": "Attack_Detection_Recall",
-        "recall_pct": 91.67,
-        "ci_95": [
-          80.45,
-          96.71
-        ],
-        "mean_latency_ms": 321.43,
-        "p95_latency_ms": 1844.47
-      },
-      "D2_BIPIA_Indirect": {
-        "metric_type": "Attack_Detection_Recall",
-        "recall_pct": 100.0,
-        "ci_95": [
-          96.3,
-          100.0
-        ],
-        "mean_latency_ms": 259.44,
-        "p95_latency_ms": 417.28
-      },
-      "D3_JailbreakBench": {
-        "metric_type": "Attack_Detection_Recall",
-        "recall_pct": 62.0,
-        "ci_95": [
-          52.21,
-          70.9
-        ],
-        "mean_latency_ms": 335.33,
-        "p95_latency_ms": 376.25
-      },
-      "D4_DataSentinel_OpenPI": {
-        "metric_type": "Attack_Detection_Recall",
-        "recall_pct": 70.0,
-        "ci_95": [
-          39.68,
-          89.22
-        ],
-        "mean_latency_ms": 222.37,
-        "p95_latency_ms": 356.99
-      },
-      "D5_NotInject_Code": {
-        "metric_type": "Overdefense_Accuracy",
-        "score": 98.0,
-        "ci_95": [
-          93.0,
-          99.45
-        ],
-        "fpr_pct": 2.0,
-        "mean_latency_ms": 41.02,
-        "p95_latency_ms": 298.92
-      },
-      "D6_WildGuard_Benign": {
-        "metric_type": "False_Positive_Rate",
-        "fpr_pct": 6.0,
-        "ci_95": [
-          2.78,
-          12.48
-        ],
-        "pass_rate_pct": 94.0,
-        "mean_latency_ms": 178.63,
-        "p95_latency_ms": 411.57
-      }
-    }
-  },
-  "mcnemar_statistical_tests": {
-    "M1_Baseline_Regex": {
-      "contingency_table": {
-        "a_correct_b_correct": 413,
-        "a_correct_b_wrong (b)": 46,
-        "a_wrong_b_correct (c)": 54,
-        "a_wrong_b_wrong": 7
-      },
-      "chi2_statistic": 0.49,
-      "statistically_significant_p05": false,
-      "superiority_ratio": 0.85
-    },
-    "M2_Tier1_TFIDF_Platt": {
-      "contingency_table": {
-        "a_correct_b_correct": 310,
-        "a_correct_b_wrong (b)": 149,
-        "a_wrong_b_correct (c)": 16,
-        "a_wrong_b_wrong": 45
-      },
-      "chi2_statistic": 105.6,
-      "statistically_significant_p05": true,
-      "superiority_ratio": 9.31
-    },
-    "M3_DeBERTa_V3_Standalone": {
-      "contingency_table": {
-        "a_correct_b_correct": 422,
-        "a_correct_b_wrong (b)": 37,
-        "a_wrong_b_correct (c)": 3,
-        "a_wrong_b_wrong": 58
-      },
-      "chi2_statistic": 27.225,
-      "statistically_significant_p05": true,
-      "superiority_ratio": 12.33
     }
   }
 }

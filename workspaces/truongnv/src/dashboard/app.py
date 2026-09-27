@@ -5,7 +5,7 @@ PI-Guard Interactive Research & Demonstration Dashboard.
 Showcases:
 1. Live Two-Tier Cascade Inspection (Tier-0 Scrubber -> Tier-1 TF-IDF -> Tri-State Router -> Tier-2 DeBERTa-v3).
 2. Adversarial Obfuscation & Cipher Playground (Base64, Leetspeak, Spacing, Emoji defragmentation).
-3. Long Document & Tail-Injection Scanner (200k characters, Head-and-Tail Priority Scanning, 111x speedup).
+3. Long Document & Tail-Injection Scanner (200k characters, Head-and-Tail Priority Scanning).
 4. 12 Public Models Empirical SOTA Benchmark & Trade-off Matrix.
 5. Academic Defense Rationale (5 Key Strived vs 3 Out-of-Reach Boundaries).
 """
@@ -259,28 +259,28 @@ with tab_long_doc:
                         st.metric("SCAN TIME", f"{lat:.2f} ms")
 
                     if strategy_key == "head_tail_priority" and flagged is not None:
-                        st.success(f"🚀 **Head-and-Tail Priority Scanning Activated!** Neutralized tail injection in Block #{flagged} on scan step #{scanned}! Early-stopping achieved over **100x speedup** compared to sequential scan.")
+                        st.success(f"🚀 **Head-and-Tail Priority Scanning Activated!** Neutralized tail injection in Block #{flagged} on scan step #{scanned}! Early-stopping achieved rapid detection compared to sequential scan.")
 
                 except Exception as e:
                     st.error(f"Error scanning document: {e}")
 
 # TAB 4: 12 PUBLIC MODELS SOTA BENCHMARK
 with tab_benchmarks:
-    st.subheader("📊 Empirical Head-to-Head Benchmark: 12 Public Guardrail Models on Commodity CPU")
-    st.markdown("Direct measurements conducted under identical testbed conditions (Intel Core i7/AMD Ryzen, Python 3.11, Zero-GPU):")
+    st.subheader("📊 Empirical Head-to-Head Benchmark: Public Guardrail Models on Commodity CPU")
+    st.markdown("Direct measurements conducted under identical testbed conditions (Intel Core i7/AMD Ryzen, Python 3.11, Zero-GPU) for Chapter 2 Literature Replication:")
 
     df_models = pd.DataFrame([
         {"Model / Baseline": "Meta Prompt Guard 86M", "Family": "Deep Encoder", "Accuracy (%)": 65.5, "FPR (%)": 0.50, "NotInject Code Acc (%)": 0.88, "Latency P95 (ms)": 22.1, "VRAM / RAM": "0 MB / 180 MB", "SLA < 30ms": "⚠️ Overdefense Collapse"},
         {"Model / Baseline": "ProtectAI DeBERTa-v3 v2", "Family": "Deep Encoder", "Accuracy (%)": 86.4, "FPR (%)": 0.00, "NotInject Code Acc (%)": 45.2, "Latency P95 (ms)": 22.5, "VRAM / RAM": "0 MB / 340 MB", "SLA < 30ms": "🔄 Blocks 54.8% Code"},
         {"Model / Baseline": "ModernBERT-base (8k)", "Family": "Deep Encoder", "Accuracy (%)": 100.0, "FPR (%)": 0.00, "NotInject Code Acc (%)": 62.0, "Latency P95 (ms)": 11.7, "VRAM / RAM": "0 MB / 280 MB", "SLA < 30ms": "✅ RAG Candidate"},
-        {"Model / Baseline": "PIGuard (MOF Loss)", "Family": "Deep Encoder", "Accuracy (%)": 94.1, "FPR (%)": 0.80, "NotInject Code Acc (%)": 90.7, "Latency P95 (ms)": 24.5, "VRAM / RAM": "0 MB / 340 MB", "SLA < 30ms": "✅ Excellent"},
+        {"Model / Baseline": "PIGuard (MOF Loss)", "Family": "Deep Encoder", "Paper": "Hao Li et al. (ACL 2025)", "Accuracy (%)": 94.1, "FPR (%)": 0.80, "NotInject Code Acc (%)": 90.7, "Latency P95 (ms)": 24.5, "VRAM / RAM": "0 MB / 340 MB", "SLA < 30ms": "✅ Excellent"},
         {"Model / Baseline": "Llama Guard 3 1B", "Family": "Generative SLM", "Accuracy (%)": 91.2, "FPR (%)": 1.20, "NotInject Code Acc (%)": 88.5, "Latency P95 (ms)": 1540.0, "VRAM / RAM": "4 GB / 1.5 GB", "SLA < 30ms": "❌ Severe Latency Spike"},
         {"Model / Baseline": "Granite Guardian 2B", "Family": "Generative SLM", "Accuracy (%)": 93.0, "FPR (%)": 1.10, "NotInject Code Acc (%)": 89.0, "Latency P95 (ms)": 2100.0, "VRAM / RAM": "6 GB / 2.0 GB", "SLA < 30ms": "❌ Severe Latency Spike"},
-        {"Model / Baseline": "TF-IDF Word + Char_wb", "Family": "Statistical ML", "Accuracy (%)": 74.5, "FPR (%)": 0.00, "NotInject Code Acc (%)": 94.0, "Latency P95 (ms)": 1.2, "VRAM / RAM": "0 MB / <5 MB", "SLA < 30ms": "✅ Champion Tier 1"},
-        {"Model / Baseline": "MiniLM k-NN Embedding", "Family": "Dense Metric", "Accuracy (%)": 48.2, "FPR (%)": 58.4, "NotInject Code Acc (%)": 41.6, "Latency P95 (ms)": 14.2, "VRAM / RAM": "0 MB / 120 MB", "SLA < 30ms": "❌ Rejected (FPR 58%)"},
-        {"Model / Baseline": "PI-Guard Two-Tier Cascade", "Family": "Hybrid Two-Tier", "Accuracy (%)": 96.5, "FPR (%)": 0.00, "NotInject Code Acc (%)": 90.7, "Latency P95 (ms)": 3.45, "VRAM / RAM": "0 MB / 345 MB", "SLA < 30ms": "🏆 CHAMPION PROPOSAL"}
+        {"Model / Baseline": "TF-IDF Word + Char_wb", "Family": "Statistical ML", "Paper": "Jain et al. (NeurIPS 2023)", "Accuracy (%)": 74.5, "FPR (%)": 0.00, "NotInject Code Acc (%)": 94.0, "Latency P95 (ms)": 1.2, "VRAM / RAM": "0 MB / <5 MB", "SLA < 30ms": "✅ Fast Baseline"},
+        {"Model / Baseline": "MiniLM k-NN Embedding", "Family": "Dense Metric", "Accuracy (%)": 48.2, "FPR (%)": 58.4, "NotInject Code Acc (%)": 41.6, "Latency P95 (ms)": 14.2, "VRAM / RAM": "0 MB / 120 MB", "SLA < 30ms": "❌ Rejected (FPR 58%)"}
     ])
     st.dataframe(df_models, use_container_width=True)
+    st.info("💡 **Academic Rigor Note**: The proposed PI-Guard Two-Tier Cascade model is formulated as an architectural proposal (Chapter 3) to solve the measured literature failure modes; quantitative evaluation metrics for the proposed model will be reported in Chapter 4.")
 
 # TAB 5: ACADEMIC DEFENSE RATIONALE
 with tab_defense:
@@ -291,7 +291,7 @@ with tab_defense:
     2. **Kháng Nhiễu Chuỗi & Token Anomaly**: Bắt dính Zero-width spaces, NFKC Cyrillic homoglyphs và ngắt từ khoảng trắng.
     3. **Triệt tiêu Evasion qua Icon / Emoji**: Emoji-Aware Pre-scrubber tái hợp nhất chuỗi phân mảnh (`i🔥g🔥n🔥o🔥r🔥e` $\\rightarrow$ `ignore`).
     4. **Phân tách Ranh giới Chỉ thị & Dữ liệu**: DeBERTa-v3 Disentangled Attention kết hợp Masked Overlap Fraction (MOF) Invariance bảo vệ code lập trình hợp lệ.
-    5. **Quét Injection Tài liệu dài 200,000 ký tự**: Head-and-Tail Prioritized Scanning tăng tốc $111\\times$ phát hiện tiêm nhiễm ở trang cuối.
+    5. **Quét Injection Tài liệu dài 200,000 ký tự**: Head-and-Tail Prioritized Scanning phát hiện sớm tiêm nhiễm ở trang cuối.
 
     ### 3 Ranh Giới Ngoài Tầm Với (Honest Scientific Boundaries)
     - **R1. Stateful Multi-Turn Context Drift (Tấn công Crescendo)**: PI-Guard là Stateless Ingress Proxy; việc duy trì session cache đa lượt nằm ngoài phạm vi độ trễ thấp.

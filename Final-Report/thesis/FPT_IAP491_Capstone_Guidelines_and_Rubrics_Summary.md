@@ -169,6 +169,23 @@ TÀI LIỆU THAM KHẢO (References - Định dạng chuẩn IEEE, đánh số t
 PHỤ LỤC (Appendices - Mẫu prompt đối kháng, tài liệu API Endpoints, Code snippets minh họa)
 ```
 
+### ⚠️ LƯU Ý PHƯƠNG PHÁP LUẬN: PHÂN BIỆT RẠCH RÒI 2 GIAI ĐOẠN THỰC NGHIỆM TRONG ĐỒ ÁN
+> [!IMPORTANT]
+> **TRÁNH NHẦM LẪN GIỮA THỰC NGHIỆM Y VĂN (CHƯƠNG 2) VÀ THỰC NGHIỆM MÔ HÌNH ĐỀ XUẤT (CHƯƠNG 4)**:
+> 
+> 1. **Giai đoạn 1: Thực nghiệm Tái lập Y văn & Tìm Khoảng trống Nghiên cứu (Literature Replication & Research Gaps — Phục vụ Chương 2)**:
+>    - **Đối tượng**: Chạy thực nghiệm tái lập trên các mô hình y văn / baseline đã xuất bản (TF-IDF N-grams, ProtectAI DeBERTa-v3, Meta Prompt-Guard, Llama Guard...).
+>    - **Bản chất**: Thực nghiệm khám phá (*Exploratory Experiments*) để đo lường các điểm vỡ kỹ thuật thực tế (*Failure Modes*): TF-IDF trượt 100% Jailbreak, DeBERTa đơn khối dính 19% FPR trên code, Meta Prompt-Guard chặn nhầm 99% benign code, lỗ hổng tràn cửa sổ ngữ cảnh 200k tokens.
+>    - **Mục đích**: Cung cấp bằng chứng thực nghiệm có ý nghĩa thống kê làm cơ sở cho **Mục 2.3 (Research Gaps)**, chứng minh sự cần thiết phải có giải pháp mới và làm tiền đề bắt buộc để mở ra **Chương 3 (Methodology — Đề xuất Kiến trúc Phân tầng Two-Tier Cascade của nhóm)**.
+> 
+> 2. **Giai đoạn 2: Thực nghiệm Đánh giá & Nghiệm thu Mô hình Đề xuất (Proposed Model Evaluation & Benchmarking — Phục vụ Chương 4 / Report No.4)**:
+>    - **Đối tượng**: Chạy thực nghiệm trên chính **Mô hình Guardrail hoàn chỉnh do nhóm tự thiết kế, huấn luyện và tối ưu (Champion Two-Tier Cascade Guardrail)**.
+>    - **Bản chất**: Thực nghiệm kiểm chứng (*Confirmatory / Benchmark Evaluation*) đối đầu trực tiếp giữa mô hình của nhóm vs các Baselines đã đo ở Chương 2 trên cùng bộ dữ liệu chuẩn D1–D6.
+>    - **Mục đích**: Nghiệm thu các chỉ số KPI cam kết (F1 > 0.98, FPR < 1.5%, CPU Latency P95 < 30ms, Robustness kháng nhiễu Leetspeak/Base64) để bảo vệ trước Hội đồng chấm Giữa kỳ (Tuần 13) và Chung cuộc (Tuần 15).
+> 
+> 3. **Quy tắc xây dựng Slide Báo cáo Tiến độ (Progress Presentation Narrative)**:
+>    - Khi báo cáo tiến độ các tuần R&D (Meeting 5 & 6), bài thuyết trình tuân thủ logic quy nạp (*Evidence-First Narrative*): **Trình bày Thực nghiệm Baseline (chỉ ra lỗi vỡ trước)** $\to$ **rồi mới tới Đề xuất Kiến trúc Mô hình của nhóm (giải pháp khắc phục)**.
+
 ---
 
 ## V. QUY CHUẨN ĐỊNH DẠNG & TRÌNH BÀY HỌC THUẬT (FORMATTING STANDARDS)

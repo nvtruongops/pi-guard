@@ -12,7 +12,7 @@
       "paper": "Li et al., ACL 2025 Long Paper",
       "paper_anchor": "[[18]](#ref18)",
       "code_repo": "https://github.com/leolee99/PIGuard",
-      "local_repo": "workspaces/truongnv/replications/Tier2_PIGuard_ACL2025/",
+      "local_repo": "workspaces/truongnv/replications/Paper_ACL2025_PIGuard_HaoLi/",
       "metrics": {
         "direct_injection_recall": 0.960,
         "indirect_injection_recall": 0.925,
@@ -189,38 +189,6 @@
         "overdefense_accuracy": 0.416,
         "robustness_delta_f1": -0.284,
         "p95_latency_ms": 14.2
-      }
-    },
-    "K12_PIGuard_Tier1_FastFilter": {
-      "model_name": "PI-Guard Tier-1 Fast-Filter (Dual-Space TF-IDF)",
-      "paper": "Spärck Jones (1972), Jain et al. (2023) [[15]], Saltzer & Schroeder (1975) [[16]]",
-      "paper_anchor": "[[15]](#ref15)",
-      "code_repo": "workspaces/truongnv/replications/PIGuard_Tier1_FastFilter/",
-      "local_repo": "workspaces/truongnv/replications/PIGuard_Tier1_FastFilter/",
-      "metrics": {
-        "direct_injection_recall": 1.000,
-        "indirect_injection_recall": 0.850,
-        "jailbreak_recall": 0.880,
-        "benign_fpr": 0.000,
-        "overdefense_accuracy": 1.000,
-        "robustness_delta_f1": -0.065,
-        "p95_latency_ms": 8.216,
-        "fast_clearance_rate": 1.000
-      }
-    },
-    "K_PI_PIGuard_TwoTierCascade": {
-      "model_name": "PI-Guard Two-Tier Cascade (Proposed Champion)",
-      "paper": "PI-Guard Capstone Project Architecture (IAP491)",
-      "code_repo": "workspaces/truongnv/src/",
-      "metrics": {
-        "direct_injection_recall": 0.960,
-        "indirect_injection_recall": 0.925,
-        "jailbreak_recall": 0.940,
-        "benign_fpr": 0.000,
-        "overdefense_accuracy": 0.907,
-        "robustness_delta_f1": -0.015,
-        "p95_latency_ms": 3.45,
-        "acceleration_vs_monolithic": "7.1x faster than monolithic DeBERTa-v3"
       }
     }
   }

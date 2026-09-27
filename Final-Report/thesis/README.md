@@ -35,3 +35,10 @@ Final-Report/thesis/
    python scripts/build_docs_portal.py
    ```
    Script sẽ tự động đọc từ `Final-Report/thesis/`, chuẩn hóa liên kết và sao chép sang `docs/thesis/` để hiển thị trên cổng web GitHub Pages (MkDocs Material).
+
+---
+
+## 🔬 Lưu Ý Phương Pháp Luận: Phân Biệt 2 Giai Đoạn Thực Nghiệm
+- **Thực nghiệm Tái lập Y văn (Chương 2)**: Đo đạc giới hạn/điểm vỡ của các mô hình có sẵn (TF-IDF, ProtectAI, Meta Prompt-Guard) để làm bằng chứng khoa học cho 3 Research Gaps $\to$ tiền đề mở ra Chương 3 Đề xuất Mô hình.
+- **Thực nghiệm Nghiệm thu Mô hình Nhóm (Chương 4 / Report No.4)**: Chạy đối chuẩn trên mô hình Champion của nhóm (Two-Tier Cascade) để chứng minh tính vượt trội so với các baselines ở Chương 2.
+- **Luồng Slide Báo cáo Tiến độ (Meeting Deck)**: Luôn đi theo logic quy nạp (*Evidence-First*): Thực nghiệm Baseline trước $\to$ Đề xuất Mô hình nhóm sau.

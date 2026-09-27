@@ -15,7 +15,7 @@
 | **Jain NeurIPS 2023** | [`tasks_for_meeting_5/task_3_replication/Tier1_Candidate_Jain_NeurIPS2023/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier1_Candidate_Jain_NeurIPS2023/) | [`replications/Tier1_Candidate_Jain_NeurIPS2023/`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Tier1_Candidate_Jain_NeurIPS2023/) | `EVALUATED` (Perplexity) |
 | **PromptGuard 86M** | [`tasks_for_meeting_5/task_3_replication/Tier1_Candidate_Meta_PromptGuard2024/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier1_Candidate_Meta_PromptGuard2024/) | [`replications/Tier1_Candidate_Meta_PromptGuard2024/`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Tier1_Candidate_Meta_PromptGuard2024/) | `EVALUATED` (Industry SOTA) |
 | **InstructDetector** | [`tasks_for_meeting_5/task_3_replication/Tier1_Candidate_InstructDetector_EMNLP2024/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier1_Candidate_InstructDetector_EMNLP2024/) | [`replications/Tier1_Candidate_InstructDetector_EMNLP2024/`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Tier1_Candidate_InstructDetector_EMNLP2024/) | `EVALUATED` (Gradient) |
-| **PIGuard ACL 2025** | [`tasks_for_meeting_5/task_3_replication/Tier2_PIGuard_ACL2025/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/Tier2_PIGuard_ACL2025/) | [`replications/Tier2_PIGuard_ACL2025/`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Tier2_PIGuard_ACL2025/) | **CORE ANCHOR (TIER 2)** |
+| **PIGuard (Hao Li ACL 2025)** | [`tasks_for_meeting_5/task_3_replication/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication/) | [`replications/Paper_ACL2025_PIGuard_HaoLi/`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Paper_ACL2025_PIGuard_HaoLi/) | **PAPER REPLICATION (PUBLIC)** |
 | **Embeddings Cache** | `task_3_replication/cache/` | [`replications/cache/`](file:///d:/Work/Do-an/workspaces/truongnv/replications/cache/) | `ACTIVE` |
 | **Sổ Tay Tái Lập** | `task_3_replication/MEMBER_REPRODUCTION_RUNBOOK.md` | [`replications/MEMBER_REPRODUCTION_RUNBOOK.md`](file:///d:/Work/Do-an/workspaces/truongnv/replications/MEMBER_REPRODUCTION_RUNBOOK.md) | `ACTIVE` |
 | **Script Kiểm Định** | `task_3_replication/verify_replication_assets.py` | [`replications/verify_replication_assets.py`](file:///d:/Work/Do-an/workspaces/truongnv/replications/verify_replication_assets.py) | `ACTIVE (100% PASS)` |
@@ -34,8 +34,8 @@ from pathlib import Path
 REPLICATIONS_DIR = Path(__file__).resolve().parents[3] / "replications"
 sys.path.insert(0, str(REPLICATIONS_DIR))
 
-# Ví dụ import mô hình PIGuard ACL 2025
-from Tier2_PIGuard_ACL2025.PIGuard_ACL2025.PIGuard import PIGuardModel
+# Ví dụ import mô hình PIGuard ACL 2025 của Hao Li et al.
+from Paper_ACL2025_PIGuard_HaoLi.PIGuard_ACL2025.PIGuard import PIGuardModel
 ```
 
 ### 2. Dữ liệu Manifest máy đọc (Machine-Readable Manifest):

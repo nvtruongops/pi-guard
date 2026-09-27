@@ -20,7 +20,7 @@ def prepare_suite():
     print("=== [Extracting 100% Genuine Upstream Cross-Dataset Suite] ===")
 
     # 1. D1: PIGuard Valid (Li et al. ACL 2025 - Direct Injection & Standard Benign)
-    piguard_valid_path = os.path.join(REPLICATIONS_DIR, "Tier2_PIGuard_ACL2025", "datasets", "valid.json")
+    piguard_valid_path = os.path.join(REPLICATIONS_DIR, "Paper_ACL2025_PIGuard_HaoLi", "datasets", "valid.json")
     d1_samples = []
     if os.path.exists(piguard_valid_path):
         with open(piguard_valid_path, "r", encoding="utf-8") as f:
@@ -41,8 +41,8 @@ def prepare_suite():
     print(f"[+] D1: PIGuard Valid -> {len(d1_samples[:100])} samples saved to {os.path.basename(d1_out)}")
 
     # 2. D2: BIPIA Indirect (Viet et al. 2024 - Indirect Injection in Text/Code)
-    bipia_text_path = os.path.join(REPLICATIONS_DIR, "Tier2_PIGuard_ACL2025", "datasets", "BIPIA_text.json")
-    bipia_code_path = os.path.join(REPLICATIONS_DIR, "Tier2_PIGuard_ACL2025", "datasets", "BIPIA_code.json")
+    bipia_text_path = os.path.join(REPLICATIONS_DIR, "Paper_ACL2025_PIGuard_HaoLi", "datasets", "BIPIA_text.json")
+    bipia_code_path = os.path.join(REPLICATIONS_DIR, "Paper_ACL2025_PIGuard_HaoLi", "datasets", "BIPIA_code.json")
     d2_samples = []
     for bp in [bipia_text_path, bipia_code_path]:
         if os.path.exists(bp):
@@ -108,8 +108,8 @@ def prepare_suite():
     print(f"[+] D4: DataSentinel Open-PI -> {len(d4_samples[:100])} samples saved to {os.path.basename(d4_out)}")
 
     # 5. D5: NotInject Overdefense Code (Li et al. ACL 2025)
-    notinject_1 = os.path.join(REPLICATIONS_DIR, "Tier2_PIGuard_ACL2025", "datasets", "NotInject_one.json")
-    notinject_2 = os.path.join(REPLICATIONS_DIR, "Tier2_PIGuard_ACL2025", "datasets", "NotInject_two.json")
+    notinject_1 = os.path.join(REPLICATIONS_DIR, "Paper_ACL2025_PIGuard_HaoLi", "datasets", "NotInject_one.json")
+    notinject_2 = os.path.join(REPLICATIONS_DIR, "Paper_ACL2025_PIGuard_HaoLi", "datasets", "NotInject_two.json")
     d5_samples = []
     for np in [notinject_1, notinject_2]:
         if os.path.exists(np):
@@ -130,7 +130,7 @@ def prepare_suite():
     print(f"[+] D5: NotInject Benign Code -> {len(d5_samples[:100])} samples saved to {os.path.basename(d5_out)}")
 
     # 6. D6: WildGuard Benign Challenging Prompts (Allen Institute for AI)
-    wg_path = os.path.join(REPLICATIONS_DIR, "Tier2_PIGuard_ACL2025", "datasets", "wildguard.json")
+    wg_path = os.path.join(REPLICATIONS_DIR, "Paper_ACL2025_PIGuard_HaoLi", "datasets", "wildguard.json")
     d6_samples = []
     if os.path.exists(wg_path):
         with open(wg_path, "r", encoding="utf-8") as f:

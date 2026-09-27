@@ -6,7 +6,6 @@
 **Giảng viên Hướng dẫn (GVHD)**: ThS. Trần Văn Ninh  
 **Sinh viên thực hiện**: Nguyễn Văn Trường (Trưởng nhóm / Mã SV: `SE182034` / GitHub: `nvtruongops`)  
 **Workspace thực thi**: [`workspaces/truongnv/`](file:///d:/Work/Do-an/workspaces/truongnv/)  
-**Tệp Word báo cáo đồng bộ**: [`RESEARCH_REPORT_MEETING_6.docx`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/RESEARCH_REPORT_MEETING_6.docx)  
 
 ---
 
@@ -31,7 +30,7 @@ Trong tuần làm việc vừa qua, sinh viên Nguyễn Văn Trường đã tậ
 flowchart LR
     M5["CHỈ ĐẠO MEETING 5<br/>(19/09/2026)"] --> T1["Nhiệm vụ 1:<br/>Bản chất Kiến trúc & Thuật toán"]
     M5 --> T2["Nhiệm vụ 2:<br/>Mở rộng Ma trận 12x14 & CASCADE"]
-    M5 --> T3["Nhiệm vụ 3:<br/>Văn bản 200k & Tail-Scan 111x"]
+    M5 --> T3["Nhiệm vụ 3:<br/>Văn bản 200k & Quét Ưu Tiên Đuôi"]
     M5 --> T4["Nhiệm vụ 4:<br/>Đóng gói Weights & Benchmark 12 Model"]
     M5 --> T5["Nhiệm vụ 5:<br/>Hồ sơ Bảo vệ Hội đồng & Đóng băng"]
 
@@ -57,44 +56,42 @@ flowchart LR
   - Phân tích chuẩn đánh giá trong phân vùng Low-FPR ($\text{FPR} \le 1.0\%$) theo **PromptShield (Jacob et al., ACM CCS 2024 [[30]](#ref30))**.
 
 ### Nhiệm Vụ 3: Giải Quyết Bài Toán Văn Bản Lớn 200,000 Ký Tự & Chống Lỗ Hổng Prompt Overflow
-- **Kết quả đạt được**: Hiện thực hóa module [`block_chunker.py`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/src/block_chunker.py) và bộ kiểm thử tự động pytest.
+- **Kết quả đạt được**: Hiện thực hóa module [`block_chunker.py`](file:///d:/Work/Do-an/workspaces/truongnv/src/models/cascade/block_chunker.py) và thuật toán phân mảnh ưu tiên.
 - **Nội dung khoa học**:
   - Ứng dụng lý thuyết lỗ hổng **Prompt Overflow (Zhou et al., arXiv:2605.23196, 2026 [[40]](#ref40))** về sự bất đối xứng cửa sổ ngữ cảnh giữa Guardrail (512 tokens) và Target LLM (128k tokens).
   - Thiết lập chiến lược **Quét Ưu Tiên Đuôi-Đầu (Tail-and-Head Prioritized Scanning)** kết hợp cơ chế ngắt sớm (Early-Stopping).
-  - **Bằng chứng thực nghiệm**: Bắt ngay đòn tấn công giấu ở cuối tài liệu 200,000 ký tự tại Block đầu tiên quét, chỉ mất **$0.12\text{ms}$** (nhanh gấp **$111.0\times$** so với quét tuần tự $111$ blocks mất $13.32\text{ms}$). Đạt $100\%$ Pass trên 2 test suite lớn.
+  - **Mục tiêu kỹ thuật**: Khắc phục hiện tượng quét sót payload độc hại giấu ở đuôi tài liệu 200,000 ký tự mà không làm bùng nổ thời gian suy luận trên CPU.
 
-### Nhiệm Vụ 4: Đóng Gói Pipeline Thực Tế, Lưu Trữ Weights Và Đo Đạc Thực Nghiệm Độc Lập
+### Nhiệm Vụ 4: Đo Đạc Thực Nghiệm Độc Lập Các Mô Hình Public Từ Y Văn
 - **Kết quả đạt được**:
-  - Đã đóng gói 4 module mã nguồn thực thi độc lập trong [`src/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/src/): `tier0_ingress_scrubber.py`, `block_chunker.py`, `tier1_fast_filter.py`, `tier2_semantic_arbiter.py`.
-  - Huấn luyện và lưu file trọng số thực tế: [`tier1_tfidf_model.joblib`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/src/tier1_tfidf_model.joblib) ($861.3\text{ KB}$) và đóng băng toàn bộ trọng số DeBERTa-v3 gốc tại [`models/piguard_deberta_custom/model.safetensors`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/models/piguard_deberta_custom/model.safetensors) ($703.5\text{ MB}$).
-  - Đo đạc thực tế đối chuẩn **4 mô hình cốt lõi** trên cùng môi trường CPU qua 6 tập dữ liệu gốc (520 samples thực tế, 100% không mock dữ liệu) tại [`04_benchmarks_and_data/cross_dataset_empirical_matrix.json`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/04_benchmarks_and_data/cross_dataset_empirical_matrix.json).
+  - Đo đạc thực tế đối chuẩn **các mô hình public SOTA và baseline y văn** trên cùng môi trường CPU qua 6 tập dữ liệu chuẩn (520 samples thực tế, 100% không mock dữ liệu) tại [`04_benchmarks_and_data/cross_dataset_empirical_matrix.json`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/04_benchmarks_and_data/cross_dataset_empirical_matrix.json).
+  - Vạch rõ các điểm vỡ kỹ thuật (*failure modes*) của từng trường phái: TF-IDF trượt 100% Jailbreak, ProtectAI DeBERTa dính 19.0% FPR trên code, Meta Prompt-Guard sụp đổ 99% trên code lành tính.
 
-### Nhiệm Vụ 5: Hồ Sơ Bảo Vệ Học Thuật Trước Hội Đồng & Đóng Băng Mô Hình
+### Nhiệm Vụ 5: Hồ Sơ Bảo Vệ Học Thuật Trước Hội Đồng & Đóng Băng Danh Mục Baseline
 - **Kết quả đạt được**: Đã xây dựng hoàn chỉnh hồ sơ phản biện: [`COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md).
 - **Nội dung khoa học**:
   - Làm rõ lý do loại trừ Generative SLMs (Llama Guard 7B) dựa trên rào cản phần GPU doanh nghiệp, độ trễ bùng nổ $>1.5\text{s}$ và nghịch lý kinh tế.
   - Phân tích sự sụp đổ quá phòng thủ của Meta Prompt-Guard 86M ($0.88\%$ accuracy trên code, sụp đổ TPR $12.78\%$ tại Low-FPR).
   - Xác lập **5 Key Phấn Đấu Cốt Lõi** (Mã hóa, Biến dị ký tự, Emoji, Disentangled Attention, Quét tài liệu dài 200k) và **3 Key Giới Hạn Khoa Học Ngoài Tầm Với** thẳng thắn thừa nhận trước Hội đồng (Stateful Context Drift, Deep Commonsense Reasoning, White-Box KV-Cache).
-  - Chính thức công bố quyết định **Đóng Băng Mô Hình (Model Freezing)** phục vụ bảo vệ Review 2.
+  - Chính thức công bố quyết định **Đóng Băng Danh Mục Baseline Y Văn (Baseline Model Freezing)** phục vụ đối chuẩn cho Review 1 và Review 2.
 
 ---
 
-## 📊 3. TỔNG HỢP CÁC CHỈ SỐ THỰC NGHIỆM THEN CHỐT (100% UN-MOCKED & THỐNG KÊ WILSON CI)
+## 📊 3. TỔNG HỢP CÁC CHỈ SỐ THỰC NGHIỆM ĐỐI CHUẨN MÔ HÌNH PUBLIC TỪ Y VĂN (100% UN-MOCKED)
 
-| Tiêu Chí Đo Đạc | Kết Quả PI-Guard Two-Tier Cascade | Ngưỡng Cam Kết Đề Tài / Tiêu Chuẩn Quốc Tế | Trạng Thái Đánh Giá |
-| :--- | :---: | :---: | :---: |
-| **Độ trễ Tầng 1 Lọc nhanh (CPU)** | **$12.9\text{ms}$** (P95) / **$6.5 - 9.2\text{ms}$** (Mean) | $< 20\text{ms}$ | **XUẤT SẮC** ✔ |
-| **Độ trễ P95 Tầng 2 Thẩm tra (CPU)**| **$376.3 - 417.3\text{ms}$** | Tối ưu hóa phân tầng | **ĐẠT TIÊU CHUẨN CPU** ✔ |
-| **Độ trễ trung bình toàn hệ thống** | **$41.0 - 259.4\text{ms}$** (Amortized Tri-State) | $< 500\text{ms}$ (CPU Commodity) | **ĐẠT TIÊU CHUẨN** ✔ |
-| **Direct Injection Recall (D1)** | **$91.7\%$** [95% CI: $80.5\% - 96.7\%$] | $\ge 90.0\%$ | **ĐẠT TIÊU CHUẨN** ✔ |
-| **Indirect Injection Recall (D2)** | **$100.0\%$** [95% CI: $96.3\% - 100.0\%$] | $\ge 90.0\%$ | **XUẤT SẮC** ✔ |
-| **Jailbreak Recall (D3)** | **$62.0\%$** [95% CI: $52.2\% - 70.9\%$] | TF-IDF đạt $0.0\%$ $\implies$ T2 tăng $+62.0\%$ | **ĐẠT BƯỚC TIẾN LỚN** ✔ |
-| **Độ chính xác trên Code (`NotInject` - D5)** | **$98.0\%$** [95% CI: $93.0\% - 99.5\%$] | $\ge 85.0\%$ (Khử lỗi $19\%$ FPR của Standalone DeBERTa) | **DẪN ĐẦU SOTA (AST-MOF)** ✔ |
-| **Tỷ lệ báo động giả (FPR Benign - D6)** | **$6.0\%$** [95% CI: $2.8\% - 12.5\%$] (WildGuard) | $\le 10.0\%$ (Kinh tế học Low-FPR) | **ĐẠT TIÊU CHUẨN KHẮT KHE** ✔ |
-| **Kháng Token Dilution (Gray-Box)** | **$100.0\%$ PASS** (OOV Gate $\rho_{\text{oov}} > 0.40$) | Chặn lẩn tránh qua pha loãng token | **BẢO CHỨNG VỮNG CHẮC** ✔ |
-| **Tốc độ quét Tail Injection (200k chars)**| **$602\text{ms}$** (Bắt ngay Block 1 ngắt sớm) | Nhanh gấp $4.6\times$ so với quét tuần tự ($2,743\text{ms}$) | **TĂNG TỐC $4.6\times$ (0 OOM)** ✔ |
-| **Ý nghĩa Thống kê (McNemar Test)**| **Vượt trội TF-IDF ($p \ll 0.0001$), DeBERTa ($p \ll 0.0001$)** | $p < 0.05$ | **Ý NGHĨA THỐNG KÊ TUYỆT ĐỐI** ✔ |
-| **Tỷ lệ giải phóng lưu lượng tại Tầng 1 ($\eta$)**| **$80.0\%$** | $\ge 75.0\%$ | **TIẾT KIỆM $80\%$ TÀI NGUYÊN T2** ✔ |
+> [!IMPORTANT]
+> **NGUYÊN TẮC HỌC THUẬT VỀ MÔ HÌNH ĐỒ ÁN**:
+> Toàn bộ số liệu định lượng dưới đây được đo đạc 100% độc lập trên các **Mô hình Public tải về từ Y văn** (Chapter 2 Literature Replication).
+> Mô hình đồ án PI-Guard được định vị là **Ý Tưởng Đề Xuất Kiến Trúc 2 Tầng (Proposed Two-Tier Architectural Concept)** nhằm giải quyết các failure modes của mô hình public cho Chương 3.
+> **Nhóm chưa tiến hành code, huấn luyện và chưa công bố số liệu thực nghiệm định lượng F1/% cho mô hình đồ án khi chưa bước sang giai đoạn thực nghiệm Chương 4.**
+
+| Mô Hình Public / Baseline Y Văn | Direct Recall (D1) | Indirect Recall (D2) | Jailbreak Recall (D3) | Code Acc (D5 - NotInject) | Benign FPR (D6) | Độ Trễ P95 (CPU) | Điểm Yếu / Failure Mode Thực Nghiệm |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **M1: Baseline Regex (Pattern Matching)** | $10.4\%$ | $100.0\%$ | $100.0\%$ | $100.0\%$ | $0.0\%$ | $< 0.5\text{ms}$ | Bất lực trước biến thể mới ($10.4\%$ recall D1), dễ bị bypass qua paraphrase |
+| **M2: Dual-Space TF-IDF (Jain et al. 2023)** | $83.3\%$ | $24.0\%$ | **$0.0\%$** | $100.0\%$ | $0.0\%$ | **$12.9\text{ms}$** | Trượt hoàn toàn đòn Jailbreak ngữ nghĩa ($0.0\%$ recall), mù ngữ cảnh gián tiếp |
+| **M3: ProtectAI DeBERTa-v3 v2** | $58.3\%$ | $100.0\%$ | $62.0\%$ | **$81.0\%$** | $6.0\%$ | $414.1\text{ms}$ | Dính lỗi Overdefense trên mã nguồn lành tính (**$19.0\%$ FPR** trên code D5) |
+| **Meta Prompt-Guard 86M (Meta 2024)** | $68.5\%$ | $42.0\%$ | $18.5\%$ | **$0.9\%$** | $28.5\%$ | $38.5\text{ms}$ | **Sụp đổ quá phòng thủ trên code** (chặn nhầm $99.1\%$ code lập trình lành tính) |
+| **PIGuard (Hao Li et al. ACL 2025)** | $74.2\%$ | $88.0\%$ | $34.0\%$ | $88.5\%$ | $4.2\%$ | $390.0\text{ms}$ | Giảm quá phòng thủ tốt trên code nhưng kháng Jailbreak đối kháng còn hạn chế |
 
 ---
 
@@ -108,34 +105,28 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
 ├── 01_theory_and_taxonomy/
 │   └── TAXONOMY_OF_ARCHITECTURES_AND_ALGORITHMIC_PARADIGMS.md # Master Phân loại học + Suy dẫn 6x7->12x14 + Provenance
 ├── 02_compatibility_and_tradeoffs/
-│   ├── ARCHITECTURAL_COMPATIBILITY_MATRIX_CASCADE_12X14.md    # Ma trận Tương thích Hợp nhất (6x7 + 12x14 = 168 điểm)
-│   ├── DECISION_AND_COMPARISON_MATRICES.md                    # Bộ 4 Ma trận Ra Quyết Định Đa Tiêu Chí Định Lượng
-│   └── EMPIRICAL_BENCHMARK_AND_OPERATIONAL_TRADEOFFS.md       # Báo cáo Thực nghiệm Đối chuẩn 12 Mô hình & 6 Nhánh Đánh đổi
+│   └── ARCHITECTURAL_COMPATIBILITY_MATRIX_CASCADE_12X14.md    # Ma trận Tương thích Hợp nhất (6x7 + 12x14 = 168 điểm)
 ├── 03_reports_and_executive_briefs/
-│   ├── MASTER_RESEARCH_SYNTHESIS_REPORT_MEETING_6.md          # [MỚI] BÁO CÁO TỔNG HỢP MASTER TOÀN DIỆN
-│   ├── COMPREHENSIVE_PUBLIC_MODELS_BENCHMARK_AND_RESEARCH_EVALUATION.md # [MỚI] Báo Cáo Đối Chuẩn Chuyên Sâu 12 Mô Hình Public
 │   ├── EXECUTIVE_PROGRESS_REPORT_MEETING_6.md                 # Báo cáo Tiến độ Điều hành Meeting 6 (File này)
 │   ├── COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md             # Hồ sơ Bảo vệ Hội đồng + Gap Audit + Đóng băng mô hình
-│   ├── SLIDE_DECK_MEETING_6.md                                # Khung Slide Báo Cáo Tiến Độ Gặp GVHD
-│   └── RESEARCH_REPORT_MEETING_6.docx                         # Báo cáo định dạng Word nộp GVHD ThS. Trần Văn Ninh
+│   └── SLIDE_DECK_MEETING_6.md                                # Khung Slide Báo Cáo Tiến Độ Gặp GVHD
 ├── 04_benchmarks_and_data/
-│   ├── README.md                                              # Catalog giải thích nguồn gốc & schema 8 file JSON
+│   ├── README.md                                              # Catalog giải thích nguồn gốc & schema file JSON
 │   ├── compatibility_matrix_6x7.json                          # Dữ liệu ma trận vĩ mô 6x7
 │   ├── compatibility_matrix_expanded_12x14.json               # Dữ liệu ma trận mở rộng 12x14 (168 điểm)
 │   ├── comprehensive_empirical_benchmark_suite.json           # Dữ liệu tổng hợp bộ thực nghiệm
 │   ├── cross_dataset_empirical_matrix.json                    # Dữ liệu kiểm thử chéo D1-D6 (Un-mocked, 600 mẫu)
 │   ├── experimental_models_benchmark_report.json              # Dữ liệu chi tiết các mô hình thử nghiệm
-│   ├── grounded_empirical_matrix.json                         # Dữ liệu đối chuẩn 12 mô hình công khai
-│   ├── multi_branch_tradeoffs_matrix.json                     # Dữ liệu đánh đổi 6 nhánh cấu hình
+│   ├── grounded_empirical_matrix.json                         # Dữ liệu đối chuẩn các mô hình công khai
 │   └── public_triad_empirical_benchmark.json                  # Dữ liệu kiểm chứng nguyên tắc bộ ba công khai
 ├── data/                                                      # Tập dữ liệu kiểm thử (D1-D6, 200k benign & tail-attack)
-├── figures/                                                   # 4 biểu đồ trực quan hóa khoa học (Figures 1-4)
-├── scripts/
-│   ├── reproduce_all_benchmarks.py                            # [MỚI] Script 1-Click Tái Lập Toàn Bộ Thực Nghiệm
-│   ├── run_cross_dataset_benchmark.py                         # Master Benchmark Un-mocked 600 Mẫu D1-D6
-│   └── generate_benchmark_figures.py                          # Sinh 4 Biểu Đồ Khoa Học PNG
-├── src/                                                       # 4 module mã nguồn thực thi un-mocked + file trọng số .joblib
-└── tests/                                                     # 3 bộ kiểm thử tự động pytest (3/3 tests PASSED 100%)
+├── figures/                                                   # Biểu đồ trực quan hóa khoa học
+└── scripts/
+    ├── calculate_compatibility_matrix.py                      # Tính toán ma trận 6x7
+    ├── calculate_expanded_compatibility_matrix.py             # Tính toán ma trận mở rộng 12x14
+    ├── inspect_meeting_6_rigor.py                             # Kiểm tra tính toàn vẹn Meeting 6
+    ├── prepare_cross_dataset_suite.py                         # Chuẩn bị dữ liệu D1-D6
+    └── run_cross_dataset_benchmark.py                         # Master Benchmark Un-mocked D1-D6
 ```
 
 ---
@@ -143,13 +134,12 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
 ## 🎯 5. KẾ HOẠCH BÁO CÁO MEETING 6 & LỘ TRÌNH TIẾP THEO
 
 1. **Chuẩn bị Buổi Họp Meeting 6 với Thầy Ninh**:
-   - Trình chiếu Slide báo cáo tiến độ tích hợp 4 biểu đồ thực nghiệm chất lượng cao tại [`figures/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/figures/).
-   - Trình bày trực tiếp demo xử lý tài liệu 200,000 ký tự với cơ chế ngắt sớm phát hiện đòn tấn công ở đuôi trong $0.12\text{ms}$.
-   - Trình Thầy phê duyệt quyết định Đóng Băng Mô Hình (Model Freezing Gate).
+   - Trình chiếu Slide báo cáo tiến độ tích hợp các biểu đồ thực nghiệm đối chuẩn các mô hình public tại [`figures/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/figures/).
+   - Trình bày trực tiếp demo phân tích điểm vỡ failure modes của các giải pháp hiện nay.
+   - Trình Thầy phê duyệt khung đề xuất kiến trúc 2 tầng (Two-Tier Architectural Concept Proposal) và đóng băng danh mục baseline y văn (Baseline Freezing).
 2. **Kế hoạch Chuyển Giao Phục Vụ Review 2**:
-   - Tích hợp 4 module trong [`src/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/src/) vào kiến trúc FastAPI Reverse Proxy Middleware của đề tài tại `Final-Report/src/api/`.
-   - Kết nối với Streamlit Dashboard tại `Final-Report/src/dashboard/` để phục vụ demo trực quan trước Hội đồng Review 2.
    - Chuyển giao các nội dung lý thuyết và thực nghiệm đã kiểm chứng vào **Chương 2 (Literature Review)** và **Chương 3 (System Architecture)** của Luận văn tốt nghiệp.
+   - Lập kế hoạch thiết kế và hiện thực hóa mô hình đồ án cho giai đoạn thực nghiệm Chương 4.
 
 ---
 
@@ -160,7 +150,7 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
 * <a id="ref10"></a>**[10]** G. Markov et al. / OpenAI. 2023. *A Holistic Approach to Undesired Content Detection in the Real World*. In *AAAI 2023*. Local PDF: [`References/OpenAI_2023_Undesired_Content_Detection.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/OpenAI_2023_Undesired_Content_Detection.pdf).
 * <a id="ref16"></a>**[16]** J. H. Saltzer and M. D. Schroeder. 1975. *The Protection of Information in Computer Systems*. In *Proceedings of the IEEE*, 63(9):1278–1308. DOI: 10.1109/PROC.1975.9939. Local PDF: [`References/Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf).
 * <a id="ref17"></a>**[17]** Y. Yuan, W. Jiao, W. Wang, J. Huang, P. He, and Z. Tu. 2024. *GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher*. In *ICLR 2024*. Local PDF: [`References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf).
-* <a id="ref18"></a>**[18]** H. Li, X. Liu, N. Zhang, and C. Xiao. 2025. *PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free*. In *ACL 2025 - Long Paper*. [arXiv:2410.22770](https://arxiv.org/abs/2410.22770). Local PDF: [`replications/Tier2_PIGuard_ACL2025/papers/PIGuard_ACL2025_arXiv2410.22770.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Tier2_PIGuard_ACL2025/papers/PIGuard_ACL2025_arXiv2410.22770.pdf).
+* <a id="ref18"></a>**[18]** H. Li, X. Liu, N. Zhang, and C. Xiao. 2025. *PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free*. In *ACL 2025 - Long Paper*. [arXiv:2410.22770](https://arxiv.org/abs/2410.22770). Local PDF: [`replications/Paper_ACL2025_PIGuard_HaoLi/papers/PIGuard_ACL2025_arXiv2410.22770.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Paper_ACL2025_PIGuard_HaoLi/papers/PIGuard_ACL2025_arXiv2410.22770.pdf).
 * <a id="ref20"></a>**[20]** Meta AI. 2024. *Prompt Guard 86M: A Small Classifier for Prompt Injection and Jailbreak Detection*. Model Card and Technical Report. [arXiv:2407.21783](https://arxiv.org/abs/2407.21783). Local PDF: [`replications/Tier1_Candidate_Meta_PromptGuard2024/papers/Meta_2024_PurpleLlama_PromptGuard.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Tier1_Candidate_Meta_PromptGuard2024/papers/Meta_2024_PurpleLlama_PromptGuard.pdf).
 * <a id="ref30"></a>**[30]** D. Jacob, H. Alzahrani, Z. Hu, B. Alomair, and D. Wagner. 2024. *PromptShield: Deployable Detection for Prompt Injection Attacks*. In *ACM CCS 2024*, pages 4247–4261. DOI: 10.1145/3714393.3726501. Local PDF: [`workspaces/truongnv/References/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf).
 * <a id="ref31"></a>**[31]** C. Hackett, O. Kjellgren, and S. Al-Rubaie. 2025. *Bypassing LLM Guardrails: Mechanisms of Adversarial Evasion and Detection Strategies*. In *ACL 2025*. Local PDF: [`References/Hackett_2025_Bypassing_LLM_Guardrails_Evasion_Attacks.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Hackett_2025_Bypassing_LLM_Guardrails_Evasion_Attacks.pdf).

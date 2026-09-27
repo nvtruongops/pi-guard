@@ -168,10 +168,10 @@ python workspaces\truongnv\replications\PromptShield_Jacob_CCS2024\run_promptshi
 # 6. ModernBERT-base (Answer.AI 2024 - 8,192 Context Window):
 python workspaces\truongnv\replications\ModernBERT_Warner_2024\run_modernbert_replication.py
 
-# 7. PI-Guard Tier-1 Fast-Filter (Dual-Space TF-IDF Platt):
-python workspaces\truongnv\replications\PIGuard_Tier1_FastFilter\run_tier1_fastfilter_replication.py
+# 7. Jain et al. (NeurIPS 2023 - Character N-Gram Baseline):
+python workspaces\truongnv\replications\Tier1_Candidate_Jain_NeurIPS2023\run_jain_replication.py
 
-# 🚀 CHẠY TỔNG HỢP TOÀN BỘ 12 MÔ HÌNH VỚI 1 LỆNH DUY NHẤT:
+# 🚀 CHẠY TỔNG HỢP TOÀN BỘ 10 MÔ HÌNH CÔNG BỐ VỚI 1 LỆNH DUY NHẤT:
 python workspaces\truongnv\replications\run_all_empirical_models.py
 ```
 

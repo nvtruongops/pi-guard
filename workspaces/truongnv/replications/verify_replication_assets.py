@@ -61,43 +61,43 @@ def main():
         ("Tier1_REJECTED_Ayub_CAMLIS2024/figures/02_empirical_plots/ayub_latency_profile.png", 30_000, False),
 
         # 3. Tier 2 Subsystem: PIGuard DeBERTa-v3-base (ACL 2025)
-        ("Tier2_PIGuard_ACL2025/README.md", 500, False),
-        ("Tier2_PIGuard_ACL2025/papers/PIGuard_ACL2025_arXiv2410.22770.pdf", 500_000, True),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025_Replication_and_Paper_Comparison.ipynb", 10_000, False),
-        ("Tier2_PIGuard_ACL2025/eval_piguard_replication.py", 1000, False),
-        ("Tier2_PIGuard_ACL2025/quick_test_piguard.py", 500, False),
-        ("Tier2_PIGuard_ACL2025/PIGUARD_REPLICATION_BENCHMARK_RESULTS.json", 1000, False),
-        ("Tier2_PIGuard_ACL2025/PIGUARD_ACL2025_REPLICATION_REPORT.md", 1000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/README.md", 500, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/papers/PIGuard_ACL2025_arXiv2410.22770.pdf", 500_000, True),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025_Replication_and_Paper_Comparison.ipynb", 10_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/eval_piguard_replication.py", 1000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/quick_test_piguard.py", 500, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGUARD_REPLICATION_BENCHMARK_RESULTS.json", 1000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGUARD_ACL2025_REPLICATION_REPORT.md", 1000, False),
 
         # 3.1 Pure Upstream Codebase: PIGuard_ACL2025 (100% Upstream Purity)
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/README.md", 500, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/LICENSE", 500, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/PIGuard.py", 500, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/eval.py", 1000, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/eval_hf.py", 1000, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/params.py", 500, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/util.py", 500, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/requirements.txt", 500, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/README.md", 500, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/LICENSE", 500, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/PIGuard.py", 500, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/eval.py", 1000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/eval_hf.py", 1000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/params.py", 500, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/util.py", 500, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/requirements.txt", 500, False),
 
         # 3.2 Benchmark Datasets in PIGuard_ACL2025 (Evaluation suites only)
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/datasets/valid.json", 10_000, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/datasets/NotInject_one.json", 5_000, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/datasets/NotInject_two.json", 5_000, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/datasets/NotInject_three.json", 5_000, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/datasets/BIPIA_text.json", 1_000, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/datasets/BIPIA_code.json", 1_000, False),
-        ("Tier2_PIGuard_ACL2025/PIGuard_ACL2025/datasets/wildguard.json", 50_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/valid.json", 10_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/NotInject_one.json", 5_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/NotInject_two.json", 5_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/NotInject_three.json", 5_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/BIPIA_text.json", 1_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/BIPIA_code.json", 1_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/wildguard.json", 50_000, False),
 
         # 3.3 Tier 2 Publication Figures
-        ("Tier2_PIGuard_ACL2025/figures/01_paper_evidence/paper_p1_title_and_abstract.png", 50_000, False),
-        ("Tier2_PIGuard_ACL2025/figures/01_paper_evidence/paper_p7_table_1_main_results.png", 50_000, False),
-        ("Tier2_PIGuard_ACL2025/figures/01_paper_evidence/paper_p8_table_2_ablation_study.png", 50_000, False),
-        ("Tier2_PIGuard_ACL2025/figures/01_paper_evidence/paper_p16_table_7_full_benchmarks.png", 30_000, False),
-        ("Tier2_PIGuard_ACL2025/figures/01_paper_evidence/paper_p16_figure_7_case_study.png", 30_000, False),
-        ("Tier2_PIGuard_ACL2025/figures/02_empirical_plots/local_vs_paper_scorecard.png", 30_000, False),
-        ("Tier2_PIGuard_ACL2025/figures/02_empirical_plots/piguard_replication_paper_vs_local_bars.png", 30_000, False),
-        ("Tier2_PIGuard_ACL2025/figures/02_empirical_plots/piguard_replication_latency_profile.png", 30_000, False),
-        ("Tier2_PIGuard_ACL2025/figures/02_empirical_plots/piguard_replication_confusion_matrix.png", 30_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/figures/01_paper_evidence/paper_p1_title_and_abstract.png", 50_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/figures/01_paper_evidence/paper_p7_table_1_main_results.png", 50_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/figures/01_paper_evidence/paper_p8_table_2_ablation_study.png", 50_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/figures/01_paper_evidence/paper_p16_table_7_full_benchmarks.png", 30_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/figures/01_paper_evidence/paper_p16_figure_7_case_study.png", 30_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/figures/02_empirical_plots/local_vs_paper_scorecard.png", 30_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/figures/02_empirical_plots/piguard_replication_paper_vs_local_bars.png", 30_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/figures/02_empirical_plots/piguard_replication_latency_profile.png", 30_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/figures/02_empirical_plots/piguard_replication_confusion_matrix.png", 30_000, False),
 
         # 4. Tier 1 Subsystem Candidate: Jain et al. (NeurIPS 2023 Workshop)
         ("Tier1_Candidate_Jain_NeurIPS2023/README.md", 500, False),
@@ -155,9 +155,9 @@ def main():
         ("Tier1_REJECTED_Ayub_CAMLIS2024/datasets/NotInject_one.json", 5_000, False),
 
         # 8. PIGuard ACL 2025 Root Datasets
-        ("Tier2_PIGuard_ACL2025/datasets/valid.json", 10_000, False),
-        ("Tier2_PIGuard_ACL2025/datasets/NotInject_one.json", 5_000, False),
-        ("Tier2_PIGuard_ACL2025/datasets/wildguard.json", 50_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/datasets/valid.json", 10_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/datasets/NotInject_one.json", 5_000, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/datasets/wildguard.json", 50_000, False),
 
         # 9. ProtectAI DeBERTa-v3 Replication Package & Datasets
         ("ProtectAI_DeBERTa_v3_v2/README.md", 500, False),
@@ -217,19 +217,7 @@ def main():
         ("ModernBERT_Warner_2024/ModernBERT/README.md", 500, False),
         ("ModernBERT_Warner_2024/ModernBERT/yamls/modernbert/modernbert-base-context-extension.yaml", 1_000, False),
 
-        # 16. PI-Guard Tier-1 Fast-Filter (Dual-Space TF-IDF)
-        ("PIGuard_Tier1_FastFilter/README.md", 500, False),
-        ("PIGuard_Tier1_FastFilter/REPO_METADATA.json", 300, False),
-        ("PIGuard_Tier1_FastFilter/papers/PIGuard_ACL2025_arXiv2410.22770.pdf", 500_000, True),
-        ("PIGuard_Tier1_FastFilter/papers/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf", 300_000, True),
-        ("PIGuard_Tier1_FastFilter/run_tier1_fastfilter_replication.py", 1_000, False),
-        ("PIGuard_Tier1_FastFilter/TIER1_FASTFILTER_REPLICATION_BENCHMARK_RESULTS.json", 1_000, False),
-        ("PIGuard_Tier1_FastFilter/datasets/tier1_fastfilter_eval_benchmark.json", 1_000, False),
-        ("PIGuard_Tier1_FastFilter/PIGuard_ACL2025/README.md", 500, False),
-        ("PIGuard_Tier1_FastFilter/PIGuard_ACL2025/PIGuard.py", 500, False),
-        ("PIGuard_Tier1_FastFilter/PIGuard_ACL2025/datasets/valid.json", 10_000, False),
-
-        # 17. Dataset Metadata & Provenance Cards (12/12 models)
+        # 16. Dataset Metadata & Provenance Cards (11/11 public models)
         ("Tier1_REJECTED_Ayub_CAMLIS2024/datasets/METADATA.json", 300, False),
         ("Tier1_REJECTED_Ayub_CAMLIS2024/datasets/DATASET_CARD.md", 500, False),
         ("Tier1_Candidate_Jain_NeurIPS2023/datasets/METADATA.json", 300, False),
@@ -238,8 +226,8 @@ def main():
         ("Tier1_Candidate_Meta_PromptGuard2024/datasets/DATASET_CARD.md", 500, False),
         ("Tier1_Candidate_InstructDetector_EMNLP2024/datasets/METADATA.json", 300, False),
         ("Tier1_Candidate_InstructDetector_EMNLP2024/datasets/DATASET_CARD.md", 500, False),
-        ("Tier2_PIGuard_ACL2025/datasets/METADATA.json", 300, False),
-        ("Tier2_PIGuard_ACL2025/datasets/DATASET_CARD.md", 500, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/datasets/METADATA.json", 300, False),
+        ("Paper_ACL2025_PIGuard_HaoLi/datasets/DATASET_CARD.md", 500, False),
         ("ProtectAI_DeBERTa_v3_v2/datasets/METADATA.json", 300, False),
         ("ProtectAI_DeBERTa_v3_v2/datasets/DATASET_CARD.md", 500, False),
         ("SmoothLLM_Robey_NeurIPS2023/datasets/METADATA.json", 300, False),
@@ -252,8 +240,6 @@ def main():
         ("PromptShield_Jacob_CCS2024/datasets/DATASET_CARD.md", 500, False),
         ("ModernBERT_Warner_2024/datasets/METADATA.json", 300, False),
         ("ModernBERT_Warner_2024/datasets/DATASET_CARD.md", 500, False),
-        ("PIGuard_Tier1_FastFilter/datasets/METADATA.json", 300, False),
-        ("PIGuard_Tier1_FastFilter/datasets/DATASET_CARD.md", 500, False),
     ]
 
     all_passed = True
@@ -286,14 +272,13 @@ def main():
         "Tier1_Candidate_Jain_NeurIPS2023",
         "Tier1_Candidate_Meta_PromptGuard2024",
         "Tier1_Candidate_InstructDetector_EMNLP2024",
-        "Tier2_PIGuard_ACL2025",
+        "Paper_ACL2025_PIGuard_HaoLi",
         "ProtectAI_DeBERTa_v3_v2",
         "SmoothLLM_Robey_NeurIPS2023",
         "JailbreakBench_Chao_NeurIPS2024",
         "DataSentinel_Liu_SP2025",
         "PromptShield_Jacob_CCS2024",
-        "ModernBERT_Warner_2024",
-        "PIGuard_Tier1_FastFilter"
+        "ModernBERT_Warner_2024"
     ]
 
     for pkg in packages:
@@ -330,7 +315,7 @@ def main():
     print("\n" + "=" * 80)
     print("UPSTREAM REPOSITORY PROVENANCE & METADATA VALIDATION")
     print("=" * 80)
-    for pkg in ["DataSentinel_Liu_SP2025", "PromptShield_Jacob_CCS2024", "ModernBERT_Warner_2024", "PIGuard_Tier1_FastFilter"]:
+    for pkg in ["DataSentinel_Liu_SP2025", "PromptShield_Jacob_CCS2024", "ModernBERT_Warner_2024"]:
         repo_meta_file = os.path.join(base_dir, pkg, "REPO_METADATA.json")
         if not os.path.exists(repo_meta_file):
             print(f"[FAIL]  Missing REPO_METADATA.json in {pkg}")

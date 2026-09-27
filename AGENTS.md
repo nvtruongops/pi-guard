@@ -107,6 +107,20 @@ Welcome to the **PI-Guard** Capstone Project repository. This file defines the o
 
 ---
 
+## 🔬 STRICT RULE: TWO-PHASE EXPERIMENTAL METHODOLOGY & BENCHMARKING INVARIANT
+> [!IMPORTANT]
+> **MANDATORY DISTINCTION: LITERATURE REPLICATION (CHAPTER 2) VS. PROPOSED MODEL EVALUATION (CHAPTER 4)**:
+> 1. **Phase 1: Literature Replication & Research Gaps (Chapter 2 / R&D Weeks)**:
+>    - Empirical testing of established baseline models (TF-IDF, ProtectAI DeBERTa, Meta Prompt-Guard, Llama Guard) is an exploratory replication study.
+>    - **Purpose**: Measure real-world failure modes (TF-IDF 0% Jailbreak, DeBERTa 19% FPR on code, Meta 99% code rejection, context overflow) to provide statistical evidence for Chapter 2 Section 2.3 (Research Gaps) as justification for proposing the Two-Tier architecture in Chapter 3.
+> 2. **Phase 2: Proposed Model Evaluation & Benchmarking (Chapter 4 / Report No.4 — Week 13)**:
+>    - Empirical validation on PI-Guard's finalized Champion Model (Two-Tier Cascade) directly benchmarked against Chapter 2 baselines on suites D1–D6.
+>    - **Purpose**: Verify official project KPIs (F1 > 0.98, FPR < 1.5%, CPU Latency P95 < 30ms, Evasion Robustness).
+> 3. **Progress Meeting Presentation Invariant (Evidence-First Narrative)**:
+>    - In progress reviews (Meeting 5 & 6), presentations MUST follow inductive logic: **Baseline Failure Experiments (Part 3)** $\to$ **Proposed Two-Tier Model (Part 4)**. Never invert this order.
+
+---
+
 ## 🛠️ Configured MCP Servers (Model Context Protocol)
 
 The workspace is configured with 11 integrated Model Context Protocol (MCP) servers defined in [`.vscode/mcp.json`](file:///d:/Work/Do-an/.vscode/mcp.json):

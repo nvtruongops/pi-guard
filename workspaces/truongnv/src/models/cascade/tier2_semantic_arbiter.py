@@ -99,8 +99,7 @@ class Tier2SemanticArbiter:
 
         # Attempt to load genuine Transformer model if torch and transformers are present
         if TORCH_AVAILABLE:
-            local_custom_dir = os.path.abspath(os.path.join(CURRENT_DIR, "..", "models", "piguard_deberta_custom"))
-            candidate_models = [local_custom_dir, model_id, "protectai/deberta-v3-base-prompt-injection-v2", "leolee99/PIGuard"]
+            candidate_models = [model_id, "protectai/deberta-v3-base-prompt-injection-v2", "leolee99/PIGuard"]
             for m_id in candidate_models:
                 try:
                     self.tokenizer = AutoTokenizer.from_pretrained(

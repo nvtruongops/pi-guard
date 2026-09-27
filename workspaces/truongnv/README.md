@@ -5,7 +5,8 @@
 
 ### 📂 1. DANH MỤC HỒ SƠ & BÁO CÁO REVIEW 1 TRONG WORKSPACE CỦA BẠN:
 
-- 📘 **Bản thảo Luận văn Review 1**:
+- 📘 **Bản thảo Luận văn & Báo cáo Review 1**:
+  - [`reports/report_for_review1/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_review1/README.md): **PHÂN HỆ BÁO CÁO KỸ THUẬT REVIEW 1 TOÀN DIỆN** (Toàn văn Chapter 1, Chapter 2 & Chuyên đề Đánh giá 7 tiêu chí cốt lõi).
   - [`docs/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/01_Introduction.md): Toàn văn Chương 1 (Introduction & Threat Model).
   - [`docs/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/02_Literature_Review.md): Toàn văn Chương 2 (Literature Review & SOTA Survey).
   - [`docs/thesis/chapters/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/README.md): Lộ trình biên soạn 6 chương theo chuẩn FPT IAP491.
@@ -36,14 +37,14 @@
   - 🔍 [`docs/research/comparative_analysis/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/comparative_analysis/): Chuyên khảo đối chuẩn SOTA Guardrails, Lỗ hổng Target LLM APIs & Báo cáo Tencent 2026.
 
 - 🧪 **Trung Tâm Tái Lập Y Văn & Baselines ([`replications/`](file:///d:/Work/Do-an/workspaces/truongnv/replications/README.md))**:
-  - Quản lý tập trung **đúng 5 mô hình tái lập y văn upstream nguyên bản** có đầy đủ 100% Bộ Ba Công Khai (Public Code + Paper + Dataset): `PIGuard ACL 2025`, `Meta PromptGuard 2024`, `Jain NeurIPS 2023`, `InstructDetector EMNLP 2024`, `Ayub CAMLIS 2024`.
+  - Quản lý tập trung **100% các mô hình tái lập y văn upstream nguyên bản** có đầy đủ Bộ Ba Công Khai (Public Code + Paper + Dataset): `Paper_ACL2025_PIGuard_HaoLi`, `Baseline_DualSpace_TFIDF_Jain2023`, `Meta PromptGuard 2024`, `ProtectAI DeBERTa-v3`, `DataSentinel S&P 2025`, `SmoothLLM NeurIPS 2023`, v.v.
   - Đi kèm toàn bộ Interactive Notebooks, Datasets, Scripts kiểm định và Sổ tay tái lập (`MEMBER_REPRODUCTION_RUNBOOK.md`).
 
 - 🏛️ **Phân Hệ Báo Cáo Tiến Độ & Cột Mốc ([`reports/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/README.md))**:
   - Lưu trữ hồ sơ nghiên cứu và sản phẩm thực nghiệm qua các cột mốc:
     - [`reports/report_for_meeting_4/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/): Cột mốc Meeting 4 (4 Task nghiên cứu mối đe dọa 5D, tính tái lập dữ liệu, cải tiến phòng thủ).
     - [`reports/tasks_for_meeting_5/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/): Cột mốc Meeting 5 (Tái lập thực nghiệm PIGuard ACL 2025, đối chuẩn 4 mô hình ứng viên).
-    - [`reports/tasks_for_meeting_6/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/): Cột mốc Meeting 6 Đóng Băng Mô Hình & Kiểm Định Hoàn Tất (Kiến trúc Two-Tier Cascade, Dynamic Class-Weighted Loss, Group-Aware Splitting MD5, Benchmark 520 samples).
+    - [`reports/tasks_for_meeting_6/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/): Cột mốc Meeting 6 Đóng Băng Danh Mục Baseline Y Văn & Đối Chuẩn 12 Mô Hình Public (Benchmark 520 samples, Khung Đề Xuất Kiến Trúc 2 Tầng Two-Tier Cascade cho Chương 3; Chưa huấn luyện mô hình đồ án).
 
 - 📚 **Tài liệu tham khảo & Thư viện Nghiên cứu**:
   - [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truongnv/References/REFERENCES_LOG.md): Bảng ma trận 18 bài báo chuẩn (100% >= 2022).

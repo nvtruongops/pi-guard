@@ -9,7 +9,6 @@
 > **Giảng viên Hướng dẫn (GVHD)**: ThS. Trần Văn Ninh  
 > **Workspace tài nguyên thực thi**: [`workspaces/truongnv/reports/tasks_for_meeting_6/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/)  
 > **Bản trình chiếu PowerPoint chính thức (50 Slide)**: [`PI-GUARD-Present-Meeting-6.pptx`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/PI-GUARD-Present-Meeting-6.pptx)  
-> **Báo cáo Word chính thức**: [`RESEARCH_REPORT_MEETING_6.docx`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/RESEARCH_REPORT_MEETING_6.docx)
 
 ---
 
@@ -46,26 +45,21 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
 │   └── TAXONOMY_OF_ARCHITECTURES_AND_ALGORITHMIC_PARADIGMS.md
 │       └── Hệ sinh thái 41 papers, 6 họ/7 thuật toán, suy dẫn toán học 6x7 -> 12x14 và bảng ánh xạ xuất xứ 100%
 │
-├── 02_compatibility_and_tradeoffs/                    # [PHÂN HỆ 2: MA TRẬN TƯƠNG THÍCH & ĐÁNH ĐỔI THỰC NGHIỆM]
-│   ├── ARCHITECTURAL_COMPATIBILITY_MATRIX_CASCADE_12X14.md
-│   │   └── Ma trận tương thích hợp nhất (Nền tảng vĩ mô 6x7 + Mở rộng vi mô 12x14 = 168 điểm giao định lượng)
-│   └── EMPIRICAL_BENCHMARK_AND_OPERATIONAL_TRADEOFFS.md
-│       └── Đối chuẩn thực nghiệm 12 mô hình độc lập (D1-D6), 6 nhánh đánh đổi B1-B6, 200k chunking & 4 figures
+├── 02_compatibility_and_tradeoffs/                    # [PHÂN HỆ 2: MA TRẬN TƯƠNG THÍCH]
+│   └── ARCHITECTURAL_COMPATIBILITY_MATRIX_CASCADE_12X14.md
+│       └── Ma trận tương thích hợp nhất (Nền tảng vĩ mô 6x7 + Mở rộng vi mô 12x14 = 168 điểm giao định lượng)
 │
 ├── 03_reports_and_executive_briefs/                   # [PHÂN HỆ 3: HỒ SƠ BÁO CÁO ĐIỀU HÀNH & BẢO VỆ HỘI ĐỒNG]
-│   ├── MASTER_RESEARCH_SYNTHESIS_REPORT_MEETING_6.md  # [MỚI] Báo cáo Tổng hợp Master Toàn diện (Chuẩn Publication/Thesis)
-│   ├── SLIDE_DECK_MEETING_6.md                        # [MỚI] Khung Slide Báo cáo Tiến độ Meeting 6
+│   ├── SLIDE_DECK_MEETING_6.md                        # Khung Slide Báo cáo Tiến độ Meeting 6
 │   ├── EXECUTIVE_PROGRESS_REPORT_MEETING_6.md         # Báo cáo tiến độ điều hành Meeting 6 chuẩn Markdown (Un-mocked)
-│   ├── COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md     # Hồ sơ Gap Audit 8 bước, 5 Key phấn đấu, 3 Giới hạn ngoài tầm với
-│   └── RESEARCH_REPORT_MEETING_6.docx                 # Báo cáo định dạng Microsoft Word chính thức nộp GVHD ThS. Trần Văn Ninh
+│   └── COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md     # Hồ sơ Gap Audit 8 bước, 5 Key phấn đấu, 3 Giới hạn ngoài tầm với
 │
 ├── 04_benchmarks_and_data/                            # [PHÂN HỆ 4: DỮ LIỆU ĐO ĐẠC SỐ HÓA JSON & CATALOG]
-│   ├── README.md                                      # Catalog giải thích nguồn gốc, generator script & schema 8 file JSON
+│   ├── README.md                                      # Catalog giải thích nguồn gốc, generator script & schema file JSON
 │   ├── compatibility_matrix_6x7.json                  # Dữ liệu số hóa 42 giao điểm ma trận vĩ mô 6x7
 │   ├── compatibility_matrix_expanded_12x14.json       # Dữ liệu số hóa 168 giao điểm ma trận mở rộng 12x14
-│   ├── grounded_empirical_matrix.json                 # Dữ liệu đối chuẩn 12 mô hình thực nghiệm CPU
-│   ├── multi_branch_tradeoffs_matrix.json             # Dữ liệu phân tích đánh đổi 6 nhánh cấu hình vận hành
-│   ├── cross_dataset_empirical_matrix.json            # Dữ liệu kiểm thử chéo 6 mô hình trên D1-D6 (Un-mocked, Wilson CIs)
+│   ├── grounded_empirical_matrix.json                 # Dữ liệu đối chuẩn các mô hình thực nghiệm CPU
+│   ├── cross_dataset_empirical_matrix.json            # Dữ liệu kiểm thử chéo các mô hình trên D1-D6 (Un-mocked, Wilson CIs)
 │   ├── comprehensive_empirical_benchmark_suite.json   # Dữ liệu tổng hợp tải và độ trễ CPU
 │   ├── experimental_models_benchmark_report.json      # Báo cáo đo đạc chi tiết các baseline thử nghiệm
 │   └── public_triad_empirical_benchmark.json          # Báo cáo kiểm chứng nguyên tắc Bộ Ba Công Khai
@@ -77,12 +71,6 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
 │   ├── tier2_semantic_arbiter.py                      # Tầng 2: DeBERTa-v3 MOF Invariant phân loại ngữ nghĩa an toàn
 │   └── tier1_tfidf_model.joblib                       # Trọng số mô hình Tầng 1 đã huấn luyện thực tế (861.3 KB)
 │
-├── scripts/                                           # [PHÂN HỆ TOOLING & TỰ ĐỘNG HÓA TÁI LẬP]
-│   ├── reproduce_all_benchmarks.py                    # [MỚI] Script 1-Click Tự động Tái lập 100% Thực nghiệm & Biểu đồ
-│   ├── run_cross_dataset_benchmark.py                 # Runner đo đạc 600 mẫu test D1-D6 & McNemar test
-│   ├── generate_benchmark_figures.py                  # Trình sinh 4 biểu đồ khoa học tự động
-│   └── ...                                            # Các công cụ tính toán ma trận tương thích
-│
 ├── tests/                                             # [BỘ KIỂM THỬ TỰ ĐỘNG PYTEST - 3/3 TESTS PASSED]
 │   ├── test_adaptive_token_dilution.py                # Kiểm thử đối kháng Gray-box Token Dilution & OOV Gate (PASS)
 │   ├── test_hidden_prompt_at_tail.py                  # Kiểm thử bắt tấn công giấu đuôi 200k chars tăng tốc 4.6x (PASS)
@@ -93,16 +81,12 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
 │   ├── sample_malicious_tail_200k.txt                 # Mẫu văn bản 200,000 ký tự có cấy payload ở cuối
 │   └── cross_dataset_suite/                           # Bộ 6 tập dữ liệu kiểm thử y văn gốc D1-D6 (520 mẫu)
 │
-├── figures/                                           # [BỘ 4 BIỂU ĐỒ TRỰC QUAN HÓA KHOA HỌC PUBLICATION-QUALITY]
-│   ├── figure1_early_stopping_200k.png                # Figure 1: Early Stopping Latency Profile (Văn bản 200k ký tự)
-│   ├── figure2_cross_dataset_heatmap.png              # Figure 2: Cross-Dataset Generalization Heatmap (D1-D6)
-│   ├── figure3_overdefense_tradeoff.png               # Figure 3: Low-FPR Economic Trade-off & Overdefense Frontier
-│   └── figure4_component_ablation.png                 # Figure 4: Component Ablation Study Breakdown
+├── figures/                                           # [BỘ BIỂU ĐỒ TRỰC QUAN HÓA KHOA HỌC PUBLICATION-QUALITY]
 │
 └── scripts/                                           # [BỘ SCRIPT TÍNH TOÁN & KIỂM TOÁN TỰ ĐỘNG]
     ├── inspect_meeting_6_rigor.py                     # Script kiểm toán 100% neo HTML, link PDF cục bộ & thuật ngữ
+    ├── calculate_compatibility_matrix.py              # Script tính toán ma trận 6x7
     ├── calculate_expanded_compatibility_matrix.py     # Script tính toán ma trận 12x14
-    ├── calculate_multi_branch_tradeoffs.py            # Script tính toán đánh đổi 6 nhánh kiến trúc
     ├── run_cross_dataset_benchmark.py                 # Script chạy kiểm thử chéo D1-D6
     └── prepare_cross_dataset_suite.py                 # Script chuẩn bị bộ dữ liệu testbed
 ```
@@ -111,8 +95,8 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
 
 ## 📊 3. TỔNG HỢP CÁC BẰNG CHỨNG THỰC NGHIỆM ĐÃ KIỂM ĐỊNH
 
-### 3.1. Đối Chuẩn Hiệu Năng 12 Mô Hình & Giải Pháp PI-Guard
-Dữ liệu trích xuất từ [`EMPIRICAL_BENCHMARK_AND_OPERATIONAL_TRADEOFFS.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/02_compatibility_and_tradeoffs/EMPIRICAL_BENCHMARK_AND_OPERATIONAL_TRADEOFFS.md):
+### 3.1. Đối Chuẩn Hiệu Năng Các Mô Hình Y Văn Nền Tảng (Chapter 2 Literature Baselines)
+Dữ liệu trích xuất từ [`comprehensive_empirical_benchmark_suite.json`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/04_benchmarks_and_data/comprehensive_empirical_benchmark_suite.json):
 
 | Mô Hình Đánh Giá | Direct Recall (%) | Indirect Recall (%) | Jailbreak Recall (%) | Benign FPR (%) *($\le 1.5\%$)* | Overdefense Acc (%) *(`NotInject`)* | CPU Latency P95 (ms) | Low-FPR TPR @ 1% |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -122,11 +106,10 @@ Dữ liệu trích xuất từ [`EMPIRICAL_BENCHMARK_AND_OPERATIONAL_TRADEOFFS.m
 | **K4: ModernBERT 8k (2024)** [[37]](#ref37) | **$100.0\%$** | **$100.0\%$** | $90.0\%$ | **$0.0\%$** | **$100.0\%$** | $11.67\text{ms}$ | $90.00\%$ |
 | **K6: Meta Prompt-Guard 86M** [[20]](#ref20) | $98.0\%$ | $80.0\%$ | $88.0\%$ | $0.5\%$ | 🔴 **$0.88\%$** *(SẬP)* | $22.1\text{ms}$ | 🔴 $12.78\%$ |
 | **K10: SmoothLLM (NeurIPS 2023)** [[14]](#ref14)| $35.0\%$ | $20.0\%$ | $92.0\%$ | $1.0\%$ | $85.0\%$ | 🔴 $5\times\text{ LLM}$ | N/A |
-| **K-PI: PI-Guard Two-Tier Cascade** | **$96.0\%$** | **$92.5\%$** | **$94.0\%$** | **$0.0\%$** | **$100.0\%$** | **$3.45\text{ms}$** | **$92.50\%$** |
 
-### 3.2. Giải Quyết Chỉ Đạo Văn Bản 200,000 Ký Tự (Tail-Scan 111x Speedup)
-- **Tài liệu sạch 100% (200k ký tự)**: Quét toàn bộ $111$ blocks bằng Tầng 1 chỉ mất **$13.32\text{ms}$** trên CPU (thấp hơn nhiều so với ngưỡng trần $30\text{ms}$ SLA).
-- **Tài liệu giấu mã độc ở cuối (Tail Injection)**: Cơ chế Quét Ưu Tiên Đuôi-Đầu (Tail-First) kết hợp Early-Stopping bắt ngay đòn tấn công tại Block đầu tiên quét ($0.12\text{ms}$), **tăng tốc gấp $111.0\times$** so với duyệt tuần tự.
+### 3.2. Đề Xuất Chiến Lược Quét Văn Bản 200,000 Ký Tự (Tail-First Prioritized Scanning)
+- **Tài liệu sạch 100% (200k ký tự)**: Quét phân mảnh 512 tokens bằng bộ lọc nhẹ đảm bảo thời gian xử lý nhanh trên CPU.
+- **Tài liệu giấu mã độc ở cuối (Tail Injection)**: Cơ chế đề xuất Quét Ưu Tiên Đuôi-Đầu (Tail-First) kết hợp Early-Stopping nhằm phát hiện sớm payload độc hại giấu ở đuôi tài liệu theo chỉ đạo của GVHD.
 
 ---
 
@@ -138,14 +121,14 @@ Mọi giảng viên, sinh viên và phản biện đều có thể tái lập $1
 # 1. Chạy bộ kiểm toán học thuật tự động (100% neo HTML, link PDF cục bộ & blacklist thuật ngữ)
 python workspaces/truongnv/reports/tasks_for_meeting_6/scripts/inspect_meeting_6_rigor.py
 
-# 2. Chạy bộ kiểm thử tự động pytest (Văn bản dài 200k ký tự & ngắt sớm đòn tấn công ở đuôi)
-pytest workspaces/truongnv/reports/tasks_for_meeting_6/tests -v
+# 2. Xác thực 11 gói tái lập mô hình y văn công khai
+python workspaces/truongnv/replications/verify_replication_assets.py
 
 # 3. Tính toán lại toàn bộ Ma trận Tương thích 12x14 và xuất file JSON số hóa
 python workspaces/truongnv/reports/tasks_for_meeting_6/scripts/calculate_expanded_compatibility_matrix.py
 
-# 4. Tính toán phân tích đánh đổi đa nhánh và đường biên Pareto
-python workspaces/truongnv/reports/tasks_for_meeting_6/scripts/calculate_multi_branch_tradeoffs.py
+# 4. Chạy kiểm thử chéo các mô hình baseline trên 6 tập dữ liệu y văn gốc D1-D6
+python workspaces/truongnv/reports/tasks_for_meeting_6/scripts/run_cross_dataset_benchmark.py
 ```
 
 ---
@@ -157,7 +140,7 @@ python workspaces/truongnv/reports/tasks_for_meeting_6/scripts/calculate_multi_b
 * <a id="ref10"></a>**[10]** G. Markov et al. / OpenAI. 2023. *A Holistic Approach to Undesired Content Detection in the Real World*. In *AAAI 2023*. Local PDF: [`References/OpenAI_2023_Undesired_Content_Detection.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/OpenAI_2023_Undesired_Content_Detection.pdf).
 * <a id="ref14"></a>**[14]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas. 2023. *SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks*. In *NeurIPS 2023*. [arXiv:2310.03684](https://arxiv.org/abs/2310.03684). Local PDF: [`References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf).
 * <a id="ref16"></a>**[16]** J. H. Saltzer and M. D. Schroeder. 1975. *The Protection of Information in Computer Systems*. In *Proceedings of the IEEE*, 63(9):1278–1308. DOI: 10.1109/PROC.1975.9939. Local PDF: [`References/Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf).
-* <a id="ref18"></a>**[18]** H. Li, X. Liu, N. Zhang, and C. Xiao. 2025. *PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free*. In *ACL 2025 - Long Paper*. [arXiv:2410.22770](https://arxiv.org/abs/2410.22770). Local PDF: [`replications/Tier2_PIGuard_ACL2025/papers/PIGuard_ACL2025_arXiv2410.22770.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Tier2_PIGuard_ACL2025/papers/PIGuard_ACL2025_arXiv2410.22770.pdf).
+* <a id="ref18"></a>**[18]** H. Li, X. Liu, N. Zhang, and C. Xiao. 2025. *PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free*. In *ACL 2025 - Long Paper*. [arXiv:2410.22770](https://arxiv.org/abs/2410.22770). Local PDF: [`replications/Paper_ACL2025_PIGuard_HaoLi/papers/PIGuard_ACL2025_arXiv2410.22770.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Paper_ACL2025_PIGuard_HaoLi/papers/PIGuard_ACL2025_arXiv2410.22770.pdf).
 * <a id="ref20"></a>**[20]** Meta AI. 2024. *Prompt Guard 86M: A Small Classifier for Prompt Injection and Jailbreak Detection*. Model Card and Technical Report. [arXiv:2407.21783](https://arxiv.org/abs/2407.21783). Local PDF: [`replications/Tier1_Candidate_Meta_PromptGuard2024/papers/Meta_2024_PurpleLlama_PromptGuard.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Tier1_Candidate_Meta_PromptGuard2024/papers/Meta_2024_PurpleLlama_PromptGuard.pdf).
 * <a id="ref30"></a>**[30]** D. Jacob, H. Alzahrani, Z. Hu, B. Alomair, and D. Wagner. 2024. *PromptShield: Deployable Detection for Prompt Injection Attacks*. In *ACM CCS 2024*, pages 4247–4261. DOI: 10.1145/3714393.3726501. Local PDF: [`workspaces/truongnv/References/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf).
 * <a id="ref32"></a>**[32]** Y. Liu, Y. Jia, J. Jia, D. Song, and N. Z. Gong. 2025. *DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks*. In *IEEE S&P 2025*. Local PDF: [`workspaces/truongnv/References/Liu_2025_DataSentinel_Game_Theoretic_Detection_Prompt_Injection.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Liu_2025_DataSentinel_Game_Theoretic_Detection_Prompt_Injection.pdf).
