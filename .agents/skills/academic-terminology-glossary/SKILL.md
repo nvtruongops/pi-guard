@@ -30,7 +30,7 @@ Rà soát văn bản kỹ thuật để nhận diện các từ khóa/phép so s
    - `Group-Aware Splitting`
    - `Dynamic Class-Weighted Loss`
    - `Two-Tier Uncertainty Routing`
-   - `Dynamic Post-Training Quantization (INT8 PTQ)`
+   - `Masked Overlap Fraction (MOF Invariance)`
 
 ### Bước 2: Đặt Neo Liên Kết Trong Văn Bản (In-Text Anchoring)
 Thay vì để text thô, hãy gắn thẻ liên kết neo học thuật:

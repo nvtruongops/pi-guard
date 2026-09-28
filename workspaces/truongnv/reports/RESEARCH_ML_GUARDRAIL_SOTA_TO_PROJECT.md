@@ -212,7 +212,7 @@ Toàn bộ các mô hình và thuật toán đã được triển khai đầy đ
 | **TN1** | **Conformal Risk Control (CRC)** | Khung lý thuyết thống kê xác lập ngưỡng phân loại có bảo chứng toán học với cận trên rủi ro kỳ vọng không vượt quá mức $\alpha$ định trước. | Giúp PI-Guard kiểm soát tỷ lệ chặn nhầm $\text{FPR} \le 1.5\%$ trên các truy vấn lành tính mà không cần dựa vào trực giác chủ quan. | Angelopoulos et al. (2024); Kang et al. (NeurIPS 2025). |
 | **TN2** | **Disentangled Attention Mechanism** | Cơ chế phân tách biểu diễn nội dung và vị trí tương đối thành 2 vector riêng biệt trong DeBERTa. | Giúp mô hình Tầng 2 bóc tách cấu trúc cú pháp đảo ngữ và hoán đổi vị trí câu lệnh tiêm nhiễm tinh vi. | He et al. (ICLR 2023). |
 | **TN3** | **Two-Tier Adaptive Defense Cascade** | Kiến trúc định tuyến thích ứng kết hợp bộ lọc cú pháp nhanh (Tầng 1) và mô hình ngữ nghĩa sâu (Tầng 2). | Cho phép giải quyết triệt để sự đánh đổi giữa độ trễ cực thấp (< 30ms) và năng lực phát hiện tấn công tinh vi. | Saltzer & Schroeder (1975); Kiến trúc PI-Guard. |
-| **TN4** | **Post-Training Quantization (Dynamic INT8 PTQ)** | Kỹ thuật lượng hóa tham số trọng số từ Float32 sang Int8 sau huấn luyện nhằm giảm kích thước mô hình và tăng tốc độ suy luận CPU. | Giúp mô hình DeBERTa-v3 chạy với độ trễ thấp và giảm hơn 65% bộ nhớ trên phần cứng CPU thông thường. | Yao et al. (NeurIPS 2022 ZeroQuant). |
+| **TN4** | **Masked Overlap Fraction (MOF Invariance)** | Kỹ thuật tính tỷ lệ chồng lấn mặt nạ phân tách giữa mã nguồn lập trình và văn bản tự nhiên để giảm thiểu hiện tượng chặn nhầm trên dữ liệu code. | Giúp mô hình DeBERTa-v3 Tầng 2 triệt tiêu báo động giả trên mã nguồn code (FPR < 1.5%) mà không suy hao độ bền đối kháng. | Hao Li et al. (ACL 2025 InjecGuard). |
 
 ---
 

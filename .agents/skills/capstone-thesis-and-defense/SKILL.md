@@ -33,7 +33,7 @@ This skill guides the team in writing the formal **Capstone Graduation Thesis Re
   - NLP Techniques: TF-IDF, N-grams, BERT, RoBERTa, DeBERTa-v3 (He et al. 2021).
   - Adversarial Attacks & Evasion: EasyJailbreak (Zhou 2024), GCG (Zou 2023), SmoothLLM (Robey 2023).
 - **2.2 Summary of the Literature Review**: Comparative synthesis matrix.
-- **2.3 Contribution of Research**: Hybrid ML + DeBERTa-v3 ONNX INT8 architecture achieving P95 latency < 15ms and FPR < 1.1%.
+- **2.3 Contribution of Research**: Two-Tier Cascade (Dual TF-IDF + DeBERTa-v3 Native FP32 with MOF Invariance) achieving target P95 latency < 30ms and FPR < 1.5%.
 
 ### Chapter 3: Methodology (Report No.3 - 20% Process Mark)
 - **3.1 Research Design**: 2-Phase architecture (Offline Training Pipeline & Online Runtime Middleware).
@@ -41,7 +41,7 @@ This skill guides the team in writing the formal **Capstone Graduation Thesis Re
 - **3.3 Sampling & Data Analysis Techniques**:
   - Group-Aware Splitting (cluster_id) to eliminate Data Leakage between train/val/test splits.
   - Baseline ML: Hybrid Word/Char TF-IDF + Logistic Regression / LinearSVC / XGBoost.
-  - Deep Learning: Supervised Fine-Tuning of `microsoft/deberta-v3-base` + Dynamic INT8 ONNX Quantization.
+  - Deep Learning: Supervised Fine-Tuning of `microsoft/deberta-v3-base` (Native FP32) + Masked Overlap Fraction (MOF Invariance).
 - **3.4 Limitations of the Methodology**: English text focus, reliance on labeled datasets.
 
 ### Chapter 4: Experimental and Results (Report No.4 - 25% Process Mark)
@@ -80,7 +80,7 @@ $$\text{Final Project Mark} = (\text{Process Mark } [6 \text{ Reports}] \times 5
 | 4 | Threat Model & 3-Tier Defense | Đức | NIST / Tencent Threat Model, 3-Tier Defense-in-Depth |
 | 5 | Dataset Curation & Leakage Prevention | Trường | HF Datasets, Group-Aware Splitting, Class balancing |
 | 6 | Classical ML Baseline | Đức | Hybrid Word/Char TF-IDF + Classifier training & results |
-| 7 | Transformer Fine-Tuning & Quantization | Việt | DeBERTa-v3 architecture, Supervised Fine-Tuning, ONNX INT8 |
+| 7 | Transformer Fine-Tuning (Native FP32) | Việt | DeBERTa-v3 architecture, Supervised Fine-Tuning, MOF Invariance |
 | 8 | Comparative Results & Robustness | Việt | Baseline vs DeBERTa vs SOTA table, Leetspeak/Base64 stress tests |
 | 9 | 4-Scenario Live Demo | Phương | FastAPI Guardrail + Streamlit blocking Injection & Jailbreak in <15ms |
 | 10 | Conclusion & Future Work | Phương | Summary of contributions and future research directions |

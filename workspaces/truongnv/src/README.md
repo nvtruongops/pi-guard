@@ -14,8 +14,8 @@
 ```
 src/
 ├── preprocessing/                 # Tiền xử lý: Làm sạch, chuẩn hóa Unicode, bóc tách Base64
-├── models/                        # Trình bao bọc suy luận (Baseline ML & Transformer INT8 ONNX)
-│   ├── classifier.py              # Wrapper chạy suy luận ONNX Runtime / PyTorch
+├── models/                        # Trình bao bọc suy luận (Baseline ML & Transformer Native FP32)
+│   ├── classifier.py              # Wrapper chạy suy luận Baseline & PyTorch Native FP32
 │   ├── frontier_tradeoff_guardrails.py # Đối chuẩn các mô hình guardrail
 │   └── transformer_models.py      # Các lớp nạp kiến trúc Transformer
 ├── evaluation/                    # Bộ đo lường chuẩn: F1, Precision, Recall, FPR, Latency

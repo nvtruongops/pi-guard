@@ -37,7 +37,7 @@ $$\text{Final Project Mark} = (\text{Process Mark } [6 \text{ Reports}] \times 5
 | **Sprint Tiền Đề** | Khởi động nhóm & Duyệt đề tài | Supervisor approval on [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md) |
 | **Week 3-4** | 🎯 **REVIEW 1 (GVHD)**: Problem Definition & Lit Review | Báo cáo toàn diện **Chapter 1 (Intro - 10%) & Chapter 2 (Lit Review - 25%)** (Threat Model NIST, SOTA, 3 RQs, 4 Demo) |
 | **Week 7-8** | 🎯 **REVIEW 2 (GVHD - Tuần 8)**: Methodology, Baseline ML & Cập nhật Docs | Báo cáo **Chapter 3 (Methodology - 20%)** (Dataset curation, Group-Aware Split, TF-IDF + Baseline ML results) |
-| **Week 11-13** | 🏛️ **BÁO CÁO HỘI ĐỒNG 1 (Hội đồng Giữa kỳ)** | Báo cáo **Chapter 4 (Experimental and Results - 25%)** (DeBERTa-v3 Fine-tuning, ONNX INT8, FastAPI Prototype & Streamlit Demo) |
+| **Week 11-13** | 🏛️ **BÁO CÁO HỘI ĐỒNG 1 (Hội đồng Giữa kỳ)** | Báo cáo **Chapter 4 (Experimental and Results - 25%)** (DeBERTa-v3 Fine-tuning Native FP32, MOF Invariance, FastAPI Prototype & Streamlit Demo) |
 | **Week 14** | Submit **Report No.5** (Discussion - 15%) & **Report No.6** (Conclusion - 5%) | Đánh giá bảo mật, Trade-off FPR, Limitations, Future work; Quét Turnitin (< 20%), Duyệt toàn văn |
 | **Week 15** | 🎓 **BÁO CÁO HỘI ĐỒNG FINAL (Bảo vệ Tốt nghiệp)** | Thuyết trình bảo vệ toàn diện 6 Chương trước Hội đồng chấm Tốt nghiệp chính thức (**50% Presentation**) |
 
@@ -51,4 +51,4 @@ $$\text{Final Project Mark} = (\text{Process Mark } [6 \text{ Reports}] \times 5
 | **Nguyễn Văn Trường (Leader)** | Architecture & Data Engineering | `Final-Report/scripts/download_dataset.py`, `Final-Report/src/datasets/splitter.py` | **Report No.1** + **Report No.2** |
 | **Nguyễn Quí Đức** | Classical ML Baseline | `Final-Report/scripts/train.py`, `Final-Report/notebooks/02_baseline.ipynb` | **Report No.3** |
 | **Phạm Minh Hoàng Việt** | Transformer & Robustness | `Final-Report/notebooks/03_transformer_training.ipynb`, `Final-Report/src/preprocessing/obfuscation.py` | **Report No.4** |
-| **Đỗ Đoàn Duy Phương** | API Middleware & Dashboard | `Final-Report/src/api/`, `Final-Report/src/dashboard/`, Thesis Compilation | **Report No.5** + **Report No.6** |
+| **Đỗ Đoàn Duy Phương** | API Middleware & Dashboard | `Final-Report/src/api/`, `Final-Report/src/dashboard/`, Demo Scenarios | **Report No.5** + **Report No.6** |

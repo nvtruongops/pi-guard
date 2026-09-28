@@ -26,7 +26,7 @@ Final-Report/
 │   ├── README.md                  # Kế hoạch thực nghiệm và quy chế vận hành 5 notebooks
 │   ├── configs/                   # Cấu hình siêu tham số (data.yaml, evaluation.yaml, models.yaml, training.yaml)
 │   ├── data/                      # Khung lưu trữ dữ liệu thực nghiệm (raw, processed, splits, augmentation, manifests)
-│   └── models/                    # Khung lưu trữ trọng số mô hình đã huấn luyện (baseline, onnx, transformer)
+│   └── models/                    # Khung lưu trữ trọng số mô hình đã huấn luyện (baseline, transformer)
 ├── src/                           # Khung mã nguồn thực nghiệm chính thức (Research & PoC Scaffolding sẵn sàng cho Review 2/3)
 │   ├── README.md                  # Kiến trúc các module nghiên cứu & quy chuẩn tái lập khoa học
 │   └── [api, dashboard, datasets, evaluation, llm, models, policy, preprocessing, training, utils]/

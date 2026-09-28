@@ -15,7 +15,7 @@ This skill guides the PI-Guard capstone project team (**Nguyễn Văn Trường,
 1. 📘 **CHAPTER 1: INTRODUCTION (Report No. 1 — 10% Process Mark)**: [`Final-Report/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/01_Introduction.md)
    - *1.1 Background, 1.2 Problem Statement (Lỗ hổng Von Neumann trong NLP), 1.3 Research Objectives & 3 RQs IEEE, 1.4 Significance & 4 Tầng thiệt hại, 1.5 Scope & Limitations, 1.6 Thesis Structure*.
 2. 📗 **CHAPTER 2: LITERATURE REVIEW (Report No. 2 — 25% Process Mark)**: [`Final-Report/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/02_Literature_Review.md)
-   - *2.1 Review of Previous Studies (Lịch sử Prompt Injection/Jailbreak, SOTA Guardrails, Robustness & INT8), 2.2 Summary & 3 Research Gaps, 2.3 Contribution of Research (4 đóng góp mới), 2.4 Mapping 18 trích dẫn IEEE (>= 2022)*.
+   - *2.1 Review of Previous Studies (Lịch sử Prompt Injection/Jailbreak, SOTA Guardrails, Robustness & Mitigation), 2.2 Summary & 3 Research Gaps, 2.3 Contribution of Research (4 đóng góp mới), 2.4 Mapping 18 trích dẫn IEEE (>= 2022)*.
 
 
 ---
@@ -51,7 +51,7 @@ This skill guides the PI-Guard capstone project team (**Nguyễn Văn Trường,
 | **4** | **Kiến trúc bảo vệ 3 lớp** | Lớp 1: Input Guardrail (TF-IDF + DeBERTa-v3); Lớp 2: Target LLM; Lớp 3: Output Sanitizer | [`Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md) |
 | **5** | **Ma trận 4 Kịch bản Demo** | Ma trận $2 \times 2$ (Prompt Injection & Jailbreak $\times$ Vulnerable vs. Protected với PI-Guard) | [`Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md) |
 | **6** | **Model Selection Matrix** | So sánh 4 giải pháp Guardrail + Khung đánh giá 5 Target LLM qua Cloud API (GPT-4o, Gemini, LLaMA-3.1...) | [`Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md) |
-| **7** | **3 Research Questions** | Hệ thống 3 RQs chuẩn IEEE (RQ1: Data Leakage, RQ2: Robustness, RQ3: FPR & INT8) | [`Final-Report/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/01_Introduction.md) |
+| **7** | **3 Research Questions** | Hệ thống 3 RQs chuẩn IEEE (RQ1: Data Leakage, RQ2: Robustness, RQ3: Low-FPR & Latency) | [`Final-Report/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/01_Introduction.md) |
 | **8** | **Literature Review Survey** | Khảo sát sâu các công trình nghiên cứu quốc tế, ma trận SOTA, 3 Research Gaps, 4 Đóng góp mới | [`Final-Report/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/02_Literature_Review.md) |
 | **9** | **Slide PPT Review 1** | Kịch bản trình bày báo cáo Review 1 gặp GVHD ngày 10/09/2026 | [`Final-Report/reports/PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/Final-Report/reports/PI-GUARD-Present-109.pptx) |
 
@@ -152,7 +152,7 @@ Dựa trên tiêu chuẩn **NIST AI 100-2e2025** [[7]](https://csrc.nist.gov/pub
 ├──────┼──────────────────────────────────────────┼──────────────────────────────────────┤
 │ RQ1  │ Phân Loại Mối Đe Dọa & Chống Rò Rỉ Data  │ Inter-cluster Jaccard < 0.15, F1>=0.95│
 │ RQ2  │ Độ Bền Kháng Lẩn Tránh & Mã Hóa Base64   │ ARR >= 0.95, ASR < 5%, Delta F1 < 5% │
-│ RQ3  │ Cân Bằng An Toàn & Lượng Hóa INT8 Inline │ FPR < 1.5%, Delta F1 < 0.3%, P95<30ms │
+│ RQ3  │ Cân Bằng An Toàn & Khả Thi Triển Khai Inline │ FPR < 1.5%, Delta F1 < 0.3%, P95<30ms │
 └──────┴──────────────────────────────────────────┴──────────────────────────────────────┘
 ```
 
@@ -161,7 +161,7 @@ Dựa trên tiêu chuẩn **NIST AI 100-2e2025** [[7]](https://csrc.nist.gov/pub
 2. **RQ2 (Độ bền Kháng lẩn tránh & Mã hóa đối kháng)**:
    *Hệ thống phòng thủ đa tầng (kết hợp tiền xử lý chuẩn hóa chuỗi, biểu diễn n-gram ký tự và token hóa subword) duy trì độ bền và độ chính xác như thế nào trước các kỹ thuật lẩn tránh đối kháng có cấu trúc (gồm thay thế ký tự Leetspeak, phân tách khoảng trắng và mã hóa Base64/Cipher), và mức độ suy giảm hiệu năng tối đa có thể định lượng được là bao nhiêu?*
 3. **RQ3 (Cân bằng An toàn & Khả thi triển khai Inline)**:
-   *Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và quá trình lượng hóa động INT8 cùng kiến trúc proxy bất đồng bộ có thể bảo toàn ranh giới quyết định an toàn trong khi đạt độ trễ thấp (P95 < 30ms trên CPU) mà không tạo ra điểm nghẽn DoS?*
+   *Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và kiến trúc proxy phân tầng kết hợp bất đồng bộ duy trì độ trễ thấp tối ưu trong khi bảo toàn ranh giới quyết định an toàn mà không tạo ra điểm nghẽn từ chối dịch vụ (DoS)?*
 
 ---
 
@@ -186,11 +186,11 @@ Dựa trên tiêu chuẩn **NIST AI 100-2e2025** [[7]](https://csrc.nist.gov/pub
 ## ⚙️ 6. MODEL SELECTION MATRIX & KHUNG BENCHMARK 5 TARGET LLM QUA API
 
 ### 6.1. Ma Trận So Sánh Lựa Chọn Mô Hình Guardrail:
-| Tiêu chí | Regex / Rules | Llama Guard 3 8B [[9]](file:///d:/Work/Do-an/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf) | ProtectAI Baseline | **DeBERTa-v3 INT8 (PI-Guard)** [[11]](file:///d:/Work/Do-an/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf) |
+| Tiêu chí | Regex / Rules | Llama Guard 3 8B [[9]](file:///d:/Work/Do-an/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf) | ProtectAI Baseline | **DeBERTa-v3 Native FP32 (PI-Guard)** [[11]](file:///d:/Work/Do-an/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf) |
 | :--- | :---: | :---: | :---: | :---: |
 | **Kích thước tham số** | 0 | 8,000M (8B) | 86M | **86M (Nhỏ gọn)** |
-| **Yêu cầu VRAM GPU** | 0 MB | > 16,000 MB (>16GB) | ~500 MB | **Chạy trên CPU (<300MB)** |
-| **P95 Latency** | < 1 ms | > 500 ms - 1.5s | ~45 ms | **~12.8 ms (với ONNX INT8)** |
+| **Yêu cầu VRAM GPU** | 0 MB | > 16,000 MB (>16GB) | ~500 MB | **Chạy trên CPU (<500MB)** |
+| **P95 Latency** | < 1 ms | > 500 ms - 1.5s | ~45 ms | **P95 < 30 ms (Native FP32 CPU)** |
 | **Cơ chế Attention** | Không có | Causal Self-Attention | Absolute Positional | **Disentangled Attention (2 vectors)** |
 | **Khả năng bắt Injection** | < 40% (Bị bypass dễ) | ~94% | ~97% | **> 98.5% (SOTA)** |
 

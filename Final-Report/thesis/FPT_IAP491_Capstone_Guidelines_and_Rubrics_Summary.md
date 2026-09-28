@@ -229,6 +229,6 @@ Nhằm tối ưu hóa năng lực của tất cả thành viên và đảm bảo
 | **Nguyễn Văn Trường (Leader)** | `workspaces/truongnv/` | Kiến trúc tổng thể, Chuẩn hóa Dữ liệu Group-Aware Split & Điều phối Luận văn | Chủ trì **Report No.1** (Intro) & **Report No.2** (Lit Review) |
 | **Nguyễn Quí Đức** | `workspaces/ducnq/` | Classical ML Baseline (TF-IDF Word/Char, Logistic, SVC, XGBoost) & Bề mặt tấn công | Phản biện Threat Model & Chủ trì **Report No.3** (Methodology) |
 | **Phạm Minh Hoàng Việt** | `workspaces/vietpmh/` | Transformer Fine-Tuning (DeBERTa-v3), Đánh giá Độ trễ & Evasion Robustness | Phản biện Deep Learning & Chủ trì **Report No.4** (Experimental) |
-| **Đỗ Đoàn Duy Phương** | `workspaces/phuongddd/` | FastAPI Guardrail Middleware, Streamlit Dashboard, Kịch bản Demo & Tổng hợp Luận văn | Phản biện Attack Taxonomy & Chủ trì **Report No.5** + **Report No.6** |
+| **Đỗ Đoàn Duy Phương** | `workspaces/phuongddd/` | FastAPI Guardrail Middleware, Streamlit Dashboard & Kịch bản Demo | Phản biện Attack Taxonomy & Chủ trì **Report No.5** + **Report No.6** |
 
 

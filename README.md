@@ -217,9 +217,9 @@ d:/Work/Do-an/
 │   └── [8 Scientific Topics]/  # Prompt Study, Attacks, Threat & Defense, Datasets, Models, Robustness, Optimization, Evaluation
 │
 └── workspaces/                  # [TIER 3: MEMBER WORKSPACES] Sandboxed exploration environments for all 4 members
-    ├── truongnv/                # Workspace of Leader Truong: Architecture, Data Engineering & Repository Governance
-    ├── ducnq/                   # Workspace of Duc: Classical ML Baseline TF-IDF, Feature Extraction & Threat Modeling
-    ├── vietpmh/                 # Workspace of Viet: Transformer DeBERTa-v3, Quantization INT8 & Adversarial Robustness
-    ├── phuongddd/               # Workspace of Phuong: FastAPI Guardrail Proxy, Streamlit Dashboard & Thesis Compilation
+    ├── truongnv/
+    ├── ducnq/
+    ├── vietpmh/
+    ├── phuongddd/
     └── README.md                # Personal workspace guidelines and operational conventions
 ```

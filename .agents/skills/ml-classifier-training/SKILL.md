@@ -140,8 +140,9 @@ def train_transformer(train_dataset, val_dataset, model_name="microsoft/deberta-
 
 ---
 
-## 3. Latency Optimization (ONNX / Quantization)
+## 3. Latency Optimization & Proposed Architecture
 
-For production deployment in the guardrail API:
-1. Export model to ONNX runtime format.
-2. Apply Dynamic INT8 Quantization (reduces model size by 4x and latency by ~2-3x with <0.5% accuracy loss).
+Per `RULE-02` and `ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`:
+1. **Native FP32 Execution**: The Transformer model (`microsoft/deberta-v3-base`) operates in PyTorch Native FP32 format on commodity CPU. Lượng tử hóa INT8 / ONNX PTQ is strictly out-of-scope to prevent quantization noise and degradation on adversarial payloads.
+2. **Two-Tier Cascade Routing**: Low latency (P95 < 30ms) is achieved by design: Tier 1 Dual TF-IDF fast-filter routes obvious benign queries in <1.5ms, ensuring Tier 2 only arbitrates uncertain samples.
+3. **MOF Invariance**: Integrate Masked Overlap Fraction (Hao Li et al. ACL 2025) to prevent over-defense false positives on programming code.
