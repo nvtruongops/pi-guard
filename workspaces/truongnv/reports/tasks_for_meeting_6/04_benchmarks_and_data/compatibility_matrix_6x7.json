@@ -355,7 +355,7 @@
       "paradigm_name": "Disentangled Attention + MOF Loss",
       "score": 10,
       "status": "Native",
-      "reason": "Sovereign Champion: Disentangled Attention (content vs relative pos) + MOF loss eliminates keyword trigger bias."
+      "reason": "Theoretical Optimum: Disentangled Attention (content vs relative pos) + MOF loss eliminates keyword trigger bias."
     },
     {
       "model_id": "M5",
@@ -373,7 +373,7 @@
       "paradigm_name": "Minimax Adversarial Optimization",
       "score": 10,
       "status": "Native",
-      "reason": "Sovereign Champion: Minimax adversarial optimization (DataSentinel) hardens DeBERTa against adaptive evasion."
+      "reason": "Optimal Synergy: Minimax adversarial optimization (DataSentinel) hardens DeBERTa against adaptive evasion."
     },
     {
       "model_id": "M5",
@@ -382,7 +382,7 @@
       "paradigm_name": "Conformal Risk Control & Tri-State",
       "score": 10,
       "status": "Native",
-      "reason": "Sovereign Champion: CRC calibrates softmax risk to guarantee FPR <= 1.5% with 95% statistical confidence."
+      "reason": "Optimal Synergy: CRC calibrates softmax risk to guarantee FPR <= 1.5% with 95% statistical confidence."
     },
     {
       "model_id": "M6",

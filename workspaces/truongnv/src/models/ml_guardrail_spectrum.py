@@ -8,7 +8,7 @@ This module implements the multi-generation ML guardrail spectrum from SOTA to p
 - Level 2: Modern Deep Transformer Encoders (ModernBERT-base / DeBERTa-v3-base / Prompt-Guard-86M)
 - Level 3: Metric Learning & Anomaly Detectors (Perplexity Suffix Filter + Dense Embedding Centroids + FastText)
 - Level 4: Classical Statistical ML Baseline (TF-IDF Word+Char n-grams + Linear Classifier)
-- Orchestration: Cascaded Multi-Tier Guardrail Engine with Conformal Risk Control.
+- Reference Spectrum: Comparison of Literature ML Paradigms for LLM Security.
 """
 
 import time
@@ -209,14 +209,10 @@ class DenseEmbeddingCentroidGuardrail(BaseMLGuardrail):
 
     def __init__(self, model_name: str = "dense-embedding-centroid-filter"):
         super().__init__(model_name=model_name, tier=3)
-        # Pre-calculated synthetic centroids for demonstration/testing
-        # In production, initialized from offline k-means over 50,000+ attack prompts
-        np.random.seed(42)
-        self.embedding_dim = 64  # Compact representation for unit testing / fast CPU
-        self.injection_centroid = np.random.randn(self.embedding_dim)
-        self.injection_centroid /= np.linalg.norm(self.injection_centroid)
-        self.jailbreak_centroid = np.random.randn(self.embedding_dim)
-        self.jailbreak_centroid /= np.linalg.norm(self.jailbreak_centroid)
+        self.embedding_dim = 64
+        # Deterministic unit vectors for mathematical projection
+        self.injection_centroid = np.ones(self.embedding_dim) / np.sqrt(self.embedding_dim)
+        self.jailbreak_centroid = np.ones(self.embedding_dim) / np.sqrt(self.embedding_dim)
         self.distance_threshold = 0.65
 
     def _embed(self, text: str) -> np.ndarray:
@@ -402,86 +398,4 @@ class SLMGenerativeGuardrail(BaseMLGuardrail):
         return [self.predict(t) for t in texts]
 
 
-# ==============================================================================
-# ORCHESTRATION: MULTI-TIER CASCADED GUARDRAIL ENGINE WITH CONFORMAL RISK CONTROL
-# ==============================================================================
 
-class CascadedGuardrailEngine:
-    """
-    Production Cascaded Engine orchestrating the multi-tier guardrail hierarchy:
-    - Tier 0: Normalization & Regex Decoders (Unicode, Base64)
-    - Tier 1: Fast Inline Filter (< 2ms) (TF-IDF + Windowed Perplexity)
-    - Tier 2: Deep Semantic Guardrail (10-20ms) (ModernBERT-base / DeBERTa-v3)
-    - Tier 3: High-Assurance SLM Arbiter (50-100ms) (Llama Guard 3 1B INT4) for uncertain scores [tau_low, tau_high]
-    
-    Calibration:
-    Calibrated via Conformal Risk Control (Angelopoulos et al. 2024) to guarantee FPR <= 1.5%.
-    """
-
-    def __init__(
-        self,
-        tier1_fast: Optional[BaseMLGuardrail] = None,
-        tier2_encoder: Optional[BaseMLGuardrail] = None,
-        tier3_slm: Optional[BaseMLGuardrail] = None,
-        tau_low: float = 0.35,
-        tau_high: float = 0.75,
-    ):
-        self.tier1_fast = tier1_fast or TFIDFStatisticalGuardrail()
-        self.tier2_encoder = tier2_encoder or ModernEncoderGuardrail(model_architecture="ModernBERT-base")
-        self.tier3_slm = tier3_slm or SLMGenerativeGuardrail()
-        self.tau_low = tau_low
-        self.tau_high = tau_high
-
-    def calibrate_conformal_threshold(self, benign_scores: List[float], target_fpr: float = 0.015, delta: float = 0.05) -> float:
-        """
-        Conformal Risk Control calibration for false positive rate bounding:
-        Finds the lowest threshold tau such that empirical risk <= target_fpr with 1 - delta confidence.
-        """
-        n = len(benign_scores)
-        if n == 0:
-            return self.tau_high
-        
-        sorted_scores = np.sort(benign_scores)
-        # Conformal index with finite sample correction
-        k = int(np.ceil((n + 1) * (1.0 - target_fpr)))
-        k = min(max(0, k), n - 1)
-        calibrated_tau = float(sorted_scores[k])
-        self.tau_high = calibrated_tau
-        return calibrated_tau
-
-    def evaluate(self, text: str) -> GuardrailResult:
-        """
-        Execute the cascaded guardrail pipeline.
-        Fast-path exits at Tier 1 or Tier 2 to preserve the < 30ms latency budget.
-        """
-        t0 = time.perf_counter()
-        
-        # 1. Tier 1: Fast filter check
-        res_t1 = self.tier1_fast.predict(text)
-        if res_t1.risk_score > 0.85:
-            # Obvious attack detected at Tier 1
-            res_t1.latency_ms = (time.perf_counter() - t0) * 1000.0
-            res_t1.metadata["cascade_exit_tier"] = 1
-            return res_t1
-
-        # 2. Tier 2: Deep Semantic Encoder
-        res_t2 = self.tier2_encoder.predict(text)
-        
-        # High confidence benign (Score < tau_low) -> Allow immediately
-        if res_t2.risk_score < self.tau_low:
-            res_t2.latency_ms = (time.perf_counter() - t0) * 1000.0
-            res_t2.metadata["cascade_exit_tier"] = 2
-            return res_t2
-
-        # High confidence attack (Score > tau_high) -> Block immediately
-        if res_t2.risk_score > self.tau_high:
-            res_t2.latency_ms = (time.perf_counter() - t0) * 1000.0
-            res_t2.metadata["cascade_exit_tier"] = 2
-            return res_t2
-
-        # 3. Tier 3: Borderline / Uncertain prediction -> Escalate to SLM Arbiter
-        res_t3 = self.tier3_slm.predict(text)
-        res_t3.latency_ms = (time.perf_counter() - t0) * 1000.0
-        res_t3.metadata["cascade_exit_tier"] = 3
-        res_t3.metadata["escalated_from_t2_score"] = res_t2.risk_score
-        return res_t3

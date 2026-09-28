@@ -85,11 +85,36 @@ def sanitize_content(content: str) -> str:
 
     # Thay thế file:///... còn lại
     content = re.sub(r"\(file:///[^)]+\)", r"(#)", content)
+    content = re.sub(r"file:///[^\s\)\"\'>]+", "#", content)
 
     # Sửa lỗi ký tự gạch chéo ngược \_ trong link URL
     content = re.sub(r"https?://[^\s\)]+", lambda m: m.group(0).replace(r"\_", "_"), content)
     content = content.replace("https://genai.owasp.org/llm-top-10/", "https://owasp.org/www-project-top-10-for-large-language-model-applications/")
     content = content.replace("https://dl.acm.org/doi/epdf/10.1145/3724393", "https://doi.org/10.1145/3724393")
+
+    # =========================================================================
+    # TUÂN THỦ QUY CHUẨN KIẾN TRÚC & LOẠI TRỪ (ARCHITECTURAL DEPRECATIONS):
+    # Thay thế các thuật ngữ INT8 / ONNX cũ thành Native FP32 theo quy chuẩn Meeting 6
+    # =========================================================================
+    content = re.sub(r"DeBERTa-v3\s+INT8\s+Transformer", "DeBERTa-v3 Native FP32 Transformer", content)
+    content = re.sub(r"Adversarially Augmented DeBERTa-v3 INT8", "Adversarially Augmented DeBERTa-v3 Native FP32", content)
+    content = re.sub(r"DeBERTa-v3\s+INT8", "DeBERTa-v3 Native FP32", content)
+    content = re.sub(r"DeBERTa\s+INT8", "DeBERTa Native FP32", content)
+    content = re.sub(r"DeBERTa-v3\s*\(đã lượng hóa INT8\)", "DeBERTa-v3 (Native FP32 CPU)", content)
+    content = re.sub(r"Fine-tuned DeBERTa-v3 Base \(ONNX INT8\)", "Fine-tuned DeBERTa-v3 Base (Native FP32)", content)
+    content = re.sub(r"ONNX Runtime INT8 \(Yao et al\., NeurIPS 2022\)", "PyTorch Native FP32 CPU Inference (He et al., ICLR 2023)", content)
+    content = re.sub(r"\|\s*`Final-Report/src/models/classifier\.py`\s*\|\s*Mô hình phân loại 2 tầng:\s*Hybrid TF-IDF \+ DeBERTa INT8\s*\|\s*He et al\. \(ICLR 2023\) & Yao et al\. \(NeurIPS 2022\)\s*\|",
+                     "| `Final-Report/src/models/classifier.py` | Mô hình phân loại 2 tầng: Hybrid TF-IDF + DeBERTa FP32 | He et al. (ICLR 2023) |", content)
+    content = re.sub(r"ONNX Runtime INT8 đóng vai trò là giải pháp kỹ thuật phụ trợ triển khai giúp hệ thống chạy mượt trên CPU thông thường\.",
+                     "PyTorch Native FP32 đóng vai trò là giải pháp kiến trúc cốt lõi giúp hệ thống chạy mượt trên CPU thông thường với độ trễ thấp.", content)
+    content = re.sub(r"lượng hóa động ONNX INT8 Runtime chạy tối ưu trên CPU", "tối ưu phân bổ luồng PyTorch Native FP32 chạy hiệu quả trên CPU", content)
+    content = re.sub(r"lượng hóa nhẹ ONNX Runtime INT8 cho suy luận CPU", "tối ưu hóa luồng PyTorch Native FP32 cho suy luận CPU", content)
+    content = re.sub(r"lượng hóa ONNX INT8", "tối ưu Native FP32 CPU", content)
+    content = re.sub(r"ONNX INT8 Runtime", "PyTorch Native FP32 Runtime", content)
+    content = re.sub(r"ONNX Runtime INT8", "PyTorch Native FP32", content)
+    content = re.sub(r"ONNX INT8", "Native FP32", content)
+    content = re.sub(r"~15 MB \(TF\) \+ 140 MB \(INT8\)", "~15 MB (TF) + ~440 MB (FP32)", content)
+    content = re.sub(r"<\s*150\s*MB\s*\(ONNX INT8\)", "< 500MB (Native FP32)", content)
 
     return content
 
@@ -413,7 +438,7 @@ def create_src_architecture_doc(dest_path: Path):
 > 2. Theo quy chuẩn học thuật FPT IAP491, trong giai đoạn **Review 1 (Problem Definition & Threat Modeling)**, dự án tuân thủ nghiêm ngặt **Quy tắc 100% Nghiên cứu lý thuyết & y văn (Zero Code in Final-Report)**.
 > 3. Toàn bộ quá trình thử nghiệm, tiền xử lý dữ liệu, huấn luyện mô hình (TF-IDF Baseline, DeBERTa-v3) và xây dựng API proxy được 4 thành viên thực hiện song song trong các không gian làm việc độc lập (`workspaces/<thành_viên>/`).
 > 4. **CHỈ KHI HOÀN THÀNH XONG VÀ NGHIỆM THU**, mã nguồn xuất sắc nhất mới được Leader đồng quy và tích hợp vào `Final-Report/src/` tại các cột mốc Review 2 và Review 3.
-> 5. **Bản chất đề tài Nghiên cứu Khoa học (Research-Based Thesis IAP491)**: Lớp `api/` (FastAPI) và `dashboard/` (Streamlit) được thiết kế như một **Nguyên Mẫu Thực Nghiệm (Proof-of-Concept Prototype)** và **Môi Trường Đo Đạc Độ Trễ (Inference Latency Testbed)** nhằm phục vụ đánh giá thực nghiệm (RQ3: P95 < 20ms) và bảo vệ trước Hội đồng chấm FPT theo đúng bản đăng ký [`CAPSTONE PROJECT REGISTER.md`](file:///d:/Work/Do-an/CAPSTONE%20PROJECT%20REGISTER.md).
+> 5. **Bản chất đề tài Nghiên cứu Khoa học (Research-Based Thesis IAP491)**: Lớp `api/` (FastAPI) và `dashboard/` (Streamlit) được thiết kế như một **Nguyên Mẫu Thực Nghiệm (Proof-of-Concept Prototype)** và **Môi Trường Đo Đạc Độ Trễ (Inference Latency Testbed)** nhằm phục vụ đánh giá thực nghiệm (RQ3: P95 < 20ms) và bảo vệ trước Hội đồng chấm FPT theo đúng bản đăng ký **CAPSTONE PROJECT REGISTER.md**.
 > 6. **Cam kết chống phình phạm vi (Anti-Scope Creep Blacklist)**: Đề tài **TUYỆT ĐỐI KHÔNG** mở rộng sang các bài toán hạ tầng phần mềm thương mại / enterprise production (không làm cơ sở dữ liệu tài khoản người dùng, không làm OAuth2/JWT/RBAC, không làm kiểm thử tải phân tán 100k RPS, không triển khai Kubernetes hay Cloud CI/CD phức tạp).
 
 ---

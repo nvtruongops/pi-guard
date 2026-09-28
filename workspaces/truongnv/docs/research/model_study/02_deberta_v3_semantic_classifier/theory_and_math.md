@@ -71,7 +71,7 @@ Khác biệt giữa **DeBERTa v1** và **DeBERTa-v3**:
 2. **RTD (DeBERTa-v3 kết hợp ELECTRA)**: Generator nhỏ thay thế 15% tokens bằng các từ hợp lý, và Discriminator (DeBERTa-v3) phải dự đoán cho **100% tokens** trong câu là "Original" hay "Replaced".
    $$\mathcal{L}_{\text{RTD}}(\theta_D) = -\sum_{t=1}^T \left[ \mathbb{I}(x_t = x_t^{\text{orig}}) \log D(\mathbf{x}, t) + \mathbb{I}(x_t \neq x_t^{\text{orig}}) \log(1 - D(\mathbf{x}, t)) \right]$$
    Hiệu quả mẫu (Sample Efficiency) tăng gấp nhiều lần!
-3. **Gradient-Disentangled Embedding Sharing (GDES)**: Ngăn gradient từ Generator truyền ngược vào Embedding của Discriminator, tránh hiện tượng xung đột gradient ("kéo co").
+3. **Gradient-Disentangled Embedding Sharing (GDES)** (He et al., ICLR 2023): Ngăn gradient từ Generator truyền ngược vào Embedding của Discriminator, tránh hiện tượng xung đột gradient ("kéo co").
 
 ---
 

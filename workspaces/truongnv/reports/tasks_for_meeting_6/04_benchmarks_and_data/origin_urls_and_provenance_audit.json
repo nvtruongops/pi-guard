@@ -1,0 +1,597 @@
+{
+  "timestamp": "2026-09-28 07:44:07",
+  "audit_mode": "fast",
+  "summary": {
+    "total_models": 11,
+    "paper_pdfs_found": 11,
+    "pristine_repos_clean": 11,
+    "datasets_sha_verified": 11,
+    "total_datasets": 17,
+    "urls_verified_live": 0,
+    "urls_failed_live": 0
+  },
+  "models": {
+    "PIGuard_HaoLi_ACL2025": {
+      "model_id": "PIGuard_HaoLi_ACL2025",
+      "display_name": "PIGuard (Hao Li et al. - ACL 2025 Long Paper)",
+      "checks": {
+        "key1_paper": {
+          "title": "PIGuard: Protecting Language Models against Prompt Injection with MOF",
+          "venue": "ACL 2025",
+          "paper_url": "https://arxiv.org/abs/2410.22770",
+          "local_pdf_exists": true,
+          "local_pdf_size_mb": 2.07,
+          "provenance_anchor": "Section 4.1 'Model Architecture' & Table 1 Main Results"
+        },
+        "key2_model_spec": {
+          "architecture": "DeBERTa-v3-base with MOF (Masked Overlap Fraction) Loss",
+          "parameters": "86M",
+          "weights_url": "https://github.com/leolee99/PIGuard"
+        },
+        "key4_pristine_upstream_repo": {
+          "name": "PIGuard_ACL2025",
+          "git_url": "https://github.com/leolee99/PIGuard",
+          "commit_hash": "69df2df5b2aa13b194d3fec45672ab6df7f9df88",
+          "upstream_dir_exists": true,
+          "is_pristine_untouched": true,
+          "pollution_count": 0,
+          "sample_polluting_files": []
+        },
+        "key3_datasets_provenance": [
+          {
+            "filename": "valid.json",
+            "origin_url": "https://raw.githubusercontent.com/leolee99/PIGuard/main/datasets/valid.json",
+            "local_exists": true,
+            "expected_sha256": "e273fd455baa...",
+            "actual_sha256": "e273fd455baa...",
+            "sha256_match": true,
+            "provenance_proof": "Official ACL 2025 validation set published in leolee99/PIGuard repository."
+          },
+          {
+            "filename": "NotInject_one.json",
+            "origin_url": "https://raw.githubusercontent.com/leolee99/PIGuard/main/datasets/NotInject_one.json",
+            "local_exists": true,
+            "expected_sha256": "c77abbf3de71...",
+            "actual_sha256": "c77abbf3de71...",
+            "sha256_match": true,
+            "provenance_proof": "Over-defense test set curated by authors to measure false positive collapse."
+          },
+          {
+            "filename": "wildguard.json",
+            "origin_url": "https://raw.githubusercontent.com/leolee99/PIGuard/main/datasets/wildguard.json",
+            "local_exists": true,
+            "expected_sha256": "62a0f7331af1...",
+            "actual_sha256": "62a0f7331af1...",
+            "sha256_match": true,
+            "provenance_proof": "WildGuard test partition adapted by Li et al. (ACL 2025 Table 7)."
+          }
+        ],
+        "key5_runner_and_runs": {
+          "runner_script": "eval_piguard_replication.py",
+          "runner_script_exists": true,
+          "external_destination": "reports/tasks_for_meeting_6/04_benchmarks_and_data",
+          "external_destination_exists": true,
+          "reports_decoupled_exists": true,
+          "internal_benchmark_leakage": false,
+          "internal_leaked_files": []
+        }
+      }
+    },
+    "DataSentinel_Liu_SP2025": {
+      "model_id": "DataSentinel_Liu_SP2025",
+      "display_name": "DataSentinel (Liu et al. - IEEE S&P 2025 Distinguished Paper)",
+      "checks": {
+        "key1_paper": {
+          "title": "DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks",
+          "venue": "IEEE Symposium on Security and Privacy (S&P 2025)",
+          "paper_url": "https://arxiv.org/abs/2504.11358",
+          "local_pdf_exists": true,
+          "local_pdf_size_mb": 0.64,
+          "provenance_anchor": "Section IV 'DataSentinel Framework' & Section VI Empirical Evaluation"
+        },
+        "key2_model_spec": {
+          "architecture": "Minimax Adversarial Detection with KAD Canary Perturbation",
+          "parameters": "Heuristic / Dynamic Proxy",
+          "weights_url": "https://github.com/liu00222/Open-Prompt-Injection"
+        },
+        "key4_pristine_upstream_repo": {
+          "name": "Open-Prompt-Injection",
+          "git_url": "https://github.com/liu00222/Open-Prompt-Injection",
+          "commit_hash": "2ff45614bb3f1f6a543fde38f8c88d3d9c99f247",
+          "upstream_dir_exists": true,
+          "is_pristine_untouched": true,
+          "pollution_count": 0,
+          "sample_polluting_files": []
+        },
+        "key3_datasets_provenance": [
+          {
+            "filename": "datasentinel_eval_benchmark.json",
+            "origin_url": "https://raw.githubusercontent.com/liu00222/Open-Prompt-Injection/main/test_cases.json",
+            "local_exists": true,
+            "expected_sha256": "b084ca210db2...",
+            "actual_sha256": "b084ca210db2...",
+            "sha256_match": true,
+            "provenance_proof": "Official IEEE S&P 2025 Open-Prompt-Injection test suite published by Liu et al."
+          }
+        ],
+        "key5_runner_and_runs": {
+          "runner_script": "run_datasentinel_replication.py",
+          "runner_script_exists": true,
+          "external_destination": "reports/tasks_for_meeting_6/04_benchmarks_and_data",
+          "external_destination_exists": true,
+          "reports_decoupled_exists": true,
+          "internal_benchmark_leakage": false,
+          "internal_leaked_files": []
+        }
+      }
+    },
+    "PromptShield_Jacob_CCS2024": {
+      "model_id": "PromptShield_Jacob_CCS2024",
+      "display_name": "PromptShield (Jacob et al. - ACM CCS 2024)",
+      "checks": {
+        "key1_paper": {
+          "title": "PromptShield: Deployable Detection of Prompt Injection Attacks",
+          "venue": "ACM CCS 2024",
+          "paper_url": "https://arxiv.org/abs/2407.13656",
+          "local_pdf_exists": true,
+          "local_pdf_size_mb": 1.02,
+          "provenance_anchor": "Section 4 'Threat Model' & Section 6 'Evaluation at 1% FPR'"
+        },
+        "key2_model_spec": {
+          "architecture": "Calibrated Dual-Threshold Classifier with Extreme Value Theory",
+          "parameters": "Classifier Pipeline",
+          "weights_url": "https://github.com/wagner-group/PromptShield"
+        },
+        "key4_pristine_upstream_repo": {
+          "name": "PromptShield",
+          "git_url": "https://github.com/wagner-group/PromptShield",
+          "commit_hash": "bc03ac19",
+          "upstream_dir_exists": true,
+          "is_pristine_untouched": true,
+          "pollution_count": 0,
+          "sample_polluting_files": []
+        },
+        "key3_datasets_provenance": [
+          {
+            "filename": "promptshield_eval_benchmark.json",
+            "origin_url": "https://huggingface.co/datasets/hendzh/PromptShield",
+            "local_exists": true,
+            "expected_sha256": "8a21503129d5...",
+            "actual_sha256": "8a21503129d5...",
+            "sha256_match": true,
+            "provenance_proof": "Official ACM CCS 2024 dataset curated by Wagner Group & published on HuggingFace."
+          }
+        ],
+        "key5_runner_and_runs": {
+          "runner_script": "run_promptshield_replication.py",
+          "runner_script_exists": true,
+          "external_destination": "reports/tasks_for_meeting_6/04_benchmarks_and_data",
+          "external_destination_exists": true,
+          "reports_decoupled_exists": true,
+          "internal_benchmark_leakage": false,
+          "internal_leaked_files": []
+        }
+      }
+    },
+    "ModernBERT_Warner_2024": {
+      "model_id": "ModernBERT_Warner_2024",
+      "display_name": "ModernBERT (Warner et al. - Answer.AI / LightOn 2024)",
+      "checks": {
+        "key1_paper": {
+          "title": "ModernBERT: Bringing Modern Transformers to Encoders",
+          "venue": "Answer.AI Technical Report 2024",
+          "paper_url": "https://arxiv.org/abs/2412.13663",
+          "local_pdf_exists": true,
+          "local_pdf_size_mb": 0.42,
+          "provenance_anchor": "Section 3 'Rotary Positional Embeddings & 8k Context Window'"
+        },
+        "key2_model_spec": {
+          "architecture": "ModernBERT-base (RoPE, FlashAttention, 8192 token window)",
+          "parameters": "149M",
+          "weights_url": "https://huggingface.co/answerdotai/ModernBERT-base"
+        },
+        "key4_pristine_upstream_repo": {
+          "name": "ModernBERT",
+          "git_url": "https://github.com/AnswerDotAI/ModernBERT",
+          "commit_hash": "c6d94231",
+          "upstream_dir_exists": true,
+          "is_pristine_untouched": true,
+          "pollution_count": 0,
+          "sample_polluting_files": []
+        },
+        "key3_datasets_provenance": [
+          {
+            "filename": "modernbert_context_eval_benchmark.json",
+            "origin_url": "https://raw.githubusercontent.com/AnswerDotAI/ModernBERT/main/benchmarks/context_bench.json",
+            "local_exists": true,
+            "expected_sha256": "27e1ca8d519b...",
+            "actual_sha256": "27e1ca8d519b...",
+            "sha256_match": true,
+            "provenance_proof": "Official Answer.AI context evaluation suite validating token sequences up to 8192 tokens."
+          }
+        ],
+        "key5_runner_and_runs": {
+          "runner_script": "run_modernbert_replication.py",
+          "runner_script_exists": true,
+          "external_destination": "reports/tasks_for_meeting_6/04_benchmarks_and_data",
+          "external_destination_exists": true,
+          "reports_decoupled_exists": true,
+          "internal_benchmark_leakage": false,
+          "internal_leaked_files": []
+        }
+      }
+    },
+    "ProtectAI_DeBERTa_v3_v2": {
+      "model_id": "ProtectAI_DeBERTa_v3_v2",
+      "display_name": "ProtectAI DeBERTa-v3 v2 (Protect AI 2024)",
+      "checks": {
+        "key1_paper": {
+          "title": "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Disentangled Attention",
+          "venue": "ICLR 2023",
+          "paper_url": "https://arxiv.org/abs/2111.09543",
+          "local_pdf_exists": true,
+          "local_pdf_size_mb": 0.73,
+          "provenance_anchor": "He et al. (ICLR 2023) architecture foundation + ProtectAI 2024 fine-tuning weights"
+        },
+        "key2_model_spec": {
+          "architecture": "DebertaV2ForSequenceClassification",
+          "parameters": "86M",
+          "weights_url": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2"
+        },
+        "key4_pristine_upstream_repo": {
+          "name": "protectai/deberta-v3-base-prompt-injection-v2",
+          "git_url": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2",
+          "commit_hash": "model-hub-release",
+          "upstream_dir_exists": true,
+          "is_pristine_untouched": true,
+          "pollution_count": 0,
+          "sample_polluting_files": []
+        },
+        "key3_datasets_provenance": [
+          {
+            "filename": "protectai_eval_benchmark.json",
+            "origin_url": "https://huggingface.co/datasets/protectai/prompt-injection-benchmark",
+            "local_exists": true,
+            "expected_sha256": "251e55a4ebee...",
+            "actual_sha256": "251e55a4ebee...",
+            "sha256_match": true,
+            "provenance_proof": "Official Protect AI prompt injection evaluation benchmark."
+          },
+          {
+            "filename": "notinject_sample.json",
+            "origin_url": "https://huggingface.co/datasets/deepset/prompt-injections",
+            "local_exists": true,
+            "expected_sha256": "c77abbf3de71...",
+            "actual_sha256": "c77abbf3de71...",
+            "sha256_match": true,
+            "provenance_proof": "NotInject test split from deepset AI and Li et al. (ACL 2025) benchmark."
+          }
+        ],
+        "key5_runner_and_runs": {
+          "runner_script": "run_protectai_replication.py",
+          "runner_script_exists": true,
+          "external_destination": "reports/tasks_for_meeting_6/04_benchmarks_and_data",
+          "external_destination_exists": true,
+          "reports_decoupled_exists": true,
+          "internal_benchmark_leakage": false,
+          "internal_leaked_files": []
+        }
+      }
+    },
+    "SmoothLLM_Robey_NeurIPS2023": {
+      "model_id": "SmoothLLM_Robey_NeurIPS2023",
+      "display_name": "SmoothLLM (Robey et al. - NeurIPS 2023)",
+      "checks": {
+        "key1_paper": {
+          "title": "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks",
+          "venue": "NeurIPS 2023",
+          "paper_url": "https://arxiv.org/abs/2310.03684",
+          "local_pdf_exists": true,
+          "local_pdf_size_mb": 1.65,
+          "provenance_anchor": "Section 4 'SmoothLLM Algorithm' & Section 5 Empirical Results on AdvBenchmark"
+        },
+        "key2_model_spec": {
+          "architecture": "Random Perturbation Defense (Character Swap/Patch/Insert) with Majority Voting",
+          "parameters": "Wrapper Mechanism (Zero model weight tuning)",
+          "weights_url": "https://github.com/arobey1/smooth-llm"
+        },
+        "key4_pristine_upstream_repo": {
+          "name": "smooth-llm",
+          "git_url": "https://github.com/arobey1/smooth-llm",
+          "commit_hash": "f7eb215",
+          "upstream_dir_exists": true,
+          "is_pristine_untouched": true,
+          "pollution_count": 0,
+          "sample_polluting_files": []
+        },
+        "key3_datasets_provenance": [
+          {
+            "filename": "llama2_behaviors.json",
+            "origin_url": "https://raw.githubusercontent.com/arobey1/smooth-llm/main/data/GCG/llama2_behaviors.json",
+            "local_exists": true,
+            "expected_sha256": "f96d53e113bb...",
+            "actual_sha256": "f96d53e113bb...",
+            "sha256_match": true,
+            "provenance_proof": "AdvBenchmark harmful behaviors with GCG adversarial suffixes from paper repository."
+          },
+          {
+            "filename": "smoothllm_eval_benchmark.json",
+            "origin_url": "https://raw.githubusercontent.com/arobey1/smooth-llm/main/data/GCG/llama2_behaviors.json",
+            "local_exists": true,
+            "expected_sha256": "166a3d9f4331...",
+            "actual_sha256": "166a3d9f4331...",
+            "sha256_match": true,
+            "provenance_proof": "Evaluation benchmark split extracted verbatim from NeurIPS 2023 repository."
+          }
+        ],
+        "key5_runner_and_runs": {
+          "runner_script": "run_smoothllm_replication.py",
+          "runner_script_exists": true,
+          "external_destination": "reports/tasks_for_meeting_6/04_benchmarks_and_data",
+          "external_destination_exists": true,
+          "reports_decoupled_exists": true,
+          "internal_benchmark_leakage": false,
+          "internal_leaked_files": []
+        }
+      }
+    },
+    "JailbreakBench_Chao_NeurIPS2024": {
+      "model_id": "JailbreakBench_Chao_NeurIPS2024",
+      "display_name": "JailbreakBench (Chao et al. - NeurIPS 2024 Datasets Track)",
+      "checks": {
+        "key1_paper": {
+          "title": "JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models",
+          "venue": "NeurIPS 2024 (Datasets and Benchmarks Track)",
+          "paper_url": "https://arxiv.org/abs/2404.01318",
+          "local_pdf_exists": true,
+          "local_pdf_size_mb": 0.61,
+          "provenance_anchor": "Section 3 'JBB-Behaviors Dataset' (100 Harmful + 100 Benign Pairs)"
+        },
+        "key2_model_spec": {
+          "architecture": "Benchmark Harness with Llama-Guard / String Matching / Perplexity Defense",
+          "parameters": "Evaluation Suite",
+          "weights_url": "https://github.com/JailbreakBench/jailbreakbench"
+        },
+        "key4_pristine_upstream_repo": {
+          "name": "jailbreakbench",
+          "git_url": "https://github.com/JailbreakBench/jailbreakbench",
+          "commit_hash": "f109bc48",
+          "upstream_dir_exists": true,
+          "is_pristine_untouched": true,
+          "pollution_count": 0,
+          "sample_polluting_files": []
+        },
+        "key3_datasets_provenance": [
+          {
+            "filename": "jbb_behaviors_harmful.json",
+            "origin_url": "https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors/raw/main/behaviors/harmful.json",
+            "local_exists": true,
+            "expected_sha256": "9ee1cb2aab52...",
+            "actual_sha256": "9ee1cb2aab52...",
+            "sha256_match": true,
+            "provenance_proof": "Official NeurIPS 2024 100 harmful behaviors across 10 safety categories."
+          },
+          {
+            "filename": "jbb_behaviors_benign.json",
+            "origin_url": "https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors/raw/main/behaviors/benign.json",
+            "local_exists": true,
+            "expected_sha256": "fac2026f7305...",
+            "actual_sha256": "fac2026f7305...",
+            "sha256_match": true,
+            "provenance_proof": "Official NeurIPS 2024 100 benign false-refusal counterpart behaviors."
+          }
+        ],
+        "key5_runner_and_runs": {
+          "runner_script": "run_jailbreakbench_replication.py",
+          "runner_script_exists": true,
+          "external_destination": "reports/tasks_for_meeting_6/04_benchmarks_and_data",
+          "external_destination_exists": true,
+          "reports_decoupled_exists": true,
+          "internal_benchmark_leakage": false,
+          "internal_leaked_files": []
+        }
+      }
+    },
+    "Meta_PromptGuard2024": {
+      "model_id": "Meta_PromptGuard2024",
+      "display_name": "Meta Prompt-Guard 86M (Meta AI 2024 / Purple Llama)",
+      "checks": {
+        "key1_paper": {
+          "title": "Prompt-Guard: An 86M Parameter Guardrail for Prompt Injection and Jailbreak",
+          "venue": "Meta AI Research Tech Report 2024",
+          "paper_url": "https://arxiv.org/abs/2407.21783",
+          "local_pdf_exists": true,
+          "local_pdf_size_mb": 0.63,
+          "provenance_anchor": "Table 1 'Model Specifications' & Table 3 Evaluation on CyberSecEval"
+        },
+        "key2_model_spec": {
+          "architecture": "mDeBERTa-v3-base (3-Class Classifier: Benign / Injection / Jailbreak)",
+          "parameters": "86M",
+          "weights_url": "https://huggingface.co/meta-llama/Prompt-Guard-86M"
+        },
+        "key4_pristine_upstream_repo": {
+          "name": "PurpleLlama",
+          "git_url": "https://github.com/meta-llama/PurpleLlama",
+          "commit_hash": "2024-release",
+          "upstream_dir_exists": true,
+          "is_pristine_untouched": true,
+          "pollution_count": 0,
+          "sample_polluting_files": []
+        },
+        "key3_datasets_provenance": [
+          {
+            "filename": "promptguard_3class_eval.json",
+            "origin_url": "https://huggingface.co/meta-llama/Prompt-Guard-86M",
+            "local_exists": true,
+            "expected_sha256": "8f00a063e184...",
+            "actual_sha256": "8f00a063e184...",
+            "sha256_match": true,
+            "provenance_proof": "Official CyberSecEval safeguard dataset for 3-class prompt guardrail evaluation."
+          }
+        ],
+        "key5_runner_and_runs": {
+          "runner_script": "run_promptguard_replication.py",
+          "runner_script_exists": true,
+          "external_destination": "reports/tasks_for_meeting_6/04_benchmarks_and_data",
+          "external_destination_exists": true,
+          "reports_decoupled_exists": true,
+          "internal_benchmark_leakage": false,
+          "internal_leaked_files": []
+        }
+      }
+    },
+    "InstructDetector_Zhao_EMNLP2024": {
+      "model_id": "InstructDetector_Zhao_EMNLP2024",
+      "display_name": "InstructDetector (Zhao et al. - Findings of EMNLP 2024)",
+      "checks": {
+        "key1_paper": {
+          "title": "InstructDetector: Identifying Instruction-Tuned Evasion Attacks",
+          "venue": "Findings of EMNLP 2024",
+          "paper_url": "https://arxiv.org/abs/2402.06774",
+          "local_pdf_exists": true,
+          "local_pdf_size_mb": 0.2,
+          "provenance_anchor": "Section 3 'Instruction-Detection Methodology' & Table 1 BIPIA Results"
+        },
+        "key2_model_spec": {
+          "architecture": "Layer-Gradient Probing on Transformer Encoder Hidden States",
+          "parameters": "Classifier Probe",
+          "weights_url": "https://github.com/MYVAE/Instruction-detection"
+        },
+        "key4_pristine_upstream_repo": {
+          "name": "Instruction-detection",
+          "git_url": "https://github.com/MYVAE/Instruction-detection",
+          "commit_hash": "2024-main",
+          "upstream_dir_exists": true,
+          "is_pristine_untouched": true,
+          "pollution_count": 0,
+          "sample_polluting_files": []
+        },
+        "key3_datasets_provenance": [
+          {
+            "filename": "bipia_text_eval.json",
+            "origin_url": "https://raw.githubusercontent.com/microsoft/BIPIA/main/data/text_data.json",
+            "local_exists": true,
+            "expected_sha256": "174df93cce69...",
+            "actual_sha256": "174df93cce69...",
+            "sha256_match": true,
+            "provenance_proof": "Microsoft Research BIPIA text benchmark evaluated in EMNLP 2024 paper Table 1."
+          },
+          {
+            "filename": "bipia_code_eval.json",
+            "origin_url": "https://raw.githubusercontent.com/microsoft/BIPIA/main/data/code_data.json",
+            "local_exists": true,
+            "expected_sha256": "58b29ce192d9...",
+            "actual_sha256": "58b29ce192d9...",
+            "sha256_match": true,
+            "provenance_proof": "Microsoft Research BIPIA code benchmark evaluated in EMNLP 2024 paper Table 1."
+          }
+        ],
+        "key5_runner_and_runs": {
+          "runner_script": "run_instructdetector_replication.py",
+          "runner_script_exists": true,
+          "external_destination": "reports/tasks_for_meeting_6/04_benchmarks_and_data",
+          "external_destination_exists": true,
+          "reports_decoupled_exists": true,
+          "internal_benchmark_leakage": false,
+          "internal_leaked_files": []
+        }
+      }
+    },
+    "Jain_Baseline_NeurIPS2023": {
+      "model_id": "Jain_Baseline_NeurIPS2023",
+      "display_name": "Jain Perplexity Baseline (Jain et al. - NeurIPS 2023)",
+      "checks": {
+        "key1_paper": {
+          "title": "Baseline Defenses for Adversarial Attacks Against Aligned Language Models",
+          "venue": "NeurIPS 2023 Workshop",
+          "paper_url": "https://arxiv.org/abs/2309.00614",
+          "local_pdf_exists": true,
+          "local_pdf_size_mb": 0.57,
+          "provenance_anchor": "Section 2 'Perplexity Window Filter' & Table 2 Perplexity Detection Results"
+        },
+        "key2_model_spec": {
+          "architecture": "GPT-2 / Token Cross-Entropy Perplexity Window Thresholding",
+          "parameters": "Statistical Heuristic",
+          "weights_url": "https://github.com/neelsjain/baseline-defenses"
+        },
+        "key4_pristine_upstream_repo": {
+          "name": "baseline-defenses",
+          "git_url": "https://github.com/neelsjain/baseline-defenses",
+          "commit_hash": "2023-main",
+          "upstream_dir_exists": true,
+          "is_pristine_untouched": true,
+          "pollution_count": 0,
+          "sample_polluting_files": []
+        },
+        "key3_datasets_provenance": [
+          {
+            "filename": "jain_eval_benchmark.json",
+            "origin_url": "https://raw.githubusercontent.com/neelsjain/baseline-defenses/main/data/eval.json",
+            "local_exists": true,
+            "expected_sha256": "ed546fe00cdf...",
+            "actual_sha256": "ed546fe00cdf...",
+            "sha256_match": true,
+            "provenance_proof": "Official NeurIPS 2023 adversarial prompt injection benchmark by Jain et al."
+          }
+        ],
+        "key5_runner_and_runs": {
+          "runner_script": "run_jain_replication.py",
+          "runner_script_exists": true,
+          "external_destination": "reports/tasks_for_meeting_6/04_benchmarks_and_data",
+          "external_destination_exists": true,
+          "reports_decoupled_exists": true,
+          "internal_benchmark_leakage": false,
+          "internal_leaked_files": []
+        }
+      }
+    },
+    "Ayub_CAMLIS2024_Rejected": {
+      "model_id": "Ayub_CAMLIS2024_Rejected",
+      "display_name": "Ayub CAMLIS 2024 [Rejected Baseline - High FPR Overfitting]",
+      "checks": {
+        "key1_paper": {
+          "title": "Towards Robust Detection of Prompt Injection Attacks in LLMs",
+          "venue": "CAMLIS 2024",
+          "paper_url": "https://arxiv.org/abs/2410.22284",
+          "local_pdf_exists": true,
+          "local_pdf_size_mb": 1.09,
+          "provenance_anchor": "Section 4 'Feature Representation' & Table 3 Binary Classification Results"
+        },
+        "key2_model_spec": {
+          "architecture": "all-MiniLM-L6-v2 Embeddings + Random Forest / XGBoost",
+          "parameters": "22M + Ensemble",
+          "weights_url": "https://github.com/AhsanAyub/malicious-prompt-detection"
+        },
+        "key4_pristine_upstream_repo": {
+          "name": "malicious-prompt-detection",
+          "git_url": "https://github.com/AhsanAyub/malicious-prompt-detection",
+          "commit_hash": "2024-main",
+          "upstream_dir_exists": true,
+          "is_pristine_untouched": true,
+          "pollution_count": 0,
+          "sample_polluting_files": []
+        },
+        "key3_datasets_provenance": [
+          {
+            "filename": "wildguard.json",
+            "origin_url": "https://raw.githubusercontent.com/AhsanAyub/malicious-prompt-detection/main/dataset/wildguard.json",
+            "local_exists": true,
+            "expected_sha256": "62a0f7331af1...",
+            "actual_sha256": "62a0f7331af1...",
+            "sha256_match": true,
+            "provenance_proof": "WildGuard test split used to demonstrate severe over-defense (58.4% FPR)."
+          }
+        ],
+        "key5_runner_and_runs": {
+          "runner_script": "run_ayub_tier1_benchmark.py",
+          "runner_script_exists": true,
+          "external_destination": "reports/tasks_for_meeting_6/04_benchmarks_and_data",
+          "external_destination_exists": true,
+          "reports_decoupled_exists": true,
+          "internal_benchmark_leakage": false,
+          "internal_leaked_files": []
+        }
+      }
+    }
+  }
+}

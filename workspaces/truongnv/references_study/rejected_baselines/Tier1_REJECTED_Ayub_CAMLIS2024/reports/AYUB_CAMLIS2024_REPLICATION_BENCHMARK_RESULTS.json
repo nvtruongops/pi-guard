@@ -1,0 +1,214 @@
+{
+  "metadata": {
+    "title": "Ayub & Majumdar (CAMLIS 2024) Independent Empirical Replication",
+    "paper": "Embedding-based classifiers can detect prompt injection attacks (CAMLIS 2024)",
+    "authors": "Md Rayhanur Rahman Ayub and Adrish Majumdar",
+    "venue": "Conference on Applied Machine Learning for Information Security (CAMLIS 2024)",
+    "upstream_repo": "https://github.com/AhsanAyub/malicious-prompt-detection",
+    "execution_date": "2026-09-16 04:58:04",
+    "device": "Intel CPU (single thread / multi-core inference)",
+    "total_test_samples": 971,
+    "total_notinject_samples": 339,
+    "total_valid_samples": 144
+  },
+  "feature_extraction_latency": {
+    "all_minilm_l6_v2_avg_ms": 42.73,
+    "all_minilm_l6_v2_p95_ms": 119.41
+  },
+  "benchmarks": {
+    "Ayub_MiniLM_LogisticRegression": {
+      "model": "Ayub_MiniLM_LogisticRegression",
+      "accuracy": 59.22,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "auc": 0.0,
+      "fpr_pct": 40.78,
+      "confusion_matrix": {
+        "tn": 575,
+        "fp": 396,
+        "fn": 0,
+        "tp": 0
+      },
+      "avg_latency_ms": 43.08,
+      "p50_latency_ms": 42.73,
+      "p95_latency_ms": 43.75,
+      "notinject_overdefense_fpr_pct": 58.41,
+      "notinject_false_positives": 198,
+      "notinject_total": 339
+    },
+    "Ayub_MiniLM_RandomForest": {
+      "model": "Ayub_MiniLM_RandomForest",
+      "accuracy": 73.12,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "auc": 0.0,
+      "fpr_pct": 26.88,
+      "confusion_matrix": {
+        "tn": 710,
+        "fp": 261,
+        "fn": 0,
+        "tp": 0
+      },
+      "avg_latency_ms": 111.25,
+      "p50_latency_ms": 105.98,
+      "p95_latency_ms": 121.71,
+      "notinject_overdefense_fpr_pct": 39.23,
+      "notinject_false_positives": 133,
+      "notinject_total": 339
+    },
+    "Ayub_MiniLM_XGBoost": {
+      "model": "Ayub_MiniLM_XGBoost",
+      "accuracy": 61.69,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "auc": 0.0,
+      "fpr_pct": 38.31,
+      "confusion_matrix": {
+        "tn": 599,
+        "fp": 372,
+        "fn": 0,
+        "tp": 0
+      },
+      "avg_latency_ms": 44.5,
+      "p50_latency_ms": 44.25,
+      "p95_latency_ms": 46.31,
+      "notinject_overdefense_fpr_pct": 47.49,
+      "notinject_false_positives": 161,
+      "notinject_total": 339
+    }
+  },
+  "valid_set_benchmark_with_attacks": {
+    "Ayub_MiniLM_LogisticRegression": {
+      "model": "Ayub_MiniLM_LogisticRegression",
+      "accuracy": 56.25,
+      "precision": 0.4118,
+      "recall": 0.7292,
+      "f1": 0.5263,
+      "auc": 0.6519,
+      "fpr_pct": 52.08,
+      "confusion_matrix": {
+        "tn": 46,
+        "fp": 50,
+        "fn": 13,
+        "tp": 35
+      },
+      "avg_latency_ms": 0.0,
+      "p50_latency_ms": 0.0,
+      "p95_latency_ms": 0.0
+    },
+    "Ayub_MiniLM_RandomForest": {
+      "model": "Ayub_MiniLM_RandomForest",
+      "accuracy": 57.64,
+      "precision": 0.3898,
+      "recall": 0.4792,
+      "f1": 0.4299,
+      "auc": 0.6351,
+      "fpr_pct": 37.5,
+      "confusion_matrix": {
+        "tn": 60,
+        "fp": 36,
+        "fn": 25,
+        "tp": 23
+      },
+      "avg_latency_ms": 0.0,
+      "p50_latency_ms": 0.0,
+      "p95_latency_ms": 0.0
+    },
+    "Ayub_MiniLM_XGBoost": {
+      "model": "Ayub_MiniLM_XGBoost",
+      "accuracy": 56.25,
+      "precision": 0.3913,
+      "recall": 0.5625,
+      "f1": 0.4615,
+      "auc": 0.6196,
+      "fpr_pct": 43.75,
+      "confusion_matrix": {
+        "tn": 54,
+        "fp": 42,
+        "fn": 21,
+        "tp": 27
+      },
+      "avg_latency_ms": 0.0,
+      "p50_latency_ms": 0.0,
+      "p95_latency_ms": 0.0
+    }
+  },
+  "paper_comparison_ayub2024": {
+    "paper_citation": "Md Rayhanur Rahman Ayub and Adrish Majumdar. 2024. 'Embedding-based classifiers can detect prompt injection attacks'. In CAMLIS 2024. arXiv:2410.22284",
+    "official_tables": {
+      "Table_3_AUC_Performance": {
+        "OpenAI": {
+          "LogisticRegression": 0.637,
+          "XGBoost": 0.726,
+          "RandomForest": 0.764
+        },
+        "GTE": {
+          "LogisticRegression": 0.612,
+          "XGBoost": 0.69,
+          "RandomForest": 0.731
+        },
+        "MiniLM": {
+          "LogisticRegression": 0.608,
+          "XGBoost": 0.687,
+          "RandomForest": 0.73
+        }
+      },
+      "Table_4_Binary_Classification_Performance": {
+        "MiniLM": {
+          "LogisticRegression": {
+            "Precision": 0.777,
+            "Recall": 0.795,
+            "F1": 0.789
+          },
+          "XGBoost": {
+            "Precision": 0.82,
+            "Recall": 0.829,
+            "F1": 0.824
+          },
+          "RandomForest": {
+            "Precision": 0.849,
+            "Recall": 0.853,
+            "F1": 0.851
+          }
+        },
+        "GTE": {
+          "LogisticRegression": {
+            "Precision": 0.785,
+            "Recall": 0.799,
+            "F1": 0.792
+          },
+          "XGBoost": {
+            "Precision": 0.82,
+            "Recall": 0.83,
+            "F1": 0.825
+          },
+          "RandomForest": {
+            "Precision": 0.849,
+            "Recall": 0.853,
+            "F1": 0.851
+          }
+        },
+        "OpenAI": {
+          "LogisticRegression": {
+            "Precision": 0.793,
+            "Recall": 0.807,
+            "F1": 0.8
+          },
+          "XGBoost": {
+            "Precision": 0.832,
+            "Recall": 0.841,
+            "F1": 0.836
+          },
+          "RandomForest": {
+            "Precision": 0.867,
+            "Recall": 0.867,
+            "F1": 0.867
+          }
+        }
+      }
+    }
+  }
+}

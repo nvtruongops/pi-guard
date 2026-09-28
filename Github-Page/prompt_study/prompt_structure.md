@@ -89,7 +89,7 @@ def sanitize_chat_tokens(text: str) -> str:
     return re.sub(SPECIAL_TOKEN_PATTERN, "[REMOVED_SPECIAL_TOKEN]", text)
 ```
 
-Đồng thời, mô hình **DeBERTa-v3** tại Tầng 2 với cơ chế *Disentangled Attention* được huấn luyện để phát hiện các mẫu câu cố tình ngắt ngữ cảnh và giả lập phản hồi của Assistant (`"Assistant: Sure, I can help with that..."`).
+Đồng thời, mô hình **DeBERTa-v3** tại Tầng 2 với cơ chế *Disentangled Attention* [[5]](#ref5) được huấn luyện để phát hiện các mẫu câu cố tình ngắt ngữ cảnh và giả lập phản hồi của Assistant (`"Assistant: Sure, I can help with that..."`).
 
 ---
 
@@ -102,3 +102,5 @@ def sanitize_chat_tokens(text: str) -> str:
 <a id="ref3"></a>**[3]** R. Taori et al., "Stanford Alpaca: An Instruction-following LLaMA model," *Stanford Center for Research on Foundation Models (CRFM)*, 2023. Link: [https://github.com/tatsu-lab/stanford_alpaca](https://github.com/tatsu-lab/stanford_alpaca).
 
 <a id="ref4"></a>**[4]** OWASP GenAI Security Project, "OWASP Top 10 for Large Language Model Applications," Version 2.0, 2025. Link: [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/).
+
+<a id="ref5"></a>**[5]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in *International Conference on Learning Representations (ICLR)*, 2023. Link: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543).

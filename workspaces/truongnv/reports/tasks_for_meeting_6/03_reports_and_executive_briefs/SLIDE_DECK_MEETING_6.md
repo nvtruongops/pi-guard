@@ -47,9 +47,9 @@
 | :--- | :--- | :--- |
 | **1. Bản chất Kiến trúc & Thuật toán** | Hoàn thành Phân loại học 6x7 vĩ mô $\to$ 12x14 vi mô | [`TAXONOMY_...md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/01_theory_and_taxonomy/TAXONOMY_OF_ARCHITECTURES_AND_ALGORITHMIC_PARADIGMS.md) |
 | **2. Ma trận tương thích & NUS CASCADE** | Phân tích 168 giao điểm; bác bỏ mô hình đơn khối | [`ARCHITECTURAL_...md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/02_compatibility_and_tradeoffs/ARCHITECTURAL_COMPATIBILITY_MATRIX_CASCADE_12X14.md) |
-| **3. Xử lý văn bản 200k & Tail-Scan** | BlockChunker Head-and-Tail dừng sớm tại Block 1 | [`test_hidden_prompt_at_tail.py`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/tests/test_hidden_prompt_at_tail.py) (Tăng tốc 4.6x) |
-| **4. Đo đạc thực tế CPU & Weights** | Đóng gói weights `.joblib` & DeBERTa-v3 CPU Native | [`cross_dataset_empirical_matrix.json`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/04_benchmarks_and_data/cross_dataset_empirical_matrix.json) |
-| **5. Hồ sơ Phản biện & Đóng băng mô hình**| Xây dựng Council Defense Playbook & Đóng băng | [`COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md) |
+| **3. Xử lý văn bản 200k & Tail-Scan** | BlockChunker Head-and-Tail giải quyết lỗ hổng Prompt Overflow 200k chars | [`data/sample_malicious_tail_200k.txt`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/data/sample_malicious_tail_200k.txt) |
+| **4. Đo đạc thực tế CPU & Weights** | Đo đạc thực nghiệm độc lập các baseline y văn trên CPU | [`cross_dataset_empirical_matrix.json`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/04_benchmarks_and_data/cross_dataset_empirical_matrix.json) |
+| **5. Hồ sơ Phản biện & Đóng băng baseline**| Xây dựng Council Defense Playbook & Đóng băng danh mục baseline | [`COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md) |
 
 ---
 
@@ -70,10 +70,10 @@
 ### SLIDE 4: BẢNG KẾT QUẢ ĐỐI CHUẨN THỰC NGHIỆM ĐỘC LẬP CÁC MÔ HÌNH Y VĂN (D1–D6)
 
 - **Phễu Lựa Chọn Mô Hình Thực Nghiệm Đối Chuẩn**:
-  41 Công trình y văn $\to$ 16 Bài báo đề xuất Guardrail $\to$ 11 Gói mã nguồn $\to$ **6 Mô hình Champion** đại diện 6 trường phái thuật toán ($F_1 - F_5$) nạp vào Adapter Runner ([`replications_adapters.py`](file:///d:/Work/Do-an/workspaces/truongnv/src/models/replications_adapters.py)).
+  41 Công trình y văn $\to$ 16 Bài báo đề xuất Guardrail $\to$ 11 Gói mã nguồn $\to$ **6 Mô hình Baseline Y Văn** đại diện các trường phái thuật toán ($F_1 - F_5$) nạp vào Adapter Runner ([`replications_adapters.py`](file:///d:/Work/Do-an/workspaces/truongnv/src/models/replications_adapters.py)).
 - **Mục Đích**: Đo lường định lượng các điểm vỡ kỹ thuật (*Failure Modes*) trên bộ dữ liệu D1–D6 phục vụ bằng chứng thực nghiệm cho **Mục 2.3 (Khoảng trống Nghiên cứu - Research Gaps)**.
 
-| Mô hình Champion / Baseline Y Văn | Direct Recall (D1) | Indirect Recall (D2) | Jailbreak Recall (D3) | Code Acc (D5 - NotInject) | Benign FPR (D6) | Độ trễ P95 CPU | Điểm Yếu / Failure Mode Thực Nghiệm |
+| Mô hình Baseline Y Văn Được Đánh Giá Đối Chuẩn | Direct Recall (D1) | Indirect Recall (D2) | Jailbreak Recall (D3) | Code Acc (D5 - NotInject) | Benign FPR (D6) | Độ trễ P95 CPU | Điểm Yếu / Failure Mode Thực Nghiệm |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 | **M1: Baseline Keyword Regex** | $10.4\%$ | $100.0\%$ | $100.0\%$ | $100.0\%$ | $0.0\%$ | $< 0.5\text{ms}$ | Bất lực trước biến thể mới ($10.4\%$ recall D1) |
 | **M2: Dual-Space TF-IDF (Jain et al. 2023)** | $83.3\%$ | $24.0\%$ | **$0.0\%$** | $100.0\%$ | $0.0\%$ | **$12.9\text{ms}$** | Trượt hoàn toàn Jailbreak ngữ nghĩa ($0.0\%$ recall) |
@@ -105,11 +105,11 @@
   - Bác bỏ ngộ nhận "chỉ ghép từ 2 bài báo"; kiến trúc Two-Tier Cascade là công trình tổng hợp nguyên bản kế thừa có chọn lọc từ **9 bài báo khoa học** trên 4 tầng vận hành (Hackett 2025 & Yuan 2024 tại Lớp 0; Jain 2023, Chow 1970 [[15]](#ref15) & Platt 1999 tại Tầng 1; Luo & Han 2026 [[41]](#ref41), Angelopoulos 2024 & Jacob 2024 tại Router; He 2023 & Hao Li 2025 tại Tầng 2; Zhou 2026 & Saltzer & Schroeder 1975 [[27]](#ref27) tại hạ tầng hệ thống).
 - **Toàn cảnh Kiến trúc Phân tầng (Figure: `fig_arch_pipeline_overview.png`)**:
   - Giai đoạn 0 (Ingress Scrubber) $\to$ Giai đoạn 1 (Tầng 1 Dual TF-IDF) $\to$ Giai đoạn 2 (Router 3 Luồng) $\to$ Giai đoạn 3 (Tầng 2 DeBERTa-v3 FP32).
-  - Độ trễ trung bình $2.85\text{ms}$, P95 $< 25\text{ms}$ trên CPU, giải phóng $82.6\%$ tải ngay tại Tầng 1.
+  - Mục tiêu thiết kế kiến trúc: Tầng 1 sàng lọc sơ cấp truy vấn rõ ràng, hướng tới SLA kiểm soát độ trễ phân vị P95 $< 30\text{ms}$ trên CPU.
 - **Bản chất Bộ định tuyến 3 luồng vs Nhị phân 1-0 (Figure: `fig_tristate_vs_binary_routing.png`)**:
   - Bác bỏ điểm cắt cứng nhị phân ($p = 0.5$); thiết lập vùng từ chối bất định (Reject Option theo Chow 1970 [[15]](#ref15)).
-  - Phân vùng CASCADE (Luo & Han 2026 [[41]](#ref41)): Luồng 1 (Thông xe $p < 0.15$, $71.3\%$ tải, $0.85\text{ms}$), Luồng 2 (Chặn sớm $p > 0.85$, $11.3\%$ tải, $1.20\text{ms}$), Luồng 3 (Thẩm định sâu $0.15 \le p \le 0.85$, $17.4\%$ tải, $18.5\text{ms}$).
-  - Đảm bảo toán học Conformal Risk Control (Angelopoulos 2024) duy trì $\text{FPR} < 1.5\%$.
+  - Khung phân vùng CASCADE (Luo & Han 2026 [[41]](#ref41)): Luồng 1 (Fast-Pass $p < 0.15$ cho truy vấn rõ ràng lành tính), Luồng 2 (Early-Block $p > 0.85$ cho tấn công từ khóa rõ ràng), Luồng 3 (Thẩm định sâu $0.15 \le p \le 0.85$ chuyển tiếp vùng bất định cho Tầng 2).
+  - Định hướng Conformal Risk Control (Angelopoulos 2024) nhằm bảo đảm toán học tỷ lệ $\text{FPR} < 1.5\%$.
 - **Lớp Tiền Xử Lý Tầng 0 (Figure: `fig_tier0_scrubber_pipeline.png`)**:
   - 4 chặng khử ngụy trang cú pháp: Unicode NFKC, Zero-width stripper, Regex inline decoder (Base64/Hex/Rot13), và Vietnamese Scrubber.
 - **Tầng 1 Dual-Space TF-IDF & Platt Scaling (Figure: `fig_tier1_dual_space_and_platt.png`)**:
@@ -126,19 +126,19 @@
   $$P(\text{Malicious} \mid X) = \frac{1}{1 + \exp(-(\mathbf{w}^T \mathbf{z} + b))} \quad \text{với } \mathbf{z} = [\mathbf{z}_{\text{word}} \mathbin{\Vert} \mathbf{z}_{\text{char}}]$$
 - **Mật độ dị biệt ký tự (OOV Entropy Density)**:
   $$\rho_{\text{OOV}}(X) = \frac{N_{\text{irregular}}}{L} + 0.5 \cdot \frac{N_{\text{single}}}{N_{\text{tokens}}}$$
-- **Bất biến che phủ mã lệnh (Masked Overlap Fraction - MOF)**:
+- **Bất biến che phủ mã lệnh (Masked Overlap Fraction - MOF Li et al. ACL 2025 [[18]](#ref18))**:
   $$S_{\text{final}} = S_{\text{raw}} \cdot (1.0 - \text{MOF}(X)) \quad \text{khi } \text{MOF} > 0.50 \land \neg \text{HasExplicitAttack}$$
 
 ---
 
 ### SLIDE 8: GIẢI PHÁP ĐỘT PHÁ VĂN BẢN DÀI 200,000 KÝ TỰ & CHỐNG OVERDEFENSE
 
-- **Tầng 2 DeBERTa-v3 & Cơ chế Kháng Overdefense MOF**:
+- **Tầng 2 DeBERTa-v3 [[11]](#ref11) & Cơ chế Kháng Overdefense MOF [[18]](#ref18)**:
   - Disentangled Attention 3 ma trận (Content-Content, Content-Position, Position-Content) và Dynamic Class-Weighted Loss.
   - Chiết khấu ngưỡng động $\tau_{\text{eff}} = \tau_0 + \gamma \cdot \text{MOF}(X)$ bảo vệ mã nguồn NotInject trên phần cứng CPU Native FP32.
 - **Thuật toán Chunker Văn bản dài 200k (Figure: `fig_chunker_head_and_tail_algorithm.png`)**:
-  - Quét ưu tiên vị trí Head-and-Tail dừng sớm tại Block 1.
-  - Bắt đòn tấn công giấu ở đuôi (Tail Injection trên 200k ký tự) ngay tại Block đầu tiên quét (tiêu thụ RAM $< 1.8\text{GB}$, ZERO OOM).
+  - Quét ưu tiên vị trí Head-and-Tail phát hiện sớm payload độc hại ở đuôi tài liệu.
+  - Khắc phục lỗ hổng Prompt Overflow (Zhou et al. 2026) mà không làm bùng nổ thời gian suy luận trên CPU.
 
 ---
 
@@ -146,22 +146,22 @@
 
 - **Tôn chỉ bảo vệ đồ án chuyên ngành An toàn Thông tin (IA)**:
   - Kiên quyết loại trừ các kỹ thuật tối ưu hóa phần cứng/trình biên dịch như lượng tử hóa mô hình (ZeroQuant Yao et al. NeurIPS 2022) khỏi đóng góp khoa học cốt lõi.
-  - Giữ vững trọng tâm nghiên cứu: Mô hình hóa mối đe dọa $X = S \mathbin{\Vert} U$, Phân tầng phòng thủ Two-Tier Cascade, Kháng đối kháng thích ứng MOF Invariance và Tối ưu hóa điểm vận hành Low-FPR < 1.5%.
+  - Giữ vững trọng tâm nghiên cứu: Mô hình hóa mối đe dọa $X = S \mathbin{\Vert} U$, Phân tầng phòng thủ Two-Tier Cascade, Kháng đối kháng thích ứng MOF Invariance [[18]](#ref18) và Tối ưu hóa điểm vận hành Low-FPR < 1.5%.
 - **Vai trò của ZeroQuant trong đồ án**:
   - Được lưu giữ trong Kho tài liệu (`References/`) và Ma trận tương thích $12 \times 14$ như một Baseline đối chuẩn kỹ thuật minh bạch để phản biện trước Hội đồng.
-  - Khẳng định Tầng 2 Native FP32 của PI-Guard đạt P95 < 25ms trên CPU mà không cần nén số học, triệt tiêu hoàn toàn sai số làm tròn.
+  - Định hướng Tầng 2 Native FP32 hướng tới kiểm soát P95 < 30ms trên CPU kết hợp Tầng 1 mà không cần nén số học, triệt tiêu hoàn toàn sai số làm tròn.
 
 ---
 
-### SLIDE 10: TUYÊN BỐ ĐÓNG BĂNG MÔ HÌNH & KẾ HOẠCH BÀN GIAO REVIEW 2
+### SLIDE 10: ĐÓNG BĂNG DANH MỤC BASELINE Y VĂN & KẾ HOẠCH BÀN GIAO REVIEW 2
 
-- **Tuyên bố Đóng Băng (Model Freezing)**:
-  - Đóng băng kiến trúc Champion Two-Tier Cascade (Tier 0 Scrubber + Tier 1 Dual TF-IDF + Tri-State Router + Tier 2 DeBERTa-v3 MOF).
-  - Đóng băng các siêu tham số: $\theta_{\text{low}}=0.15, \theta_{\text{high}}=0.85, \rho_{\text{OOV}}=0.40, \tau=0.60$.
+- **Tuyên bố Đóng Băng Danh Mục Baseline Y Văn (Baseline Model Freezing)**:
+  - Cố định 12 mô hình public SOTA và baseline y văn phục vụ đối chuẩn Chương 2 và bảo vệ Review 1 / Review 2.
+  - Cố định khung đề xuất kiến trúc Two-Tier Cascade (Tier 0 Scrubber + Tier 1 Dual TF-IDF + Tri-State Router + Tier 2 DeBERTa-v3 MOF) làm cơ sở cho Chương 3 (Methodology).
 - **Kế hoạch giai đoạn tiếp theo (Hướng tới Review 2 & Meeting 7)**:
-  1. Bàn giao bộ trọng số và script tái lập cho các thành viên nhóm (Đức, Việt, Phương) để chạy kiểm chứng chéo trong sandbox cá nhân;
-  2. Tích hợp pipeline mô hình vào tầng Proxy trung gian (FastAPI Ingress Middleware);
-  3. Chuyển ngữ và đồng bộ các phát hiện thực nghiệm vào Chương 2 và Chương 3 của Luận văn tốt nghiệp (`Final-Report/thesis/`).
+  1. Hoàn thiện báo cáo Review 1 và đồng bộ phát hiện thực nghiệm y văn vào Chương 2 và Chương 3 của Luận văn tốt nghiệp;
+  2. Triển khai thử nghiệm tích hợp khung phân tầng vào tầng Proxy trung gian (FastAPI Ingress Middleware PoC);
+  3. Chuẩn bị tài nguyên dữ liệu huấn luyện để sẵn sàng bước vào giai đoạn Huấn luyện & Đánh giá mô hình đề tài ở Chương 4.
 
 ---
 
@@ -169,6 +169,8 @@
 
 - <a id="ref1"></a>**[[1]]** OWASP Top 10 for Large Language Model Applications, "LLM01: Prompt Injection," _OWASP Foundation_, Tech. Rep., 2025.
 - <a id="ref2"></a>**[[2]]** A. Vassilev et al., "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations," _NIST AI 100-2e2025_, 2024. [DOI: 10.6028/NIST.AI.100-2e2025](https://doi.org/10.6028/NIST.AI.100-2e2025).
+- <a id="ref11"></a>**[[11]]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in *Proc. ICLR*, 2023.
 - <a id="ref15"></a>**[[15]]** C. K. Chow, "On optimum recognition error and reject tradeoff," _IEEE Transactions on Information Theory_, vol. 16, no. 1, pp. 41–46, 1970.
+- <a id="ref18"></a>**[[18]]** H. Li, X. Liu, N. Zhang, and C. Xiao, "PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free," in *Proc. ACL 2025*, 2025.
 - <a id="ref27"></a>**[[27]]** J. H. Saltzer and M. D. Schroeder, "The protection of information in computer systems," _Proceedings of the IEEE_, vol. 63, no. 9, pp. 1278–1308, 1975.
 - <a id="ref41"></a>**[[41]]** Z. Luo and J. Han, "CASCADE: Efficient and Accurate Guardrails for Large Language Models via Adaptive Routing," _arXiv preprint arXiv:2602.04987_, 2026.

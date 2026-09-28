@@ -118,7 +118,7 @@ Hệ thống slide được chia làm 3 phần nội dung logic chặt chẽ (Sl
   - *Regex quá mỏng manh*: Sụp đổ hoàn toàn trước biến dị Leetspeak (`1gn0r3`), khoảng cách nhân tạo và mã hóa Base64.
   - *LLM-as-a-Judge quá cồng kềnh*: Đòi hỏi GPU đắt đỏ ($>16\text{GB}$) và độ trễ hàng giây gây nghẽn cổ chai cho toàn bộ hệ thống API.
 - **Ưu thế đột phá của PI-Guard**:
-  - *Disentangled Attention*: Tách biệt vector nội dung và vị trí tương đối, nắm bắt chính xác cấu trúc đảo ngữ đối kháng.
+  - *Disentangled Attention*: Tách biệt vector nội dung và vị trí tương đối (He et al. 2023 [[6]](#ref6)), nắm bắt chính xác cấu trúc đảo ngữ đối kháng.
   - *Khả thi triển khai trên CPU*: Lượng hóa ONNX INT8 đạt $P95 < 15\text{ms}$, $\text{FPR} < 1.5\%$, hiện thực hóa chốt chặn bảo vệ trực tuyến (inline proxy).
 
 ### SLIDE 15: Phân Tách Kiến Trúc PI-Guard (Architecture Section Divider)

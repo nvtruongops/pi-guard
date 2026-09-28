@@ -123,4 +123,4 @@ Theo báo cáo khoa học của **Tencent Zhuque Lab (2026)** về bảo vệ h�
 
 Sự đa dạng của 26 toán tử trên một lần nữa khẳng định luận điểm khoa học của đề tài:
 1. **Không thể chỉ dựa vào một mô hình duy nhất**: Nếu chỉ dùng mô hình thống kê (TF-IDF), hệ thống sẽ gục ngã trước các toán tử ngữ nghĩa tinh vi (OP-01 đến OP-06). Nếu chỉ dùng Transformer lớn, hệ thống sẽ bị chậm (vỡ SLA độ trễ) và bị qua mặt bởi các toán tử xáo trộn cú pháp (OP-16, OP-17).
-2. **Kiến trúc Phân tầng Kép (Two-Tier Architecture) của PI-Guard** là mô hình tối ưu nhất: Kết hợp tầng tiền xử lý chuẩn hóa (Sanitization & Entropy Decoding) + Tầng 1 Lọc nhanh cú pháp (TF-IDF < 3ms) + Tầng 2 Thẩm định ngữ nghĩa sâu (DeBERTa-v3 INT8 < 25ms), tạo nên một lá chắn toàn diện bao phủ toàn bộ 26 toán tử tấn công.
+2. **Kiến trúc Phân tầng Kép (Two-Tier Architecture) của PI-Guard** là mô hình tối ưu nhất: Kết hợp tầng tiền xử lý chuẩn hóa (Sanitization & Entropy Decoding) + Tầng 1 Lọc nhanh cú pháp (TF-IDF < 3ms) + Tầng 2 Thẩm định ngữ nghĩa sâu (DeBERTa-v3 Native FP32 < 25ms), tạo nên một lá chắn toàn diện bao phủ toàn bộ 26 toán tử tấn công.

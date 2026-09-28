@@ -369,6 +369,66 @@ def step_academic_glossary_audit() -> Tuple[bool, str]:
 
 
 # ==============================================================================
+# 7.5. ANTI-HALLUCINATION & EMPIRICAL GROUNDING AUDIT
+# ==============================================================================
+def step_anti_hallucination_audit(mode: str = "all") -> Tuple[bool, str]:
+    """Kiểm toán chống tự sinh mô hình đồ án và chống giả mạo chỉ số qua audit_anti_hallucination.py."""
+    audit_script = SCRIPTS_DIR / "audit_anti_hallucination.py"
+    if not audit_script.exists():
+        audit_script = ROOT_DIR / "scripts" / "audit_anti_hallucination.py"
+    if not audit_script.exists():
+        return False, "Không tìm thấy scripts/audit_anti_hallucination.py"
+
+    code, out, err = run_cmd([sys.executable, str(audit_script), "--mode", mode])
+    output = out if out else err
+    if code == 0:
+        return True, "Anti-hallucination and empirical grounding standards verified (0 violations)."
+    else:
+        return False, output
+
+
+# ==============================================================================
+# 7.6. CLAIM EVIDENCE & ATTRIBUTION AUDIT
+# ==============================================================================
+def step_claim_evidence_audit(mode: str = "all") -> Tuple[bool, str]:
+    """Kiểm toán dẫn chứng cấp độ câu, chống phát biểu không có căn cứ qua audit_claim_evidence.py."""
+    audit_script = SCRIPTS_DIR / "audit_claim_evidence.py"
+    if not audit_script.exists():
+        audit_script = ROOT_DIR / "scripts" / "audit_claim_evidence.py"
+    if not audit_script.exists():
+        return False, "Không tìm thấy scripts/audit_claim_evidence.py"
+
+    code, out, err = run_cmd([sys.executable, str(audit_script), "--mode", mode])
+    output = out if out else err
+    if code == 0:
+        return True, "Claim evidence and attribution standards verified (0 violations)."
+    else:
+        return False, output
+
+
+# ==============================================================================
+# 7.7. TASK-SCOPE & DEPRECATIONS AUDIT
+# ==============================================================================
+def step_task_scope_audit(strict: bool = False) -> Tuple[bool, str]:
+    """Kiểm toán ranh giới nhiệm vụ và phát hiện công nghệ bị loại trừ qua audit_task_scope.py."""
+    audit_script = SCRIPTS_DIR / "audit_task_scope.py"
+    if not audit_script.exists():
+        audit_script = ROOT_DIR / "scripts" / "audit_task_scope.py"
+    if not audit_script.exists():
+        return False, "Không tìm thấy scripts/audit_task_scope.py"
+
+    cmd = [sys.executable, str(audit_script)]
+    if strict:
+        cmd.append("--strict")
+    code, out, err = run_cmd(cmd)
+    output = out if out else err
+    if code == 0:
+        return True, "Task-scope enclosure and architectural deprecations verified."
+    else:
+        return False, output
+
+
+# ==============================================================================
 # 8. GIT PRE-COMMIT HOOK INSTALLER
 # ==============================================================================
 def install_pre_commit_hook() -> int:
@@ -450,6 +510,21 @@ def main() -> int:
         help="Chỉ chạy kiểm định cú pháp các file JSON manifest.",
     )
     parser.add_argument(
+        "--check-anti-hallucination",
+        action="store_true",
+        help="Chỉ chạy kiểm toán chống tự sinh mô hình đồ án và chống giả mạo chỉ số.",
+    )
+    parser.add_argument(
+        "--check-claim-evidence",
+        action="store_true",
+        help="Chỉ chạy kiểm toán dẫn chứng học thuật và căn cứ cấp độ câu.",
+    )
+    parser.add_argument(
+        "--check-task-scope",
+        action="store_true",
+        help="Chỉ chạy kiểm toán ranh giới nhiệm vụ và phát hiện công nghệ bị loại trừ.",
+    )
+    parser.add_argument(
         "--check-lint",
         action="store_true",
         help="Chỉ chạy kiểm tra code linting với Ruff.",
@@ -481,6 +556,9 @@ def main() -> int:
         [
             args.check_boundaries,
             args.check_manifests,
+            args.check_anti_hallucination,
+            args.check_claim_evidence,
+            args.check_task_scope,
             args.check_lint,
             args.check_tests,
             args.check_benchmark,
@@ -498,6 +576,12 @@ def main() -> int:
             steps_to_run.append(("Workspace Boundaries Audit", step_workspace_boundary_audit, ("staged",)))
         if args.check_manifests:
             steps_to_run.append(("JSON Manifests Validation", step_validate_manifests, (False,)))
+        if args.check_anti_hallucination:
+            steps_to_run.append(("Anti-Hallucination & Empirical Grounding Audit", step_anti_hallucination_audit, ("all",)))
+        if args.check_claim_evidence:
+            steps_to_run.append(("Claim Evidence & Attribution Audit", step_claim_evidence_audit, ("all",)))
+        if args.check_task_scope:
+            steps_to_run.append(("Task-Scope & Deprecations Audit", step_task_scope_audit, (False,)))
         if args.check_lint:
             steps_to_run.append(("Code Quality & Linting", step_code_linting, (False,)))
         if args.check_tests:
@@ -510,12 +594,18 @@ def main() -> int:
         steps_to_run = [
             ("Workspace Boundaries Audit (Staged)", step_workspace_boundary_audit, ("staged",)),
             ("JSON Manifests Validation (Staged)", step_validate_manifests, (True,)),
+            ("Anti-Hallucination & Empirical Grounding Audit (Staged)", step_anti_hallucination_audit, ("staged",)),
+            ("Claim Evidence & Attribution Audit (Staged)", step_claim_evidence_audit, ("staged",)),
+            ("Task-Scope & Deprecations Audit (Staged)", step_task_scope_audit, (False,)),
             ("Code Quality & Linting (Staged)", step_code_linting, (True,)),
         ]
     elif mode == "fast":
         steps_to_run = [
             ("Workspace Boundaries Audit", step_workspace_boundary_audit, ("staged",)),
             ("JSON Manifests Validation", step_validate_manifests, (False,)),
+            ("Anti-Hallucination & Empirical Grounding Audit", step_anti_hallucination_audit, ("all",)),
+            ("Claim Evidence & Attribution Audit", step_claim_evidence_audit, ("all",)),
+            ("Task-Scope & Deprecations Audit", step_task_scope_audit, (False,)),
             ("Code Quality & Linting", step_code_linting, (False,)),
             ("Academic Concept Glossary Audit", step_academic_glossary_audit, ()),
             ("Adversarial Benchmark Smoke Test", step_benchmark_smoke_test, ()),
@@ -524,6 +614,9 @@ def main() -> int:
         steps_to_run = [
             ("Workspace Boundaries Audit", step_workspace_boundary_audit, ("staged",)),
             ("JSON Manifests Validation", step_validate_manifests, (False,)),
+            ("Anti-Hallucination & Empirical Grounding Audit", step_anti_hallucination_audit, ("all",)),
+            ("Claim Evidence & Attribution Audit", step_claim_evidence_audit, ("all",)),
+            ("Task-Scope & Deprecations Audit", step_task_scope_audit, (False,)),
             ("Code Quality & Linting", step_code_linting, (False,)),
             ("Academic Concept Glossary Audit", step_academic_glossary_audit, ()),
             ("Automated Tests (Pytest Suite)", step_automated_tests, (False,)),

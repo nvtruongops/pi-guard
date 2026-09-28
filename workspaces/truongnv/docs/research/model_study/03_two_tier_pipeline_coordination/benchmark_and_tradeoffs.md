@@ -55,7 +55,10 @@ Dưới đây là kết quả kiểm thử thực nghiệm độc lập tự đ�
 | **3. ProtectAI DeBERTa-v3** | **0.00%** | 30.43% | 0.4667 | 0.04 ms | Bắt tốt injection tiếng Anh, hạn chế trên tiếng Việt và cipher. |
 | **4. MiniLM-L6-v2 (22M Params)** | **0.00%** | 30.43% | 0.4667 | 0.04 ms | Nhẹ và nhanh, phù hợp cho thiết bị biên cấu hình thấp. |
 | **5. Multilingual mDeBERTa-v3** | **0.00%** | **34.78%** | **0.5161** | 0.04 ms | **Vượt trội trên tập tiếng Việt và chuyển mã** (Deng et al. ICLR 2024). |
-| **6. PI-Guard Two-Tier Cascade (Champion)** | **0.00%** | **43.48%** | **0.6061** | **0.13 ms** | **Cân bằng tối ưu nhất**: Kết hợp Tầng 1 + Tầng 2, kiểm soát FPR < 1.5% và P95 cực thấp. |
+
+> [!NOTE]
+> **Định hướng Kiến Trúc Đề Xuất Hai Tầng (Chapter 3 Conceptual Architecture)**:
+> Dựa trên các khoảng trống nghiên cứu của 5 mô hình baseline y văn trên, đề tài đề xuất kiến trúc Two-Tier Cascade phối hợp giữa Tầng 1 (Fast-Filter n-grams) và Tầng 2 (Deep Semantic Arbiter Transformer) nhằm hướng tới chỉ tiêu thiết kế SLA: $\text{FPR} \le 1.5\%$ và độ trễ CPU Native $P95 < 30\text{ms}$ (sẽ được huấn luyện, tối ưu và đo đạc nghiệm thu chính thức tại Chương 4).
 
 ---
 

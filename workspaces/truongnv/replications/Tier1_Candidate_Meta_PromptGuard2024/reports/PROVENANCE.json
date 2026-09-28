@@ -1,0 +1,28 @@
+{
+  "model_id": "Meta_PromptGuard2024",
+  "display_name": "Prompt-Guard: An 86M Parameter Guardrail for Prompt Injection and Jailbreak",
+  "role": "M4 Baseline (Meta AI Purple Llama 2024)",
+  "tier_1_paper_provenance": {
+    "title": "Prompt-Guard: An 86M Parameter Guardrail for Prompt Injection and Jailbreak",
+    "paper_url": "https://arxiv.org/abs/2407.21783",
+    "local_pdf": "papers\\Meta_2024_Prompt_Guard_86M_Input_Guardrail.pdf"
+  },
+  "tier_2_code_provenance": {
+    "upstream_code_url": "https://github.com/meta-llama/PurpleLlama",
+    "upstream_directory": "upstream/"
+  },
+  "tier_3_dataset_provenance": {
+    "datasets_url": "https://huggingface.co/meta-llama/Prompt-Guard-86M",
+    "local_datasets": [
+      {
+        "filename": "promptguard_3class_eval.json",
+        "sha256": "8f00a063e184517ecf5b5a1fc813e70959803012c0f100b209c69dc2a71b77ba",
+        "size_bytes": 653310
+      }
+    ]
+  },
+  "tier_4_verification": {
+    "status": "PASS",
+    "checked_by": "workspaces/truongnv/scripts/check_replication_origin_urls.py"
+  }
+}

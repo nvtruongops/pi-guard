@@ -26,7 +26,7 @@ Sự bùng nổ của các Mô hình Ngôn ngữ Lớn (Large Language Models - 
 
 Đề tài **PI-Guard** nghiên cứu, thiết kế và phát triển một nguyên mẫu thực nghiệm (Academic PoC Prototype) dạng cổng kiểm soát bảo mật trung gian (**External Guardrail Proxy Middleware**) đặt độc lập trước các ứng dụng LLM đích để phát hiện và ngăn chặn từ sớm các chuỗi truy vấn độc hại. Giải pháp đề xuất sử dụng kiến trúc phân tầng kết hợp (**Two-Tier Cascade Defense**): 
 1. **Tầng 1 (Tier-1)**: Sử dụng mô hình học máy cổ điển tối ưu hóa đặc trưng ký tự n-gram kết hợp từ vựng (**Word & Character n-grams TF-IDF**) để đánh chặn nhanh các mẫu tấn công cú pháp phổ biến và các biến thể phân mảnh ký tự (Leetspeak, Spacing) với chi phí tính toán cực thấp (~3ms).
-2. **Tầng 2 (Tier-2)**: Sử dụng mô hình Transformer phân loại chuỗi tinh chỉnh (**Fine-tuned `microsoft/deberta-v3-base` 86M**) với cơ chế **Disentangled Attention** để bóc tách câu lệnh chỉ thị khỏi dữ liệu, nhận diện các đòn tấn công ngữ nghĩa sâu tinh vi (DAN Roleplay, Context Shifting) với độ trễ thấp P95 < 30ms trên hạ tầng CPU phổ thông (Commodity CPU, Zero-GPU).
+2. **Tầng 2 (Tier-2)**: Sử dụng mô hình Transformer phân loại chuỗi tinh chỉnh (**Fine-tuned `microsoft/deberta-v3-base` 86M** [[11]](#ref11)) với cơ chế **Disentangled Attention** để bóc tách câu lệnh chỉ thị khỏi dữ liệu, nhận diện các đòn tấn công ngữ nghĩa sâu tinh vi (DAN Roleplay, Context Shifting) với độ trễ thấp P95 < 30ms trên hạ tầng CPU phổ thông (Commodity CPU, Zero-GPU).
 
 Báo cáo Review 1 này tổng hợp toàn diện cơ sở học thuật của **Chương 1 (Introduction)** và **Chương 2 (Literature Review)**, đồng thời thực hiện chuyên đề **Đánh giá 7 tiêu chí cốt lõi** phục vụ Hội đồng chấm và Giảng viên hướng dẫn: Đánh giá Problem Statement, Research Questions (RQ1–RQ3), Mục tiêu nghiên cứu, Giải pháp đề xuất, Ranh giới phạm vi đề tài, Tính khả thi dựa trên công việc thực tế, và Báo cáo tiến độ triển khai đạt **~30% khối lượng toàn dự án** tính đến mốc Review 1 (vượt tiến độ yêu cầu của mốc 26.7% thời gian).
 
@@ -141,7 +141,7 @@ Nghiên cứu, thiết kế, tối ưu hóa và thực nghiệm hệ thống **P
 ### 1.3.2. Năm Mục Tiêu Cụ Thể (Specific Deliverables)
 
 1. **Chuẩn hóa tập dữ liệu an ninh & Khử rò rỉ dữ liệu cụm**: Thu thập, làm sạch, khử trùng lặp đa nguồn (Deepset, Gandalf, In-The-Wild, Benign Enterprise) đạt quy mô $\ge 45,000$ mẫu; áp dụng thuật toán *Group-Aware Splitting* để bảo toàn tính độc lập giữa tập Train và Test.
-2. **Phát triển kiến trúc mô hình học máy kép (Two-Tier Cascade Defense)**: Xây dựng mô hình Baseline ML Tầng 1 (Word & Character n-grams TF-IDF) và tinh chỉnh mô hình Transformer Tầng 2 (`microsoft/deberta-v3-base` 86M) tận dụng cơ chế Disentangled Attention.
+2. **Phát triển kiến trúc mô hình học máy kép (Two-Tier Cascade Defense)**: Xây dựng mô hình Baseline ML Tầng 1 (Word & Character n-grams TF-IDF) và tinh chỉnh mô hình Transformer Tầng 2 (`microsoft/deberta-v3-base` 86M [[11]](#ref11)) tận dụng cơ chế Disentangled Attention.
 3. **Thiết kế cơ chế kháng lẩn tránh đối kháng (Adversarial Robustness Suite)**: Xây dựng quy trình chuẩn hóa chuỗi (Unicode NFKC, De-spacing, De-leetspeak) kết hợp bộ giải mã heuristic ciphers (Base64, Hex) để vô hiệu hóa các thủ thuật lẩn tránh.
 4. **Đo lường hiệu năng suy luận & Tối ưu hóa độ trễ thực tế**: Đánh giá thực nghiệm độ trễ suy luận (P95 Latency Profiling) và thông lượng (RPS) trên hạ tầng CPU thông thường, bảo đảm độ trễ thấp P95 < 30ms.
 5. **Đóng gói Asynchronous Middleware & Testing Dashboard**: Xây dựng hệ thống API Middleware bất đồng bộ hiệu năng cao (FastAPI) tích hợp động cơ chính sách Tri-State (`ALLOW`, `REVIEW`, `BLOCK`) và giao diện kiểm thử trực quan (Streamlit) với ma trận 4 kịch bản minh họa ($2 \times 2$) hỗ trợ kiểm nghiệm độc lập với 5 mô hình LLM thương mại qua Cloud API.
@@ -252,7 +252,7 @@ Nhóm nghiên cứu khẳng định: **Đây là một lựa chọn kiến trúc
 1. **Giải mã bóc tách đa tầng Obfuscation**: Tích hợp bộ giải mã Heuristic Cipher/Base64 tiền trạm bóc tách mã hóa đối kháng.
 2. **Kháng nhiễu ký tự bằng Character n-grams**: Tận dụng TF-IDF `char_wb` (3-5 ký tự) để bắt dính các từ khóa bị làm nhiễu Leetspeak (`1gn0r3`) hoặc phân mảnh khoảng trắng (`i g n o r e`).
 3. **Triệt tiêu thủ thuật lẩn tránh bằng Emoji/Homoglyphs**: Chuẩn hóa Unicode NFKC và loại bỏ ký tự vô hình tàng hình trước khi token hóa.
-4. **Phân tách ranh giới ngữ nghĩa bằng Disentangled Attention**: Cơ chế bóc tách vector vị trí và nội dung của DeBERTa-v3 giúp nhận diện chuẩn xác câu lệnh ghi đè chỉ thị.
+4. **Phân tách ranh giới ngữ nghĩa bằng Disentangled Attention**: Cơ chế bóc tách vector vị trí và nội dung của DeBERTa-v3 [[11]](#ref11) giúp nhận diện chuẩn xác câu lệnh ghi đè chỉ thị.
 5. **Cơ chế quét ưu tiên cho văn bản dài (Prioritized Window Scanning)**: Thiết kế giải thuật chia khối trượt ưu tiên quét phần đầu và đuôi văn bản, giải quyết rủi ro Indirect Prompt Injection ẩn trong tài liệu RAG dài.
 
 ### 1.5.4. Ba Giới Hạn Khoa Học Ngoài Tầm Với (Scientific Boundaries)
@@ -457,7 +457,7 @@ Từ kết quả khảo sát y văn quốc tế, nhóm xác định **3 Khoảng
 1. **Đóng góp 1 (Kỹ thuật dữ liệu an ninh — Thuật toán Group-Aware Splitting khử rò rỉ dữ liệu cụm)**:
    - Xây dựng phương pháp luận phân chia dữ liệu bảo toàn cụm dựa trên khoảng cách ngữ nghĩa và chuỗi ký tự, đảm bảo toàn bộ biến thể của cùng một mẫu tấn công chỉ xuất hiện ở tập Train hoặc tập Test, triệt tiêu rò rỉ dữ liệu ($\text{Inter-cluster Jaccard} < 0.15$) và bảo đảm tính khách quan khi đánh giá năng lực khái quát hóa ngoại miền (OOD).
 2. **Đóng góp 2 (Kiến trúc mô hình — Hệ thống phòng thủ phân tầng Two-Tier Cascade Hybrid)**:
-   - Thiết kế cơ chế phối hợp hai tầng: Tầng 1 lọc cú pháp nhanh (**Word & Character n-grams TF-IDF**) để đánh chặn sớm các mẫu tấn công cú pháp và biến dị phân mảnh ký tự với chi phí tính toán cực thấp (~3ms); Tầng 2 phân loại ngữ nghĩa sâu (**Fine-tuned DeBERTa-v3**) với cơ chế Disentangled Attention bóc tách câu lệnh chỉ thị khỏi dữ liệu để nhận diện tấn công tinh vi (DAN Roleplay, Context Switching) đạt độ trễ P95 < 30ms trên CPU.
+   - Thiết kế cơ chế phối hợp hai tầng: Tầng 1 lọc cú pháp nhanh (**Word & Character n-grams TF-IDF**) để đánh chặn sớm các mẫu tấn công cú pháp và biến dị phân mảnh ký tự với chi phí tính toán cực thấp (~3ms); Tầng 2 phân loại ngữ nghĩa sâu (**Fine-tuned DeBERTa-v3** [[11]](#ref11)) với cơ chế Disentangled Attention bóc tách câu lệnh chỉ thị khỏi dữ liệu để nhận diện tấn công tinh vi (DAN Roleplay, Context Switching) đạt độ trễ P95 < 30ms trên CPU.
 3. **Đóng góp 3 (Cơ chế kháng lẩn tránh đối kháng đa tầng & Giải mã Heuristic Ciphers)**:
    - Xây dựng quy trình chuẩn hóa chuỗi (Unicode NFKC, De-spacing, De-leetspeak) kết hợp bộ giải mã heuristic ciphers (Base64, Hex) tiền trạm, duy trì độ bền vững đối kháng cao với độ suy giảm hiệu năng $\Delta F_1 < 5\%$ trước các công cụ tạo nhiễu đối kháng.
 4. **Đóng góp 4 (Hệ thống Guardrail Middleware trực tuyến & Khống chế Báo động nhầm)**:

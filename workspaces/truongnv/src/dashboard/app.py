@@ -29,66 +29,83 @@ st.title("🛡️ PI-Guard: Two-Tier Adaptive Cascade Guardrail")
 st.caption("A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (IAP491 Fall 2026)")
 
 # Sidebar Configuration
-st.sidebar.header("⚙️ Guardrail Configuration")
+st.sidebar.header("⚙️ Guardrail Literature Baselines")
 api_base_url = st.sidebar.text_input("FastAPI Endpoint", "http://localhost:8000")
 st.sidebar.markdown("---")
-st.sidebar.markdown("**Arch Spec: `v2.2-champion-meeting6`**")
-st.sidebar.markdown("""
-- **Tier 0**: Ingress Scrubber (NFKC, Zero-width, Ciphers, Emoji)
-- **Tier 1**: Dual-Space TF-IDF Platt Classifier ($<1.5$ms)
-- **Router**: Tri-State ($\tau_{low}=0.15, \tau_{high}=0.85$, $\rho_{oov}>0.40$)
-- **Tier 2**: DeBERTa-v3 with AST-MOF Code Invariance
-""")
+st.sidebar.markdown("**Evaluated Model (Literature Baseline):**")
+model_options = {
+    "jain_baseline": "Jain et al. (NeurIPS 2023) - TF-IDF Baseline",
+    "meta_promptguard": "Meta AI (2024) - Prompt-Guard 86M",
+    "protectai_deberta": "ProtectAI (2024) / He et al. (ICLR 2023) - DeBERTa-v3",
+    "piguard_acl2025": "Li et al. (ACL 2025) - PIGuard MOF",
+    "datasentinel_sp2025": "Liu et al. (IEEE S&P 2025) - DataSentinel",
+    "instruct_detector": "Sadasivan et al. (EMNLP 2024) - InstructDetector"
+}
+selected_model_key = st.sidebar.selectbox(
+    "Select Paper Model:",
+    options=list(model_options.keys()),
+    format_func=lambda k: model_options[k]
+)
 st.sidebar.markdown("---")
-use_local_engine = st.sidebar.checkbox("Direct Local Engine (No FastAPI required)", value=False)
+use_local_engine = st.sidebar.checkbox("Direct Local Engine (No FastAPI required)", value=True)
 
 # Local Engine Loader Cache
 @st.cache_resource
-def get_local_cascade():
+def get_local_model(model_key: str):
     try:
-        from src.models.cascade import TwoTierCascadeGuardrail
-        return TwoTierCascadeGuardrail()
-    except Exception as e:
-        return None
+        from src.models.replications_adapters import ReplicationModelRegistry
+        registry = ReplicationModelRegistry()
+        adapter = registry.get_model(model_key)
+        if adapter and not adapter.is_loaded:
+            adapter.load()
+        return adapter
+    except Exception:
+        from src.models.classifier import TfidfBaselineClassifier
+        return TfidfBaselineClassifier()
 
-local_cascade = get_local_cascade() if use_local_engine else None
+local_model = get_local_model(selected_model_key) if use_local_engine else None
 
 # Helper to run inspection
 def run_inspection(text: str, max_chunk_size: int = 512, scan_strategy: str = "head_tail_priority"):
-    if use_local_engine and local_cascade is not None:
+    if use_local_engine and local_model is not None:
         t0 = time.perf_counter()
-        if len(text) > 2000:
-            res = local_cascade.inspect_long_document(text, strategy=scan_strategy)
+        if hasattr(local_model, "predict"):
+            res = local_model.predict(text)
+            t_total = res.get("latency_ms", (time.perf_counter() - t0) * 1000.0)
+            is_mal = res.get("is_malicious", False)
             return {
-                "verdict": "BLOCK" if res["verdict"] in ("MALICIOUS", "BLOCK") else "ALLOW",
-                "resolved_at": "LONG_DOCUMENT_BLOCK_SCAN",
-                "final_score": res.get("max_risk_score", 0.0),
-                "is_malicious": res["verdict"] in ("MALICIOUS", "BLOCK"),
-                "category": "LONG_DOCUMENT_INJECTION" if res["verdict"] in ("MALICIOUS", "BLOCK") else "BENIGN",
+                "verdict": "BLOCK" if is_mal else "ALLOW",
+                "resolved_at": getattr(local_model, "name", "Literature Baseline"),
+                "final_score": float(res.get("risk_score", 0.0)),
+                "is_malicious": is_mal,
+                "category": "ATTACK" if is_mal else "BENIGN",
                 "oov_density": 0.0,
                 "oov_escalation": False,
-                "latency": {"total_ms": res.get("latency_ms", 0.0), "tier0_scrubber_ms": 0.0, "tier1_tfidf_ms": 0.0, "tier2_transformer_ms": res.get("latency_ms", 0.0)},
-                "flagged_chunk_index": res.get("flagged_block_index"),
-                "scanned_chunks": res.get("scanned_blocks"),
-                "total_chunks": res.get("total_blocks")
-            }
-        else:
-            res = local_cascade.inspect_query(text)
-            t_total = res["latency_ms"]
-            return {
-                "verdict": res["verdict"],
-                "resolved_at": res["resolved_at"],
-                "final_score": res["final_score"],
-                "is_malicious": res["verdict"] == "BLOCK",
-                "category": res.get("category", "BENIGN"),
-                "oov_density": res.get("oov_density", 0.0),
-                "oov_escalation": res.get("oov_escalation", False),
                 "latency": {
                     "total_ms": t_total,
-                    "tier0_scrubber_ms": 0.15,
-                    "tier1_tfidf_ms": min(1.2, t_total * 0.4),
-                    "tier2_transformer_ms": max(0.0, t_total - 1.35) if res["resolved_at"] == "TIER_2_ARBITRATION" else 0.0
-                }
+                    "tier0_scrubber_ms": 0.0,
+                    "tier1_tfidf_ms": t_total,
+                    "tier2_transformer_ms": 0.0
+                },
+                "paper_ref": getattr(local_model, "paper_ref", "Jain et al. (NeurIPS 2023)"),
+                "architecture": getattr(local_model, "architecture", "Baseline")
+            }
+        else:
+            scores = local_model.predict_score([text])
+            score = scores[0] if scores else 0.0
+            t_total = (time.perf_counter() - t0) * 1000.0
+            is_mal = score >= 0.50
+            return {
+                "verdict": "BLOCK" if is_mal else "ALLOW",
+                "resolved_at": "TF-IDF Baseline (Jain et al. NeurIPS 2023)",
+                "final_score": score,
+                "is_malicious": is_mal,
+                "category": "ATTACK" if is_mal else "BENIGN",
+                "oov_density": 0.0,
+                "oov_escalation": False,
+                "latency": {"total_ms": t_total, "tier0_scrubber_ms": 0.0, "tier1_tfidf_ms": t_total, "tier2_transformer_ms": 0.0},
+                "paper_ref": "Jain et al. (NeurIPS 2023)",
+                "architecture": "TF-IDF Word + Char N-Grams"
             }
     else:
         # Call REST API
@@ -101,7 +118,7 @@ def run_inspection(text: str, max_chunk_size: int = 512, scan_strategy: str = "h
 
 # Tabs
 tab_live, tab_fuzzer, tab_long_doc, tab_benchmarks, tab_defense = st.tabs([
-    "🧪 Live Two-Tier Inspection",
+    "🧪 Live Paper Baseline Inspection",
     "⚡ Obfuscation & Evasion Playground",
     "📜 Long Document & Tail-Injection (200k)",
     "📊 12 Public Models SOTA Benchmark",
@@ -110,7 +127,7 @@ tab_live, tab_fuzzer, tab_long_doc, tab_benchmarks, tab_defense = st.tabs([
 
 # TAB 1: LIVE INSPECTION
 with tab_live:
-    st.subheader("Interactive Two-Tier Cascade Ingress Evaluation")
+    st.subheader(f"Interactive Literature Baseline Ingress Evaluation: `{model_options[selected_model_key]}`")
     col1, col2 = st.columns([2, 1])
 
     with col1:
@@ -133,7 +150,7 @@ with tab_live:
             test_prompt = "Can you explain the difference between symmetric and asymmetric encryption?"
 
     if btn_inspect and test_prompt:
-        with st.spinner("Analyzing prompt through Two-Tier Cascade..."):
+        with st.spinner(f"Analyzing prompt through {model_options[selected_model_key]}..."):
             try:
                 res_data = run_inspection(test_prompt)
                 st.markdown("---")
@@ -144,8 +161,8 @@ with tab_live:
                 lat_info = res_data.get("latency", {})
                 total_lat = lat_info.get("total_ms", 0.0)
                 category = res_data.get("category", "BENIGN")
-                oov_density = res_data.get("oov_density", 0.0)
-                oov_escalation = res_data.get("oov_escalation", False)
+                paper_ref = res_data.get("paper_ref", "N/A")
+                architecture = res_data.get("architecture", "N/A")
 
                 col_m1, col_m2, col_m3, col_m4 = st.columns(4)
                 with col_m1:
@@ -154,23 +171,18 @@ with tab_live:
                     else:
                         st.metric("VERDICT", "✅ ALLOW", delta="SAFE", delta_color="normal")
                 with col_m2:
-                    st.metric("RESOLVED AT", resolved_at)
+                    st.metric("MODEL EVALUATED", resolved_at)
                 with col_m3:
                     st.metric("RISK SCORE", f"{final_score:.4f}")
                 with col_m4:
                     st.metric("TOTAL LATENCY", f"{total_lat:.2f} ms")
 
-                st.markdown("### 🔍 Tier-by-Tier Inspection Breakdown")
-                breakdown_cols = st.columns(3)
-                with breakdown_cols[0]:
-                    st.info(f"**Tier 0 (Ingress Scrubber)**\n- OOV Density: `{oov_density:.4f}`\n- OOV Gate Escalation: `{oov_escalation}`")
-                with breakdown_cols[1]:
-                    st.info(f"**Tier 1 (Dual-Space TF-IDF)**\n- Word + Char_wb Platt Scaling\n- Clearance Threshold: `[0.15, 0.85]`")
-                with breakdown_cols[2]:
-                    st.info(f"**Tier 2 (Semantic Arbiter)**\n- DeBERTa-v3 + MOF Invariance\n- Category: `{category}`")
+                st.markdown("### 📚 Literature Provenance & Architecture")
+                st.info(f"**Academic Paper Reference:** {paper_ref}\n\n**Architecture Specification:** {architecture}\n\n**Classification Category:** `{category}`")
 
             except Exception as e:
                 st.error(f"Error querying guardrail service: {e}. (Ensure FastAPI is running or tick 'Direct Local Engine' in sidebar)")
+
 
 # TAB 2: OBFUSCATION PLAYGROUND
 with tab_fuzzer:

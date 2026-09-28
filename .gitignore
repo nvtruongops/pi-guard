@@ -116,3 +116,6 @@ site/
 .playwright-mcp/
 # CodeGraph Index Cache
 .codegraph/
+
+# Agent-only scratch files are ignored inside each member's own sandbox
+workspaces/*/.agent-work/

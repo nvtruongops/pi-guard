@@ -759,7 +759,7 @@
       "paradigm_name": "Char-Level Typographical Anomaly",
       "score": 10,
       "status": "Native",
-      "justification": "Native champion for typographical anomaly: char_wb captures leetspeak, punctuation obfuscation, and typos."
+      "justification": "Native capability for typographical anomaly: char_wb captures leetspeak, punctuation obfuscation, and typos."
     },
     {
       "model_id": "M4",
@@ -1416,7 +1416,7 @@
       "paradigm_name": "Disentangled Content-Position Attention",
       "score": 10,
       "status": "Native",
-      "justification": "Sovereign Champion: Decouples content and relative position across 3 attention matrices (He ICLR 2023)."
+      "justification": "Theoretical Optimum: Decouples content and relative position across 3 attention matrices (He ICLR 2023)."
     },
     {
       "model_id": "M9",
@@ -1425,7 +1425,7 @@
       "paradigm_name": "Mitigating Overdefense (MOF) KL Loss",
       "score": 10,
       "status": "Native",
-      "justification": "Sovereign Champion: MOF KL loss (Li ACL 2025) eliminates keyword trigger bias while preserving F1 > 0.95."
+      "justification": "Optimal Synergy: MOF KL loss (Li ACL 2025) eliminates keyword trigger bias while preserving F1 > 0.95."
     },
     {
       "model_id": "M9",
@@ -1443,7 +1443,7 @@
       "paradigm_name": "Minimax Adversarial Optimization",
       "score": 10,
       "status": "Native",
-      "justification": "Sovereign Champion: Minimax optimization (DataSentinel) hardens DeBERTa against adaptive evasion."
+      "justification": "Optimal Synergy: Minimax optimization (DataSentinel) hardens DeBERTa against adaptive evasion."
     },
     {
       "model_id": "M9",
@@ -1452,7 +1452,7 @@
       "paradigm_name": "Conformal Risk Control (CRC) Bounds",
       "score": 10,
       "status": "Native",
-      "justification": "Sovereign Champion: Finite-sample CRC calibrates softmax output to rigorously bound FPR <= 1.5%."
+      "justification": "Optimal Synergy: Finite-sample CRC calibrates softmax output to rigorously bound FPR <= 1.5%."
     },
     {
       "model_id": "M9",
@@ -1731,7 +1731,7 @@
       "paradigm_name": "Head-and-Tail Priority Chunking",
       "score": 10,
       "status": "Native",
-      "justification": "Sovereign Champion: Native 8,192 window eliminates the need for block chunking on documents up to 32k characters!"
+      "justification": "Native long-window capability: Native 8,192 window eliminates the need for block chunking on documents up to 32k characters!"
     },
     {
       "model_id": "M11",
@@ -1758,7 +1758,7 @@
       "paradigm_name": "Sliding-Window Perplexity (PPL)",
       "score": 10,
       "status": "Native",
-      "justification": "Native champion: Autoregressive causal decoder computes exact token perplexity in a single forward pass."
+      "justification": "Native generative capability: Autoregressive causal decoder computes exact token perplexity in a single forward pass."
     },
     {
       "model_id": "M12",

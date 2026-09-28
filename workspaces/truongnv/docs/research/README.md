@@ -6,21 +6,44 @@ Toàn bộ các tài liệu trong phân hệ này được xây dựng theo nguy
 
 ---
 
-## 🗺️ Bản Đồ 7 Chuyên Đề Nghiên Cứu Chuyên Sâu (7 Scientific Study Suites)
+## 🏛️ KIẾN TRÚC 3 TẦNG TÀI LIỆU NGHIÊN CỨU & NGUỒN CHÂN LÝ DUY NHẤT (SSOT)
+
+Toàn bộ hệ thống tài liệu nghiên cứu của phân hệ Trưởng nhóm (`truongnv`) được tái cấu trúc theo mô hình **Kim Tự Tháp 3 Tầng (3-Tier Documentation Pyramid)** nhằm triệt tiêu sự trùng lặp (DRY Principle) và đảm bảo tính truy xuất nguồn gốc học thuật minh bạch 100%:
 
 ```text
-research/
-├── prompt_study/                   # [CHUYÊN ĐỀ 1] LLM Foundations, Token Generation & Flat Boundary
-├── attack_study/                   # [CHUYÊN ĐỀ 2] Prompt Injection & Modern Jailbreak Taxonomy
-├── threat_and_defense_study/       # [CHUYÊN ĐỀ 3] NIST/OWASP Threat Model & 3-Tier Layered Defense
-├── dataset_and_benchmark_study/    # [CHUYÊN ĐỀ 4] Data Curation, Balance & Group-Aware Splitting
-├── model_study/                    # [CHUYÊN ĐỀ 5] TF-IDF Baseline, DeBERTa-v3 & Two-Tier Architecture
-├── robustness_study/               # [CHUYÊN ĐỀ 6] Adversarial Obfuscation, Tokenizer Fragility & Evasion
-├── evaluation_and_tradeoff_study/  # [CHUYÊN ĐỀ 7] False Positive Economics, Pareto Frontier & Trade-offs
-└── comparative_analysis/           # [CHUYÊN KHẢO ĐỐI CHUẨN] SOTA Guardrails, Target LLMs & Tencent 2026
+               ▲
+              / \     TẦNG 1: 5 CANONICAL TECHNICAL DOSSIERS (Single Source of Truth)
+             /   \    docs/research/dossiers/ (01 -> 05)
+            /-----\
+           /       \  TẦNG 2: BÁO CÁO CỘT MỐC HỘI ĐỒNG & REVIEW 1 (Milestones)
+          /         \ reports/REVIEW_1_REPORT.md & tasks_for_meeting_5, 6
+         /-----------\
+        /             \ TẦNG 3: CHUYÊN ĐỀ Y VĂN CHI TIẾT & CHỨNG TÍCH LỊCH SỬ (Foundations)
+       /               \ docs/research/ (8 Chuyên đề gốc) & replications/ (11 mô hình)
+      /-----------------\
 ```
 
+> 📜 **Bản đồ Truy xuất Nguồn gốc Toàn diện**: Xem toàn bộ cây phả hệ học thuật, căn cứ thực nghiệm và y văn đối chuẩn tại [`DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md).
+
 ---
+
+## 💎 TẦNG 1: 5 HỒ SƠ KỸ THUẬT CHUẨN MỰC (CANONICAL TECHNICAL DOSSIERS)
+
+Mỗi hồ sơ kỹ thuật dưới đây là **Nguồn Chân Lý Duy Nhất (SSOT)** cho từng trụ cột nghiên cứu của đồ án, được tổng hợp cô đọng từ các nhiệm vụ tiền thân và tích hợp khối Derivation Header kiểm chứng nguồn gốc:
+
+| Mã Hồ Sơ | Tên Hồ Sơ Kỹ Thuật (Canonical Dossier) | Phạm Vi & Định Vị Học Thuật | Nguồn Tiền Thân & Căn Cứ Thực Nghiệm |
+| :---: | :--- | :--- | :--- |
+| **Dossier 01** | [`01_MATHEMATICAL_FOUNDATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/01_MATHEMATICAL_FOUNDATIONS.md) | Cơ sở lý thuyết, Hình thức hóa toán học ranh giới phẳng $X = S \mathbin{\Vert} U$, Đảo quyền chú ý Attention Inversion, 4 tầng thiệt hại doanh nghiệp & 3 Câu hỏi nghiên cứu RQ1–RQ3. | Task 1 Meeting 5 + Supplementary Deep-Dive + Track 1 Deep Research. Y văn: Perez & Ribeiro `[3]`, Greshake et al. `[4]`. |
+| **Dossier 02** | [`02_THREAT_MODEL_AND_8KEYS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/02_THREAT_MODEL_AND_8KEYS.md) | Khung mô hình hiểm họa 5 trục NIST AI 100-2e2025, Bề mặt duy nhất cổng REST API, Sequence diagram kiểm tra trung gian toàn diện, và Ma trận phủ kín 8 Key tấn công. | Task 2 Meeting 5 + Meeting 6 Sec 01 + Track 2 Deep Research. Y văn: Saltzer & Schroeder (1975), NIST AI `[7]`, OWASP `[8]`. |
+| **Dossier 03** | [`03_SOTA_SURVEY_AND_6BASELINES.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/03_SOTA_SURVEY_AND_6BASELINES.md) | Phễu lựa chọn khoa học 5 bước (41 $\to$ 16 $\to$ 11 $\to$ 9 $\to$ 6), Bảng đối chuẩn thực nghiệm 6 baseline đại diện 5 trường phái, Phân tích tử huyệt kỹ thuật chứng minh tính tất yếu của Two-Tier Cascade. | Task 2.5 Meeting 5 + Meeting 6 Sec 01-02 + Track 3 Deep Research. 100% Un-mocked benchmarks trên D1–D6. |
+| **Dossier 04** | [`04_DATA_ENGINEERING_PROVENANCE.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/04_DATA_ENGINEERING_PROVENANCE.md) | Thu thập kho dữ liệu 45,000+ mẫu đa nguồn, Báo cáo kiểm toán 100% SHA-256 trên 25 tệp dữ liệu, Thuật toán Group-Aware Splitting khử rò rỉ dữ liệu cụm, và Vai trò kiểm chuẩn NotInject D6. | Task 3 Meeting 5 + Meeting 6 Sec 04 + Track 4 Deep Research. Script `audit_datasets_provenance_deep.py`. |
+| **Dossier 05** | [`05_ARCHITECTURAL_DEPRECATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/05_ARCHITECTURAL_DEPRECATIONS.md) | Đóng băng kiến trúc chính thức, Danh mục các chủ đề loại bỏ tuyệt đối (INT8, ONNX, White-Box KV-Cache, Generative Guardrails) và Bộ câu hỏi phản biện bảo vệ trước Hội đồng FPT. | `ARCHITECTURAL_DEPRECATIONS...md` + Meeting 6 Sec 02 & Defense Strategy. Rule 02, Rule 05 governance. |
+
+---
+
+## 📚 TẦNG 3: CÁC CHUYÊN ĐỀ NGHIÊN CỨU CHI TIẾT (THEMATIC STUDY SUITES)
+
+Dành cho các thành viên và Giảng viên hướng dẫn muốn tra cứu các chứng minh toán học nguyên bản, phân tích từng họ payload hoặc lịch sử tiến hóa:
 
 ### 1. 🔤 Chuyên Đề 1: Prompt Study ([`prompt_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/prompt_study/))
 Nghiên cứu bản chất vật lý của LLM, cơ chế sinh token tự hồi quy và lỗ hổng ranh giới phẳng:

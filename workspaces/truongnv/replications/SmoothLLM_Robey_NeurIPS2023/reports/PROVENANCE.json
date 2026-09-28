@@ -1,0 +1,38 @@
+{
+  "model_id": "SmoothLLM_Robey_NeurIPS2023",
+  "display_name": "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks",
+  "role": "Randomized Defense Survey (NeurIPS 2023)",
+  "tier_1_paper_provenance": {
+    "title": "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks",
+    "paper_url": "https://arxiv.org/abs/2310.03684",
+    "local_pdf": "papers\\Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf"
+  },
+  "tier_2_code_provenance": {
+    "upstream_code_url": "https://github.com/arobey1/smooth-llm",
+    "upstream_directory": "upstream/"
+  },
+  "tier_3_dataset_provenance": {
+    "datasets_url": "https://github.com/arobey1/smooth-llm/tree/main/data/GCG",
+    "local_datasets": [
+      {
+        "filename": "llama2_behaviors.json",
+        "sha256": "f96d53e113bb3b839c6d0c9d4b2f3ab611e5b8fb4fd4a1cc68fb852f271cf286",
+        "size_bytes": 2721
+      },
+      {
+        "filename": "smoothllm_eval_benchmark.json",
+        "sha256": "166a3d9f43319bcda6f8ad93965d3ba0f98ea46cc334e8a8a15f2745dc8cb4b9",
+        "size_bytes": 5217
+      },
+      {
+        "filename": "vicuna_behaviors.json",
+        "sha256": "7396b50e123775b7d7080b2c475240401fb8e41ff1f91f9d0491663a01cb4ead",
+        "size_bytes": 2659
+      }
+    ]
+  },
+  "tier_4_verification": {
+    "status": "PASS",
+    "checked_by": "workspaces/truongnv/scripts/check_replication_origin_urls.py"
+  }
+}

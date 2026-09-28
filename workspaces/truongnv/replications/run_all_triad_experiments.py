@@ -58,7 +58,9 @@ def main():
     # 3. Run JailbreakBench
     print("\n>>> [3/3] Executing JailbreakBench (NeurIPS 2024) Benchmark...")
     p3_script = os.path.join(REPLICATIONS_DIR, "JailbreakBench_Chao_NeurIPS2024", "run_jailbreakbench_replication.py")
-    res3 = subprocess.run([PYTHON_EXE, p3_script], capture_output=True, text=True)
+    if not os.path.exists(p3_script):
+        p3_script = os.path.join(REPLICATIONS_DIR, "..", "references_study", "harnesses", "JailbreakBench_Chao_NeurIPS2024", "run_jailbreakbench_replication.py")
+    res3 = subprocess.run([PYTHON_EXE, p3_script], capture_output=True, text=True, cwd=os.path.dirname(p3_script))
     if res3.returncode != 0:
         print(f"[ERROR] JailbreakBench failed: {res3.stderr[:400]}")
     else:
@@ -68,6 +70,8 @@ def main():
     protectai_json_path = os.path.join(REPLICATIONS_DIR, "ProtectAI_DeBERTa_v3_v2", "PROTECTAI_REPLICATION_BENCHMARK_RESULTS.json")
     smoothllm_json_path = os.path.join(REPLICATIONS_DIR, "SmoothLLM_Robey_NeurIPS2023", "SMOOTHLLM_REPLICATION_BENCHMARK_RESULTS.json")
     jbb_json_path = os.path.join(REPLICATIONS_DIR, "JailbreakBench_Chao_NeurIPS2024", "JAILBREAKBENCH_REPLICATION_BENCHMARK_RESULTS.json")
+    if not os.path.exists(jbb_json_path):
+        jbb_json_path = os.path.join(REPLICATIONS_DIR, "..", "references_study", "harnesses", "JailbreakBench_Chao_NeurIPS2024", "JAILBREAKBENCH_REPLICATION_BENCHMARK_RESULTS.json")
     
     with open(protectai_json_path, "r", encoding="utf-8") as f:
         data_p1 = json.load(f)

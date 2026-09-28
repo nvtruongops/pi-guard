@@ -67,6 +67,8 @@ def prepare_suite():
 
     # 3. D3: JailbreakBench Harmful Behaviors (Chao et al. NeurIPS 2024)
     jbb_path = os.path.join(REPLICATIONS_DIR, "JailbreakBench_Chao_NeurIPS2024", "datasets", "jbb_behaviors_harmful.json")
+    if not os.path.exists(jbb_path):
+        jbb_path = os.path.join(WORKSPACE_ROOT, "references_study", "harnesses", "JailbreakBench_Chao_NeurIPS2024", "datasets", "jbb_behaviors_harmful.json")
     d3_samples = []
     if os.path.exists(jbb_path):
         with open(jbb_path, "r", encoding="utf-8") as f:

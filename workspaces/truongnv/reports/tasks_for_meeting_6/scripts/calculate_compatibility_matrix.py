@@ -90,10 +90,10 @@ MATRIX_EVALUATIONS = {
     ("M5", "A1"): {"score": 2, "status": "Incompatible", "reason": "DeBERTa-v3 / ModernBERT self-attention captures semantics natively; TF-IDF is redundant inside M5."},
     ("M5", "A2"): {"score": 6, "status": "Conditional", "reason": "RTD discriminator scores can flag replaced/adversarial tokens, but cross-attention is the primary task."},
     ("M5", "A3"): {"score": 7, "status": "Conditional", "reason": "Less anisotropic than BERT; can serve as a strong metric backbone, though direct classification is superior."},
-    ("M5", "A4"): {"score": 10, "status": "Native", "reason": "Sovereign Champion: Disentangled Attention (content vs relative pos) + MOF loss eliminates keyword trigger bias."},
+    ("M5", "A4"): {"score": 10, "status": "Native", "reason": "Theoretical Optimum: Disentangled Attention (content vs relative pos) + MOF loss eliminates keyword trigger bias."},
     ("M5", "A5"): {"score": 6, "status": "Conditional", "reason": "High latency overhead (25ms -> 250ms); best reserved for offline fuzzing rather than online inference."},
-    ("M5", "A6"): {"score": 10, "status": "Native", "reason": "Sovereign Champion: Minimax adversarial optimization (DataSentinel) hardens DeBERTa against adaptive evasion."},
-    ("M5", "A7"): {"score": 10, "status": "Native", "reason": "Sovereign Champion: CRC calibrates softmax risk to guarantee FPR <= 1.5% with 95% statistical confidence."},
+    ("M5", "A6"): {"score": 10, "status": "Native", "reason": "Optimal Synergy: Minimax adversarial optimization (DataSentinel) hardens DeBERTa against adaptive evasion."},
+    ("M5", "A7"): {"score": 10, "status": "Native", "reason": "Optimal Synergy: CRC calibrates softmax risk to guarantee FPR <= 1.5% with 95% statistical confidence."},
 
     ("M6", "A1"): {"score": 1, "status": "Incompatible", "reason": "Applying classical bag-of-words TF-IDF to an 8B autoregressive model is architecturally obsolete."},
     ("M6", "A2"): {"score": 10, "status": "Native", "reason": "Autoregressive Causal LLM is the native generator of perplexity; computes input sequence PPL in a single pass."},

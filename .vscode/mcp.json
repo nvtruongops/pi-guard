@@ -1,87 +1,49 @@
 {
-  "mcpServers": {
+  "servers": {
     "arxiv": {
-      "command": "arxiv-mcp-server",
-      "description": "Academic literature search, abstract extraction, citation graph, and deep research on arXiv"
-    },
-    "scholar-feed": {
-      "command": "npx",
+      "type": "stdio",
+      "command": "uvx",
       "args": [
-        "-y",
-        "scholar-feed-mcp"
-      ],
-      "description": "Scholarly paper search across 600k+ CS/AI/ML papers, citation lineage tracking, full text extraction, and BibTeX retrieval"
-    },
-    "openalex": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "openalex-mcp"
-      ],
-      "description": "Global academic index (250M+ works) with automated Open-Access PDF discovery and peer-reviewed paper resolution (ACM, IEEE, NeurIPS)"
-    },
-    "semanticscholar": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@xbghc/semanticscholar-mcp"
-      ],
-      "description": "Semantic Scholar API with AI-powered TLDR summaries, influential citation analysis, and citation graph exploration"
+        "--python",
+        "3.13",
+        "--from",
+        "arxiv-mcp-server==0.7.2",
+        "arxiv-mcp-server"
+      ]
     },
     "kaggle": {
+      "type": "stdio",
       "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://www.kaggle.com/mcp"
-      ],
-      "description": "Official Kaggle MCP server for exploring datasets, running GPU cloud notebooks/labs, and managing experimental baselines"
+      "args": ["-y", "mcp-remote", "https://www.kaggle.com/mcp"]
     },
     "duckduckgo-search": {
+      "type": "stdio",
       "command": "npx",
-      "args": [
-        "-y",
-        "@ericthered926/duckduckgo-mcp-server"
-      ],
-      "description": "Internet and web search access for retrieving latest information, documentation, and research papers"
+      "args": ["-y", "@ericthered926/duckduckgo-mcp-server"]
     },
     "jupyter": {
-      "command": "mcp-server-jupyter",
-      "description": "Jupyter Notebook MCP server for creating, editing, and executing Python notebook cells with network access"
+      "type": "stdio",
+      "command": "mcp-server-jupyter"
     },
     "playwright": {
+      "type": "stdio",
       "command": "npx",
-      "args": [
-        "-y",
-        "@playwright/mcp",
-        "--headless"
-      ],
-      "description": "Browser automation and web scraping MCP server for fetching online pages"
+      "args": ["-y", "@playwright/mcp", "--headless"]
     },
     "memory": {
+      "type": "stdio",
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-memory"
-      ],
-      "description": "Knowledge Graph Memory for project context and decisions"
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
     },
     "sequential-thinking": {
+      "type": "stdio",
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ],
-      "description": "Multi-step structured reasoning and analysis"
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
     },
     "officecli": {
+      "type": "stdio",
       "command": "npx",
-      "args": [
-        "-y",
-        "@officecli/officecli",
-        "mcp"
-      ],
-      "description": "OfficeCLI MCP server for reading, editing, and automating Office documents (.docx, .xlsx, .pptx)"
+      "args": ["-y", "@officecli/officecli", "mcp"]
     }
   }
 }

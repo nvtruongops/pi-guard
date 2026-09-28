@@ -127,7 +127,7 @@ $$P\left(\min_{s \in S(d_1)} h_i(s) = \min_{s \in S(d_2)} h_i(s)\right) = J(S(d_
 
 1. **Toán Tử Biến Đổi Ngữ Pháp (Syntactic Paraphrasing)**: Sử dụng mô hình LLM để viết lại câu lệnh tấn công gốc thành 3 phong cách hành văn khác nhau (trang trọng, văn nói thô sơ, văn bản kỹ thuật) mà vẫn giữ nguyên vector ý đồ tấn công.
 2. **Toán Tử Chèn Ký Tự Nhiễu (Obfuscation Injection)**: Chèn leetspeak nhẹ, khoảng trắng thừa hoặc ký tự Unicode đồng dạng (Homoglyphs) theo phân phối Bernoulli $p = 0.15$.
-3. **Toán Tử Ghép Nối Phức Hợp (Multi-turn Context Wrapping)**: Bọc payload tấn công vào giữa các đoạn hội thoại lập trình vô hại để kiểm tra khả năng định vị trọng tâm của cơ chế Disentangled Attention.
+3. **Toán Tử Ghép Nối Phức Hợp (Multi-turn Context Wrapping)**: Bọc payload tấn công vào giữa các đoạn hội thoại lập trình vô hại để kiểm tra khả năng định vị trọng tâm của cơ chế Disentangled Attention [[8]](#ref8).
 
 ---
 
@@ -212,3 +212,5 @@ if __name__ == "__main__":
 <a id="ref6"></a>**[6]** R. Taori et al., "Stanford Alpaca: An Instruction-following LLaMA Model," *Stanford Center for Research on Foundation Models (CRFM)*, 2023. Link: [https://crfm.stanford.edu/2023/03/13/alpaca.html](https://crfm.stanford.edu/2023/03/13/alpaca.html).
 
 <a id="ref7"></a>**[7]** K. Lee et al., "Deduplicating Training Data Makes Language Models Better," in *ACL Conference*, 2022. Link: [https://arxiv.org/abs/2107.06499](https://arxiv.org/abs/2107.06499).
+
+<a id="ref8"></a>**[8]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in *International Conference on Learning Representations (ICLR)*, 2023. Link: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543).

@@ -1,0 +1,10 @@
+{
+  "model_id": "protectai/deberta-v3-base-prompt-injection-v2",
+  "origin_hub": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2",
+  "base_architecture": "DebertaV2ForSequenceClassification",
+  "base_paper": "He et al., ICLR 2023 (DeBERTaV3)",
+  "weights_license": "Apache-2.0",
+  "parameters": "86M",
+  "input_context_limit": 512,
+  "replication_type": "Hugging Face Hub Checkpoint"
+}

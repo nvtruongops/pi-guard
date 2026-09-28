@@ -364,7 +364,7 @@ Một trong những đóng góp khoa học lớn nhất của sự kết hợp n
    - Nếu chạy đơn lẻ, Tầng 1 sẽ chặn oan câu hỏi này (False Positive).
 2. **Vai trò giải cứu của Tầng 2**:
    - Do điểm số nằm trong vùng bất định ($0.15 < 0.68 < 0.85$), prompt được chuyển lên Tầng 2 DeBERTa-v3.
-   - DeBERTa-v3 sử dụng cơ chế **Disentangled Attention**: Ma trận chú ý giữa token $i$ và token $j$ được tính toán độc lập giữa nội dung và vị trí tương đối:
+   - DeBERTa-v3 sử dụng cơ chế **Disentangled Attention [[TN04]](#term-disentangled-attention)** (He et al. [[9]](#ref9)): Ma trận chú ý giữa token $i$ và token $j$ được tính toán độc lập giữa nội dung và vị trí tương đối:
      $$A_{i,j} = \mathbf{H}_i \mathbf{P}_{j \mid i}^T + \mathbf{P}_{i \mid j} \mathbf{H}_j^T$$
    - Mô hình nhận diện được rằng từ *"How can developers prevent"* đóng vai trò vị ngữ truy vấn chủ đạo, trong khi *"SQL injection"* chỉ là tân ngữ mục tiêu. Cấu trúc câu thể hiện mục đích tìm hiểu phòng thủ chứ không phải câu lệnh chiếm quyền.
    - Kết hợp thuật toán MOF, DeBERTa-v3 kết luận nhãn `Benign` với xác suất $99.2\%$, giải thoát cho truy vấn tiếp tục đi tới LLM.

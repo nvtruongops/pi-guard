@@ -225,7 +225,7 @@ Từ các phân tích đối chuẩn thực nghiệm trên, đồ án PI-Guard x
    - PIGuard là công trình nghiên cứu đầu tiên trên thế giới đề xuất giải pháp kỹ thuật giải quyết triệt để vấn đề này mà không làm suy giảm năng lực bắt mã độc (đạt NotInject Acc $88.3\%$ và Malicious Acc $98.7\%$).
 2. **Thừa kế Bộ Benchmark Chuẩn Mực Độc Quyền `NotInject`**:
    - PIGuard cung cấp bộ dữ liệu NotInject với 3 mức độ phức tạp (1, 2, 3 từ kích hoạt) được chuẩn hóa kỹ lưỡng. Đồ án sử dụng bộ dữ liệu này làm thước đo vàng để đánh giá tính an toàn kinh tế của toàn bộ pipeline.
-3. **Thừa kế Kiến Trúc Backbone DeBERTa-v3 & Disentangled Attention**:
+3. **Thừa kế Kiến Trúc Backbone DeBERTa-v3 & Disentangled Attention [[4]](#ref4)**:
    - Khác với BERT hay RoBERTa thông thường, DeBERTa-v3 tách biệt biểu diễn nội dung và vị trí tương đối. Điều này đặc biệt quan trọng để bắt các câu lệnh tấn công tiêm nhiễm gián tiếp (Indirect Injection) giấu trong tài liệu RAG ($X = S \mathbin{\Vert} U$).
    - Quy mô 86 triệu tham số là "kích thước vàng" (Golden Size): Đủ thông minh để hiểu ngữ nghĩa sâu, nhưng đủ nhỏ gọn để chạy mượt mà trên CPU thông thường sau khi lượng tử hóa INT8.
 4. **Thừa kế Tính Sẵn Sàng Công Khai 100% Của Mã Nguồn & Trọng Số**:

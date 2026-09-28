@@ -245,7 +245,31 @@ def main():
     all_passed = True
     for rel_path, min_b, is_pdf in assets:
         full_path = os.path.normpath(os.path.join(base_dir, rel_path))
+        if not os.path.exists(full_path):
+            parts = rel_path.replace("\\", "/").split("/")
+            if len(parts) > 1:
+                upstream_rel = parts[0] + "/upstream/" + "/".join(parts[1:])
+                cand = os.path.normpath(os.path.join(base_dir, upstream_rel))
+                if os.path.exists(cand):
+                    full_path = cand
+
         passed, msg = check_file(full_path, min_b, is_pdf)
+        if not passed:
+            parts = rel_path.replace("\\", "/").split("/")
+            for sub in ["harnesses", "rejected_baselines"]:
+                study_cand = os.path.normpath(os.path.join(base_dir, "..", "references_study", sub, rel_path))
+                if os.path.exists(study_cand):
+                    full_path = study_cand
+                    passed, msg = check_file(full_path, min_b, is_pdf)
+                    break
+                if len(parts) > 1:
+                    upstream_rel = parts[0] + "/upstream/" + "/".join(parts[1:])
+                    study_cand_up = os.path.normpath(os.path.join(base_dir, "..", "references_study", sub, upstream_rel))
+                    if os.path.exists(study_cand_up):
+                        full_path = study_cand_up
+                        passed, msg = check_file(full_path, min_b, is_pdf)
+                        break
+
         status = "[PASS]" if passed else "[FAIL]"
         print(f"{status:7} {msg}")
         if not passed:
@@ -283,6 +307,14 @@ def main():
 
     for pkg in packages:
         meta_file = os.path.join(base_dir, pkg, "datasets", "METADATA.json")
+        target_dir = os.path.join(base_dir, pkg)
+        if not os.path.exists(meta_file):
+            for sub in ["harnesses", "rejected_baselines"]:
+                cand_meta = os.path.normpath(os.path.join(base_dir, "..", "references_study", sub, pkg, "datasets", "METADATA.json"))
+                if os.path.exists(cand_meta):
+                    meta_file = cand_meta
+                    target_dir = os.path.normpath(os.path.join(base_dir, "..", "references_study", sub, pkg))
+                    break
         if not os.path.exists(meta_file):
             print(f"[FAIL]  Missing METADATA.json in {pkg}")
             all_passed = False
@@ -297,7 +329,7 @@ def main():
         # Verify files listed in metadata
         files_ok = True
         for finfo in meta.get("files", []):
-            fpath = os.path.join(base_dir, pkg, "datasets", finfo["filename"])
+            fpath = os.path.join(target_dir, "datasets", finfo["filename"])
             if not os.path.exists(fpath):
                 print(f"[FAIL]  Missing file {finfo['filename']} in {pkg}/datasets")
                 files_ok = False

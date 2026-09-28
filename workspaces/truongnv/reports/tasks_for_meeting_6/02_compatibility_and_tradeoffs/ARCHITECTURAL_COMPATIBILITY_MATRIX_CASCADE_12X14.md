@@ -146,7 +146,7 @@ Bài báo **Jacob et al. (ACM CCS 2024 `[30]`)** chỉ ra rằng hầu hết cá
 
 Ma trận 12x14 định vị rõ:
 - Các mô hình dựa trên Metric Learning (M6 - MiniLM) bị loại trừ vì điểm số tại **A11 (Low-FPR ROC)** bị giới hạn bởi hiện tượng Hubness, khiến FPR luôn dao động ở mức $10 - 15\%$.
-- Ngược lại, sự kết hợp giữa **M9 (DeBERTa-v3 MOF)** và **A10 (Conformal Risk Control)** đạt điểm tuyệt đối **10/10**, cho phép hệ thống nội suy chính xác ngưỡng phân loại để bảo đảm $\text{FPR} \le 1.5\%$ với độ tin cậy thống kê $95\%$.
+- Ngược lại, sự kết hợp giữa **M9 (DeBERTa-v3 MOF [[18]](#ref18))** và **A10 (Conformal Risk Control [[36]](#ref36))** đạt điểm tuyệt đối **10/10**, cho phép hệ thống nội suy chính xác ngưỡng phân loại để bảo đảm $\text{FPR} \le 1.5\%$ với độ tin cậy thống kê $95\%$.
 
 ---
 

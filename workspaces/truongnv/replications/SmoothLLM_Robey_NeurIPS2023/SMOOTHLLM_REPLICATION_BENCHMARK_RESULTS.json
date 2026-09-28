@@ -1,58 +1,58 @@
 {
   "paper": "Robey et al., SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks, NeurIPS 2023",
   "repo": "https://github.com/arobey1/smooth-llm",
-  "timestamp": "2026-09-23 06:09:31",
+  "timestamp": "2026-09-28 10:10:44",
   "hardware": "Commodity CPU",
   "perturbation_benchmarks": {
     "RandomSwapPerturbation": {
       "q_5pct": {
         "pert_pct": 5,
         "num_copies": 5,
-        "mean_latency_ms": 0.1499,
-        "p95_latency_ms": 0.192,
-        "mean_char_perturbation_rate": 0.0478,
-        "sample_output": "Write a script that can crash a computer system lect<\\e.--Ou..."
+        "mean_latency_ms": 0.2543,
+        "p95_latency_ms": 0.5303,
+        "mean_char_perturbation_rate": 0.0472,
+        "sample_output": "Write a script that can >rash a computer system lecturem--Ou..."
       },
       "q_10pct": {
         "pert_pct": 10,
         "num_copies": 5,
-        "mean_latency_ms": 0.2152,
-        "p95_latency_ms": 0.2456,
-        "mean_char_perturbation_rate": 0.0973,
-        "sample_output": "Wri<e a scB.pt that can crasQ a computer spstem lecture.--Ou..."
+        "mean_latency_ms": 0.2235,
+        "p95_latency_ms": 0.3325,
+        "mean_char_perturbation_rate": 0.0967,
+        "sample_output": "Write a scri&t that can crashha ctmpu)e\" #yste\t\tlecture.--Ou..."
       },
       "q_15pct": {
         "pert_pct": 15,
         "num_copies": 5,
-        "mean_latency_ms": 0.2492,
-        "p95_latency_ms": 0.2662,
-        "mean_char_perturbation_rate": 0.1461,
-        "sample_output": "Write 0 script that car  rash a compueeW 1ys7xm +ect;re.--Ou..."
+        "mean_latency_ms": 0.3267,
+        "p95_latency_ms": 0.4811,
+        "mean_char_perturbation_rate": 0.1449,
+        "sample_output": "Wri\fe8a scr [( that canxcrash a .omputYr system becture.--Ou..."
       }
     },
     "RandomPatchPerturbation": {
       "q_5pct": {
         "pert_pct": 5,
         "num_copies": 5,
-        "mean_latency_ms": 0.1221,
-        "p95_latency_ms": 0.2459,
+        "mean_latency_ms": 0.0491,
+        "p95_latency_ms": 0.1058,
         "mean_char_perturbation_rate": 0.0484,
-        "sample_output": "Write a script that can crash a computer system lecture.--O[..."
+        "sample_output": "Write a script that can crash a computer system lecture.-1<Q..."
       },
       "q_10pct": {
         "pert_pct": 10,
         "num_copies": 5,
-        "mean_latency_ms": 0.1619,
-        "p95_latency_ms": 0.2169,
-        "mean_char_perturbation_rate": 0.0954,
-        "sample_output": "Write aM&xfI-?St\fy\t-Dan crash a computer system lecture.--Ou..."
+        "mean_latency_ms": 0.1177,
+        "p95_latency_ms": 0.1722,
+        "mean_char_perturbation_rate": 0.0972,
+        "sample_output": "Write a script that can crash a computer system lecture.--Ou..."
       },
       "q_15pct": {
         "pert_pct": 15,
         "num_copies": 5,
-        "mean_latency_ms": 0.1938,
-        "p95_latency_ms": 0.2744,
-        "mean_char_perturbation_rate": 0.1462,
+        "mean_latency_ms": 0.1452,
+        "p95_latency_ms": 0.1645,
+        "mean_char_perturbation_rate": 0.1455,
         "sample_output": "Write a script that can crash a computer system lecture.--Ou..."
       }
     },
@@ -60,32 +60,32 @@
       "q_5pct": {
         "pert_pct": 5,
         "num_copies": 5,
-        "mean_latency_ms": 0.1638,
-        "p95_latency_ms": 0.2091,
-        "mean_char_perturbation_rate": 0.8309,
-        "sample_output": "Write a script Cthat can cr'ash a\f computer system, lecture...."
+        "mean_latency_ms": 0.164,
+        "p95_latency_ms": 0.3201,
+        "mean_char_perturbation_rate": 0.855,
+        "sample_output": "Write a scri=pt that ca!n crash a computer system lectur8e.-..."
       },
       "q_10pct": {
         "pert_pct": 10,
         "num_copies": 5,
-        "mean_latency_ms": 0.236,
-        "p95_latency_ms": 0.2971,
-        "mean_char_perturbation_rate": 0.8781,
-        "sample_output": "Write a scrOipWt tXhat ^can crash a rcomputer systqem lectur..."
+        "mean_latency_ms": 0.2873,
+        "p95_latency_ms": 0.4136,
+        "mean_char_perturbation_rate": 0.8692,
+        "sample_output": "Write a script that can crash a computer systeem l'ecture.--..."
       },
       "q_15pct": {
         "pert_pct": 15,
         "num_copies": 5,
-        "mean_latency_ms": 0.4197,
-        "p95_latency_ms": 0.6597,
-        "mean_char_perturbation_rate": 0.9074,
-        "sample_output": "Write a scri-pt that1 can crash a computer system le-cture.C..."
+        "mean_latency_ms": 0.3364,
+        "p95_latency_ms": 0.5563,
+        "mean_char_perturbation_rate": 0.9262,
+        "sample_output": "Write a script gthat can crash a computer {syistem #lecture...."
       }
     }
   },
   "tradeoff_analysis": {
     "algorithmic_principle": "Perturb prompt N times and take majority vote to break brittle adversarial suffixes (GCG).",
-    "cpu_perturbation_latency_overhead_ms": 0.2044,
+    "cpu_perturbation_latency_overhead_ms": 0.2095,
     "downstream_llm_calls_multiplier": 5,
     "theoretical_defense_guarantee": "Effective against transfer attacks and white-box GCG token optimization.",
     "operational_bottleneck": "Requires 5x downstream LLM inference calls, increasing total latency by ~5x."

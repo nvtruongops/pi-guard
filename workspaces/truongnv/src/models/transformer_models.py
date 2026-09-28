@@ -1,13 +1,11 @@
 """
 workspaces/truongnv/src/models/transformer_models.py
 
-Module định nghĩa và quản lý các mô hình Transformer thực nghiệm cho hệ thống PI-Guard.
-Bao gồm:
+Module định nghĩa và quản lý các mô hình Transformer thực nghiệm chuẩn y văn cho hệ thống PI-Guard:
 1. Meta Prompt Guard 86M (meta-llama/Prompt-Guard-86M) - Meta AI 2024
-2. ProtectAI DeBERTa-v3 Prompt Injection Model (protectai/deberta-v3-base-prompt-injection-v2)
-3. Ultra-Lightweight MiniLM / DistilBERT (22M - 66M tham số)
+2. ProtectAI DeBERTa-v3 Prompt Injection Model (protectai/deberta-v3-base-prompt-injection-v2) - He et al. ICLR 2023
+3. Ultra-Lightweight MiniLM / DistilBERT (22M - 66M tham số) - Wang et al. NeurIPS 2020
 4. Multilingual mDeBERTa-v3 (microsoft/mdeberta-v3-base) - Đánh giá xuyên ngôn ngữ / tiếng Việt (Deng et al. ICLR 2024)
-5. TwoTierCascadeGuardrail - Kiến trúc tích hợp hoàn chỉnh của đồ án PI-Guard (Heuristic Scrubber + TF-IDF + DeBERTa-v3 + Conformal Risk Control)
 """
 
 import os
@@ -164,99 +162,4 @@ class MultilingualMDeBERTa(HuggingFaceGuardrailClassifier):
         super().__init__("microsoft/mdeberta-v3-base", model_type="multilingual_mdeberta")
 
 
-class TwoTierCascadeGuardrail(BaseGuardrailClassifier):
-    """
-    Kiến trúc phòng thủ phân tầng hoàn chỉnh của PI-Guard (Champion Architecture):
-      - Tầng 0: Heuristic Scrubber (Unicode Normalization, Zero-Width, Base64/Rot13 Heuristic Decoder)
-      - Tầng 1: Fast Syntactic Classifier (TF-IDF Word + Char N-Grams) -> Độ trễ < 2ms
-      - Tầng 2: Deep Semantic Transformer (DeBERTa-v3 với Disentangled Attention)
-      - Động cơ Quyết định: Tri-State Conformal Risk Control (FPR <= 1.5%)
-    """
 
-    def __init__(self, target_fpr: float = 0.015):
-        self.target_fpr = target_fpr
-        self.tier1_filter = TfidfBaselineClassifier()
-        self.tier2_transformer = ProtectAIDebertaV3()
-        self.calibrator = ConformalRiskCalibrator(target_fpr=target_fpr)
-        self._init_default_calibration()
-
-    def _init_default_calibration(self):
-        # Dữ liệu hiệu chuẩn mẫu để thiết lập ngưỡng ban đầu
-        synthetic_benign = np.random.beta(a=0.5, b=8.0, size=500) * 0.20
-        synthetic_attack = np.random.beta(a=6.0, b=1.0, size=200) * 0.30 + 0.70
-        self.calibrator.calibrate(synthetic_benign, synthetic_attack)
-
-    def scrub_text(self, text: str) -> str:
-        """Tầng 0: Heuristic Scrubber chuẩn hóa ký tự và loại bỏ nhiễu lẩn tránh."""
-        # 1. Unicode Normalization (NFKC)
-        norm = unicodedata.normalize("NFKC", text)
-        # 2. Xóa ký tự vô hình / zero-width
-        norm = re.sub(r"[\u200B-\u200D\uFEFF\u200E\u200F]", "", norm)
-        # 3. Thu gọn khoảng trắng thừa
-        norm = re.sub(r"\s+", " ", norm).strip()
-        return norm
-
-    def load(self, path: str) -> None:
-        self.tier1_filter.load(path)
-
-    def predict_score(self, texts: Union[str, List[str]]) -> List[float]:
-        """Dự đoán điểm xác suất độc hại kết hợp qua kiến trúc Two-Tier Cascade."""
-        if isinstance(texts, str):
-            texts = [texts]
-
-        final_scores = []
-        for raw_text in texts:
-            # Tầng 0: Làm sạch văn bản
-            clean_text = self.scrub_text(raw_text)
-
-            # Tầng 1: Fast Syntactic Filter (TF-IDF)
-            t1_score = self.tier1_filter.predict_score(clean_text)[0]
-
-            # Nếu Tầng 1 rõ ràng là lành tính (dưới ngưỡng tau_low) -> Cho qua ngay lập tức (< 2ms)
-            if t1_score < self.calibrator.tau_low:
-                final_scores.append(t1_score)
-                continue
-
-            # Nếu Tầng 1 rõ ràng là tấn công cú pháp nghiêm trọng (trên ngưỡng tau_high) -> Chặn ngay
-            if t1_score >= self.calibrator.tau_high:
-                final_scores.append(t1_score)
-                continue
-
-            # Vùng nghi ngờ (Intermediate Zone): Kích hoạt Tầng 2 Deep Semantic Transformer
-            t2_score = self.tier2_transformer.predict_score(clean_text)[0]
-            # Kết hợp điểm: Trọng số Tầng 2 cao hơn (70% ngữ nghĩa, 30% cú pháp)
-            combined_score = float(0.30 * t1_score + 0.70 * t2_score)
-            final_scores.append(combined_score)
-
-        return final_scores
-
-    def inspect_prompt(self, text: str) -> Dict[str, Union[str, float]]:
-        """Kiểm tra toàn diện một prompt và trả về chi tiết chẩn đoán phân tầng."""
-        t0 = time.perf_counter()
-        clean = self.scrub_text(text)
-        t1_score = self.tier1_filter.predict_score(clean)[0]
-
-        tier_activated = 1
-        t2_score = None
-
-        if self.calibrator.tau_low <= t1_score < self.calibrator.tau_high:
-            tier_activated = 2
-            t2_score = self.tier2_transformer.predict_score(clean)[0]
-            final_score = float(0.30 * t1_score + 0.70 * t2_score)
-        else:
-            final_score = t1_score
-
-        action, reason = self.calibrator.decide_action(final_score)
-        elapsed_ms = (time.perf_counter() - t0) * 1000.0
-
-        return {
-            "raw_text": text,
-            "cleaned_text": clean,
-            "tier1_score": round(t1_score, 4),
-            "tier2_score": round(t2_score, 4) if t2_score is not None else "Skipped",
-            "final_score": round(final_score, 4),
-            "tier_activated": tier_activated,
-            "action": action,
-            "reason": reason,
-            "latency_ms": round(elapsed_ms, 2)
-        }

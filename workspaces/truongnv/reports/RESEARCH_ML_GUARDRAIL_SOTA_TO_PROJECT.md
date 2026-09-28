@@ -168,7 +168,7 @@ Mục tiêu là tìm ngưỡng nhỏ nhất $\hat{\tau}$ sao cho kỳ vọng r�
 
 $$\mathbb{E}[L(\hat{\tau}, X)] \le \alpha$$
 
-Theo định lý Conformal Risk Control, ngưỡng hiệu chuẩn được tính chính xác qua phân vị mẫu có hiệu chỉnh hữu hạn mẫu:
+Theo định lý Conformal Risk Control (Angelopoulos et al., 2024), ngưỡng hiệu chuẩn được tính chính xác qua phân vị mẫu có hiệu chỉnh hữu hạn mẫu:
 
 $$\hat{\tau} = \text{Quantile}\left( \{s(X_i)\}_{i=1}^n, \, \frac{\lceil (n+1)(1 - \alpha) \rceil}{n} \right)$$
 

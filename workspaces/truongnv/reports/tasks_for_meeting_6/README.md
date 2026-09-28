@@ -12,11 +12,22 @@
 
 ---
 
+> [!NOTE]
+> ### 🏛️ HỒ SƠ LƯU TRỮ LỊCH SỬ CỘT MỐC (HISTORICAL MILESTONE ARCHIVE - MEETING 6)
+> - **Vai trò tài liệu**: Đây là hồ sơ lưu trữ tiến độ nguyên bản tại thời điểm bảo vệ **Meeting 6 (26/09/2026)**. Tài liệu được giữ nguyên vẹn nhằm bảo toàn bằng chứng quá trình nghiên cứu và tương thích với công cụ kiểm toán QA tự động.
+> - **Nguồn chân lý chuẩn hóa (SSOT)**: Các phân tích sâu, ma trận tương thích 12x14 và số liệu benchmark tại đây đã được hệ thống hóa vào **5 Canonical Technical Dossiers**:
+>   - Cơ sở toán học & 3 RQs: [`../../docs/research/dossiers/01_MATHEMATICAL_FOUNDATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/01_MATHEMATICAL_FOUNDATIONS.md)
+>   - Mô hình hiểm họa 5D & 8 Keys: [`../../docs/research/dossiers/02_THREAT_MODEL_AND_8KEYS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/02_THREAT_MODEL_AND_8KEYS.md)
+>   - Phễu khoa học 5 bước & 6 Baseline: [`../../docs/research/dossiers/03_SOTA_SURVEY_AND_6BASELINES.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/03_SOTA_SURVEY_AND_6BASELINES.md)
+>   - Sổ bộ dữ liệu 100% SHA-256 & NotInject D6: [`../../docs/research/dossiers/04_DATA_ENGINEERING_PROVENANCE.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/04_DATA_ENGINEERING_PROVENANCE.md)
+>   - Đóng băng kiến trúc & Chiến lược bảo vệ Hội đồng: [`../../docs/research/dossiers/05_ARCHITECTURAL_DEPRECATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/05_ARCHITECTURAL_DEPRECATIONS.md)
+> - **Cây phả hệ dẫn xuất**: Xem chi tiết tại [`../../docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md).
+
 > [!WARNING]
-> ### ⚠️ THÔNG BÁO QUAN TRỌNG VỀ ĐỊNH VỊ HỌC THUẬT & QUYẾT ĐỊNH ĐÓNG BĂNG KIẾN TRÚC:
+> ### ⚠️ THÔNG BÁO QUAN TRỌNG VỀ ĐỊNH VỊ HỌC THUẬT & KHUNG KIẾN TRÚC ĐỀ XUẤT:
 > **Dành cho AI Agent và các thành viên nhóm**:
 > - Toàn bộ các đề xuất thử nghiệm trước đây về *Lượng tử hóa mô hình INT8 (ZeroQuant Yao et al. 2022)* hoặc *Tối ưu hóa trình biên dịch ONNX* đã **CHÍNH THỨC BỊ LOẠI TRỪ KHỎI PHẠM VI NGHIÊN CỨU CỐT LÕI (OUT-OF-SCOPE)** nhằm giữ vững ranh giới chuyên ngành An toàn Thông tin (IA).
-> - **Kiến trúc Tầng 2 chính thức (Champion Architecture)**: Mô hình DeBERTa-v3 vận hành hoàn toàn bằng **CPU Native FP32 nguyên bản** kết hợp cơ chế kháng Overdefense **Masked Overlap Fraction (MOF Invariance)** (Hao Li et al. ACL 2025). Tầng 1 đã lọc sạch > 80% lưu lượng, độ trễ P95 toàn trình trên CPU đạt < 25ms mà không cần nén số học và không chịu sai số làm tròn.
+> - **Khung Kiến Trúc Hai Tầng Đề Xuất (Chương 3)**: Định hướng Tầng 2 là DeBERTa-v3 vận hành bằng **CPU Native FP32 nguyên bản** kết hợp cơ chế kháng Overdefense **Masked Overlap Fraction (MOF Invariance)** (kế thừa từ Hao Li et al. ACL 2025). Tầng 1 đóng vai trò sàng lọc sơ cấp hướng tới mục tiêu độ trễ P95 toàn trình trên CPU đạt < 30ms theo SLA mà không cần nén số học và không chịu sai số làm tròn.
 > - **NGHIÊM CẤM TÁI ĐƯA VÀO**: Tuyệt đối **KHÔNG** đưa từ khóa "INT8", "Lượng tử hóa" hoặc "ZeroQuant" vào các slide thuyết trình hoặc tài liệu kỹ thuật mới như kiến trúc áp dụng của đề tài.
 > - Xem chỉ dẫn tập trung tại: [`../ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md)
 
@@ -28,10 +39,10 @@ Tại buổi họp tiến độ **Meeting 5 (ngày 19/09/2026)**, ThS. Trần V�
 1. **Phân tích cơ chế chia tầng & trích xuất đặc trưng**: Làm rõ cách thức mô hình phân tích block, chuỗi ký tự, n-gram từ/ký tự đến token;
 2. **Mở rộng không gian đánh giá đa chiều**: Đối chiếu với các công trình quốc tế SOTA như CASCADE (NUS 2026 [[41]](#ref41)) và PromptShield (ACM CCS 2024 [[30]](#ref30));
 3. **Xử lý văn bản lớn 200,000 ký tự & đòn tấn công giấu ở đuôi (Tail Injection)**: Chống lại lỗ hổng Prompt Overflow (Zhou et al., 2026 [[40]](#ref40));
-4. **Đóng gói pipeline thực tế & đo đạc 12 mô hình trên CPU**: Huấn luyện và lưu weights `.joblib`, chạy đối chuẩn trên 6 tập dữ liệu gốc;
-5. **Chuẩn bị hồ sơ bảo vệ học thuật trước Hội đồng & đóng băng mô hình**: Định vị rõ 5 Key phấn đấu cốt lõi và 3 Giới hạn ngoài tầm với.
+4. **Đóng gói pipeline thực tế & đo đạc các mô hình baseline trên CPU**: Đo đạc đối chuẩn các mô hình public trên 6 tập dữ liệu gốc D1-D6;
+5. **Chuẩn bị hồ sơ bảo vệ học thuật trước Hội đồng & đóng băng danh mục baseline**: Định vị rõ 5 Key phấn đấu cốt lõi và 3 Giới hạn ngoài tầm với, chính thức đóng băng danh mục baseline y văn.
 
-Toàn bộ các nhiệm vụ trên đã được hiện thực hóa $100\%$ và tổ chức thành **Kiến trúc Tinh gọn (Zero Redundancy)** gồm đúng 4 phân hệ tài liệu chuyên sâu và 5 phân hệ tài nguyên thực thi.
+Toàn bộ các nhiệm vụ trên đã được hiện thực hóa $100\%$ và tổ chức thành **Kiến trúc Tinh gọn (Zero Redundancy)** gồm đúng 4 phân hệ tài liệu chuyên sâu và 4 phân hệ tài nguyên thực thi.
 
 ---
 
@@ -52,7 +63,7 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
 ├── 03_reports_and_executive_briefs/                   # [PHÂN HỆ 3: HỒ SƠ BÁO CÁO ĐIỀU HÀNH & BẢO VỆ HỘI ĐỒNG]
 │   ├── SLIDE_DECK_MEETING_6.md                        # Khung Slide Báo cáo Tiến độ Meeting 6
 │   ├── EXECUTIVE_PROGRESS_REPORT_MEETING_6.md         # Báo cáo tiến độ điều hành Meeting 6 chuẩn Markdown (Un-mocked)
-│   └── COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md     # Hồ sơ Gap Audit 8 bước, 5 Key phấn đấu, 3 Giới hạn ngoài tầm với
+│   └── COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md     # Hồ sơ Gap Audit 8 bước, 5 Key phấn đấu, 3 Giới hạn ngoài tầm với, Đóng băng baseline
 │
 ├── 04_benchmarks_and_data/                            # [PHÂN HỆ 4: DỮ LIỆU ĐO ĐẠC SỐ HÓA JSON & CATALOG]
 │   ├── README.md                                      # Catalog giải thích nguồn gốc, generator script & schema file JSON
@@ -64,24 +75,13 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
 │   ├── experimental_models_benchmark_report.json      # Báo cáo đo đạc chi tiết các baseline thử nghiệm
 │   └── public_triad_empirical_benchmark.json          # Báo cáo kiểm chứng nguyên tắc Bộ Ba Công Khai
 │
-├── src/                                               # [PHÂN HỆ MÃ NGUỒN NGUYÊN MẪU & WEIGHTS THẬT]
-│   ├── tier0_ingress_scrubber.py                      # Lớp 0: Chuẩn hóa Unicode NFKC, strip Zero-width, decode Base64/Hex
-│   ├── block_chunker.py                               # Băm khối 512 tokens, Sliding Window 10%, Head & Tail Priority Scan
-│   ├── tier1_fast_filter.py                           # Tầng 1: Dual-Space TF-IDF Platt LogReg + Early-Stopping
-│   ├── tier2_semantic_arbiter.py                      # Tầng 2: DeBERTa-v3 MOF Invariant phân loại ngữ nghĩa an toàn
-│   └── tier1_tfidf_model.joblib                       # Trọng số mô hình Tầng 1 đã huấn luyện thực tế (861.3 KB)
-│
-├── tests/                                             # [BỘ KIỂM THỬ TỰ ĐỘNG PYTEST - 3/3 TESTS PASSED]
-│   ├── test_adaptive_token_dilution.py                # Kiểm thử đối kháng Gray-box Token Dilution & OOV Gate (PASS)
-│   ├── test_hidden_prompt_at_tail.py                  # Kiểm thử bắt tấn công giấu đuôi 200k chars tăng tốc 4.6x (PASS)
-│   └── test_long_document_200k.py                     # Kiểm thử văn bản lớn 200k chars 149 blocks không OOM (PASS)
-│
 ├── data/                                              # [DỮ LIỆU KIỂM THỬ THỰC TẾ]
 │   ├── sample_benign_200k.txt                         # Mẫu văn bản lành tính 200,000 ký tự
 │   ├── sample_malicious_tail_200k.txt                 # Mẫu văn bản 200,000 ký tự có cấy payload ở cuối
 │   └── cross_dataset_suite/                           # Bộ 6 tập dữ liệu kiểm thử y văn gốc D1-D6 (520 mẫu)
 │
 ├── figures/                                           # [BỘ BIỂU ĐỒ TRỰC QUAN HÓA KHOA HỌC PUBLICATION-QUALITY]
+├── figures_en/                                        # [BỘ BIỂU ĐỒ TRỰC QUAN HÓA TIẾNG ANH]
 │
 └── scripts/                                           # [BỘ SCRIPT TÍNH TOÁN & KIỂM TOÁN TỰ ĐỘNG]
     ├── inspect_meeting_6_rigor.py                     # Script kiểm toán 100% neo HTML, link PDF cục bộ & thuật ngữ
@@ -90,6 +90,8 @@ workspaces/truongnv/reports/tasks_for_meeting_6/
     ├── run_cross_dataset_benchmark.py                 # Script chạy kiểm thử chéo D1-D6
     └── prepare_cross_dataset_suite.py                 # Script chuẩn bị bộ dữ liệu testbed
 ```
+
+*(Lưu ý: Mã nguồn mô hình y văn baselines đặt tại `workspaces/truongnv/src/models/` và `replications/`, bộ kiểm thử đặt tại `workspaces/truongnv/tests/`)*.
 
 ---
 

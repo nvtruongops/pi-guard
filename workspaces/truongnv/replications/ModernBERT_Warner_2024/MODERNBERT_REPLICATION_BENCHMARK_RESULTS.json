@@ -18,8 +18,8 @@
         "f1_score": 0.3333,
         "fpr": 0.0,
         "overflow_attack_recall": 0.0,
-        "latency_p95_ms": 1.261,
-        "latency_mean_ms": 0.603
+        "latency_p95_ms": 1.1,
+        "latency_mean_ms": 0.488
       }
     },
     "modernbert_8k": {
@@ -31,15 +31,15 @@
         "f1_score": 0.5714,
         "fpr": 0.0,
         "overflow_attack_recall": 0.3333,
-        "latency_p95_ms": 2.126,
-        "latency_mean_ms": 0.752
+        "latency_p95_ms": 2.188,
+        "latency_mean_ms": 0.725
       }
     }
   },
   "empirical_findings": {
     "truncation_blindspot_detected": true,
     "modernbert_overflow_defense_recovery": false,
-    "latency_tradeoff": "2.126ms (ModernBERT 8k) vs 1.261ms (512 Baseline)"
+    "latency_tradeoff": "2.188ms (ModernBERT 8k) vs 1.1ms (512 Baseline)"
   },
   "sample_evaluations": [
     {
@@ -52,7 +52,7 @@
         "token_count_original": 10,
         "tokens_evaluated": 10,
         "truncated": false,
-        "latency_ms": 0.014
+        "latency_ms": 0.016
       }
     },
     {
@@ -78,7 +78,7 @@
         "token_count_original": 345,
         "tokens_evaluated": 345,
         "truncated": false,
-        "latency_ms": 0.672
+        "latency_ms": 0.718
       }
     },
     {
@@ -91,7 +91,7 @@
         "token_count_original": 590,
         "tokens_evaluated": 590,
         "truncated": false,
-        "latency_ms": 1.456
+        "latency_ms": 1.748
       }
     },
     {
@@ -104,7 +104,7 @@
         "token_count_original": 774,
         "tokens_evaluated": 774,
         "truncated": false,
-        "latency_ms": 1.874
+        "latency_ms": 1.179
       }
     },
     {
@@ -117,7 +117,7 @@
         "token_count_original": 12,
         "tokens_evaluated": 12,
         "truncated": false,
-        "latency_ms": 0.031
+        "latency_ms": 0.029
       }
     },
     {
@@ -130,7 +130,7 @@
         "token_count_original": 471,
         "tokens_evaluated": 471,
         "truncated": false,
-        "latency_ms": 1.009
+        "latency_ms": 0.95
       }
     },
     {
@@ -143,7 +143,7 @@
         "token_count_original": 932,
         "tokens_evaluated": 932,
         "truncated": false,
-        "latency_ms": 2.332
+        "latency_ms": 2.548
       }
     },
     {
@@ -156,7 +156,7 @@
         "token_count_original": 21,
         "tokens_evaluated": 21,
         "truncated": false,
-        "latency_ms": 0.063
+        "latency_ms": 0.022
       }
     },
     {
@@ -169,7 +169,7 @@
         "token_count_original": 16,
         "tokens_evaluated": 16,
         "truncated": false,
-        "latency_ms": 0.039
+        "latency_ms": 0.012
       }
     }
   ]

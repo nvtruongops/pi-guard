@@ -1,0 +1,28 @@
+{
+  "model_id": "DataSentinel_Liu_SP2025",
+  "display_name": "DataSentinel: Game-Theoretic Detection of Prompt Injection",
+  "role": "M6 Baseline (IEEE S&P 2025 Distinguished Paper)",
+  "tier_1_paper_provenance": {
+    "title": "DataSentinel: Game-Theoretic Detection of Prompt Injection",
+    "paper_url": "https://arxiv.org/abs/2402.17144",
+    "local_pdf": "papers\\Liu_2025_DataSentinel_Game_Theoretic_Detection_Prompt_Injection.pdf"
+  },
+  "tier_2_code_provenance": {
+    "upstream_code_url": "https://github.com/liu00222/Open-Prompt-Injection",
+    "upstream_directory": "upstream/"
+  },
+  "tier_3_dataset_provenance": {
+    "datasets_url": "https://github.com/liu00222/Open-Prompt-Injection",
+    "local_datasets": [
+      {
+        "filename": "datasentinel_eval_benchmark.json",
+        "sha256": "b084ca210db226a166b9dfbbd5bba9f0cad71570cf152663a39744e4a40fd4c0",
+        "size_bytes": 4770
+      }
+    ]
+  },
+  "tier_4_verification": {
+    "status": "PASS",
+    "checked_by": "workspaces/truongnv/scripts/check_replication_origin_urls.py"
+  }
+}

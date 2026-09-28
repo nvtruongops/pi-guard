@@ -3,28 +3,30 @@
 
 ---
 
-### 📂 1. DANH MỤC HỒ SƠ & BÁO CÁO REVIEW 1 TRONG WORKSPACE CỦA BẠN:
+### 🏛️ 1. HỆ THỐNG TÀI LIỆU KIM TỰ THÁP 3 TẦNG & NGUỒN CHÂN LÝ DUY NHẤT (SSOT):
+
+Toàn bộ tài liệu báo cáo và nghiên cứu sâu được tổ chức theo kiến trúc Kim Tự Tháp 3 Tầng, bảo đảm không trùng lặp và có thể truy xuất nguồn gốc học thuật 100%:
+
+> 📜 **Bản đồ Phả hệ Dẫn xuất Học thuật**: [`docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md)  
+> 💎 **5 Canonical Technical Dossiers (Tầng 1 SSOT)**:
+> 1. [`01_MATHEMATICAL_FOUNDATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/01_MATHEMATICAL_FOUNDATIONS.md): Hình thức hóa toán học ranh giới phẳng $X = S \mathbin{\Vert} U$ & 3 RQs.
+> 2. [`02_THREAT_MODEL_AND_8KEYS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/02_THREAT_MODEL_AND_8KEYS.md): Khung mô hình hiểm họa 5D NIST AI 100-2e2025 & Ma trận 8 Key.
+> 3. [`03_SOTA_SURVEY_AND_6BASELINES.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/03_SOTA_SURVEY_AND_6BASELINES.md): Phễu khoa học 5 bước & 6 Baseline thực nghiệm đối đầu trên D1–D6.
+> 4. [`04_DATA_ENGINEERING_PROVENANCE.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/04_DATA_ENGINEERING_PROVENANCE.md): Thu thập 45k mẫu, Kiểm toán 100% SHA-256 trên 25 tệp & Group-Aware Splitter.
+> 5. [`05_ARCHITECTURAL_DEPRECATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/05_ARCHITECTURAL_DEPRECATIONS.md): Đóng băng kiến trúc chính thức, Loại trừ INT8 & Chiến lược bảo vệ Hội đồng.
+
+---
+
+### 📂 2. DANH MỤC HỒ SƠ & BÁO CÁO REVIEW 1 TRONG WORKSPACE CỦA BẠN:
 
 - 📘 **Bản thảo Luận văn & Báo cáo Review 1**:
-  - [`reports/report_for_review1/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_review1/README.md): **PHÂN HỆ BÁO CÁO KỸ THUẬT REVIEW 1 TOÀN DIỆN** (Toàn văn Chapter 1, Chapter 2 & Chuyên đề Đánh giá 7 tiêu chí cốt lõi).
+  - [`reports/REVIEW_1_REPORT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/REVIEW_1_REPORT.md): **BÁO CÁO REVIEW 1 TOÀN DIỆN** (Chapter 1, Chapter 2 & Đánh giá 7 tiêu chí cốt lõi).
+  - [`reports/REVIEW_1_PRESENTATION_AND_QA_SCRIPT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/REVIEW_1_PRESENTATION_AND_QA_SCRIPT.md): Kịch bản thuyết trình 15 phút & Bộ 10 câu hỏi phản biện Hội đồng.
   - [`docs/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/01_Introduction.md): Toàn văn Chương 1 (Introduction & Threat Model).
   - [`docs/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/02_Literature_Review.md): Toàn văn Chương 2 (Literature Review & SOTA Survey).
-  - [`docs/thesis/chapters/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/README.md): Lộ trình biên soạn 6 chương theo chuẩn FPT IAP491.
-  - [`docs/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md): Hồ sơ kỹ thuật Problem Definition & Threat Model.
-  - [`reports/report_for_meeting_4/PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/PI-GUARD-Present-109.pptx): Slide thuyết trình tiến độ phục vụ buổi gặp Giáo viên Hướng dẫn (10/09/2026 - 22 slide, Dark Slate Navy).
-  - [`reports/report_for_meeting_4/SUPERVISOR_REPORT_10_09_2026.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/SUPERVISOR_REPORT_10_09_2026.md): Đề cương tóm lược slide-by-slide & kịch bản báo cáo tiến độ gặp GVHD (10/09/2026).
-  - [`reports/report_for_meeting_4/figures/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/figures/README.md): Danh mục 12 hình ảnh minh chứng trích từ slide báo cáo GVHD Meeting 4.
-  - [`reports/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/README.md): Cổng điều hướng phân hệ báo cáo tiến độ qua các mốc (Meeting 4, 5, 6 và Báo cáo tổng luận SOTA).
-  - [`reports/RESEARCH_ML_GUARDRAIL_SOTA_TO_PROJECT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/RESEARCH_ML_GUARDRAIL_SOTA_TO_PROJECT.md): Báo cáo tổng luận khoa học SOTA Guardrail, phổ mô hình 4 thế hệ, 5 chiều đánh đổi biên và phân tích thực nghiệm ứng dụng cho PI-Guard.
-  - [`reports/tasks_for_meeting_5/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/README.md): **Hồ sơ 4 nhiệm vụ kỹ thuật Meeting 5** (Task 1: Phân biệt PI/Jailbreak, Task 2: 5D Framework & Reference Models, Task 3: Thực nghiệm tái lập PIGuard ACL 2025, Task 4: 4 Giải pháp cải tiến).
-  - [`reports/tasks_for_meeting_6/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/README.md): **Hồ sơ nhiệm vụ kỹ thuật Meeting 6** (Bộ tài liệu tổng hợp, mô hình thực nghiệm, kịch bản benchmark và bộ unit tests).
-    - [`reports/tasks_for_meeting_6/03_reports_and_executive_briefs/MASTER_RESEARCH_SYNTHESIS_REPORT_MEETING_6.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/MASTER_RESEARCH_SYNTHESIS_REPORT_MEETING_6.md): **Báo Cáo Tổng Hợp Nghiên Cứu Master Toàn Diện** (100% Un-mocked, Thống kê Wilson CIs, McNemar Tests, Kháng đối kháng thích ứng & Slide Deck).
-    - [`reports/tasks_for_meeting_6/03_reports_and_executive_briefs/COMPREHENSIVE_PUBLIC_MODELS_BENCHMARK_AND_RESEARCH_EVALUATION.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/COMPREHENSIVE_PUBLIC_MODELS_BENCHMARK_AND_RESEARCH_EVALUATION.md): **Báo Cáo Đối Chuẩn Chuyên Sâu 12 Mô Hình Public & Luận Cứ Lựa Chọn** (Bóc tách toán học, điểm mù thực nghiệm, Overdefense Collapse, AST-MOF).
-    - [`reports/tasks_for_meeting_6/03_reports_and_executive_briefs/COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/03_reports_and_executive_briefs/COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md): **Hồ Sơ Bảo Vệ Hội Đồng & Gap Audit Đóng Băng Mô Hình** (8 bước chuẩn mực IEEE, 5 Key phấn đấu cốt lõi, 3 Ranh giới ngoài tầm với).
-    - [`reports/tasks_for_meeting_6/02_compatibility_and_tradeoffs/DECISION_AND_COMPARISON_MATRICES.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/02_compatibility_and_tradeoffs/DECISION_AND_COMPARISON_MATRICES.md): **Bộ Ma Trận Ra Quyết Định Đa Tiêu Chí** (4 Ma trận đối chuẩn: Kiến trúc, Hàm mất mát, Cửa sổ 200k và Định tuyến bất định).
-    - [`reports/tasks_for_meeting_6/scripts/reproduce_all_benchmarks.py`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/scripts/reproduce_all_benchmarks.py): **Kịch bản Tái lập Tự động 1-Lệnh** (Master 1-Click Reproducibility Script).
-  - [`Final-Report/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md`](file:///d:/Work/Do-an/Final-Report/FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md): *(Dùng chung toàn nhóm)* Tóm tắt quy chế và tiêu chí chấm điểm FPT IAP491.
-  - [`docs/thesis/FINAL_THESIS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FINAL_THESIS.md): Bản biên dịch toàn văn các chương Review 1.
+  - [`reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md): Văn kiện đóng băng kiến trúc chính thức & loại bỏ INT8.
+  - [`reports/tasks_for_meeting_5/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/README.md): **Hồ sơ lưu trữ lịch sử Meeting 5** (Có banner dẫn chiếu SSOT).
+  - [`reports/tasks_for_meeting_6/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/README.md): **Hồ sơ lưu trữ lịch sử Meeting 6** (Có banner dẫn chiếu SSOT).
 
 - 🔬 **Phân Hệ Nghiên Cứu Khoa Học Kỹ Thuật ([`docs/research/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/README.md) — 100% Academic Grounding)**:
   - 🔤 [`docs/research/prompt_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/prompt_study/): Chuyên đề 1 — Cơ sở LLM, Cấu trúc Prompt, Phân cấp chỉ thị & Ranh giới phẳng ($X = S \mathbin{\Vert} U$).

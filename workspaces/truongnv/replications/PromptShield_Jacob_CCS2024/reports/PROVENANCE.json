@@ -1,0 +1,28 @@
+{
+  "model_id": "PromptShield_Jacob_CCS2024",
+  "display_name": "PromptShield: Deployable Detection of Prompt Injection Attacks",
+  "role": "Specialized Baseline (ACM CCS 2024)",
+  "tier_1_paper_provenance": {
+    "title": "PromptShield: Deployable Detection of Prompt Injection Attacks",
+    "paper_url": "https://arxiv.org/abs/2407.13656",
+    "local_pdf": "papers\\Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf"
+  },
+  "tier_2_code_provenance": {
+    "upstream_code_url": "https://github.com/wagner-group/PromptShield",
+    "upstream_directory": "upstream/"
+  },
+  "tier_3_dataset_provenance": {
+    "datasets_url": "https://huggingface.co/datasets/hendzh/PromptShield",
+    "local_datasets": [
+      {
+        "filename": "promptshield_eval_benchmark.json",
+        "sha256": "8a21503129d5c2caebac131a3a58bbf8e44f96351f8a51653fb8c0feb503443c",
+        "size_bytes": 4185
+      }
+    ]
+  },
+  "tier_4_verification": {
+    "status": "PASS",
+    "checked_by": "workspaces/truongnv/scripts/check_replication_origin_urls.py"
+  }
+}

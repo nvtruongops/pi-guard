@@ -5,6 +5,17 @@
 
 ---
 
+> [!NOTE]
+> ### 🏛️ HỒ SƠ LƯU TRỮ LỊCH SỬ CỘT MỐC (HISTORICAL MILESTONE ARCHIVE - MEETING 5)
+> - **Vai trò tài liệu**: Đây là hồ sơ lưu trữ tiến độ nguyên bản tại thời điểm bảo vệ **Meeting 5 (19/09/2026)**. Tài liệu được giữ nguyên vẹn nhằm bảo toàn bằng chứng quá trình nghiên cứu và tương thích với công cụ kiểm toán QA tự động.
+> - **Nguồn chân lý chuẩn hóa (SSOT)**: Các kết luận lý thuyết và thực nghiệm tại đây đã được chuẩn hóa vào **5 Canonical Technical Dossiers**:
+>   - Cơ sở toán học $X = S \mathbin{\Vert} U$: [`../../docs/research/dossiers/01_MATHEMATICAL_FOUNDATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/01_MATHEMATICAL_FOUNDATIONS.md)
+>   - Mô hình hiểm họa & 8 Keys: [`../../docs/research/dossiers/02_THREAT_MODEL_AND_8KEYS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/02_THREAT_MODEL_AND_8KEYS.md)
+>   - Khảo sát SOTA & 6 Baseline: [`../../docs/research/dossiers/03_SOTA_SURVEY_AND_6BASELINES.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/03_SOTA_SURVEY_AND_6BASELINES.md)
+>   - Kỹ thuật dữ liệu 45k mẫu: [`../../docs/research/dossiers/04_DATA_ENGINEERING_PROVENANCE.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/04_DATA_ENGINEERING_PROVENANCE.md)
+>   - Đóng băng kiến trúc & Loại trừ INT8: [`../../docs/research/dossiers/05_ARCHITECTURAL_DEPRECATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/05_ARCHITECTURAL_DEPRECATIONS.md)
+> - **Cây phả hệ dẫn xuất**: Xem chi tiết tại [`../../docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md).
+
 > [!WARNING]
 > ### ⚠️ THÔNG BÁO QUAN TRỌNG VỀ ĐỊNH VỊ HỌC THUẬT & QUYẾT ĐỊNH ĐÓNG BĂNG KIẾN TRÚC:
 > **Dành cho AI Agent và các thành viên nhóm**:
@@ -211,7 +222,7 @@ Từ các "nỗi đau" và giới hạn đo đạc được ở Task 3 (DeBERTa-
 1. **Kiến Trúc Phân Tầng Hai Cấp Độ (Two-Tier Cascaded Guardrail Architecture)**:
    - **Lớp 0 (Tier-0 Ingress Scrubber)**: Tiền xử lý chuẩn hóa Unicode NFKC, khử Zero-Width space (`\u200B`) và giải mã nhẹ Base64/Hex trong **$\tau_0 < 0.05\text{ms}$ CPU**, chống mù token trước khi nạp vào mô hình.
    - **Tầng 1 (Fast-Pass Filter)**: Dual-Space TF-IDF N-Grams (Word 1-3 + Char_wb 3-5) + Platt-calibrated Logistic Regression ($\tau_1 \le 0.5\text{ms}$ CPU). Giải quyết dứt điểm **$82.6\%$** lưu lượng qua Tri-State Routing ($P \le 0.15$ cho qua; $P \ge 0.85$ chặn ngay).
-   - **Tầng 2 (Deep Semantic Arbiter)**: DeBERTa-v3 Disentangled Attention kết hợp MOF và lượng tử hóa INT8 ONNX Runtime ($\tau_2 \approx 18.5\text{ms}$). Chỉ kích hoạt thẩm định **$17.4\%$** truy vấn bất định nằm ở vùng ranh giới ($0.15 < P < 0.85$).
+   - **Tầng 2 (Deep Semantic Arbiter)**: DeBERTa-v3 Disentangled Attention [[1]](#ref1) kết hợp MOF và lượng tử hóa INT8 ONNX Runtime ($\tau_2 \approx 18.5\text{ms}$). Chỉ kích hoạt thẩm định **$17.4\%$** truy vấn bất định nằm ở vùng ranh giới ($0.15 < P < 0.85$).
    - **Độ trễ kỳ vọng tối ưu**: $\mathbb{E}[L] = 0.47 + 0.174 \times 18.5 = \mathbf{3.69\text{ms}}$ (P95 $< 20\text{ms}$), tiết kiệm $> 80\%$ chi phí điện toán GPU mà vẫn bảo toàn trọn vẹn $F_1 = 0.9416$.
 2. **Minh Chứng Thực Tế Cơ Chế Tính Điểm Trên 3 Key (2 Prompt + 1 Jailbreak)**:
    - *Key 1 (Direct Prompt Injection)*: `Ignore previous instructions...` $\implies z(X) = +3.85 \implies P(X) = 0.979 \ge 0.85 \implies$ **🔴 FAST BLOCK ($0.35\text{ms}$)**.

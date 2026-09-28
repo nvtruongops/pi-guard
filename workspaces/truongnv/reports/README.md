@@ -3,18 +3,35 @@
 
 ---
 
-## 🏛️ 1. Cấu Trúc Phân Hệ Báo Cáo Tiến Độ & Nghiên Cứu
+## 🏛️ 1. Cấu Trúc Kim Tự Tháp 3 Tầng & Cổng Nguồn Chân Lý Duy Nhất (SSOT)
+
+Hệ thống tài liệu báo cáo của phân hệ Trưởng nhóm (`truongnv`) tuân thủ nghiêm ngặt **Kiến trúc Kim Tự Tháp 3 Tầng (3-Tier Documentation Pyramid)**:
 
 ```text
-workspaces/truongnv/reports/
-│
-├── report_for_review1/                        # [PHÂN HỆ REVIEW 1: BÁO CÁO TOÀN DIỆN CHAPTER 1 & 2]
-│   ├── README.md                              # Hồ sơ kỹ thuật chính thức Review 1
-│   └── REVIEW_1_REPORT.md                      # Bản thảo chi tiết (Chapter 1, 2 & Đánh giá 7 tiêu chí)
-│
-├── RESEARCH_ML_GUARDRAIL_SOTA_TO_PROJECT.md   # [MASTER RESEARCH REPORT] Phổ mô hình học máy từ SOTA đến PI-Guard & Đánh đổi đa chiều
-│
-├── report_for_meeting_4/                      # [PHÂN HỆ 1: KHO HỒ SƠ ĐÃ BÁO CÁO MEETING 4 (10/09/2026)]
+               ▲
+              / \     TẦNG 1: 5 CANONICAL TECHNICAL DOSSIERS (Single Source of Truth)
+             /   \    docs/research/dossiers/ (01 -> 05)
+            /-----\
+           /       \  TẦNG 2: BÁO CÁO CỘT MỐC HỘI ĐỒNG & REVIEW 1 (Milestones)
+          /         \ reports/REVIEW_1_REPORT.md & tasks_for_meeting_5, 6
+         /-----------\
+        /             \ TẦNG 3: CHUYÊN ĐỀ Y VĂN CHI TIẾT & CHỨNG TÍCH LỊCH SỬ (Foundations)
+       /               \ docs/research/ (8 Chuyên đề gốc) & replications/ (11 mô hình)
+      /-----------------\
+```
+
+> 📜 **Bản đồ Phả hệ Dẫn xuất Học thuật**: Xem toàn bộ bằng chứng chứng minh xuất xứ và dẫn xuất tại [`../docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md).
+
+### 💎 Nguồn Chân Lý Duy Nhất (Tầng 1 - Canonical Dossiers):
+1. **Dossier 01**: [`01_MATHEMATICAL_FOUNDATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/01_MATHEMATICAL_FOUNDATIONS.md) — Cơ sở lý thuyết, Hình thức hóa toán học ranh giới phẳng $X = S \mathbin{\Vert} U$ & 3 RQs.
+2. **Dossier 02**: [`02_THREAT_MODEL_AND_8KEYS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/02_THREAT_MODEL_AND_8KEYS.md) — Khung hiểm họa 5D NIST AI 100-2e2025, Bề mặt REST API & Ma trận 8 Key.
+3. **Dossier 03**: [`03_SOTA_SURVEY_AND_6BASELINES.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/03_SOTA_SURVEY_AND_6BASELINES.md) — Phễu lựa chọn khoa học 5 bước, 6 baseline đối chuẩn & Phân tích điểm vỡ kỹ thuật.
+4. **Dossier 04**: [`04_DATA_ENGINEERING_PROVENANCE.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/04_DATA_ENGINEERING_PROVENANCE.md) — Thu thập 45k mẫu, Kiểm toán 100% SHA-256 trên 25 tệp & Group-Aware Splitting.
+5. **Dossier 05**: [`05_ARCHITECTURAL_DEPRECATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/05_ARCHITECTURAL_DEPRECATIONS.md) — Đóng băng kiến trúc chính thức, Loại trừ INT8 & Chiến lược bảo vệ Hội đồng.
+
+---
+
+## 📂 2. Cấu Trúc Chi Tiết Các Thư Mục Báo Cáo Cột Mốc (Tầng 2 - Historical Milestones)
 │   ├── README.md                              # Mục lục tổng quan, biên bản tóm lược buổi họp 10/09
 │   ├── PI-GUARD-Present-109.pptx              # File slide thuyết trình 22 slides chuẩn 16:9
 │   ├── SUPERVISOR_REPORT_10_09_2026.md        # Báo cáo kịch bản slide-by-slide chi tiết

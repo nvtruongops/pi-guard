@@ -1,14 +1,33 @@
 {
   "mcpServers": {
+    "openalex": {
+      "serverUrl": "https://mcp.openalex.org/mcp",
+      "disabledTools": [
+        "get_my_account",
+        "claim_author_profile",
+        "find_candidate_works",
+        "submit_curations",
+        "list_my_curations"
+      ]
+    },
     "arxiv": {
-      "command": "arxiv-mcp-server",
-      "description": "Academic literature search, abstract extraction, citation graph, and deep research on arXiv"
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--python",
+        "3.13",
+        "--from",
+        "arxiv-mcp-server==0.7.2",
+        "arxiv-mcp-server"
+      ]
     },
     "jupyter": {
+      "type": "stdio",
       "command": "mcp-server-jupyter",
       "description": "Jupyter Notebook MCP server for creating, editing, and executing Python notebook cells with network access"
     },
     "duckduckgo-search": {
+      "type": "stdio",
       "command": "npx",
       "args": [
         "-y",
@@ -17,6 +36,7 @@
       "description": "Internet and web search access for retrieving latest information, documentation, and research papers"
     },
     "playwright": {
+      "type": "stdio",
       "command": "npx",
       "args": [
         "-y",
@@ -26,6 +46,7 @@
       "description": "Browser automation and web scraping MCP server for fetching online pages"
     },
     "memory": {
+      "type": "stdio",
       "command": "npx",
       "args": [
         "-y",
@@ -34,6 +55,7 @@
       "description": "Knowledge Graph Memory for project context and decisions"
     },
     "sequential-thinking": {
+      "type": "stdio",
       "command": "npx",
       "args": [
         "-y",
@@ -42,6 +64,7 @@
       "description": "Multi-step structured reasoning and analysis"
     },
     "officecli": {
+      "type": "stdio",
       "command": "npx",
       "args": [
         "-y",
@@ -49,14 +72,6 @@
         "mcp"
       ],
       "description": "OfficeCLI MCP server for reading, editing, and automating Office documents (.docx, .xlsx, .pptx)"
-    },
-    "scholar-feed": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "scholar-feed-mcp"
-      ],
-      "description": "Scholarly paper search across 600k+ CS/AI/ML papers, citation lineage tracking, full text extraction, and BibTeX retrieval"
     }
   }
 }

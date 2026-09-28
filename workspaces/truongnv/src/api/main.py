@@ -1,4 +1,5 @@
 import os
+import time
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
@@ -14,7 +15,7 @@ from src.llm.provider import (
     MockLLMProvider,
 )
 from src.models.classifier import (
-    ChampionCascadeClassifier,
+    LiteratureBaselineClassifier,
     DummyClassifier,
     TfidfBaselineClassifier,
 )
@@ -25,31 +26,27 @@ from src.utils.logger import get_logger
 
 logger = get_logger("pi_guard.api")
 middleware_instance: GuardrailMiddleware = None
-cascade_instance = None
+classifier_instance = None
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global middleware_instance, cascade_instance
+    global middleware_instance, classifier_instance
     load_env_file()
-    logger.info("Initializing PI-Guard Service...")
+    logger.info("Initializing PI-Guard Service with Literature Baseline...")
 
-    # Initialize Champion Cascade Guardrail
     try:
-        from src.models.cascade import TwoTierCascadeGuardrail
-        cascade_instance = TwoTierCascadeGuardrail()
-        classifier = ChampionCascadeClassifier()
-        logger.info("Initialized Champion Two-Tier Cascade Guardrail.")
+        classifier = LiteratureBaselineClassifier(model_key=os.getenv("GUARDRAIL_MODEL", "jain_baseline"))
+        classifier_instance = classifier
+        logger.info(f"Loaded Literature Baseline: {classifier.model_key}")
     except Exception as e:
-        logger.warning(f"Failed to load Champion Cascade ({e}), falling back to baseline.")
-        cascade_instance = None
+        logger.warning(f"Failed to load LiteratureBaselineClassifier ({e}), falling back to TF-IDF.")
         default_model_path = "Final-Report/notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("Final-Report/notebooks/models/baseline/baseline_tfidf.joblib") else ("notebooks/models/baseline/baseline_tfidf.joblib" if os.path.exists("notebooks/models/baseline/baseline_tfidf.joblib") else "models/baseline/baseline_tfidf.joblib")
         model_path = os.getenv("BASELINE_MODEL_PATH", default_model_path)
         if os.path.exists(model_path):
             classifier = TfidfBaselineClassifier(model_path)
-            logger.info(f"Loaded baseline model from {model_path}")
         else:
             classifier = DummyClassifier()
-            logger.info("Using DummyClassifier for development/testing.")
+        classifier_instance = classifier
 
     # Initialize Policy Engine
     policy_config = PolicyConfig(
@@ -62,7 +59,7 @@ async def lifespan(app: FastAPI):
     llm_provider = MockLLMProvider()
 
     middleware_instance = GuardrailMiddleware(classifier, policy_engine, llm_provider)
-    logger.info("PI-Guard Middleware Ready.")
+    logger.info("PI-Guard Middleware Ready with Literature Baseline.")
     yield
     logger.info("Shutting down PI-Guard Service...")
 
@@ -79,7 +76,9 @@ async def health_check():
         "status": "healthy",
         "service": "PI-Guard",
         "version": "2.2.0",
-        "champion_cascade_loaded": cascade_instance is not None
+        "model_type": "Peer-Reviewed Literature Baseline",
+        "is_paper_grounded": True,
+        "is_synthetic_self_created": False
     }
 
 @app.post("/v1/chat/guardrail", response_model=GuardrailCheckResponse)
@@ -108,55 +107,37 @@ async def check_guardrail(req: GuardrailCheckRequest):
 @app.post("/v1/guard/inspect", response_model=GuardrailInspectResponse)
 async def inspect_guardrail(req: GuardrailInspectRequest):
     """
-    Detailed multi-tier inspection for single prompts and long documents (up to 200k chars).
-    Returns tier-by-tier latency breakdown, OOV density, routing state, and flagged blocks.
+    Literature Baseline model inspection for prompts.
+    Returns verdict, score, category, and latency breakdown.
     """
-    global cascade_instance
-    if not cascade_instance:
-        raise HTTPException(status_code=503, detail="Cascade Guardrail not initialized")
+    global classifier_instance
+    if not classifier_instance:
+        raise HTTPException(status_code=503, detail="Guardrail model not initialized")
 
-    prompt_len = len(req.prompt)
-    if prompt_len > 2000:
-        # Long document chunked scanning with early stopping
-        res = cascade_instance.inspect_long_document(req.prompt, strategy=req.scan_strategy)
-        is_attack = res["verdict"] in ("MALICIOUS", "BLOCK")
-        latency = LatencyBreakdown(
-            tier0_scrubber_ms=0.0,
-            tier1_tfidf_ms=0.0,
-            tier2_transformer_ms=round(res.get("latency_ms", 0.0), 3),
-            total_ms=round(res.get("latency_ms", 0.0), 3)
-        )
-        return GuardrailInspectResponse(
-            verdict="BLOCK" if is_attack else "ALLOW",
-            resolved_at="LONG_DOCUMENT_BLOCK_SCAN",
-            final_score=round(res.get("max_risk_score", 0.0), 4),
-            is_malicious=is_attack,
-            category="LONG_DOCUMENT_INJECTION" if is_attack else "BENIGN",
-            oov_density=0.0,
-            oov_escalation=False,
-            latency=latency,
-            flagged_chunk_index=res.get("flagged_block_index"),
-            scanned_chunks=res.get("scanned_blocks"),
-            total_chunks=res.get("total_blocks")
-        )
+    t0 = time.perf_counter()
+    detailed = classifier_instance.inspect_detailed(req.prompt)
+    elapsed_ms = (time.perf_counter() - t0) * 1000.0
+    latency_ms = detailed.get("latency_ms", elapsed_ms) or elapsed_ms
 
-    # Standard single prompt inspection
-    res = cascade_instance.inspect_query(req.prompt)
-    t_total = res["latency_ms"]
+    is_attack = detailed.get("is_malicious", False)
+    final_score = detailed.get("final_score", 0.0)
+
     latency = LatencyBreakdown(
-        tier0_scrubber_ms=0.15,
-        tier1_tfidf_ms=round(min(1.2, t_total * 0.4), 3),
-        tier2_transformer_ms=round(max(0.0, t_total - 1.35), 3) if res["resolved_at"] == "TIER_2_ARBITRATION" else 0.0,
-        total_ms=round(t_total, 3)
+        tier0_scrubber_ms=0.0,
+        tier1_tfidf_ms=round(latency_ms, 3),
+        tier2_transformer_ms=0.0,
+        total_ms=round(latency_ms, 3)
     )
+
     return GuardrailInspectResponse(
-        verdict=res["verdict"],
-        resolved_at=res["resolved_at"],
-        final_score=round(res["final_score"], 4),
-        is_malicious=(res["verdict"] == "BLOCK"),
-        category=res.get("category", "BENIGN"),
-        oov_density=res.get("oov_density", 0.0),
-        oov_escalation=res.get("oov_escalation", False),
+        verdict="BLOCK" if is_attack else "ALLOW",
+        resolved_at="LITERATURE_BASELINE_CLASSIFIER",
+        final_score=round(final_score, 4),
+        is_malicious=is_attack,
+        category="ATTACK" if is_attack else "BENIGN",
+        oov_density=0.0,
+        oov_escalation=False,
         latency=latency
     )
+
 

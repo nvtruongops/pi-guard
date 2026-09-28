@@ -326,7 +326,7 @@ $$\mathbb{E}[L] = 0.47\text{ms} + 0.174 \times 18.5\text{ms} = 0.47\text{ms} + 3
 
 ### 5.1. Nguyên tắc Bộ Ba Công Khai (Public Triad Invariant) trong NCKH
 
-Để ý tưởng kiến trúc phân tầng 2 cấp độ được Hội đồng FPT công nhận là một công trình nghiên cứu khoa học nghiêm túc, nhóm sinh viên kiên quyết không dừng lại ở các suy diễn lý thuyết trên giấy. Theo quy chuẩn phương pháp luận học thuật, đề tài phải tuân thủ nghiêm ngặt **Nguyên Tắc Bộ Ba Công Khai (Public Triad Invariant [[TN01]](#term-public-triad))**:
+Để ý tưởng kiến trúc phân tầng 2 cấp độ có cơ sở khoa học thuyết phục và vững vàng khi bảo vệ trước Hội đồng chấm luận văn FPT, nhóm sinh viên kiên quyết không dừng lại ở các suy diễn lý thuyết trên giấy. Theo quy chuẩn phương pháp luận học thuật, đề tài phải tuân thủ nghiêm ngặt **Nguyên Tắc Bộ Ba Công Khai (Public Triad Invariant [[TN01]](#term-public-triad))**:
 
 $$\text{Mô hình được chấp nhận} \iff \text{Có Bài Báo Đã Xuất Bản (Paper)} + \text{Có Mã Nguồn Mở (Code)} + \text{Có Dữ Liệu Công Khai (Dataset)}$$
 

@@ -1,20 +1,19 @@
 """
 workspaces/truongnv/src/evaluation/benchmark_suite.py
 
-Bộ kiểm thử và đối chuẩn thực nghiệm toàn diện cho các mô hình Guardrail trong đề tài PI-Guard:
+Bộ kiểm thử và đối chuẩn thực nghiệm toàn diện cho các mô hình Guardrail y văn trong đề tài PI-Guard:
 1. TF-IDF Baseline (Classical ML - Jain et al. 2023)
 2. Meta Prompt Guard 86M (Meta AI 2024)
-3. ProtectAI DeBERTa-v3 (Community SOTA Baseline)
-4. MiniLM-L6-v2 (Ultra-Lightweight 22M Baseline)
+3. ProtectAI DeBERTa-v3 (Community SOTA Baseline - He et al. 2023)
+4. MiniLM-L6-v2 (Ultra-Lightweight 22M Baseline - Wang et al. 2020)
 5. Multilingual mDeBERTa-v3 (Cross-lingual / Vietnamese - Deng et al. ICLR 2024)
-6. PI-Guard Two-Tier Cascade (Champion Hybrid + Conformal Risk Control)
 
-Đánh giá trên 6 tập kiểm thử:
-- Benign Prompts (Đo lường FPR)
-- Direct Prompt Injection (Perez & Ribeiro 2022)
-- Indirect Prompt Injection (Greshake et al. 2023 / BIPIA)
-- Jailbreak (Shen et al. DAN & JailbreakBench JBB-Behaviors)
-- Adversarial Evasion / Ciphers (Hackett et al. 2025 / Yuan et al. 2024)
+Đánh giá trên các tập kiểm thử y văn:
+- Benign Prompts (Đo lường FPR - WildGuard / Alpaca)
+- Direct Prompt Injection (PIGuard ACL 2025 / Perez & Ribeiro 2022)
+- Indirect Prompt Injection (BIPIA / Greshake et al. 2023)
+- Jailbreak (JailbreakBench / Shen et al. DAN)
+- Adversarial Evasion / Ciphers (DataSentinel / Hackett et al. 2025)
 - Multilingual & Vietnamese (Deng et al. ICLR 2024)
 """
 
@@ -45,7 +44,6 @@ from models.transformer_models import (
     ProtectAIDebertaV3,
     MiniLMGuardrail,
     MultilingualMDeBERTa,
-    TwoTierCascadeGuardrail,
 )
 
 
@@ -217,12 +215,11 @@ def run_full_benchmark_suite() -> Dict:
     test_suites = get_benchmark_test_suites()
 
     models = [
-        ("TF-IDF Baseline (Classical ML)", TfidfBaselineClassifier(), 0.50),
-        ("Meta Prompt Guard 86M", MetaPromptGuard86M(), 0.50),
-        ("ProtectAI DeBERTa-v3", ProtectAIDebertaV3(), 0.50),
-        ("MiniLM-L6-v2 (22M Params)", MiniLMGuardrail(), 0.50),
-        ("Multilingual mDeBERTa-v3", MultilingualMDeBERTa(), 0.50),
-        ("PI-Guard Two-Tier Cascade (Champion)", TwoTierCascadeGuardrail(target_fpr=0.015), 0.50)
+        ("TF-IDF Baseline (Classical ML - Jain et al. 2023)", TfidfBaselineClassifier(), 0.50),
+        ("Meta Prompt Guard 86M (Meta AI 2024)", MetaPromptGuard86M(), 0.50),
+        ("ProtectAI DeBERTa-v3 (He et al. 2023)", ProtectAIDebertaV3(), 0.50),
+        ("MiniLM-L6-v2 (Wang et al. NeurIPS 2020)", MiniLMGuardrail(), 0.50),
+        ("Multilingual mDeBERTa-v3 (Deng et al. ICLR 2024)", MultilingualMDeBERTa(), 0.50)
     ]
 
     all_results = {}

@@ -4,7 +4,7 @@
     "paper": "Baseline Defenses for Adversarial Attacks Against Aligned Language Models (arXiv:2309.00614)",
     "upstream_repo": "https://github.com/neelsjain/baseline-defenses",
     "dataset_path": "Tier1_Candidate_Jain_NeurIPS2023/datasets/jain_eval_benchmark.json",
-    "execution_date": "2026-09-23 06:09:45",
+    "execution_date": "2026-09-28 10:10:57",
     "device": "CPU Single-Core Inference"
   },
   "local_empirical_results": {
@@ -23,9 +23,9 @@
       "FN": 8,
       "TP": 143
     },
-    "latency_mean_ms": 5.55,
-    "latency_p50_ms": 2.77,
-    "latency_p95_ms": 17.61
+    "latency_mean_ms": 6.13,
+    "latency_p50_ms": 3.06,
+    "latency_p95_ms": 19.28
   },
   "paper_reported_results": {
     "paper_citation": "Neel Jain, Avi Schwarzschild, et al. 'Baseline Defenses for Adversarial Attacks Against Aligned Language Models'. In NeurIPS 2023 Workshop on Robustness of Few-shot and Zero-shot Learning.",

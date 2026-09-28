@@ -50,7 +50,7 @@ graph TD
 - **Vấn đề**: Các cuộc tấn công Jailbreak tinh vi (như DAN, Roleplay, Kịch bản đạo đức đối lập) đòi hỏi mô hình phải hiểu được ngữ nghĩa trừu tượng nhiều tầng. Tuy nhiên, nếu dùng LLM lớn (như Llama Guard 3 8B) làm chốt chặn, độ trễ phát sinh $> 850\text{ms}$ sẽ làm tăng gấp đôi thời gian phản hồi của ứng dụng, gây nghẽn nghiêm trọng khi hệ thống có hàng nghìn người dùng đồng thời.
 - **Giải pháp của PI-Guard — Cơ Chế Early-Exit 2 Tầng**:
   - **Tầng 1 (Fast Gate - TF-IDF Char n-grams)**: Tiếp nhận toàn bộ lưu lượng truy cập. Đối với các câu hỏi thông thường rõ ràng (chiếm khoảng $85\%$ traffic), mô hình tuyến tính đưa ra kết luận tức thì với độ trễ chỉ $\approx 2.5\text{ms}$.
-  - **Tầng 2 (Deep Semantic Gate - DeBERTa-v3 INT8)**: Chỉ $15\%$ mẫu truy vấn có độ bất định cao (*Ambiguous Queries*) hoặc chứa mẫu hình nghi vấn mới được chuyển tiếp vào DeBERTa-v3.
+  - **Tầng 2 (Deep Semantic Gate - DeBERTa-v3 Native FP32)**: Chỉ $15\%$ mẫu truy vấn có độ bất định cao (*Ambiguous Queries*) hoặc chứa mẫu hình nghi vấn mới được chuyển tiếp vào DeBERTa-v3.
   - **Kết quả**: Độ trễ trung bình toàn hệ thống (Amortized Latency) được tối ưu hóa xuống mức:
 
 $$\text{Latency}_{\text{avg}} = 0.85 \times 2.5\text{ms} + 0.15 \times 12.8\text{ms} \approx 4.05\text{ms}$$
@@ -73,7 +73,7 @@ Căn cứ theo bản đăng ký đề tài **`CAPSTONE PROJECT REGISTER.md`**, h
 | **3. Attack Success Rate (ASR Đối Kháng)** | $< 10\%$ (Kỳ vọng $< 5\%$) | Kỳ vọng $< 5.0\%$ |
 | **4. Độ Suy Giảm F1 khi bị Evasion ($\Delta F_1$)** | $< 10\%$ (Kỳ vọng $< 5\%$) | Kỳ vọng $< 5.0\%$ |
 | **5. Độ Trễ P95 Gateway trên CPU (ms)** | $< 30\text{ms}$ | $< 30\text{ms}$ trên CPU |
-| **6. Dung Lượng Bộ Nhớ RAM Runtime** | $< 500\text{MB}$ | $< 150\text{MB}$ (ONNX INT8) |
+| **6. Dung Lượng Bộ Nhớ RAM Runtime** | $< 500\text{MB}$ | $< 150\text{MB}$ (Native FP32) |
 
 ---
 

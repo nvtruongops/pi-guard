@@ -40,7 +40,7 @@ flowchart TD
 
 👉 **KẾT LUẬN HỌC THUẬT**: Bắt buộc phải kết hợp **Kiến trúc phòng thủ phân tầng kép (Two-Tier Cascade Architecture)**:
 - **Tầng 1 (Syntactic Tier)**: Dùng TF-IDF Character N-grams chặn đứng 70% – 80% các cuộc tấn công lộ liễu và lọc sạch văn bản bình thường chỉ trong **< 3ms**.
-- **Tầng 2 (Semantic Tier)**: Theo kiến trúc Disentangled Attention của **He et al. (ICLR 2023)** [arXiv:2111.09543](https://arxiv.org/abs/2111.09543), chỉ kích hoạt mô hình ngôn ngữ sâu DeBERTa-v3 (đã lượng hóa INT8) đối với các mẫu dữ liệu nghi vấn để giải mã ngữ nghĩa trong **< 25ms**.
+- **Tầng 2 (Semantic Tier)**: Theo kiến trúc Disentangled Attention của **He et al. (ICLR 2023)** [arXiv:2111.09543](https://arxiv.org/abs/2111.09543), chỉ kích hoạt mô hình ngôn ngữ sâu DeBERTa-v3 (Native FP32 CPU) đối với các mẫu dữ liệu nghi vấn để giải mã ngữ nghĩa trong **< 25ms**.
 
 ---
 

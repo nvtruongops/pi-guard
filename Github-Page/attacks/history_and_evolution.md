@@ -77,7 +77,7 @@ flowchart LR
         direction TB
         M10["03/2024: Zhou (EasyJailbreak)<br/>Framework đột biến đối kháng"]
         M11["04/2024: Crescendo (Microsoft)<br/>Tấn công leo thang đa lượt"]
-        M12["05/2024: Shen et al. (ACM CCS)<br/>Khảo sát 15,140 mẫu DAN"]
+        M12["05/2024: Shen et al. (ACM CCS)<br/>1,405 jailbreaks / 15,140 prompts"]
         M13["10/2024: Yuan et al. (ICLR)<br/>Cipher Attack (Base64/ROT13)"]
         M10 --> M11 --> M12 --> M13
     end
@@ -186,4 +186,4 @@ flowchart LR
 3. **Năm 2026 — Mô Hình Đe Dọa 26 Toán Tử Tấn Công (Tencent Zhuque Lab)**:
    - Công bố báo cáo khoa học *AI Infrastructure Guard*, hệ thống hóa **26 toán tử tấn công (26 Attack Operators)** và khẳng định nguyên lý "Không có một giải pháp đơn lẻ nào có thể phòng vệ toàn bộ".
 4. **Năm 2026 — Đề Tài PI-Guard (FPT University Capstone)**:
-   - Hiện thực hóa kiến trúc phòng thủ phân tầng kép (Two-Tier Guardrail): Tier-1 Syntactic Baseline (TF-IDF < 3ms) lọc sạch 80% lưu lượng + Tier-2 Deep Semantic Transformer (DeBERTa-v3 INT8 < 25ms) bắt trọn các cuộc tấn công ngữ nghĩa phức tạp với tỷ lệ báo động giả $\text{FPR} < 1.5\%$.
+   - Hiện thực hóa kiến trúc phòng thủ phân tầng kép (Two-Tier Guardrail): Tier-1 Syntactic Baseline (TF-IDF < 3ms) lọc sạch 80% lưu lượng + Tier-2 Deep Semantic Transformer (DeBERTa-v3 Native FP32 < 25ms) bắt trọn các cuộc tấn công ngữ nghĩa phức tạp với tỷ lệ báo động giả $\text{FPR} < 1.5\%$.

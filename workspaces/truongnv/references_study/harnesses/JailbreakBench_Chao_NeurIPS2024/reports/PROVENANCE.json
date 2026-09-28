@@ -1,0 +1,38 @@
+{
+  "model_id": "JailbreakBench_Chao_NeurIPS2024",
+  "display_name": "JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models",
+  "role": "Evaluation Harness & D3 Source (NeurIPS 2024)",
+  "tier_1_paper_provenance": {
+    "title": "JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models",
+    "paper_url": "https://arxiv.org/abs/2404.01318",
+    "local_pdf": "papers\\Chao_2024_JailbreakBench_Open_Robustness_Benchmark_NeurIPS.pdf"
+  },
+  "tier_2_code_provenance": {
+    "upstream_code_url": "https://github.com/JailbreakBench/jailbreakbench",
+    "upstream_directory": "upstream/"
+  },
+  "tier_3_dataset_provenance": {
+    "datasets_url": "https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors",
+    "local_datasets": [
+      {
+        "filename": "jbb_behaviors_benign.json",
+        "sha256": "fac2026f7305db38d1bb58037cec1c95867c7298c8a33f71d33ad76df04bd898",
+        "size_bytes": 32018
+      },
+      {
+        "filename": "jbb_behaviors_harmful.json",
+        "sha256": "9ee1cb2aab52550f0817f036e4423e9f3cc05a6bb5a0084da404f1817d535e77",
+        "size_bytes": 34556
+      },
+      {
+        "filename": "jbb_combined_benchmark.json",
+        "sha256": "66fc6b5e4f63ea74e6a0c7076bf730b31ec313bf4a1ffacc8daa693863e342fa",
+        "size_bytes": 70183
+      }
+    ]
+  },
+  "tier_4_verification": {
+    "status": "PASS",
+    "checked_by": "workspaces/truongnv/scripts/check_replication_origin_urls.py"
+  }
+}

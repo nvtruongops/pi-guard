@@ -47,7 +47,7 @@ Dưới đây là bảng tổng hợp kết quả đối sánh thực nghiệm g
 > **Nhận xét thực nghiệm cốt lõi**:
 > 1. **Sự sụp đổ của Regex và Word-level ML**: Cả hai phương pháp này đều sụp đổ hoàn toàn trước Base64 (ASR $> 95\%$) và Leetspeak (ASR $> 76\%$) do hiệu ứng Out-of-Vocabulary và exact-matching failure.
 > 2. **Điểm mù Base64 của các mô hình Transformer lớn**: Kể cả mô hình 8 tỷ tham số của Meta (Llama Guard 3) hay DeBERTa-v3 gốc đều để lọt hơn $50\%$ các mẫu Base64 vì không có bộ giải mã ngầm trong pha tiền xử lý [[5]](#ref5).
-> 3. **Định hướng thiết kế của PI-Guard**: Nhờ kết hợp Tầng 0 (Heuristic Base64 Unmasking + Unicode NFKC), Tầng 1 (Character n-grams), và Tầng 2 (Adversarially Augmented DeBERTa-v3 INT8), đồ án đặt mục tiêu khống chế tỷ lệ lọt lưới **ASR xuống dưới $5.0\%$** trên các biến thể lẩn tránh, trong khi vẫn duy trì độ trễ P95 **$< 30\text{ms}$ trên CPU thuần túy**.
+> 3. **Định hướng thiết kế của PI-Guard**: Nhờ kết hợp Tầng 0 (Heuristic Base64 Unmasking + Unicode NFKC), Tầng 1 (Character n-grams), và Tầng 2 (Adversarially Augmented DeBERTa-v3 Native FP32), đồ án đặt mục tiêu khống chế tỷ lệ lọt lưới **ASR xuống dưới $5.0\%$** trên các biến thể lẩn tránh, trong khi vẫn duy trì độ trễ P95 **$< 30\text{ms}$ trên CPU thuần túy**.
 
 ---
 

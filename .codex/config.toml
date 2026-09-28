@@ -1,0 +1,39 @@
+[mcp_servers.arxiv]
+command = "uvx"
+args = ["--python", "3.13", "--from", "arxiv-mcp-server==0.7.2", "arxiv-mcp-server"]
+enabled = true
+enabled_tools = [
+  "search_papers",
+  "get_abstract",
+  "download_paper",
+  "list_papers",
+  "read_paper",
+  "get_paper_outline",
+  "read_paper_section",
+  "search_paper_text",
+  "get_paper_latex",
+  "list_paper_latex_sections",
+  "get_paper_latex_section",
+  "citation_graph",
+  "export_citations",
+]
+default_tools_approval_mode = "writes"
+startup_timeout_sec = 60
+
+[mcp_servers.openalex]
+url = "https://mcp.openalex.org/mcp"
+auth = "oauth"
+enabled = true
+enabled_tools = [
+  "search_works",
+  "get_work",
+  "resolve_references",
+  "list_citations",
+  "search_entities",
+  "get_entity",
+  "group_works",
+  "analyze_works",
+  "read_docs",
+]
+default_tools_approval_mode = "auto"
+startup_timeout_sec = 60

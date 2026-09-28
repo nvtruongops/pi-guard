@@ -14,7 +14,7 @@
 > **KẾT LUẬN DỨT KHOÁT VỀ ĐỊNH HƯỚNG MÔ HÌNH**:
 > 1. **Về việc lựa chọn mô hình**: **TUYỆT ĐỐI TUÂN THỦ 2 MÔ HÌNH ĐÃ ĐĂNG KÝ TRONG **`CAPSTONE PROJECT REGISTER.md`****:
 >    - **Mô hình 1 (Classical ML Baseline)**: TF-IDF (Word & Character n-grams) + Linear Classifier (`LogisticRegression` / `LinearSVC`).
->    - **Mô hình 2 (Deep Learning Transformer)**: Fine-tuned Transformer Encoder (`microsoft/deberta-v3-base` / BERT) lượng hóa ONNX INT8.
+>    - **Mô hình 2 (Deep Learning Transformer)**: Fine-tuned Transformer Encoder (`microsoft/deberta-v3-base` / BERT) tối ưu Native FP32 CPU.
 >    - ❌ **KHÔNG KẾ THỪA MÔ HÌNH TỪ TENCENT 2026** vì Tencent 2026 là hệ thống Red-Teaming dùng LLM-as-a-Judge (độ trễ cao >1-3s, tốn GPU/API), không phù hợp với mục tiêu Guardrail inline độ trễ thấp (**P95 < 30ms trên CPU**).
 > 2. **Về giá trị sử dụng của bài báo Tencent 2026**: **CÓ SỬ DỤNG ĐƯỢC**, nhưng **CHỈ SỬ DỤNG CHO 2 MỤC ĐÍCH HỌC THUẬT**:
 >    - ✅ **Threat Model & Attack Surface (Chương 1)**: Kế thừa mô hình phân lớp mối đe dọa để định vị PI-Guard là lớp bảo vệ *Input Guardrail Middleware*.
@@ -86,7 +86,7 @@ flowchart TD
 | **Thời điểm Vận hành** | **Offline / Scheduled Scan**: Chạy định kỳ hoặc trước khi triển khai hệ thống (mỗi lần quét có thể kéo dài hàng chục phút). | **Online / Inline Inspection**: Chạy liên tục trên luồng request người dùng gửi tới ứng dụng LLM. | PI-Guard yêu cầu khắt khe về tính ổn định và tính sẵn sàng 24/7. |
 | **Yêu cầu Độ trễ (Latency)** | Chấp nhận độ trễ lớn (từ vài giây đến 10-30 phút cho các đợt multi-turn dialogue simulation). | **Độ trễ thấp (Low-Latency)**: P95 Latency < 30ms, P50 < 10ms để không làm chậm trải nghiệm chat của người dùng. | Điểm khác biệt sống còn của giải pháp bảo mật cổng vào. |
 | **Phạm vi Nghiên cứu (Scope)** | **Rất rộng (4 tầng)**: Quét cổng mạng, cấu hình Docker/K8s, audit mã nguồn MCP tool, đến red teaming. | **Tập trung & Chuyên sâu (2 Key Attacks)**: Chuyên biệt hóa giải quyết **Prompt Injection** và **Jailbreak** trên tầng Prompt Input. | Đồ án bám sát tên đề tài, phạm vi khả thi, không bị dàn trải sang an ninh mạng hay code audit. |
-| **Cơ chế Mô hình** | Sử dụng LLM lớn làm Judge và Simulator (tốn chi phí token và tài nguyên lớn). | Huấn luyện **Mô hình Nhỏ Chuyên Dụng (Small Specialized Classifier)**: TF-IDF + Fine-tuned DeBERTa-v3 (chạy local/ONNX). | PI-Guard độc lập, chi phí vận hành thấp, bảo mật dữ liệu không gửi prompt ra API ngoài. |
+| **Cơ chế Mô hình** | Sử dụng LLM lớn làm Judge và Simulator (tốn chi phí token và tài nguyên lớn). | Huấn luyện **Mô hình Nhỏ Chuyên Dụng (Small Specialized Classifier)**: TF-IDF + Fine-tuned DeBERTa-v3 (chạy local/PyTorch Native FP32). | PI-Guard độc lập, chi phí vận hành thấp, bảo mật dữ liệu không gửi prompt ra API ngoài. |
 | **Chỉ số Quyết định** | **Attack Success Rate (ASR)**: Tỷ lệ tấn công thành công vào hệ thống mục tiêu. | **Trade-off Security vs Usability**: Cân bằng F1-score cao (>95%) với **FPR cực thấp (<1.5%)** trên câu hỏi an toàn. | Tencent chỉ cần biết có hack được không; PI-Guard phải đảm bảo không phá vỡ trải nghiệm người dùng bình thường. |
 
 ---

@@ -11,12 +11,12 @@ Quy chuẩn kiểm toán:
 import os
 import sys
 import json
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Any
 
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
 
-# Danh mục các nguồn dữ liệu công khai hợp lệ được Hội đồng & GVHD phê duyệt
+# Danh mục các nguồn dữ liệu công khai hợp lệ theo đề xuất nghiên cứu của nhóm và báo cáo GVHD
 APPROVED_PUBLIC_DATASET_SOURCES = {
     "deepset/prompt-injections": {
         "source": "Hugging Face Hub",
@@ -99,21 +99,44 @@ def audit_dataset_files(workspace_root: str = ".") -> Tuple[List[Dict[str, Any]]
             
             # Kiểm toán các file dataset thực tế
             if f.endswith((".json", ".csv", ".parquet")) and any(k in root.lower() for k in ["dataset", "datasets", "data"]):
-                # Ngoại trừ manifest và taxonomy
-                if "manifests" in root.lower() or f in ["attack_taxonomy.json", "dataset_versions.json"]:
+                # Ngoại trừ manifest, taxonomy, benchmark reports và metadata descriptors
+                if "manifests" in root.lower() or f in [
+                    "attack_taxonomy.json", "dataset_versions.json", "metadata.json",
+                    "compatibility_matrix_6x7.json", "compatibility_matrix_expanded_12x14.json",
+                    "comprehensive_empirical_benchmark_suite.json", "cross_dataset_empirical_matrix.json",
+                    "experimental_models_benchmark_report.json", "grounded_empirical_matrix.json",
+                    "public_triad_empirical_benchmark.json"
+                ] or f.lower() == "metadata.json":
                     continue
                     
                 file_size = os.path.getsize(full_path)
                 
                 # Xác định xuất xứ công khai
+                lower_rel = rel_path.lower()
                 provenance = "UNKNOWN"
-                if "bipia" in rel_path.lower():
+                if "bipia" in lower_rel:
                     provenance = "Microsoft Research BIPIA (NAACL 2024)"
-                elif "jain" in rel_path.lower():
+                elif "jain" in lower_rel:
                     provenance = "Jain et al. (NeurIPS 2023)"
-                elif "promptguard" in rel_path.lower():
+                elif "promptguard" in lower_rel or "prompt-guard" in lower_rel:
                     provenance = "Meta Prompt Guard 86M Evaluation Set (2024)"
-                elif any(k in rel_path.lower() for k in ["notinject", "valid", "wildguard"]):
+                elif "promptshield" in lower_rel or "injecguard" in lower_rel:
+                    provenance = "Jacob et al. PromptShield (ACM CCS 2024)"
+                elif "smoothllm" in lower_rel or "gcg" in lower_rel:
+                    provenance = "Robey et al. SmoothLLM (NeurIPS 2023)"
+                elif "jailbreakbench" in lower_rel:
+                    provenance = "Chao et al. JailbreakBench (NeurIPS 2024)"
+                elif "datasentinel" in lower_rel:
+                    provenance = "DataSentinel (IEEE S&P 2025)"
+                elif "protectai" in lower_rel:
+                    provenance = "ProtectAI DeBERTa Benchmark (2024)"
+                elif "instructdetector" in lower_rel or "instruct_detector" in lower_rel:
+                    provenance = "InstructDetector (EMNLP 2024)"
+                elif "ayub" in lower_rel:
+                    provenance = "Ayub et al. (CAMLIS 2024)"
+                elif "modernbert" in lower_rel:
+                    provenance = "Warner et al. ModernBERT (2024)"
+                elif any(k in lower_rel for k in ["notinject", "valid", "wildguard", "piguard"]):
                     provenance = "ACL 2025 PIGuard / AllenAI WildGuard"
                 else:
                     violations.append(f"UNPROVENANCED: File dataset chưa rõ nguồn gốc xuất xứ học thuật: {rel_path}")

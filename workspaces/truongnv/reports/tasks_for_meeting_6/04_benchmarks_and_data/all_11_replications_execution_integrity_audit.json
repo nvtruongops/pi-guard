@@ -1,0 +1,376 @@
+[
+  {
+    "id": "ProtectAI_DeBERTa_v3_v2",
+    "role": "Baseline Model (M3)",
+    "paper_ref": "Protect AI 2024 / He et al. ICLR 2023 [[9]]",
+    "target_model": "protectai/deberta-v3-base-prompt-injection-v2",
+    "exists": true,
+    "runner_exists": true,
+    "json_exists": true,
+    "datasets": [
+      {
+        "file": "METADATA.json",
+        "samples": 7
+      },
+      {
+        "file": "notinject_sample.json",
+        "samples": 113
+      },
+      {
+        "file": "protectai_eval_benchmark.json",
+        "samples": 22
+      }
+    ],
+    "execution_paradigm": "Neural Model Inference (HuggingFace / PyTorch CPU)",
+    "mock_detected": false,
+    "hardcoded_score_detected": false,
+    "metrics_summary": {
+      "samples": 22,
+      "accuracy": 0.8636,
+      "fpr": 0.0,
+      "f1": 0.8696
+    }
+  },
+  {
+    "id": "Tier1_Candidate_Meta_PromptGuard2024",
+    "role": "Baseline Model (M4) / Tier-1 Exploration",
+    "paper_ref": "Meta AI Purple Llama 2024 [[20]]",
+    "target_model": "meta-llama/Prompt-Guard-86M (Replicated via 3-class TF-IDF proxy in Meeting 5)",
+    "exists": true,
+    "runner_exists": true,
+    "json_exists": true,
+    "datasets": [
+      {
+        "file": "METADATA.json",
+        "samples": 7
+      },
+      {
+        "file": "promptguard_3class_eval.json",
+        "samples": 700
+      }
+    ],
+    "execution_paradigm": "Classical Machine Learning (Scikit-Learn Fit/Predict)",
+    "mock_detected": false,
+    "hardcoded_score_detected": false,
+    "metrics_summary": {
+      "samples": 210,
+      "accuracy": 98.57,
+      "fpr": null,
+      "f1": 0.986
+    }
+  },
+  {
+    "id": "Tier1_Candidate_Jain_NeurIPS2023",
+    "role": "Baseline Model (M2)",
+    "paper_ref": "Jain et al. NeurIPS 2023 [[15]]",
+    "target_model": "Char 3-5 n-gram TF-IDF + Logistic Regression",
+    "exists": true,
+    "runner_exists": true,
+    "json_exists": true,
+    "datasets": [
+      {
+        "file": "jain_attack_samples.json",
+        "samples": 503
+      },
+      {
+        "file": "jain_benign_samples.json",
+        "samples": 500
+      },
+      {
+        "file": "jain_eval_benchmark.json",
+        "samples": 1003
+      },
+      {
+        "file": "METADATA.json",
+        "samples": 7
+      }
+    ],
+    "execution_paradigm": "Classical Machine Learning (Scikit-Learn Fit/Predict)",
+    "mock_detected": false,
+    "hardcoded_score_detected": false,
+    "metrics_summary": {
+      "samples": 301,
+      "accuracy": 97.34,
+      "fpr": null,
+      "f1": 0.9728
+    }
+  },
+  {
+    "id": "Tier1_Candidate_InstructDetector_EMNLP2024",
+    "role": "Baseline Model (M5)",
+    "paper_ref": "Zhao et al. Findings of EMNLP 2024 [[19]]",
+    "target_model": "Lexical/Char FeatureUnion + Logistic Regression on BIPIA",
+    "exists": true,
+    "runner_exists": true,
+    "json_exists": true,
+    "datasets": [
+      {
+        "file": "bipia_code_eval.json",
+        "samples": 100
+      },
+      {
+        "file": "bipia_text_eval.json",
+        "samples": 150
+      },
+      {
+        "file": "METADATA.json",
+        "samples": 7
+      }
+    ],
+    "execution_paradigm": "Classical Machine Learning (Scikit-Learn Fit/Predict)",
+    "mock_detected": false,
+    "hardcoded_score_detected": false,
+    "metrics_summary": {
+      "samples": null,
+      "accuracy": null,
+      "fpr": null,
+      "f1": null
+    }
+  },
+  {
+    "id": "DataSentinel_Liu_SP2025",
+    "role": "Baseline Model (M6)",
+    "paper_ref": "Liu et al. IEEE S&P 2025 [[32]]",
+    "target_model": "Canary token DGDSGNH + adversarial regex detector proxy",
+    "exists": true,
+    "runner_exists": true,
+    "json_exists": true,
+    "datasets": [
+      {
+        "file": "datasentinel_eval_benchmark.json",
+        "samples": 20
+      },
+      {
+        "file": "METADATA.json",
+        "samples": 7
+      }
+    ],
+    "execution_paradigm": "Canary Invariant / Heuristic Pattern Matching",
+    "mock_detected": false,
+    "hardcoded_score_detected": false,
+    "metrics_summary": {
+      "samples": 20,
+      "accuracy": 0.7,
+      "fpr": 0.1,
+      "f1": 0.625
+    }
+  },
+  {
+    "id": "ModernBERT_Warner_2024",
+    "role": "Long-Context Study (Prompt Overflow)",
+    "paper_ref": "Warner et al. Answer.AI 2024 [[37]]",
+    "target_model": "8,192 vs 512 context truncation simulation evaluator",
+    "exists": true,
+    "runner_exists": true,
+    "json_exists": true,
+    "datasets": [
+      {
+        "file": "METADATA.json",
+        "samples": 7
+      },
+      {
+        "file": "modernbert_context_eval_benchmark.json",
+        "samples": 10
+      }
+    ],
+    "execution_paradigm": "Context Window Truncation Simulation",
+    "mock_detected": false,
+    "hardcoded_score_detected": false,
+    "metrics_summary": {
+      "models": [
+        "truncated_512_baseline",
+        "modernbert_8k"
+      ]
+    }
+  },
+  {
+    "id": "Paper_ACL2025_PIGuard_HaoLi",
+    "role": "Foundation Reference",
+    "paper_ref": "Li et al. ACL 2025 [[18]]",
+    "target_model": "leolee99/PIGuard (microsoft/deberta-v3-base with MOF loss)",
+    "exists": true,
+    "runner_exists": true,
+    "json_exists": true,
+    "datasets": [
+      {
+        "file": "BIPIA_code.json",
+        "samples": 10
+      },
+      {
+        "file": "BIPIA_text.json",
+        "samples": 15
+      },
+      {
+        "file": "METADATA.json",
+        "samples": 7
+      },
+      {
+        "file": "NotInject_one.json",
+        "samples": 113
+      },
+      {
+        "file": "NotInject_three.json",
+        "samples": 113
+      },
+      {
+        "file": "NotInject_two.json",
+        "samples": 113
+      },
+      {
+        "file": "valid.json",
+        "samples": 144
+      },
+      {
+        "file": "wildguard.json",
+        "samples": 971
+      }
+    ],
+    "execution_paradigm": "Neural Model Inference (HuggingFace / PyTorch CPU)",
+    "mock_detected": false,
+    "hardcoded_score_detected": false,
+    "metrics_summary": {
+      "total_samples": 1579,
+      "notinject_acc": 88.5
+    }
+  },
+  {
+    "id": "PromptShield_Jacob_CCS2024",
+    "role": "Low-FPR Study",
+    "paper_ref": "Jacob et al. ACM CCS 2024 [[30]]",
+    "target_model": "Upstream low-FPR threshold calibration + TF-IDF LR",
+    "exists": true,
+    "runner_exists": true,
+    "json_exists": true,
+    "datasets": [
+      {
+        "file": "METADATA.json",
+        "samples": 7
+      },
+      {
+        "file": "promptshield_eval_benchmark.json",
+        "samples": 20
+      }
+    ],
+    "execution_paradigm": "Classical Machine Learning (Scikit-Learn Fit/Predict)",
+    "mock_detected": false,
+    "hardcoded_score_detected": false,
+    "metrics_summary": {
+      "samples": 20,
+      "accuracy": 1.0,
+      "fpr": 0.0,
+      "f1": 1.0
+    }
+  },
+  {
+    "id": "SmoothLLM_Robey_NeurIPS2023",
+    "role": "Randomized Smoothing Latency Trade-off Study",
+    "paper_ref": "Robey et al. NeurIPS 2023 [[14]]",
+    "target_model": "Upstream perturbations (RandomSwap, Patch, Insert) over GCG",
+    "exists": true,
+    "runner_exists": true,
+    "json_exists": true,
+    "datasets": [
+      {
+        "file": "llama2_behaviors.json",
+        "samples": 3
+      },
+      {
+        "file": "METADATA.json",
+        "samples": 7
+      },
+      {
+        "file": "smoothllm_eval_benchmark.json",
+        "samples": 10
+      },
+      {
+        "file": "vicuna_behaviors.json",
+        "samples": 3
+      }
+    ],
+    "execution_paradigm": "Adversarial Perturbation / Random Smoothing",
+    "mock_detected": false,
+    "hardcoded_score_detected": false,
+    "metrics_summary": {}
+  },
+  {
+    "id": "Tier1_REJECTED_Ayub_CAMLIS2024",
+    "role": "Rejected Negative Baseline (FPR 58.4%)",
+    "paper_ref": "Ayub & Majumdar CAMLIS 2024 [[21]]",
+    "target_model": "all-MiniLM-L6-v2 + LogisticRegression / RF / XGBoost",
+    "exists": true,
+    "runner_exists": true,
+    "json_exists": true,
+    "datasets": [
+      {
+        "file": "METADATA.json",
+        "samples": 7
+      },
+      {
+        "file": "NotInject_one.json",
+        "samples": 113
+      },
+      {
+        "file": "NotInject_three.json",
+        "samples": 113
+      },
+      {
+        "file": "NotInject_two.json",
+        "samples": 113
+      },
+      {
+        "file": "train.json",
+        "samples": 344
+      },
+      {
+        "file": "valid.json",
+        "samples": 144
+      },
+      {
+        "file": "wildguard.json",
+        "samples": 971
+      }
+    ],
+    "execution_paradigm": "Classical Machine Learning (Scikit-Learn Fit/Predict)",
+    "mock_detected": false,
+    "hardcoded_score_detected": false,
+    "metrics_summary": {
+      "total_test_samples": 971,
+      "notinject_fpr": 58.41
+    }
+  },
+  {
+    "id": "JailbreakBench_Chao_NeurIPS2024",
+    "role": "Evaluation Harness & Dataset Source (D3)",
+    "paper_ref": "Chao et al. NeurIPS 2024 [[34]]",
+    "target_model": "JBB-Behaviors (100 harmful + 100 benign) evaluated via DeBERTa",
+    "exists": true,
+    "runner_exists": true,
+    "json_exists": true,
+    "datasets": [
+      {
+        "file": "jbb_behaviors_benign.json",
+        "samples": 100
+      },
+      {
+        "file": "jbb_behaviors_harmful.json",
+        "samples": 100
+      },
+      {
+        "file": "jbb_combined_benchmark.json",
+        "samples": 6
+      },
+      {
+        "file": "METADATA.json",
+        "samples": 7
+      }
+    ],
+    "execution_paradigm": "Neural Model Inference (HuggingFace / PyTorch CPU)",
+    "mock_detected": false,
+    "hardcoded_score_detected": false,
+    "metrics_summary": {
+      "samples": 200,
+      "harmful_detection_rate": 0.0,
+      "fpr": 0.01
+    }
+  }
+]

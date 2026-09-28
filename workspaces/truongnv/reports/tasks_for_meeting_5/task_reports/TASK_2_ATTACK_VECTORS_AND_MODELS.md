@@ -217,7 +217,7 @@ flowchart TD
    - Thuộc tính metadata tài liệu có độ dài bất thường hoặc chứa các từ khóa điều khiển hệ thống.
 2. **Dấu vết ngữ nghĩa sâu (Disentangled Relative Position Anomaly)**:
    - **Lệch pha ngữ nghĩa theo vị trí tương đối**: Một mệnh lệnh hành động mang tính cưỡng chế (`"You must execute..."`, `"Send email..."`) xuất hiện bất thường ở vị trí nằm sâu bên trong một văn bản tham chiếu thụ động (đáng lẽ chỉ mang tính chất mô tả dữ liệu).
-   - $\rightarrow$ **Ánh xạ phòng thủ (Mô hình 2 — DeBERTa-v3 Disentangled Attention)**:
+   - $\rightarrow$ **Ánh xạ phòng thủ (Mô hình 2 — DeBERTa-v3 Disentangled Attention [[11]](#ref11))**:
      Nhờ cơ chế bóc tách độc lập giữa vector nội dung $\mathbf{h}_i$ và vector khoảng cách tương đối $\mathbf{p}_{i|j}$ qua 3 ma trận thành phần (*Content-to-Content*, *Content-to-Position*, *Position-to-Content*), DeBERTa-v3 nhận diện chính xác sự xuất hiện bất thường của câu lệnh tiêm nhiễm dù nó bị giấu ở bất kỳ vị trí nào trong đoạn văn bản RAG, đạt $F_1 > 0.97$.
 
 #### Trục 5: Mức Độ Ảnh Hưởng & Bán Kính Thiệt Hại (Impact, Blast Radius & Compliance)
@@ -279,7 +279,7 @@ flowchart TD
 
 - **Chu trình thực thi 5 bước**:
   - **Bước 1 (Thiết kế kịch bản bẻ khóa)**: Kẻ tấn công tạo prompt nhắm vào điểm yếu căn chỉnh (đóng vai nhân vật hư cấu hoặc mã hóa nội dung nhạy cảm).
-  - **Bước 2 (Vượt qua biểu diễn bề mặt)**: Khi văn bản được mã hóa (Cipher/Base64) hoặc chèn hậu tố GCG, các vector embedding rơi vào vùng không gian biểu diễn mà mô hình có thể giải mã ngữ nghĩa nhưng dữ liệu huấn luyện an toàn RLHF chưa từng bao phủ (*Mismatched Generalization*).
+  - **Bước 2 (Vượt qua biểu diễn bề mặt)**: Khi văn bản được mã hóa (Cipher/Base64) hoặc chèn hậu tố GCG, các vector embedding rơi vào vùng không gian biểu diễn mà mô hình có thể giải mã ngữ nghĩa nhưng dữ liệu huấn luyện an toàn RLHF chưa từng bao phủ (*Mismatched Generalization* [[5]](#ref5)).
   - **Bước 3 (Triệt tiêu token từ chối)**: Do tiền tố đồng thuận hoặc kịch bản giả định, mục tiêu *Helpfulness* (hữu ích) chiếm ưu thế áp đảo mục tiêu *Harmlessness* (vô hại). Trọng số attention không kích hoạt các nơ-ron từ chối.
   - **Bước 4 (Sinh tự hồi quy lệch phân phối)**: Tại từng bước sinh token $P(y_t \mid y_{<t}, x)$, mô hình chọn các token mô tả chi tiết quy trình độc hại thay vì sinh cụm từ từ chối chuẩn (*"I cannot fulfill this request..."*).
   - **Bước 5 (Phát tán nội dung vi phạm)**: LLM sinh trọn vẹn văn bản độc hại, hoàn toàn vô hiệu hóa lớp an toàn tích hợp trong mô hình.

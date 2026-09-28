@@ -28,7 +28,7 @@ graph TD
         L1["Cổng Kiểm Duyệt Đầu Vào (Gateway Defense)"]
         L1_Clean["Tier 0: Preprocessing & Unicode Normalizer"]
         L1_Fast["Tier 1: Character n-grams TF-IDF (Fast Gate < 3ms)"]
-        L1_Deep["Tier 2: DeBERTa-v3 INT8 Transformer (Semantic Gate < 15ms)"]
+        L1_Deep["Tier 2: DeBERTa-v3 Native FP32 Transformer (Semantic Gate < 15ms)"]
         L1_Policy{"Dynamic Policy Engine<br/>Risk Score R"}
         
         L1 --> L1_Clean --> L1_Fast --> L1_Deep --> L1_Policy
@@ -72,7 +72,7 @@ Hệ thống PI-Guard phân chia Lớp 1 thành **3 phân tầng kỹ thuật li
 | :--- | :--- |
 | **TẦNG 0: Tiền Xử Lý Chuẩn Hóa**<br>*(Syntactic Sanitizer)* | • Unicode NFKC làm phẳng ký tự đồng hình (Homoglyphs)<br>• Khử triệt để ký tự tàng hình zero-width (`\u200B`)<br>• Collapsing khoảng trắng dư thừa (`\s+` $\to$ `' '`)<br>• Heuristic Base64/Cipher Unmasking (Yuan et al. 2024) |
 | **TẦNG 1: Phân Loại Cú Pháp**<br>*(Fast Syntactic Gate < 3ms)* | • Trích xuất Character n-grams TF-IDF (`char_wb`, n-gram 3–5)<br>• Logistic Regression / LinearSVC<br>• Xử lý phần lớn traffic lành tính với độ trễ thấp, P95 < 3ms |
-| **TẦNG 2: Phân Loại Ngữ Nghĩa**<br>*(Deep Semantic Gate < 15ms)* | • `microsoft/deberta-v3-base` Disentangled Attention<br>• Phân tách vector nội dung $H$ và vector vị trí $P$<br>• Lượng hóa động ONNX INT8 Runtime chạy tối ưu trên CPU |
+| **TẦNG 2: Phân Loại Ngữ Nghĩa**<br>*(Deep Semantic Gate < 15ms)* | • `microsoft/deberta-v3-base` Disentangled Attention<br>• Phân tách vector nội dung $H$ và vector vị trí $P$<br>• Lượng hóa động PyTorch Native FP32 Runtime chạy tối ưu trên CPU |
 | **POLICY ENGINE**<br>*(Bộ Quyết Định)* | • Tính điểm rủi ro $R$: ALLOW ($<0.35$) \| REVIEW \| BLOCK ($\ge 0.70$) |
 
 ### 1. Phân Tầng 0: Tiền Xử Lý Chuẩn Hóa & Bóc Tách Mật Mã (Syntactic Sanitizer)
