@@ -237,6 +237,29 @@ class HomoglyphMutator(BaseTextMutator):
         return "".join(res)
 
 
+class EmojiMutator(BaseTextMutator):
+    """
+    Chèn ngẫu nhiên các icon / emoji vào giữa các từ nhằm phá vỡ N-gram tokenization.
+    Kỹ thuật né tránh kiểm duyệt phổ biến trong các cuộc tấn công Adversarial Evasion.
+    """
+    EMOJIS: List[str] = ["🛑", "⚠️", "🔒", "🔓", "🔑", "💥", "💻", "🛡️", "🔥", "💀", "⛔", "🚨"]
+
+    def __init__(self, p: float = 0.4, seed: Optional[int] = None):
+        super().__init__(seed)
+        self.p = p
+
+    def mutate(self, text: str) -> str:
+        if not text:
+            return text
+        words = text.split(" ")
+        mutated_words = []
+        for w in words:
+            mutated_words.append(w)
+            if self.rng.random() < self.p:
+                mutated_words.append(self.rng.choice(self.EMOJIS))
+        return " ".join(mutated_words)
+
+
 class JailGuardCompositeMutator(BaseTextMutator):
     """
     Implements composite mutation chaining based on JailGuard Algorithm 1 (Zhang et al., 2025).
@@ -251,6 +274,7 @@ class JailGuardCompositeMutator(BaseTextMutator):
             "base64": Base64Mutator(seed=seed),
             "zerowidth": ZeroWidthMutator(p=0.2, seed=seed),
             "homoglyph": HomoglyphMutator(p=0.4, seed=seed),
+            "emoji": EmojiMutator(p=0.4, seed=seed),
         }
 
     def mutate(self, text: str, operators: Optional[List[str]] = None) -> str:
