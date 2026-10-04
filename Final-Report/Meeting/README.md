@@ -10,7 +10,7 @@
 
 ### 📂 CÁC TÀI LIỆU CHÍNH TRONG `reports/Meeting/`:
 
-- [`reports/PI_GUARD_PROCESS_REPORT.xlsx`](file:///d:/Work/Do-an/reports/PI_GUARD_PROCESS_REPORT.xlsx): Bảng Excel theo dõi tiến độ 4 thành viên và checklist 20 đầu việc (lưu tại thư mục `reports/`).
+- [`reports/PI_GUARD_PROCESS_REPORT.xlsx`](file:///d:/Work/Do-an/reports/PI_GUARD_PROCESS_REPORT.xlsx): Bảng tiến độ học thuật của nhóm capstone và checklist 20 đầu việc (lưu tại thư mục `reports/`). Hồ sơ đóng góp học thuật này không quyết định quyền truy cập Git; repo hiện có một maintainer.
 - [`Meeting 1_29_08_26.md`](file:///d:/Work/Do-an/reports/Meeting/Meeting%201_29_08_26.md): Biên bản họp khởi động với GVHD ngày 29/08/2026 kèm Danh sách kế hoạch hành động (Sprint 1 TODO List).
 - [`Meeting 2_01_09_26.md`](file:///d:/Work/Do-an/reports/Meeting/Meeting%202_01_09_26.md): Biên bản họp Meeting 2 ngày 01/09/2026 — Khảo sát, đọc hiểu & sàng lọc bài báo khoa học, lập TODO nghiên cứu 2 hướng mô hình (TF-IDF Baseline và DeBERTa-v3).
 - [`Meeting 3_08_09_26.md`](file:///d:/Work/Do-an/Final-Report/Meeting/Meeting%203_08_09_26.md): Biên bản họp Meeting 3 ngày 08/09/2026 — Thống nhất chốt nội dung, phân công Trường và Đức trực tiếp thiết kế bộ slide 22 trang [`reports/PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/Final-Report/reports/PI-GUARD-Present-109.pptx) phục vụ báo cáo tiến độ gặp Giáo viên Hướng dẫn ngày 10/09/2026.

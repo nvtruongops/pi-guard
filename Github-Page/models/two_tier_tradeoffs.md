@@ -1,4 +1,4 @@
-# Model trade-offs and current local evidence
+# Model trade-offs
 
 ## Design question
 
@@ -6,19 +6,8 @@ The project proposes combining a fast lexical scorer with a contextual transform
 
 See [the current ingress proposal](ingress_architecture.md) for the L1/L2/L3/API flow. L2 ALLOW and BLOCK are chunk-level candidates. REVIEW is routed to L3. Only API aggregation makes the final request-level ALLOW or BLOCK decision.
 
-## One-run Review 2 evidence
+## Current evidence boundary
 
-A seed-42 experiment on one pinned PIDS-Bench split recorded:
+Review 2 experiments and run-level metrics remain in the maintainer's ignored local workspace. They are not published or cited as shared evidence here. A reviewed report with its protocol, raw results, and provenance must be placed in a tracked deliverable before this page presents performance numbers.
 
-| Held-out slice | Cascade result |
-|---|---:|
-| IID attack test, n=3,918 | Attack F1 98.89% |
-| Hard-benign, n=808 | FPR 43.94% |
-| Obfuscated attacks, n=405 | Recall 98.27% |
-| Domain-OOD attacks, n=2,000 | Attack F1 97.54% |
-| Structural-OOD benign, n=999 | FPR 79.68% (796/999) |
-| Model inference, 200 balanced prompts | P95 155.03 ms |
-
-The hard-benign and structural-OOD false-positive rates are high. The timing is model inference on the measured RTX 3060 laptop workload, not end-to-end service latency. The experiment uses one seed and one split; these results do not establish final project KPI acceptance or service policy.
-
-The full source-of-truth report is [the seed-42 cascade experiment](https://github.com/nvtruongops/pi-guard/blob/main/workspaces/truongnv/reports/experiment_reports/tfidf_deberta_cascade_2026-10-04/REPORT.md). Its validation-selected gates are specific to that run. The symbolic tau_allow and tau_block in the architecture proposal are not established service cutoffs.
+The symbolic tau_allow and tau_block in the architecture proposal remain assumptions, not established service cutoffs.

@@ -56,7 +56,7 @@ The primary deliverables of this capstone project include a curated, deduplicate
 - [SECTION 4: 3-TIER LAYERED DEFENSE, 2-PHASE ARCHITECTURE & ROBUSTNESS DESIGN](#section-4-3-tier-layered-defense-2-phase-architecture-robustness-design)
 - [SECTION 5: 4-SCENARIO ILLUSTRATIVE PROBLEM & PROPOSED DEFENSE MATRIX](#section-5-4-scenario-illustrative-problem-proposed-defense-matrix)
 - [SECTION 6: LITERATURE REVIEW ON GUARDRAIL APPROACHES & MODEL SELECTION RATIONALE](#section-6-literature-review-on-guardrail-approaches-model-selection-rationale)
-  - [_Chuyên khảo Luận giải: Tại sao dùng TF-IDF Baseline & DeBERTa-v3?_](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md)
+  - [_Chuyên khảo Luận giải: Tại sao dùng TF-IDF Baseline & DeBERTa-v3?_](../../Github-Page/research/why_dual_model_architecture.md)
 - [SECTION 7: QUANTITATIVE TARGETS & EVALUATION METRICS](#section-7-quantitative-targets-evaluation-metrics)
 - [SECTION 8: VERIFIED ACADEMIC REFERENCES (100% >= 2022)](#section-8-verified-academic-references-100-2022)
 
@@ -214,7 +214,7 @@ flowchart TD
 # SECTION 3: THREAT MODELING, ATTACKERS & REAL-WORLD DAMAGE ASSESSMENT
 
 > 📖 **Chuyên Khảo Nghiên Cứu Sâu**: Toàn bộ mô hình toán học, phân tích STRIDE / DREAD định lượng, 3 hồ sơ Attacker và 4 điểm chạm Attack Surface được trình bày chi tiết tại:  
-> 🔗 [`docs/research/threat_and_defense_study/01_threat_model_and_attack_surface.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/threat_and_defense_study/01_threat_model_and_attack_surface.md)
+> 🔗 [`threat_model_and_attack_surface.md`](../../Github-Page/threat_defense/threat_model_and_attack_surface.md)
 
 Threat Model của PI-Guard được xây dựng dựa trên tiêu chuẩn **NIST AI 100-2e2025** [[7]](#ref7), **OWASP Top 10 for LLM (LLM01:2025)** [[8]](#ref8), và nghiên cứu mới nhất của **Tencent Zhuque Lab (2026)** [[6]](#ref6).
 
@@ -243,9 +243,9 @@ flowchart TD
 # SECTION 4: 3-TIER LAYERED DEFENSE, 2-PHASE ARCHITECTURE & ROBUSTNESS DESIGN
 
 > 📖 **Chuyên Khảo Nghiên Cứu Sâu**: Toàn bộ cơ chế kỹ thuật 3 lớp bảo vệ (Saltzer & Schroeder Complete Mediation, Unicode Sanitizer, Heuristic Base64, XML Boundary Isolation, Canary Token Verification), bảng so sánh 6 phương pháp và mã nguồn Python mẫu được phân tích chi tiết tại:  
-> 🔗 [`docs/research/threat_and_defense_study/02_multi_layer_defense_architecture.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/threat_and_defense_study/02_multi_layer_defense_architecture.md)  
-> 🔗 [`docs/research/threat_and_defense_study/03_comparative_matrix_and_tradeoffs.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/threat_and_defense_study/03_comparative_matrix_and_tradeoffs.md)  
-> 🔗 [`docs/research/threat_and_defense_study/04_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/threat_and_defense_study/04_resources_and_papers.md)
+> 🔗 [`multi_layer_defense_architecture.md`](../../Github-Page/threat_defense/multi_layer_defense_architecture.md)
+> 🔗 [`comparative_matrix_and_tradeoffs.md`](../../Github-Page/threat_defense/comparative_matrix_and_tradeoffs.md)
+> 🔗 [`resources_and_papers.md`](../../Github-Page/threat_defense/resources_and_papers.md)
 
 ## 4.1. Cấu Trúc Phòng Thủ 3 Lớp Tiêu Chuẩn (Standard 3-Tier Defense)
 
@@ -362,7 +362,7 @@ Nhằm đáp ứng **Yêu cầu số 5 của Giảng viên Hướng dẫn** (thi
 # SECTION 6: LITERATURE REVIEW ON GUARDRAIL APPROACHES & MODEL SELECTION RATIONALE
 
 > 📑 **Tài liệu luận giải chuyên sâu (Research Whitepaper)**: Toàn bộ cơ sở toán học, phân tích Disentangled Attention, bằng chứng thực nghiệm đối sánh với 5 nhóm kiến trúc thay thế (Regex, Word TF-IDF, BERT/RoBERTa, Llama Guard 3 8B) và xác thực SOTA từ Meta AI (Prompt-Guard-86M / Llama Prompt Guard 2) được trình bày chi tiết tại:  
-> 👉 [**`docs/research/Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md`**](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md)
+> 👉 [**`why_dual_model_architecture.md`**](../../Github-Page/research/why_dual_model_architecture.md)
 
 ## 6.1. Ma Trận So Sánh Lựa Chọn Mô Hình & Cơ Sở Khoa Học SOTA
 

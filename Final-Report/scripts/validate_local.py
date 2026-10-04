@@ -7,7 +7,7 @@ PI-Guard Unified Local Quality Assurance & Validation Suite
 Bộ công cụ kiểm định chất lượng, an toàn mã nguồn và tài liệu nội bộ thuần Local.
 
 Thay thế hoàn toàn GitHub Actions CI/CD bằng quy trình kiểm thử cục bộ:
-1. Workspace Boundaries & Immutable Invariant Audit (Kiểm toán phân quyền & file bất biến)
+1. Protected Paths Audit (Kiểm toán đường dẫn hồ sơ bất biến)
 2. JSON Manifests Schema & Syntax Validation (Kiểm định tệp manifest dữ liệu)
 3. Code Quality & Linting (Ruff linting trên src/ và tests/)
 4. Automated Test Suite (Pytest: unit, integration, adversarial)
@@ -94,10 +94,10 @@ def run_cmd(
 
 
 # ==============================================================================
-# 1. KIỂM TOÁN PHÂN QUYỀN WORKSPACE & FILE BẤT BIẾN
+# 1. KIỂM TOÁN ĐƯỜNG DẪN HỒ SƠ BẤT BIẾN
 # ==============================================================================
 def step_workspace_boundary_audit(mode: str = "staged") -> Tuple[bool, str]:
-    """Kiểm toán ranh giới workspace và phân quyền commit qua audit_workspace_boundaries.py."""
+    """Kiểm tra các đường dẫn học thuật bất biến qua audit_workspace_boundaries.py."""
     audit_script = SCRIPTS_DIR / "audit_workspace_boundaries.py"
     if not audit_script.exists():
         audit_script = ROOT_DIR / "scripts" / "audit_workspace_boundaries.py"
@@ -107,7 +107,7 @@ def step_workspace_boundary_audit(mode: str = "staged") -> Tuple[bool, str]:
     code, out, err = run_cmd([sys.executable, str(audit_script), "--mode", mode])
     output = out if out else err
     if code == 0:
-        return True, "Workspace boundaries and immutable invariants verified successfully."
+        return True, "Protected paths and immutable invariants verified successfully."
     else:
         return False, output
 
@@ -573,7 +573,7 @@ def main() -> int:
 
     if individual_run:
         if args.check_boundaries:
-            steps_to_run.append(("Workspace Boundaries Audit", step_workspace_boundary_audit, ("staged",)))
+            steps_to_run.append(("Protected Paths Audit", step_workspace_boundary_audit, ("staged",)))
         if args.check_manifests:
             steps_to_run.append(("JSON Manifests Validation", step_validate_manifests, (False,)))
         if args.check_anti_hallucination:
@@ -592,7 +592,7 @@ def main() -> int:
             steps_to_run.append(("Documentation Portal & MkDocs Build", step_docs_portal_build, ()))
     elif mode == "pre-commit":
         steps_to_run = [
-            ("Workspace Boundaries Audit (Staged)", step_workspace_boundary_audit, ("staged",)),
+            ("Protected Paths Audit (Staged)", step_workspace_boundary_audit, ("staged",)),
             ("JSON Manifests Validation (Staged)", step_validate_manifests, (True,)),
             ("Anti-Hallucination & Empirical Grounding Audit (Staged)", step_anti_hallucination_audit, ("staged",)),
             ("Claim Evidence & Attribution Audit (Staged)", step_claim_evidence_audit, ("staged",)),
@@ -601,7 +601,7 @@ def main() -> int:
         ]
     elif mode == "fast":
         steps_to_run = [
-            ("Workspace Boundaries Audit", step_workspace_boundary_audit, ("staged",)),
+            ("Protected Paths Audit", step_workspace_boundary_audit, ("staged",)),
             ("JSON Manifests Validation", step_validate_manifests, (False,)),
             ("Anti-Hallucination & Empirical Grounding Audit", step_anti_hallucination_audit, ("all",)),
             ("Claim Evidence & Attribution Audit", step_claim_evidence_audit, ("all",)),
@@ -612,7 +612,7 @@ def main() -> int:
         ]
     elif mode == "full":
         steps_to_run = [
-            ("Workspace Boundaries Audit", step_workspace_boundary_audit, ("staged",)),
+            ("Protected Paths Audit", step_workspace_boundary_audit, ("staged",)),
             ("JSON Manifests Validation", step_validate_manifests, (False,)),
             ("Anti-Hallucination & Empirical Grounding Audit", step_anti_hallucination_audit, ("all",)),
             ("Claim Evidence & Attribution Audit", step_claim_evidence_audit, ("all",)),

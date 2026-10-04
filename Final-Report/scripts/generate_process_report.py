@@ -447,13 +447,6 @@ def generate_report():
     wb.save(out_path)
     print(f'Saved: {out_path}')
 
-    # Also sync to workspaces/truongnv/Meeting/
-    repo_root = os.path.dirname(final_report_dir)
-    truongnv_meeting_path = os.path.join(repo_root, 'workspaces', 'truongnv', 'Meeting', 'PI_GUARD_PROCESS_REPORT.xlsx')
-    if os.path.exists(os.path.dirname(truongnv_meeting_path)):
-        wb.save(truongnv_meeting_path)
-        print(f'Synced: {truongnv_meeting_path}')
-
 if __name__ == '__main__':
     generate_report()
 

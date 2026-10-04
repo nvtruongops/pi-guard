@@ -10,7 +10,7 @@ Hỗ trợ:
 Cách sử dụng:
   python scripts/verify_resource_url.py --url "https://www.youtube.com/watch?v=ATK6fm3cYfI"
   python scripts/verify_resource_url.py --doi "10.1145/3658644.3670388"
-  python scripts/verify_resource_url.py --file "workspaces/truongnv/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md"
+  python scripts/verify_resource_url.py --file "Final-Report/References/REFERENCES_LOG.md"
 """
 
 import argparse

@@ -9,7 +9,8 @@ Welcome to the **PI-Guard** Capstone Project repository. This file serves as the
 - **Project Title**: A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (**PI-Guard**)
 - **Academic Program**: Bachelor of Science in Information Assurance (IA), FPT University (Course Code: `IAP491`, Fall 2026 Semester)
 - **Supervisor**: ThS. Trần Văn Ninh | **Lead Student**: Nguyễn Văn Trường (`nvtruongops` / `SE182034`)
-- **Team Members**: Nguyễn Quí Đức (`SE182087`), Phạm Minh Hoàng Việt (`SE181851`), Đỗ Đoàn Duy Phương (`SE180235`)
+- **Academic Team Roster**: Nguyễn Quí Đức (`SE182087`), Phạm Minh Hoàng Việt (`SE181851`), Đỗ Đoàn Duy Phương (`SE180235`). This roster records the capstone team and is separate from repository access.
+- **Git Repository Maintainer**: Nguyễn Văn Trường (`nvtruongops` / `SE182034`) is the sole maintainer of this repository.
 - **Primary Objective**: Design, implement, and benchmark an external, API-driven, Machine-Learning and Transformer-based protective guardrail placed in front of downstream LLM applications to classify incoming user prompts (*Benign* vs. *Prompt Injection* vs. *Jailbreak*) with low latency (P95 < 30ms) and low false-positive rate (FPR < 1.5%).
 - **Architectural Paradigm**: **External Guardrail Proxy** (Text-level inspection before forwarding to downstream black-box LLMs; zero access to internal model weights or KV-cache).
 - **Tech Stack**: Python 3.11+, PyTorch, Hugging Face Transformers (`microsoft/deberta-v3-base` Native FP32), Scikit-Learn (Dual TF-IDF Baseline), FastAPI (PoC Proxy), Streamlit (Demo UI), Docker.
@@ -28,7 +29,7 @@ All AI Agents **MUST STRICTLY COMPLY** with the 7 modular governance rules. Viol
 | **`RULE-04`** | [`rule-04-sentence-level-evidence-standards.md`](file:///d:/Work/Do-an/.agents/rules/rule-04-sentence-level-evidence-standards.md) | Sentence-level evidence `[[N]](#refN)`; Zero vague attribution; 3-way epistemic decoupling (Literature Fact vs. Empirical Fact vs. Project Proposal). | `audit_claim_evidence.py` |
 | **`RULE-05`** | [`rule-05-academic-defense-terminology.md`](file:///d:/Work/Do-an/.agents/rules/rule-05-academic-defense-terminology.md) | Council defense terminology: "Low-Latency / P95 < 30ms" (ban Real-time); "Academic PoC Prototype" (ban Production-ready); "Empirical Risk Mitigation" (ban 100% safe). | `audit_anti_hallucination.py` |
 | **`RULE-06`** | [`rule-06-academic-glossary-standards.md`](file:///d:/Work/Do-an/.agents/rules/rule-06-academic-glossary-standards.md) | Zero unexplained analogy: In-text anchoring `[[TNx]](#term-...)` and mandatory 4-column terminal glossary table for terms TN1..TN11. | `verify_academic_glossary.py` |
-| **`RULE-07`** | [`rule-07-workspace-boundary-and-governance.md`](file:///d:/Work/Do-an/.agents/rules/rule-07-workspace-boundary-and-governance.md) | Member sandbox isolation (`workspaces/<member>/`); Leader sole merge authorization (`nvtruongops`); Pre-commit hook enforcement. | `audit_workspace_boundaries.py` |
+| **`RULE-07`** | [`rule-07-workspace-boundary-and-governance.md`](file:///d:/Work/Do-an/.agents/rules/rule-07-workspace-boundary-and-governance.md) | Single repository maintainer; private local workspace excluded from Git; official read-only paths remain protected. | `audit_workspace_boundaries.py` |
 
 ---
 
@@ -56,12 +57,10 @@ Whenever an agent is instructed to perform a task or generate a report:
 
 ---
 
-## 🔒 5. Workspace Boundaries & Team Git Governance
+## 🔒 5. Repository Maintenance & Workspace Privacy
 
-1. **Member Sandbox Isolation**:
-   - Members edit ONLY inside their designated folder: `workspaces/ducnq/`, `workspaces/vietpmh/`, `workspaces/phuongddd/`.
-   - Edits to `Final-Report/`, `Github-Page/`, `.agents/`, or root files by members are strictly prohibited.
-2. **Leader Sole Merge Authorization**:
-   - Only Leader (`nvtruongops`) merges champion artifacts from member sandboxes into root production directories.
-3. **Automated Pre-Commit QA Check**:
-   - Run before committing: `python Final-Report/scripts/validate_local.py --mode fast`
+1. Nguyễn Văn Trường (`nvtruongops`) is the sole Git repository maintainer and the only account with GitHub write/admin access. The academic team roster above remains an academic record and does not grant repository access.
+2. `workspaces/truongnv/` is local-only and ignored by Git. Do not force-add its contents. Put deliverables intended for review or publication in their official tracked locations outside `workspaces/`.
+3. The former `workspaces/ducnq/`, `workspaces/vietpmh/`, and `workspaces/phuongddd/` directories are retired and must not be recreated as repository workspaces.
+4. Preserve the read-only requirements in Rule 01 for `CAPSTONE PROJECT REGISTER.md` and `docs/fpt_capstone_guide/`.
+5. Before a commit, run `python Final-Report/scripts/validate_local.py --mode fast`.

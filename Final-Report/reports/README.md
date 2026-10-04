@@ -1,7 +1,7 @@
 # Shared progress reports
 
-This folder contains the official FPT progress workbook and an earlier supervisor presentation. The [workbook](PI_GUARD_PROCESS_REPORT.xlsx) records milestone progress; a completed milestone is not the same as model or KPI acceptance.
+This folder contains tracked academic progress deliverables, including the official FPT progress workbook and the earlier supervisor presentation. The academic workbook records capstone progress; it does not determine Git repository access or maintainer permissions.
 
-As of 4 October 2026, Review 2 is active and its umbrella task remains open. The seed-42 cascade experiment is complete in the lead workspace but is not yet part of this shared report folder. See the [task](../../workspaces/truongnv/reports/tasks_for_review2/TASK.md) and [experiment report](../../workspaces/truongnv/reports/experiment_reports/tfidf_deberta_cascade_2026-10-04/REPORT.md).
+Review 2 is active. Personal research notes and runs under `workspaces/truongnv/` remain local-only and are not linked as shared evidence here. To publish a result, place the task-approved report and its required provenance in the appropriate tracked deliverable location outside `workspaces/`.
 
-The presentation deck is a historical progress artifact. This directory does not currently hold the active experiment report or establish that project targets have been met.
+The presentation deck and meeting records are historical progress artifacts. They document the capstone team at the time and are not current repository collaboration instructions.

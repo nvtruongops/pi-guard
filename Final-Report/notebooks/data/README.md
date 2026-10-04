@@ -1,7 +1,5 @@
-# Shared notebook data scaffold
+# Notebook data
 
-This directory contains data-layout folders and manifests. It is not the canonical dataset store for the active Review 2 experiment, and its presence does not show that a three-class project dataset has been finalized or published.
+This directory contains dataset metadata and placeholders. The current local cascade experiment used a pinned binary PIDS-Bench split, but its run inputs and provenance have not been promoted into a tracked Review 2 report.
 
-The current local cascade experiment used a pinned binary PIDS-Bench split documented in the lead workspace [experiment report](../../../workspaces/truongnv/reports/experiment_reports/tfidf_deberta_cascade_2026-10-04/REPORT.md). Consult that report and its provenance artifacts for the actual run inputs.
-
-Large source datasets and run outputs may be stored outside Git. Check the relevant manifest and report before assuming files are present.
+These files do not establish that a dataset was downloaded, finalized, or used by a shared experiment.

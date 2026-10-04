@@ -64,7 +64,7 @@ python Final-Report/scripts/verify_resource_url.py --doi "10.1145/3658644.367038
 
 #### 3. Quét và kiểm toán toàn bộ link trong một file Markdown trước khi commit:
 ```bash
-python Final-Report/scripts/verify_resource_url.py --file "workspaces/truongnv/docs/model_study/01_tfidf_syntactic_baseline/resources_and_videos.md"
+python Final-Report/scripts/verify_resource_url.py --file "Final-Report/References/REFERENCES_LOG.md"
 ```
 
 ---

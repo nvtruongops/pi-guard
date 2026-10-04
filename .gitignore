@@ -70,11 +70,11 @@ tests/adversarial/**/*.jsonl
 Final-Report/tests/adversarial/*.jsonl
 Final-Report/tests/adversarial/**/*.jsonl
 !Final-Report/tests/adversarial/**/.gitkeep
-# Upstream raw replication datasets (PromptShield heavy predibase/training corpora)
-workspaces/**/PromptShield/data/
-workspaces/**/PromptShield/camera_ready_datasets/
-workspaces/**/PromptShield/libs/InjecGuard/datasets/
-workspaces/**/promptshield_protectai_v2_full_eval_2026-09-29/data/
+# Local-only research workspace. Put deliverables intended for Git outside this tree.
+workspaces/truongnv/
+workspaces/ducnq/
+workspaces/vietpmh/
+workspaces/phuongddd/
 
 # Environment & Secrets
 .env
@@ -117,9 +117,6 @@ site/
 .playwright-mcp/
 # CodeGraph Index Cache
 .codegraph/
-
-# Agent-only scratch files are ignored inside each member's own sandbox
-workspaces/*/.agent-work/
 
 # Hugging Face cache directories
 **/hf-cache/

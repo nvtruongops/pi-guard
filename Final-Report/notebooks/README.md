@@ -1,11 +1,11 @@
 # Final-Report notebook area
 
-This is a shared notebook scaffold, not the execution location of the current Review 2 cascade experiment. The current experiment was run and documented in the lead workspace; see its [report](../../workspaces/truongnv/reports/experiment_reports/tfidf_deberta_cascade_2026-10-04/REPORT.md).
+This is a shared notebook scaffold, not the execution location of the current Review 2 cascade experiment. The private run report and artifacts remain in the ignored local workspace and are not linked or represented as shared evidence here.
 
-The tracked notebook area currently contains configuration, data, and model directories but no project notebook pipeline. Its templates do not establish canonical Review 2 data, published model checkpoints, or accepted thresholds.
+The tracked notebook area contains configuration, data, and model directories but no project notebook pipeline. Its templates do not establish canonical Review 2 data, published model checkpoints, or accepted thresholds.
 
 - [Configuration files](configs/README.md)
 - [Data and manifests](data/README.md)
 - [Model artifact directory](models/README.md)
 
-Use the task-specific report for execution instructions and provenance. Do not copy run claims into the shared deliverable without consolidation and review.
+Only add execution claims to a shared report after its protocol, raw evidence, and provenance are placed in tracked deliverables.

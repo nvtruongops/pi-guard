@@ -1,7 +1,5 @@
 # Academic references — shared deliverables
 
-This folder contains literature and technical references used to support the capstone’s background and design. Use the [references log](https://github.com/nvtruongops/pi-guard/blob/main/Final-Report/References/REFERENCES_LOG.md) for the indexed sources and their project relevance.
+This folder is the canonical tracked collection of open-access papers and their metadata. Use the [references log](REFERENCES_LOG.md) for indexed sources and their relevance to the project.
 
-A cited paper supports only the claims established by that source. Local experiment results belong to their own provenance-backed reports; the Review 1 ingress architecture is a project proposal.
-
-See also the lead workspace [research index](https://github.com/nvtruongops/pi-guard/blob/main/workspaces/truongnv/docs/research/README.md) and [active Review 2 experiment report](https://github.com/nvtruongops/pi-guard/blob/main/workspaces/truongnv/reports/experiment_reports/tfidf_deberta_cascade_2026-10-04/REPORT.md).
+A cited paper supports only the claims established by that source. Local experiment results belong in separate, provenance-backed tracked reports when they are approved for publication. The Review 1 ingress architecture is a project proposal.

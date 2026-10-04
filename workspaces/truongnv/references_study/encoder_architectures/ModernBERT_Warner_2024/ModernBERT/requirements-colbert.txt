@@ -1,4 +1,0 @@
-colbert-ai=0.2.19
-faiss-gpu
-ranx
-ir_datasets
