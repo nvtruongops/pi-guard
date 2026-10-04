@@ -56,6 +56,10 @@ def sanitize_content(content: str) -> str:
         sanitized_lines.append(line)
     content = "\n".join(sanitized_lines)
 
+    # Source reports and the generated portal have different relative link roots.
+    content = content.replace("(REFERENCES_LOG.md)", "(references_log.md)")
+    content = content.replace("(../../Github-Page/", "(../")
+
     # Chuyển đổi link PDF nội bộ và link file ngoài thành inline code hoặc text đậm
     content = re.sub(r"\[([^\]]+)\]\((?:file:///[^)]*|Final-Report(?:/[^)]*)?|workspaces(?:/[^)]*)?|reports/(?:References|Meeting)/[^)]*|References/[^)]*|Meeting/[^)]*|CAPSTONE%20PROJECT%20REGISTER\.md|Github-Page/[^)]*|docs/[^)]*)\)", r"**\1**", content)
 
