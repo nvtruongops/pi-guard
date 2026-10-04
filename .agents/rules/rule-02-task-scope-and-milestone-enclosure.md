@@ -53,7 +53,7 @@ Trước khi Agent viết bất kỳ dòng mã nào hoặc tạo bất kỳ tệ
 - **Tệp nguồn tham chiếu**: Ghi rõ đường dẫn tệp task (ví dụ: `workspaces/truongnv/reports/tasks_for_meeting_6/README.md`).
 - **Phạm vi trong ranh giới (In-Scope Deliverables)**: Liệt kê đúng các câu hỏi/mục tiêu mà GVHD hoặc task file chỉ định.
 - **Phạm vi ngoài ranh giới (Strictly Out-of-Scope)**:
-  - Các công nghệ đã bị loại trừ trong `ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`.
+  - Các công nghệ được liệt kê tại Mục 4 của quy tắc này.
   - Các giai đoạn tương lai chưa đến kỳ nghiệm thu (ví dụ: mô hình champion của nhóm thuộc Chapter 4, không được đưa vào task thực nghiệm baseline của Chapter 2).
 
 ---
@@ -72,7 +72,7 @@ Agent phải tuân thủ nghiêm ngặt ranh giới giữa các giai đoạn đ�
 
 ## 🚨 4. TUÂN THỦ DANH MỤC CÔNG NGHỆ ĐÃ LOẠI TRỪ (DEPRECATION COMPLIANCE)
 
-Tuân thủ tuyệt đối [`workspaces/truongnv/reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md):
+Danh mục công nghệ và kiến trúc ngoài phạm vi:
 1. **Lượng tử hóa INT8 / ONNX Runtime (ZeroQuant Yao et al. 2022)**: ĐÃ BỊ LOẠI BỎ KHỎI PHẠM VI ÁP DỤNG. Cấm tuyệt đối trình bày INT8/ONNX như kiến trúc hiện thực của đề tài. Tầng 2 đề xuất của nhóm là **Native FP32 DeBERTa-v3** trên CPU tiêu chuẩn kết hợp cơ chế MOF (Hao Li et al. ACL 2025).
 2. **Can thiệp trọng số nội bộ / Giám sát KV-Cache / White-Box Steering**: STRICTLY OUT-OF-SCOPE. Đề tài chỉ áp dụng mô hình **External Guardrail Proxy** mức văn bản.
 3. **Guardrail dựa trên LLM Sinh (Generative Guardrails như Llama Guard)**: CHỈ LÀ BASELINE ĐO ĐẠC ĐỐI SÁNH, không phải kiến trúc áp dụng của đề tài do độ trễ quá cao (> 500ms).

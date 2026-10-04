@@ -30,6 +30,7 @@ Final-Report/reports/
 
 #### 2. Sổ Theo Dõi Tiến Độ FPT IAP491 (`PI_GUARD_PROCESS_REPORT.xlsx`)
 - **Mục đích**: Bảng tính Excel chính thức theo mẫu chuẩn của Bộ môn An toàn Thông tin ĐH FPT (IAP491) dùng để nghiệm thu tiến độ hàng tuần với GVHD.
+- **Cập nhật 04/10/2026**: Mốc Review 1 được ghi nhận hoàn tất theo xác nhận của người dùng. Đây là trạng thái tiến độ, không phải xác nhận nghiệm thu mô hình/cascade. Xem [báo cáo tổng kết Review 1](../../workspaces/truongnv/reports/report_for_review1/REVIEW_1_COMPLETION_REPORT_2026-10-04.md).
 - **Cấu trúc gồm 3 Sheet**:
   1. `Process_Report`: Bảng phân rã công việc WBS gồm 20 đầu việc chuẩn qua 4 cột mốc (Review 1, Review 2, Hội đồng Giữa kỳ, Bảo vệ Tốt nghiệp).
   2. `Personnel_Allocation`: Ma trận phân bổ trách nhiệm chi tiết của 4 thành viên (Trường, Đức, Việt, Phương).

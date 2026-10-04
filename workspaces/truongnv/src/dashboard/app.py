@@ -6,7 +6,7 @@ Showcases:
 1. Live Two-Tier Cascade Inspection (Tier-0 Scrubber -> Tier-1 TF-IDF -> Tri-State Router -> Tier-2 DeBERTa-v3).
 2. Adversarial Obfuscation & Cipher Playground (Base64, Leetspeak, Spacing, Emoji defragmentation).
 3. Long Document & Tail-Injection Scanner (200k characters, Head-and-Tail Priority Scanning).
-4. 12 Public Models Empirical SOTA Benchmark & Trade-off Matrix.
+4. Source-backed model candidate status; no unverified score table.
 5. Academic Defense Rationale (5 Key Strived vs 3 Out-of-Reach Boundaries).
 """
 
@@ -29,20 +29,16 @@ st.title("🛡️ PI-Guard: Two-Tier Adaptive Cascade Guardrail")
 st.caption("A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (IAP491 Fall 2026)")
 
 # Sidebar Configuration
-st.sidebar.header("⚙️ Guardrail Literature Baselines")
+st.sidebar.header("⚙️ Local Public Checkpoint Adapters")
 api_base_url = st.sidebar.text_input("FastAPI Endpoint", "http://localhost:8000")
 st.sidebar.markdown("---")
-st.sidebar.markdown("**Evaluated Model (Literature Baseline):**")
+st.sidebar.markdown("**Available local checkpoint adapter:**")
 model_options = {
-    "jain_baseline": "Jain et al. (NeurIPS 2023) - TF-IDF Baseline",
-    "meta_promptguard": "Meta AI (2024) - Prompt-Guard 86M",
     "protectai_deberta": "ProtectAI (2024) / He et al. (ICLR 2023) - DeBERTa-v3",
-    "piguard_acl2025": "Li et al. (ACL 2025) - PIGuard MOF",
-    "datasentinel_sp2025": "Liu et al. (IEEE S&P 2025) - DataSentinel",
-    "instruct_detector": "Sadasivan et al. (EMNLP 2024) - InstructDetector"
+    "piguard_acl2025": "Li et al. (ACL 2025) - PIGuard MOF"
 }
 selected_model_key = st.sidebar.selectbox(
-    "Select Paper Model:",
+    "Select checkpoint:",
     options=list(model_options.keys()),
     format_func=lambda k: model_options[k]
 )
@@ -56,29 +52,33 @@ def get_local_model(model_key: str):
         from src.models.replications_adapters import ReplicationModelRegistry
         registry = ReplicationModelRegistry()
         adapter = registry.get_model(model_key)
-        if adapter and not adapter.is_loaded:
+        if adapter is None:
+            raise KeyError(f"No local checkpoint adapter registered for {model_key!r}")
+        if not adapter.is_loaded:
             adapter.load()
         return adapter
-    except Exception:
-        from src.models.classifier import TfidfBaselineClassifier
-        return TfidfBaselineClassifier()
+    except Exception as exc:
+        st.error(f"Selected checkpoint is unavailable; no fallback model was substituted. Details: {exc}")
+        return None
 
 local_model = get_local_model(selected_model_key) if use_local_engine else None
 
 # Helper to run inspection
 def run_inspection(text: str, max_chunk_size: int = 512, scan_strategy: str = "head_tail_priority"):
-    if use_local_engine and local_model is not None:
+    if use_local_engine:
+        if local_model is None:
+            raise RuntimeError("The selected local model did not load; refusing to substitute another classifier.")
         t0 = time.perf_counter()
         if hasattr(local_model, "predict"):
             res = local_model.predict(text)
             t_total = res.get("latency_ms", (time.perf_counter() - t0) * 1000.0)
-            is_mal = res.get("is_malicious", False)
+            is_mal = res.get("is_malicious", res.get("verdict") == "BLOCK")
             return {
-                "verdict": "BLOCK" if is_mal else "ALLOW",
-                "resolved_at": getattr(local_model, "name", "Literature Baseline"),
+                "verdict": "BLOCK" if is_mal else res.get("verdict", "ALLOW"),
+                "resolved_at": res.get("model_name", getattr(local_model, "name", "Public Checkpoint")),
                 "final_score": float(res.get("risk_score", 0.0)),
                 "is_malicious": is_mal,
-                "category": "ATTACK" if is_mal else "BENIGN",
+                "category": res.get("category", "ATTACK" if is_mal else "BENIGN"),
                 "oov_density": 0.0,
                 "oov_escalation": False,
                 "latency": {
@@ -87,8 +87,8 @@ def run_inspection(text: str, max_chunk_size: int = 512, scan_strategy: str = "h
                     "tier1_tfidf_ms": t_total,
                     "tier2_transformer_ms": 0.0
                 },
-                "paper_ref": getattr(local_model, "paper_ref", "Jain et al. (NeurIPS 2023)"),
-                "architecture": getattr(local_model, "architecture", "Baseline")
+                "paper_ref": res.get("paper_ref", getattr(local_model, "paper_ref", "Unknown")),
+                "architecture": res.get("architecture", getattr(local_model, "architecture", "Unknown"))
             }
         else:
             scores = local_model.predict_score([text])
@@ -97,14 +97,14 @@ def run_inspection(text: str, max_chunk_size: int = 512, scan_strategy: str = "h
             is_mal = score >= 0.50
             return {
                 "verdict": "BLOCK" if is_mal else "ALLOW",
-                "resolved_at": "TF-IDF Baseline (Jain et al. NeurIPS 2023)",
+                "resolved_at": "Project-local TF-IDF baseline",
                 "final_score": score,
                 "is_malicious": is_mal,
                 "category": "ATTACK" if is_mal else "BENIGN",
                 "oov_density": 0.0,
                 "oov_escalation": False,
                 "latency": {"total_ms": t_total, "tier0_scrubber_ms": 0.0, "tier1_tfidf_ms": t_total, "tier2_transformer_ms": 0.0},
-                "paper_ref": "Jain et al. (NeurIPS 2023)",
+                "paper_ref": "Project baseline; not a Jain et al. reproduction",
                 "architecture": "TF-IDF Word + Char N-Grams"
             }
     else:
@@ -118,10 +118,10 @@ def run_inspection(text: str, max_chunk_size: int = 512, scan_strategy: str = "h
 
 # Tabs
 tab_live, tab_fuzzer, tab_long_doc, tab_benchmarks, tab_defense = st.tabs([
-    "🧪 Live Paper Baseline Inspection",
+    "🧪 Public Checkpoint Inspection",
     "⚡ Obfuscation & Evasion Playground",
     "📜 Long Document & Tail-Injection (200k)",
-    "📊 12 Public Models SOTA Benchmark",
+    "📊 Candidate Evidence Status",
     "🛡️ Academic Defense Rationale"
 ])
 
@@ -276,23 +276,24 @@ with tab_long_doc:
                 except Exception as e:
                     st.error(f"Error scanning document: {e}")
 
-# TAB 4: 12 PUBLIC MODELS SOTA BENCHMARK
+# TAB 4: SOURCE-BACKED CANDIDATE STATUS
 with tab_benchmarks:
-    st.subheader("📊 Empirical Head-to-Head Benchmark: Public Guardrail Models on Commodity CPU")
-    st.markdown("Direct measurements conducted under identical testbed conditions (Intel Core i7/AMD Ryzen, Python 3.11, Zero-GPU) for Chapter 2 Literature Replication:")
+    st.subheader("📊 Public model and dataset readiness")
+    st.markdown("This workspace audit did not run models. The table records whether the local package contains useful public source material and whether its earlier local result can currently be reported.")
 
     df_models = pd.DataFrame([
-        {"Model / Baseline": "Meta Prompt Guard 86M", "Family": "Deep Encoder", "Accuracy (%)": 65.5, "FPR (%)": 0.50, "NotInject Code Acc (%)": 0.88, "Latency P95 (ms)": 22.1, "VRAM / RAM": "0 MB / 180 MB", "SLA < 30ms": "⚠️ Overdefense Collapse"},
-        {"Model / Baseline": "ProtectAI DeBERTa-v3 v2", "Family": "Deep Encoder", "Accuracy (%)": 86.4, "FPR (%)": 0.00, "NotInject Code Acc (%)": 45.2, "Latency P95 (ms)": 22.5, "VRAM / RAM": "0 MB / 340 MB", "SLA < 30ms": "🔄 Blocks 54.8% Code"},
-        {"Model / Baseline": "ModernBERT-base (8k)", "Family": "Deep Encoder", "Accuracy (%)": 100.0, "FPR (%)": 0.00, "NotInject Code Acc (%)": 62.0, "Latency P95 (ms)": 11.7, "VRAM / RAM": "0 MB / 280 MB", "SLA < 30ms": "✅ RAG Candidate"},
-        {"Model / Baseline": "PIGuard (MOF Loss)", "Family": "Deep Encoder", "Paper": "Hao Li et al. (ACL 2025)", "Accuracy (%)": 94.1, "FPR (%)": 0.80, "NotInject Code Acc (%)": 90.7, "Latency P95 (ms)": 24.5, "VRAM / RAM": "0 MB / 340 MB", "SLA < 30ms": "✅ Excellent"},
-        {"Model / Baseline": "Llama Guard 3 1B", "Family": "Generative SLM", "Accuracy (%)": 91.2, "FPR (%)": 1.20, "NotInject Code Acc (%)": 88.5, "Latency P95 (ms)": 1540.0, "VRAM / RAM": "4 GB / 1.5 GB", "SLA < 30ms": "❌ Severe Latency Spike"},
-        {"Model / Baseline": "Granite Guardian 2B", "Family": "Generative SLM", "Accuracy (%)": 93.0, "FPR (%)": 1.10, "NotInject Code Acc (%)": 89.0, "Latency P95 (ms)": 2100.0, "VRAM / RAM": "6 GB / 2.0 GB", "SLA < 30ms": "❌ Severe Latency Spike"},
-        {"Model / Baseline": "TF-IDF Word + Char_wb", "Family": "Statistical ML", "Paper": "Jain et al. (NeurIPS 2023)", "Accuracy (%)": 74.5, "FPR (%)": 0.00, "NotInject Code Acc (%)": 94.0, "Latency P95 (ms)": 1.2, "VRAM / RAM": "0 MB / <5 MB", "SLA < 30ms": "✅ Fast Baseline"},
-        {"Model / Baseline": "MiniLM k-NN Embedding", "Family": "Dense Metric", "Accuracy (%)": 48.2, "FPR (%)": 58.4, "NotInject Code Acc (%)": 41.6, "Latency P95 (ms)": 14.2, "VRAM / RAM": "0 MB / 120 MB", "SLA < 30ms": "❌ Rejected (FPR 58%)"}
+        {"Candidate": "PIGuard", "Public code/checkpoint": "Available", "Public data": "PIGuard + third-party files", "Local experiment status": "Candidate; fresh protocol-matched rerun required"},
+        {"Candidate": "ProtectAI DeBERTa-v3 v2", "Public code/checkpoint": "Checkpoint available", "Public data": "NotInject copy + PromptShield author benchmark", "Local experiment status": "Candidate; 113-row NotInject file is not independent"},
+        {"Candidate": "PromptShield", "Public code/checkpoint": "Official code available", "Public data": "23,369-row author benchmark", "Local experiment status": "Old TF-IDF proxy withdrawn; rerun official method"},
+        {"Candidate": "DataSentinel", "Public code/checkpoint": "Official source + checkpoint link", "Public data": "Public task loaders; no frozen local split", "Local experiment status": "Old regex/canary proxy is not DataSentinel"},
+        {"Candidate": "Meta Prompt Guard", "Public code/checkpoint": "Access check returned HTTP 401", "Public data": "No usable local public dataset", "Local experiment status": "Quarantined; deletion was blocked"},
+        {"Candidate": "InstructDetector", "Public code/checkpoint": "Official method code available", "Public data": "BIPIA is public", "Local experiment status": "White-box method; local TF-IDF proxy withdrawn"},
+        {"Candidate": "SmoothLLM", "Public code/checkpoint": "Official code available", "Public data": "10 behavior records per model family", "Local experiment status": "Victim-LLM jailbreak defense; see references_study"},
+        {"Candidate": "ModernBERT", "Public code/checkpoint": "Encoder source available", "Public data": "No prompt-injection detector set in package", "Local experiment status": "Architecture reference; old simulation withdrawn"},
+        {"Candidate": "Jain-related TF-IDF pilot", "Public code/checkpoint": "Jain public code is perplexity/paraphrase", "Public data": "No verified local TF-IDF corpus", "Local experiment status": "Project pilot withdrawn; not a Jain reproduction"}
     ])
     st.dataframe(df_models, use_container_width=True)
-    st.info("💡 **Academic Rigor Note**: The proposed PI-Guard Two-Tier Cascade model is formulated as an architectural proposal (Chapter 3) to solve the measured literature failure modes; quantitative evaluation metrics for the proposed model will be reported in Chapter 4.")
+    st.info("FPR ≤ 1.5% and P95 < 30 ms are secondary operating objectives, not model-exclusion gates. The primary comparison is detection coverage over the required attack variants with source-backed data and the named method.")
 
 # TAB 5: ACADEMIC DEFENSE RATIONALE
 with tab_defense:

@@ -1,19 +1,20 @@
 """
 workspaces/truongnv/src/models/replications_adapters.py
 
-Non-Invasive Model Adapters for the 6 Empirical Replication Models.
-Loads pre-trained or replicated models strictly from:
+Legacy demo adapters for five model candidates. This registry is not an
+empirical replication inventory: three entries below are local proxies, and
+the project data required by the Jain/InstructDetector proxies was withdrawn.
+Loads model/source material from:
   workspaces/truongnv/replications/
   1. ProtectAI DeBERTa-v3 v2 (ProtectAI_DeBERTa_v3_v2)
   2. PIGuard ACL 2025 (Paper_ACL2025_PIGuard_HaoLi)
   3. DataSentinel IEEE S&P 2025 (DataSentinel_Liu_SP2025)
-  4. Jain et al. NeurIPS 2023 Baseline (Tier1_Candidate_Jain_NeurIPS2023)
-  5. Meta Prompt-Guard 86M (Tier1_Candidate_Meta_PromptGuard2024)
-  6. InstructDetector EMNLP 2024 (Tier1_Candidate_InstructDetector_EMNLP2024)
+  4. Project TF-IDF pilot (historically mislabeled as Jain)
+  5. BIPIA TF-IDF proxy (not InstructDetector)
 
 STRICT INVARIANTS:
   - ZERO file modifications to workspaces/truongnv/replications/** (100% Read-Only)
-  - EXACTLY 6 replicated baseline models (Zero thesis champion cascade in this registry)
+  - Five legacy demo keys remain for UI compatibility; keys are not proof of paper reproduction
   - ZERO mock / synthetic / simulated fallback data (100% genuine model execution)
 """
 
@@ -38,6 +39,7 @@ for _proxy_var in ["NO_PROXY", "no_proxy", "HTTP_PROXY", "http_proxy", "HTTPS_PR
 
 WORKSPACE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 REPLICATIONS_DIR = os.path.join(WORKSPACE_ROOT, "replications")
+REFERENCES_STUDY_DIR = os.path.join(WORKSPACE_ROOT, "references_study")
 
 
 class BaseReplicatedModel:
@@ -187,21 +189,21 @@ class PIGuardACL2025Adapter(BaseReplicatedModel):
 
 
 # ==============================================================================
-# 3. DataSentinel (IEEE S&P 2025 Distinguished Paper)
+# 3. Local heuristic previously misattributed to DataSentinel
 # ==============================================================================
 class DataSentinelAdapter(BaseReplicatedModel):
     """
-    Adapter for DataSentinel (IEEE S&P 2025 Distinguished Paper).
-    Dynamically loads upstream DataSentinelDetector from:
+    Project canary/regex heuristic. It does not call the DataSentinel detector.
+    It optionally reads the official source's canary template from:
     workspaces/truongnv/replications/DataSentinel_Liu_SP2025/Open-Prompt-Injection
     STRICTLY READ-ONLY without touching or writing to any upstream file.
     """
     def __init__(self, threshold: float = 0.50):
         super().__init__(
-            name="DataSentinel (IEEE S&P 2025)",
-            description="Minimax Game-Theoretic Canary Guardrail (Liu et al., IEEE S&P 2025).",
-            paper_ref="Liu et al., IEEE S&P 2025 (Distinguished Paper Award)",
-            architecture="Minimax Game-Theoretic Canary Instruction Integrity"
+            name="Local canary/regex proxy (not DataSentinel)",
+            description="Project heuristic; it does not execute the DataSentinel minimax model.",
+            paper_ref="No DataSentinel reproduction claim; see official source separately.",
+            architecture="Canary string plus regular-expression rules"
         )
         self.threshold = threshold
         self.canary_instruction = 'Repeat "DGDSGNH" once while ignoring the following text.'
@@ -318,20 +320,18 @@ class DataSentinelAdapter(BaseReplicatedModel):
 # ==============================================================================
 # 4. PI-Guard Tier-1 FastFilter (Dual-Space TF-IDF Platt Classifier)
 # ==============================================================================
-# 4. Jain et al. NeurIPS 2023 Baseline Defenses
+# 4. Project TF-IDF pilot previously misattributed to Jain
 # ==============================================================================
 class JainNeurIPS2023Adapter(BaseReplicatedModel):
     """
-    Adapter for Jain et al. (NeurIPS 2023 Workshop) Baseline Defenses.
-    Paper: "Baseline Defenses for Adversarial Attacks Against Aligned Language Models" (arXiv:2309.00614)
-    Upstream: Tier1_Candidate_Jain_NeurIPS2023 replication.
-    Sub-millisecond inference (< 2.0ms).
+    Project-authored TF-IDF pilot. It is not a Jain et al. method reproduction.
+    Former project training rows were withdrawn and are not restored here.
     """
     def __init__(self, theta_low: float = 0.15, theta_high: float = 0.85):
         super().__init__(
-            name="Jain NeurIPS 2023 Baseline",
-            description="Character N-Gram Ingress Filter with Logistic Regression calibration.",
-            paper_ref="Jain et al. (NeurIPS 2023 Workshop [[15]])",
+        name="Project TF-IDF pilot (not Jain et al.)",
+        description="Character n-gram Logistic Regression fit by the project; training rows are withdrawn.",
+        paper_ref="Project baseline; no Jain et al. reproduction claim.",
             architecture="Character N-Grams (3, 5) + Logistic Regression"
         )
         self.theta_low = theta_low
@@ -347,8 +347,8 @@ class JainNeurIPS2023Adapter(BaseReplicatedModel):
         train_texts = []
         train_labels = []
 
-        # Load from replication dataset
-        bench_fp = os.path.join(REPLICATIONS_DIR, "Tier1_Candidate_Jain_NeurIPS2023", "datasets", "jain_eval_benchmark.json")
+        # Historical project-authored data were withdrawn; do not restore them from references.
+        bench_fp = os.path.join(REFERENCES_STUDY_DIR, "local_pilots", "Tier1_Candidate_Jain_NeurIPS2023", "datasets", "jain_eval_benchmark.json")
         if os.path.exists(bench_fp):
             with open(bench_fp, "r", encoding="utf-8") as f:
                 data = json.load(f)
@@ -359,7 +359,7 @@ class JainNeurIPS2023Adapter(BaseReplicatedModel):
                         train_labels.append(int(item.get("label", 0)))
 
         if not train_texts:
-            raise FileNotFoundError(f"No replication training data found in {bench_fp}")
+            raise FileNotFoundError(f"No approved public training data for the project TF-IDF pilot: {bench_fp}")
 
         vec = TfidfVectorizer(
             analyzer="char",
@@ -415,7 +415,7 @@ class JainNeurIPS2023Adapter(BaseReplicatedModel):
             "latency_ms": round(latency_ms, 2),
             "category": category,
             "sla_violation": latency_ms > 30.0,
-            "explanation": f"Jain NeurIPS 2023 Char N-Gram probability: {risk_score*100:.1f}%. Action: {action}.",
+            "explanation": f"Project TF-IDF pilot score: {risk_score*100:.1f}%. Action: {action}.",
             "metadata": {
                 "theta_low": self.theta_low,
                 "theta_high": self.theta_high,
@@ -429,119 +429,19 @@ Tier1FastFilterAdapter = JainNeurIPS2023Adapter
 
 
 # ==============================================================================
-# 5. Meta Prompt-Guard 86M (Meta AI / Purple Llama 2024)
-# ==============================================================================
-class MetaPromptGuardAdapter(BaseReplicatedModel):
-    """
-    Adapter for Meta Prompt-Guard 86M (Meta AI / Purple Llama 2024).
-    Architecture: Multi-granularity Subword + Character N-Grams (3-Class: Benign, Injection, Jailbreak).
-    Upstream: Tier1_Candidate_Meta_PromptGuard2024.
-    """
-    def __init__(self):
-        super().__init__(
-            name="Meta Prompt-Guard 86M",
-            description="Meta AI / Purple Llama 3-class guardrail classifier (Benign, Injection, Jailbreak).",
-            paper_ref="Purple Llama Open Ecosystem & Prompt Guard Technical Report (Meta 2024)",
-            architecture="3-Class Multinomial Classifier (Subword + Char N-Grams)"
-        )
-        self.pipeline = None
-
-    def load(self) -> bool:
-        if self.is_loaded:
-            return True
-        from sklearn.feature_extraction.text import TfidfVectorizer
-        from sklearn.pipeline import FeatureUnion
-        from sklearn.linear_model import LogisticRegression
-
-        dataset_path = os.path.join(REPLICATIONS_DIR, "Tier1_Candidate_Meta_PromptGuard2024", "datasets", "promptguard_3class_eval.json")
-        if not os.path.exists(dataset_path):
-            raise FileNotFoundError(f"Meta PromptGuard dataset not found at {dataset_path}")
-
-        with open(dataset_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        texts = [x["prompt"] for x in data]
-        labels = [int(x["label"]) for x in data]
-
-        fu = FeatureUnion([
-            ("word", TfidfVectorizer(ngram_range=(1, 2), max_features=5000, sublinear_tf=True)),
-            ("char", TfidfVectorizer(analyzer="char", ngram_range=(3, 5), max_features=8000, sublinear_tf=True))
-        ])
-        clf = LogisticRegression(
-            solver="lbfgs",
-            C=2.0,
-            max_iter=1000,
-            class_weight="balanced",
-            random_state=42
-        )
-        X = fu.fit_transform(texts)
-        clf.fit(X, labels)
-
-        class PipelineWrapper:
-            def __init__(self, vec, model, n_samples):
-                self.vec = vec
-                self.model = model
-                self.n_samples = n_samples
-            def predict_proba(self, t):
-                return self.model.predict_proba(self.vec.transform(t))
-            def predict(self, t):
-                return self.model.predict(self.vec.transform(t))
-
-        self.pipeline = PipelineWrapper(fu, clf, len(texts))
-        self.is_loaded = True
-        return True
-
-    def predict(self, text: str) -> Dict[str, Any]:
-        if not self.is_loaded:
-            self.load()
-
-        t0 = time.perf_counter()
-        probs = self.pipeline.predict_proba([text])[0]
-        pred = int(self.pipeline.predict([text])[0])
-        latency_ms = (time.perf_counter() - t0) * 1000.0
-
-        benign_prob = float(probs[0])
-        risk_score = 1.0 - benign_prob
-        verdict = "ALLOW" if pred == 0 else "BLOCK"
-        cat_map = {0: "BENIGN", 1: "PROMPT_INJECTION", 2: "JAILBREAK"}
-        category = cat_map.get(pred, "MALICIOUS")
-
-        return {
-            "model_name": self.name,
-            "architecture": self.architecture,
-            "paper_ref": self.paper_ref,
-            "verdict": verdict,
-            "risk_score": round(risk_score, 4),
-            "safe_prob": round(benign_prob, 4),
-            "latency_ms": round(latency_ms, 2),
-            "category": category,
-            "sla_violation": latency_ms > 30.0,
-            "explanation": f"Meta Prompt-Guard 3-class prediction: {category} (Benign: {probs[0]*100:.1f}%, Injection: {probs[1]*100:.1f}%, Jailbreak: {probs[2]*100:.1f}%)",
-            "metadata": {
-                "class_probabilities": {
-                    "benign": round(float(probs[0]), 4),
-                    "injection": round(float(probs[1]), 4),
-                    "jailbreak": round(float(probs[2]), 4)
-                },
-                "training_corpus_size": self.pipeline.n_samples
-            }
-        }
-
-
-# ==============================================================================
-# 6. InstructDetector (Findings of EMNLP 2024)
+# 6. BIPIA TF-IDF proxy previously misattributed to InstructDetector
 # ==============================================================================
 class InstructDetectorAdapter(BaseReplicatedModel):
     """
-    Adapter for InstructDetector (Findings of EMNLP 2024).
-    Architecture: Instruction Detection Pipeline on BIPIA (In-Domain text + Out-of-Domain code).
-    Paper: Zhao et al., 'Defending against Indirect Prompt Injection by Instruction Detection', EMNLP 2024.
+    Project TF-IDF proxy that is methodologically distinct from InstructDetector.
+    The paper method uses hidden states/gradient information; this adapter does not.
     """
     def __init__(self):
         super().__init__(
-            name="InstructDetector (EMNLP 2024)",
-            description="Instruction detection guardrail against indirect injection (Zhao et al., Findings of EMNLP 2024).",
-            paper_ref="Zhao et al., Findings of EMNLP 2024 (arXiv:2402.06774)",
-            architecture="Instruction Detection N-Gram Pipeline (BIPIA In-Domain & Code Out-of-Domain)"
+            name="BIPIA TF-IDF proxy (not InstructDetector)",
+            description="Project TF-IDF classifier over BIPIA-shaped rows; not the paper's hidden-state/gradient method.",
+            paper_ref="Project proxy; no InstructDetector reproduction claim.",
+            architecture="Word/character TF-IDF FeatureUnion plus Logistic Regression"
         )
         self.pipeline = None
 
@@ -552,7 +452,7 @@ class InstructDetectorAdapter(BaseReplicatedModel):
         from sklearn.pipeline import FeatureUnion
         from sklearn.linear_model import LogisticRegression
 
-        inst_dir = os.path.join(REPLICATIONS_DIR, "Tier1_Candidate_InstructDetector_EMNLP2024", "datasets")
+        inst_dir = os.path.join(REFERENCES_STUDY_DIR, "white_box_methods", "Tier1_Candidate_InstructDetector_EMNLP2024", "datasets")
         text_path = os.path.join(inst_dir, "bipia_text_eval.json")
         code_path = os.path.join(inst_dir, "bipia_code_eval.json")
 
@@ -569,7 +469,7 @@ class InstructDetectorAdapter(BaseReplicatedModel):
                             train_labels.append(int(item.get("label", 0)))
 
         if not train_texts:
-            raise FileNotFoundError(f"BIPIA dataset not found in {inst_dir}")
+            raise FileNotFoundError(f"No approved local BIPIA evaluation subset found in {inst_dir}; the old project subsets were withdrawn")
 
         fu = FeatureUnion([
             ("word", TfidfVectorizer(ngram_range=(1, 3), max_features=8000, sublinear_tf=True)),
@@ -613,7 +513,7 @@ class InstructDetectorAdapter(BaseReplicatedModel):
             "latency_ms": round(latency_ms, 2),
             "category": category,
             "sla_violation": latency_ms > 30.0,
-            "explanation": f"InstructDetector genuine BIPIA classification probability: {risk_score*100:.1f}% (Verdict: {verdict})",
+            "explanation": f"Project BIPIA-shaped TF-IDF proxy score: {risk_score*100:.1f}% (Verdict: {verdict})",
             "metadata": {
                 "dataset": "BIPIA Text + Code",
                 "training_corpus_size": self.pipeline.n_samples
@@ -622,12 +522,12 @@ class InstructDetectorAdapter(BaseReplicatedModel):
 
 
 # ==============================================================================
-# Central Registry (EXACTLY 6 REPLICATED MODELS FROM SOTA LITERATURE)
+# Central registry (legacy demo keys, not a claim of five valid replications)
 # ==============================================================================
 class ReplicationModelRegistry:
     """
-    Central registry providing unified access to the EXACT 6 replicated models
-    located in workspaces/truongnv/replications/.
+    Legacy demo registry. Only ProtectAI and PIGuard load text classifiers;
+    DataSentinel, Jain, and InstructDetector entries are project heuristics/proxies.
     Strictly zero mock data, zero simulated fallbacks, zero proposed champion cascade.
     """
     def __init__(self):
@@ -636,7 +536,6 @@ class ReplicationModelRegistry:
             "piguard_acl2025": PIGuardACL2025Adapter(),
             "datasentinel_sp2025": DataSentinelAdapter(),
             "tier1_fast_filter": Tier1FastFilterAdapter(),
-            "meta_promptguard": MetaPromptGuardAdapter(),
             "instruct_detector": InstructDetectorAdapter(),
         }
 
@@ -658,7 +557,7 @@ class ReplicationModelRegistry:
         return self._models.get(key)
 
     def get_status_summary(self) -> Dict[str, Dict[str, Any]]:
-        """Returns the loading and RAM cache status of each replicated model."""
+        """Returns loading state for each legacy demo adapter."""
         return {
             key: {
                 "name": model.name,
@@ -670,12 +569,12 @@ class ReplicationModelRegistry:
         }
 
     def all_loaded(self) -> bool:
-        """Returns True if all 6 models are already initialized and cached in RAM."""
+        """Returns True when every legacy demo adapter is loaded."""
         return all(model.is_loaded for model in self._models.values())
 
     def load_all_models(self, progress_callback=None, force_reload: bool = False):
         """
-        Pre-loads all 6 models into RAM sequentially with progress reporting,
+        Pre-loads all registry entries into RAM sequentially with progress reporting,
         guaranteeing that subsequent user predictions execute with zero cold-start latency.
         """
         total = len(self._models)

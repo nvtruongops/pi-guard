@@ -1,0 +1,29 @@
+{
+  "aggregate": {
+    "n": 2000,
+    "f1": 0.9508,
+    "precision": 0.9352,
+    "recall": 0.967,
+    "fpr": 0.067,
+    "fnr": 0.033,
+    "threshold": 0.518
+  },
+  "per_domain": {
+    "code": {
+      "fpr": 0.004,
+      "recall": 0.916
+    },
+    "finance": {
+      "fpr": 0.012,
+      "recall": 0.996
+    },
+    "legal": {
+      "fpr": 0.252,
+      "recall": 0.968
+    },
+    "medical": {
+      "fpr": 0.0,
+      "recall": 0.988
+    }
+  }
+}

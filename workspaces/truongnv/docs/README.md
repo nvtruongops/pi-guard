@@ -1,38 +1,21 @@
-# Cổng Tài Liệu Khoa Học & Luận Văn PI-Guard (TruongNV Docs Hub)
+# PI-Guard documentation index
 
-Hệ thống tài liệu tại thư mục [`workspaces/truongnv/docs/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/) được cấu trúc chặt chẽ thành **2 Phân Hệ Độc Tôn** nhằm đảm bảo tính phân tách trách nhiệm (Separation of Concerns) giữa nền tảng nghiên cứu khoa học kỹ thuật và hồ sơ luận văn bảo vệ tốt nghiệp:
+## Scope Boundary Declaration
 
-```text
-workspaces/truongnv/docs/
-├── research/    # [PHÂN HỆ 1] TẤT CẢ CHUYÊN ĐỀ NGHIÊN CỨU KHOA HỌC KỸ THUẬT (100% ACADEMIC GROUNDING)
-└── thesis/      # [PHÂN HỆ 2] LUẬN VĂN TỐT NGHIỆP & HỒ SƠ BẢO VỆ CHÍNH THỨC TRƯỚC HỘI ĐỒNG FPT
-```
+- **IN-SCOPE:** documentation status, paper-matched local evidence, and the current ingress-architecture proposal.
+- **OUT-OF-SCOPE:** present withdrawn cross-paper results as current metrics.
 
----
+The Review 1 public-vector, Review 2/Tier 1 mixed-source, D1–D6, and ProtectAI-on-other-paper runs are withdrawn and their artifacts have been purged from disk. See the [withdrawal register](../reports/tasks_for_meeting_6/WITHDRAWN_DATA_ARTIFACTS.md) and [model-paper alignment audit](../reports/experiment_reports/MODEL_PAPER_CODE_ALIGNMENT_AUDIT_2026-10-02.md).
 
-## 🔬 Phân Hệ 1: Nghiên Cứu Khoa Học Kỹ Thuật ([`docs/research/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/README.md))
+Current local evidence:
 
-Tập hợp toàn bộ cơ sở lý thuyết toán học, phân tích cơ chế tấn công, mô hình hóa đe dọa, thiết kế kiến trúc phân loại hai tầng (Two-Tier Guardrail), và các thực nghiệm đối sánh chuẩn mực:
+- [PIDS-Bench same-paper TF-IDF baseline](../replications/PIDS_Bench_Shire_IEEEAccess2026/REPORT.md)
+- [PIGuard-only evaluation on PIGuard assets](../replications/02_DeBERTa_v3_Semantic_Classifier/reports/review1_paper_model_public_rerun_2026-09-30/REPORT.md)
 
-1. **[`prompt_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/prompt_study/)**: Chuyên đề 1 — Cơ sở LLM, Không gian Token phẳng & Xung đột chỉ thị.
-2. **[`attack_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/)**: Chuyên đề 2 — Cơ chế Prompt Injection ($X = S \mathbin{\Vert} U$) & Taxonomy Jailbreak DAN.
-3. **[`threat_and_defense_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/threat_and_defense_study/)**: Chuyên đề 3 — Mô hình hóa đe dọa (NIST AI 100-2e2025, OWASP LLM01) & Phòng thủ 3 lớp Saltzer & Schroeder.
-4. **[`dataset_and_benchmark_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dataset_and_benchmark_study/)**: Chuyên đề 4 — Tuyển chọn dữ liệu, Cân bằng lớp & Phân chia mẫu chống rò rỉ (Group-Aware Splitting).
-5. **[`model_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/model_study/)**: Chuyên đề 5 — Mô hình cơ sở cú pháp TF-IDF n-grams, Transformer ngữ nghĩa DeBERTa-v3 & Cơ chế phối hợp Cascade.
-6. **[`robustness_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/robustness_study/)**: Chuyên đề 6 — Độ bền đối kháng, Phân mảnh token BPE & Kỹ thuật lẩn tránh (Base64, Leetspeak, Spacing).
-7. **[`evaluation_and_tradeoff_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/evaluation_and_tradeoff_study/)**: Chuyên đề 7 — Kinh tế học False Positive Rate (FPR < 1.5%), Pareto Frontier & Đánh đổi kỹ thuật.
-8. **[`comparative_analysis/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/comparative_analysis/)**: Nghiên cứu đối chuẩn SOTA Guardrail, Lỗ hổng Target LLM APIs và Phân tích chuyên sâu công trình Tencent Zhuque Lab 2026.
+## Kiến trúc ingress hiện hành — trạng thái đề xuất
 
-👉 *Xem chi tiết mục lục và tóm tắt từng chuyên đề tại [`docs/research/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/README.md).*
+- [Hồ sơ Review 1 lần 2](../reports/report%20for%20review%201%20lan%202/README.md) là nguồn mô tả proposal: L1 trích xuất/chuẩn hóa/chia chunk; L2 TF-IDF + Logistic Regression chấm từng chunk; L3 là classifier DeBERTa-v3 dự kiến; API kiểm tra coverage, tổng hợp request và chọn ALLOW / REVIEW / BLOCK.
+- [TASK.md](../reports/report%20for%20review%201%20lan%202/TASK.md) khóa phạm vi và trạng thái. Cụm “two-tier” trong ghi chú cũ chỉ hai bộ chấm điểm ML ở L2/L3; L1 là ingress preprocessing và API là tầng orchestration/policy.
+- Đây là thiết kế đề xuất, không chứng minh classifier PI-Guard đã fine-tune, cascade đã triển khai/đánh giá, hay mục tiêu metric/latency đã đạt. Các ghi chú research là tài liệu khái niệm/y văn trừ khi trỏ rõ tới một phép chạy hiện hành.
 
----
-
-## 🎓 Phân Hệ 2: Luận Văn & Hồ Sơ Bảo Vệ ([`docs/thesis/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/README.md))
-
-Tập hợp toàn văn các chương luận văn tốt nghiệp ngành An toàn Thông tin (IAP491) theo khung chuẩn 6 chương của Đại học FPT và hồ sơ bảo vệ từng giai đoạn (Review 1–4):
-
-- **[`FINAL_THESIS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/FINAL_THESIS.md)**: Bản biên dịch tích hợp toàn văn các chương luận văn tốt nghiệp.
-- **[`Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/Review1_Problem_Definition_and_Threat_Model.md)**: Hồ sơ bảo vệ giai đoạn Review 1 (Mô hình bài toán, Phân tích đe dọa, Kiến trúc 3 lớp & Ma trận đối sánh).
-- **[`chapters/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/)**:
-  - `01_Introduction.md`: Bối cảnh đề tài, Động lực nghiên cứu, 6 câu hỏi nghiên cứu (RQ1–RQ6) & Phạm vi đề tài.
-  - `02_Literature_Review.md`: Tổng quan nghiên cứu học thuật theo 4 tầng xuất xứ (Tier 0–Tier 3) và 18 bài báo cốt lõi.
+Xem thêm [audit đồng bộ tài liệu với kiến trúc](./DOCUMENTATION_ARCHITECTURE_ALIGNMENT_AUDIT_2026-10-02.md).

@@ -1,10 +1,10 @@
 {
   "model_id": "DataSentinel_Liu_SP2025",
-  "display_name": "DataSentinel: Game-Theoretic Detection of Prompt Injection",
-  "role": "M6 Baseline (IEEE S&P 2025 Distinguished Paper)",
+  "display_name": "DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks",
+  "role": "SOTA source candidate (IEEE S&P 2025 Distinguished Paper)",
   "tier_1_paper_provenance": {
-    "title": "DataSentinel: Game-Theoretic Detection of Prompt Injection",
-    "paper_url": "https://arxiv.org/abs/2402.17144",
+    "title": "DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks",
+    "paper_url": "https://arxiv.org/abs/2504.11358",
     "local_pdf": "papers\\Liu_2025_DataSentinel_Game_Theoretic_Detection_Prompt_Injection.pdf"
   },
   "tier_2_code_provenance": {
@@ -13,16 +13,13 @@
   },
   "tier_3_dataset_provenance": {
     "datasets_url": "https://github.com/liu00222/Open-Prompt-Injection",
-    "local_datasets": [
-      {
-        "filename": "datasentinel_eval_benchmark.json",
-        "sha256": "b084ca210db226a166b9dfbbd5bba9f0cad71570cf152663a39744e4a40fd4c0",
-        "size_bytes": 4770
-      }
-    ]
+    "local_datasets": [],
+    "status": "withdrawn_unverified_local_data",
+    "note": "The 20-row local heuristic probe and its outputs were removed on 2026-09-29; no verified local evaluation data remain."
   },
   "tier_4_verification": {
-    "status": "PASS",
-    "checked_by": "workspaces/truongnv/scripts/check_replication_origin_urls.py"
+    "status": "PARTIAL",
+    "checked_by": "workspaces/truongnv/replications/verify_replication_assets.py",
+    "note": "File/hash integrity does not establish provenance of the withdrawn local evaluation probe."
   }
 }

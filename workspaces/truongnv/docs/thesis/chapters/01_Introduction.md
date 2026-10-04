@@ -1,153 +1,87 @@
-# CHAPTER 1: INTRODUCTION
+# Chapter 1: Introduction
 
-## 1.1. Background (Bối Cảnh Nghiên Cứu)
-Sự bùng nổ của các Mô hình Ngôn ngữ Lớn (Large Language Models - LLMs) như GPT-4, LLaMA-3, Claude, và Gemini đã định hình lại toàn bộ hệ sinh thái phần mềm hiện đại [[1]](#ref1). LLM hiện được tích hợp sâu vào các ứng dụng doanh nghiệp: từ chatbot chăm sóc khách hàng, hệ thống trích xuất thông tin tự động (Retrieval-Augmented Generation - RAG), đến các tác tử AI tự trị (Autonomous AI Agents) có khả năng gọi hàm (tool execution) và truy cập cơ sở dữ liệu nội bộ [[2]](#ref2), [[6]](#ref6).
+## 1.1 Background of the Study
 
-Tuy nhiên, việc triển khai LLM trong thực tế làm phát sinh những lỗ hổng bảo mật hoàn toàn mới mà các giải pháp tường lửa (WAF), IDS/IPS truyền thống không thể phát hiện. Trong bảng xếp hạng bảo mật quốc tế **OWASP Top 10 for Large Language Model Applications (2025)** [[8]](#ref8) và báo cáo **NIST AI 100-2e2025** [[7]](#ref7), lỗ hổng **Prompt Injection và Jailbreak (LLM01)** được xếp ở vị trí nguy hiểm số 1. Kẻ tấn công có thể thao túng mô hình ngôn ngữ chỉ bằng các câu lệnh văn bản tự nhiên được thiết kế tinh vi, dẫn đến rò rỉ bí mật kinh doanh nhúng trong System Prompt, chiếm quyền điều khiển luồng thực thi (Goal Hijacking), hoặc ép mô hình vượt qua các rào cản đạo đức để sinh mã độc do những điểm mù cố hữu trong căn chỉnh an toàn (Wei et al. [[5]](#ref5)).
+Large language models (LLMs) are used through applications that place instructions and user requests into a model context. Some applications also add text from documents, web pages, or other external sources. This makes natural-language input part of the application’s security boundary. [[2]](#ref2) [[3]](#ref3) [[4]](#ref4)
 
----
+Prompt injection is an attempt to make an LLM application follow an unintended instruction. Perez and Ribeiro (2022) studied direct attacks in which a user supplies text that redirects the model’s task or asks it to reveal part of the prompt. They describe **Goal Hijacking** [[TN1]](#term-goal-hijacking) and **Prompt Leaking** [[TN2]](#term-prompt-leaking) as two attack goals. [[3]](#ref3)
 
-## 1.2. Problem Statement (Phát Biểu Bài Toán)
-Vấn đề cốt lõi của các mô hình Transformer hiện nay bắt nguồn từ sự tương đồng với **"Lỗ hổng kiến trúc Von Neumann trong xử lý ngôn ngữ tự nhiên"** [[1]](#ref1), [[3]](#ref3):
+Greshake et al. (2023) examined indirect prompt injection, where an attacker places instructions in external content that an application later retrieves or processes. Their work shows how the attack path can reach a model without the attacker submitting the malicious text through the application’s direct user interface. [[4]](#ref4)
 
-```mermaid
-flowchart TD
-    subgraph InputContext["NGỮ CẢNH ĐẦU VÀO (INPUT CONTEXT)"]
-        SP["System Prompt<br/>(Chỉ thị điều khiển / Rules)"]
-        UP["User Prompt<br/>(Dữ liệu người dùng / Data)"]
-    end
-    SP --> Engine["Động Cơ Transformer Next-Token<br/>(Ghép chung thành 1 chuỗi Token phẳng, không có ranh giới phần cứng)"]
-    UP --> Engine
-```
+Jailbreak prompts seek to bypass safety restrictions that a model is intended to follow. Wei et al. (2023) describe **Competing Objectives** [[TN3]](#term-competing-objectives) and **Mismatched Generalization** [[TN4]](#term-mismatched-generalization) as two hypotheses for why safety training can fail on some adversarial requests. These are explanations studied by those authors, not proof that every model or jailbreak behaves in the same way. [[5]](#ref5)
 
-1. **Lẫn lộn giữa Lệnh và Dữ liệu (Instruction/Data Ambiguity)**: Trong phạm vi mô hình hóa bài toán của PI-Guard (kế thừa các phát hiện định tính về sự thiếu phân định ranh giới lệnh/dữ liệu từ Perez & Ribeiro 2022 [[3]](#ref3) và Greshake et al. 2023 [[4]](#ref4)), trong cơ chế Self-Attention của Transformer, System Instruction (chỉ thị điều khiển $S$) và User Input (dữ liệu người dùng $U$) bị ghép phẳng thành một chuỗi token duy nhất ($X = S \mathbin{\Vert} U$). Mô hình không có cơ chế phân tách phần cứng hay quyền hạn (Privilege Separation) giữa dữ liệu và câu lệnh.
-2. **Sự thất bại của các bộ lọc từ khóa tĩnh (Keyword Blacklist Failure)**: Các bộ quy tắc Regex/Blacklist thông thường dễ dàng bị kẻ tấn công vô hiệu hóa thông qua các kỹ thuật đột biến cú pháp: chèn ký tự leetspeak (`1gn0r3`), phân tách khoảng trắng (`i g n o r e`), mã hóa Base64/Cipher [[17]](#ref17), hoặc bọc trong các kịch bản nhập vai phức tạp (DAN / Roleplay Jailbreak) [[15]](#ref15), [[16]](#ref16).
-3. **Nghịch lý của giải pháp LLM-as-a-Judge**: Việc sử dụng một LLM lớn khác (ví dụ: Llama Guard 3 8B) hoặc các cơ chế làm mịn ngẫu nhiên (SmoothLLM [[14]](#ref14)) để kiểm tra prompt gây ra độ trễ quá lớn (>500ms đến 1.5s), tiêu tốn tài nguyên phần cứng (>16GB VRAM GPU) và chi phí vận hành API quá cao, không khả thi cho môi trường sản xuất có lưu lượng truy cập lớn [[9]](#ref9), [[10]](#ref10).
+These studies identify risks in particular models, prompts, and application settings. They motivate evaluating an additional screening layer while leaving the target model’s own safety behavior and the application’s access controls as separate concerns. The Prompt Guard model card also recommends combining model-based filtering with other protections. [[3]](#ref3) [[4]](#ref4) [[20]](#ref20)
 
-Do đó, bài toán cấp thiết đặt ra là: **Cần xây dựng một cơ chế Guardrail chuyên biệt sử dụng Machine Learning / Transformer nhỏ gọn, đặt ngay tại cổng API, có khả năng phân loại ngữ nghĩa sâu với độ trễ thấp (P95 < 30ms trên CPU), tỷ lệ chặn nhầm cực thấp (FPR < 1.5% theo bài toán kinh tế của OpenAI [[12]](#ref12)), và có độ bền cao trước các kỹ thuật lẩn tránh cú pháp (Leetspeak, Base64, Spacing).**
+## 1.2 Problem Statement
 
----
+The PI-Guard project is registered as an external machine-learning guardrail for LLM applications. The project record describes classifying incoming prompts as benign, prompt injection, or jailbreak, then allowing, blocking, or flagging them before they reach the target LLM. ([Project Register](../../../../../CAPSTONE%20PROJECT%20REGISTER.md))
 
-## 1.3. Research Objectives & Research Questions (Mục Tiêu & 3 Câu Hỏi Nghiên Cứu)
+Those labels need an explicit annotation policy. “Direct” and “indirect” describe how attack text reaches an application, while “jailbreak” describes an attempt to bypass a model’s safety restrictions; one example can therefore fit more than one description. [[3]](#ref3) [[4]](#ref4) [[20]](#ref20) The project’s data objective also refers more generally to benign and malicious prompts, so the mapping from source labels to project labels must be documented before model results are interpreted. ([Project Register](../../../../../CAPSTONE%20PROJECT%20REGISTER.md))
 
-### 1.3.1. Mục Tiêu Tổng Quát:
-Thiết kế, huấn luyện và triển khai hệ thống **PI-Guard** — Lớp phòng thủ Guardrail dạng API Middleware trực tuyến đặt trước các ứng dụng LLM để phát hiện và ngăn chặn hai vector tấn công chính: **Prompt Injection** và **Jailbreak**.
+The research problem is to develop and evaluate a text classifier that can support this guardrail under a clearly defined label policy and a reproducible evaluation protocol. Published studies use different attack settings and evaluation units, so their reported results cannot by themselves establish PI-Guard’s performance. [[23]](#ref23) [[34]](#ref34) [[30]](#ref30)
 
-### 1.3.2. Các Mục Tiêu Cụ Thể (Specific Deliverables):
-1. **Bộ dữ liệu chuẩn hóa**: Xây dựng tập dữ liệu đa nguồn (Deepset, Gandalf, In-The-Wild, Benign) áp dụng thuật toán *Group-Aware Splitting* chống rò rỉ dữ liệu.
-2. **Mô hình học máy kép**: Phát triển mô hình Baseline ML (Word/Char TF-IDF) và mô hình Transformer tinh chỉnh (`microsoft/deberta-v3-base` Disentangled Attention [[11]](#ref11)).
-3. **Độ bền trước lẩn tránh cú pháp**: Xây dựng cơ chế chuẩn hóa chuỗi và bộ kiểm thử độ bền (Adversarial Robustness Testing Suite) kháng Leetspeak, Base64, Spacing.
-4. **Đo lường hiệu năng & Độ trễ thực tế**: Đánh giá thực nghiệm độ trễ suy luận (P95 Latency Profiling) và thông lượng (RPS) của mô hình Transformer trên hạ tầng CPU tiêu chuẩn, đảm bảo Guardrail vận hành với độ trễ thấp tối ưu.
-5. **Hạ tầng API & Dashboard**: Xây dựng Asynchronous Middleware (FastAPI) và Dashboard kiểm thử trực quan (Streamlit) với ma trận 4 kịch bản demo.
+## 1.3 Research Objectives
 
-### 1.3.3. Hệ Thống 3 Câu Hỏi Nghiên Cứu Cốt Lõi (RQ1 - RQ3):
+The objectives below follow the project registration. They describe intended work; this chapter does not claim that the objectives have been completed. ([Project Register](../../../../../CAPSTONE%20PROJECT%20REGISTER.md))
 
-| Mã | Tên Trọng Tâm Nghiên Cứu | Khoảng Trống Nghiên Cứu Cốt Lõi |
-| :---: | :--- | :--- |
-| **RQ1** | **Phân Loại Mối Đe Dọa & Chống Rò Rỉ Dữ Liệu**<br>*(Threat Modeling & Representation)* | Rò rỉ cụm mẫu & Ranh giới phân loại giữa cú pháp tĩnh và ngữ nghĩa sâu |
-| **RQ2** | **Độ Bền Kháng Lẩn Tránh & Mã Hóa Đối Kháng**<br>*(Adversarial Robustness & Ciphers)* | Sự sụp đổ của mô hình trước biến dị cú pháp Leetspeak, Spacing & Base64 |
-| **RQ3** | **Cân Bằng An Toàn & Khả Thi Triển Khai**<br>*(Security Trade-off & Inline Feasibility)* | Đánh đổi Security/Usability (FPR) và bảo toàn ranh giới an toàn khi triển khai |
+**General objective**
 
-#### RQ1 — Biểu Diễn Mối Đe Dọa, Khử Rò Rỉ Dữ Liệu & Ranh Giới Phân Loại Ngữ Nghĩa:
-- **Câu hỏi**: *Làm thế nào để xây dựng một phương pháp luận phân chia dữ liệu bảo toàn cụm (Group-Aware Splitting) nhằm triệt tiêu hiện tượng rò rỉ dữ liệu giữa các biến thể tấn công, và sự kết hợp giữa mô hình học máy cổ điển (TF-IDF) với Transformer phân tách vị trí ngữ nghĩa (DeBERTa-v3) nâng cao khả năng phát hiện các đòn tấn công Prompt Injection và Jailbreak vượt trội hơn các mô hình phòng thủ SOTA hiện nay ở mức độ nào?*
-- **Chỉ số đo lường**: $\text{Inter-cluster Jaccard} < 0.15$, $\text{Macro } F_1^{\text{OOD}} \ge 0.92$, $\text{Macro } F_1 \ge 0.95$ (kỳ vọng $> 0.98$), $\text{PR-AUC} \ge 0.98$.
+Develop and implement a machine-learning guardrail to detect and mitigate prompt injection and jailbreak attacks in LLM applications.
 
-#### RQ2 — Độ Bền Của Hệ Thống Trước Các Kỹ Thuật Lẩn Tránh & Mã Hóa Đối Kháng:
-- **Câu hỏi**: *Hệ thống phòng thủ đa tầng (kết hợp tiền xử lý chuẩn hóa chuỗi, biểu diễn n-gram ký tự và token hóa subword) duy trì độ bền và độ chính xác như thế nào trước các kỹ thuật lẩn tránh đối kháng có cấu trúc (gồm thay thế ký tự Leetspeak, phân tách khoảng trắng và mã hóa Base64/Cipher), và mức độ suy giảm hiệu năng tối đa có thể định lượng được là bao nhiêu?*
-- **Chỉ số đo lường**: $\text{ARR} = \frac{F_1^{\text{Adversarial}}}{F_1^{\text{Clean}}} \ge 0.95$, $\text{ASR} < 5\%$, $\Delta F_1 = |F_1^{\text{Clean}} - F_1^{\text{Adv}}| < 5\%$ *(định thức đo lường độ bền đối kháng kế thừa từ phương pháp luận của Jain et al. 2023 [[13]](#ref13))*.
+**Specific objectives**
 
-#### RQ3 — Cân Bằng An Toàn, Khống Chế Tỷ Lệ Chặn Nhầm & Khả Thi Triển Khai Độ Trễ Thấp:
-- **Câu hỏi**: *Làm thế nào để tối ưu hóa cơ chế thiết lập ngưỡng chính sách nhằm khống chế nghiêm ngặt Tỷ lệ Chặn Nhầm (FPR < 1.5%) trên các truy vấn hợp lệ của doanh nghiệp, và kiến trúc proxy phân tầng kết hợp bất đồng bộ duy trì độ trễ thấp tối ưu trong khi bảo toàn ranh giới quyết định an toàn mà không tạo ra điểm nghẽn từ chối dịch vụ (DoS)?*
-- **Chỉ số đo lường**: $\text{FPR} < 1.5\%$ (kỳ vọng $< 1.1\%$), $\text{TPR (Recall)} \ge 95\%$, đo đạc độ trễ P95 trên CPU tiêu chuẩn, thông lượng $\ge 100\text{ RPS}$.
+1. Curate and label benign and malicious prompts from public sources.
+2. Design, train, and evaluate classical machine-learning and fine-tuned transformer classifiers for prompt classification.
+3. Integrate a trained classifier as an API-driven guardrail that can block or flag malicious prompts before they reach the target LLM.
+4. Evaluate detection accuracy, false-positive rates, and robustness to obfuscated and novel attack techniques.
 
----
+## 1.4 Significance of the Study
 
-## 1.4. Significance of the Study & Threat Impact Analysis (Ý Nghĩa & Phân Tích Thiệt Hại)
+The study’s academic value is its planned examination of how dataset labels, classifier choices, and evaluation procedures affect a prompt-screening task. Its contribution must be supported by the project’s own data and experiments rather than inferred from results reported for other systems. ([Project Register](../../../../../CAPSTONE%20PROJECT%20REGISTER.md)) [[23]](#ref23) [[30]](#ref30)
 
-### 1.4.1. 4 Tầng Thiệt Hại Thực Tế Của Các Cuộc Tấn Công LLM
-1. **Thiệt hại 1: Rò rỉ Bí mật Trí tuệ (IP) & Master API Key**: System prompt chứa logic nghiệp vụ độc quyền và API credential nội bộ. Khi bị trích xuất, doanh nghiệp mất hoàn toàn lợi thế cạnh tranh và bị tin tặc lợi dụng API key.
-2. **Thiệt hại 2: Chiếm quyền điều khiển Tác tử AI (Goal Hijacking & Unauthorized Actions)**: Khi LLM Agent có quyền gọi tool, một câu lệnh indirect injection ẩn trong tài liệu có thể ép Agent chuyển tiền trái phép hoặc xóa sạch database của khách hàng.
-3. **Thiệt hại 3: Tấn công cạn kiệt tài nguyên & Chi phí ví tiền (Denial-of-Wallet / Compute Exhaustion)**: Bơm prompt ép mô hình sinh văn bản lặp vô tận, gây hóa đơn API hàng chục nghìn USD mỗi ngày.
-4. **Thiệt hại 4: Vi phạm chế tài pháp lý & Mất uy tín thương hiệu (Regulatory Compliance Fines)**: Ép AI sinh mã độc hoặc nội dung cấm dẫn đến vi phạm EU AI Act, GDPR và sụp đổ niềm tin người dùng.
+The intended practical value is an API layer that can inspect text before it is forwarded to an LLM. This layer can inform an application’s allow, block, or review decision. Authorization, data access, and tool permissions remain responsibilities of the application ([Threat Model](../../architecture/THREAT_MODEL_AND_ATTACK_SURFACE.md)). ([Project Register](../../../../../CAPSTONE%20PROJECT%20REGISTER.md)) [[20]](#ref20)
 
-### 1.4.2. Ý Nghĩa Khoa Học & Thực Tiễn Của PI-Guard
-- **Khoa học**: Chứng minh tính ưu việt của cơ chế *Disentangled Attention* trong nhận diện trật tự đảo câu, giải quyết bài toán chống rò rỉ dữ liệu qua *Group-Aware Splitting*, và chứng minh tính hiệu quả của *Character n-grams* trong kháng nhiễu Leetspeak.
-- **Thực tiễn**: Đóng gói thành giải pháp Plug-and-Play (FastAPI Middleware) chi phí $0, độ trễ thấp <30ms trên CPU, đánh chặn các đòn tấn công trước khi chạm vào LLM.
+## 1.5 Scope and Limitations
 
----
+| Boundary | Scope of this study |
+|---|---|
+| Security problem | Text-based prompt injection and jailbreak attempts in LLM applications, with benign inputs included for evaluating false alarms. ([Project Register](../../../../../CAPSTONE%20PROJECT%20REGISTER.md)) [[3]](#ref3) [[4]](#ref4) [[20]](#ref20) |
+| Label policy | The registered project names benign, prompt-injection, and jailbreak outputs. Direct and indirect delivery paths require annotation rules that explain overlaps and ambiguous examples. ([Project Register](../../../../../CAPSTONE%20PROJECT%20REGISTER.md)) [[3]](#ref3) [[4]](#ref4) |
+| System boundary | An external classifier inspects text presented to the guardrail before a request reaches the target LLM. The study does not assume access to the target model’s weights or internal state. ([Project Register](../../../../../CAPSTONE%20PROJECT%20REGISTER.md)) |
+| Evaluation | The registered plan evaluates classifiers and the guardrail using labeled public data, including detection accuracy, false-positive rates, and robustness. Results apply only to the documented data, labels, and protocol used in each experiment. ([Project Register](../../../../../CAPSTONE%20PROJECT%20REGISTER.md)) |
+| Limitations | A text classifier cannot by itself establish real-world attack prevalence, inspect content that never reaches its input, or enforce the application’s authorization and tool-use policies. These limits follow from the external text-inspection boundary. [[4]](#ref4) [[20]](#ref20) |
 
-## 1.5. Scope and Limitations (Ranh Giới Phạm Vi & Giới Hạn Đề Tài)
+The scope table states the project’s research boundary. It does not report a completed three-class classifier, a completed cascade, or achieved performance targets. Such claims require results from the corresponding implementation and evaluation.
 
-| Phạm Vi Nghiên Cứu | Nội Dung Chi Tiết |
-| :--- | :--- |
-| **IN-SCOPE<br>(Trọng tâm nghiên cứu)** | • 2 Bài toán cốt lõi: Prompt Injection (Direct/Indirect) và Jailbreak<br>• Chuỗi văn bản đầu vào: English Text Prompts (Tiêu chuẩn nghiên cứu quốc tế)<br>• Kỹ thuật lẩn tránh cú pháp: Leetspeak, Base64, Spacing (Kiểm thử độ bền đối kháng)<br>• Độ trễ thấp: P95 Latency < 30ms trên CPU tiêu chuẩn (Commodity CPU)<br>• Kiểm soát báo động nhầm: False Positive Rate (FPR) < 1.5% trên tập Benign<br>• Kiến trúc hệ thống: Hybrid TF-IDF Baseline + Fine-tuned DeBERTa-v3 (Transformer) |
-| **OUT-OF-SCOPE<br>(Nằm ngoài phạm vi)** | • Tấn công đa phương thức: Image, Audio, Video Jailbreaks<br>• Tấn công hạ tầng mạng: DDoS, trích xuất trọng số GPU, Side-channel attacks<br>• Quét lỗ hổng hệ điều hành máy chủ / CVE của Linux hoặc Docker engine<br>• Xây dựng hệ thống cơ sở dữ liệu Vector RAG hoặc Agent Tool Execution Runtime |
+## 1.6 Thesis Structure
 
----
-
-## 1.6. Thesis Structure (Bố Cục 6 Chương Của Toàn Văn Luận Văn)
-Tuân thủ nghiêm ngặt theo Hướng dẫn Khóa luận Tốt nghiệp FPT University IAP491:
-- **Chapter 1: Introduction** *(Bối cảnh, Bài toán, Mục tiêu, Ý nghĩa, Phạm vi, Cấu trúc).*
-- **Chapter 2: Literature Review** *(Khảo sát nghiên cứu liên quan, SOTA Guardrails, Đóng góp mới của nhóm).*
-- **Chapter 3: Methodology** *(Thiết kế nghiên cứu, Thu thập dữ liệu, Group-Aware Splitting, Baseline ML & DeBERTa-v3).*
-- **Chapter 4: Experimental and Results** *(Môi trường thử nghiệm, Kết quả đối sánh SOTA, Ma trận nhầm lẫn, Test độ bền).*
-- **Chapter 5: Discussion** *(Thảo luận kết quả, Đánh giá cân bằng An toàn/Trải nghiệm người dùng, Giới hạn thực tiễn).*
-- **Chapter 6: Conclusion and Future Work** *(Tổng kết đóng góp và Hướng nghiên cứu mở rộng).*
-- **References & Appendices** *(17 Tài liệu tham khảo chuẩn IEEE và Phụ lục mã nguồn).*
-
----
+The thesis follows the chapter structure in the official FPT IAP491 guide. Chapter 1 introduces the problem, objectives, significance, scope, and organization. Chapter 2 reviews previous studies, summarizes the literature, and positions the project’s contribution. Later chapters describe the methodology, implementation and results, discussion, and conclusion. ([Official FPT IAP491 Guide](../../../../../docs/fpt_capstone_guide/IAP491_CP_StudentsGuideForm%20for%20Research%20Based%20Thesis.docx))
 
 ## BẢNG THUẬT NGỮ & KHÁI NIỆM HỌC THUẬT NỀN TẢNG (ACADEMIC CONCEPT GLOSSARY)
 
-> [!NOTE]
-> ### 📖 Vai Trò Của Bảng Giải Nghĩa Thuật Ngữ Học Thuật
-> Nhằm phục vụ tốt nhất cho việc đánh giá học thuật và bảo vệ đồ án trước Hội đồng chấm tốt nghiệp (Academic Council) theo quy chuẩn [`.agents/rules/academic-terminology-and-glossary-standards.md`](file:///d:/Work/Do-an/.agents/rules/academic-terminology-and-glossary-standards.md), bảng dưới đây phân tích chi tiết các khái niệm và phép so sánh liên ngành xuất hiện trong Chương 1 theo 4 trường thông tin chuẩn mực:
+| Mã neo | Thuật ngữ và bản dịch | Định nghĩa khoa học | Vai trò trong PI-Guard | Nguồn |
+|---|---|---|---|---|
+| <a id="term-goal-hijacking"></a>TN1 | Goal Hijacking (chiếm hướng mục tiêu) | An attack that redirects a model from the application’s intended task toward an attacker-selected output. | A direct prompt-injection goal considered when defining attack labels. | Perez and Ribeiro (2022). [[3]](#ref3) |
+| <a id="term-prompt-leaking"></a>TN2 | Prompt Leaking (làm lộ prompt) | An attempt to make a model reveal some or all of the prompt that was supplied to guide its task. | A disclosure-oriented attack example; the classifier’s label policy must distinguish it from ordinary requests to summarize visible text. | Perez and Ribeiro (2022). [[3]](#ref3) |
+| <a id="term-competing-objectives"></a>TN3 | Competing Objectives (mục tiêu cạnh tranh) | A hypothesized safety-training failure in which model capabilities and safety goals conflict on a request. | A literature explanation for some jailbreak behaviors; not a claim about every PI-Guard input. | Wei et al. (2023). [[5]](#ref5) |
+| <a id="term-mismatched-generalization"></a>TN4 | Mismatched Generalization (khái quát hóa không khớp) | A hypothesized failure in which safety training does not generalize to a domain where the model retains relevant capabilities. | Helps frame why evaluation should include varied attack forms, without claiming that PI-Guard has tested them all. | Wei et al. (2023). [[5]](#ref5) |
 
-| Mã Neo | Thuật Ngữ & Khái Niệm | Định Nghĩa Khoa Học Bản Chất | Bối Cảnh & Phép Tương Quan Đối Chiếu Trong PI-Guard | Nguồn Gốc & Tài Liệu Tham Chiếu |
-| :---: | :--- | :--- | :--- | :--- |
-| <a id="term-von-neumann"></a>**TN1** | **Von Neumann Architecture (Kiến Trúc Von Neumann)** | Mô hình kiến trúc máy tính nền tảng nơi Dữ liệu và Mã lệnh thực thi cùng lưu trữ chung trong một không gian bộ nhớ vật lý duy nhất. | **Phép đối sánh cội nguồn**: Trình bày tại Mục 1.2 để minh họa căn nguyên của Prompt Injection: LLM không có kênh phần cứng riêng biệt để tách câu lệnh hệ thống khỏi dữ liệu người dùng. | John von Neumann (1945), *"First Draft of a Report on the EDVAC"*; K. Thompson (1984). |
-| <a id="term-flat-token-space"></a>**TN2** | **Flat Token Space (Không Gian Token Phẳng)** | Hiện tượng chuỗi chỉ thị hệ thống ($S$) và dữ liệu người dùng ($U$) bị nối chuỗi (*concatenation*) thành một mảng token duy nhất ($X = S \mathbin{\Vert} U$) và cùng tham gia vào ma trận Self-Attention với quyền hạn tương đương. | **Căn nguyên kỹ thuật cốt lõi**: Trình bày tại Mục 1.2. Kẻ tấn công có thể chèn các token điều khiển ghi đè chỉ thị hệ thống. PI-Guard giải quyết bằng cách thanh tra $U$ độc lập trước khi nạp vào LLM. | Perez & Ribeiro (NeurIPS 2022) [[3]](#ref3); Greshake et al. (ACM AISec 2023) [[4]](#ref4). |
-| <a id="term-goal-hijacking"></a>**TN3** | **Goal Hijacking (Chiếm Đoạt Mục Tiêu Ứng Dụng)** | Kỹ thuật tiêm lệnh ép LLM bỏ qua mục tiêu nghiệp vụ ban đầu để thực hiện một mục tiêu trái phép do kẻ tấn công chỉ định. | **Kịch bản thiệt hại 1**: Trình bày tại Mục 1.1 và 1.4.1. Gây tổn hại nghiêm trọng về tính toàn vẹn (Integrity) của ứng dụng tích hợp LLM. | Perez & Ribeiro (2022) [[3]](#ref3). |
-| <a id="term-prompt-leaking"></a>**TN4** | **Prompt Leaking (Đánh Cắp Chỉ Thị Ẩn)** | Kỹ thuật tấn công ép mô hình in ra nguyên văn System Prompt, bí mật kinh doanh hoặc API keys nhúng trong bối cảnh. | **Kịch bản thiệt hại 2**: Trình bày tại Mục 1.1 và 1.4.1. Gây tổn hại nghiêm trọng về tính bí mật (Confidentiality) và quyền sở hữu trí tuệ của doanh nghiệp. | Perez & Ribeiro (2022) [[3]](#ref3); OWASP LLM01:2025 [[8]](#ref8). |
-| <a id="term-competing-objectives"></a>**TN5** | **Competing Objectives (Xung Đột Mục Tiêu Căn Chỉnh)** | Trạng thái mâu thuẫn nội tại khi mô hình phải tối ưu hóa đồng thời hai mục tiêu đối nghịch: Tính hữu ích (*Helpfulness*) và Tính vô hại (*Harmlessness*). | **Cơ chế gốc của Jailbreak**: Trình bày tại Mục 1.1. Kẻ tấn công dùng kịch bản khẩn cấp hoặc nghiên cứu để kích hoạt *Helpfulness*, ép mô hình hạ rào cản *Harmlessness*. | Alexander Wei, Nika Haghtalab, Jacob Steinhardt (NeurIPS 2023) [[5]](#ref5). |
-| <a id="term-mismatched-generalization"></a>**TN6** | **Mismatched Generalization (Tổng Quát Hóa Lệch)** | Năng lực biểu diễn và giải mã ngôn ngữ tổng quát của mô hình vượt xa phạm vi dữ liệu an toàn mà mô hình được tinh chỉnh (*Safety Fine-Tuning*). | **Cơ chế lẩn tránh cú pháp**: Trình bày tại Mục 1.2 và RQ2. Khi payload được mã hóa Base64 hoặc Leetspeak, mô hình vẫn hiểu ý đồ nhưng rào cản an toàn không kích hoạt. | Wei et al. (NeurIPS 2023) [[5]](#ref5); Yuan et al. (ICLR 2024) [[17]](#ref17). |
-| <a id="term-group-aware-splitting"></a>**TN7** | **Group-Aware Splitting (Phân Tách Dữ Liệu Bảo Toàn Cụm)** | Phương pháp phân chia tập dữ liệu train/val/test theo cụm kịch bản ngữ nghĩa thay vì phân chia ngẫu nhiên, đảm bảo toàn bộ biến thể của một mẫu tấn công chỉ nằm trong một tập. | **Giải pháp kỹ thuật RQ1**: Trình bày tại Mục 1.3. Triệt tiêu rò rỉ dữ liệu giữa train và test ($\text{Inter-cluster Jaccard} < 0.15$), bảo đảm đánh giá khách quan. | Shen et al. (ACM CCS 2024) [[15]](#ref15); Phương pháp luận kỹ nghệ dữ liệu PI-Guard. |
-| <a id="term-complete-mediation"></a>**TN8** | **Complete Mediation Principle (Nguyên Lý Kiểm Soát Toàn Diện)** | Nguyên lý an toàn hệ thống đòi hỏi mọi truy cập vào đối tượng được bảo vệ đều phải được kiểm tra và xác thực mà không có lối tắt ngoại lệ. | **Cơ sở kiến trúc Ingress Guardrail**: Trình bày tại Mục 1.2 và 1.3. PI-Guard đóng vai trò chốt chặn bắt buộc trước mọi truy vấn gửi tới LLM. | Saltzer & Schroeder, *"The Protection of Information in Computer Systems"*, IEEE 1975. |
+## References
 
----
+The numeric anchors follow the local [References Log](../../../References/REFERENCES_LOG.md). Local PDFs are linked for source review.
 
-## References (Tài Liệu Tham Khảo Học Thuật)
+<a id="ref2"></a>**[2]** Long Ouyang et al. “Training Language Models to Follow Instructions with Human Feedback.” NeurIPS 2022. [Local PDF](../../../References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf).
 
-<a id="ref1"></a>**[1]** W. X. Zhao et al., "A Survey of Large Language Models," *arXiv preprint arXiv:2303.18223*, 2023. Link: [https://arxiv.org/abs/2303.18223](https://arxiv.org/abs/2303.18223).
+<a id="ref3"></a>**[3]** Fábio Perez and Ian Ribeiro. “Ignore Previous Prompt: Attack Techniques For Language Models.” NeurIPS Workshop on Machine Learning Safety, 2022. [Local PDF](../../../References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf).
 
-<a id="ref2"></a>**[2]** L. Ouyang et al., "Training language models to follow instructions with human feedback," in *Advances in Neural Information Processing Systems (NeurIPS 2022)*, vol. 35, pp. 27730–27744. Link: [https://arxiv.org/abs/2203.02155](https://arxiv.org/abs/2203.02155).
+<a id="ref4"></a>**[4]** Kai Greshake et al. “Not What You’ve Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection.” ACM AISec, 2023. [Local PDF](../../../References/Greshake_2023_Indirect_Prompt_Injection.pdf).
 
-<a id="ref3"></a>**[3]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in *NeurIPS 2022 Workshop on ML Safety*, 2022. Link: [https://arxiv.org/abs/2211.09527](https://arxiv.org/abs/2211.09527).
+<a id="ref5"></a>**[5]** Alexander Wei, Nika Haghtalab, and Jacob Steinhardt. “Jailbroken: How Does LLM Safety Training Fail?” NeurIPS 2023. [Local PDF](../../../References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf).
 
-<a id="ref4"></a>**[4]** K. Greshake, S. Abdelnabi, S. Mishra, C. Endres, T. Holz, and M. Fritz, "Not what you've signed up for: Compromising Real-World LLM Applications with Indirect Prompt Injection," in *Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISEC 2023)*, pp. 79–90. Link: [https://arxiv.org/abs/2302.12173](https://arxiv.org/abs/2302.12173).
+<a id="ref20"></a>**[20]** Meta AI. “Prompt Guard 86M Model Card.” 2024. [Local model card PDF](../../../References/Meta_2024_Prompt_Guard_86M_Input_Guardrail.pdf).
 
-<a id="ref5"></a>**[5]** A. Wei, N. Haghtalab, and J. Steinhardt, "Jailbroken: How Does LLM Safety Training Fail?," in *Advances in Neural Information Processing Systems 36 (NeurIPS 2023)*, vol. 36, pp. 80079–80110, 2023. Link: [https://arxiv.org/abs/2307.02483](https://arxiv.org/abs/2307.02483).
+<a id="ref23"></a>**[23]** Jingwei Yi et al. “Benchmarking and Defending Against Indirect Prompt Injection Attacks on Large Language Models.” KDD 2025, pp. 1809–1820. arXiv:2312.14197. [arXiv record](https://arxiv.org/abs/2312.14197) · [Local PDF](../../../References/Viet_2024_BIPIA_Benchmarking_Indirect_Prompt_Injection_Attacks.pdf).
 
-<a id="ref6"></a>**[6]** Y. Yang et al., "Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming," *Tencent Zhuque Lab Technical Report*, arXiv:2606.31227, 2026. Link: [https://arxiv.org/abs/2606.31227](https://arxiv.org/abs/2606.31227).
+<a id="ref34"></a>**[34]** Patrick Chao et al. “JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models.” NeurIPS Datasets and Benchmarks Track, 2024. [Local PDF](../../../References/Chao_2024_JailbreakBench_Open_Robustness_Benchmark_NeurIPS.pdf).
 
-<a id="ref7"></a>**[7]** A. Vassilev et al., "Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations," *National Institute of Standards and Technology (NIST)*, NIST.AI.100-2e2025, 2025. Link: [https://csrc.nist.gov/pubs/ai/100/2/e2025/final](https://csrc.nist.gov/pubs/ai/100/2/e2025/final).
-
-<a id="ref8"></a>**[8]** OWASP GenAI Security Project, "OWASP Top 10 for Large Language Model Applications," Version 2.0, 2025. Link: [https://owasp.org/www-project-top-10-for-large-language-model-applications/](https://owasp.org/www-project-top-10-for-large-language-model-applications/).
-
-<a id="ref9"></a>**[9]** H. Inan et al., "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations," *Meta AI Technical Report*, arXiv:2312.06674, 2023. Link: [https://arxiv.org/abs/2312.06674](https://arxiv.org/abs/2312.06674).
-
-<a id="ref10"></a>**[10]** T. Rebedea et al., "NeMo Guardrails: A Toolkit for Controllable and Safe LLM Applications," in *Proceedings of EMNLP System Demonstrations*, pp. 431–444, 2023. Link: [https://arxiv.org/abs/2310.10501](https://arxiv.org/abs/2310.10501).
-
-<a id="ref11"></a>**[11]** P. He, J. Gao, and W. Chen, "DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing," in *Proceedings of ICLR 2023*. Link: [https://arxiv.org/abs/2111.09543](https://arxiv.org/abs/2111.09543).
-
-<a id="ref12"></a>**[12]** T. Markov et al., "A Holistic Approach to Undesired Content Detection in the Real World," in *Proceedings of the AAAI Conference on Artificial Intelligence*, vol. 37, no. 12, pp. 15009–15018, 2023. Link: [https://arxiv.org/abs/2208.03274](https://arxiv.org/abs/2208.03274).
-
-<a id="ref13"></a>**[13]** N. Jain et al., "Baseline Defenses for Adversarial Attacks Against Aligned Language Models," arXiv:2309.00614, 2023. Link: [https://arxiv.org/abs/2309.00614](https://arxiv.org/abs/2309.00614).
-
-<a id="ref14"></a>**[14]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas, "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks," arXiv:2310.03684, 2023. Link: [https://arxiv.org/abs/2310.03684](https://arxiv.org/abs/2310.03684).
-
-<a id="ref15"></a>**[15]** X. Shen et al., "\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models," in *Proceedings of ACM CCS 2024*, pp. 4028–4042. Link: [https://arxiv.org/abs/2308.03825](https://arxiv.org/abs/2308.03825).
-
-<a id="ref16"></a>**[16]** W. Zhou et al., "EasyJailbreak: A Unified Framework for Jailbreaking Large Language Models," *arXiv preprint arXiv:2403.12171*, 2024. Link: [https://arxiv.org/abs/2403.12171](https://arxiv.org/abs/2403.12171).
-
-<a id="ref17"></a>**[17]** Y. Yuan, W. Jiao, W. Wang, J. Huang, P. He, and Z. Tu, "GPT-4 Is Too Smart To Be Safe: Stealthy Chat with LLMs via Cipher," in *Proceedings of ICLR 2024*. Link: [https://arxiv.org/abs/2308.06463](https://arxiv.org/abs/2308.06463).
+<a id="ref30"></a>**[30]** Dennis Jacob et al. “PromptShield: Deployable Detection for Prompt Injection Attacks.” CODASPY, 2025. [arXiv record](https://arxiv.org/abs/2501.15145) · [Local PDF](../../../References/Jacob_2025_PromptShield_Deployable_Detection_CODASPY.pdf).

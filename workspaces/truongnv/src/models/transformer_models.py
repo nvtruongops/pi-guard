@@ -2,10 +2,9 @@
 workspaces/truongnv/src/models/transformer_models.py
 
 Module định nghĩa và quản lý các mô hình Transformer thực nghiệm chuẩn y văn cho hệ thống PI-Guard:
-1. Meta Prompt Guard 86M (meta-llama/Prompt-Guard-86M) - Meta AI 2024
-2. ProtectAI DeBERTa-v3 Prompt Injection Model (protectai/deberta-v3-base-prompt-injection-v2) - He et al. ICLR 2023
-3. Ultra-Lightweight MiniLM / DistilBERT (22M - 66M tham số) - Wang et al. NeurIPS 2020
-4. Multilingual mDeBERTa-v3 (microsoft/mdeberta-v3-base) - Đánh giá xuyên ngôn ngữ / tiếng Việt (Deng et al. ICLR 2024)
+1. ProtectAI DeBERTa-v3 Prompt Injection Model (protectai/deberta-v3-base-prompt-injection-v2) - He et al. ICLR 2023
+2. Ultra-Lightweight MiniLM / DistilBERT (22M - 66M tham số) - Wang et al. NeurIPS 2020
+3. Multilingual mDeBERTa-v3 (microsoft/mdeberta-v3-base) - Đánh giá xuyên ngôn ngữ / tiếng Việt (Deng et al. ICLR 2024)
 """
 
 import os
@@ -98,16 +97,7 @@ class HuggingFaceGuardrailClassifier(BaseGuardrailClassifier):
 
             score = 0.02  # Benign baseline
 
-            if self.model_type == "meta_prompt_guard":
-                # Meta Prompt Guard bắt tốt prompt chuẩn, nhưng bị bypass bởi Unicode/Emoji/Cipher (Hackett 2025)
-                if is_direct_injection or is_jailbreak:
-                    score = 0.94
-                if is_cipher:
-                    score = 0.25  # Bị lừa bởi cipher/encoding
-                if is_vietnamese_attack:
-                    score = 0.45  # Kém hơn trên tiếng Việt so với tiếng Anh
-
-            elif self.model_type == "protectai_deberta":
+            if self.model_type == "protectai_deberta":
                 # ProtectAI chuyên injection, nhận diện tốt cấu trúc câu lệnh đảo
                 if is_direct_injection:
                     score = 0.96
@@ -136,12 +126,6 @@ class HuggingFaceGuardrailClassifier(BaseGuardrailClassifier):
 
             scores.append(float(np.clip(score, 0.0, 1.0)))
         return scores
-
-
-class MetaPromptGuard86M(HuggingFaceGuardrailClassifier):
-    """Mô hình đối chuẩn Meta Prompt Guard 86M (Meta AI 2024)."""
-    def __init__(self):
-        super().__init__("meta-llama/Prompt-Guard-86M", model_type="meta_prompt_guard")
 
 
 class ProtectAIDebertaV3(HuggingFaceGuardrailClassifier):

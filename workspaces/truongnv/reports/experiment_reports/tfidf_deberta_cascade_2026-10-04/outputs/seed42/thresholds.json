@@ -1,0 +1,16 @@
+{
+  "max_validation_benign_fpr": 0.015,
+  "tfidf_attack_threshold": 0.6537721511823084,
+  "deberta_attack_threshold": 0.8717754329038951,
+  "cascade": {
+    "tfidf_benign_max_inclusive": 0.04949350525673501,
+    "tfidf_attack_min_inclusive": 0.9174385632446809,
+    "deberta_attack_threshold": 0.8660781665359607,
+    "validation_attack_recall": 0.9956011730205279,
+    "validation_macro_f1": 0.9934770248682374,
+    "validation_benign_fpr": 0.008749356664951106,
+    "validation_deberta_call_rate": 0.4331912760090248,
+    "search": "31 quantile candidates per TF-IDF gate; 201 quantile candidates for fallback; maximize validation attack recall under FPR budget, then macro-F1, then minimize DeBERTa calls"
+  },
+  "selection_data": "val.csv only"
+}

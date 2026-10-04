@@ -1,66 +1,50 @@
 {
-  "metadata_version": "1.0.0",
+  "metadata_version": "2.0.0",
   "package_name": "JailbreakBench_Chao_NeurIPS2024",
-  "dataset_name": "JailbreakBench JBB-Behaviors Benchmark (100 Harmful + 100 Benign Counterparts)",
+  "dataset_name": "JailbreakBench JBB-Behaviors source snapshots",
   "provenance": {
-    "upstream_paper": {
-      "title": "JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models",
-      "authors": "Patrick Chao, Edoardo Debenedetti, Alexander Robey, Maksym Andriushchenko, Francesco Croce, Vikash Sehwag, Edgar Dobriban, Nicolas Flammarion, George J. Pappas, Florian Tramer, Hamed Hassani, Eric Wong",
-      "venue": "NeurIPS 2024 (Datasets and Benchmarks Track)",
-      "year": 2024,
-      "arxiv_id": "2404.01318",
-      "reference_id": "[[34]](#ref34)"
-    },
-    "upstream_repository": "https://github.com/JailbreakBench/jailbreakbench",
-    "remote_full_dataset_location": "https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors",
-    "is_synthetic_self_created": false,
-    "provenance_type": "Official NeurIPS 2024 Dataset Release (JBB-Behaviors)",
-    "license": "MIT"
-  },
-  "validation_mapping": {
-    "used_by_script": "run_jailbreakbench_replication.py",
-    "schema": {
-      "goal_field": "Goal",
-      "target_field": "Target",
-      "category_field": "Category",
-      "source_field": "Source",
-      "label_mapping": {
-        "Harmful (100 behaviors)": "10 Safety Policies (CBRN, Cyberattacks, Hate Speech, etc.)",
-        "Benign (100 behaviors)": "False Refusal Probes (Counterparts with high surface similarity)"
-      }
-    }
+    "upstream_dataset": "https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors",
+    "upstream_revision": "d8d87b8fdcb7806e3b4e45fffb2bc24aa6b17f32",
+    "source_files": [
+      "data/harmful-behaviors.csv",
+      "data/benign-behaviors.csv"
+    ],
+    "verification_scope": "100 parsed rows in each local CSV and JSON match every field at the pinned upstream CSV revision; local serialized bytes are not byte-identical to upstream",
+    "validation_status": "row-level source comparison passed; no model result is certified by this metadata"
   },
   "files": [
-    {
-      "filename": "jbb_behaviors_benign.csv",
-      "size_bytes": 20671,
-      "sha256": "b198c96c550710bfcdb6e6b9e567003e0c7c12c94bd25c47b09412909f2a6ab2",
-      "sample_count": 100
-    },
-    {
-      "filename": "jbb_behaviors_benign.json",
-      "size_bytes": 32018,
-      "sha256": "fac2026f7305db38d1bb58037cec1c95867c7298c8a33f71d33ad76df04bd898",
-      "sample_count": 100
-    },
     {
       "filename": "jbb_behaviors_harmful.csv",
       "size_bytes": 23217,
       "sha256": "f985615b17b7659a7598f751a3c1fe0704e80d4f966d6ba36b6777d53ad18150",
-      "sample_count": 100
+      "records": 100,
+      "role": "local CSV serialization; records match pinned source"
     },
     {
       "filename": "jbb_behaviors_harmful.json",
       "size_bytes": 34556,
       "sha256": "9ee1cb2aab52550f0817f036e4423e9f3cc05a6bb5a0084da404f1817d535e77",
-      "sample_count": 100
+      "records": 100,
+      "role": "JSON serialization; fields match pinned source"
     },
     {
-      "filename": "jbb_combined_benchmark.json",
-      "size_bytes": 70183,
-      "sha256": "66fc6b5e4f63ea74e6a0c7076bf730b31ec313bf4a1ffacc8daa693863e342fa",
-      "sample_count": 6
+      "filename": "jbb_behaviors_benign.csv",
+      "size_bytes": 20671,
+      "sha256": "b198c96c550710bfcdb6e6b9e567003e0c7c12c94bd25c47b09412909f2a6ab2",
+      "records": 100,
+      "role": "local CSV serialization; records match pinned source"
+    },
+    {
+      "filename": "jbb_behaviors_benign.json",
+      "size_bytes": 32018,
+      "sha256": "fac2026f7305db38d1bb58037cec1c95867c7298c8a33f71d33ad76df04bd898",
+      "records": 100,
+      "role": "JSON serialization; fields match pinned source"
     }
   ],
-  "generated_at": "2026-09-23T05:42:55.277298"
+  "withdrawn": {
+    "derived_file": "jbb_combined_benchmark.json",
+    "reason": "project-created combined wrapper; removed because it was not an upstream file and its top-level metadata key count had been misreported as sample count",
+    "old_probe": "ProtectAI prompt-injection checkpoint was run on behavior goals and labeled as jailbreak detection; metrics and runner withdrawn"
+  }
 }

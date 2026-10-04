@@ -1,73 +1,42 @@
-# PHÂN VÙNG TÀI NGUYÊN NGHIÊN CỨU THAM KHẢO (REFERENCES STUDY & HARNESSES)
-## Bộ Khung Kiểm Thử Đối Kháng & Hồ Sơ Bằng Chứng Phủ Định Bổ Trợ
+# References study and supporting research assets
 
-- **Đơn vị thực hiện**: Nhóm nghiên cứu sinh viên Đề tài PI-Guard (IAP491) — Đại học FPT
-- **Tác giả**: Nguyễn Văn Trường (Leader — MSSV: `SE182034`)
-- **Giảng viên hướng dẫn**: ThS. Trần Văn Ninh
-- **Vị trí lưu trữ**: [`workspaces/truongnv/references_study/`](file:///d:/Work/Do-an/workspaces/truongnv/references_study/)
-- **Thời điểm hoàn thiện**: 28/09/2026
+**Audit date:** 2026-10-02. This area holds useful public research code/data that is not currently a comparable, runnable external text-classifier experiment for the PI-Guard benchmark.
 
----
+## Scope Boundary Declaration
 
-> [!NOTE]
-> **Tuyên bố về Tình trạng Học thuật & Mục đích Phân vùng**:  
-> Thư mục này được thiết lập nhằm phân định rạch ròi giữa **Kho Mô hình Thực nghiệm Đối chuẩn Trực tiếp ([`workspaces/truongnv/replications/`](file:///d:/Work/Do-an/workspaces/truongnv/replications/))** và **Các Tài nguyên Phục vụ Nghiên cứu Bổ trợ (References Study)**.  
-> Việc tách bạch này đảm bảo đồ án tuân thủ nghiêm ngặt phương pháp luận nghiên cứu:
-> 1. Tránh lỗi phân loại danh mục (**Category Error**): Không xếp lẫn công cụ sinh tấn công (attack harness) với bộ phân loại phòng thủ (guardrail classifier).
-> 2. Bảo tồn hồ sơ khoa học (**Scientific Transparency**): Lưu giữ đầy đủ mã nguồn và kết quả đo đạc của các mô hình bị nhóm đề xuất loại bỏ (Negative Baseline Dossier) làm vũ khí phản biện khi bảo vệ đồ án tốt nghiệp trước Hội đồng.
+- **IN-SCOPE:** reference models, attack/evaluation harnesses, historical project pilots, and caches used only by those reference runners.
+- **OUT-OF-SCOPE:** claiming a moved artifact as a completed reproduction, restoring withdrawn synthetic/unmapped probes, or modifying the historical Meeting 6 record.
 
----
-
-## 📂 CẤU TRÚC PHÂN VÙNG NGHIÊN CỨU THAM KHẢO
+## Directory map
 
 ```text
 references_study/
-├── README.md               # Văn kiện định danh và hướng dẫn tra cứu phân vùng
-├── harnesses/              # Bộ khung sinh tấn công & sinh dữ liệu kiểm chuẩn đối kháng
-│   └── JailbreakBench_Chao_NeurIPS2024/
-│       ├── papers/         # Paper gốc NeurIPS 2024 (Patrick Chao et al.)
-│       ├── upstream/       # Mã nguồn chính thức từ repo JailbreakBench
-│       ├── datasets/       # Dữ liệu kiểm chuẩn D3 (100 harmful prompts)
-│       └── reports/        # Báo cáo xuất xứ dữ liệu PROVENANCE.json
-└── rejected_baselines/     # Hồ sơ các mô hình do nhóm đề xuất loại bỏ (Negative Baselines)
-    └── Tier1_REJECTED_Ayub_CAMLIS2024/
-        ├── papers/         # Paper gốc CAMLIS 2024 (Ahsan Ayub et al.)
-        ├── upstream/       # Mã nguồn gốc character n-gram + sentence embedding
-        ├── datasets/       # Tập dữ liệu kiểm thử NotInject & WildGuard
-        └── reports/        # Kết quả đo đạc thực tế chứng minh FPR 58.41%
+├── encoder_architectures/ModernBERT_Warner_2024/
+├── encoder_architectures/BERT_from_scratch_UmarJamil_2023/
+├── encoder_architectures/HuggingFace_DeBERTa_SequenceClassification/
+├── harnesses/JailbreakBench_Chao_NeurIPS2024/
+├── jailbreak_defenses/SmoothLLM_Robey_NeurIPS2023/
+├── jailbreak_defenses/Jain_NeurIPS2023/
+├── rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/
+└── white_box_methods/Tier1_Candidate_InstructDetector_EMNLP2024/
 ```
 
----
+## Model and method references
 
-## 🔬 CHI TIẾT TỪNG TÀI NGUYÊN NGHIÊN CỨU THAM KHẢO
+| Asset | What its public material supports | Why it is reference-only here |
+|---|---|---|
+| [`SmoothLLM_Robey_NeurIPS2023`](./jailbreak_defenses/SmoothLLM_Robey_NeurIPS2023/) | Behavior inputs and randomized-smoothing code. The two retained JSON files are byte-identical to the files in the bundled `upstream/data/GCG/` snapshot (10 records each; hashes recorded in the local provenance report). | The evaluated outcome depends on a victim LLM's response/attack success; these inputs do not measure external text-classifier recall or defense effectiveness. [Author repository](https://github.com/arobey1/smooth-llm). |
+| [`Jain_NeurIPS2023`](./jailbreak_defenses/Jain_NeurIPS2023/) | Paper gốc và mã nguồn chính thức của tác giả cho baseline lọc perplexity và paraphrase (NeurIPS 2023; arXiv:2309.00614). | Giữ làm tài liệu tham khảo phương pháp và code chuẩn. Toàn bộ pilot tự dựng cũ (runner TF-IDF, dữ liệu tự ghép, biểu đồ/báo cáo) đã bị xóa ngày 2026-10-02; không báo cáo như mô hình tái lập của PI-Guard. [Official code](https://github.com/neelsjain/baseline-defenses), [paper](https://arxiv.org/abs/2309.00614). |
+| [`Tier1_Candidate_InstructDetector_EMNLP2024`](./white_box_methods/Tier1_Candidate_InstructDetector_EMNLP2024/) | Official instruction-detection implementation; BIPIA is a public benchmark. The folder suffix is a legacy path label; the paper was published in Findings of EMNLP 2025. [Paper](https://aclanthology.org/2025.findings-emnlp.1060/). | The paper method probes internal model representations/gradients. The old project adapter fitted TF-IDF and was not InstructDetector; local subsets/results were withdrawn. [Method code](https://github.com/MYVAE/Instruction-detection), [BIPIA](https://github.com/microsoft/BIPIA). |
+| [`ModernBERT_Warner_2024`](./encoder_architectures/ModernBERT_Warner_2024/) | Public encoder architecture, pretraining code, and model checkpoints. | No prompt-injection classifier or public prompt-injection evaluation dataset was found in this package. [Official code](https://github.com/AnswerDotAI/ModernBERT). |
+| [`BERT_from_scratch_UmarJamil_2023`](./encoder_architectures/BERT_from_scratch_UmarJamil_2023/) | BERT/Transformer foundations, plus high-level fine-tuning and text-classification examples. | Theory-only BERT slides; no DeBERTa-v3 details or executable training/evaluation recipe, and not evidence PI-Guard trained a model. The deck states CC BY-NC 4.0 and links to [Umar Jamil's source repository](https://github.com/hkproj/bert-from-scratch). |
+| [`HuggingFace_DeBERTa_SequenceClassification`](./encoder_architectures/HuggingFace_DeBERTa_SequenceClassification/) | Official API references for DeBERTa and DeBERTa-v2 sequence-classification heads, including inputs, labels, loss, and outputs. | Saved HTML snapshots fetched 2026-10-02; check the online docs and target checkpoint configuration when implementing. [DeBERTa docs](https://huggingface.co/docs/transformers/model_doc/deberta), [DeBERTa-v2 docs](https://huggingface.co/docs/transformers/model_doc/deberta-v2). |
 
-### 1. Phân mục `harnesses/` — Khung Sinh Tấn Công & Kiểm Thử Đối Kháng
-- **Tài nguyên**: [`JailbreakBench_Chao_NeurIPS2024/`](file:///d:/Work/Do-an/workspaces/truongnv/references_study/harnesses/JailbreakBench_Chao_NeurIPS2024/)
-- **Bài báo gốc**: Patrick Chao et al., *"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models"*, NeurIPS 2024 Datasets and Benchmarks Track.
-- **Vai trò học thuật**:
-  - `JailbreakBench` **không phải là một mô hình phân loại bảo vệ (Classifier)**.
-  - Đây là một **Evaluation Harness** chuẩn mực quốc tế dùng để sinh ra các cuộc tấn công đối kháng (PAIR, GCG, TAP) và cung cấp bộ dữ liệu 100 hành vi nguy hiểm có gắn nhãn (*JBB-Behaviors*).
-  - Nhóm nghiên cứu sử dụng tài nguyên này để trích xuất tập dữ liệu **$D_3$ (Jailbreak Benchmark)** phục vụ kiểm thử sức bền cho toàn bộ các mô hình thực nghiệm tại `replications/`.
-  - Việc đặt JailbreakBench tại `references_study/harnesses/` giúp tránh tuyệt đối lỗi Category Error.
+## Existing supplementary resources
 
----
+- [`JailbreakBench_Chao_NeurIPS2024`](./harnesses/JailbreakBench_Chao_NeurIPS2024/) is a benchmark/harness. Behavior goals are not jailbreak artifacts; a classifier run on goals cannot be described as jailbreak-artifact recall. [Official project](https://github.com/JailbreakBench/jailbreakbench).
+- [`Tier1_REJECTED_Ayub_CAMLIS2024`](./rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/) retains paper/code references and provenance documentation of source-data overlap with the PIGuard bundle; no local Ayub dataset JSON is retained. The withdrawn run had 200/344 training rows without a `source` value, so its scores, notebook, plots and caches were removed. Only the dataset card, provenance record and metadata remain in `datasets/`; the runner is disabled and no local Ayub metric is reportable.
 
-### 2. Phân mục `rejected_baselines/` — Hồ Sơ Bằng Chứng Phủ Định (Negative Baseline Dossiers)
-- **Tài nguyên**: [`Tier1_REJECTED_Ayub_CAMLIS2024/`](file:///d:/Work/Do-an/workspaces/truongnv/references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/)
-- **Bài báo gốc**: Ahsan Ayub & Subash Majumdar, *"Towards Robust Detection of Prompt Injection Attacks: An Empirical Study"*, CAMLIS 2024.
-- **Vai trò học thuật**:
-  - Mô hình kết hợp Character n-gram và Sentence Embedding (MiniLM) với bộ phân loại Random Forest.
-  - Kết quả thực nghiệm đo đạc thực tế của nhóm tại Meeting 5 chỉ ra 2 tử huyệt:
-    1. **Tử huyệt Overdefense**: Chặn nhầm tới **$58.41\%$** trên tập dữ liệu lành tính NotInject (FPR quá cao, vi phạm tiêu chuẩn thiết kế $\text{FPR} < 1.5\%$).
-    2. **Tử huyệt độ trễ**: Thời gian trích xuất vector embedding bằng MiniLM trên CPU mất **$11.02\text{ms}$**, quá chậm cho bộ lọc tầng 1 (FastFilter SLA $\le 2.0\text{ms}$).
-  - Nhóm sinh viên đã đề xuất loại bỏ mô hình này khỏi danh mục ứng viên chính thức trong báo cáo gửi GVHD (ThS. Trần Văn Ninh).
-  - Hồ sơ này được bảo tồn nguyên vẹn 100% tại `references_study/rejected_baselines/` để làm luận chứng phản biện trước Hội đồng khi được chất vấn: *"Tại sao nhóm dùng TF-IDF mà không dùng Sentence Embedding của Ayub 2024?"*.
+## Reporting rule
 
----
-
-## 🛠️ CÔNG CỤ TỰ ĐỘNG HỖ TRỢ TRA CỨU ĐA ĐƯỜNG DẪN
-
-Hệ sinh thái công cụ kiểm toán của nhóm được lập trình sẵn cơ chế tra cứu kép (Dual-Path Fallback):
-- [`audit_6_vs_11_models_integrity.py`](file:///d:/Work/Do-an/workspaces/truongnv/scripts/audit_6_vs_11_models_integrity.py): Tự động phát hiện vị trí của `JailbreakBench` và `Tier1_REJECTED_Ayub` tại `references_study/` và xác thực $100\%$ tính toàn vẹn (Zero Mock Data).
-- [`prepare_cross_dataset_suite.py`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/scripts/prepare_cross_dataset_suite.py): Tự động nạp bộ mẫu $D_3$ từ `references_study/harnesses/JailbreakBench_Chao_NeurIPS2024/datasets/`.
-- [`verify_replication_assets.py`](file:///d:/Work/Do-an/workspaces/truongnv/replications/verify_replication_assets.py): Xác thực 243 assets và mã băm SHA-256 trên cả hai phân vùng.
+Use `replications/` only for candidates with usable public detector/model material and a pinned, source-backed dataset protocol. Use this area for architecture/method references, harnesses, victim-LLM defenses, and project pilots that do not meet that comparison standard. The audit report records exact decisions and current limitations: [`replications_folder_audit_2026-09-30/`](../reports/experiment_reports/replications_folder_audit_2026-09-30/).

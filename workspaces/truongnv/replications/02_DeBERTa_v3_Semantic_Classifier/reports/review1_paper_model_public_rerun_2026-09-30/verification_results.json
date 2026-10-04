@@ -1,0 +1,148 @@
+{
+  "paper_checkpoint_benchmark": {
+    "dataset_sha256_checks": 6,
+    "input_rows": 1435,
+    "models": {
+      "piguard_acl2025": {
+        "BIPIA_payload": {
+          "official_equal_subset_macro_attack_recall": 0.6833333333333333,
+          "pooled_attack_recall": 0.624,
+          "subsets": {
+            "BIPIA_code": {
+              "attack_flags": 49,
+              "attack_recall": 0.98,
+              "n": 50
+            },
+            "BIPIA_text": {
+              "attack_flags": 29,
+              "attack_recall": 0.38666666666666666,
+              "n": 75
+            }
+          }
+        },
+        "NotInject": {
+          "NotInject_one": {
+            "benign_accuracy": 0.9469026548672567,
+            "correct_benign": 107,
+            "n": 113
+          },
+          "NotInject_three": {
+            "benign_accuracy": 0.8141592920353983,
+            "correct_benign": 92,
+            "n": 113
+          },
+          "NotInject_two": {
+            "benign_accuracy": 0.8938053097345132,
+            "correct_benign": 101,
+            "n": 113
+          }
+        },
+        "WildGuard_benign": {
+          "benign_accuracy": 0.761071060762101,
+          "n": 971
+        },
+        "max_length": 2048,
+        "model_id": "leolee99/PIGuard",
+        "parameter_count": 184423682,
+        "prediction_sha256": "ac4c3fe98b61a1f3102bedf0f403bd30e7831fcd70dfcdd746dd00bc0fff9689",
+        "revision": "dd78b24e330193a22d2293ac66922dd4f982f563",
+        "rows": 1435
+      },
+      "protectai_deberta_v3_v2": {
+        "BIPIA_payload": {
+          "official_equal_subset_macro_attack_recall": 0.08666666666666667,
+          "pooled_attack_recall": 0.104,
+          "subsets": {
+            "BIPIA_code": {
+              "attack_flags": 0,
+              "attack_recall": 0.0,
+              "n": 50
+            },
+            "BIPIA_text": {
+              "attack_flags": 13,
+              "attack_recall": 0.17333333333333334,
+              "n": 75
+            }
+          }
+        },
+        "NotInject": {
+          "NotInject_one": {
+            "benign_accuracy": 0.7787610619469026,
+            "correct_benign": 88,
+            "n": 113
+          },
+          "NotInject_three": {
+            "benign_accuracy": 0.45132743362831856,
+            "correct_benign": 51,
+            "n": 113
+          },
+          "NotInject_two": {
+            "benign_accuracy": 0.4690265486725664,
+            "correct_benign": 53,
+            "n": 113
+          }
+        },
+        "WildGuard_benign": {
+          "benign_accuracy": 0.7518022657054583,
+          "n": 971
+        },
+        "max_length": 512,
+        "model_id": "protectai/deberta-v3-base-prompt-injection-v2",
+        "parameter_count": 184423682,
+        "prediction_sha256": "a8fdf1f8e0efad80f4bc878c527a7b805e9a620a20a3fdd021e0a1768d6e1a07",
+        "revision": "90c9989b1a342275dd0d1a95aad283c04e075671",
+        "rows": 1435
+      }
+    },
+    "status": "verified"
+  },
+  "two_checkpoint_offline_replay": {
+    "interpretation": [
+      "All values are recomputed from pinned local checkpoint prediction artifacts aligned by record_id.",
+      "Direct and Indirect counts use source attack labels; Jailbreak counts are artifact flag rates, not jailbreak success or jailbreak-class recall.",
+      "No conditional second-stage execution or end-to-end latency was measured."
+    ],
+    "n": 606,
+    "not_an_end_to_end_cascade_run": true,
+    "routing_rule": "Run PIGuard first; if it predicts injection, stop with injection flag; otherwise route to ProtectAI; final flag is OR of the two checkpoint predictions.",
+    "status": "offline_replay_verified",
+    "tier2_model": "protectai/deberta-v3-base-prompt-injection-v2",
+    "tier2_route_rate": 0.19636963696369636,
+    "tier2_routes": 119,
+    "vectors": {
+      "Direct": {
+        "attack_n": 100,
+        "clean_n": 0,
+        "n": 100,
+        "piguard_attack_flags": 83,
+        "piguard_clean_flags": 0,
+        "protectai_attack_flags": 95,
+        "tier2_routed": 17,
+        "union_attack_flags": 95,
+        "union_clean_flags": 0
+      },
+      "Indirect": {
+        "attack_n": 200,
+        "clean_n": 200,
+        "n": 400,
+        "piguard_attack_flags": 181,
+        "piguard_clean_flags": 134,
+        "protectai_attack_flags": 0,
+        "tier2_routed": 85,
+        "union_attack_flags": 181,
+        "union_clean_flags": 134
+      },
+      "Jailbreak": {
+        "attack_n": 106,
+        "clean_n": 0,
+        "n": 106,
+        "piguard_attack_flags": 89,
+        "piguard_clean_flags": 0,
+        "protectai_attack_flags": 76,
+        "tier2_routed": 17,
+        "union_attack_flags": 93,
+        "union_clean_flags": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "status": "completed",
+  "run_type": "official PromptShield-paper comparator evaluation; ProtectAI v2 baseline, not K3 PromptShield detector",
+  "inference_started_local": "2026-09-29T04:01:01.139+07:00",
+  "inference_completed_local": "2026-09-29T06:37:34.139+07:00",
+  "inference_elapsed": "PT2H36M33S",
+  "process_log_last_write_utc": "2026-09-28T23:39:10.8331199Z",
+  "command": [
+    "D:/Work/Do-an/.venv/Scripts/python.exe",
+    "D:/Work/Do-an/workspaces/truongnv/replications/PromptShield_Jacob_CCS2024/PromptShield/eval_baselines.py",
+    "--model",
+    "protectai-v2",
+    "--device",
+    "cpu",
+    "--batch-size",
+    "32",
+    "--file-date",
+    "2024-11-28"
+  ],
+  "working_directory": "D:\\Work\\Do-an\\workspaces\\truongnv\\reports\\experiment_reports\\reproduction_audit_2026-09-29\\promptshield_protectai_v2_full_eval_2026-09-29",
+  "source": {
+    "repository": "https://github.com/wagner-group/PromptShield",
+    "repository_commit": "bc03ac195670700ed1cf684cafe46154623e71b9",
+    "entrypoint": "PromptShield/eval_baselines.py",
+    "metric_functions": "PromptShield/utils/metrics.py: computeROC, interpolateROC, interpolateThre",
+    "reference": "EXPERIMENT_REPRODUCTION_AUDIT.md ref41"
+  },
+  "model": {
+    "id": "protectai/deberta-v3-base-prompt-injection-v2",
+    "revision": "90c9989b1a342275dd0d1a95aad283c04e075671",
+    "paper_parameter_count": "184M",
+    "hardware": "CPU only; CUDA unavailable"
+  },
+  "dataset": {
+    "source_path": "PromptShield/camera_ready_datasets/en_dataset_no_dups/2024-11-28_evaluation_benchmark_en.json",
+    "staged_path": "data/evaluation_data/2024-11-28/2024-11-28_evaluation_benchmark.json",
+    "sha256": "8b7e18426afdb4c7219d8f1a39ccfde347bc5125efb31ce4b2fb4acb2851cc16",
+    "sample_count": 23369,
+    "benign": 16883,
+    "injection": 6486,
+    "staged_copy_hash_matches_source": true
+  },
+  "environment": {
+    "python": "3.11.16",
+    "pytorch": "2.14.0+cpu",
+    "transformers": "5.17.0",
+    "scikit_learn": "1.9.1",
+    "torch_threads": 14,
+    "cuda_available": false
+  },
+  "runtime_adapter": {
+    "upstream_source_modified": false,
+    "reason": "Transformers compatibility and avoiding padding to tokenizer max-length sentinel",
+    "changes": [
+      "Convert datasets.arrow_dataset.Column to list at tokenizer boundary; all text strings preserved.",
+      "Apply max_length=512, matching model config max_position_embeddings=512; upstream tokenizer config contains an effectively unbounded sentinel.",
+      "Sort rows into ascending effective token length and trim right padding per batch; preserve tokens, attention masks, and model.",
+      "Store row permutation and align labels to sorted predictions; summary validates full permutation and exact label alignment."
+    ]
+  },
+  "attempts": [
+    {
+      "log": "original_eval.log",
+      "cause": "Transformers 5.17 tokenizer rejected datasets.arrow_dataset.Column; isolated compatibility issue.",
+      "outcome": "failed before inference"
+    },
+    {
+      "log": "original_eval_compat.log",
+      "cause": "Column conversion worked, but tokenizer max-length sentinel triggered impractical padding/resource use.",
+      "outcome": "stopped before completion"
+    },
+    {
+      "log": "original_eval_512_context.log",
+      "cause": "512-token cap resolved sentinel, but fixed padding took about 50.6 seconds in first batch.",
+      "outcome": "stopped before completion"
+    },
+    {
+      "log": "original_eval_dynamic_batches.log",
+      "cause": "Dynamic right-padding trim improved first batch, but unsorted sequence lengths remained too slow.",
+      "outcome": "stopped before completion"
+    },
+    {
+      "log": "original_eval_buckets.log",
+      "exit_code": 0,
+      "inference_elapsed": "PT2H36M33S",
+      "outcome": "completed",
+      "batches": 731
+    }
+  ],
+  "paper_table_4": {
+    "auc": 0.705,
+    "tpr_fpr_1_percent": "1.97%",
+    "tpr_fpr_0_5_percent": "1.34%",
+    "tpr_fpr_0_1_percent": "0%",
+    "tpr_fpr_0_05_percent": "0%"
+  },
+  "measured": {
+    "status": "completed",
+    "model_name": "protectai-v2",
+    "dataset_name": "evaluation_benchmark",
+    "sample_count": 23369,
+    "class_counts": {
+      "benign": 16883,
+      "injection": 6486
+    },
+    "argmax_confusion_matrix": {
+      "tn": 16623,
+      "fp": 260,
+      "fn": 6263,
+      "tp": 223
+    },
+    "argmax_metrics": {
+      "accuracy": 0.7208695280071891,
+      "precision": 0.4616977225672878,
+      "recall": 0.034381745297563986,
+      "f1": 0.06399770411823791,
+      "fpr": 0.015400106616122728
+    },
+    "roc_auc": 0.7068452549734235,
+    "low_fpr_interpolated_metrics": {
+      "1%": {
+        "target_fpr": 0.01,
+        "interpolated_tpr": 0.02127659574468085,
+        "interpolated_threshold": 0.9918007438182831
+      },
+      "0.5%": {
+        "target_fpr": 0.005,
+        "interpolated_tpr": 0.014030218933086648,
+        "interpolated_threshold": 0.998042147954305
+      },
+      "0.1%": {
+        "target_fpr": 0.001,
+        "interpolated_tpr": 0.0,
+        "interpolated_threshold": 0.999999525487423
+      },
+      "0.05%": {
+        "target_fpr": 0.0005,
+        "interpolated_tpr": 0.0,
+        "interpolated_threshold": 0.9999997033715248
+      }
+    },
+    "alignment_validation": {
+      "source_rows": 23369,
+      "saved_rows": 23369,
+      "row_order_is_permutation": true,
+      "saved_labels_match_source_rows_in_recorded_order": true
+    }
+  },
+  "files": {
+    "raw_npz": "baseline_evals/protectai-v2/evaluation_benchmark/2026-09-29/trial_1/evaluation_benchmark_outputs.npz",
+    "summary_json": "summary.json",
+    "row_order": "promptshield_eval_row_order.json",
+    "completion_log": "original_eval_buckets.log",
+    "adapter": "compat/sitecustomize.py"
+  },
+  "interpretation": "ROC AUC and interpolated TPRs use the original metric functions. Argmax confusion metrics are secondary diagnostics and are not Table 4 operating-point results.",
+  "file_sha256": {
+    "staged_dataset": "8b7e18426afdb4c7219d8f1a39ccfde347bc5125efb31ce4b2fb4acb2851cc16",
+    "upstream_dataset": "8b7e18426afdb4c7219d8f1a39ccfde347bc5125efb31ce4b2fb4acb2851cc16",
+    "raw_predictions": "939b78ee18bb582fc9dd21f59bba8efa68d71a2d3b01659e042c4143998ba888",
+    "row_order": "5e4a3653af64a2094ee608507cff63c5e67c36811c6987e33651f0c925daebc9",
+    "runtime_adapter": "609870372288d3cef3d5444b02ea97b9906e5deac6e76dfc9b33b9f965ef1c2f",
+    "summary_script": "cdd91dae9030e5428d2de2a3427342d361d9142bb66cb0b68102eea39a26b8d7",
+    "summary": "4898aab3cae387d3ffc452a49cc5d1dd3f45ce074c87be1e62d221e460eed7b5",
+    "run_log": "a4a09654002db71dc1ea28fe86c9b7fa16858bfd33aa95ffa1e44885b12f128f",
+    "upstream_eval_script": "f9bd258441f4698aa4a345dce12b37f66326b029c098de5a7f98c5af189f9a87",
+    "upstream_metrics": "e88b694b501b5e29291de2a3d8c287341458a37c4e1f348155a05ef507cbb84b",
+    "benchmark_dataset_class": "dfb8a03bcae4ef9d2a81e9cecd70a5cfaf32299f5dec60f42d9866620da9362e"
+  }
+}

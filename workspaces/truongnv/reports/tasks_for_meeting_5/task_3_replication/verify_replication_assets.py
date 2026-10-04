@@ -4,8 +4,8 @@ Verification Script for Task 3 Replication Assets
 PI-Guard Capstone Project - FPT University
 Workspace: workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication
 Verifies that:
-1. Ayub_CAMLIS2024 and PIGuard_ACL2025 contain 100% pure public upstream code.
-2. All interactive notebooks, benchmark scripts, and datasets in task_3_replication are intact.
+1. Retained public reference assets are present and readable.
+2. The withdrawn Meta Prompt Guard candidate is absent from the canonical replications directory.
 """
 
 import os
@@ -119,22 +119,6 @@ def main():
         ("Tier1_Candidate_Jain_NeurIPS2023/figures/02_empirical_plots/jain_replication_paper_vs_local_mitigation.png", 30_000, False),
         ("Tier1_Candidate_Jain_NeurIPS2023/figures/02_empirical_plots/jain_latency_profile.png", 30_000, False),
 
-        # 5. Tier 1 Subsystem Candidate: Meta Prompt-Guard 86M (Purple Llama 2024)
-        ("Tier1_Candidate_Meta_PromptGuard2024/README.md", 500, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/papers/Meta_2024_PurpleLlama_PromptGuard.pdf", 300_000, True),
-        ("Tier1_Candidate_Meta_PromptGuard2024/Meta_PromptGuard2024_Replication_and_Paper_Comparison.ipynb", 1_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/run_promptguard_replication.py", 1_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/META_PROMPTGUARD_REPLICATION_BENCHMARK_RESULTS.json", 1_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/datasets/promptguard_3class_eval.json", 100_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/Meta_PromptGuard2024/dataset/promptguard_3class_eval.json", 100_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/Meta_PromptGuard2024/README.md", 200, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/Meta_PromptGuard2024/MODEL_CARD.md", 500, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/figures/01_paper_evidence/meta_p1_title_and_abstract.png", 30_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/figures/01_paper_evidence/meta_p6_table_eval_metrics.png", 30_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/figures/01_paper_evidence/meta_p8_cyberseceval_safeguards.png", 30_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/figures/02_empirical_plots/promptguard_replication_paper_vs_local_bars.png", 30_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/figures/02_empirical_plots/promptguard_latency_profile.png", 30_000, False),
-
         # 6. Tier 1 Subsystem Candidate: InstructDetector (Findings of EMNLP 2024)
         ("Tier1_Candidate_InstructDetector_EMNLP2024/README.md", 500, False),
         ("Tier1_Candidate_InstructDetector_EMNLP2024/papers/Zhao_2024_InstructDetector_arXiv2402.06774.pdf", 200_000, True),
@@ -162,9 +146,18 @@ def main():
         if not passed:
             all_passed = False
 
+    withdrawn_candidate = os.path.normpath(os.path.join(
+        base_dir, "..", "..", "..", "replications", "Tier1_Candidate_Meta_PromptGuard2024"
+    ))
+    if os.path.exists(withdrawn_candidate):
+        print("[FAIL] Withdrawn Meta candidate directory remains; cleanup is incomplete.")
+        all_passed = False
+    else:
+        print("[PASS] Withdrawn Meta candidate directory is absent.")
+
     print("=" * 80)
     if all_passed:
-        print("RESULT: ALL ASSETS VERIFIED 100% INTACT & READY FOR DEFENSE!")
+        print("RESULT: Retained assets verified; withdrawn Meta candidate is absent.")
         sys.exit(0)
     else:
         print("RESULT: VERIFICATION FAILED FOR ONE OR MORE ASSETS.")

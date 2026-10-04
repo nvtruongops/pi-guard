@@ -1,0 +1,70 @@
+PIDS-Bench v3 — Evaluation Set Freeze Manifest
+Frozen at: 2026-03-24 15:23:16 UTC
+obfuscated_attacks rebuilt: 2026-03-20 (clean version — see note below)
+hard_benign_test re-frozen: 2026-07-08 (LMSYS text stripped for license compliance; see DATA_LICENSES.md)
+DO NOT modify these files after this date.
+================================================================================
+Name                             Rows   Benign  Injection  SHA-256
+--------------------------------------------------------------------------------
+train                           27093    12846      14247  859124bfffe20483b337956efcb11c6bdaf6191835150f51a5e6da272ee5a2eb
+val                              3989     1943       2046  1445c0b33c220078d967fa34bb4da5e2981842ce288925b8f2542a4f9352cc64
+test                             3918     1848       2070  149092dc6a7a83d3da73e8c7b413ea5e215e3f96c5565767b6db56b3b7835d96
+hard_benign_test                 1472     1472          0  e3ddb1e6e9e04e1097b7bcf9a6f5e05b0a8d73e8d71b8d867f7ed85b89472cee
+balanced_subtype_test            2297     1200       1097  210e339329081b97ce95d2dfe4f4581e19bc83dd16a23b86cd36bd15b9ff2023
+obfuscated_attacks                405        0        405  b151322f05ef83922c734c589804fc7eab53331b61b5ad153c72aaf683f7c691
+domain_ood                       2000     1000       1000  d14acb99a69ac10559fde9ee22d0f20aa7a5816c4f48f279838d12ed0a6944f0
+structural_ood                   1998      999        999  63d56a8ebbd0639404158b51b35863fc87b02e9869ee2526f5f90eaa48108dad
+--------------------------------------------------------------------------------
+TOTAL                           43172    17318      25854
+
+NOTE — obfuscated_attacks rebuild:
+  The original file (4,376 rows) contained 66% exact duplicates from train.csv
+  and 81% rows sharing parent_seed_ids with train. Evaluating on it was measuring
+  memorisation, not generalisation. The clean version (405 rows) is extracted
+  from test.csv (obfuscation != none, label == 1) which has zero seed overlap
+  with train. Verified: 0 exact matches, 0 shared parent_seed_ids vs train/val.
+  Source: test.csv rows, split at seed level before any training.
+================================================================================
+NOTE -- hard-negative augmentation files (added after original freeze):
+  These files are NOT counted in the TOTAL row above; the main eval splits
+  remain bit-identical to the originally manifested versions.
+Name                             Rows   Benign  Injection  SHA-256
+--------------------------------------------------------------------------------
+hard_negative_train               419      419          0  bfdaaf940ba98f48ffea290ec345cd79e403fef9e28d96709d666ff92600216a
+hard_negative_val                 116      116          0  9f5f3351b864149b0cb61c2609a33b81604389956983caef88bb46e072e71137
+================================================================================
+
+NOTE -- canonical DeBERTa-v3-FT model and prediction files (verified 2026-05-20):
+  All files produced by the March 30 Colab CUDA training run (seed=42).
+  Timestamps and SHA-256 verified on 2026-05-20; no modifications since training.
+File                                                    Size (bytes)  SHA-256
+--------------------------------------------------------------------------------
+models/deberta_v3/model.safetensors               737719248  dfe73ce0644a57f0e7c7fe3edc00b2f7c6adeed9d9608e859b4b2d93c2c20a28
+models/deberta_v3/config.json                           946  24f895798bc7b7462c5e86cfc4e1c974de898752eb2b1fb3b32dd4d332a7275c
+models/deberta_v3/tokenizer.json                    8340141  384255eb4e0c7c2066afc789d8f97907a023503be3fd521ac43f7abf5c96cfa9
+models/deberta_v3/training_args.bin                    5265  9114f90fc7ef5ad48d7d6aba89287ebcb19c86a7277a13929a2b88948392dce7
+outputs/deberta_v3/summary.json                        1562  4de09d670507a7ae612f8766ce38ec3d63efeb3f3811ce524d7b027b11660a5f
+outputs/deberta_v3/hard_benign_predictions.csv       432540  33a2a5a68205b1ee7af7a2fe4598cef8c6020e18a14a769b2f5f29703e4d372f
+outputs/deberta_v3/test_predictions.csv             1548752  1dbe41c0372f4bc9b4eec7e04ee98d069a6f6b49da8442eb0d1e0c131b7748fe
+outputs/deberta_v3/val_predictions.csv              1454805  663971ff9cd71487e6328b8616ce178b1ca80fc97e492cca22d5d3e61558e24b
+outputs/deberta_v3/structural_ood_probability_scores.csv  979605  86e7ce4ddbafbc5870e2e90bd69248f2d07bd2117d98381304123a6788527469
+  NOTE: required for Baseline@tau_HN structural OOD computation in Table 11
+  (scripts/eval_canonical_at_tau.py reads this file to apply augmented-seed
+  tau_HN values to canonical model probabilities without model inference).
+  Produced by the April 5 MPS inference run; 1998 rows with columns
+  text, true_label, probability_score, source, transform_type.
+================================================================================
+
+=== SHA-256 checksums (appended 2026-05-28T12:31Z) ===
+bfdaaf940ba98f48ffea290ec345cd79e403fef9e28d96709d666ff92600216a  hard_negative_train.csv
+9f5f3351b864149b0cb61c2609a33b81604389956983caef88bb46e072e71137  hard_negative_val.csv
+149092dc6a7a83d3da73e8c7b413ea5e215e3f96c5565767b6db56b3b7835d96  test.csv
+859124bfffe20483b337956efcb11c6bdaf6191835150f51a5e6da272ee5a2eb  train.csv
+1445c0b33c220078d967fa34bb4da5e2981842ce288925b8f2542a4f9352cc64  val.csv
+210e339329081b97ce95d2dfe4f4581e19bc83dd16a23b86cd36bd15b9ff2023  eval_subsets/balanced_subtype_test.csv
+b2847df830df2368a1f3ecf2500506805e72eb4acb3dbce4fa9e279e5c64cc72  eval_subsets/hard_benign_audit_sample.csv
+e3ddb1e6e9e04e1097b7bcf9a6f5e05b0a8d73e8d71b8d867f7ed85b89472cee  eval_subsets/hard_benign_test.csv
+b151322f05ef83922c734c589804fc7eab53331b61b5ad153c72aaf683f7c691  eval_subsets/obfuscated_attacks.csv
+d14acb99a69ac10559fde9ee22d0f20aa7a5816c4f48f279838d12ed0a6944f0  ood/domain_ood.csv
+63d56a8ebbd0639404158b51b35863fc87b02e9869ee2526f5f90eaa48108dad  ood/structural_ood.csv
+8ea6246822b4950b809b2df7b90f8b8c39e9f9e3b96d250ede2aef997c8db8ae  ood/structural_seeds_injection.csv

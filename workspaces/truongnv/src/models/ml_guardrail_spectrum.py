@@ -5,7 +5,7 @@ Author: Nguyễn Văn Trường (Leader)
 
 This module implements the multi-generation ML guardrail spectrum from SOTA to project models:
 - Level 1: Generative SLM Guardrail (Llama Guard 3 1B / Granite Guardian 2B)
-- Level 2: Modern Deep Transformer Encoders (ModernBERT-base / DeBERTa-v3-base / Prompt-Guard-86M)
+- Level 2: Modern Deep Transformer Encoders (ModernBERT-base / DeBERTa-v3-base)
 - Level 3: Metric Learning & Anomaly Detectors (Perplexity Suffix Filter + Dense Embedding Centroids + FastText)
 - Level 4: Classical Statistical ML Baseline (TF-IDF Word+Char n-grams + Linear Classifier)
 - Reference Spectrum: Comparison of Literature ML Paradigms for LLM Security.
@@ -272,7 +272,6 @@ class ModernEncoderGuardrail(BaseMLGuardrail):
     Candidates:
     1. 'answerdotai/ModernBERT-base' (149M params, 8192 context, FlashAttention-2, RoPE)
     2. 'microsoft/deberta-v3-base' (184M params, 512 context, Disentangled Attention)
-    3. 'meta-llama/Prompt-Guard-86M' (86M params, mDeBERTa-v3 specialized guardrail)
     
     Provides deep semantic classification distinguishing:
     - Benign (safe query)

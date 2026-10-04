@@ -136,18 +136,18 @@ MODELS_PROVENANCE_CATALOG: Dict[str, Dict[str, Any]] = {
     },
     "PromptShield_Jacob_CCS2024": {
         "model_id": "PromptShield_Jacob_CCS2024",
-        "display_name": "PromptShield (Jacob et al. - ACM CCS 2024)",
+        "display_name": "PromptShield (Jacob et al. - CODASPY 2025)",
         "role": "State-of-the-Art Low-FPR ROC Calibrated Guardrail",
         "directory": "replications/PromptShield_Jacob_CCS2024",
         "paper": {
-            "title": "PromptShield: Deployable Detection of Prompt Injection Attacks",
+            "title": "PromptShield: Deployable Detection for Prompt Injection Attacks",
             "authors": "Jacob et al.",
             "venue": "ACM CCS 2024",
-            "arxiv_id": "2407.13656",
-            "paper_url": "https://arxiv.org/abs/2407.13656",
-            "pdf_url": "https://arxiv.org/pdf/2407.13656.pdf",
+            "arxiv_id": "2501.15145",
+            "paper_url": "https://arxiv.org/abs/2501.15145",
+            "pdf_url": "https://arxiv.org/pdf/2501.15145.pdf",
             "doi_url": "https://doi.org/10.1145/3714393.3726501",
-            "local_pdf": "papers/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf",
+            "local_pdf": "papers/Jacob_2025_PromptShield_Deployable_Detection_CODASPY.pdf",
             "provenance_anchor": "Section 4 'Threat Model' & Section 6 'Evaluation at 1% FPR'"
         },
         "model_spec": {
@@ -245,20 +245,7 @@ MODELS_PROVENANCE_CATALOG: Dict[str, Dict[str, Any]] = {
             "subfolder": "upstream",
             "is_pure_upstream": True
         },
-        "datasets": [
-            {
-                "filename": "protectai_eval_benchmark.json",
-                "origin_url": "https://huggingface.co/datasets/protectai/prompt-injection-benchmark",
-                "sha256": "251e55a4ebeeb7218fd0a1e068c3b8c583f1a47e1227b639c955248eaa8a55f3",
-                "provenance_proof": "Official Protect AI prompt injection evaluation benchmark."
-            },
-            {
-                "filename": "notinject_sample.json",
-                "origin_url": "https://huggingface.co/datasets/deepset/prompt-injections",
-                "sha256": "c77abbf3de71f99f0e12809a29d8468401285ef5353b53daa6d65131c866586c",
-                "provenance_proof": "NotInject test split from deepset AI and Li et al. (ACL 2025) benchmark."
-            }
-        ],
+        "datasets": [],
         "runner": {
             "script": "run_protectai_replication.py",
             "external_runs_dest": "reports/tasks_for_meeting_6/04_benchmarks_and_data"
@@ -355,47 +342,6 @@ MODELS_PROVENANCE_CATALOG: Dict[str, Dict[str, Any]] = {
         ],
         "runner": {
             "script": "run_jailbreakbench_replication.py",
-            "external_runs_dest": "reports/tasks_for_meeting_6/04_benchmarks_and_data"
-        }
-    },
-    "Meta_PromptGuard2024": {
-        "model_id": "Meta_PromptGuard2024",
-        "display_name": "Meta Prompt-Guard 86M (Meta AI 2024 / Purple Llama)",
-        "role": "Industry Reference SOTA Guardrail Baseline",
-        "directory": "replications/Tier1_Candidate_Meta_PromptGuard2024",
-        "paper": {
-            "title": "Prompt-Guard: An 86M Parameter Guardrail for Prompt Injection and Jailbreak",
-            "authors": "Meta AI Purple Llama Team",
-            "venue": "Meta AI Research Tech Report 2024",
-            "arxiv_id": "2407.21783",
-            "paper_url": "https://arxiv.org/abs/2407.21783",
-            "pdf_url": "https://arxiv.org/pdf/2407.21783.pdf",
-            "local_pdf": "papers/Meta_2024_PurpleLlama_PromptGuard.pdf",
-            "provenance_anchor": "Table 1 'Model Specifications' & Table 3 Evaluation on CyberSecEval"
-        },
-        "model_spec": {
-            "architecture": "mDeBERTa-v3-base (3-Class Classifier: Benign / Injection / Jailbreak)",
-            "parameters": "86M",
-            "weights_origin_url": "https://huggingface.co/meta-llama/Prompt-Guard-86M",
-            "license": "Llama 3.1 Community License"
-        },
-        "upstream_repo": {
-            "name": "PurpleLlama",
-            "git_url": "https://github.com/meta-llama/PurpleLlama",
-            "commit_hash": "2024-release",
-            "subfolder": "Meta_PromptGuard2024",
-            "is_pure_upstream": True
-        },
-        "datasets": [
-            {
-                "filename": "promptguard_3class_eval.json",
-                "origin_url": "https://huggingface.co/meta-llama/Prompt-Guard-86M",
-                "sha256": "8d39f4fdb23e981da7bc055018698ea4f971550c6081492ba26ec97f7bb7eb2c",
-                "provenance_proof": "Official CyberSecEval safeguard dataset for 3-class prompt guardrail evaluation."
-            }
-        ],
-        "runner": {
-            "script": "run_promptguard_replication.py",
             "external_runs_dest": "reports/tasks_for_meeting_6/04_benchmarks_and_data"
         }
     },
@@ -700,10 +646,12 @@ def audit_model(model_info: Dict[str, Any], live_check: bool = False) -> Dict[st
         entry = {
             "filename": ds["filename"],
             "origin_url": ds["origin_url"],
+            "provenance_status": ds.get("provenance_status", "declared_source_not_independently_verified"),
             "local_exists": ds_exists,
             "expected_sha256": expected_sha[:12] + "...",
             "actual_sha256": actual_sha[:12] + "..." if actual_sha else "MISSING",
             "sha256_match": sha_match,
+            "sha256_scope": "Local file integrity against the catalog; this is not a comparison with the remote origin.",
             "provenance_proof": ds["provenance_proof"]
         }
         if live_check and ds["origin_url"].startswith("http"):
@@ -737,6 +685,9 @@ def audit_model(model_info: Dict[str, Any], live_check: bool = False) -> Dict[st
 
 
 def main():
+    print("DEPRECATED: the static URL catalog includes withdrawn datasets and stale paths. No network request or evidence file was generated. Use the 2026-09-30 folder audit report for current source decisions.")
+    return 2
+
     live_check = "--live" in sys.argv
     json_out = None
     if "--json-out" in sys.argv:
@@ -756,13 +707,13 @@ def main():
         "total_models": len(MODELS_PROVENANCE_CATALOG),
         "paper_pdfs_found": 0,
         "pristine_repos_clean": 0,
-        "datasets_sha_verified": 0,
+        "datasets_local_sha_matches": 0,
         "total_datasets": 0,
         "urls_verified_live": 0,
         "urls_failed_live": 0
     }
 
-    print(f"{'#':<3} | {'Model Identifier':<32} | {'Paper PDF':<10} | {'Repo Clean':<12} | {'Datasets SHA':<14} | {'Runs Decoupled'}")
+    print(f"{'#':<3} | {'Model Identifier':<32} | {'Paper PDF':<10} | {'Repo Clean':<12} | {'Local SHA':<14} | {'Runs Decoupled'}")
     print("-" * 115)
 
     for i, (m_id, m_info) in enumerate(MODELS_PROVENANCE_CATALOG.items(), start=1):
@@ -781,14 +732,14 @@ def main():
         ds_list = res["checks"]["key3_datasets_provenance"]
         ds_ok = all(d["sha256_match"] for d in ds_list) if ds_list else True
         if ds_ok:
-            summary_stats["datasets_sha_verified"] += 1
+            summary_stats["datasets_local_sha_matches"] += 1
         summary_stats["total_datasets"] += len(ds_list)
 
         runs_decoupled = res["checks"]["key5_runner_and_runs"].get("reports_decoupled_exists", False) or (not res["checks"]["key5_runner_and_runs"]["internal_benchmark_leakage"])
 
         pdf_status = "✔ YES" if pdf_ok else "✘ NO"
         repo_status = "✔ PRISTINE" if repo_clean else "✘ DIRTY"
-        ds_status = f"✔ {len(ds_list)}/{len(ds_list)} SHA" if ds_ok else "✘ SHA FAIL"
+        ds_status = f"✔ {len(ds_list)}/{len(ds_list)} local" if ds_ok else "✘ local SHA FAIL"
         runs_status = "✔ DECOUPLED" if runs_decoupled else "⚠ LEAKED IN REPO"
 
         print(f"{i:<3} | {m_id:<32} | {pdf_status:<10} | {repo_status:<12} | {ds_status:<14} | {runs_status}")
@@ -797,7 +748,7 @@ def main():
     print("=" * 115)
     print(f"Summary: {summary_stats['paper_pdfs_found']}/{summary_stats['total_models']} Paper PDFs | "
           f"{summary_stats['pristine_repos_clean']}/{summary_stats['total_models']} Pristine Repos | "
-          f"{summary_stats['datasets_sha_verified']}/{summary_stats['total_models']} Model Datasets SHA Match in {elapsed:.2f}s\n")
+          f"{summary_stats['datasets_local_sha_matches']}/{summary_stats['total_models']} Model Folders with Local SHA Matching Catalog (not remote-origin verification) in {elapsed:.2f}s\n")
 
     # If json_out specified or default report location
     if not json_out:

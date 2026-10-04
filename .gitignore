@@ -74,6 +74,7 @@ Final-Report/tests/adversarial/**/*.jsonl
 workspaces/**/PromptShield/data/
 workspaces/**/PromptShield/camera_ready_datasets/
 workspaces/**/PromptShield/libs/InjecGuard/datasets/
+workspaces/**/promptshield_protectai_v2_full_eval_2026-09-29/data/
 
 # Environment & Secrets
 .env
@@ -119,3 +120,7 @@ site/
 
 # Agent-only scratch files are ignored inside each member's own sandbox
 workspaces/*/.agent-work/
+
+# Hugging Face cache directories
+**/hf-cache/
+**/hf-cache/**

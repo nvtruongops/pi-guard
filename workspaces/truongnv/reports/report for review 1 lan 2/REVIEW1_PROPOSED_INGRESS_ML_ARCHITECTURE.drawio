@@ -1,0 +1,1226 @@
+<mxfile host="app.diagrams.net" agent="Codex" pages="8">
+  <diagram id="three_tier_single_page" name="Detailed Architecture">
+    <mxGraphModel dx="2943" dy="1506" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2800" pageHeight="1610" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="one_l1_region" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=2;fillColor=#ECFDF5;fontFamily=Arial;fontSize=13;shadow=0;dashed=1;dashPattern=8 5;spacingTop=14;spacingLeft=55;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:18px&quot;&gt;L1 — TEXT INGRESS &amp;amp; PREPROCESSING&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:13px&quot;&gt;Validate, extract, normalize, and chunk untrusted input into a canonical text representation.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="1240" width="425" x="230" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l2_region" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontColor=#0F172A;strokeColor=#B45309;strokeWidth=2;fillColor=#FFFBEB;fontFamily=Arial;fontSize=13;shadow=0;dashed=1;dashPattern=8 5;spacingTop=14;spacingLeft=55;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:18px&quot;&gt;L2 — TF-IDF / TIER 1&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:13px&quot;&gt;Score each chunk/view with a lexical model and emit route candidates.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="1240" width="410" x="665" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l3_region" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontColor=#0F172A;strokeColor=#6D28D9;strokeWidth=2;fillColor=#F5F3FF;fontFamily=Arial;fontSize=13;shadow=0;dashed=1;dashPattern=8 5;spacingTop=14;spacingLeft=55;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b&gt;L3 — PROJECT DeBERTa-v3-base CLASSIFIER&lt;/b&gt;&lt;br&gt;Receives chunks routed by L2 REVIEW; returns per-chunk/window scores and labels to API. API alone emits final ALLOW or BLOCK.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="1240" width="410" x="1085" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="one_api_region" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontColor=#0F172A;strokeColor=#475569;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=13;shadow=0;dashed=1;dashPattern=8 5;spacingTop=14;spacingLeft=55;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b&gt;FASTAPI — ROUTING + REQUEST DECISION&lt;/b&gt;&lt;br&gt;One backend orchestrates L2 REVIEW dispatch to L3, coverage checks, request aggregation and final ALLOW/BLOCK. Current code has not implemented this cascade.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="1240" width="730" x="1505" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="one_downstream_region" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontColor=#14532D;strokeColor=#16A34A;strokeWidth=2;fillColor=#F0FDF4;fontFamily=Arial;fontSize=17;shadow=0;fontStyle=1;dashed=1;dashPattern=8 5;spacingTop=14;" value="&lt;b&gt;POST-ALLOW · EXTERNAL TARGET LLM + DASHBOARD&lt;/b&gt;&lt;br&gt;Only final ALLOW requests are forwarded." vertex="1">
+          <mxGeometry height="1240" width="530" x="2245" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="SpwZfbTNCjawlk-ktTKT-1" edge="1" parent="1" source="one_input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="one_l1_validate">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="225" y="595.06" />
+              <mxPoint x="225" y="375.06" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e02" edge="1" parent="1" source="one_l1_validate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0F766E;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_l1_router" value="valid input">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e03" edge="1" parent="1" source="one_l1_router" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0F766E;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_l1_chunk" value="extracted text + source references">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e09" edge="1" parent="1" source="one_l1_chunk" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0F766E;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_l1_out" value="ordered chunks + source/offset map">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="one_l1_out" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B45309;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="one_l2_in" value="CanonicalTextEnvelope">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="645" y="1022.47" />
+              <mxPoint x="645" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="one_l2_in" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B45309;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_l2_word" value="chunk/view text + IDs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="one_l2_word" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B45309;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_l2_tfidf" value="word features; char only if ablation enabled">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="one_l2_tfidf" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B45309;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_l2_sparse" value="TF-IDF values">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="870" y="670" />
+              <mxPoint x="765" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e16" edge="1" parent="1" source="one_l2_sparse" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B45309;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.941;exitY=0.571;exitDx=0;exitDy=0;entryX=0;entryY=0.571;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" target="one_l2_linear" value="sparse vector x_i">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e17" edge="1" parent="1" source="one_l2_linear" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B45309;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_l2_score" value="linear score + chunk_id">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="967.5" y="815" />
+              <mxPoint x="870" y="815" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e18" edge="1" parent="1" source="one_api_aggregate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6D28D9;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="one_l3_in" value="REVIEW RoutedChunk[]; or all chunks until cutoffs validate">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1879.94" y="480" />
+              <mxPoint x="1895" y="480" />
+              <mxPoint x="1895" y="175.06" />
+              <mxPoint x="1079.94" y="175.06" />
+              <mxPoint x="1079.94" y="357.53" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e19" edge="1" parent="1" source="one_l2_score" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B91C1C;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_api_input" value="ChunkRouteResult[] — one route candidate per chunk/view">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="870.06" y="1020" />
+              <mxPoint x="1519.94" y="1020" />
+              <mxPoint x="1519.94" y="280" />
+              <mxPoint x="1709.94" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e20" edge="1" parent="1" source="one_l3_in" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6D28D9;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_l3_token" value="RoutedChunk.text_utf8 + IDs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e21" edge="1" parent="1" source="one_l3_token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6D28D9;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_l3_encoder" value="subword IDs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e22" edge="1" parent="1" source="one_l3_encoder" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6D28D9;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_l3_head" value="context representation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e23" edge="1" parent="1" source="one_l3_head" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6D28D9;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_l3_scores" value="window logits → class scores">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e24" edge="1" parent="1" source="one_l3_scores" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="one_api_input" value="WindowPrediction[] + IDs">
+          <mxGeometry relative="1" x="0.1719" as="geometry">
+            <Array as="points">
+              <mxPoint x="1490" y="947.5" />
+              <mxPoint x="1490" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e25" edge="1" parent="1" source="one_api_input" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_api_aggregate" value="join scores by IDs + coverage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e26" edge="1" parent="1" source="one_api_aggregate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_api_rules" value="complete results + coverage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e27" edge="1" parent="1" source="one_api_rules" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0F766E;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="one_allow" value="final ALLOW">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1795" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e28" edge="1" parent="1" source="one_allow" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0F766E;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="one_llm" value="ONLY forward path">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e30" edge="1" parent="1" source="one_api_error" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B91C1C;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="one_failstop" value="ERROR / incomplete">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1905" y="1077.5" />
+              <mxPoint x="1905" y="1090" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="err1" edge="1" parent="1" source="one_l1_err" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B91C1C;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.13;entryDx=0;entryDy=0;" target="one_api_error" value="stage + error_code">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="1202.57" />
+              <mxPoint x="640" y="1050" />
+              <mxPoint x="1540" y="1050" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="err2" edge="1" parent="1" source="one_l2_err" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B91C1C;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" target="one_api_error" value="stage + error_code">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1070" y="1202.57" />
+              <mxPoint x="1070" y="1070" />
+              <mxPoint x="1540" y="1070" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="err3" edge="1" parent="1" source="one_l3_err" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B91C1C;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.52;entryDx=0;entryDy=0;" target="one_api_error" value="stage + error_code">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1490" y="1185" />
+              <mxPoint x="1490" y="1079.8" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e31" edge="1" parent="1" source="one_api_events" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6D28D9;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="one_dashboard" value="stage + decision events">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2225" y="1255.06" />
+              <mxPoint x="2225" y="1035.06" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e32" edge="1" parent="1" source="one_llm" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6D28D9;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=11;fontColor=#334155;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="one_dashboard" value="response/token after ALLOW">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e33" edge="1" parent="1" source="one_api_rules" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DC2626;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.576;entryY=-0.004;entryDx=0;entryDy=0;entryPerimeter=0;" target="one_block" value="final BLOCK">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1709.94" y="890" />
+              <mxPoint x="1706.88" y="890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="one_title" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=1;fillColor=#F1F5F9;fontFamily=Arial;fontSize=14;shadow=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:22px&quot;&gt;PI-GUARD | THREE-TIER ARCHITECTURE — DETAILED&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="2730" x="35" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="one_count_note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=1;fillColor=#F1F5F9;fontFamily=Arial;fontSize=11;shadow=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b style=&quot;font-size:14px&quot;&gt;THREE PROCESSING TIERS · ONE FASTAPI BACKEND&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;L1/L2/L3 exchange in-process Python DTOs: CanonicalTextEnvelope → ChunkRouteResult[] → RoutedChunk[] → WindowPrediction[] → API. Screen-readable summaries: pages 2–5; tier details: pages 6–8.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="2730" x="35" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="one_input" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=1;fillColor=#F1F5F9;fontFamily=Arial;fontSize=13;shadow=0;spacingLeft=55;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:16px&quot;&gt;USER INPUT&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:13px&quot;&gt;Prompt text or upload&lt;br&gt;.txt · .md · .json · .py · .pdf · .docx&lt;br&gt;Untrusted content&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="175" x="30" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l1_validate" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=1;fillColor=#ECFDF5;fontFamily=Arial;fontSize=11;shadow=0;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;1. VALIDATE REQUEST / FILE&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;Check type, signature, suffix/MIME, byte/page/expanded-size limits; reject unsafe or unsupported files.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="365" x="260" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l1_router" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=1;fillColor=#ECFDF5;fontFamily=Arial;fontSize=11;shadow=0;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;2. PYTHON DOCUMENT TEXT EXTRACTOR&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;&lt;code&gt;document_text_extractor.extract(...)&lt;/code&gt; — one entry point with format-specific adapters:&lt;br&gt;TXT/MD/PY: strict text decoding (read Python as text only) · JSON: stdlib parse, text leaves + key paths&lt;br&gt;PDF: PyMuPDF page text; scanned pages: Tesseract OCR · DOCX: python-docx paragraphs/tables&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="365" x="260" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l1_chunk" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=1;fillColor=#ECFDF5;fontFamily=Arial;fontSize=11;shadow=0;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;3. NORMALIZE + VIEWS + TOKEN-BOUNDED CHUNKS&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;Preserve provenance/offsets; create bounded encoded views. Prefer page/paragraph boundaries; count with the DeBERTa tokenizer (tokenizer only). &lt;b&gt;Candidate:&lt;/b&gt; 256 tokens, overlap 32; validation sweep: target {128,256,384}, overlap {0,32,64}. Each model window ≤512 positions including special tokens; never truncate. Configured byte/token caps; exceeding a cap returns an error.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="365" x="260" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l1_out" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=1;fillColor=#ECFDF5;fontFamily=Arial;fontSize=11;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;L1 OUTPUT — CANONICAL TEXT ENVELOPE&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;In-process UTF-8 Python DTO: request_id; chunks[] = chunk_id, view_id, text_utf8, token_count, source/page/section, offsets; extraction/coverage + config_version. Raw bytes stop at L1.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="125" width="365" x="260" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l1_err" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#B91C1C;strokeWidth=1;fillColor=#FEF2F2;fontFamily=Arial;fontSize=11;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:14px&quot;&gt;L1 ERROR EXIT&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;stage=L1: INVALID_REQUEST • UNSUPPORTED_TYPE • TOO_LARGE • DECODE/EXTRACT/OCR/NORMALIZE/CHUNK_FAILED • EMPTY/INCOMPLETE_COVERAGE&lt;br&gt;Never convert an error to benign; fail closed.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="155" width="365" x="260" y="1125" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l2_in" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#B45309;strokeWidth=1;fillColor=#FFFBEB;fontFamily=Arial;fontSize=11;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;L2 INPUT DTO&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;CanonicalTextEnvelope → chunk_id + view_id + text + source offsets; each chunk/view pair is one scoring unit.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="360" x="690" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l2_word" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#B45309;strokeWidth=1;fillColor=#FFFBEB;fontFamily=Arial;fontSize=11;shadow=0;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b style=&quot;font-size:14px&quot;&gt;WORD N-GRAM ANALYZER · PAPER BASELINE&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;Paper-faithful baseline: word (1,2), up to 20,000 features. Optional PI-Guard ablation: char_wb (3,5), requiring validation. N-gram ranges describe feature lengths, not chunk counts; both analyze the same chunk text when the ablation is enabled.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="360" x="690" y="403" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l2_tfidf" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#B45309;strokeWidth=1;fillColor=#FFFBEB;fontFamily=Arial;fontSize=11;shadow=0;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;TF-IDF VECTORIZER · SCIKIT-LEARN&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;The fitted word vectorizer creates sparse features; inference calls transform on chunk batches. Character features are added only when an explicitly selected ablation is validated. L3 never receives these vectors.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="95" width="360" x="690" y="545" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l2_sparse" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#B45309;strokeWidth=1;fillColor=#FFFBEB;fontFamily=Arial;fontSize=11;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:14px&quot;&gt;SPARSE TF-IDF VECTOR xᵢ&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;Sparse lexical representation; not a contextual embedding.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="105" width="170" x="680" y="698" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l2_linear" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#B45309;strokeWidth=1;fillColor=#FFFBEB;fontFamily=Arial;fontSize=11;shadow=0;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:14px&quot;&gt;LINEAR CLASSIFIER&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;Binary Logistic Regression baseline: benign / suspect&lt;br&gt;Scores each chunk; preserves chunk_id + view_id.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="105" width="175" x="890" y="698" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l2_score" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#A16207;strokeWidth=1;fillColor=#FEFCE8;fontFamily=Arial;fontSize=11;shadow=0;shape=rhombus;perimeter=rhombusPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;PER-CHUNK SCORE + THREE ROUTES&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;p_attack = LogisticRegression.predict_proba(TF-IDF(chunk))[attack]&lt;br&gt;ALLOW candidate / REVIEW -&gt; L3 / BLOCK candidate. API aggregates the request.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="135" width="360" x="690" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l2_err" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#B91C1C;strokeWidth=1;fillColor=#FEF2F2;fontFamily=Arial;fontSize=11;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:14px&quot;&gt;L2 ERROR EXIT&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;stage=L2: MODEL_UNAVAILABLE • VECTORIZE_FAILED • INFERENCE_FAILED • EMPTY_VECTOR • OUTPUT_INVALID&lt;br&gt;Fail closed; do not forward.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="155" width="360" x="690" y="1125" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l3_in" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#6D28D9;strokeWidth=1;fillColor=#F5F3FF;fontFamily=Arial;fontSize=11;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;L3 INPUT · API-ROUTED HANDOFF&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;The API passes a RoutedChunk DTO for the middle band only: request_id, chunk_id, view_id, text_utf8 + source offsets + L2 score. No file bytes or complete upload are passed.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="75" width="350" x="1110" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l3_token" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#6D28D9;strokeWidth=1;fillColor=#F5F3FF;fontFamily=Arial;fontSize=11;shadow=0;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;TOKENIZER + WINDOW BUILDER&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;DeBERTa tokenizer → subword IDs + special tokens; model limit is 512 positions. Check before inference; never silently truncate. Split an overlong chunk into sliding windows only when needed; preserve window_id + offsets.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="95" width="350" x="1110" y="435" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l3_encoder" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#6D28D9;strokeWidth=1;fillColor=#F5F3FF;fontFamily=Arial;fontSize=11;shadow=0;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;PRETRAINED BACKBONE&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;microsoft/deberta-v3-base; a general backbone, not yet a prompt-injection detector.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="75" width="350" x="1110" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l3_head" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#6D28D9;strokeWidth=1;fillColor=#F5F3FF;fontFamily=Arial;fontSize=11;shadow=0;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;PROJECT SEQUENCE-CLASSIFICATION HEAD&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;Benign • Prompt Injection • Jailbreak&lt;br&gt;The project must train the classification head/checkpoint on its dataset.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="105" width="350" x="1110" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l3_scores" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#6D28D9;strokeWidth=1;fillColor=#F5F3FF;fontFamily=Arial;fontSize=11;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b&gt;L3 OUTPUT — CLASS PREDICTION DTO&lt;/b&gt;&lt;br&gt;Per chunk/window: class scores and label. Return benign or attack predictions to API; these are not request-level decisions.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="95" width="350" x="1110" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="one_l3_err" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#B91C1C;strokeWidth=1;fillColor=#FEF2F2;fontFamily=Arial;fontSize=11;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:14px&quot;&gt;L3 ERROR EXIT&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;stage=L3: MODEL_UNAVAILABLE • TOKENIZE_FAILED • INFERENCE_FAILED • OUTPUT_INVALID; fail closed.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="350" x="1110" y="1125" as="geometry" />
+        </mxCell>
+        <mxCell id="one_api_input" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#475569;strokeWidth=1;fillColor=#F8FAFC;fontFamily=Arial;fontSize=11;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b&gt;API INPUT DTOs&lt;/b&gt;&lt;br&gt;All L2 ChunkRouteResult[] + L3 WindowPrediction[]; expected IDs, coverage status, and stage errors.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="340" x="1540" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="one_api_aggregate" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#475569;strokeWidth=1;fillColor=#F8FAFC;fontFamily=Arial;fontSize=11;shadow=0;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b&gt;API ORCHESTRATOR · COVERAGE + AGGREGATION&lt;/b&gt;&lt;br&gt;Dispatch REVIEW chunks to L3 (or all chunks until cutoffs are validated); join results by IDs and check complete request coverage.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="340" x="1540" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="one_api_rules" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#475569;strokeWidth=1;fillColor=#F8FAFC;fontFamily=Arial;fontSize=12;shadow=0;shape=rhombus;perimeter=rhombusPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;FINAL REQUEST DECISION&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;Apply the validated request rule to complete L2/L3 results: final ALLOW or BLOCK. REVIEW is never a final status.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="170" width="340" x="1540" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="one_api_error" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#B91C1C;strokeWidth=1;fillColor=#FEF2F2;fontFamily=Arial;fontSize=11;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:14px&quot;&gt;FAIL-CLOSED CONTRACT&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;An L1/L2/L3 error, empty text/vector, missing score, or missing chunk is never benign/ALLOW; do not forward.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="115" width="340" x="1540" y="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="one_api_events" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#A16207;strokeWidth=1;fillColor=#FEFCE8;fontFamily=Arial;fontSize=11;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b&gt;PROPOSED STREAM EVENTS&lt;/b&gt;&lt;br&gt;stage_started • extraction_done • chunk_scores • route (ALLOW / REVIEW→L3 / BLOCK) • final_decision (ALLOW/BLOCK) • llm_token (ALLOW only) • done/error&lt;/div&gt;" vertex="1">
+          <mxGeometry height="110" width="255" x="1930" y="1200" as="geometry" />
+        </mxCell>
+        <mxCell id="one_allow" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=1;fillColor=#ECFDF5;fontFamily=Arial;fontSize=12;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:16px&quot;&gt;FINAL ALLOW&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;Forward only the fully inspected request; the sole path to the target LLM.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="255" x="1930" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="one_llm" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=1;fillColor=#F1F5F9;fontFamily=Arial;fontSize=12;shadow=0;spacingLeft=60;rounded=0;dashed=1;dashPattern=8 4;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:16px&quot;&gt;TARGET LLM&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;External service; called by the API only after final ALLOW.&lt;br&gt;Response is forwarded to the dashboard.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="440" x="2300" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="one_failstop" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#B91C1C;strokeWidth=1;fillColor=#FEF2F2;fontFamily=Arial;fontSize=12;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.35&quot;&gt;&lt;b style=&quot;font-size:15px&quot;&gt;ERROR / FAIL-STOP&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;Return stage + error_code; end the request; do not call another tier or forward to the LLM.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="255" x="1930" y="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="one_dashboard" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=10;fontColor=#0F172A;strokeColor=#6D28D9;strokeWidth=1;fillColor=#F5F3FF;fontFamily=Arial;fontSize=12;shadow=0;spacingLeft=62;rounded=0;dashed=1;dashPattern=8 4;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b&gt;EXTERNAL STREAMING DASHBOARD&lt;/b&gt;&lt;br&gt;Displays the final decision; receives response tokens only after ALLOW.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="250" width="440" x="2302" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="icon_input" parent="1" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22%23475569%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2215%22%20r%3D%227%22%2F%3E%3Cpath%20d%3D%22M9%2040c1-8%207-13%2015-13s14%205%2015%2013%22%2F%3E%3Cpath%20d%3D%22M31%207h10v8h-5l-3%203v-3h-2z%22%2F%3E%3C%2Fsvg%3E;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="101" y="462" as="geometry" />
+        </mxCell>
+        <mxCell id="icon_l1" parent="1" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22%230F766E%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M13%206h16l7%207v29H13z%22%2F%3E%3Cpath%20d%3D%22M29%206v8h7M18%2021h13M18%2027h13M18%2033h8%22%2F%3E%3Ccircle%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%227%22%2F%3E%3Cpath%20d%3D%22m39%2039%205%205%22%2F%3E%3C%2Fsvg%3E;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="610" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="icon_l2" parent="1" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22%23B45309%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M8%2039h34%22%2F%3E%3Cpath%20d%3D%22M13%2035V25h6v10M23%2035V17h6v18M33%2035V10h6v25%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2213%22%20r%3D%225%22%2F%3E%3Cpath%20d%3D%22m20%2017%204%204%22%2F%3E%3C%2Fsvg%3E;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="1030" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="icon_l3" parent="1" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22%236D28D9%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2212%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2237%22%20cy%3D%2212%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2225%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2239%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2237%22%20cy%3D%2239%22%20r%3D%224%22%2F%3E%3Cpath%20d%3D%22m15%2014%205%207m13-7-5%207M20%2029l-6%207m14-7%206%207M15%2012h18M15%2039h18%22%2F%3E%3C%2Fsvg%3E;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="1450" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="icon_api" parent="1" style="shape=image;verticalLabelPosition=bottom;verticalAlign=top;imageAspect=0;aspect=fixed;image=data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22%23475569%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M24%205%2040%2011v11c0%2010-6%2017-16%2021C14%2039%208%2032%208%2022V11z%22%2F%3E%3Cpath%20d%3D%22m16%2024%205%205%2011-12%22%2F%3E%3Cpath%20d%3D%22M24%205v10%22%2F%3E%3C%2Fsvg%3E;" value="" vertex="1">
+          <mxGeometry height="32" width="32" x="2195" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="one_block" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=10;fontColor=#7F1D1D;strokeColor=#DC2626;strokeWidth=1;fillColor=#FEF2F2;fontFamily=Arial;fontSize=12;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;div style=&quot;font-family:Arial,sans-serif;line-height:1.3&quot;&gt;&lt;b&gt;BLOCK&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;Validated attack outcome under API policy: reject the request. No LLM call.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="255" x="1560" y="895" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="minimal_three_tier_architecture" name="Architecture Summary — Vertical">
+    <mxGraphModel dx="1471" dy="753" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mini_title" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=none;strokeWidth=2;fillColor=none;fontFamily=Arial;fontSize=25;fontStyle=1;shadow=0;shape=text;strokeColor=none;fillColor=none;align=center;fontSize=25;fontStyle=1;" value="&lt;b&gt;PI-GUARD | THREE-TIER ARCHITECTURE&lt;/b&gt;" vertex="1">
+          <mxGeometry height="65" width="1420" x="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_input" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=2;fillColor=#F1F5F9;fontFamily=Arial;fontSize=18;fontStyle=0;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;size=0.09183673469387789;" value="USER PROMPT / FILE UPLOAD" vertex="1">
+          <mxGeometry height="40" width="490" x="500" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_l1" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=2;fillColor=#ECFDF5;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;" value="&lt;b&gt;L1 · INGRESS &amp;amp; PREPROCESSING&lt;/b&gt;&lt;br&gt;Validate → extract → normalize → chunk&lt;br&gt;&lt;font color=&quot;#334155&quot;&gt;Output: CanonicalTextEnvelope&lt;/font&gt;" vertex="1">
+          <mxGeometry height="65" width="600" x="445" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_l2" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=2;fillColor=#FFFBEB;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;" value="&lt;b&gt;L2 · WORD TF-IDF + LOGISTIC REGRESSION&lt;/b&gt;&lt;br&gt;Score each chunk/view; emit p_attack + IDs" vertex="1">
+          <mxGeometry height="50" width="600" x="445" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_l2_decision" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=2;fillColor=#FEF3C7;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;shape=rhombus;perimeter=rhombusPerimeter;rounded=0;" value="PER-CHUNK ROUTE&lt;br&gt;ALLOW / REVIEW→L3 / BLOCK&lt;br&gt;Symbolic cutoffs only" vertex="1">
+          <mxGeometry height="125" width="440" x="525" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="_zWzD0Vhe8hvG_FnUntc-4" edge="1" parent="1" source="mini_api_router" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" target="_zWzD0Vhe8hvG_FnUntc-3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_api_router" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;" value="API ROUTER · SAME FASTAPI PROCESS&lt;br&gt;Dispatch REVIEW chunks; send all chunks until cutoffs validate; retain all route results + expected IDs." vertex="1">
+          <mxGeometry height="85" width="600" x="445" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_l3" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#7C3AED;strokeWidth=2;fillColor=#F5F3FF;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;" value="&lt;b&gt;L3 · PROJECT DeBERTa-v3-base CLASSIFIER&lt;/b&gt;&lt;br&gt;Score API-routed chunks/windows&lt;br&gt;&lt;font color=&quot;#334155&quot;&gt;Output: WindowPrediction[]&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="600" x="445" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_api_aggregate" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;" value="API COVERAGE + REQUEST AGGREGATION&lt;br&gt;Join L2 candidates + L3 predictions by IDs; fail closed on incomplete coverage." vertex="1">
+          <mxGeometry height="90" width="600" x="445" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_final_decision" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#475569;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;shape=rhombus;perimeter=rhombusPerimeter;rounded=0;" value="&lt;b&gt;FINAL REQUEST DECISION&lt;/b&gt;&lt;br&gt;ALLOW or BLOCK only" vertex="1">
+          <mxGeometry height="110" width="320" x="585" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_allow" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#16A34A;strokeWidth=2;fillColor=#F0FDF4;fontFamily=Arial;fontSize=17;fontStyle=1;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;b&gt;FINAL ALLOW&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="250" x="335" y="1150" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_block" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#DC2626;strokeWidth=2;fillColor=#FEF2F2;fontFamily=Arial;fontSize=17;fontStyle=1;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;b&gt;FINAL BLOCK&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="250" x="905" y="1150" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_external_region" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;dashed=1;dashPattern=8 4;align=left;verticalAlign=top;fontSize=16;" value="EXTERNAL SYSTEMS · POST-ALLOW" vertex="1">
+          <mxGeometry height="190" width="1010" x="240" y="1220" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_llm" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=15;fontStyle=0;shadow=0;rounded=0;dashed=1;dashPattern=8 4;" value="TARGET LLM · BLACK BOX&lt;br&gt;Only after final ALLOW" vertex="1">
+          <mxGeometry height="50" width="330" x="565" y="1240" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_dashboard" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=15;fontStyle=0;shadow=0;rounded=0;dashed=1;dashPattern=8 4;" value="DASHBOARD&lt;br&gt;Final status; response only after ALLOW" vertex="1">
+          <mxGeometry height="50" width="390" x="535" y="1335" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_e_input_l1" edge="1" parent="1" source="mini_input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="mini_l1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_e_l1_l2" edge="1" parent="1" source="mini_l1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="mini_l2" value="CanonicalTextEnvelope">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_e_l2_gate" edge="1" parent="1" source="mini_l2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#D97706;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="mini_l2_decision" value="p_attack + chunk/view IDs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_e_gate_api" edge="1" parent="1" source="mini_l2_decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#D97706;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="mini_api_router" value="ChunkRouteResult[]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_e_api_aggregate" edge="1" parent="1" source="mini_api_router" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2563EB;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="mini_api_aggregate" value="L2 candidates + expected IDs">
+          <mxGeometry relative="1" x="-0.3933" as="geometry">
+            <mxPoint y="1" as="offset" />
+            <Array as="points">
+              <mxPoint x="1190" y="1010" as="points" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mini_e_l3_aggregate" edge="1" parent="1" source="mini_l3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7C3AED;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="mini_api_aggregate" value="WindowPrediction[]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_e_aggregate_decision" edge="1" parent="1" source="mini_api_aggregate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2563EB;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="mini_final_decision" value="complete results + coverage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mini_e_final_allow" edge="1" parent="1" source="mini_final_decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#16A34A;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="mini_allow" value="final ALLOW">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="545" y="1285" as="points" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mini_e_final_block" edge="1" parent="1" source="mini_final_decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DC2626;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="mini_block" value="final BLOCK">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="955" y="1285" as="points" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mini_e_allow_llm" edge="1" parent="1" source="mini_allow" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#16A34A;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="mini_llm" value="ALLOW only">
+          <mxGeometry relative="1" x="-0.6237" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="730" y="1170" />
+            </Array>
+            <mxPoint x="560" y="1482.5" as="sourcePoint" />
+            <mxPoint x="695" y="1680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mini_e_block_dashboard" edge="1" parent="1" source="mini_block" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="mini_dashboard" value="final status">
+          <mxGeometry relative="1" x="-0.5636" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1030" y="1360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_zWzD0Vhe8hvG_FnUntc-5" edge="1" parent="1" source="_zWzD0Vhe8hvG_FnUntc-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" target="mini_l3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_zWzD0Vhe8hvG_FnUntc-3" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;strokeColor=#d6b656;strokeWidth=2;fillColor=#fff2cc;fontFamily=Arial;fontSize=17;fontStyle=1;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;" value="RoutedChunk[]&lt;br&gt;REVIEW band" vertex="1">
+          <mxGeometry height="75" width="250" x="620" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="XqpXihd7ZCniX6lHp66B-2" edge="1" parent="1" source="mini_llm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="mini_dashboard" value="response / tokens">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="445" y="1095" as="sourcePoint" />
+            <mxPoint x="450" y="995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="minimal_l1_flow" name="L1 — Minimal Flow">
+    <mxGraphModel dx="1717" dy="878" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1260" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="l1m_title" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=none;strokeWidth=2;fillColor=none;fontFamily=Arial;fontSize=25;fontStyle=1;shadow=0;shape=text;strokeColor=none;fillColor=none;align=center;fontSize=25;fontStyle=1;" value="PI-GUARD | L1 INGRESS &amp; PREPROCESSING" vertex="1">
+          <mxGeometry height="70" width="1320" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_input" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=2;fillColor=#F1F5F9;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;size=0.07499999999999966;" value="PROMPT INPUT&amp;nbsp;" vertex="1">
+          <mxGeometry height="39" width="170" x="370" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_validate" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=2;fillColor=#ECFDF5;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;" value="PROPOSED · request_validator.py&lt;br&gt;validate_prompt(request)" vertex="1">
+          <mxGeometry height="86" width="210" x="350" y="272" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_gate" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=2;fillColor=#FEF3C7;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;shape=rhombus;perimeter=rhombusPerimeter;" value="PROMPT VALID?" vertex="1">
+          <mxGeometry height="115" width="240" x="335" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_error" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#DC2626;strokeWidth=2;fillColor=#FEF2F2;fontFamily=Arial;fontSize=15;fontStyle=0;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;size=0.09210526315789413;" value="L1 ERROR DTO&lt;br&gt;INVALID_REQUEST&amp;nbsp;&lt;div&gt;· UNSUPPORTED_TYPE&amp;nbsp;&lt;/div&gt;&lt;div&gt;· TOO_LARGE (only if configured)&amp;nbsp;&lt;/div&gt;&lt;div&gt;·DECODE/EXTRACT/OCR/CHUNK_FAILED&lt;br&gt;Fail closed; never convert an error to benign.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="135" width="365" x="25" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_extract" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=2;fillColor=#ECFDF5;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;" value="PROPOSED FILE DISPATCH&lt;div&gt;document_text_extractor.py&lt;br&gt;TXT/MD/PY: strict text reader&lt;/div&gt;&lt;div&gt;JSON: stdlib parser&lt;/div&gt;&lt;div&gt;PDF: pdf_extract.py&lt;/div&gt;&lt;div&gt;DOCX: docx_extract.py&lt;br&gt;Prompt input bypasses all file parsers.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="135" width="350" x="770" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_normalize" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=2;fillColor=#ECFDF5;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;" value="PROPOSED&amp;nbsp;&lt;div&gt;normalize_and_chunk.py&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="225" x="342.5" y="812.5" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_output" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;" value="&lt;div&gt;PYTHON DTO&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 17px;&quot;&gt;CanonicalTextEnvelope.chunks[]&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;request_id&amp;nbsp;&lt;/div&gt;&lt;div&gt;chunks[]&amp;nbsp;&lt;/div&gt;&lt;div&gt;chunk/view IDs&amp;nbsp;&lt;/div&gt;&lt;div&gt;UTF-8 text&amp;nbsp;&lt;/div&gt;&lt;div&gt;token_count&amp;nbsp;&lt;/div&gt;&lt;div&gt;source/page refs&amp;nbsp;&lt;/div&gt;&lt;div&gt;offsets&amp;nbsp;&lt;/div&gt;&lt;div&gt;coverage&amp;nbsp;&lt;/div&gt;&lt;div&gt;config_version&lt;/div&gt;" vertex="1">
+          <mxGeometry height="220" width="405" x="252.5" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_file_input" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=2;fillColor=#F1F5F9;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;size=0.0675;" value="FILE UPLOAD" vertex="1">
+          <mxGeometry height="39" width="170" x="860" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_upload_validate" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=2;fillColor=#ECFDF5;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;" value="PROPOSED&lt;div&gt;request_validator.py&lt;br&gt;validate_upload(file)&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="78" width="210" x="840" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_upload_gate" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=2;fillColor=#FEF3C7;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;shape=rhombus;perimeter=rhombusPerimeter;" value="UPLOAD VALID?" vertex="1">
+          <mxGeometry height="115" width="240" x="825" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_pdf_gate" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=2;fillColor=#FEF3C7;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;shape=rhombus;perimeter=rhombusPerimeter;" value="PDF PAGE HAS TEXT LAYER?" vertex="1">
+          <mxGeometry height="125" width="290" x="800" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_ocr" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=2;fillColor=#ECFDF5;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;" value="PROPOSED&lt;div&gt;ocr.py::ocr_pdf_pages(...)&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="350" x="770" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_e_prompt_input" edge="1" parent="1" source="l1m_input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l1m_validate" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_e_prompt_gate" edge="1" parent="1" source="l1m_validate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l1m_gate" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_e_prompt_valid" edge="1" parent="1" source="l1m_gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l1m_normalize" value="valid prompt.text · bypass file parsers/OCR">
+          <mxGeometry relative="1" x="0.8016" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l1m_e_prompt_error" edge="1" parent="1" source="l1m_gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=1.5;fontFamily=Arial;fontSize=12;dashed=1;dashPattern=6 4;" target="l1m_error" value="invalid">
+          <mxGeometry relative="1" x="0.3846" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="207.53" y="457.53" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l1m_e_upload_input" edge="1" parent="1" source="l1m_file_input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l1m_upload_validate" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_e_upload_gate" edge="1" parent="1" source="l1m_upload_validate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l1m_upload_gate" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_e_upload_valid" edge="1" parent="1" source="l1m_upload_gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l1m_extract" value="validated upload bytes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_e_upload_error" edge="1" parent="1" source="l1m_upload_gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=1.5;fontFamily=Arial;fontSize=12;dashed=1;dashPattern=6 4;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="l1m_error" value="reject / configured limit exceeded">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="825" y="540" />
+              <mxPoint x="298.83" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l1m_e_pdf_route" edge="1" parent="1" source="l1m_extract" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#D97706;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l1m_pdf_gate" value="PDF pages">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_e_other_file" edge="1" parent="1" source="l1m_extract" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l1m_normalize" value="TXT / MD / JSON / PY / DOCX text">
+          <mxGeometry relative="1" x="-0.3845" y="2" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l1m_e_pdf_text" edge="1" parent="1" source="l1m_pdf_gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l1m_normalize" value="text layer present">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_e_pdf_ocr" edge="1" parent="1" source="l1m_pdf_gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#D97706;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l1m_ocr" value="scanned page only">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l1m_e_ocr_text" edge="1" parent="1" source="l1m_ocr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=1.5;fontFamily=Arial;fontSize=12;entryX=0.75;entryY=1;entryDx=0;entryDy=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" target="l1m_normalize" value="OCR text + page reference">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="857.5" y="920" />
+              <mxPoint x="511.33" y="920" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l1m_e_l1_output" edge="1" parent="1" source="l1m_normalize" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l1m_output" value="CanonicalTextEnvelope">
+          <mxGeometry relative="1" x="0.4" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3AcazMm023itFVlIAC2f-3" edge="1" parent="1" source="3AcazMm023itFVlIAC2f-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="l1m_input">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3AcazMm023itFVlIAC2f-4" edge="1" parent="1" source="3AcazMm023itFVlIAC2f-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="l1m_file_input">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3AcazMm023itFVlIAC2f-2" parent="1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.end_user_messaging;" value="USER&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="78" width="78" x="661" y="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="minimal_l2_flow" name="L2 — Minimal Flow">
+    <mxGraphModel dx="1471" dy="753" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1240" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="l2m_title" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=none;strokeWidth=2;fillColor=none;fontFamily=Arial;fontSize=25;fontStyle=1;shadow=0;shape=text;strokeColor=none;fillColor=none;align=center;fontSize=25;fontStyle=1;" value="&lt;b&gt;PI-GUARD | L2 TF-IDF + LOGISTIC REGRESSION&lt;/b&gt;" vertex="1">
+          <mxGeometry height="70" width="1320" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_input" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;size=0.08152173913043478;" value="&lt;b&gt;INPUT DTO&lt;/b&gt;&lt;br&gt;CanonicalTextEnvelope.chunks[]&amp;nbsp;" vertex="1">
+          <mxGeometry height="80" width="460" x="470" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_batch" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=2;fillColor=#FFFBEB;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;" value="PROPOSED ·&amp;nbsp;&lt;div&gt;l2_scorer.py::score_envelope(envelope)&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="85" width="540" x="430" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_tfidf" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=2;fillColor=#FFFBEB;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;" value="SCIKIT-LEARN · WORD TF-IDF&lt;br&gt;X = vectorizer.transform(batch_texts)&lt;br&gt;Paper baseline: word n-grams (1,2), max_features=20,000. char_wb (3,5) is an optional project ablation only." vertex="1">
+          <mxGeometry height="110" width="540" x="430" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_lr" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=2;fillColor=#FFFBEB;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;" value="LOGISTIC REGRESSION&lt;br&gt;scores = classifier.predict_proba(X)&lt;br&gt;Return p_attack per chunk/view with IDs; validate calibration before interpreting it as risk probability." vertex="1">
+          <mxGeometry height="100" width="540" x="430" y="545" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_gate" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=2;fillColor=#FEF3C7;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;shape=rhombus;perimeter=rhombusPerimeter;" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;PROPOSED · route_chunk(p_attack, τ_allow, τ_block)&lt;br&gt;Exactly one route candidate per chunk/view.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="135" width="370" x="515" y="695" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_allow" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#16A34A;strokeWidth=2;fillColor=#F0FDF4;fontFamily=Arial;fontSize=15;fontStyle=0;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;size=0.07094594594594548;" value="ChunkRouteResult(route=ALLOW)&lt;br&gt;p_attack ≤ τ_allow" vertex="1">
+          <mxGeometry height="85" width="370" x="110" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_review" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=15;fontStyle=0;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;size=0.07094594594594641;" value="ChunkRouteResult(route=REVIEW)&lt;br&gt;τ_allow &amp;lt; p_attack &amp;lt; τ_block" vertex="1">
+          <mxGeometry height="80" width="370" x="517" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_block" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#DC2626;strokeWidth=2;fillColor=#FEF2F2;fontFamily=Arial;fontSize=15;fontStyle=0;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;size=0.07094594594594594;" value="ChunkRouteResult(route=BLOCK)&lt;br&gt;p_attack ≥ τ_block" vertex="1">
+          <mxGeometry height="80" width="370" x="930" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_e_input_batch" edge="1" parent="1" source="l2m_input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2563EB;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="l2m_batch" value="chunk/view DTOs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_e_batch_tfidf" edge="1" parent="1" source="l2m_batch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#D97706;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="l2m_tfidf" value="text batch">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_e_tfidf_lr" edge="1" parent="1" source="l2m_tfidf" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#D97706;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="l2m_lr" value="sparse word TF-IDF X">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_e_lr_gate" edge="1" parent="1" source="l2m_lr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#D97706;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="l2m_gate" value="p_attack + IDs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_e_gate_allow" edge="1" parent="1" source="l2m_gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#16A34A;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="l2m_allow" value="p_attack ≤ τ_allow">
+          <mxGeometry relative="1" x="-0.4681" as="geometry">
+            <mxPoint x="1" as="offset" />
+            <Array as="points">
+              <mxPoint x="230" y="910" as="points" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2m_e_gate_review" edge="1" parent="1" source="l2m_gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2563EB;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="l2m_review" value="τ_allow &amp;lt; p_attack &amp;lt; τ_block">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2m_e_gate_block" edge="1" parent="1" source="l2m_gate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DC2626;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;fontSize=15;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="l2m_block" value="p_attack ≥ τ_block">
+          <mxGeometry relative="1" x="-0.4681" as="geometry">
+            <mxPoint x="-1" as="offset" />
+            <Array as="points">
+              <mxPoint x="1170" y="910" as="points" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="minimal_l3_api_flow" name="L3 + API — Minimal Flow">
+    <mxGraphModel dx="1471" dy="753" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1450" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="l3m_title" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=none;strokeWidth=2;fillColor=none;fontFamily=Arial;fontSize=25;fontStyle=1;shadow=0;shape=text;strokeColor=none;fillColor=none;align=center;fontSize=25;fontStyle=1;" value="PI-GUARD | L3 CLASSIFIER + API + TARGET LLM" vertex="1">
+          <mxGeometry height="60" width="1420" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_input" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;size=0.05357142857142888;" value="L2/API HANDOFF DTO&lt;br&gt;RoutedChunk[]&amp;nbsp;&lt;div&gt;REVIEW band; all chunks during pre-validation evaluation&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="515" x="480" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_tokenizer" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#7C3AED;strokeWidth=2;fillColor=#F5F3FF;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;" value="PROPOSED&lt;div&gt;DeBERTa TOKENIZER + WINDOW BUILDER&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="55" width="515" x="480" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_model" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#7C3AED;strokeWidth=2;fillColor=#F5F3FF;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;" value="MODEL STARTUP + INFERENCE&lt;div&gt;PROPOSED&lt;br&gt;Load microsoft/deberta-v3-base tokenizer + trained project sequence-classification checkpoint&lt;/div&gt;&lt;div&gt;&amp;nbsp;Runtime: model.eval() + torch.inference_mode()&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="515" x="480" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_predictions" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;size=0.08035714285714317;" value="WindowPrediction[]&lt;div&gt;PYTHON DTO&lt;br&gt;request/chunk/view/window IDs&lt;/div&gt;&lt;div&gt;class scores&lt;/div&gt;&lt;div&gt;label&amp;nbsp;&lt;/div&gt;&lt;div&gt;model version&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="515" x="480" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_aggregate" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;" value="API ROUTER + COVERAGE / REQUEST AGGREGATION&lt;br&gt;Dispatch REVIEW to L3; join every L2 route and L3 prediction by IDs; require full coverage; fail closed on missing/invalid results." vertex="1">
+          <mxGeometry height="105" width="515" x="480" y="645" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_decision" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=2;fillColor=#FEF3C7;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;shape=rhombus;perimeter=rhombusPerimeter;" value="FINAL REQUEST DECISION&lt;br&gt;ALLOW or BLOCK only" vertex="1">
+          <mxGeometry height="125" width="280" x="597.5" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_allow" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#16A34A;strokeWidth=2;fillColor=#F0FDF4;fontFamily=Arial;fontSize=17;fontStyle=1;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;" value="FINAL ALLOW" vertex="1">
+          <mxGeometry height="45" width="180" x="420" y="925" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_block" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#DC2626;strokeWidth=2;fillColor=#FEF2F2;fontFamily=Arial;fontSize=17;fontStyle=1;shadow=0;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;" value="FINAL BLOCK" vertex="1">
+          <mxGeometry height="45" width="180" x="877.5" y="925" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_external_region" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;align=left;verticalAlign=top;fontSize=16;dashed=1;dashPattern=8 4;" value="EXTERNAL SYSTEMS · POST-ALLOW" vertex="1">
+          <mxGeometry height="210" width="1140" x="180" y="1170" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_llm" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=17;fontStyle=0;shadow=0;rounded=0;dashed=1;dashPattern=8 4;" value="EXTERNAL TARGET LLM · BLACK BOX&lt;br&gt;Only after ALLOW" vertex="1">
+          <mxGeometry height="67.5" width="390" x="400" y="1270" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_dashboard" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=16;fontStyle=0;shadow=0;rounded=0;dashed=1;dashPattern=8 4;" value="EXTERNAL DASHBOARD&lt;br&gt;Final status; answer only after ALLOW" vertex="1">
+          <mxGeometry height="67.5" width="400" x="850" y="1270" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_provider" parent="1" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=14;fontStyle=1;" value="PROPOSED&amp;nbsp;&lt;div&gt;API PROVIDER OPERATOR&lt;br&gt;llm_provider.py::generate(prompt, system_prompt)&amp;nbsp;&lt;/div&gt;&lt;div&gt;→ handle completion/error.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="500" x="500" y="1035" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_e_input_tokenizer" edge="1" parent="1" source="l3m_input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l3m_tokenizer" value="RoutedChunk.text + IDs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_e_tokenizer_model" edge="1" parent="1" source="l3m_tokenizer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l3m_model" value="window tensors + IDs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_e_model_predictions" edge="1" parent="1" source="l3m_model" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l3m_predictions" value="logits → class scores + IDs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_e_predictions_aggregate" edge="1" parent="1" source="l3m_predictions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l3m_aggregate" value="WindowPrediction[]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_e_aggregate_decision" edge="1" parent="1" source="l3m_aggregate" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l3m_decision" value="complete results + coverage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_e_decision_allow" edge="1" parent="1" source="l3m_decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#16A34A;strokeWidth=1.5;fontFamily=Arial;fontSize=12;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="l3m_allow" value="final ALLOW">
+          <mxGeometry relative="1" x="-0.4388" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3m_e_decision_block" edge="1" parent="1" source="l3m_decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=1.5;fontFamily=Arial;fontSize=12;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="l3m_block" value="final BLOCK">
+          <mxGeometry relative="1" x="-0.339" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3m_e_allow_provider" edge="1" parent="1" source="l3m_allow" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#16A34A;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" target="l3m_provider" value="ALLOW only">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m_e_provider_llm" edge="1" parent="1" source="l3m_provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" target="l3m_llm" value="approved provider request">
+          <mxGeometry relative="1" x="0.656" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3m_e_llm_provider" edge="1" parent="1" source="l3m_llm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;dashed=1;dashPattern=6 4;entryX=0.25;entryY=1;entryDx=0;entryDy=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" target="l3m_provider" value="completion / optional stream">
+          <mxGeometry relative="1" x="-0.7356" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3m_e_provider_dashboard" edge="1" parent="1" source="l3m_provider" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" target="l3m_dashboard" value="response via API after ALLOW">
+          <mxGeometry relative="1" x="0.8065" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="875" y="1200" />
+              <mxPoint x="1050" y="1200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3m_e_block_dashboard" edge="1" parent="1" source="l3m_block" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=1.5;fontFamily=Arial;fontSize=12;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" target="l3m_dashboard" value="final status only">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="967.57" y="990" />
+              <mxPoint x="1150" y="990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="tier0_utf8_preprocessing" name="L1 — Ingress &amp; Preprocessing (Detailed)">
+    <mxGraphModel dx="3626" dy="1506" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2800" pageHeight="1610" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lane_input" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;spacingTop=14;fontColor=#1E3A8A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=16;fontStyle=1;dashed=1;dashPattern=8 5;" value="&lt;b&gt;L1A · INPUT SOURCES&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Untrusted user content&lt;/font&gt;" vertex="1">
+          <mxGeometry height="1050" width="400" x="40" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_gate" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;spacingTop=14;fontColor=#92400E;strokeColor=#D97706;strokeWidth=2;fillColor=#FFFBEB;fontFamily=Arial;fontSize=16;fontStyle=1;dashed=1;dashPattern=8 5;" value="&lt;b&gt;L1B · API INGRESS GATE&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Validate request and file before parsing&lt;/font&gt;" vertex="1">
+          <mxGeometry height="1050" width="450" x="470" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_tools" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;spacingTop=14;fontColor=#115E59;strokeColor=#0F766E;strokeWidth=2;fillColor=#F0FDFA;fontFamily=Arial;fontSize=16;fontStyle=1;dashed=1;dashPattern=8 5;" value="&lt;b&gt;L1C · PYTHON TEXT EXTRACTION&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;One entry point dispatches by validated format&lt;/font&gt;" vertex="1">
+          <mxGeometry height="1050" width="1000" x="950" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_normalize" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;spacingTop=14;fontColor=#5B21B6;strokeColor=#7C3AED;strokeWidth=2;fillColor=#F5F3FF;fontFamily=Arial;fontSize=16;fontStyle=1;dashed=1;dashPattern=8 5;" value="&lt;b&gt;L1D · NORMALIZATION + ENCODING CHECKS&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;Preserve provenance; create bounded UTF-8 views&lt;/font&gt;" vertex="1">
+          <mxGeometry height="1050" width="420" x="1980" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_output" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;spacingTop=14;fontColor=#166534;strokeColor=#16A34A;strokeWidth=2;fillColor=#F0FDF4;fontFamily=Arial;fontSize=16;fontStyle=1;dashed=1;dashPattern=8 5;" value="&lt;b&gt;L1E · HANDOFF CONTRACT&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:12px&quot;&gt;CanonicalTextEnvelope UTF-8 for L2&lt;/font&gt;" vertex="1">
+          <mxGeometry height="1050" width="330" x="2430" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="e_prompt_gate" edge="1" parent="1" source="input_prompt" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="gate_prompt" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_upload_gate" edge="1" parent="1" source="input_upload" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="gate_upload" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_upload_dispatch" edge="1" parent="1" source="gate_upload" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#D97706;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="extract_dispatch" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="765" />
+              <mxPoint x="930" y="312.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_dispatch_text" edge="1" parent="1" source="extract_dispatch" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=0.24;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="adapter_text" value="text · TXT · MD · PY">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1207.5" y="385" />
+              <mxPoint x="1207.5" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_dispatch_json" edge="1" parent="1" source="extract_dispatch" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=0.76;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="adapter_json" value="JSON">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1697.5" y="385" />
+              <mxPoint x="1697.5" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_dispatch_pdf" edge="1" parent="1" source="extract_dispatch" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="adapter_pdf" value="PDF">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="312.5" />
+              <mxPoint x="900" y="822.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_dispatch_docx" edge="1" parent="1" source="extract_dispatch" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="adapter_docx" value="DOCX">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="940" y="385" />
+              <mxPoint x="940" y="710" />
+              <mxPoint x="1440" y="710" />
+              <mxPoint x="1440" y="837.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_text_assemble" edge="1" parent="1" source="adapter_text" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.8378378378378378;entryDx=0;entryDy=0;" target="canonical_assemble" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1207.5" y="690" />
+              <mxPoint x="1920" y="690" />
+              <mxPoint x="1920" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_json_assemble" edge="1" parent="1" source="adapter_json" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;" target="canonical_assemble" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1697.5" y="700" />
+              <mxPoint x="1945" y="700" />
+              <mxPoint x="1945" y="349.75" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_docx_assemble" edge="1" parent="1" source="adapter_docx" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.73;entryDx=0;entryDy=0;" target="canonical_assemble" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1687.5" y="970" />
+              <mxPoint x="1995" y="970" />
+              <mxPoint x="1995" y="420.05" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_assemble_normalize" edge="1" parent="1" source="canonical_assemble" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="canonical_views" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_views_metadata" edge="1" parent="1" source="canonical_views" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="canonical_metadata" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_metadata_envelope" edge="1" parent="1" source="canonical_metadata" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#16A34A;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="output_envelope" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2230" y="920" />
+              <mxPoint x="2435" y="920" />
+              <mxPoint x="2435" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_envelope_port" edge="1" parent="1" source="output_envelope" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#16A34A;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="output_l1" value="UTF-8 chunks + provenance map">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gate_error" edge="1" parent="1" source="gate_upload" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.43;entryY=0;entryDx=0;entryDy=0;" value="invalid upload / size / type" target="t0_error">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="765" as="points" />
+              <mxPoint x="930" y="1240" as="points" />
+              <mxPoint x="1210" y="1240" as="points" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_normalize_error" edge="1" parent="1" source="canonical_metadata" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.805;entryY=0;entryDx=0;entryDy=0;" target="t0_error" value="normalization / chunk / coverage failure">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2230" y="1190" as="points" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_extract_error" edge="1" parent="1" source="extract_dispatch" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.515;entryY=0;entryDx=0;entryDy=0;" value="any parser or adapter failure" target="t0_error">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1960" y="312.5" as="points" />
+              <mxPoint x="1960" y="1240" as="points" />
+              <mxPoint x="1440" y="1240" as="points" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t0_header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=18;fontColor=#FFFFFF;strokeColor=#0F172A;strokeWidth=1;fillColor=#0F172A;fontFamily=Arial;fontSize=24;fontStyle=1;shadow=0;" value="PI-GUARD · L1 — INGRESS &amp; PREPROCESSING&lt;br&gt;Separate prompt and upload paths → validate → extract upload text → normalize/chunk → CanonicalTextEnvelope" vertex="1">
+          <mxGeometry height="100" width="2720" x="40" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="t0_subtitle" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=5;fontColor=#334155;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;" value="PROPOSED DESIGN. Current /v1/chat/guardrail accepts JSON prompt only; source has no UploadFile endpoint, MAX_UPLOAD_BYTES setting, or OCR dependency. Module names below are proposals." vertex="1">
+          <mxGeometry height="28" width="2680" x="55" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="t0_error" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=16;fontColor=#991B1B;strokeColor=#DC2626;strokeWidth=2;fillColor=#FEF2F2;fontFamily=Arial;fontSize=14;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;b&gt;L1 ERROR EXIT · FAIL-CLOSED&lt;/b&gt;&lt;br&gt;&lt;br&gt;INVALID_REQUEST · UNSUPPORTED_TYPE · TYPE_SIGNATURE_MISMATCH · TOO_LARGE / INPUT_LIMIT_EXCEEDED · INVALID_UTF8 · DECODE_FAILED · EXTRACT_FAILED · OCR_FAILED · NORMALIZE_FAILED · CHUNK_FAILED · EMPTY/PARTIAL_COVERAGE&lt;br&gt;&lt;br&gt;Return stage=L1 + error_code; do not create benign chunks or call L2/LLM." vertex="1">
+          <mxGeometry height="220" width="2720" x="40" y="1270" as="geometry" />
+        </mxCell>
+        <mxCell id="input_prompt" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="PROMPT INPUT DTO&lt;br&gt;JSON request: prompt: str&lt;br&gt;Untrusted text passes directly to text handling; it never enters file parsers or OCR." vertex="1">
+          <mxGeometry height="205" width="340" x="70" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="input_upload" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="FILE UPLOAD DTO · PROPOSED&lt;br&gt;FastAPI UploadFile → bounded bytes&lt;br&gt;Allowlist: .txt · .md · .json · .py · .pdf · .docx&lt;br&gt;Filename and MIME are untrusted metadata." vertex="1">
+          <mxGeometry height="245" width="340" x="70" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="input_contract" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;" value="&lt;b&gt;UNTRUSTED INPUT RULE&lt;/b&gt;&lt;br&gt;Prompts and files are untrusted. Read .py only as text; never import, eval, exec, or run an embedded macro/script." vertex="1">
+          <mxGeometry height="165" width="340" x="70" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="gate_prompt" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;rounded=0;" value="PROPOSED · request_validator.py::validate_prompt(request)&lt;br&gt;Check schema, JSON encoding and empty content. Preserve original prompt text; do not rewrite away obfuscation signals." vertex="1">
+          <mxGeometry height="205" width="380" x="505" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="gate_upload" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;rounded=0;" value="PROPOSED · request_validator.py::validate_upload(file)&lt;br&gt;1) Check allowlist, MIME + signature/structure.&lt;br&gt;2) Enforce configured MAX_UPLOAD_BYTES / MAX_EXTRACTED_TOKENS; no numeric cap is known or assigned, and no upload cap exists in current src.&lt;br&gt;3) Over configured limit → 413 / TOO_LARGE. Do not parse before validation; never save/execute client paths." vertex="1">
+          <mxGeometry height="330" width="380" x="505" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="gate_contract" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#D97706;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;" value="&lt;b&gt;NO PARSING BEFORE VALIDATION&lt;/b&gt;&lt;br&gt;FastAPI receives the byte stream and passes only valid files to the dispatcher. Never save or execute a client-provided path." vertex="1">
+          <mxGeometry height="135" width="380" x="505" y="980" as="geometry" />
+        </mxCell>
+        <mxCell id="extract_dispatch" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;rounded=0;" value="PROPOSED UPLOAD DISPATCH · document_text_extractor.py::extract_upload(validated_file)&lt;br&gt;Upload bytes only; dispatch by verified format. Prompt input bypasses this function. Each adapter returns ordered text segments + source references." vertex="1">
+          <mxGeometry height="145" width="930" x="985" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="adapter_text" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;rounded=0;" value="PROPOSED · text_reader.py::read_text_strict(...)&lt;br&gt;.txt / .md / .py: strict UTF-8 decode + BOM handling. Prompt text enters here as a string without file decoding. Invalid bytes → INVALID_UTF8; never silent replacement." vertex="1">
+          <mxGeometry height="235" width="445" x="985" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="adapter_json" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;rounded=0;" value="PROPOSED · json_extract.py::extract_json_text_leaves(...) · Python stdlib json&lt;br&gt;Parse structure; collect string leaves and key paths in source order. Invalid JSON → extraction error; never scan arbitrary bytes as text." vertex="1">
+          <mxGeometry height="235" width="455" x="1470" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="adapter_pdf" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;rounded=0;" value="PROPOSED · pdf_extract.py::extract_pdf_pages(...) · PyMuPDF (fitz)&lt;br&gt;Extract text page-by-page in reading order; record page IDs and text-layer coverage. A page with selectable text bypasses OCR." vertex="1">
+          <mxGeometry height="205" width="445" x="985" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="adapter_ocr" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;rounded=0;" value="PROPOSED · ocr.py::ocr_pdf_pages(...) · Tesseract&lt;br&gt;Run only on PDF pages with no extractable text layer. Return text + page reference; OCR error/incomplete coverage fails closed." vertex="1">
+          <mxGeometry height="130" width="450" x="1480" y="1110" as="geometry" />
+        </mxCell>
+        <mxCell id="adapter_docx" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#0F766E;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;rounded=0;" value="PROPOSED · docx_extract.py::extract_docx_content(...) · python-docx&lt;br&gt;Read paragraphs/tables in document order. Never execute macros, embedded scripts or external links; retain section/offset provenance." vertex="1">
+          <mxGeometry height="235" width="455" x="1460" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="canonical_assemble" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#7C3AED;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;rounded=0;" value="ASSEMBLE TEXT SEGMENTS&lt;br&gt;Join prompt or parser output in source order. Retain source_id, page/section, offsets, and extraction status. Unreadable content stays an error." vertex="1">
+          <mxGeometry height="185" width="320" x="2070" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="canonical_views" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#7C3AED;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;rounded=0;" value="&lt;b&gt;UNICODE + ENCODED-VIEW PROCESSOR&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;build_inspection_views(source_text, decode_policy)&lt;/font&gt;&lt;br&gt;&lt;br&gt;• Keep original text and offset map; create NFKC normalized view.&lt;br&gt;• Add bounded UTF-8 views for recognized JSON escapes, URL / HTML entities or Base64.&lt;br&gt;• Never overwrite the source, recurse without limits, or eval / exec.&lt;br&gt;&lt;br&gt;Retain source/view IDs so L2 scores can be traced to the submitted content." vertex="1">
+          <mxGeometry height="350" width="320" x="2070" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="canonical_metadata" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#7C3AED;strokeWidth=1.5;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;rounded=0;" value="&lt;b&gt;CHUNK + COVERAGE CHECK&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;chunk_text_views(views, chunk_config)&lt;br&gt;validate_extraction_coverage(...)&lt;/font&gt;&lt;br&gt;&lt;br&gt;Count with the DeBERTa tokenizer (tokenizer only) and prefer page/paragraph boundaries; split long segments at sentence/token boundaries. Candidate: 256 tokens + overlap 32; validation sweep: 128/256/384 × 0/32/64. Model window ≤512 positions including special tokens; never truncate. Preserve chunk_id/source refs/offsets. Missing regions/pages → error." vertex="1">
+          <mxGeometry height="180" width="320" x="2070" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="output_envelope" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#14532D;strokeColor=#16A34A;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;b&gt;CanonicalTextEnvelope → L2 · PYTHON DTO&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;request_id&lt;br&gt;chunks[]: chunk_id, view_id,&lt;br&gt;text_utf8, token_count&lt;br&gt;source_refs/page/section,&lt;br&gt;start/end offsets&lt;br&gt;coverage_status, config_version&lt;/font&gt;&lt;br&gt;&lt;br&gt;Same FastAPI process: only text + provenance pass to L2; raw upload bytes stop at L1." vertex="1">
+          <mxGeometry height="390" width="280" x="2455" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="output_l1" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#14532D;strokeColor=#16A34A;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=13;shadow=0;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="&lt;b&gt;L2 INPUT DTO PORT&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;CanonicalTextEnvelope&lt;/font&gt;&lt;br&gt;&lt;br&gt;One DTO containing normalized chunk/view records. L2 preserves IDs/offsets for every score; it does not reopen files or receive original bytes." vertex="1">
+          <mxGeometry height="165" width="280" x="2455" y="885" as="geometry" />
+        </mxCell>
+        <mxCell id="e_prompt_error" value="invalid prompt / schema" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DC2626;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Arial;fontSize=10;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.298;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gate_prompt" target="t0_error">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="432.5" as="points" />
+              <mxPoint x="450" y="1240" as="points" />
+              <mxPoint x="850" y="1240" as="points" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_views_error" value="view-generation failure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DC2626;strokeWidth=1.5;endArrow=block;endFill=1;fontFamily=Arial;fontSize=10;fontColor=#334155;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.739;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="canonical_views" target="t0_error">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2420" y="710" as="points" />
+              <mxPoint x="2420" y="1240" as="points" />
+              <mxPoint x="2050" y="1240" as="points" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pdf_text_layer_gate" value="PDF PAGE HAS EXTRACTABLE TEXT?" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=10;fontColor=#7C2D12;strokeColor=#D97706;strokeWidth=2;fillColor=#FEF3C7;fontFamily=Arial;fontSize=15;fontStyle=1;shape=rhombus;perimeter=rhombusPerimeter;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="955" width="320" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="e_prompt_direct_text" value="validated prompt.text · no file parser/OCR" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="gate_prompt" target="adapter_text">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pdf_page_check" value="PDF page text + page_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#D97706;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="adapter_pdf" target="pdf_text_layer_gate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pdf_text_layer" value="YES · text layer present" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="pdf_text_layer_gate" target="canonical_assemble">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pdf_scanned_ocr" value="NO · scanned page only" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#D97706;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="pdf_text_layer_gate" target="adapter_ocr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ocr_assemble" value="OCR segments + page IDs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="adapter_ocr" target="canonical_assemble">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="tier1_tfidf_routing_detail" name="L2 — TF-IDF + LR Routing (Detailed)">
+    <mxGraphModel dx="5076" dy="2108" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2800" pageHeight="1610" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="l2_region" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontColor=#1E3A8A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=17;shadow=0;fontStyle=1;dashed=1;dashPattern=8 5;spacingTop=14;" value="&lt;b&gt;L2 SCOPE — SPARSE LEXICAL CLASSIFIER&lt;/b&gt;&lt;br&gt;Input: canonical UTF-8 chunks from L1 · Output: one risk score and route candidate per chunk" vertex="1">
+          <mxGeometry height="800" width="2750" x="25" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_e_input_iter" edge="1" parent="1" source="l2_input" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#4F46E5;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;" target="l2_iter" value="ordered chunks">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_e_iter_tfidf" edge="1" parent="1" source="l2_iter" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#0F766E;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;" target="l2_tfidf" value="text batch">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_e_tfidf_lr" edge="1" parent="1" source="l2_tfidf" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;" target="l2_lr" value="sparse word TF-IDF X">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_e_lr_gate" edge="1" parent="1" source="l2_lr" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#D97706;strokeWidth=2;fontColor=#334155;fontFamily=Arial;fontSize=12;labelBackgroundColor=#FFFFFF;" target="l2_gate" value="p_attack + chunk/view IDs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_head" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#FFFFFF;strokeColor=#0F172A;strokeWidth=2;fillColor=#0F172A;fontFamily=Arial;fontSize=24;shadow=0;fontStyle=1;" value="&lt;b&gt;PI-GUARD · L2 — TF-IDF + LOGISTIC REGRESSION&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:14px&quot;&gt;Per-chunk routes: ALLOW candidate / REVIEW-&gt;L3 / BLOCK candidate · symbolic cutoffs&lt;/font&gt;" vertex="1">
+          <mxGeometry height="95" width="2720" x="40" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_status" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#7C2D12;strokeColor=#D97706;strokeWidth=2;fillColor=#FFF7ED;fontFamily=Arial;fontSize=14;shadow=0;" value="PROPOSED ARCHITECTURE. Word TF-IDF (1,2), max_features=20,000 + Logistic Regression is the selected lexical baseline; char_wb (3,5) remains a separate project ablation." vertex="1">
+          <mxGeometry height="42" width="2720" x="40" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_input" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#1E1B4B;strokeColor=#4F46E5;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=15;shadow=0;fontStyle=1;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="INPUT DTO · CanonicalTextEnvelope.chunks[]&lt;br&gt;chunk_id/view_id/text_utf8/token_count/source refs/offsets/coverage. Same-process Python object; no raw bytes or internal HTTP." vertex="1">
+          <mxGeometry height="320" width="390" x="55" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_iter" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#1E1B4B;strokeColor=#6366F1;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=15;shadow=0;fontStyle=1;rounded=0;" value="PROPOSED · l2_scorer.py::iter_scoring_units(envelope, batch_size)&lt;br&gt;Build one sample per chunk/view; preserve IDs and source map. Batch size is a deployment setting, not a fixed paper value." vertex="1">
+          <mxGeometry height="320" width="355" x="485" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_tfidf" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#134E4A;strokeColor=#0F766E;strokeWidth=2;fillColor=#F0FDFA;fontFamily=Arial;fontSize=15;shadow=0;fontStyle=1;rounded=0;" value="PROPOSED RUNTIME CALL · word_vectorizer.transform(texts)&lt;br&gt;Paper baseline: word analyzer, ngram_range=(1,2), max_features=20_000. char_wb(3,5) is an optional validated ablation; fit vocabulary on training split only." vertex="1">
+          <mxGeometry height="320" width="455" x="880" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_lr" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#4C1D95;strokeColor=#7C3AED;strokeWidth=2;fillColor=#F5F3FF;fontFamily=Arial;fontSize=15;shadow=0;fontStyle=1;rounded=0;" value="PROPOSED RUNTIME CALL · classifier.predict_proba(X)&lt;br&gt;Extract the attack-class score and retain chunk/view IDs + artifact version. Check calibration before interpreting p_attack as calibrated risk." vertex="1">
+          <mxGeometry height="320" width="420" x="1375" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_gate" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#78350F;strokeColor=#D97706;strokeWidth=2;fillColor=#FFFBEB;fontFamily=Arial;fontSize=15;shadow=0;fontStyle=1;rounded=0;shape=rhombus;perimeter=rhombusPerimeter;" value="ROUTE DECISION&lt;br&gt;Emit one route per chunk/view using symbolic τ_allow / τ_block." vertex="1">
+          <mxGeometry height="320" width="390" x="1835" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_low" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#14532D;strokeColor=#16A34A;strokeWidth=2;fillColor=#F0FDF4;fontFamily=Arial;fontSize=14;shadow=0;fontStyle=1;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;" value="ChunkRouteResult(route=ALLOW)&lt;br&gt;p_attack ≤ τ_allow&lt;br&gt;Candidate only; API decides after full-request aggregation." vertex="1">
+          <mxGeometry height="205" width="445" x="2265" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_mid" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#78350F;strokeColor=#D97706;strokeWidth=2;fillColor=#FFFBEB;fontFamily=Arial;fontSize=14;shadow=0;fontStyle=1;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;" value="ChunkRouteResult(route=REVIEW)&lt;br&gt;τ_allow &lt; p_attack &lt; τ_block&lt;br&gt;API dispatches this chunk to L3; no human queue." vertex="1">
+          <mxGeometry height="205" width="445" x="2265" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_high" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#7F1D1D;strokeColor=#DC2626;strokeWidth=2;fillColor=#FEF2F2;fontFamily=Arial;fontSize=14;shadow=0;fontStyle=1;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;" value="ChunkRouteResult(route=BLOCK)&lt;br&gt;p_attack ≥ τ_block&lt;br&gt;Candidate only; API applies the request-level rule." vertex="1">
+          <mxGeometry height="205" width="445" x="2265" y="785" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_tool_calls" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#0F172A;strokeColor=#475569;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=15;shadow=0;fontStyle=1;" value="OFFLINE FIT · train_l2.py (PROPOSED)&lt;br&gt;Split by original request/file before chunking. TfidfVectorizer(analyzer=&quot;word&quot;, ngram_range=(1,2), max_features=20_000).fit(train_texts) → LogisticRegression.fit(X_train, y_train) → validate → save one versioned MODEL_BUNDLE. No benchmark metric is implied." vertex="1">
+          <mxGeometry height="250" width="660" x="40" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_error" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#7F1D1D;strokeColor=#DC2626;strokeWidth=2;fillColor=#FEF2F2;fontFamily=Arial;fontSize=15;shadow=0;fontStyle=1;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" value="L2 ERROR EXIT · NO BENIGN DEFAULT&lt;br&gt;MODEL_UNAVAILABLE · VECTORIZE_FAILED · INFERENCE_FAILED · EMPTY_VECTOR · OUTPUT_INVALID · MISSING_CHUNK_SCORE · INVALID_THRESHOLD_CONFIG · MISSING_COVERAGE&lt;br&gt;Return stage=L2 + error_code to API; never route an error or forward it." vertex="1">
+          <mxGeometry height="250" width="730" x="2030" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_validation" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#7C2D12;strokeColor=#D97706;strokeWidth=2;fillColor=#FFF7ED;fontFamily=Arial;fontSize=15;shadow=0;fontStyle=1;" value="THRESHOLD / FEATURE VALIDATION&lt;br&gt;Select τ_allow and τ_block on project validation only; require 0 ≤ τ_allow &lt; τ_block ≤ 1; freeze before test. No numeric cutoff is assigned. char_wb is an optional project ablation." vertex="1">
+          <mxGeometry height="250" width="600" x="1410" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#334155;strokeColor=#64748B;strokeWidth=2;fillColor=#F1F5F9;fontFamily=Arial;fontSize=16;shadow=0;fontStyle=1;shape=parallelogram;perimeter=parallelogramPerimeter;" value="OUTPUT DTO · ChunkRouteResult[]&lt;br&gt;{request_id, chunk_id, view_id, p_attack, route_candidate, model_version, config_version}. Exactly one result per input chunk/view; API receives all route states + expected IDs. Missing/invalid score fails closed." vertex="1">
+          <mxGeometry height="110" width="2670" x="40" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_runtime_setup" value="SERVICE STARTUP + REQUEST CALLS · l2_scorer.py (PROPOSED)&lt;br&gt;Startup: joblib.load(MODEL_BUNDLE); verify class order, feature config and artifact version. Per request: vectorizer.transform(batch) → classifier.predict_proba(X) → route_chunk(...). No .fit in serving." style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#0F172A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="1040" width="660" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_route_output" value="ChunkRouteResult[] · PYTHON DTO&lt;br&gt;One result per chunk/view" style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#1E3A8A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=15;fontStyle=1;shape=parallelogram;perimeter=parallelogramPerimeter;" vertex="1" parent="1">
+          <mxGeometry x="1835" y="625" width="390" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_e_gate_to_dto" value="p_attack + chunk/view IDs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="l2_gate" target="l2_route_output">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_e_dto_allow" value="p_attack ≤ τ_allow" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#16A34A;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="l2_route_output" target="l2_low">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_e_dto_review" value="τ_allow &lt; p_attack &lt; τ_block" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="l2_route_output" target="l2_mid">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2_e_dto_block" value="p_attack ≥ τ_block" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="l2_route_output" target="l2_high">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="tier2_deberta_api_stream_detail" name="L3 — DeBERTa → API → Streaming (Detailed)">
+    <mxGraphModel dx="2800" dy="1610" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2800" pageHeight="1650" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dashboard_region" value="EXTERNAL DASHBOARD BOUNDARY" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=16;fontStyle=1;dashed=1;dashPattern=8 5;spacingTop=14;" vertex="1" parent="1">
+          <mxGeometry x="2370" y="205" width="405" height="935" as="geometry" />
+        </mxCell>
+        <mxCell id="target_region" value="EXTERNAL TARGET LLM · BLACK-BOX BOUNDARY" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontColor=#0F172A;strokeColor=#16A34A;strokeWidth=2;fillColor=#F0FDF4;fontFamily=Arial;fontSize=16;fontStyle=1;dashed=1;dashPattern=8 5;spacingTop=14;" vertex="1" parent="1">
+          <mxGeometry x="1965" y="205" width="385" height="935" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_region" value="L3 · PROJECT CONTEXTUAL CLASSIFIER&lt;br&gt;Receives API-routed REVIEW chunks (or all chunks before cutoff validation); returns window predictions only." style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontColor=#4C1D95;strokeColor=#7C3AED;strokeWidth=2;fillColor=#F5F3FF;fontFamily=Arial;fontSize=17;shadow=0;fontStyle=1;dashed=1;dashPattern=8 5;spacingTop=14;" vertex="1" parent="1">
+          <mxGeometry x="25" y="205" width="1080" height="760" as="geometry" />
+        </mxCell>
+        <mxCell id="api_region" value="FASTAPI · ROUTING, COVERAGE, AGGREGATION + FINAL DECISION&lt;br&gt;One in-process orchestrator. Final request status is ALLOW or BLOCK." style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=14;fontColor=#1E3A8A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=17;shadow=0;fontStyle=1;dashed=1;dashPattern=8 5;spacingTop=14;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="205" width="810" height="960" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_head" value="PI-GUARD · L3 MODEL → API AGGREGATION → ALLOW-GATED PROVIDER CALL → BLACK-BOX TARGET LLM → DASHBOARD" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#FFFFFF;strokeColor=#0F172A;strokeWidth=2;fillColor=#0F172A;fontFamily=Arial;fontSize=24;shadow=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="35" width="2720" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_status" value="PROPOSAL vs CURRENT SOURCE: The project classifier checkpoint must be trained. Current main.py wires MockLLMProvider; provider.generate(...) returns a complete string. Upload, this cascade and token streaming are not wired." style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#7C2D12;strokeColor=#D97706;strokeWidth=2;fillColor=#FFF7ED;fontFamily=Arial;fontSize=14;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="140" width="2720" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_in" value="1 · API-ROUTED INPUT DTO&lt;br&gt;RoutedChunk{request_id, chunk_id, view_id, text_utf8, source_refs, offsets, l2_score, config_version}. API sends REVIEW chunks; pre-validation may send all. No file bytes or TF-IDF vectors." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#1E1B4B;strokeColor=#6366F1;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=14;shadow=0;fontStyle=1;shape=parallelogram;perimeter=parallelogramPerimeter;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="55" y="295" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_tokenize" value="2 · PROPOSED tokenizer.py / window_builder.py&lt;br&gt;tokenizer(text, add_special_tokens=True) → build_windows(...). Keep window IDs/offsets; check ≤512 model positions including special tokens; never silently truncate." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#4C1D95;strokeColor=#8B5CF6;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=14;shadow=0;fontStyle=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="395" y="295" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_model" value="3 · PROPOSED INFERENCE · PyTorch&lt;br&gt;model.eval(); with torch.inference_mode(): logits=model(**batch).logits; class_scores=softmax(logits).&lt;br&gt;microsoft/deberta-v3-base is a general backbone, not a trained project detector." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#4C1D95;strokeColor=#7C3AED;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=14;shadow=0;fontStyle=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="745" y="295" width="320" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_output" value="4 · OUTPUT DTO · WindowPrediction[]&lt;br&gt;{request_id, chunk_id, view_id, window_id, class_scores, predicted_class, model_version, source_refs}. One prediction per window; no request-level decision here." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#4C1D95;strokeColor=#7C3AED;strokeWidth=2;fillColor=#FAF5FF;fontFamily=Arial;fontSize=14;shadow=0;fontStyle=1;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;" vertex="1" parent="1">
+          <mxGeometry x="55" y="610" width="650" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="api_input" value="5 · INGRESS DTO · ChunkRouteResult[]&lt;br&gt;Every L2 route result + expected chunk/view/window IDs + stage errors. Retain records by request_id." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#1E3A8A;strokeColor=#2563EB;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=14;shadow=0;fontStyle=1;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="295" width="330" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="api_coverage" value="7 · COVERAGE + REQUEST AGGREGATOR · proposed api_orchestrator.py&lt;br&gt;Receive L2 route results + L3 WindowPrediction[]; check expected window/chunk coverage, duplicate/invalid results, then aggregate by the validated request rule. Any gap/error branches to API_ERROR." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#1E3A8A;strokeColor=#2563EB;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=14;shadow=0;fontStyle=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="500" width="735" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="api_allow" value="FINAL ALLOW&lt;br&gt;Complete coverage + validated request rule. The sole trigger for a downstream LLM call." style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=14;fontColor=#14532D;strokeColor=#16A34A;strokeWidth=2;fillColor=#F0FDF4;fontFamily=Arial;fontSize=14;shadow=0;fontStyle=1;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="875" width="220" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="api_block" value="FINAL BLOCK&lt;br&gt;Reject request. No provider call." style="whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=14;fontColor=#7F1D1D;strokeColor=#DC2626;strokeWidth=2;fillColor=#FEF2F2;fontFamily=Arial;fontSize=14;shadow=0;fontStyle=1;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;" vertex="1" parent="1">
+          <mxGeometry x="1690" y="875" width="205" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="target_llm" value="EXTERNAL TARGET LLM API&lt;br&gt;Provider/model selected by server configuration; outside PI-Guard trust boundary." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#14532D;strokeColor=#16A34A;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=16;shadow=0;fontStyle=1;rounded=0;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="1990" y="255" width="335" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="dashboard" value="EXTERNAL DASHBOARD&lt;br&gt;Displays final ALLOW/BLOCK status and the completed answer. Token events appear only if a stream-capable provider is implemented and final ALLOW has passed." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#14532D;strokeColor=#16A34A;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=16;shadow=0;fontStyle=1;rounded=0;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="2390" y="300" width="355" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="api_errors" value="API_ERROR DTO&lt;br&gt;{request_id, stage, error_code}; missing/duplicate result, stage failure, or incomplete coverage → fail closed; never call the provider." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#7F1D1D;strokeColor=#DC2626;strokeWidth=2;fillColor=#FEF2F2;fontFamily=Arial;fontSize=14;shadow=0;fontStyle=1;rounded=0;shape=parallelogram;perimeter=parallelogramPerimeter;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="1090" width="735" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_tools" value="L3 STARTUP + REQUEST CALLS · PROPOSED&lt;br&gt;Startup: load_l3_model.py loads tokenizer + trained classifier checkpoint and checks labels. Request: API router → tokenizer + special tokens → ≤512-position windows → model.eval() / torch.inference_mode() → class scores → WindowPrediction[] → API coverage/aggregation. No training, checkpoint or measured cascade is claimed here." style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#0F172A;strokeColor=#475569;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=15;shadow=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1195" width="2670" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_scope" value="RESPONSIBILITY BOUNDARY: L1 extracts/chunks; L2 scores each chunk/view; API routes REVIEW and checks coverage; L3 returns class predictions; only API emits final ALLOW/BLOCK and triggers the provider after ALLOW." style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#334155;strokeColor=#64748B;strokeWidth=2;fillColor=#F1F5F9;fontFamily=Arial;fontSize=16;shadow=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1495" width="2670" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_events" value="PROPOSED DASHBOARD EVENTS&lt;br&gt;stage_started · extraction_done · chunk_scores · route (ALLOW / REVIEW→L3 / BLOCK) · final_decision (ALLOW/BLOCK) · llm_completion (after ALLOW) · llm_token (only after a stream-capable provider is implemented) · done/error" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#0F172A;strokeColor=#475569;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=15;shadow=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1350" width="2670" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="api_decision" value="&lt;b&gt;FINAL REQUEST DECISION&lt;/b&gt;&lt;br&gt;&lt;br&gt;Complete coverage + validated aggregation rule&lt;br&gt;&lt;br&gt;Emit final ALLOW or BLOCK only." style="rhombus;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#FEF3C7;strokeColor=#D97706;fontFamily=Arial;fontSize=12;fontStyle=1;shape=rhombus;perimeter=rhombusPerimeter;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="710" width="260" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_setup" value="MODEL STARTUP / CHECKPOINT SETUP · load_l3_model.py (PROPOSED)&lt;br&gt;AutoTokenizer.from_pretrained(&quot;microsoft/deberta-v3-base&quot;); load the trained project AutoModelForSequenceClassification checkpoint; validate id2label + model version. Missing/untrained head → MODEL_UNAVAILABLE." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#4C1D95;strokeColor=#7C3AED;strokeWidth=2;fillColor=#FAF5FF;fontFamily=Arial;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="745" y="610" width="320" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="api_router" value="6 · API ROUTER · proposed api_orchestrator.py&lt;br&gt;Select REVIEW chunks → RoutedChunk[]; before cutoffs validate, dispatch all chunks. This happens before L3 inference." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#1E3A8A;strokeColor=#2563EB;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="295" width="365" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="provider_call" value="8 · PROVIDER ADAPTER · src/llm/provider.py interface&lt;br&gt;PROPOSED gate: call only after final ALLOW. Validate server-side provider/model config; read API key from server environment; call generate(approved_prompt, system_prompt); normalize response/errors. Current interface returns str; stream() requires new provider code. Timeout/auth/provider errors → UPSTREAM_LLM_ERROR." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=12;fontColor=#1E3A8A;strokeColor=#2563EB;strokeWidth=2;fillColor=#EFF6FF;fontFamily=Arial;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="985" width="735" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="target_llm_process" value="BLACK-BOX GENERATION PROCESS · EXTERNAL&lt;br&gt;1. Accept the approved system/user message request.&lt;br&gt;2. Apply provider-owned prompt, policy and serving configuration.&lt;br&gt;3. Generate completion with provider-controlled model internals; PI-Guard cannot inspect weights, hidden prompts, tools or KV state.&lt;br&gt;4. Return a completion, optional stream deltas, or provider error." style="whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=14;fontColor=#14532D;strokeColor=#16A34A;strokeWidth=2;fillColor=#FFFFFF;fontFamily=Arial;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1990" y="385" width="335" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_e_in_tok" value="RoutedChunk.text + IDs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="l3_in" target="l3_tokenize">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_e_tok_model" value="window tensor batch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="l3_tokenize" target="l3_model">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_e_model_output" value="logits + window IDs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="l3_model" target="l3_output">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3_e_model_setup" value="loaded checkpoint at startup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#7C3AED;strokeWidth=1.5;fontFamily=Arial;fontSize=12;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="l3_setup" target="l3_model">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="api_e_route" value="route results + expected IDs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="api_input" target="api_router">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="api_e_router_l3" value="RoutedChunk[] · REVIEW (or all pre-validation)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="api_router" target="l3_in">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1510" y="375" />
+              <mxPoint x="1510" y="270" />
+              <mxPoint x="1120" y="270" />
+              <mxPoint x="355" y="270" />
+              <mxPoint x="205" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="api_e_l2_aggregate" value="all ChunkRouteResult[]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="api_input" target="api_coverage">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1145" y="375" />
+              <mxPoint x="1145" y="585" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="api_e_l3_aggregate" value="WindowPrediction[] + IDs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="l3_output" target="api_coverage">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="710" y="695" />
+              <mxPoint x="1120" y="695" />
+              <mxPoint x="1120" y="585" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="api_e_coverage_decision" value="complete results + validated coverage" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="api_coverage" target="api_decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="api_e_coverage_error" value="missing / duplicate / invalid result" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=1.5;fontFamily=Arial;fontSize=12;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="api_coverage" target="api_errors">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1905" y="585" />
+              <mxPoint x="1920" y="585" />
+              <mxPoint x="1920" y="1120" />
+              <mxPoint x="1895" y="1120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="api_e_inputs_error" value="stage error" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=1.5;fontFamily=Arial;fontSize=12;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="api_input" target="api_errors">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="375" />
+              <mxPoint x="1120" y="375" />
+              <mxPoint x="1120" y="1120" />
+              <mxPoint x="1160" y="1120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="api_e_coverage_allow" value="final ALLOW" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#16A34A;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="api_decision" target="api_allow">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="api_e_coverage_block" value="final BLOCK" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#DC2626;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="api_decision" target="api_block">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="api_e_allow_provider" value="ALLOW only" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#16A34A;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="api_allow" target="provider_call">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="down_e_provider_target" value="HTTPS provider request · approved content only" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="provider_call" target="target_llm">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1948" y="1032" />
+              <mxPoint x="1960" y="1032" />
+              <mxPoint x="1960" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="down_e_target_process" value="request accepted" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#16A34A;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="target_llm" target="target_llm_process">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="down_e_process_provider" value="completion / stream deltas / provider error" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="target_llm_process" target="provider_call">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1960" y="565" />
+              <mxPoint x="1960" y="1080" />
+              <mxPoint x="1895" y="1080" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="down_e_provider_dashboard" value="response events after ALLOW" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="provider_call" target="dashboard">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1527" y="1080" />
+              <mxPoint x="1527" y="1155" />
+              <mxPoint x="2760" y="1155" />
+              <mxPoint x="2760" y="650" />
+              <mxPoint x="2567" y="650" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="down_e_block_dashboard" value="final BLOCK status; no LLM call" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#475569;strokeWidth=1.5;fontFamily=Arial;fontSize=12;" edge="1" parent="1" source="api_block" target="dashboard">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1920" y="922" />
+              <mxPoint x="1948" y="922" />
+              <mxPoint x="1948" y="1145" />
+              <mxPoint x="2760" y="1145" />
+              <mxPoint x="2760" y="650" />
+              <mxPoint x="2567" y="650" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

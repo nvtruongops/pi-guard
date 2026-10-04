@@ -1,0 +1,25 @@
+model,metric,mean,std,direction,provenance,source_commit,source_file
+TF-IDF + LR,IID F1 ↑,0.9656,,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+TF-IDF + LR,Real-source F1 ↑,0.9467,,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+TF-IDF + LR,IID Ben-FPR ↓,0.0514,,lower_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+TF-IDF + LR,Hard-ben. FPR ↓,0.409,,lower_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+TF-IDF + LR,Obf. Recall ↑,0.9654,,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+TF-IDF + LR,Domain-shift F1 ↑,0.9508,,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+TF-IDF + LR,Struct.-shift FPR ↓,0.7918,,lower_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+TF-IDF + LR,ROC-AUC ↑,0.9941,,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DistilBERT,IID F1 ↑,0.9831,0.0017,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DistilBERT,Real-source F1 ↑,0.9738,0.0026,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DistilBERT,IID Ben-FPR ↓,0.0249,0.0013,lower_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DistilBERT,Hard-ben. FPR ↓,0.4702,0.0677,lower_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DistilBERT,Obf. Recall ↑,0.9877,0.0058,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DistilBERT,Domain-shift F1 ↑,0.8886,0.0214,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DistilBERT,Struct.-shift FPR ↓,0.7826,0.0963,lower_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DistilBERT,ROC-AUC ↑,0.9974,0.0002,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DeBERTa-v3-FT,IID F1 ↑,0.9882,0.0008,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DeBERTa-v3-FT,Real-source F1 ↑,0.9825,0.0009,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DeBERTa-v3-FT,IID Ben-FPR ↓,0.0124,0.0013,lower_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DeBERTa-v3-FT,Hard-ben. FPR ↓,0.3825,0.0474,lower_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DeBERTa-v3-FT,Obf. Recall ↑,0.9867,0.0079,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DeBERTa-v3-FT,Domain-shift F1 ↑,0.9604,0.0099,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DeBERTa-v3-FT,Struct.-shift FPR ↓,0.8108,0.0617,lower_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md
+DeBERTa-v3-FT,ROC-AUC ↑,0.9983,0.0004,higher_is_better,author-published; not a local transformer run,87dc835566b930ee921240874a4939b2c266c2fe,README.md

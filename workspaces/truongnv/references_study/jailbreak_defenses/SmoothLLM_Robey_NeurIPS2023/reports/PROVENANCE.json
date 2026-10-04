@@ -1,0 +1,39 @@
+{
+  "model_id": "SmoothLLM_Robey_NeurIPS2023",
+  "display_name": "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks",
+  "role": "Randomized Defense Survey (NeurIPS 2023)",
+  "tier_1_paper_provenance": {
+    "title": "SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks",
+    "paper_url": "https://arxiv.org/abs/2310.03684",
+    "local_pdf": "papers\\Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf"
+  },
+  "tier_2_code_provenance": {
+    "upstream_code_url": "https://github.com/arobey1/smooth-llm",
+    "upstream_directory": "upstream/"
+  },
+  "tier_3_dataset_provenance": {
+    "datasets_url": "https://github.com/arobey1/smooth-llm/tree/main/data/GCG",
+    "local_datasets": [
+      {
+        "filename": "llama2_behaviors.json",
+        "records": 10,
+        "sha256": "f96d53e113bb3b839c6d0c9d4b2f3ab611e5b8fb4fd4a1cc68fb852f271cf286",
+        "size_bytes": 2721,
+        "provenance_status": "official upstream behavior records; not a defense evaluation by themselves"
+      },
+      {
+        "filename": "vicuna_behaviors.json",
+        "records": 10,
+        "sha256": "7396b50e123775b7d7080b2c475240401fb8e41ff1f91f9d0491663a01cb4ead",
+        "size_bytes": 2659,
+        "provenance_status": "official upstream behavior records; not a defense evaluation by themselves"
+      }
+    ],
+    "status": "upstream_behavior_files_retained; local microbenchmark withdrawn",
+    "withdrawn_file": "smoothllm_eval_benchmark.json"
+  },
+  "tier_4_verification": {
+    "status": "PASS",
+    "checked_by": "workspaces/truongnv/scripts/check_replication_origin_urls.py"
+  }
+}

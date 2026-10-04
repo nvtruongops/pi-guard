@@ -1,0 +1,17 @@
+=== [SmoothLLM (NeurIPS 2023) Replication Benchmark] ===
+Paradigm: Randomized Smoothing via Character Perturbation & Majority Voting
+Device: Commodity CPU
+
+Loaded 10 GCG adversarial attack samples from data/GCG/llama2_behaviors.json
+
+  [RandomSwapPerturbation   | q= 5% | N=5]: Mean Latency = 0.1319ms | P95 = 0.1893ms | Diff Rate = 4.74%
+  [RandomSwapPerturbation   | q=10% | N=5]: Mean Latency = 0.1796ms | P95 = 0.2344ms | Diff Rate = 9.73%
+  [RandomSwapPerturbation   | q=15% | N=5]: Mean Latency = 0.2344ms | P95 = 0.3504ms | Diff Rate = 14.38%
+  [RandomPatchPerturbation  | q= 5% | N=5]: Mean Latency = 0.0628ms | P95 = 0.0880ms | Diff Rate = 4.79%
+  [RandomPatchPerturbation  | q=10% | N=5]: Mean Latency = 0.0908ms | P95 = 0.1183ms | Diff Rate = 9.66%
+  [RandomPatchPerturbation  | q=15% | N=5]: Mean Latency = 0.1419ms | P95 = 0.2031ms | Diff Rate = 14.57%
+  [RandomInsertPerturbation | q= 5% | N=5]: Mean Latency = 0.1488ms | P95 = 0.1920ms | Diff Rate = 86.82%
+  [RandomInsertPerturbation | q=10% | N=5]: Mean Latency = 0.2424ms | P95 = 0.3678ms | Diff Rate = 90.05%
+  [RandomInsertPerturbation | q=15% | N=5]: Mean Latency = 0.3241ms | P95 = 0.4740ms | Diff Rate = 91.54%
+
+[OK] SmoothLLM replication results saved to: D:\Work\Do-an\workspaces\truongnv\replications\SmoothLLM_Robey_NeurIPS2023\SMOOTHLLM_REPLICATION_BENCHMARK_RESULTS.json

@@ -1,7 +1,7 @@
 {
   "metadata_version": "1.0.0",
   "package_name": "DataSentinel_Liu_SP2025",
-  "dataset_name": "Open-Prompt-Injection Evaluation Benchmark (Direct, Adaptive, Benign, Overdefense)",
+  "dataset_name": "No local evaluation dataset retained",
   "provenance": {
     "upstream_paper": {
       "title": "DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks",
@@ -12,13 +12,14 @@
       "reference_id": "[[32]](#ref32)"
     },
     "upstream_repository": "https://github.com/liu00222/Open-Prompt-Injection",
-    "remote_full_dataset_location": "https://github.com/liu00222/Open-Prompt-Injection",
-    "is_synthetic_self_created": false,
-    "provenance_type": "Official IEEE S&P 2025 Upstream Repository Release",
-    "license": "Apache-2.0"
+    "remote_full_dataset_location": "No local evaluation dataset is retained. The former 20-row project probe had no verified row-level upstream provenance and was removed; the local runner was a regex/canary heuristic, not the paper detector.",
+    "is_synthetic_self_created": null,
+    "provenance_type": "No verified local evaluation dataset retained",
+    "license": "Apache-2.0",
+    "provenance_status": "withdrawn_unverified_local_probe"
   },
   "validation_mapping": {
-    "used_by_script": "run_datasentinel_replication.py",
+    "used_by_script": null,
     "schema": {
       "id_field": "id",
       "text_field": "text",
@@ -27,13 +28,7 @@
       "adaptive_field": "is_adaptive"
     }
   },
-  "files": [
-    {
-      "filename": "datasentinel_eval_benchmark.json",
-      "size_bytes": 4770,
-      "sha256": "b084ca210db226a166b9dfbbd5bba9f0cad71570cf152663a39744e4a40fd4c0",
-      "sample_count": 20
-    }
-  ],
-  "generated_at": "2026-09-23T05:52:36.225218"
+  "files": [],
+  "generated_at": "2026-09-23T05:52:36.225218",
+  "withdrawal_note": "No local evaluation dataset is retained. The former 20-row project probe had no verified row-level upstream provenance and was removed; the local runner was a regex/canary heuristic, not the paper detector."
 }

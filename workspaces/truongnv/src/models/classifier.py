@@ -101,7 +101,6 @@ class LiteratureBaselineClassifier(BaseGuardrailClassifier):
     or classical ML baselines (Jain et al. NeurIPS 2023).
     Supported Paper Models:
       - 'tfidf_baseline' / 'jain_baseline': Jain et al. (NeurIPS 2023)
-      - 'meta_promptguard': Meta AI (2024)
       - 'protectai_deberta': ProtectAI (2024) / He et al. (ICLR 2023)
       - 'piguard_acl2025': Li et al. (ACL 2025)
       - 'datasentinel_sp2025': Liu et al. (IEEE S&P 2025)
@@ -113,7 +112,6 @@ class LiteratureBaselineClassifier(BaseGuardrailClassifier):
         "protectai": "protectai_deberta",
         "piguard": "piguard_acl2025",
         "datasentinel": "datasentinel_sp2025",
-        "promptguard": "meta_promptguard",
     }
 
     def __init__(self, model_key: str = "jain_baseline"):

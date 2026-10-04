@@ -1,377 +1,159 @@
 #!/usr/bin/env python3
-"""
-Verification Script for Task 3 Replication Assets
-PI-Guard Capstone Project - FPT University
-Workspace: workspaces/truongnv/reports/tasks_for_meeting_5/task_3_replication
-Verifies that:
-1. Ayub_CAMLIS2024 and PIGuard_ACL2025 contain 100% pure public upstream code.
-2. All interactive notebooks, benchmark scripts, and datasets in task_3_replication are intact.
-"""
+"""Read-only check of retained replication and reference data.
 
-import os
+A passing check confirms current local file bytes and record counts only. It does
+not independently prove that a file was released by its attributed upstream.
+"""
+from __future__ import annotations
+import hashlib
+import json
 import sys
+from pathlib import Path
 
-def check_file(path, min_bytes=100, is_pdf=False):
-    if not os.path.exists(path):
-        return False, f"MISSING: {path}"
-    size = os.path.getsize(path)
-    if size < min_bytes:
-        return False, f"TOO SMALL ({size} bytes): {path}"
-    if is_pdf:
-        with open(path, "rb") as f:
-            header = f.read(4)
-        if header != b"%PDF":
-            return False, f"INVALID PDF HEADER: {path}"
-    return True, f"OK ({size / (1024*1024):.2f} MB): {os.path.basename(path)}"
+WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
+REPLICATIONS_ROOT = WORKSPACE_ROOT / 'replications'
+REFERENCES_ROOT = WORKSPACE_ROOT / 'references_study'
+MOVED_PREFIXES = {
+    'Tier1_Candidate_Jain_NeurIPS2023/': 'local_pilots/Tier1_Candidate_Jain_NeurIPS2023/',
+    'Tier1_Candidate_InstructDetector_EMNLP2024/': 'white_box_methods/Tier1_Candidate_InstructDetector_EMNLP2024/',
+    'ModernBERT_Warner_2024/': 'encoder_architectures/ModernBERT_Warner_2024/',
+    'SmoothLLM_Robey_NeurIPS2023/': 'jailbreak_defenses/SmoothLLM_Robey_NeurIPS2023/',
+}
+MOVED_DIRECTORIES = {
+    'ModernBERT_Warner_2024': 'encoder_architectures/ModernBERT_Warner_2024',
+    'Tier1_Candidate_Jain_NeurIPS2023': 'local_pilots/Tier1_Candidate_Jain_NeurIPS2023',
+    'Tier1_Candidate_InstructDetector_EMNLP2024': 'white_box_methods/Tier1_Candidate_InstructDetector_EMNLP2024',
+    'SmoothLLM_Robey_NeurIPS2023': 'jailbreak_defenses/SmoothLLM_Robey_NeurIPS2023',
+}
+RETAINED = {
+    'Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/train.json': (76735, '806ded8bd85782a53d34faffe4fd92b3f2e0b3b431c43578ce77faea6b9ed911'),
+    'Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/valid.json': (144, 'e273fd455baac8785aa15bdc058adfd609f62ed0a3022963a5395ba95efe110e'),
+    'Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/NotInject_one.json': (113, 'c77abbf3de71f99f0e12809a29d8468401285ef5353b53daa6d65131c866586c'),
+    'Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/NotInject_two.json': (113, '325559cd1204fd3bdf0be82599fbf8ebbacdcd4949ae8b5bf67b399193d57c03'),
+    'Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/NotInject_three.json': (113, 'bc18f3ad38ad2380e57ae96d102b884af477989e2f3ff85fbc2271ed16b8db55'),
+    'Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/wildguard.json': (971, '62a0f7331af19abdb43b027b815272777aac4c311b7fad25e4150618c5289f9b'),
+    'Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/BIPIA_text.json': (75, 'e828d3e9e273ddf43c4b0c91e5803998f4314555d865e32bd4e0903ab746a3b9'),
+    'Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/BIPIA_code.json': (50, 'ab9f0563c7674074fb1cf82cb624196e9b5e3d62ac57b324b0745d23b7e55f87'),
+    'PromptShield_Jacob_CCS2024/PromptShield/camera_ready_datasets/en_dataset_no_dups/2024-11-28_evaluation_benchmark_en.json': (23369, '8b7e18426afdb4c7219d8f1a39ccfde347bc5125efb31ce4b2fb4acb2851cc16'),
+    'references_study/jailbreak_defenses/SmoothLLM_Robey_NeurIPS2023/datasets/llama2_behaviors.json': (10, 'f96d53e113bb3b839c6d0c9d4b2f3ab611e5b8fb4fd4a1cc68fb852f271cf286'),
+    'references_study/jailbreak_defenses/SmoothLLM_Robey_NeurIPS2023/datasets/vicuna_behaviors.json': (10, '7396b50e123775b7d7080b2c475240401fb8e41ff1f91f9d0491663a01cb4ead'),
+}
+COPY_PAIRS = {
+}
+DERIVED_CACHE = {
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/cache/minilm_notinject.npy': (520832, '9bbb4edb13b844bfb5f8b0918835022d4fc639ee23a48387ce38ecee5115cc06'),
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/cache/minilm_valid.npy': (221312, '431adda90a91b90e9c1739213733dcf1c1b99879fcc5eef07dd9fe48659cbc9b'),
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/cache/minilm_wildguard.npy': (1491584, '8dceb1e74af29ab46679287ed35bf13fcd19ccc36e1d9540a5220696ab270cd3'),
+}
+WITHDRAWN = ['Tier1_Candidate_Jain_NeurIPS2023/datasets/jain_attack_samples.json', 'Tier1_Candidate_Jain_NeurIPS2023/datasets/jain_benign_samples.json', 'Tier1_Candidate_Jain_NeurIPS2023/datasets/jain_eval_benchmark.json', 'Tier1_Candidate_Jain_NeurIPS2023/Jain_NeurIPS2023/dataset/jain_attack_samples.json', 'Tier1_Candidate_Jain_NeurIPS2023/Jain_NeurIPS2023/dataset/jain_benign_samples.json', 'Tier1_Candidate_Jain_NeurIPS2023/Jain_NeurIPS2023/dataset/jain_eval_benchmark.json', 'Tier1_Candidate_Jain_NeurIPS2023/JAIN_NEURIPS2023_REPLICATION_BENCHMARK_RESULTS.json', 'Tier1_Candidate_Jain_NeurIPS2023/reports/JAIN_NEURIPS2023_REPLICATION_BENCHMARK_RESULTS.json', 'Tier1_Candidate_Jain_NeurIPS2023/reports/local_tfidf_run_2026-09-29.log', 'Tier1_Candidate_Jain_NeurIPS2023/Jain_NeurIPS2023_Replication_and_Paper_Comparison.ipynb', 'Tier1_Candidate_Jain_NeurIPS2023/figures/02_empirical_plots/jain_latency_profile.png', 'Tier1_Candidate_Jain_NeurIPS2023/figures/02_empirical_plots/jain_replication_paper_vs_local_mitigation.png', 'ProtectAI_DeBERTa_v3_v2/datasets/protectai_eval_benchmark.json', 'ProtectAI_DeBERTa_v3_v2/PROTECTAI_REPLICATION_BENCHMARK_RESULTS.json', 'ProtectAI_DeBERTa_v3_v2/reports/PROTECTAI_REPLICATION_BENCHMARK_RESULTS.json', 'DataSentinel_Liu_SP2025/datasets/datasentinel_eval_benchmark.json', 'DataSentinel_Liu_SP2025/DATASENTINEL_REPLICATION_BENCHMARK_RESULTS.json', 'DataSentinel_Liu_SP2025/reports/DATASENTINEL_REPLICATION_BENCHMARK_RESULTS.json', 'PromptShield_Jacob_CCS2024/datasets/promptshield_eval_benchmark.json', 'PromptShield_Jacob_CCS2024/PROMPTSHIELD_REPLICATION_BENCHMARK_RESULTS.json', 'PromptShield_Jacob_CCS2024/reports/PROMPTSHIELD_REPLICATION_BENCHMARK_RESULTS.json', 'Tier1_Candidate_InstructDetector_EMNLP2024/datasets/bipia_code_eval.json', 'Tier1_Candidate_InstructDetector_EMNLP2024/datasets/bipia_text_eval.json', 'Tier1_Candidate_InstructDetector_EMNLP2024/InstructDetector_EMNLP2024/dataset/bipia_code_eval.json', 'Tier1_Candidate_InstructDetector_EMNLP2024/InstructDetector_EMNLP2024/dataset/bipia_text_eval.json', 'Tier1_Candidate_InstructDetector_EMNLP2024/INSTRUCTDETECTOR_EMNLP2024_REPLICATION_BENCHMARK_RESULTS.json', 'Tier1_Candidate_InstructDetector_EMNLP2024/reports/INSTRUCTDETECTOR_EMNLP2024_REPLICATION_BENCHMARK_RESULTS.json', 'Tier1_Candidate_InstructDetector_EMNLP2024/InstructDetector_EMNLP2024_Replication_and_Paper_Comparison.ipynb', 'Tier1_Candidate_InstructDetector_EMNLP2024/figures/02_empirical_plots/instructdetector_asr_reduction.png', 'Tier1_Candidate_InstructDetector_EMNLP2024/figures/02_empirical_plots/instructdetector_replication_paper_vs_local_bars.png', 'Tier1_Candidate_InstructDetector_EMNLP2024/papers/Zhao_2024_InstructDetector_arXiv2402.06774.pdf', 'SmoothLLM_Robey_NeurIPS2023/datasets/smoothllm_eval_benchmark.json', 'SmoothLLM_Robey_NeurIPS2023/SMOOTHLLM_REPLICATION_BENCHMARK_RESULTS.json', 'SmoothLLM_Robey_NeurIPS2023/reports/SMOOTHLLM_REPLICATION_BENCHMARK_RESULTS.json', 'ModernBERT_Warner_2024/datasets/modernbert_context_eval_benchmark.json', 'ModernBERT_Warner_2024/MODERNBERT_REPLICATION_BENCHMARK_RESULTS.json', 'ModernBERT_Warner_2024/reports/MODERNBERT_REPLICATION_BENCHMARK_RESULTS.json', 'Tier1_Candidate_Meta_PromptGuard2024/datasets/promptguard_3class_eval.json', 'Tier1_Candidate_Meta_PromptGuard2024/Meta_PromptGuard2024/dataset/promptguard_3class_eval.json', 'Tier1_Candidate_Meta_PromptGuard2024/META_PROMPTGUARD_REPLICATION_BENCHMARK_RESULTS.json', 'Tier1_Candidate_Meta_PromptGuard2024/reports/META_PROMPTGUARD_REPLICATION_BENCHMARK_RESULTS.json', 'Tier1_Candidate_Meta_PromptGuard2024/Meta_PromptGuard2024_Replication_and_Paper_Comparison.ipynb', 'Tier1_Candidate_Meta_PromptGuard2024/figures/02_empirical_plots/promptguard_replication_paper_vs_local_bars.png', 'Tier1_Candidate_Meta_PromptGuard2024/figures/02_empirical_plots/promptguard_latency_profile.png', 'Tier1_Candidate_Meta_PromptGuard2024/__pycache__/run_promptguard_replication.cpython-314.pyc']
+WITHDRAWN += [
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/datasets/train.json',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/AYUB_CAMLIS2024_REPLICATION_BENCHMARK_RESULTS.json',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/reports/AYUB_CAMLIS2024_REPLICATION_BENCHMARK_RESULTS.json',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/Ayub_CAMLIS2024_Replication_and_Paper_Comparison.ipynb',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/build_ayub_notebook.py',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/cache/minilm_notinject.npy',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/cache/minilm_valid.npy',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/cache/minilm_wildguard.npy',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/figures/02_empirical_plots/ayub_latency_profile.png',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/figures/02_empirical_plots/ayub_overdefense_fpr_comparison.png',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/figures/02_empirical_plots/ayub_replication_paper_vs_local_bars.png',
+]
+WITHDRAWN += [
+    'ProtectAI_DeBERTa_v3_v2/datasets/notinject_sample.json',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/datasets/valid.json',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/datasets/wildguard.json',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/datasets/NotInject_one.json',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/datasets/NotInject_two.json',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/datasets/NotInject_three.json',
+]
+DISABLED_RUNNERS = [
+    'run_all_empirical_models.py',
+    'run_all_triad_experiments.py',
+    'DataSentinel_Liu_SP2025/run_datasentinel_replication.py',
+    'ModernBERT_Warner_2024/run_modernbert_replication.py',
+    'PromptShield_Jacob_CCS2024/run_promptshield_replication.py',
+    'ProtectAI_DeBERTa_v3_v2/run_protectai_replication.py',
+    'Tier1_Candidate_Jain_NeurIPS2023/run_jain_replication.py',
+    'Tier1_Candidate_InstructDetector_EMNLP2024/run_instructdetector_replication.py',
+    'SmoothLLM_Robey_NeurIPS2023/run_smoothllm_replication.py',
+    'references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024/run_ayub_tier1_benchmark.py',
+]
+META_QUARANTINE = 'Tier1_Candidate_Meta_PromptGuard2024'
+
+def local_path(rel):
+    """Resolve a pre-move replications path to its audited current location."""
+    if rel.startswith('references_study/'):
+        return WORKSPACE_ROOT / rel
+    for old_prefix, new_prefix in MOVED_PREFIXES.items():
+        if rel.startswith(old_prefix):
+            return REFERENCES_ROOT / new_prefix / rel[len(old_prefix):]
+    return REPLICATIONS_ROOT / rel
+
+def record_count(value):
+    if isinstance(value, list):
+        return len(value)
+    if isinstance(value, dict) and "goal" in value:
+        return len(value["goal"])
+    if isinstance(value, dict):
+        return sum(len(items) for items in value.values() if isinstance(items, list))
+    return -1
 
 def main():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    print("=" * 80)
-    print("PI-GUARD TASK 3 REPLICATION ASSETS VERIFICATION")
-    print(f"Base Directory: {base_dir}")
-    print("=" * 80)
-
-    assets = [
-        # 1. Global / Shared Infrastructure
-        (sys.executable, 10_000, False),
-        ("README.md", 500, False),
-        ("MEMBER_REPRODUCTION_RUNBOOK.md", 500, False),
-
-        # 2. Tier 1 Subsystem: Ayub et al. (CAMLIS 2024) [REJECTED CANDIDATE]
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/README.md", 500, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/papers/Ayub_CAMLIS2024_arXiv2410.22284.pdf", 500_000, True),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/Ayub_CAMLIS2024_Replication_and_Paper_Comparison.ipynb", 10_000, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/run_ayub_tier1_benchmark.py", 1000, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/build_ayub_notebook.py", 1000, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/AYUB_CAMLIS2024_REPLICATION_BENCHMARK_RESULTS.json", 1000, False),
-
-        # 2.1 Pure Upstream Codebase: Ayub_CAMLIS2024 (100% Upstream Purity)
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/Ayub_CAMLIS2024/README.md", 500, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/Ayub_CAMLIS2024/binary_classification.py", 500, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/Ayub_CAMLIS2024/embedding.py", 500, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/Ayub_CAMLIS2024/visualization.py", 500, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/Ayub_CAMLIS2024/dataset/README.md", 50, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/Ayub_CAMLIS2024/embeddings/README.md", 100, False),
-
-        # 2.2 Tier 1 Publication Figures
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/figures/01_paper_evidence/ayub_p1_title_and_abstract.png", 50_000, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/figures/01_paper_evidence/ayub_p7_table_3_and_4_results.png", 50_000, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/figures/02_empirical_plots/ayub_replication_paper_vs_local_bars.png", 30_000, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/figures/02_empirical_plots/ayub_overdefense_fpr_comparison.png", 30_000, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/figures/02_empirical_plots/ayub_latency_profile.png", 30_000, False),
-
-        # 3. Tier 2 Subsystem: PIGuard DeBERTa-v3-base (ACL 2025)
-        ("Paper_ACL2025_PIGuard_HaoLi/README.md", 500, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/papers/PIGuard_ACL2025_arXiv2410.22770.pdf", 500_000, True),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025_Replication_and_Paper_Comparison.ipynb", 10_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/eval_piguard_replication.py", 1000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/quick_test_piguard.py", 500, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGUARD_REPLICATION_BENCHMARK_RESULTS.json", 1000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGUARD_ACL2025_REPLICATION_REPORT.md", 1000, False),
-
-        # 3.1 Pure Upstream Codebase: PIGuard_ACL2025 (100% Upstream Purity)
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/README.md", 500, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/LICENSE", 500, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/PIGuard.py", 500, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/eval.py", 1000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/eval_hf.py", 1000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/params.py", 500, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/util.py", 500, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/requirements.txt", 500, False),
-
-        # 3.2 Benchmark Datasets in PIGuard_ACL2025 (Evaluation suites only)
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/valid.json", 10_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/NotInject_one.json", 5_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/NotInject_two.json", 5_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/NotInject_three.json", 5_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/BIPIA_text.json", 1_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/BIPIA_code.json", 1_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/PIGuard_ACL2025/datasets/wildguard.json", 50_000, False),
-
-        # 3.3 Tier 2 Publication Figures
-        ("Paper_ACL2025_PIGuard_HaoLi/figures/01_paper_evidence/paper_p1_title_and_abstract.png", 50_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/figures/01_paper_evidence/paper_p7_table_1_main_results.png", 50_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/figures/01_paper_evidence/paper_p8_table_2_ablation_study.png", 50_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/figures/01_paper_evidence/paper_p16_table_7_full_benchmarks.png", 30_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/figures/01_paper_evidence/paper_p16_figure_7_case_study.png", 30_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/figures/02_empirical_plots/local_vs_paper_scorecard.png", 30_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/figures/02_empirical_plots/piguard_replication_paper_vs_local_bars.png", 30_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/figures/02_empirical_plots/piguard_replication_latency_profile.png", 30_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/figures/02_empirical_plots/piguard_replication_confusion_matrix.png", 30_000, False),
-
-        # 4. Tier 1 Subsystem Candidate: Jain et al. (NeurIPS 2023 Workshop)
-        ("Tier1_Candidate_Jain_NeurIPS2023/README.md", 500, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/papers/Jain_2023_Baseline_Defenses_arXiv2309.00614.pdf", 300_000, True),
-        ("Tier1_Candidate_Jain_NeurIPS2023/Jain_NeurIPS2023_Replication_and_Paper_Comparison.ipynb", 1_000, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/run_jain_replication.py", 1_000, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/JAIN_NEURIPS2023_REPLICATION_BENCHMARK_RESULTS.json", 1_000, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/datasets/jain_eval_benchmark.json", 100_000, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/datasets/jain_benign_samples.json", 10_000, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/datasets/jain_attack_samples.json", 100_000, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/Jain_NeurIPS2023/dataset/jain_eval_benchmark.json", 100_000, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/Jain_NeurIPS2023/README.md", 200, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/Jain_NeurIPS2023/perplexity_filter.py", 500, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/figures/01_paper_evidence/jain_p1_title_and_abstract.png", 30_000, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/figures/01_paper_evidence/jain_p6_table_1_defense_results.png", 30_000, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/figures/01_paper_evidence/jain_p7_table_2_perplexity_results.png", 30_000, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/figures/02_empirical_plots/jain_replication_paper_vs_local_mitigation.png", 30_000, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/figures/02_empirical_plots/jain_latency_profile.png", 30_000, False),
-
-        # 5. Tier 1 Subsystem Candidate: Meta Prompt-Guard 86M (Purple Llama 2024)
-        ("Tier1_Candidate_Meta_PromptGuard2024/README.md", 500, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/papers/Meta_2024_PurpleLlama_PromptGuard.pdf", 300_000, True),
-        ("Tier1_Candidate_Meta_PromptGuard2024/Meta_PromptGuard2024_Replication_and_Paper_Comparison.ipynb", 1_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/run_promptguard_replication.py", 1_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/META_PROMPTGUARD_REPLICATION_BENCHMARK_RESULTS.json", 1_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/datasets/promptguard_3class_eval.json", 100_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/Meta_PromptGuard2024/dataset/promptguard_3class_eval.json", 100_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/Meta_PromptGuard2024/README.md", 200, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/Meta_PromptGuard2024/MODEL_CARD.md", 500, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/figures/01_paper_evidence/meta_p1_title_and_abstract.png", 30_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/figures/01_paper_evidence/meta_p6_table_eval_metrics.png", 30_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/figures/01_paper_evidence/meta_p8_cyberseceval_safeguards.png", 30_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/figures/02_empirical_plots/promptguard_replication_paper_vs_local_bars.png", 30_000, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/figures/02_empirical_plots/promptguard_latency_profile.png", 30_000, False),
-
-        # 6. Tier 1 Subsystem Candidate: InstructDetector (Findings of EMNLP 2024)
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/README.md", 500, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/papers/Zhao_2024_InstructDetector_arXiv2402.06774.pdf", 200_000, True),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/InstructDetector_EMNLP2024_Replication_and_Paper_Comparison.ipynb", 1_000, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/run_instructdetector_replication.py", 1_000, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/INSTRUCTDETECTOR_EMNLP2024_REPLICATION_BENCHMARK_RESULTS.json", 1_000, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/datasets/bipia_text_eval.json", 10_000, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/datasets/bipia_code_eval.json", 10_000, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/InstructDetector_EMNLP2024/dataset/bipia_text_eval.json", 10_000, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/InstructDetector_EMNLP2024/dataset/bipia_code_eval.json", 10_000, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/InstructDetector_EMNLP2024/README.md", 200, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/figures/01_paper_evidence/instruct_p1_title_and_abstract.png", 30_000, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/figures/01_paper_evidence/instruct_p6_table_1_bipia_results.png", 30_000, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/figures/01_paper_evidence/instruct_p7_table_2_layer_gradient.png", 30_000, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/figures/02_empirical_plots/instructdetector_replication_paper_vs_local_bars.png", 30_000, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/figures/02_empirical_plots/instructdetector_asr_reduction.png", 30_000, False),
-
-        # 7. Ayub CAMLIS 2024 Dedicated Datasets
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/datasets/wildguard.json", 50_000, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/datasets/NotInject_one.json", 5_000, False),
-
-        # 8. PIGuard ACL 2025 Root Datasets
-        ("Paper_ACL2025_PIGuard_HaoLi/datasets/valid.json", 10_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/datasets/NotInject_one.json", 5_000, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/datasets/wildguard.json", 50_000, False),
-
-        # 9. ProtectAI DeBERTa-v3 Replication Package & Datasets
-        ("ProtectAI_DeBERTa_v3_v2/README.md", 500, False),
-        ("ProtectAI_DeBERTa_v3_v2/run_protectai_replication.py", 1_000, False),
-        ("ProtectAI_DeBERTa_v3_v2/PROTECTAI_REPLICATION_BENCHMARK_RESULTS.json", 500, False),
-        ("ProtectAI_DeBERTa_v3_v2/datasets/protectai_eval_benchmark.json", 1_000, False),
-
-        # 10. SmoothLLM (NeurIPS 2023) Package & Datasets
-        ("SmoothLLM_Robey_NeurIPS2023/README.md", 500, False),
-        ("SmoothLLM_Robey_NeurIPS2023/lib/perturbations.py", 500, False),
-        ("SmoothLLM_Robey_NeurIPS2023/lib/defenses.py", 500, False),
-        ("SmoothLLM_Robey_NeurIPS2023/run_smoothllm_replication.py", 1_000, False),
-        ("SmoothLLM_Robey_NeurIPS2023/SMOOTHLLM_REPLICATION_BENCHMARK_RESULTS.json", 500, False),
-        ("SmoothLLM_Robey_NeurIPS2023/datasets/llama2_behaviors.json", 1_000, False),
-        ("SmoothLLM_Robey_NeurIPS2023/datasets/smoothllm_eval_benchmark.json", 1_000, False),
-
-        # 11. JailbreakBench (NeurIPS 2024) Package & Datasets
-        ("JailbreakBench_Chao_NeurIPS2024/README.md", 500, False),
-        ("JailbreakBench_Chao_NeurIPS2024/src/jailbreakbench/dataset.py", 500, False),
-        ("JailbreakBench_Chao_NeurIPS2024/run_jailbreakbench_replication.py", 1_000, False),
-        ("JailbreakBench_Chao_NeurIPS2024/JAILBREAKBENCH_REPLICATION_BENCHMARK_RESULTS.json", 500, False),
-        ("JailbreakBench_Chao_NeurIPS2024/datasets/jbb_behaviors_harmful.json", 10_000, False),
-        ("JailbreakBench_Chao_NeurIPS2024/datasets/jbb_behaviors_benign.json", 10_000, False),
-        ("JailbreakBench_Chao_NeurIPS2024/datasets/jbb_combined_benchmark.json", 20_000, False),
-
-        # 12. Master Triad & Benchmark Suite Runners
-        ("run_all_triad_experiments.py", 1_000, False),
-        ("run_all_empirical_models.py", 1_000, False),
-
-        # 13. DataSentinel (Liu et al., IEEE S&P 2025)
-        ("DataSentinel_Liu_SP2025/README.md", 500, False),
-        ("DataSentinel_Liu_SP2025/REPO_METADATA.json", 300, False),
-        ("DataSentinel_Liu_SP2025/papers/Liu_2025_DataSentinel_Game_Theoretic_Detection_Prompt_Injection.pdf", 500_000, True),
-        ("DataSentinel_Liu_SP2025/run_datasentinel_replication.py", 1_000, False),
-        ("DataSentinel_Liu_SP2025/DATASENTINEL_REPLICATION_BENCHMARK_RESULTS.json", 1_000, False),
-        ("DataSentinel_Liu_SP2025/datasets/datasentinel_eval_benchmark.json", 1_000, False),
-        ("DataSentinel_Liu_SP2025/Open-Prompt-Injection/README.md", 500, False),
-        ("DataSentinel_Liu_SP2025/Open-Prompt-Injection/OpenPromptInjection/apps/DataSentinelDetector.py", 1_000, False),
-
-        # 14. PromptShield (Jacob et al., ACM CCS 2024)
-        ("PromptShield_Jacob_CCS2024/README.md", 500, False),
-        ("PromptShield_Jacob_CCS2024/REPO_METADATA.json", 300, False),
-        ("PromptShield_Jacob_CCS2024/papers/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf", 500_000, True),
-        ("PromptShield_Jacob_CCS2024/run_promptshield_replication.py", 1_000, False),
-        ("PromptShield_Jacob_CCS2024/PROMPTSHIELD_REPLICATION_BENCHMARK_RESULTS.json", 1_000, False),
-        ("PromptShield_Jacob_CCS2024/datasets/promptshield_eval_benchmark.json", 1_000, False),
-        ("PromptShield_Jacob_CCS2024/PromptShield/eval_promptguard.py", 1_000, False),
-        ("PromptShield_Jacob_CCS2024/PromptShield/threshold_evaluation.py", 1_000, False),
-
-        # 15. ModernBERT-base (Warner et al., Answer.AI 2024)
-        ("ModernBERT_Warner_2024/README.md", 500, False),
-        ("ModernBERT_Warner_2024/REPO_METADATA.json", 300, False),
-        ("ModernBERT_Warner_2024/papers/Warner_2024_ModernBERT_Brings_Modern_Transformers_To_Encoders.pdf", 300_000, True),
-        ("ModernBERT_Warner_2024/run_modernbert_replication.py", 1_000, False),
-        ("ModernBERT_Warner_2024/MODERNBERT_REPLICATION_BENCHMARK_RESULTS.json", 1_000, False),
-        ("ModernBERT_Warner_2024/datasets/modernbert_context_eval_benchmark.json", 10_000, False),
-        ("ModernBERT_Warner_2024/ModernBERT/README.md", 500, False),
-        ("ModernBERT_Warner_2024/ModernBERT/yamls/modernbert/modernbert-base-context-extension.yaml", 1_000, False),
-
-        # 16. Dataset Metadata & Provenance Cards (11/11 public models)
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/datasets/METADATA.json", 300, False),
-        ("Tier1_REJECTED_Ayub_CAMLIS2024/datasets/DATASET_CARD.md", 500, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/datasets/METADATA.json", 300, False),
-        ("Tier1_Candidate_Jain_NeurIPS2023/datasets/DATASET_CARD.md", 500, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/datasets/METADATA.json", 300, False),
-        ("Tier1_Candidate_Meta_PromptGuard2024/datasets/DATASET_CARD.md", 500, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/datasets/METADATA.json", 300, False),
-        ("Tier1_Candidate_InstructDetector_EMNLP2024/datasets/DATASET_CARD.md", 500, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/datasets/METADATA.json", 300, False),
-        ("Paper_ACL2025_PIGuard_HaoLi/datasets/DATASET_CARD.md", 500, False),
-        ("ProtectAI_DeBERTa_v3_v2/datasets/METADATA.json", 300, False),
-        ("ProtectAI_DeBERTa_v3_v2/datasets/DATASET_CARD.md", 500, False),
-        ("SmoothLLM_Robey_NeurIPS2023/datasets/METADATA.json", 300, False),
-        ("SmoothLLM_Robey_NeurIPS2023/datasets/DATASET_CARD.md", 500, False),
-        ("JailbreakBench_Chao_NeurIPS2024/datasets/METADATA.json", 300, False),
-        ("JailbreakBench_Chao_NeurIPS2024/datasets/DATASET_CARD.md", 500, False),
-        ("DataSentinel_Liu_SP2025/datasets/METADATA.json", 300, False),
-        ("DataSentinel_Liu_SP2025/datasets/DATASET_CARD.md", 500, False),
-        ("PromptShield_Jacob_CCS2024/datasets/METADATA.json", 300, False),
-        ("PromptShield_Jacob_CCS2024/datasets/DATASET_CARD.md", 500, False),
-        ("ModernBERT_Warner_2024/datasets/METADATA.json", 300, False),
-        ("ModernBERT_Warner_2024/datasets/DATASET_CARD.md", 500, False),
-    ]
-
-    all_passed = True
-    for rel_path, min_b, is_pdf in assets:
-        full_path = os.path.normpath(os.path.join(base_dir, rel_path))
-        if not os.path.exists(full_path):
-            parts = rel_path.replace("\\", "/").split("/")
-            if len(parts) > 1:
-                upstream_rel = parts[0] + "/upstream/" + "/".join(parts[1:])
-                cand = os.path.normpath(os.path.join(base_dir, upstream_rel))
-                if os.path.exists(cand):
-                    full_path = cand
-
-        passed, msg = check_file(full_path, min_b, is_pdf)
-        if not passed:
-            parts = rel_path.replace("\\", "/").split("/")
-            for sub in ["harnesses", "rejected_baselines"]:
-                study_cand = os.path.normpath(os.path.join(base_dir, "..", "references_study", sub, rel_path))
-                if os.path.exists(study_cand):
-                    full_path = study_cand
-                    passed, msg = check_file(full_path, min_b, is_pdf)
-                    break
-                if len(parts) > 1:
-                    upstream_rel = parts[0] + "/upstream/" + "/".join(parts[1:])
-                    study_cand_up = os.path.normpath(os.path.join(base_dir, "..", "references_study", sub, upstream_rel))
-                    if os.path.exists(study_cand_up):
-                        full_path = study_cand_up
-                        passed, msg = check_file(full_path, min_b, is_pdf)
-                        break
-
-        status = "[PASS]" if passed else "[FAIL]"
-        print(f"{status:7} {msg}")
-        if not passed:
-            all_passed = False
-
-    # Deep Dataset Provenance and SHA-256 Validation
-    import json
-    import hashlib
-    print("\n" + "=" * 80)
-    print("DATASET PROVENANCE & SHA-256 INTEGRITY VALIDATION")
-    print("=" * 80)
-
-    def calc_sha(p):
-        h = hashlib.sha256()
-        with open(p, "rb") as f:
-            b = f.read(65536)
-            while len(b) > 0:
-                h.update(b)
-                b = f.read(65536)
-        return h.hexdigest()
-
-    packages = [
-        "Tier1_REJECTED_Ayub_CAMLIS2024",
-        "Tier1_Candidate_Jain_NeurIPS2023",
-        "Tier1_Candidate_Meta_PromptGuard2024",
-        "Tier1_Candidate_InstructDetector_EMNLP2024",
-        "Paper_ACL2025_PIGuard_HaoLi",
-        "ProtectAI_DeBERTa_v3_v2",
-        "SmoothLLM_Robey_NeurIPS2023",
-        "JailbreakBench_Chao_NeurIPS2024",
-        "DataSentinel_Liu_SP2025",
-        "PromptShield_Jacob_CCS2024",
-        "ModernBERT_Warner_2024"
-    ]
-
-    for pkg in packages:
-        meta_file = os.path.join(base_dir, pkg, "datasets", "METADATA.json")
-        target_dir = os.path.join(base_dir, pkg)
-        if not os.path.exists(meta_file):
-            for sub in ["harnesses", "rejected_baselines"]:
-                cand_meta = os.path.normpath(os.path.join(base_dir, "..", "references_study", sub, pkg, "datasets", "METADATA.json"))
-                if os.path.exists(cand_meta):
-                    meta_file = cand_meta
-                    target_dir = os.path.normpath(os.path.join(base_dir, "..", "references_study", sub, pkg))
-                    break
-        if not os.path.exists(meta_file):
-            print(f"[FAIL]  Missing METADATA.json in {pkg}")
-            all_passed = False
+    failures = []
+    for old_name, new_rel in MOVED_DIRECTORIES.items():
+        old_path = REPLICATIONS_ROOT / old_name
+        new_path = REFERENCES_ROOT / new_rel
+        if old_path.exists():
+            failures.append(f"MOVED source still present: replications/{old_name}")
+        if not new_path.is_dir():
+            failures.append(f"MOVED destination missing: references_study/{new_rel}")
+    if (REPLICATIONS_ROOT / 'cache').exists():
+        failures.append("MOVED cache source still present: replications/cache")
+    for rel, (expected_count, expected_hash) in RETAINED.items():
+        path = local_path(rel)
+        if not path.is_file():
+            failures.append(f"MISSING retained file: {rel}")
             continue
-        with open(meta_file, "r", encoding="utf-8") as f:
-            meta = json.load(f)
-        if meta.get("provenance", {}).get("is_synthetic_self_created") is not False:
-            print(f"[FAIL]  {pkg} invariant violated: is_synthetic_self_created must be False")
-            all_passed = False
+        data = path.read_bytes()
+        try:
+            count = record_count(json.loads(data))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            failures.append(f"INVALID JSON: {rel}: {exc}")
             continue
-        
-        # Verify files listed in metadata
-        files_ok = True
-        for finfo in meta.get("files", []):
-            fpath = os.path.join(target_dir, "datasets", finfo["filename"])
-            if not os.path.exists(fpath):
-                print(f"[FAIL]  Missing file {finfo['filename']} in {pkg}/datasets")
-                files_ok = False
-                all_passed = False
-                break
-            actual_sha = calc_sha(fpath)
-            if actual_sha != finfo["sha256"]:
-                print(f"[FAIL]  SHA mismatch for {finfo['filename']} in {pkg}")
-                files_ok = False
-                all_passed = False
-                break
-        if files_ok:
-            print(f"[PASS]  OK Provenance & SHA-256 Verified (Non-Synthetic): {pkg}")
-
-    print("\n" + "=" * 80)
-    print("UPSTREAM REPOSITORY PROVENANCE & METADATA VALIDATION")
-    print("=" * 80)
-    for pkg in ["DataSentinel_Liu_SP2025", "PromptShield_Jacob_CCS2024", "ModernBERT_Warner_2024"]:
-        repo_meta_file = os.path.join(base_dir, pkg, "REPO_METADATA.json")
-        if not os.path.exists(repo_meta_file):
-            print(f"[FAIL]  Missing REPO_METADATA.json in {pkg}")
-            all_passed = False
+        digest = hashlib.sha256(data).hexdigest()
+        if count != expected_count:
+            failures.append(f"COUNT mismatch: {rel}: got {count}, expected {expected_count}")
+        if digest != expected_hash:
+            failures.append(f"SHA-256 mismatch: {rel}: got {digest}, expected {expected_hash}")
+        if count == expected_count and digest == expected_hash:
+            print(f"OK {count:>6} records  {rel}")
+    for copy_rel, canonical_rel in COPY_PAIRS.items():
+        copy_path = local_path(copy_rel)
+        canonical_path = local_path(canonical_rel)
+        if not copy_path.is_file() or not canonical_path.is_file():
+            failures.append(f"MISSING source-copy pair: {copy_rel} / {canonical_rel}")
             continue
-        with open(repo_meta_file, "r", encoding="utf-8") as f:
-            rmeta = json.load(f)
-        if rmeta.get("provenance", {}).get("is_synthetic_self_created") is not False:
-            print(f"[FAIL]  {pkg} REPO_METADATA invariant violated: is_synthetic_self_created must be False")
-            all_passed = False
-            continue
-        if rmeta.get("provenance", {}).get("is_upstream_pure_clone") is not True:
-            print(f"[FAIL]  {pkg} REPO_METADATA invariant violated: is_upstream_pure_clone must be True")
-            all_passed = False
-            continue
-        print(f"[PASS]  OK Upstream Repo Verified (Pure Upstream Clone): {pkg} -> {rmeta.get('upstream_git_url')} ({rmeta.get('commit_hash')[:8]})")
-
-    print("=" * 80)
-    if all_passed:
-        print("RESULT: ALL ASSETS, DATASETS & PROVENANCE METADATA 100% VERIFIED!")
-        sys.exit(0)
-    else:
-        print("RESULT: VERIFICATION FAILED FOR ONE OR MORE ASSETS.")
-        sys.exit(1)
+        if copy_path.read_bytes() != canonical_path.read_bytes():
+            failures.append(f"BYTE mismatch in source-copy pair: {copy_rel} / {canonical_rel}")
+        else:
+            print(f"OK exact local copy  {copy_rel}")
+    for rel in WITHDRAWN:
+        if local_path(rel).exists():
+            failures.append(f"WITHDRAWN file is present: {rel}")
+    for rel in DISABLED_RUNNERS:
+        path = local_path(rel)
+        if not path.is_file() or "raise SystemExit(" not in path.read_text(encoding="utf-8"):
+            failures.append(f"Legacy runner is not fail-closed: {rel}")
+    if failures:
+        for failure in failures:
+            print(f"FAIL {failure}", file=sys.stderr)
+        return 1
+    meta_path = REPLICATIONS_ROOT / META_QUARANTINE
+    meta_state = 'present and quarantined' if meta_path.exists() else 'absent'
+    print(f"PASS: {len(MOVED_DIRECTORIES)} moved reference folders verified; {len(RETAINED)} retained data files hashed; {len(COPY_PAIRS)} cross-package copies retained; {len(WITHDRAWN)} withdrawn paths absent; {len(DISABLED_RUNNERS)} legacy entry points disabled; Meta folder {meta_state}.")
+    print("This checks local integrity and cleanup state; it does not independently prove upstream authorship or paper fidelity.")
+    return 0
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

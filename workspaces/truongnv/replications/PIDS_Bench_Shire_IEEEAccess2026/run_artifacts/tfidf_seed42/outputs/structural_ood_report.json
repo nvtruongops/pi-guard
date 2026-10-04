@@ -1,0 +1,25 @@
+{
+  "aggregate": {
+    "n": 1998,
+    "f1": 0.6868,
+    "precision": 0.5394,
+    "recall": 0.9449,
+    "fpr": 0.8068,
+    "fnr": 0.0551,
+    "threshold": 0.502
+  },
+  "per_transform": {
+    "instruction_prefix_mimic": {
+      "fpr": 0.7898,
+      "recall": 0.955
+    },
+    "json_wrap": {
+      "fpr": 0.7778,
+      "recall": 0.9489
+    },
+    "prompt_dilute": {
+      "fpr": 0.8529,
+      "recall": 0.9309
+    }
+  }
+}

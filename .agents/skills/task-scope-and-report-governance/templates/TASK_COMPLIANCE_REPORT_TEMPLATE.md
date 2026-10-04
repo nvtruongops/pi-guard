@@ -15,7 +15,7 @@ Báo cáo này được thực hiện tuân thủ nghiêm ngặt theo [`Rule 02:
 | Phân Định | Nội Dung Chi Tiết Được Áp Dụng |
 | :--- | :--- |
 | **Phạm vi trong nhiệm vụ (STRICTLY IN-SCOPE)** | 1. `[Yêu cầu 1 từ task file]`<br>2. `[Yêu cầu 2 từ task file]`<br>3. `[Yêu cầu 3 từ task file]` |
-| **Phạm vi ngoài nhiệm vụ (STRICTLY OUT-OF-SCOPE)** | 1. **Zero Premature Model**: Không đưa mã nguồn hoặc kết quả nghiệm thu của mô hình đồ án Two-Tier Cascade (thuộc Chapter 3/4).<br>2. **Zero Deprecated Tech**: Tuyệt đối không áp dụng lượng tử hóa INT8, tối ưu ONNX Runtime (ZeroQuant 2022) hoặc white-box KV-cache steering theo `ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`.<br>3. **Zero Scope Creep**: Không tự ý mở rộng phân tích ngoài các câu hỏi được giao. |
+| **Phạm vi ngoài nhiệm vụ (STRICTLY OUT-OF-SCOPE)** | 1. **Zero Premature Model**: Không đưa mã nguồn hoặc kết quả nghiệm thu của mô hình đồ án Two-Tier Cascade (thuộc Chapter 3/4).<br>2. **Zero Deprecated Tech**: Tuyệt đối không áp dụng lượng tử hóa INT8, tối ưu ONNX Runtime (ZeroQuant 2022) hoặc white-box KV-cache steering theo [Rule 02, Mục 4](file:///d:/Work/Do-an/.agents/rules/rule-02-task-scope-and-milestone-enclosure.md).<br>3. **Zero Scope Creep**: Không tự ý mở rộng phân tích ngoài các câu hỏi được giao. |
 
 ---
 
@@ -40,6 +40,6 @@ Báo cáo này được thực hiện tuân thủ nghiêm ngặt theo [`Rule 02:
 | :---: | :--- | :---: | :--- |
 | **SC-01** | Báo cáo gắn liền và giải quyết 100% yêu cầu từ Task File nguồn | **PASS** | Bám sát danh mục nhiệm vụ từ file task |
 | **SC-02** | Zero Premature Proposed Model (Không có mã nguồn/nghiệm thu mô hình nhóm sớm) | **PASS** | Tuân thủ Rule 03 (AH-01) |
-| **SC-03** | Zero Deprecated Tech (0% INT8, 0% ONNX Runtime, 0% KV-cache) | **PASS** | Tuân thủ `ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md` |
+| **SC-03** | Zero Deprecated Tech (0% INT8, 0% ONNX Runtime, 0% KV-cache) | **PASS** | Tuân thủ [Rule 02, Mục 4](file:///d:/Work/Do-an/.agents/rules/rule-02-task-scope-and-milestone-enclosure.md) |
 | **SC-04** | 100% số liệu đo đạc trích xuất từ tệp JSON un-mocked | **PASS** | Tệp JSON tại `04_benchmarks_and_data/` |
 | **SC-05** | 100% câu khẳng định kỹ thuật có neo trích dẫn chuẩn `[[N]](#refN)` | **PASS** | Tuân thủ Rule 04 |

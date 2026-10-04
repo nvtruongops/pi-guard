@@ -4,11 +4,12 @@
   "summary": {
     "total_models": 11,
     "paper_pdfs_found": 11,
-    "pristine_repos_clean": 11,
-    "datasets_sha_verified": 11,
+    "pristine_repos_clean": null,
+    "datasets_sha_verified": null,
     "total_datasets": 17,
     "urls_verified_live": 0,
-    "urls_failed_live": 0
+    "urls_failed_live": 0,
+    "audit_note": "Historical fast audit did not establish semantic citation correctness or upstream identity; corrections and exact comparisons are recorded in this file and EXPERIMENT_REPRODUCTION_AUDIT.md."
   },
   "models": {
     "PIGuard_HaoLi_ACL2025": {
@@ -16,26 +17,32 @@
       "display_name": "PIGuard (Hao Li et al. - ACL 2025 Long Paper)",
       "checks": {
         "key1_paper": {
-          "title": "PIGuard: Protecting Language Models against Prompt Injection with MOF",
+          "title": "PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free",
           "venue": "ACL 2025",
-          "paper_url": "https://arxiv.org/abs/2410.22770",
+          "paper_url": "https://aclanthology.org/2025.acl-long.1468/",
           "local_pdf_exists": true,
           "local_pdf_size_mb": 2.07,
-          "provenance_anchor": "Section 4.1 'Model Architecture' & Table 1 Main Results"
+          "provenance_anchor": "Section 4.1 'Model Architecture' & Table 1 Main Results",
+          "authors": "Hao Li, Xiaogeng Liu, Ning Zhang, Chaowei Xiao",
+          "doi": "10.18653/v1/2025.acl-long.1468",
+          "pages": "30420-30437",
+          "local_pdf_path": "References/PIGuard_2025_Prompt_Injection_Guardrail_ACL.pdf",
+          "preprint_note": "arXiv:2410.22770 is the earlier InjecGuard preprint, not the ACL final paper."
         },
         "key2_model_spec": {
-          "architecture": "DeBERTa-v3-base with MOF (Masked Overlap Fraction) Loss",
-          "parameters": "86M",
+          "architecture": "DeBERTa-v3-base with Mitigating Over-defense for Free (MOF) training strategy",
+          "parameters": "184M",
           "weights_url": "https://github.com/leolee99/PIGuard"
         },
         "key4_pristine_upstream_repo": {
           "name": "PIGuard_ACL2025",
           "git_url": "https://github.com/leolee99/PIGuard",
-          "commit_hash": "69df2df5b2aa13b194d3fec45672ab6df7f9df88",
+          "commit_hash": "1b5751e88bf7475acbedfc8eda795ce060307c84",
           "upstream_dir_exists": true,
           "is_pristine_untouched": true,
           "pollution_count": 0,
-          "sample_polluting_files": []
+          "sample_polluting_files": [],
+          "comparison_result": "All 26 local source/data/asset files match the upstream tree; two generated __pycache__ bytecode files are omitted."
         },
         "key3_datasets_provenance": [
           {
@@ -64,6 +71,14 @@
             "actual_sha256": "62a0f7331af1...",
             "sha256_match": true,
             "provenance_proof": "WildGuard test partition adapted by Li et al. (ACL 2025 Table 7)."
+          },
+          {
+            "filename": "train.json",
+            "records": 76735,
+            "origin_url": "https://github.com/leolee99/PIGuard/blob/1b5751e88bf7475acbedfc8eda795ce060307c84/datasets/train.json",
+            "sha256": "806ded8bd85782a53d34faffe4fd92b3f2e0b3b431c43578ce77faea6b9ed911",
+            "git_blob": "c237dbe9b972cbd8f55e28d378e819173a59737c",
+            "byte_identical_to_upstream": true
           }
         ],
         "key5_runner_and_runs": {
@@ -74,7 +89,8 @@
           "reports_decoupled_exists": true,
           "internal_benchmark_leakage": false,
           "internal_leaked_files": []
-        }
+        },
+        "pint_status": "PINT is not present in the authors' public repository."
       }
     },
     "DataSentinel_Liu_SP2025": {
@@ -127,39 +143,54 @@
     },
     "PromptShield_Jacob_CCS2024": {
       "model_id": "PromptShield_Jacob_CCS2024",
-      "display_name": "PromptShield (Jacob et al. - ACM CCS 2024)",
+      "display_name": "PromptShield (Jacob et al. - CODASPY 2025)",
       "checks": {
         "key1_paper": {
-          "title": "PromptShield: Deployable Detection of Prompt Injection Attacks",
-          "venue": "ACM CCS 2024",
-          "paper_url": "https://arxiv.org/abs/2407.13656",
+          "title": "PromptShield: Deployable Detection for Prompt Injection Attacks",
+          "venue": "ACM CODASPY 2025",
+          "paper_url": "https://arxiv.org/abs/2501.15145",
           "local_pdf_exists": true,
           "local_pdf_size_mb": 1.02,
-          "provenance_anchor": "Section 4 'Threat Model' & Section 6 'Evaluation at 1% FPR'"
+          "provenance_anchor": "Section 4 'Threat Model' & Section 6 'Evaluation at 1% FPR'",
+          "authors": "Dennis Jacob, Hend Alzahrani, Zhanhao Hu, Basel Alomair, David Wagner",
+          "year": 2025,
+          "pages": "341-352",
+          "doi": "10.1145/3714393.3726501",
+          "local_pdf_path": "References/Jacob_2025_PromptShield_Deployable_Detection_CODASPY.pdf"
         },
         "key2_model_spec": {
-          "architecture": "Calibrated Dual-Threshold Classifier with Extreme Value Theory",
-          "parameters": "Classifier Pipeline",
+          "architecture": "Fine-tuned neural classifiers (DeBERTa-v3, FLAN-T5, and Llama variants); threshold selection uses linear interpolation and bisection at target FPRs",
+          "parameters": "61M-8B, depending on detector variant",
           "weights_url": "https://github.com/wagner-group/PromptShield"
         },
         "key4_pristine_upstream_repo": {
           "name": "PromptShield",
           "git_url": "https://github.com/wagner-group/PromptShield",
-          "commit_hash": "bc03ac19",
+          "commit_hash": "bc03ac195670700ed1cf684cafe46154623e71b9",
           "upstream_dir_exists": true,
-          "is_pristine_untouched": true,
-          "pollution_count": 0,
-          "sample_polluting_files": []
+          "is_pristine_untouched": false,
+          "pollution_count": 1,
+          "sample_polluting_files": [
+            "threshold_evaluation.py"
+          ],
+          "local_change_note": "One local output/plot guard; detector/scoring source unchanged."
         },
         "key3_datasets_provenance": [
           {
-            "filename": "promptshield_eval_benchmark.json",
+            "filename": "camera_ready_datasets/en_dataset_no_dups/2024-11-28_evaluation_benchmark_en.json",
+            "records": 23369,
             "origin_url": "https://huggingface.co/datasets/hendzh/PromptShield",
-            "local_exists": true,
-            "expected_sha256": "8a21503129d5...",
-            "actual_sha256": "8a21503129d5...",
-            "sha256_match": true,
-            "provenance_proof": "Official ACM CCS 2024 dataset curated by Wagner Group & published on HuggingFace."
+            "sha256": "8b7e18426afdb4c7219d8f1a39ccfde347bc5125efb31ce4b2fb4acb2851cc16",
+            "upstream_commit": "bc03ac195670700ed1cf684cafe46154623e71b9",
+            "byte_identical_to_upstream": true,
+            "provenance_proof": "Official camera-ready evaluation benchmark."
+          },
+          {
+            "filename": "promptshield_eval_benchmark.json",
+            "records": 20,
+            "sha256": "8a21503129d5c2caebac131a3a58bbf8e44f96351f8a51653fb8c0feb503443c",
+            "author_origin_verified": false,
+            "provenance_proof": "Project-local subset, not an exact match to the author benchmark."
           }
         ],
         "key5_runner_and_runs": {
@@ -169,7 +200,9 @@
           "external_destination_exists": true,
           "reports_decoupled_exists": true,
           "internal_benchmark_leakage": false,
-          "internal_leaked_files": []
+          "internal_leaked_files": [],
+          "paper_faithful": false,
+          "note": "The local TF-IDF/logistic-regression runner is a proxy. The ProtectAI full-benchmark evaluation is a separate comparator run using the official evaluator."
         }
       }
     },
@@ -247,26 +280,7 @@
           "pollution_count": 0,
           "sample_polluting_files": []
         },
-        "key3_datasets_provenance": [
-          {
-            "filename": "protectai_eval_benchmark.json",
-            "origin_url": "https://huggingface.co/datasets/protectai/prompt-injection-benchmark",
-            "local_exists": true,
-            "expected_sha256": "251e55a4ebee...",
-            "actual_sha256": "251e55a4ebee...",
-            "sha256_match": true,
-            "provenance_proof": "Official Protect AI prompt injection evaluation benchmark."
-          },
-          {
-            "filename": "notinject_sample.json",
-            "origin_url": "https://huggingface.co/datasets/deepset/prompt-injections",
-            "local_exists": true,
-            "expected_sha256": "c77abbf3de71...",
-            "actual_sha256": "c77abbf3de71...",
-            "sha256_match": true,
-            "provenance_proof": "NotInject test split from deepset AI and Li et al. (ACL 2025) benchmark."
-          }
-        ],
+        "key3_datasets_provenance": [],
         "key5_runner_and_runs": {
           "runner_script": "run_protectai_replication.py",
           "runner_script_exists": true,
@@ -276,6 +290,14 @@
           "internal_benchmark_leakage": false,
           "internal_leaked_files": []
         }
+      },
+      "dataset_disposition_2026_09_30": {
+        "status": "no_local_dataset_retained",
+        "removed": [
+          "protectai_eval_benchmark.json",
+          "notinject_sample.json"
+        ],
+        "note": "The former 22-row probe lacked row-level source verification; the 113-row PIGuard copy was outside its package origin. Both were removed."
       }
     },
     "SmoothLLM_Robey_NeurIPS2023": {
@@ -445,15 +467,19 @@
       "display_name": "InstructDetector (Zhao et al. - Findings of EMNLP 2024)",
       "checks": {
         "key1_paper": {
-          "title": "InstructDetector: Identifying Instruction-Tuned Evasion Attacks",
-          "venue": "Findings of EMNLP 2024",
-          "paper_url": "https://arxiv.org/abs/2402.06774",
+          "title": "Defending against Indirect Prompt Injection by Instruction Detection",
+          "venue": "Findings of EMNLP 2025",
+          "paper_url": "https://arxiv.org/abs/2505.06311",
           "local_pdf_exists": true,
           "local_pdf_size_mb": 0.2,
-          "provenance_anchor": "Section 3 'Instruction-Detection Methodology' & Table 1 BIPIA Results"
+          "provenance_anchor": "Section 3 'Instruction-Detection Methodology' & Table 1 BIPIA Results",
+          "authors": "Tongyu Wen, Chenglong Wang, Xiyuan Yang, Haoyu Tang, Yueqi Xie, Lingjuan Lyu, Zhicheng Dou, Fangzhao Wu",
+          "year": 2025,
+          "pages": "19472-19487",
+          "doi": "10.18653/v1/2025.findings-emnlp.1060"
         },
         "key2_model_spec": {
-          "architecture": "Layer-Gradient Probing on Transformer Encoder Hidden States",
+          "architecture": "LLM intermediate hidden states and gradients combined for instruction detection; requires forward and backward access to model internals.",
           "parameters": "Classifier Probe",
           "weights_url": "https://github.com/MYVAE/Instruction-detection"
         },
@@ -493,7 +519,9 @@
           "external_destination_exists": true,
           "reports_decoupled_exists": true,
           "internal_benchmark_leakage": false,
-          "internal_leaked_files": []
+          "internal_leaked_files": [],
+          "paper_faithful": false,
+          "note": "Local lexical/character TF-IDF + Logistic Regression is a project proxy and does not implement the paper method."
         }
       }
     },
@@ -550,15 +578,16 @@
       "display_name": "Ayub CAMLIS 2024 [Rejected Baseline - High FPR Overfitting]",
       "checks": {
         "key1_paper": {
-          "title": "Towards Robust Detection of Prompt Injection Attacks in LLMs",
+          "title": "Evaluating Classical Machine Learning and Dense Embeddings for Prompt Injection Detection",
           "venue": "CAMLIS 2024",
-          "paper_url": "https://arxiv.org/abs/2410.22284",
+          "paper_url": "https://arxiv.org/abs/2410.08325",
           "local_pdf_exists": true,
           "local_pdf_size_mb": 1.09,
-          "provenance_anchor": "Section 4 'Feature Representation' & Table 3 Binary Classification Results"
+          "provenance_anchor": "Section 4 'Feature Representation' & Table 3 Binary Classification Results",
+          "authors": "Muhammad Ayub and Suman Majumdar"
         },
         "key2_model_spec": {
-          "architecture": "all-MiniLM-L6-v2 Embeddings + Random Forest / XGBoost",
+          "architecture": "Dense embeddings with traditional classifiers including Random Forest and XGBoost; not sparse TF-IDF.",
           "parameters": "22M + Ensemble",
           "weights_url": "https://github.com/AhsanAyub/malicious-prompt-detection"
         },
@@ -593,5 +622,45 @@
         }
       }
     }
-  }
+  },
+  "audit_corrections": {
+    "PromptShield_Jacob_CCS2024": {
+      "supersedes_old_claims": [
+        "ACM CCS 2024 venue",
+        "arXiv:2407.13656",
+        "20-row local file is official dataset",
+        "local repository is pristine"
+      ],
+      "correct_paper": {
+        "title": "PromptShield: Deployable Detection for Prompt Injection Attacks",
+        "authors": "Dennis Jacob, Hend Alzahrani, Zhanhao Hu, Basel Alomair, David Wagner",
+        "venue": "ACM Conference on Data and Application Security and Privacy (CODASPY 2025)",
+        "year": 2025,
+        "pages": "341-352",
+        "doi": "10.1145/3714393.3726501",
+        "arxiv": "2501.15145"
+      },
+      "paper_url": "https://arxiv.org/abs/2501.15145",
+      "official_full_evaluation_dataset": {
+        "path": "camera_ready_datasets/en_dataset_no_dups/2024-11-28_evaluation_benchmark_en.json",
+        "records": 23369,
+        "sha256": "8b7e18426afdb4c7219d8f1a39ccfde347bc5125efb31ce4b2fb4acb2851cc16",
+        "byte_identical_to_upstream_commit": "bc03ac195670700ed1cf684cafe46154623e71b9"
+      },
+      "local_20_row_file": {
+        "sha256": "8a21503129d5c2caebac131a3a58bbf8e44f96351f8a51653fb8c0feb503443c",
+        "author_origin_verified": false,
+        "classification": "project-local subset"
+      },
+      "local_repository_change": "threshold_evaluation.py contains one local plotting/output guard change; do not mark repository pristine.",
+      "status": "corrected after original fast audit; see experiment reproduction audit"
+    },
+    "metadata_review": {
+      "status": "corrected",
+      "note": "Corrected PIGuard, PromptShield, InstructDetector, Meta Prompt Guard, and Ayub metadata/method attributions after primary-source checks."
+    }
+  },
+  "status": "SUPERSEDED_NOT_CURRENT_PROVENANCE",
+  "superseded_by": "reports/experiment_reports/WORKSPACE_PROVENANCE_AUDIT_2026-09-30.md",
+  "supersession_note": "ProtectAI local datasets and other project probes in this historical URL audit have been withdrawn; this file is retained only as historical context and must not be cited as current data evidence."
 }

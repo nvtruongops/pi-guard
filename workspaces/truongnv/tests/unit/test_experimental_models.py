@@ -18,7 +18,6 @@ if src_dir not in sys.path:
 from models.classifier import TfidfBaselineClassifier, DummyClassifier, LiteratureBaselineClassifier
 from models.conformal_calibrator import ConformalRiskCalibrator
 from models.transformer_models import (
-    MetaPromptGuard86M,
     ProtectAIDebertaV3,
     MiniLMGuardrail,
     MultilingualMDeBERTa,
@@ -52,7 +51,6 @@ def test_conformal_calibrator_guarantee():
 def test_transformer_candidate_models():
     """Kiểm tra việc khởi tạo và dự đoán của các mô hình Transformer đối chuẩn."""
     models = [
-        MetaPromptGuard86M(),
         ProtectAIDebertaV3(),
         MiniLMGuardrail(),
         MultilingualMDeBERTa()

@@ -1,0 +1,31 @@
+{
+  "model_id": "InstructDetector_Wen_Findings_EMNLP2025",
+  "display_name": "Defending against Indirect Prompt Injection by Instruction Detection",
+  "role": "Historical candidate package; local runner is a lexical proxy",
+  "tier_1_paper_provenance": {
+    "title": "Defending against Indirect Prompt Injection by Instruction Detection",
+    "authors": "Tongyu Wen et al.",
+    "venue": "Findings of EMNLP 2025",
+    "year": 2025,
+    "doi": "10.18653/v1/2025.findings-emnlp.1060",
+    "paper_url": "https://aclanthology.org/2025.findings-emnlp.1060/",
+    "arxiv_url": "https://arxiv.org/abs/2505.06311",
+    "local_pdf_workspace_relative": "workspaces/truongnv/References/Wen_2025_InstructDetector_Findings_EMNLP.pdf"
+  },
+  "tier_2_code_provenance": {
+    "upstream_code_url": "https://github.com/MYVAE/Instruction-detection",
+    "upstream_directory": "upstream/",
+    "revision": null,
+    "status": "upstream pointer present; exact commit and local tree comparison not recorded"
+  },
+  "tier_3_dataset_provenance": {
+    "datasets_url": "https://github.com/microsoft/BIPIA",
+    "local_datasets": [],
+    "status": "withdrawn_unverified_local_data",
+    "note": "The local BIPIA proxy subsets and dependent outputs were removed on 2026-09-29; upstream data remain reference material only."
+  },
+  "tier_4_verification": {
+    "status": "PARTIAL",
+    "note": "URL/existence checks do not prove source-tree or dataset equivalence; local classifier runner is TF-IDF/Logistic Regression proxy."
+  }
+}

@@ -18,7 +18,7 @@
     "title": "PromptShield: Deployable Detection for Prompt Injection Attacks",
     "venue": "ACM Conference on Data and Application Security and Privacy (CODASPY 2025) / ACM CCS 2024",
     "arxiv": "https://arxiv.org/abs/2410.05260",
-    "local_pdf": "papers/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf"
+    "local_pdf": "papers/Jacob_2025_PromptShield_Deployable_Detection_CODASPY.pdf"
   },
   "dataset_hub": "https://huggingface.co/datasets/hendzh/PromptShield",
   "license": "Apache-2.0",

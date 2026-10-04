@@ -103,7 +103,7 @@
 2. **Ngăn Chặn Triển Khai Mã Nguồn Sớm (Anti-Premature Action)**:
    - Khi task được giao chỉ yêu cầu khảo sát hoặc đo đạc baseline (Chapter 2), **CẤM TUYỆT ĐỐI** việc viết mã nguồn mô hình cascade/champion của nhóm, tạo thư mục `src/models/cascade/`, hoặc viết module phân mảnh nâng cao.
 3. **Giám Sát Danh Mục Deprecations**:
-   - Kiểm soát và loại bỏ ngay lập tức mọi đề cập đến các công nghệ đã bị loại trừ trong [`ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md) như INT8 Quantization, ONNX Runtime optimization, hay White-box KV-cache steering.
+   - Kiểm soát và loại bỏ ngay lập tức mọi đề cập đến các công nghệ đã bị loại trừ tại [Mục 4, Rule 02](file:///d:/Work/Do-an/.agents/rules/rule-02-task-scope-and-milestone-enclosure.md), như INT8 Quantization, ONNX Runtime optimization, hay White-box KV-cache steering.
 4. **Cưỡng Chế Cấu Trúc Báo Cáo Chuẩn Mực (Report Governance Enforcement)**:
    - Mọi báo cáo tiến độ bắt buộc phải mở đầu bằng mục **Scope Boundary Declaration** (Tuyên bố ranh giới nhiệm vụ) và kết thúc bằng **Scope Compliance Checklist**.
 5. **Định Tuyến Tài Liệu Nháp Theo Sandbox Đang Làm Việc**:

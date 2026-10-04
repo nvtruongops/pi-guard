@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "download_policy": "Download public model artifacts from the exact Hugging Face Hub commit SHA; load only the locally cached Transformers checkpoint; no model is initialized from random weights.",
+  "inference_protocol": {
+    "task": "binary prompt-injection classification",
+    "batch_size": 16,
+    "max_input_tokens": 512,
+    "decision_rule": "checkpoint argmax; published class labels normalized to benign=0 and injection=1",
+    "weights_format": "native Transformers safetensors where available; no ONNX, quantization, or exported runtime"
+  },
+  "models": [
+    {
+      "key": "PIGuard",
+      "repo_id": "leolee99/PIGuard",
+      "revision": "dd78b24e330193a22d2293ac66922dd4f982f563",
+      "license": "mit",
+      "source": "https://huggingface.co/leolee99/PIGuard",
+      "training_provenance_note": "Published PIGuard checkpoint; cite its model card/paper. Treat scores on PIGuard D1 as in-source validation, not an external test."
+    }
+  ],
+  "withdrawn_models": [
+    {
+      "key": "ProtectAI",
+      "repo_id": "protectai/deberta-v3-base-prompt-injection-v2",
+      "revision": "90c9989b1a342275dd0d1a95aad283c04e075671",
+      "withdrawal_note": "Withdrawn and physically removed on 2026-10-02; lacks paper+repo pairing (self-cited as @misc)."
+    },
+    {
+      "key": "FMOPSDistilBERT",
+      "repo_id": "fmops/distilbert-prompt-injection",
+      "revision": "c5da1fefd33c98c447b50dd806fe86aeb9e8c26c",
+      "withdrawal_note": "Withdrawn and physically removed on 2026-10-02; DistilBERT architecture, lacks paper/training repository."
+    },
+    {
+      "key": "DeepSetDeBERTa",
+      "repo_id": "deepset/deberta-v3-base-injection",
+      "revision": "80dda00d0b0d9a03917a7685e2ddbcd28e04dbb1",
+      "withdrawal_note": "Withdrawn and physically removed on 2026-10-02; lacks original research paper and training repository."
+    },
+    {
+      "key": "InjectionSentry",
+      "repo_id": "Verm1ion/injection-sentry-deberta-v2",
+      "revision": "956b7e581e08615c824abbc877cb6461fcd8fa28",
+      "withdrawal_note": "Withdrawn and physically removed on 2026-10-02; cites GitHub PR Lakera PINT #35 rather than peer-reviewed paper."
+    },
+    {
+      "key": "WolfDefenderSmall",
+      "repo_id": "patronus-studio/wolf-defender-prompt-injection-small",
+      "revision": "bcab2eff97bcabd7227849639e2d0d7a61b46c92",
+      "withdrawal_note": "Withdrawn and physically removed on 2026-10-02; ModernBERT architecture, lacks original research paper."
+    }
+  ]
+}

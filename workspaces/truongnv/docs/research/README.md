@@ -1,129 +1,22 @@
-# Phân Hệ Nghiên Cứu Khoa Học Kỹ Thuật (PI-Guard Research Hub)
+# PI-Guard Research Notes
 
-Chào mừng bạn đến với **Phân hệ Nghiên cứu Khoa học Kỹ thuật (Research Hub)** của đồ án **PI-Guard** tại [`workspaces/truongnv/docs/research/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/).
+Thư mục này chứa ma trận lựa chọn mô hình, ghi chú trạng thái bằng chứng và các bản lưu trữ. Nó không thay thế báo cáo thực nghiệm chuẩn trong `reports/` hoặc `replications/`.
 
-Toàn bộ các tài liệu trong phân hệ này được xây dựng theo nguyên tắc **100% Academic Grounding**, bám sát 18 bài báo khoa học bình duyệt chuẩn mực (NeurIPS, ICLR, ACM CCS, IEEE S&P) và các tiêu chuẩn bảo mật AI quốc tế (**NIST AI 100-2e2025**, **OWASP LLM01:2025**).
+## Tài liệu đang dùng
 
----
+- [Kiến trúc ingress Review 1 lần 2](../../reports/report%20for%20review%201%20lan%202/README.md): nguồn chuẩn cho đề xuất L1/L2/L3/API; không phải bằng chứng triển khai hoặc đánh giá.
+- [Ma trận lựa chọn DeBERTa-v3](./dossiers/04_DEBERTA_MODEL_SELECTION_MATRIX.md): tách thông tin từ model card/paper khỏi đề xuất mô hình của nhóm; chưa có kết quả fine-tune PI-Guard.
+- [Trạng thái SOTA và bằng chứng baseline](./dossiers/03_SOTA_SURVEY_AND_6BASELINES.md): giới hạn các kết quả cục bộ được giữ lại; các bảng sáu baseline/D1–D6 cũ đã bị rút.
+- [Trạng thái provenance dữ liệu](./dossiers/04_DATA_ENGINEERING_PROVENANCE.md): ghi lại nguồn dữ liệu, kết quả và những gói đã bị rút.
+- [PIDS-Bench: paper và mức phù hợp với PI-Guard](./dossiers/05_PIDS_BENCH_PAPER_FIT.md): hard-benign, hard-negative, provenance và giới hạn khi suy rộng sang cascade.
+- [Audit cấu trúc thư mục research (snapshot 01/10/2026)](./RESTRUCTURE_AUDIT_2026-10-01.md): chỉ ghi nhận cấu trúc research tại ngày đó; không thay thế proposal kiến trúc hiện hành.
 
-## 🏛️ KIẾN TRÚC 3 TẦNG TÀI LIỆU NGHIÊN CỨU & NGUỒN CHÂN LÝ DUY NHẤT (SSOT)
+## Tài liệu lưu trữ
 
-Toàn bộ hệ thống tài liệu nghiên cứu của phân hệ Trưởng nhóm (`truongnv`) được tái cấu trúc theo mô hình **Kim Tự Tháp 3 Tầng (3-Tier Documentation Pyramid)** nhằm triệt tiêu sự trùng lặp (DRY Principle) và đảm bảo tính truy xuất nguồn gốc học thuật minh bạch 100%:
+Các tệp trong [`archive/`](./archive/) là thông báo thu hồi bản nháp cũ và demo mô phỏng đã rút khỏi luồng hoạt động; không dùng chúng làm nguồn lý thuyết hoặc bằng chứng hiệu năng. Chỉ khôi phục một luận điểm sau khi đối chiếu paper gốc hoặc bằng chứng thực nghiệm tương ứng.
 
-```text
-               ▲
-              / \     TẦNG 1: 5 CANONICAL TECHNICAL DOSSIERS (Single Source of Truth)
-             /   \    docs/research/dossiers/ (01 -> 05)
-            /-----\
-           /       \  TẦNG 2: BÁO CÁO CỘT MỐC HỘI ĐỒNG & REVIEW 1 (Milestones)
-          /         \ reports/REVIEW_1_REPORT.md & tasks_for_meeting_5, 6
-         /-----------\
-        /             \ TẦNG 3: CHUYÊN ĐỀ Y VĂN CHI TIẾT & CHỨNG TÍCH LỊCH SỬ (Foundations)
-       /               \ docs/research/ (8 Chuyên đề gốc) & replications/ (11 mô hình)
-      /-----------------\
-```
+## Demo đã rút khỏi luồng hoạt động
 
-> 📜 **Bản đồ Truy xuất Nguồn gốc Toàn diện**: Xem toàn bộ cây phả hệ học thuật, căn cứ thực nghiệm và y văn đối chuẩn tại [`DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md).
+- [demo_deberta_v3_random_simulation.py](./archive/demo_deberta_v3_random_simulation.py) chỉ tạo ma trận ngẫu nhiên để minh họa và mô phỏng INT8; nó không nạp hay chạy DeBERTa thật, còn INT8 nằm ngoài phạm vi kiến trúc hiện hành. Không dùng file này làm benchmark, dẫn chứng hoặc hướng dẫn huấn luyện.
 
----
-
-## 💎 TẦNG 1: 5 HỒ SƠ KỸ THUẬT CHUẨN MỰC (CANONICAL TECHNICAL DOSSIERS)
-
-Mỗi hồ sơ kỹ thuật dưới đây là **Nguồn Chân Lý Duy Nhất (SSOT)** cho từng trụ cột nghiên cứu của đồ án, được tổng hợp cô đọng từ các nhiệm vụ tiền thân và tích hợp khối Derivation Header kiểm chứng nguồn gốc:
-
-| Mã Hồ Sơ | Tên Hồ Sơ Kỹ Thuật (Canonical Dossier) | Phạm Vi & Định Vị Học Thuật | Nguồn Tiền Thân & Căn Cứ Thực Nghiệm |
-| :---: | :--- | :--- | :--- |
-| **Dossier 01** | [`01_MATHEMATICAL_FOUNDATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/01_MATHEMATICAL_FOUNDATIONS.md) | Cơ sở lý thuyết, Hình thức hóa toán học ranh giới phẳng $X = S \mathbin{\Vert} U$, Đảo quyền chú ý Attention Inversion, 4 tầng thiệt hại doanh nghiệp & 3 Câu hỏi nghiên cứu RQ1–RQ3. | Task 1 Meeting 5 + Supplementary Deep-Dive + Track 1 Deep Research. Y văn: Perez & Ribeiro `[3]`, Greshake et al. `[4]`. |
-| **Dossier 02** | [`02_THREAT_MODEL_AND_8KEYS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/02_THREAT_MODEL_AND_8KEYS.md) | Khung mô hình hiểm họa 5 trục NIST AI 100-2e2025, Bề mặt duy nhất cổng REST API, Sequence diagram kiểm tra trung gian toàn diện, và Ma trận phủ kín 8 Key tấn công. | Task 2 Meeting 5 + Meeting 6 Sec 01 + Track 2 Deep Research. Y văn: Saltzer & Schroeder (1975), NIST AI `[7]`, OWASP `[8]`. |
-| **Dossier 03** | [`03_SOTA_SURVEY_AND_6BASELINES.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/03_SOTA_SURVEY_AND_6BASELINES.md) | Phễu lựa chọn khoa học 5 bước (41 $\to$ 16 $\to$ 11 $\to$ 9 $\to$ 6), Bảng đối chuẩn thực nghiệm 6 baseline đại diện 5 trường phái, Phân tích tử huyệt kỹ thuật chứng minh tính tất yếu của Two-Tier Cascade. | Task 2.5 Meeting 5 + Meeting 6 Sec 01-02 + Track 3 Deep Research. 100% Un-mocked benchmarks trên D1–D6. |
-| **Dossier 04** | [`04_DATA_ENGINEERING_PROVENANCE.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/04_DATA_ENGINEERING_PROVENANCE.md) | Thu thập kho dữ liệu 45,000+ mẫu đa nguồn, Báo cáo kiểm toán 100% SHA-256 trên 25 tệp dữ liệu, Thuật toán Group-Aware Splitting khử rò rỉ dữ liệu cụm, và Vai trò kiểm chuẩn NotInject D6. | Task 3 Meeting 5 + Meeting 6 Sec 04 + Track 4 Deep Research. Script `audit_datasets_provenance_deep.py`. |
-| **Dossier 05** | [`05_ARCHITECTURAL_DEPRECATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/05_ARCHITECTURAL_DEPRECATIONS.md) | Đóng băng kiến trúc chính thức, Danh mục các chủ đề loại bỏ tuyệt đối (INT8, ONNX, White-Box KV-Cache, Generative Guardrails) và Bộ câu hỏi phản biện bảo vệ trước Hội đồng FPT. | `ARCHITECTURAL_DEPRECATIONS...md` + Meeting 6 Sec 02 & Defense Strategy. Rule 02, Rule 05 governance. |
-
----
-
-## 📚 TẦNG 3: CÁC CHUYÊN ĐỀ NGHIÊN CỨU CHI TIẾT (THEMATIC STUDY SUITES)
-
-Dành cho các thành viên và Giảng viên hướng dẫn muốn tra cứu các chứng minh toán học nguyên bản, phân tích từng họ payload hoặc lịch sử tiến hóa:
-
-### 1. 🔤 Chuyên Đề 1: Prompt Study ([`prompt_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/prompt_study/))
-Nghiên cứu bản chất vật lý của LLM, cơ chế sinh token tự hồi quy và lỗ hổng ranh giới phẳng:
-- [`01_llm_foundations_and_token_generation.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/prompt_study/01_llm_foundations_and_token_generation.md): Cơ sở toán học Transformer Causal Decoder, Cross-entropy Loss và ranh giới không phân tách giữa mã lệnh và dữ liệu.
-- [`02_prompt_structure_and_chat_formats.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/prompt_study/02_prompt_structure_and_chat_formats.md): Cấu trúc prompt tiêu chuẩn, các định dạng hội thoại (ChatML, Llama-3 Template) và phân tích nguy cơ vượt rào qua token đặc biệt (`<|im_start|>`).
-- [`03_instruction_hierarchy_and_flat_boundary.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/prompt_study/03_instruction_hierarchy_and_flat_boundary.md): Lý thuyết phân cấp chỉ thị (Instruction Hierarchy), lỗ hổng Flat Token Space và mô hình hóa xung đột $X = S \mathbin{\Vert} U$.
-- [`04_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/prompt_study/04_resources_and_papers.md): Danh mục tài liệu học thuật và bài báo gốc về Transformer & Instruction Tuning.
-
----
-
-### 2. 🛡️ Chuyên Đề 2: Attack Study ([`attack_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/))
-Nghiên cứu toàn diện về cơ chế tấn công Prompt Injection và bẻ khóa Jailbreak:
-- **`00_overview_threat_and_scope/`**:
-  - [`history_and_evolution.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/00_overview_threat_and_scope/history_and_evolution.md): Lịch sử tiến hóa từ Causal LM thuần túy đến Instruction-Tuned RLHF và sự xuất hiện của các vector tấn công prompt.
-  - [`scope_and_boundary_analysis.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/00_overview_threat_and_scope/scope_and_boundary_analysis.md): Phân định phạm vi đề tài, ranh giới giữa kiểm tra văn bản đầu vào (Text-level Guardrail) và các tấn công trọng số/phần cứng.
-- **`01_prompt_injection/`**:
-  - [`how_it_works_and_mechanisms.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/01_prompt_injection/how_it_works_and_mechanisms.md): Cơ chế ghi đè mục tiêu (Goal Hijacking), rò rỉ dữ liệu (Prompt Leaking) qua phép nối chuỗi $X = S \mathbin{\Vert} U$.
-  - [`taxonomy_and_variants.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/01_prompt_injection/taxonomy_and_variants.md): Phân loại 13 biến thể Direct vs. Indirect Prompt Injection (Web, PDF, API, SQL).
-  - [`resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/01_prompt_injection/resources_and_papers.md): Danh mục bài báo bình duyệt về Prompt Injection (Greshake et al., Perez & Ribeiro).
-- **`02_modern_jailbreak_attacks/`**:
-  - [`archetypes_and_mechanisms.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/02_modern_jailbreak_attacks/archetypes_and_mechanisms.md): 4 trường phái Jailbreak kinh điển: DAN (Do Anything Now), Nhập vai đối lập (Roleplay), Giả lập máy ảo Linux (VM), và Biến đổi mật mã (Cipher).
-  - [`datasets_benchmarks_and_taxonomy.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/02_modern_jailbreak_attacks/datasets_benchmarks_and_taxonomy.md): Master Taxonomy 10 họ Jailbreak, bộ dữ liệu chuẩn Shen et al. và AdvGLUE.
-  - [`advanced_variants_and_operators.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/02_modern_jailbreak_attacks/advanced_variants_and_operators.md): Kỹ thuật tấn công tiên tiến: Many-shot Jailbreaking (Anthropic), GCG tự động (Zou et al.) và 26 Toán tử tấn công của Tencent Zhuque Lab (2026).
-  - [`resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/02_modern_jailbreak_attacks/resources_and_papers.md): Tài liệu học thuật và open-access PDF về Jailbreak.
-
----
-
-### 3. 🎯 Chuyên Đề 3: Threat & Defense Study ([`threat_and_defense_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/threat_and_defense_study/))
-Mô hình hóa đe dọa và kiến trúc bảo vệ đa tầng:
-- [`01_threat_model_and_attack_surface.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/threat_and_defense_study/01_threat_model_and_attack_surface.md): Mô hình đe dọa chuẩn mực (NIST AI 100-2e2025, OWASP LLM01:2025, STRIDE / DREAD định lượng), 3 hồ sơ Attacker và 4 điểm chạm Attack Surface.
-- [`02_multi_layer_defense_architecture.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/threat_and_defense_study/02_multi_layer_defense_architecture.md): Phân tích chi tiết 3 lớp phòng thủ (Lớp 1 PI-Guard Input Gateway, Lớp 2 Target LLM Enclosure, Lớp 3 Output Sanitizer & Canary Token) tuân thủ nguyên lý Saltzer & Schroeder (1975).
-- [`03_comparative_matrix_and_tradeoffs.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/threat_and_defense_study/03_comparative_matrix_and_tradeoffs.md): Ma trận so sánh định lượng 6 giải pháp bảo vệ và phân tích sâu 3 đánh đổi cốt lõi (Bảo mật vs Độ trễ vs False Positive Rate).
-- [`04_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/threat_and_defense_study/04_resources_and_papers.md): Bảng 10 công trình khoa học nền tảng, video bài giảng oEmbed và mã nguồn Python mẫu thực nghiệm 3 lớp phòng thủ.
-
----
-
-### 4. 📊 Chuyên Đề 4: Dataset & Benchmark Study ([`dataset_and_benchmark_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dataset_and_benchmark_study/))
-Kỹ thuật dữ liệu, chống rò rỉ và phân chia mẫu đánh giá:
-- [`01_data_curation_and_class_balance.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dataset_and_benchmark_study/01_data_curation_and_class_balance.md): Thu thập đa nguồn (Deepset, JailbreakBench, BeaverTails), lọc trùng lặp ngữ nghĩa (MinHash LSH), cân bằng tỷ lệ nhãn và chiến lược dữ liệu thực tế.
-- [`02_group_aware_splitting_and_ood.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dataset_and_benchmark_study/02_group_aware_splitting_and_ood.md): Kỹ thuật Group-Aware Splitting ngăn ngừa Data Leakage giữa các biến thể prompt diễn giải (paraphrases) và thiết lập tập kiểm thử ngoại miền (OOD Test Set).
-- [`03_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dataset_and_benchmark_study/03_resources_and_papers.md): Danh mục bộ dữ liệu công khai, liên kết Hugging Face và chuẩn đánh giá.
-
----
-
-### 5. 🔬 Chuyên Đề 5: Model Study ([`model_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/model_study/))
-Toán học và cơ chế hoạt động của mô hình cơ sở cú pháp và Transformer ngữ nghĩa:
-- **`01_tfidf_syntactic_baseline/`**:
-  - [`theory_and_math.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/model_study/01_tfidf_syntactic_baseline/theory_and_math.md): Cơ sở toán học TF-IDF, Character n-grams (`char_wb`), định lý Luhn (1958), Spärck Jones (1972) và Jain et al. (2023).
-  - [`how_it_works_and_usage.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/model_study/01_tfidf_syntactic_baseline/how_it_works_and_usage.md): Hướng dẫn tiền xử lý, trích xuất đặc trưng và tối ưu hóa bộ phân loại tuyến tính (LogisticRegression / LinearSVC).
-  - [`resources_and_videos.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/model_study/01_tfidf_syntactic_baseline/resources_and_videos.md): Tài liệu tham khảo và video bài giảng về TF-IDF.
-- **`02_deberta_v3_semantic_classifier/`**:
-  - [`theory_and_math.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/model_study/02_deberta_v3_semantic_classifier/theory_and_math.md): Toán học Disentangled Attention (He et al., ICLR 2023), Enhanced Mask Decoder và Lượng hóa động ONNX INT8 (Yao et al., NeurIPS 2022).
-  - [`how_it_works_and_usage.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/model_study/02_deberta_v3_semantic_classifier/how_it_works_and_usage.md): Fine-tuning chiến lược với Weighted Cross-Entropy Loss và xuất mô hình ONNX Runtime.
-  - [`resources_and_videos.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/model_study/02_deberta_v3_semantic_classifier/resources_and_videos.md): Tài liệu học thuật và tài nguyên trực quan về DeBERTa-v3.
-- **`03_two_tier_pipeline_coordination/`**:
-  - [`how_it_works_and_architecture.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/model_study/03_two_tier_pipeline_coordination/how_it_works_and_architecture.md): Nguyên lý kiến trúc phối hợp Cascade: Tier 1 Fast Filter (< 2ms) chặn 70-80% truy vấn rõ ràng, Tier 2 Deep Semantic Resolver (< 25ms) thẩm định vùng nghi vấn.
-  - [`benchmark_and_tradeoffs.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/model_study/03_two_tier_pipeline_coordination/benchmark_and_tradeoffs.md): Bảng phân tích thực nghiệm so sánh phương án đơn lẻ vs. kiến trúc kép phối hợp.
-
----
-
-### 6. 🧱 Chuyên Đề 6: Robustness Study ([`robustness_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/robustness_study/))
-Nghiên cứu độ bền đối kháng và các kỹ thuật lẩn tránh bộ lọc:
-- [`01_theory_and_evasion_mechanisms.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/robustness_study/01_theory_and_evasion_mechanisms.md): Cơ sở lý thuyết lỗ hổng phân mảnh token (BPE / WordPiece) và 3 kỹ thuật lẩn tránh cốt lõi: Leetspeak, Base64/Hex encoding, và Zero-width Spacing.
-- [`02_defense_architecture_and_mitigation.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/robustness_study/02_defense_architecture_and_mitigation.md): Kiến trúc phòng thủ đối kháng 3 tầng: Tầng 0 Tiền xử lý chuẩn hóa Unicode & Heuristic decoder, Tầng 1 Sub-word n-grams, Tầng 2 Huấn luyện tăng cường mẫu đối kháng (Adversarial Data Augmentation).
-- [`03_benchmarks_metrics_and_tradeoffs.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/robustness_study/03_benchmarks_metrics_and_tradeoffs.md): Hệ thống chỉ số đánh giá độ bền ($\Delta F_1$, Attack Success Rate under Perturbation - ASR, FPR Shift) và bảng đối sánh định lượng.
-- [`04_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/robustness_study/04_resources_and_papers.md): Tài liệu học thuật chuẩn mực và hướng dẫn chạy mã nguồn kiểm thử độ bền.
-
----
-
-### 7. ⚖️ Chuyên Đề 7: Evaluation & Trade-off Study ([`evaluation_and_tradeoff_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/evaluation_and_tradeoff_study/))
-Kinh tế học False Positive và tối ưu hóa đa mục tiêu:
-- [`01_false_positive_economics_and_ux.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/evaluation_and_tradeoff_study/01_false_positive_economics_and_ux.md): Phân tích thiệt hại kinh tế của False Positive trong môi trường doanh nghiệp (User Churn, Support Ticket Cost) và luận giải khoa học cho ngưỡng bắt buộc $\text{FPR} < 1.5\%$.
-- [`02_pareto_frontier_and_system_tradeoffs.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/evaluation_and_tradeoff_study/02_pareto_frontier_and_system_tradeoffs.md): Mô hình hóa đường biên Pareto tối ưu 3 chiều giữa Độ chính xác phát hiện (F1 / Recall), Tỷ lệ báo động giả (FPR) và Độ trễ tính toán (P95 Latency).
-- [`03_resources_and_papers.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/evaluation_and_tradeoff_study/03_resources_and_papers.md): Tài nguyên nghiên cứu về Pareto Optimization và phân tích chi phí an ninh thông tin.
-
----
-
-### 8. 🔍 Chuyên Khảo Đối Chuẩn SOTA ([`comparative_analysis/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/comparative_analysis/))
-Các báo cáo phân tích chuyên sâu hỗ trợ quyết định kiến trúc:
-- [`State_of_the_Art_Guardrail_and_Jailbreak_Benchmarks_Analysis.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/comparative_analysis/State_of_the_Art_Guardrail_and_Jailbreak_Benchmarks_Analysis.md): Phân tích toàn cảnh các giải pháp Guardrail hàng đầu thế giới (Llama Guard, NeMo Guardrails, Guardrails AI, Lakera Guard) và chỉ rõ khoảng trống công nghệ mà PI-Guard lấp đầy.
-- [`Target_LLM_API_Benchmark_and_Vulnerability_Analysis.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/comparative_analysis/Target_LLM_API_Benchmark_and_Vulnerability_Analysis.md): Đánh giá lỗ hổng thực nghiệm trên các API LLM phổ biến (OpenAI GPT-4o, Anthropic Claude 3.5, Google Gemini 1.5, Meta Llama 3) khi chưa có lớp bảo vệ.
-- [`Tencent2026_Paper_Analysis_and_Mapping_to_PIGuard.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/comparative_analysis/Tencent2026_Paper_Analysis_and_Mapping_to_PIGuard.md): Phân tích chuyên sâu công trình nghiên cứu của Tencent Zhuque Lab (2026) về 26 Toán tử tấn công Jailbreak và ánh xạ vào tập luật đánh giá của PI-Guard.
-- [`Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/comparative_analysis/Why_Dual_Model_Architecture_TFIDF_and_DeBERTaV3.md): Luận giải khoa học và thực nghiệm chứng minh vì sao kiến trúc phối hợp Hybrid TF-IDF + DeBERTa-v3 vượt trội so với các kiến trúc đơn lẻ.
+Demo TF-IDF dùng 12 câu viết sẵn và tự fit một cấu hình `char_wb`/Logistic Regression đã được gỡ vì không tái lập giao thức của một benchmark/paper cụ thể. Điều này không có nghĩa TF-IDF thiếu tài liệu tham khảo: baseline TF-IDF có paper-matched evidence vẫn được ghi tại [báo cáo PIDS-Bench](../../replications/PIDS_Bench_Shire_IEEEAccess2026/REPORT.md).

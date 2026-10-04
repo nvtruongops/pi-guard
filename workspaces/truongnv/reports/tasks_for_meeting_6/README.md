@@ -1,152 +1,16 @@
-# BỔ TRỢ HỌC THUẬT & THỰC NGHIỆM ĐỘC LẬP BÁO CÁO TIẾN ĐỘ MEETING 6 (TUẦN TỪ 20/09 ĐẾN 26/09/2026)
-## HỆ THỐNG TÀI LIỆU, MÃ NGUỒN VÀ DỮ LIỆU ĐO ĐẠC ĐÃ TÁI CẤU TRÚC TINH GỌN (ZERO REDUNDANCY ARCHITECTURE)
+# Meeting 6 — archive and evidence status
 
----
+## Scope Boundary Declaration
 
-> **Đơn vị thực hiện**: Đồ án Tốt nghiệp Kỹ sư An toàn Thông tin (IAP491) — Đại học FPT  
-> **Đề tài**: *A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (PI-Guard)*  
-> **Nhóm sinh viên thực hiện**: Nguyễn Văn Trường (`SE182034`), Nguyễn Quí Đức (`SE182087`), Phạm Minh Hoàng Việt (`SE181851`), Đỗ Đoàn Duy Phương (`SE180235`)  
-> **Giảng viên Hướng dẫn (GVHD)**: ThS. Trần Văn Ninh  
-> **Workspace tài nguyên thực thi**: [`workspaces/truongnv/reports/tasks_for_meeting_6/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/)  
-> **Bản trình chiếu PowerPoint chính thức (50 Slide)**: [`PI-GUARD-Present-Meeting-6.pptx`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/PI-GUARD-Present-Meeting-6.pptx)  
+- **IN-SCOPE:** status of Meeting 6 records, withdrawn artifacts, and local results that pass the same-paper pairing rule.
+- **OUT-OF-SCOPE:** restoring cross-paper benchmarks, using project-created inputs, or claiming the cascade was measured.
 
----
+> **Status:** the old Meeting 6 benchmark tables and D1–D6 matrix are withdrawn. They combine models and datasets from different papers, so they are not valid paper-matched results. Automatic approval review blocked deletion; the folders remain on disk and must not be cited or rerun. See [WITHDRAWN_DATA_ARTIFACTS.md](./WITHDRAWN_DATA_ARTIFACTS.md).
 
-> [!NOTE]
-> ### 🏛️ HỒ SƠ LƯU TRỮ LỊCH SỬ CỘT MỐC (HISTORICAL MILESTONE ARCHIVE - MEETING 6)
-> - **Vai trò tài liệu**: Đây là hồ sơ lưu trữ tiến độ nguyên bản tại thời điểm bảo vệ **Meeting 6 (26/09/2026)**. Tài liệu được giữ nguyên vẹn nhằm bảo toàn bằng chứng quá trình nghiên cứu và tương thích với công cụ kiểm toán QA tự động.
-> - **Nguồn chân lý chuẩn hóa (SSOT)**: Các phân tích sâu, ma trận tương thích 12x14 và số liệu benchmark tại đây đã được hệ thống hóa vào **5 Canonical Technical Dossiers**:
->   - Cơ sở toán học & 3 RQs: [`../../docs/research/dossiers/01_MATHEMATICAL_FOUNDATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/01_MATHEMATICAL_FOUNDATIONS.md)
->   - Mô hình hiểm họa 5D & 8 Keys: [`../../docs/research/dossiers/02_THREAT_MODEL_AND_8KEYS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/02_THREAT_MODEL_AND_8KEYS.md)
->   - Phễu khoa học 5 bước & 6 Baseline: [`../../docs/research/dossiers/03_SOTA_SURVEY_AND_6BASELINES.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/03_SOTA_SURVEY_AND_6BASELINES.md)
->   - Sổ bộ dữ liệu 100% SHA-256 & NotInject D6: [`../../docs/research/dossiers/04_DATA_ENGINEERING_PROVENANCE.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/04_DATA_ENGINEERING_PROVENANCE.md)
->   - Đóng băng kiến trúc & Chiến lược bảo vệ Hội đồng: [`../../docs/research/dossiers/05_ARCHITECTURAL_DEPRECATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/05_ARCHITECTURAL_DEPRECATIONS.md)
-> - **Cây phả hệ dẫn xuất**: Xem chi tiết tại [`../../docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md).
+## Current evidence
 
-> [!WARNING]
-> ### ⚠️ THÔNG BÁO QUAN TRỌNG VỀ ĐỊNH VỊ HỌC THUẬT & KHUNG KIẾN TRÚC ĐỀ XUẤT:
-> **Dành cho AI Agent và các thành viên nhóm**:
-> - Toàn bộ các đề xuất thử nghiệm trước đây về *Lượng tử hóa mô hình INT8 (ZeroQuant Yao et al. 2022)* hoặc *Tối ưu hóa trình biên dịch ONNX* đã **CHÍNH THỨC BỊ LOẠI TRỪ KHỎI PHẠM VI NGHIÊN CỨU CỐT LÕI (OUT-OF-SCOPE)** nhằm giữ vững ranh giới chuyên ngành An toàn Thông tin (IA).
-> - **Khung Kiến Trúc Hai Tầng Đề Xuất (Chương 3)**: Định hướng Tầng 2 là DeBERTa-v3 vận hành bằng **CPU Native FP32 nguyên bản** kết hợp cơ chế kháng Overdefense **Masked Overlap Fraction (MOF Invariance)** (kế thừa từ Hao Li et al. ACL 2025). Tầng 1 đóng vai trò sàng lọc sơ cấp hướng tới mục tiêu độ trễ P95 toàn trình trên CPU đạt < 30ms theo SLA mà không cần nén số học và không chịu sai số làm tròn.
-> - **NGHIÊM CẤM TÁI ĐƯA VÀO**: Tuyệt đối **KHÔNG** đưa từ khóa "INT8", "Lượng tử hóa" hoặc "ZeroQuant" vào các slide thuyết trình hoặc tài liệu kỹ thuật mới như kiến trúc áp dụng của đề tài.
-> - Xem chỉ dẫn tập trung tại: [`../ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md)
+- [Workspace provenance and metric audit](../experiment_reports/WORKSPACE_PROVENANCE_AUDIT_2026-09-30.md) lists checks, retained metrics, and residual folders.
+- [PIDS-Bench TF-IDF](../../replications/PIDS_Bench_Shire_IEEEAccess2026/REPORT.md) uses the same paper's baseline method and pinned data; test rows were matched to source.
+- [PIGuard-only run](../../replications/02_DeBERTa_v3_Semantic_Classifier/reports/review1_paper_model_public_rerun_2026-09-30/REPORT.md) retains only the checkpoint's results on assets released with PIGuard. The ProtectAI comparison is withdrawn.
 
----
-
-## 📌 1. BỐI CẢNH MEETING 5 & MỤC TIÊU HOÀN THÀNH MEETING 6
-
-Tại buổi họp tiến độ **Meeting 5 (ngày 19/09/2026)**, ThS. Trần Văn Ninh đã giao cho nhóm 5 nhiệm vụ nghiên cứu khoa học và thực nghiệm độc lập:
-1. **Phân tích cơ chế chia tầng & trích xuất đặc trưng**: Làm rõ cách thức mô hình phân tích block, chuỗi ký tự, n-gram từ/ký tự đến token;
-2. **Mở rộng không gian đánh giá đa chiều**: Đối chiếu với các công trình quốc tế SOTA như CASCADE (NUS 2026 [[41]](#ref41)) và PromptShield (ACM CCS 2024 [[30]](#ref30));
-3. **Xử lý văn bản lớn 200,000 ký tự & đòn tấn công giấu ở đuôi (Tail Injection)**: Chống lại lỗ hổng Prompt Overflow (Zhou et al., 2026 [[40]](#ref40));
-4. **Đóng gói pipeline thực tế & đo đạc các mô hình baseline trên CPU**: Đo đạc đối chuẩn các mô hình public trên 6 tập dữ liệu gốc D1-D6;
-5. **Chuẩn bị hồ sơ bảo vệ học thuật trước Hội đồng & đóng băng danh mục baseline**: Định vị rõ 5 Key phấn đấu cốt lõi và 3 Giới hạn ngoài tầm với, chính thức đóng băng danh mục baseline y văn.
-
-Toàn bộ các nhiệm vụ trên đã được hiện thực hóa $100\%$ và tổ chức thành **Kiến trúc Tinh gọn (Zero Redundancy)** gồm đúng 4 phân hệ tài liệu chuyên sâu và 4 phân hệ tài nguyên thực thi.
-
----
-
-## 🗂️ 2. BẢN ĐỒ KIẾN TRÚC THƯ MỤC SAU TÁI CẤU TRÚC (ZERO REDUNDANCY MAP)
-
-```text
-workspaces/truongnv/reports/tasks_for_meeting_6/
-├── README.md                                          # [CỔNG ĐIỀU HƯỚNG MASTER & ROADMAP CHỈ MỤC] (File này)
-│
-├── 01_theory_and_taxonomy/                            # [PHÂN HỆ 1: LÝ THUYẾT & PHÂN LOẠI HỌC MASTER]
-│   └── TAXONOMY_OF_ARCHITECTURES_AND_ALGORITHMIC_PARADIGMS.md
-│       └── Hệ sinh thái 41 papers, 6 họ/7 thuật toán, suy dẫn toán học 6x7 -> 12x14 và bảng ánh xạ xuất xứ 100%
-│
-├── 02_compatibility_and_tradeoffs/                    # [PHÂN HỆ 2: MA TRẬN TƯƠNG THÍCH]
-│   └── ARCHITECTURAL_COMPATIBILITY_MATRIX_CASCADE_12X14.md
-│       └── Ma trận tương thích hợp nhất (Nền tảng vĩ mô 6x7 + Mở rộng vi mô 12x14 = 168 điểm giao định lượng)
-│
-├── 03_reports_and_executive_briefs/                   # [PHÂN HỆ 3: HỒ SƠ BÁO CÁO ĐIỀU HÀNH & BẢO VỆ HỘI ĐỒNG]
-│   ├── SLIDE_DECK_MEETING_6.md                        # Khung Slide Báo cáo Tiến độ Meeting 6
-│   ├── EXECUTIVE_PROGRESS_REPORT_MEETING_6.md         # Báo cáo tiến độ điều hành Meeting 6 chuẩn Markdown (Un-mocked)
-│   └── COUNCIL_DEFENSE_RATIONALE_AND_GAP_AUDIT.md     # Hồ sơ Gap Audit 8 bước, 5 Key phấn đấu, 3 Giới hạn ngoài tầm với, Đóng băng baseline
-│
-├── 04_benchmarks_and_data/                            # [PHÂN HỆ 4: DỮ LIỆU ĐO ĐẠC SỐ HÓA JSON & CATALOG]
-│   ├── README.md                                      # Catalog giải thích nguồn gốc, generator script & schema file JSON
-│   ├── compatibility_matrix_6x7.json                  # Dữ liệu số hóa 42 giao điểm ma trận vĩ mô 6x7
-│   ├── compatibility_matrix_expanded_12x14.json       # Dữ liệu số hóa 168 giao điểm ma trận mở rộng 12x14
-│   ├── grounded_empirical_matrix.json                 # Dữ liệu đối chuẩn các mô hình thực nghiệm CPU
-│   ├── cross_dataset_empirical_matrix.json            # Dữ liệu kiểm thử chéo các mô hình trên D1-D6 (Un-mocked, Wilson CIs)
-│   ├── comprehensive_empirical_benchmark_suite.json   # Dữ liệu tổng hợp tải và độ trễ CPU
-│   ├── experimental_models_benchmark_report.json      # Báo cáo đo đạc chi tiết các baseline thử nghiệm
-│   └── public_triad_empirical_benchmark.json          # Báo cáo kiểm chứng nguyên tắc Bộ Ba Công Khai
-│
-├── data/                                              # [DỮ LIỆU KIỂM THỬ THỰC TẾ]
-│   ├── sample_benign_200k.txt                         # Mẫu văn bản lành tính 200,000 ký tự
-│   ├── sample_malicious_tail_200k.txt                 # Mẫu văn bản 200,000 ký tự có cấy payload ở cuối
-│   └── cross_dataset_suite/                           # Bộ 6 tập dữ liệu kiểm thử y văn gốc D1-D6 (520 mẫu)
-│
-├── figures/                                           # [BỘ BIỂU ĐỒ TRỰC QUAN HÓA KHOA HỌC PUBLICATION-QUALITY]
-├── figures_en/                                        # [BỘ BIỂU ĐỒ TRỰC QUAN HÓA TIẾNG ANH]
-│
-└── scripts/                                           # [BỘ SCRIPT TÍNH TOÁN & KIỂM TOÁN TỰ ĐỘNG]
-    ├── inspect_meeting_6_rigor.py                     # Script kiểm toán 100% neo HTML, link PDF cục bộ & thuật ngữ
-    ├── calculate_compatibility_matrix.py              # Script tính toán ma trận 6x7
-    ├── calculate_expanded_compatibility_matrix.py     # Script tính toán ma trận 12x14
-    ├── run_cross_dataset_benchmark.py                 # Script chạy kiểm thử chéo D1-D6
-    └── prepare_cross_dataset_suite.py                 # Script chuẩn bị bộ dữ liệu testbed
-```
-
-*(Lưu ý: Mã nguồn mô hình y văn baselines đặt tại `workspaces/truongnv/src/models/` và `replications/`, bộ kiểm thử đặt tại `workspaces/truongnv/tests/`)*.
-
----
-
-## 📊 3. TỔNG HỢP CÁC BẰNG CHỨNG THỰC NGHIỆM ĐÃ KIỂM ĐỊNH
-
-### 3.1. Đối Chuẩn Hiệu Năng Các Mô Hình Y Văn Nền Tảng (Chapter 2 Literature Baselines)
-Dữ liệu trích xuất từ [`comprehensive_empirical_benchmark_suite.json`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/04_benchmarks_and_data/comprehensive_empirical_benchmark_suite.json):
-
-| Mô Hình Đánh Giá | Direct Recall (%) | Indirect Recall (%) | Jailbreak Recall (%) | Benign FPR (%) *($\le 1.5\%$)* | Overdefense Acc (%) *(`NotInject`)* | CPU Latency P95 (ms) | Low-FPR TPR @ 1% |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **K1: PIGuard (ACL 2025)** [[18]](#ref18) | **$96.0\%$** | **$92.5\%$** | **$94.0\%$** | **$0.8\%$** | **$90.7\%$** | $24.5\text{ms}$ | $20.37\%$ |
-| **K2: DataSentinel (S&P 2025)** [[32]](#ref32) | $80.0\%$ | $20.0\%$ | $0.0\%$ | $10.0\%$ | $80.0\%$ | **$0.19\text{ms}$** | N/A |
-| **K3: PromptShield (CCS 2024)** [[30]](#ref30) | **$100.0\%$** | **$100.0\%$** | $85.0\%$ | **$0.0\%$** | **$100.0\%$** | **$4.11\text{ms}$** | **$100.0\%$** |
-| **K4: ModernBERT 8k (2024)** [[37]](#ref37) | **$100.0\%$** | **$100.0\%$** | $90.0\%$ | **$0.0\%$** | **$100.0\%$** | $11.67\text{ms}$ | $90.00\%$ |
-| **K6: Meta Prompt-Guard 86M** [[20]](#ref20) | $98.0\%$ | $80.0\%$ | $88.0\%$ | $0.5\%$ | 🔴 **$0.88\%$** *(SẬP)* | $22.1\text{ms}$ | 🔴 $12.78\%$ |
-| **K10: SmoothLLM (NeurIPS 2023)** [[14]](#ref14)| $35.0\%$ | $20.0\%$ | $92.0\%$ | $1.0\%$ | $85.0\%$ | 🔴 $5\times\text{ LLM}$ | N/A |
-
-### 3.2. Đề Xuất Chiến Lược Quét Văn Bản 200,000 Ký Tự (Tail-First Prioritized Scanning)
-- **Tài liệu sạch 100% (200k ký tự)**: Quét phân mảnh 512 tokens bằng bộ lọc nhẹ đảm bảo thời gian xử lý nhanh trên CPU.
-- **Tài liệu giấu mã độc ở cuối (Tail Injection)**: Cơ chế đề xuất Quét Ưu Tiên Đuôi-Đầu (Tail-First) kết hợp Early-Stopping nhằm phát hiện sớm payload độc hại giấu ở đuôi tài liệu theo chỉ đạo của GVHD.
-
----
-
-## ⚡ 4. HƯỚNG DẪN TÁI LẬP THỰC NGHIỆM ĐỘC LẬP (REPRODUCTION COMMANDS)
-
-Mọi giảng viên, sinh viên và phản biện đều có thể tái lập $100\%$ kết quả nghiên cứu bằng các lệnh CLI tiêu chuẩn:
-
-```powershell
-# 1. Chạy bộ kiểm toán học thuật tự động (100% neo HTML, link PDF cục bộ & blacklist thuật ngữ)
-python workspaces/truongnv/reports/tasks_for_meeting_6/scripts/inspect_meeting_6_rigor.py
-
-# 2. Xác thực 11 gói tái lập mô hình y văn công khai
-python workspaces/truongnv/replications/verify_replication_assets.py
-
-# 3. Tính toán lại toàn bộ Ma trận Tương thích 12x14 và xuất file JSON số hóa
-python workspaces/truongnv/reports/tasks_for_meeting_6/scripts/calculate_expanded_compatibility_matrix.py
-
-# 4. Chạy kiểm thử chéo các mô hình baseline trên 6 tập dữ liệu y văn gốc D1-D6
-python workspaces/truongnv/reports/tasks_for_meeting_6/scripts/run_cross_dataset_benchmark.py
-```
-
----
-
-## 📚 5. TÀI LIỆU THAM KHẢO CHÍNH THỨC (REFERENCES)
-
-* <a id="ref7"></a>**[7]** H. Inan, K. Upasani, J. Chi, et al. 2023. *Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations*. Meta AI. [arXiv:2312.06674](https://arxiv.org/abs/2312.06674). Local PDF: [`References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Meta_2023_Llama_Guard_Input_Output_Safeguard.pdf).
-* <a id="ref9"></a>**[9]** P. He, J. Yin, D. He, et al. 2023. *DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding*. In *ICLR 2023*. Local PDF: [`References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf).
-* <a id="ref10"></a>**[10]** G. Markov et al. / OpenAI. 2023. *A Holistic Approach to Undesired Content Detection in the Real World*. In *AAAI 2023*. Local PDF: [`References/OpenAI_2023_Undesired_Content_Detection.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/OpenAI_2023_Undesired_Content_Detection.pdf).
-* <a id="ref14"></a>**[14]** A. Robey, E. Wong, H. Hassani, and G. J. Pappas. 2023. *SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks*. In *NeurIPS 2023*. [arXiv:2310.03684](https://arxiv.org/abs/2310.03684). Local PDF: [`References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf).
-* <a id="ref16"></a>**[16]** J. H. Saltzer and M. D. Schroeder. 1975. *The Protection of Information in Computer Systems*. In *Proceedings of the IEEE*, 63(9):1278–1308. DOI: 10.1109/PROC.1975.9939. Local PDF: [`References/Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf).
-* <a id="ref18"></a>**[18]** H. Li, X. Liu, N. Zhang, and C. Xiao. 2025. *PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free*. In *ACL 2025 - Long Paper*. [arXiv:2410.22770](https://arxiv.org/abs/2410.22770). Local PDF: [`replications/Paper_ACL2025_PIGuard_HaoLi/papers/PIGuard_ACL2025_arXiv2410.22770.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Paper_ACL2025_PIGuard_HaoLi/papers/PIGuard_ACL2025_arXiv2410.22770.pdf).
-* <a id="ref20"></a>**[20]** Meta AI. 2024. *Prompt Guard 86M: A Small Classifier for Prompt Injection and Jailbreak Detection*. Model Card and Technical Report. [arXiv:2407.21783](https://arxiv.org/abs/2407.21783). Local PDF: [`replications/Tier1_Candidate_Meta_PromptGuard2024/papers/Meta_2024_PurpleLlama_PromptGuard.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/replications/Tier1_Candidate_Meta_PromptGuard2024/papers/Meta_2024_PurpleLlama_PromptGuard.pdf).
-* <a id="ref30"></a>**[30]** D. Jacob, H. Alzahrani, Z. Hu, B. Alomair, and D. Wagner. 2024. *PromptShield: Deployable Detection for Prompt Injection Attacks*. In *ACM CCS 2024*, pages 4247–4261. DOI: 10.1145/3714393.3726501. Local PDF: [`workspaces/truongnv/References/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Jacob_2024_PromptShield_Deployable_Detection_Prompt_Injection_CCS.pdf).
-* <a id="ref32"></a>**[32]** Y. Liu, Y. Jia, J. Jia, D. Song, and N. Z. Gong. 2025. *DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks*. In *IEEE S&P 2025*. Local PDF: [`workspaces/truongnv/References/Liu_2025_DataSentinel_Game_Theoretic_Detection_Prompt_Injection.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Liu_2025_DataSentinel_Game_Theoretic_Detection_Prompt_Injection.pdf).
-* <a id="ref37"></a>**[37]** B. Warner, A. Chaffin, B. Clavié, et al. 2024. *ModernBERT: Bringing Modern Transformer Innovations to Pre-trained Encoders*. [arXiv:2412.13663](https://arxiv.org/abs/2412.13663). Local PDF: [`workspaces/truongnv/References/Warner_2024_ModernBERT_Brings_Modern_Transformers_To_Encoders.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Warner_2024_ModernBERT_Brings_Modern_Transformers_To_Encoders.pdf).
-* <a id="ref38"></a>**[38]** I. Padhi et al. 2024. *Granite Guardian: Content Safety and Risk Detection*. IBM Research. [arXiv:2412.07724](https://arxiv.org/abs/2412.07724). Local PDF: [`References/Padhi_2024_Granite_Guardian_Content_Safety_Risk_Detection.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Padhi_2024_Granite_Guardian_Content_Safety_Risk_Detection.pdf).
-* <a id="ref40"></a>**[40]** Y. Zhou et al. 2026. *Prompt Overflow: Vulnerability in Asymmetric Context Windows of LLM Applications*. Local PDF: [`workspaces/truongnv/References/Zhou_2026_Prompt_Overflow_Guardrail_Window_Mismatch.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Zhou_2026_Prompt_Overflow_Guardrail_Window_Mismatch.pdf).
-* <a id="ref41"></a>**[41]** J. Luo and E. Han. 2026. *CASCADE Against Jailbreaks: Combination Across Stages with Controlled Attack-Defense Evaluation*. [arXiv:2609.21793](https://arxiv.org/abs/2609.21793). Local PDF: [`References/Luo_2026_CASCADE_Against_Jailbreaks_Evaluation.pdf`](file:///d:/Work/Do-an/workspaces/truongnv/References/Luo_2026_CASCADE_Against_Jailbreaks_Evaluation.pdf).
+No local result establishes a three-class PI-Guard model, a two-tier cascade, or achieved system P95/FPR targets.

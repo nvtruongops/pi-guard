@@ -1,59 +1,102 @@
-# WORKSPACE CÁ NHÂN — NGUYỄN VĂN TRƯỜNG (LEADER)
-**PI-Guard Capstone Project** | Quản lý dữ liệu, hồ sơ kỹ thuật và đồng quy thực nghiệm toàn nhóm.
+# PI-Guard — Workspace Kiến trúc & Nghiên cứu (Nguyễn Văn Trường)
+
+## Bản thảo luận văn hiện hành
+
+- [Chapter 1 — Introduction](docs/thesis/chapters/01_Introduction.md)
+- [Chapter 2 — Literature Review](docs/thesis/chapters/02_Literature_Review.md)
+- [Hướng dẫn đọc và nguồn](docs/thesis/README.md)
+
+Chào mừng đến với workspace chính của Trưởng nhóm Nghiên cứu (**Nguyễn Văn Trường** - `nvtruongops` / `SE182034`) thuộc đề tài Khóa luận Tốt nghiệp **PI-Guard** (FPT University - `IAP491`).
 
 ---
 
-### 🏛️ 1. HỆ THỐNG TÀI LIỆU KIM TỰ THÁP 3 TẦNG & NGUỒN CHÂN LÝ DUY NHẤT (SSOT):
+## 🏛️ 1. Bản đồ Kiến trúc Workspace (Architecture Map)
 
-Toàn bộ tài liệu báo cáo và nghiên cứu sâu được tổ chức theo kiến trúc Kim Tự Tháp 3 Tầng, bảo đảm không trùng lặp và có thể truy xuất nguồn gốc học thuật 100%:
-
-> 📜 **Bản đồ Phả hệ Dẫn xuất Học thuật**: [`docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/DOCUMENTATION_PROVENANCE_AND_DERIVATION_MATRIX.md)  
-> 💎 **5 Canonical Technical Dossiers (Tầng 1 SSOT)**:
-> 1. [`01_MATHEMATICAL_FOUNDATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/01_MATHEMATICAL_FOUNDATIONS.md): Hình thức hóa toán học ranh giới phẳng $X = S \mathbin{\Vert} U$ & 3 RQs.
-> 2. [`02_THREAT_MODEL_AND_8KEYS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/02_THREAT_MODEL_AND_8KEYS.md): Khung mô hình hiểm họa 5D NIST AI 100-2e2025 & Ma trận 8 Key.
-> 3. [`03_SOTA_SURVEY_AND_6BASELINES.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/03_SOTA_SURVEY_AND_6BASELINES.md): Phễu khoa học 5 bước & 6 Baseline thực nghiệm đối đầu trên D1–D6.
-> 4. [`04_DATA_ENGINEERING_PROVENANCE.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/04_DATA_ENGINEERING_PROVENANCE.md): Thu thập 45k mẫu, Kiểm toán 100% SHA-256 trên 25 tệp & Group-Aware Splitter.
-> 5. [`05_ARCHITECTURAL_DEPRECATIONS.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dossiers/05_ARCHITECTURAL_DEPRECATIONS.md): Đóng băng kiến trúc chính thức, Loại trừ INT8 & Chiến lược bảo vệ Hội đồng.
+```
+workspaces/truongnv/
+├── docs/                                          # Tài liệu học thuật & đặc tả hệ thống
+│   ├── architecture/                              # Threat model định tính & phương án kiến trúc
+│   │   ├── THREAT_MODEL_AND_ATTACK_SURFACE.md     # Mô hình mối đe dọa, tài sản và bề mặt tấn công
+│   │   ├── MULTI_LAYER_DEFENSE_ARCHITECTURE.md    # Đề xuất nhiều tầng; chưa được đánh giá end-to-end
+│   │   └── COMPARATIVE_MATRIX_AND_TRADEOFFS.md    # So sánh khái niệm; không xếp hạng phép chạy local
+│   ├── thesis/                                    # Cấu trúc Luận văn tốt nghiệp (Chapters 1–6)
+│   │   ├── README.md                              # Khung luận văn & tiêu chuẩn đánh giá FPT Capstone
+│   │   └── chapters/                              # Bản thảo hiện hành Chương 1–2
+│   │       ├── 01_Introduction.md                 # Bối cảnh, bài toán, mục tiêu và phạm vi
+│   │       ├── 02_Literature_Review.md            # Nghiên cứu trước, tổng hợp và đóng góp dự kiến
+│   │       └── README.md                          # Quy tắc đọc và nguồn của hai chương
+│   └── research/                                  # Nghiên cứu chuyên đề & kịch bản demo
+│       ├── dossiers/                              # 2 ghi chú trạng thái; không phải 5 dossier SSOT
+│       ├── archive/                               # Thông báo cho các bản nháp nghiên cứu đã thu hồi
+│       └── demos/                                 # Kịch bản demo kiểm thử TF-IDF & DeBERTa-v3
+│
+├── reports/                                       # Hệ thống Báo cáo & Hồ sơ Milestone
+│   ├── README.md                                  # Mục lục điều hướng tổng thể các báo cáo
+│   ├── report_for_meeting_4/                       # Hồ sơ Meeting 4 đã lưu trữ
+│   ├── report_for_review1/                        # Hồ sơ bảo vệ Hội đồng đợt 1 (Review 1 Submission)
+│   │   ├── REVIEW_1_COUNCIL_SUBMISSION_REPORT.docx# Báo cáo chính thức nộp Hội đồng (.docx)
+│   │   ├── REVIEW_1_COUNCIL_SUBMISSION_DRAFT.md   # Bản thảo chi tiết Review 1 (.md)
+│   │   └── REVIEW_1_PRESENTATION_AND_QA_SCRIPT.md # Kịch bản thuyết trình & trả lời phản biện
+│   ├── experiment_reports/                        # Kết quả thực nghiệm, kiểm toán xuất xứ & governance
+│   │   ├── WORKSPACE_PROVENANCE_AUDIT_2026-09-30.md# Nguồn chuẩn về bằng chứng và phép chạy thu hồi
+│   │   └── REPO_GOVERNANCE_AND_RESEARCH_MCP_AUDIT_2026-09-28.md # Kiểm toán governance & cấu hình MCP
+│   ├── tasks_for_meeting_5/                       # Hồ sơ nhiệm vụ Meeting 5 đã lưu trữ
+│   ├── tasks_for_meeting_6/                       # Hồ sơ Meeting 6; benchmark cross-paper đã thu hồi
+│
+├── src/                                           # Mã nguồn triển khai Guardrail Proxy (Clean Architecture)
+│   ├── api/                                       # FastAPI Guardrail Proxy Service (`main.py`)
+│   ├── dashboard/                                 # Streamlit Evaluation & Live Demo UI (`app.py`)
+│   ├── evaluation/                                # Module tính toán độ đo benchmark & ROC-AUC (`metrics.py`)
+│   ├── models/                                    # Bộ phân loại & replication adapters
+│   ├── policy/                                    # Decision Engine & phân luồng ngưỡng (`policy_engine.py`)
+│   ├── preprocessing/                             # Tiền xử lý, Scrubber tiếng Việt & phát hiện Obfuscation
+│   └── utils/                                     # Logging, configuration & helpers
+│
+├── tests/                                         # Bộ kiểm thử tự động hóa (Pytest Suite)
+│   ├── unit/                                      # Kiểm thử đơn vị (Metrics, Policy, Models, Scrubber)
+│   ├── integration/                               # Kiểm thử tích hợp FastAPI Endpoints
+│   └── adversarial/                               # Kiểm thử độ bền vững trước Evasion & Tiếng Việt biến thể
+│
+├── replications/                                  # Tái lập thực nghiệm các mô hình SOTA từ bài báo gốc
+│   ├── 02_DeBERTa_v3_Semantic_Classifier/         # Gói nghiên cứu DeBERTa-v3 (chỉ giữ snapshot PIGuard paper-matched)
+│   ├── PIDS_Bench_Shire_IEEEAccess2026/           # Baseline TF-IDF + Logistic Regression chuẩn paper-matched (IEEE Access 2026)
+│   ├── DataSentinel_Liu_SP2025/                   # Tài liệu tham khảo mã nguồn DataSentinel (IEEE S&P 2025)
+│   └── PromptShield_Jacob_CCS2024/                # Tài liệu tham khảo mã nguồn PromptShield (CODASPY 2025)
+│
+├── References/                                    # 38+ Bài báo khoa học chuẩn (PDF) & REFERENCES_LOG.md
+├── references_study/                              # Phân tích sâu kiến trúc mã nguồn tham chiếu
+├── Meeting/                                       # Chứa file theo dõi tiến độ tuần `PI_GUARD_PROCESS_REPORT.xlsx`
+└── VERSION.md                                     # Quy định phiên bản phát hành workspace
+```
 
 ---
 
-### 📂 2. DANH MỤC HỒ SƠ & BÁO CÁO REVIEW 1 TRONG WORKSPACE CỦA BẠN:
+## 🚀 2. Hướng dẫn Chạy Thử nghiệm & Kiểm thử (Quickstart)
 
-- 📘 **Bản thảo Luận văn & Báo cáo Review 1**:
-  - [`reports/REVIEW_1_REPORT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/REVIEW_1_REPORT.md): **BÁO CÁO REVIEW 1 TOÀN DIỆN** (Chapter 1, Chapter 2 & Đánh giá 7 tiêu chí cốt lõi).
-  - [`reports/REVIEW_1_PRESENTATION_AND_QA_SCRIPT.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/REVIEW_1_PRESENTATION_AND_QA_SCRIPT.md): Kịch bản thuyết trình 15 phút & Bộ 10 câu hỏi phản biện Hội đồng.
-  - [`docs/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/01_Introduction.md): Toàn văn Chương 1 (Introduction & Threat Model).
-  - [`docs/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/thesis/chapters/02_Literature_Review.md): Toàn văn Chương 2 (Literature Review & SOTA Survey).
-  - [`reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md): Văn kiện đóng băng kiến trúc chính thức & loại bỏ INT8.
-  - [`reports/tasks_for_meeting_5/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/README.md): **Hồ sơ lưu trữ lịch sử Meeting 5** (Có banner dẫn chiếu SSOT).
-  - [`reports/tasks_for_meeting_6/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/README.md): **Hồ sơ lưu trữ lịch sử Meeting 6** (Có banner dẫn chiếu SSOT).
+### Kiểm thử bộ Test Suite (Pytest)
+```powershell
+# Chạy toàn bộ test suite từ thư mục gốc dự án
+$env:PYTHONPATH="workspaces\truongnv;."
+workspaces\truongnv\.venv\Scripts\python.exe -m pytest workspaces\truongnv\tests\unit workspaces\truongnv\tests\adversarial workspaces\truongnv\tests\integration -q
+```
 
-- 🔬 **Phân Hệ Nghiên Cứu Khoa Học Kỹ Thuật ([`docs/research/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/README.md) — 100% Academic Grounding)**:
-  - 🔤 [`docs/research/prompt_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/prompt_study/): Chuyên đề 1 — Cơ sở LLM, Cấu trúc Prompt, Phân cấp chỉ thị & Ranh giới phẳng ($X = S \mathbin{\Vert} U$).
-  - 🛡️ [`docs/research/attack_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/attack_study/): Chuyên đề 2 — Cơ chế Prompt Injection (Direct/Indirect) & Modern Jailbreak Taxonomy (DAN, VM, 26 Toán tử Tencent).
-  - 🎯 [`docs/research/threat_and_defense_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/threat_and_defense_study/): Chuyên đề 3 — Threat Model (NIST AI 100-2e2025, OWASP LLM01, STRIDE) & Kiến trúc phòng thủ 3 lớp Saltzer-Schroeder.
-  - 📊 [`docs/research/dataset_and_benchmark_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/dataset_and_benchmark_study/): Chuyên đề 4 — Data Curation, Cân bằng lớp & Group-Aware Splitting chống rò rỉ dữ liệu.
-  - 🔬 [`docs/research/model_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/model_study/): Chuyên đề 5 — TF-IDF Baseline (char_wb), DeBERTa-v3 Transformer & Kiến trúc phối hợp Cascade Two-Tier.
-  - 🧱 [`docs/research/robustness_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/robustness_study/): Chuyên đề 6 — Độ bền đối kháng, Phân mảnh tokenizer BPE & Kỹ thuật lẩn tránh (Base64, Leetspeak, Spacing).
-  - ⚖️ [`docs/research/evaluation_and_tradeoff_study/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/evaluation_and_tradeoff_study/): Chuyên đề 7 — Kinh tế học False Positive Rate ($\text{FPR} < 1.5\%$), Pareto Frontier & Đánh đổi kỹ thuật.
-  - 🔍 [`docs/research/comparative_analysis/`](file:///d:/Work/Do-an/workspaces/truongnv/docs/research/comparative_analysis/): Chuyên khảo đối chuẩn SOTA Guardrails, Lỗ hổng Target LLM APIs & Báo cáo Tencent 2026.
+### Chạy Giao diện Trực quan Hóa (Streamlit Dashboard)
+```powershell
+$env:PYTHONPATH="workspaces\truongnv;."
+workspaces\truongnv\.venv\Scripts\streamlit.exe run workspaces\truongnv\src\dashboard\app.py
+```
 
-- 🧪 **Trung Tâm Tái Lập Y Văn & Baselines ([`replications/`](file:///d:/Work/Do-an/workspaces/truongnv/replications/README.md))**:
-  - Quản lý tập trung **100% các mô hình tái lập y văn upstream nguyên bản** có đầy đủ Bộ Ba Công Khai (Public Code + Paper + Dataset): `Paper_ACL2025_PIGuard_HaoLi`, `Baseline_DualSpace_TFIDF_Jain2023`, `Meta PromptGuard 2024`, `ProtectAI DeBERTa-v3`, `DataSentinel S&P 2025`, `SmoothLLM NeurIPS 2023`, v.v.
-  - Đi kèm toàn bộ Interactive Notebooks, Datasets, Scripts kiểm định và Sổ tay tái lập (`MEMBER_REPRODUCTION_RUNBOOK.md`).
-
-- 🏛️ **Phân Hệ Báo Cáo Tiến Độ & Cột Mốc ([`reports/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/README.md))**:
-  - Lưu trữ hồ sơ nghiên cứu và sản phẩm thực nghiệm qua các cột mốc:
-    - [`reports/report_for_meeting_4/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/report_for_meeting_4/): Cột mốc Meeting 4 (4 Task nghiên cứu mối đe dọa 5D, tính tái lập dữ liệu, cải tiến phòng thủ).
-    - [`reports/tasks_for_meeting_5/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_5/): Cột mốc Meeting 5 (Tái lập thực nghiệm PIGuard ACL 2025, đối chuẩn 4 mô hình ứng viên).
-    - [`reports/tasks_for_meeting_6/`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/): Cột mốc Meeting 6 Đóng Băng Danh Mục Baseline Y Văn & Đối Chuẩn 12 Mô Hình Public (Benchmark 520 samples, Khung Đề Xuất Kiến Trúc 2 Tầng Two-Tier Cascade cho Chương 3; Chưa huấn luyện mô hình đồ án).
-
-- 📚 **Tài liệu tham khảo & Thư viện Nghiên cứu**:
-  - [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/truongnv/References/REFERENCES_LOG.md): Bảng ma trận 18 bài báo chuẩn (100% >= 2022).
-  - [`docs/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/docs/README.md): Cổng tài liệu tổng quan phân định 2 phân hệ `research/` và `thesis/`.
+### Khởi động API Guardrail Proxy (FastAPI)
+```powershell
+$env:PYTHONPATH="workspaces\truongnv;."
+workspaces\truongnv\.venv\Scripts\uvicorn.exe src.api.main:app --host 0.0.0.0 --port 8000 --reload
+```
 
 ---
 
-### 📌 QUY TRÌNH KHI CHỐT FINAL REPORT:
-1. Bạn có thể tự do chỉnh sửa, bổ sung, format các file trong workspace này.
-2. Khi nhóm họp xong và thống nhất chốt bản Final Report Review 1 $\rightarrow$ Đồng bộ phiên bản chính thức ra thư mục chung `Final-Report/` và `Github-Page/` để nộp cho Giảng viên hướng dẫn và xuất bản cổng tài liệu!
+## 🔬 3. Hiện trạng Bằng chứng Thực nghiệm & Ranh giới (Evidence Status)
+
+- **Bằng chứng hợp lệ cấp bài báo (Eligible):**
+  1. [`PIDS_Bench TF-IDF Baseline`](replications/PIDS_Bench_Shire_IEEEAccess2026/REPORT.md): Khớp 100% dữ liệu gốc tác giả với 3.918 mẫu kiểm thử.
+  2. [`PIGuard Checkpoint`](replications/02_DeBERTa_v3_Semantic_Classifier/reports/review1_paper_model_public_rerun_2026-09-30/REPORT.md): Đánh giá checkpoint gốc của tác giả trên tập test đính kèm bài báo.
+- **Ranh giới đề xuất:** Kiến trúc hai tầng nối tiếp (Two-Tier Cascade) của PI-Guard hiện đang ở giai đoạn thiết kế phương pháp luận (Review 2). Các mục tiêu P95 < 30ms và FPR < 1.5% là mục tiêu thiết kế cần đạt, chưa phải số liệu công bố sau cùng.

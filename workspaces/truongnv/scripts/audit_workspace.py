@@ -38,7 +38,7 @@ REFERENCES_LOG_PATH = os.path.join(REFERENCES_DIR, "REFERENCES_LOG.md")
 FROZEN_REPORTS_DIR = os.path.join(WORKSPACE_DIR, "reports")
 
 BLACKLIST_TERMS = [
-    r"\bthời\s+gian\s+thực(?!\s+hiện)\b",
+    r"\bthời\s+gian\s+thực(?!\s+(?:hiện|thi))\b",
     r"\breal-time\b",
     r"\bbảo\s+vệ\s+tuyệt\s+đối\b",
     r"\b100%\s+an\s+toàn\b",
@@ -51,8 +51,8 @@ def get_eligible_markdown_files():
     """Lấy danh sách tất cả các tệp markdown được phép kiểm tra & chỉnh sửa."""
     eligible_files = []
     for root, dirs, files in os.walk(WORKSPACE_DIR):
-        # Bỏ qua thư mục ảo và cache
-        if ".venv" in root or "__pycache__" in root or ".git" in root:
+        # Bỏ qua thư mục ảo, cache và thư mục làm việc nội bộ agent
+        if ".venv" in root or "__pycache__" in root or ".git" in root or ".agent-work" in root:
             continue
         # Bỏ qua các báo cáo đã chốt (frozen)
         rel_root = os.path.relpath(root, WORKSPACE_DIR)
@@ -190,7 +190,7 @@ def run_blacklist_audit():
 
         for idx, line in enumerate(lines, 1):
             # Bỏ qua dòng là trích dẫn định nghĩa, quy tắc, hướng dẫn loại bỏ từ cấm, hoặc trích dẫn tiêu đề bài báo kinh điển (Viola & Jones 2004)
-            if "CẤM TUYỆT ĐỐI" in line or "blacklist" in line.lower() or "quy chuẩn" in line.lower() or "loại bỏ" in line.lower() or "tuyên bố khẳng định quá mức" in line.lower() or "viola" in line.lower():
+            if "CẤM TUYỆT ĐỐI" in line or "blacklist" in line.lower() or "quy chuẩn" in line.lower() or "loại bỏ" in line.lower() or "tuyên bố khẳng định quá mức" in line.lower() or "viola" in line.lower() or "bị cấm" in line.lower() or "❌" in line:
                 continue
             for pattern in BLACKLIST_TERMS:
                 if re.search(pattern, line, re.IGNORECASE):

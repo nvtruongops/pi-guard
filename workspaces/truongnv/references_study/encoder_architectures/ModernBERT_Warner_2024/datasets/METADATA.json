@@ -1,0 +1,34 @@
+{
+  "metadata_version": "1.0.0",
+  "package_name": "ModernBERT_Warner_2024",
+  "dataset_name": "No local evaluation dataset retained",
+  "provenance": {
+    "upstream_paper": {
+      "title": "ModernBERT: Bringing Modern Transformer Innovations to Pre-trained Encoders",
+      "authors": "Benjamin Warner, Antoine Chaffin, Benjamin Clavié, Orion Weller, Oskar Hallström, Shraddha Vasanth, Nikhil Patry, Colin Raffel, Luke Zettlemoyer",
+      "venue": "arXiv preprint arXiv:2412.13663",
+      "year": 2024,
+      "arxiv_id": "2412.13663",
+      "reference_id": "[[37]](#ref37)"
+    },
+    "upstream_repository": "https://huggingface.co/answerdotai/ModernBERT-base",
+    "remote_full_dataset_location": "No local evaluation dataset is retained. The former 10-row project probe was used by a whitespace/regex simulation and was removed; it was not an Answer.AI benchmark.",
+    "is_synthetic_self_created": null,
+    "provenance_type": "No verified local evaluation dataset retained",
+    "license": "Apache-2.0",
+    "provenance_status": "withdrawn_unverified_local_probe"
+  },
+  "validation_mapping": {
+    "used_by_script": null,
+    "schema": {
+      "id_field": "id",
+      "text_field": "text",
+      "label_field": "label (0: Benign, 1: Injection)",
+      "category_field": "category",
+      "token_offset_field": "payload_offset_tokens"
+    }
+  },
+  "files": [],
+  "generated_at": "2026-09-23T05:52:36.231718",
+  "withdrawal_note": "No local evaluation dataset is retained. The former 10-row project probe was used by a whitespace/regex simulation and was removed; it was not an Answer.AI benchmark."
+}

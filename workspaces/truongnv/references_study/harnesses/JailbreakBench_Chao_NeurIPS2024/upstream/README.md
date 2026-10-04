@@ -3,7 +3,7 @@
 </h1>
 -->
 <div align="center">
-  <img src="assets/logo.png" alt="Image" />
+  <img src="../assets/logo.png" alt="Image" />
 </div>
 
 <p align="center">
@@ -105,7 +105,7 @@ Each entry in the JBB-Behaviors datasets has five components:
 The first three entries from the JBB-Behaviors dataset are shown in the following table.
 
 <div align="center">
-    <img src="assets/JBB_Table.jpg" width="75%">
+    <img src="../assets/JBB_Table.jpg" width="75%">
 </div>
 
 To load the JBB-Behaviors harmful behaviors dataset, one can run the following:
@@ -127,7 +127,7 @@ The JBB-Behaviors dataset is also available as a `pandas.DataFrame`, which can b
 The harmful behaviors dataset comprises of 100 distinct misuse behaviors (with examples sourced from [AdvBench](https://github.com/llm-attacks/llm-attacks/blob/main/data/advbench/harmful_behaviors.csv), [Trojan Red Teaming Competition](https://trojandetection.ai/)/[HarmBench](https://harmbench.org), and ideas sourced from [Scalable and Transferable Black-Box Jailbreaks for Language Models via Persona Modulation](https://arxiv.org/abs/2311.03348) by Shah et al.) divided into ten broad categories corresponding to [OpenAI's usage policies](https://openai.com/policies/usage-policies):
 
 <div align="center">
-    <img src="assets/jbb_behaviors_source_breakdown.jpg" width="75%">
+    <img src="../assets/jbb_behaviors_source_breakdown.jpg" width="75%">
 </div>
 
 We note that the JBB-Behaviors dataset is _not_ a superset of its constituent datasets; we focus only on 100 representative behaviors to enable faster evaluation of new attacks.

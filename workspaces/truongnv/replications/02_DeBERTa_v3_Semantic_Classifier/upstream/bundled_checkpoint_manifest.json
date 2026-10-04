@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "source_manifest": "model_download_manifest.original.json",
+  "policy": "Files copied from the exact Hugging Face Hub snapshot paths listed in the original manifest; each copied file is checked against its recorded byte count and SHA-256.",
+  "models": [
+    {
+      "key": "PIGuard",
+      "repo_id": "leolee99/PIGuard",
+      "revision": "dd78b24e330193a22d2293ac66922dd4f982f563",
+      "bundled_snapshot_path": "upstream/checkpoints/PIGuard/dd78b24e330193a22d2293ac66922dd4f982f563",
+      "files": [
+        {
+          "path": "__init__.py",
+          "bytes": 35,
+          "sha256": "aa4ed85a01d76e54db092e4e9b472c952130af70f93877dcde2abf2b86cfe774"
+        },
+        {
+          "path": "added_tokens.json",
+          "bytes": 23,
+          "sha256": "dc046d04c9b0ada7ae6f1dc89c465801799acdf0c9a6aab8c15a1b2d5ca4e91f"
+        },
+        {
+          "path": "config.json",
+          "bytes": 1062,
+          "sha256": "f7ab538357be6b11364e4ad225595fe2a96b64f69506387a04e3cae699bac1d0"
+        },
+        {
+          "path": "inference_examples.py",
+          "bytes": 606,
+          "sha256": "9b7d3decab3bbc425892590c24ea08b01da1dad003f64eceb1b13340381d390c"
+        },
+        {
+          "path": "load_model.py",
+          "bytes": 606,
+          "sha256": "9b7d3decab3bbc425892590c24ea08b01da1dad003f64eceb1b13340381d390c"
+        },
+        {
+          "path": "model.safetensors",
+          "bytes": 737719272,
+          "sha256": "f90b9806de93b6286cda517300d4b55e5ce2e5ccbf8339dc59be21ca0dd9a25e"
+        },
+        {
+          "path": "modeling_piguard.py",
+          "bytes": 973,
+          "sha256": "5be806a223cf20c418171a409726110c02a7377d75f22ee6f80d7c72ac0fa529"
+        },
+        {
+          "path": "README.md",
+          "bytes": 3123,
+          "sha256": "edd81d29d8e2b8f1225afc3602e8be5201903e5c184c65d365534471c82811d0"
+        },
+        {
+          "path": "save_model.py",
+          "bytes": 415,
+          "sha256": "abcfabbd0f795ab4bc55744d45c121c24a447a2d548396f4fa7e4cea434525fe"
+        },
+        {
+          "path": "special_tokens_map.json",
+          "bytes": 286,
+          "sha256": "9463f61e1b109a8eb4688b829260d7c6b1e6dff04c98ff7269bb89e2b92369b9"
+        },
+        {
+          "path": "spm.model",
+          "bytes": 132,
+          "sha256": "f2d17af198445dafd6bd0a85951e2415b1666baa9604abae9b199306fad7486e"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 8656624,
+          "sha256": "5124ef2ead1a10a717703bc436de7f353da76d6340e4587719b42b1693707964"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 1284,
+          "sha256": "557b3d33d3f41b81ad769244e506549e98a1857d41dd58160aacd4d98d710b5a"
+        }
+      ]
+    },
+    {
+      "key": "ProtectAI",
+      "repo_id": "protectai/deberta-v3-base-prompt-injection-v2",
+      "revision": "90c9989b1a342275dd0d1a95aad283c04e075671",
+      "bundled_snapshot_path": "upstream/checkpoints/ProtectAI/90c9989b1a342275dd0d1a95aad283c04e075671",
+      "files": [
+        {
+          "path": "added_tokens.json",
+          "bytes": 23,
+          "sha256": "dc046d04c9b0ada7ae6f1dc89c465801799acdf0c9a6aab8c15a1b2d5ca4e91f"
+        },
+        {
+          "path": "config.json",
+          "bytes": 994,
+          "sha256": "05079f4735092040b780d459027afab413faa6eeb66a548571a58832304b60bb"
+        },
+        {
+          "path": "LICENSE",
+          "bytes": 10172,
+          "sha256": "59899c6091b540582ed617e8eeaac4919dc985ccfc35459ee9752b699be5205b"
+        },
+        {
+          "path": "model.safetensors",
+          "bytes": 737719272,
+          "sha256": "6521cb8d0ac08148c81464899c424e6148fcc62befa371089fa4061d8b6e0424"
+        },
+        {
+          "path": "README.md",
+          "bytes": 6327,
+          "sha256": "37221a38df1e60ad56364c39a233c75b77fa08740ecdee248d1b4e07ccc8ef5a"
+        },
+        {
+          "path": "special_tokens_map.json",
+          "bytes": 286,
+          "sha256": "9463f61e1b109a8eb4688b829260d7c6b1e6dff04c98ff7269bb89e2b92369b9"
+        },
+        {
+          "path": "spm.model",
+          "bytes": 2464616,
+          "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 8656744,
+          "sha256": "f0a66ad0d735d8dca9ecac4ff50fcdef4bb6adbadd2941a926844844d2c2059b"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 1284,
+          "sha256": "557b3d33d3f41b81ad769244e506549e98a1857d41dd58160aacd4d98d710b5a"
+        }
+      ]
+    },
+    {
+      "key": "FMOPSDistilBERT",
+      "repo_id": "fmops/distilbert-prompt-injection",
+      "revision": "c5da1fefd33c98c447b50dd806fe86aeb9e8c26c",
+      "bundled_snapshot_path": "upstream/checkpoints/FMOPSDistilBERT/c5da1fefd33c98c447b50dd806fe86aeb9e8c26c",
+      "files": [
+        {
+          "path": "config.json",
+          "bytes": 615,
+          "sha256": "f7d1bc31a9a24e41aa6c858d8cffd603edbe8d05245023efb29989661f1c3767"
+        },
+        {
+          "path": "model.safetensors",
+          "bytes": 267832560,
+          "sha256": "2e4646e1f03c0ced285c67a52353b829ff6d76a1bf35ab5ee0beb19dd4447eef"
+        },
+        {
+          "path": "README.md",
+          "bytes": 137,
+          "sha256": "2c5cf2e933ea5d0d67fd983481118509f5110a82c4e7680f15234fb85d7b26b5"
+        },
+        {
+          "path": "special_tokens_map.json",
+          "bytes": 125,
+          "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 711396,
+          "sha256": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 320,
+          "sha256": "bb75bf4f97f4a69e71313e8f3e55b8387075b369ea2f5c75aae416ace006f2c2"
+        },
+        {
+          "path": "vocab.txt",
+          "bytes": 231508,
+          "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+        }
+      ]
+    },
+    {
+      "key": "DeepSetDeBERTa",
+      "repo_id": "deepset/deberta-v3-base-injection",
+      "revision": "80dda00d0b0d9a03917a7685e2ddbcd28e04dbb1",
+      "bundled_snapshot_path": "upstream/checkpoints/DeepSetDeBERTa/80dda00d0b0d9a03917a7685e2ddbcd28e04dbb1",
+      "files": [
+        {
+          "path": "added_tokens.json",
+          "bytes": 23,
+          "sha256": "dc046d04c9b0ada7ae6f1dc89c465801799acdf0c9a6aab8c15a1b2d5ca4e91f"
+        },
+        {
+          "path": "config.json",
+          "bytes": 996,
+          "sha256": "56dde396fa4c30b1b427f17b153ca59b48eb01a62b4abde99319b7dbc17b76a1"
+        },
+        {
+          "path": "model.safetensors",
+          "bytes": 737723472,
+          "sha256": "16862b96671d118a79b8d3a1352a552913797f9fc3cc7db2e06a05002abfc084"
+        },
+        {
+          "path": "README.md",
+          "bytes": 4083,
+          "sha256": "c76f06ef2d98672505bc3e12d11c6981bb299a4ae034599ef9d91e8d87acd867"
+        },
+        {
+          "path": "special_tokens_map.json",
+          "bytes": 173,
+          "sha256": "311de3f4eed9d76a43bf0d71f10e62e086ca65ccce9f15d5da0d2098bf519ecc"
+        },
+        {
+          "path": "spm.model",
+          "bytes": 2464616,
+          "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 8656551,
+          "sha256": "a86f883318afa11c8c10466f1bf4efaeb6ded28a52cbe57217a8fa0d0a2a87df"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 412,
+          "sha256": "45705cb69567763661139b56f0f1f367dec7a130dfd6dcf86a14fbf174a48d3f"
+        }
+      ]
+    },
+    {
+      "key": "InjectionSentry",
+      "repo_id": "Verm1ion/injection-sentry-deberta-v2",
+      "revision": "956b7e581e08615c824abbc877cb6461fcd8fa28",
+      "bundled_snapshot_path": "upstream/checkpoints/InjectionSentry/956b7e581e08615c824abbc877cb6461fcd8fa28",
+      "files": [
+        {
+          "path": "added_tokens.json",
+          "bytes": 23,
+          "sha256": "dc046d04c9b0ada7ae6f1dc89c465801799acdf0c9a6aab8c15a1b2d5ca4e91f"
+        },
+        {
+          "path": "config.json",
+          "bytes": 1004,
+          "sha256": "cdcbed41853fd10beb906c99ee1d348ce959283329d6ed9e40c7e5c17c0c3e9f"
+        },
+        {
+          "path": "model.safetensors",
+          "bytes": 737719272,
+          "sha256": "0e9a0ec56c465dd55851a99e44023e8fe3607799dcb5626b5e44163297fed5a7"
+        },
+        {
+          "path": "README.md",
+          "bytes": 5780,
+          "sha256": "fcd317b6de07569bb47bf5d07fedfe57c256ae6e595abe4c7573c2e2e9022e6e"
+        },
+        {
+          "path": "special_tokens_map.json",
+          "bytes": 970,
+          "sha256": "b2f1b2f15f29a6b6d9d6ea4eca1675d2c231a71477f151d48f79cc83a625ba21"
+        },
+        {
+          "path": "spm.model",
+          "bytes": 2464616,
+          "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 8648962,
+          "sha256": "133b1071a455bb96ec0d7aa1242e616cc42ec29652fded524fb6883832afa903"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 1392,
+          "sha256": "77d3dd1a9c30397a06545251ed9274bd92e4a85feb98497eeed50c920f962274"
+        }
+      ]
+    },
+    {
+      "key": "WolfDefenderSmall",
+      "repo_id": "patronus-studio/wolf-defender-prompt-injection-small",
+      "revision": "bcab2eff97bcabd7227849639e2d0d7a61b46c92",
+      "bundled_snapshot_path": "upstream/checkpoints/WolfDefenderSmall/bcab2eff97bcabd7227849639e2d0d7a61b46c92",
+      "files": [
+        {
+          "path": "config.json",
+          "bytes": 2084,
+          "sha256": "b5bfba7b100b4b1aa361e8160e5593695164d81ca09b47f3b26561332b520218"
+        },
+        {
+          "path": "LICENSE",
+          "bytes": 11358,
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "path": "model.safetensors",
+          "bytes": 562583392,
+          "sha256": "88574ea37b2aaff38468194c544a5918b5e160fb9ee630bb11bba0aa3f533cf9"
+        },
+        {
+          "path": "README.md",
+          "bytes": 21899,
+          "sha256": "579530e7f49cf2e3ead3df04078b7ebfd8640ffe2948d5740fc925bb1e19e8d1"
+        },
+        {
+          "path": "special_tokens_map.json",
+          "bytes": 173,
+          "sha256": "97f6f6ef323755568c9dddf57b7b2bac4c2019e8c10c2ef1262001a9f6487124"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 34363287,
+          "sha256": "7e426c3929b44e6ab4c931770b5f22b913280633f5a1c67c81e9ad64decef55c"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 574,
+          "sha256": "14b147f2a4f939d9b12ab36e9633917040dd948fa78ce283b03402e4cf2c9cba"
+        }
+      ]
+    }
+  ],
+  "total_files": 52,
+  "total_bytes": 3858695932
+}

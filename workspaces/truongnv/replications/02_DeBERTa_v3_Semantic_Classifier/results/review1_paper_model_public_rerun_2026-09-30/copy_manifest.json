@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "source_root": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\02_DeBERTa_v3_Semantic_Classifier\\reports\\review1_paper_model_public_rerun_2026-09-30",
+  "copied_files": [
+    {
+      "source_relative_path": "REPORT.md",
+      "copied_relative_path": "REPORT.md",
+      "sha256": "93e9dbaa9322612d41ea5248811a5b84798f6280f4a28fc2b4b3dda70696d85a",
+      "byte_identical": true
+    },
+    {
+      "source_relative_path": "run_manifest.json",
+      "copied_relative_path": "run_manifest.json",
+      "sha256": "99be36bde348d7d45d74d6502ba9b3cb7d760fa6c91342e8de1a7bfc8568437f",
+      "byte_identical": true
+    },
+    {
+      "source_relative_path": "verification_results.json",
+      "copied_relative_path": "verification_results.json",
+      "sha256": "8c1c8fcaa3dd8818ab45cadea4c9969c1b93b228ec1bd364df6ebe2a517e394e",
+      "byte_identical": true
+    },
+    {
+      "source_relative_path": "predictions_piguard_acl2025_maxlen2048.jsonl.gz",
+      "copied_relative_path": "predictions_piguard_acl2025_maxlen2048.jsonl.gz",
+      "sha256": "ac4c3fe98b61a1f3102bedf0f403bd30e7831fcd70dfcdd746dd00bc0fff9689",
+      "byte_identical": true
+    },
+    {
+      "source_relative_path": "predictions_protectai_deberta_v3_v2.jsonl.gz",
+      "copied_relative_path": "predictions_protectai_deberta_v3_v2.jsonl.gz",
+      "sha256": "a8fdf1f8e0efad80f4bc878c527a7b805e9a620a20a3fdd021e0a1768d6e1a07",
+      "byte_identical": true
+    }
+  ]
+}

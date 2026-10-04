@@ -1,0 +1,171 @@
+{
+  "scope": "Six Meeting 6 baseline entries K1/K2/K3/K4/K6/K10 from task README.",
+  "started_at_utc": "2026-09-28T19:09:11.893232+00:00",
+  "finished_at_utc": "2026-09-28T19:09:11.951716+00:00",
+  "python_version": "3.14.7",
+  "package_versions": {
+    "scikit-learn": "1.9.0",
+    "numpy": "2.5.2",
+    "PyYAML": "6.0.3",
+    "matplotlib": "3.11.2"
+  },
+  "working_directory": "D:\\Work\\Do-an",
+  "results": [
+    {
+      "name": "PIGuard",
+      "status": "completed_prior_fresh_run",
+      "python_version": null,
+      "runner_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\Paper_ACL2025_PIGuard_HaoLi\\run_piguard_replication.py",
+      "runner_sha256": "791769b8f125d6defbf066a4aa62a65383e66a98b34e9cde2cdeba33925ccd56",
+      "input_path": "Recorded in copied PIGuard result and its runner dataset paths.",
+      "input_sha256": null,
+      "input_records": null,
+      "output_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\reports\\experiment_reports\\reproduction_audit_2026-09-29\\six_model_runs_complete\\PIGuard_Table7_fresh.json",
+      "output_sha256": "4c8c652cea1f5c8564b842b3cf1890e75e3a98f4ed99a2a5242557db35ccbb9b",
+      "stdout_path": null,
+      "method_audit": "Released PIGuard checkpoint inference; fresh public Table 7 subset run, not training-from-scratch. PINT unavailable.",
+      "error": null,
+      "result_top_level_keys": [
+        "metadata",
+        "paper_comparison",
+        "detailed_results"
+      ]
+    },
+    {
+      "name": "DataSentinel",
+      "status": "completed_reused",
+      "python_version": "3.14.7",
+      "runner_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\DataSentinel_Liu_SP2025\\run_datasentinel_replication.py",
+      "runner_sha256": "34a761fe1b0ab5792c0cc706b6f84bcad32aa899105757b5ad5d08a209c8c39b",
+      "input_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\DataSentinel_Liu_SP2025\\datasets\\datasentinel_eval_benchmark.json",
+      "input_sha256": "b084ca210db226a166b9dfbbd5bba9f0cad71570cf152663a39744e4a40fd4c0",
+      "input_records": 20,
+      "output_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\reports\\experiment_reports\\reproduction_audit_2026-09-29\\six_model_runs_complete\\DataSentinel_local_harness.json",
+      "output_sha256": "911a53c1041cfde9073a59c3399e478b2204be45312f7e976319e943f22817a8",
+      "stdout_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\reports\\experiment_reports\\reproduction_audit_2026-09-29\\six_model_runs_complete\\DataSentinel_stdout.txt",
+      "method_audit": "Local canary wrapper with hand-written regex cue lists; does not execute the paper's minimax detector.",
+      "compatibility_patch": null,
+      "error": null,
+      "result_top_level_keys": [
+        "model_name",
+        "paper",
+        "venue",
+        "award",
+        "upstream_repository",
+        "reference_id",
+        "hardware",
+        "evaluation_summary",
+        "latency_profile_ms",
+        "category_breakdown",
+        "sample_evaluations"
+      ]
+    },
+    {
+      "name": "PromptShield",
+      "status": "completed_reused",
+      "python_version": "3.14.7",
+      "runner_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\PromptShield_Jacob_CCS2024\\run_promptshield_replication.py",
+      "runner_sha256": "9aad56f8fde17c56017beabdbc36da9c67bd882f80de68ceeb42dc5479084405",
+      "input_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\PromptShield_Jacob_CCS2024\\datasets\\promptshield_eval_benchmark.json",
+      "input_sha256": "8a21503129d5c2caebac131a3a58bbf8e44f96351f8a51653fb8c0feb503443c",
+      "input_records": 20,
+      "output_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\reports\\experiment_reports\\reproduction_audit_2026-09-29\\six_model_runs_complete\\PromptShield_local_harness.json",
+      "output_sha256": "0907c1d6f6b45dc19dcbf20cc536a75b616abd5d2bbb3f3a011c098dab5c1d4a",
+      "stdout_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\reports\\experiment_reports\\reproduction_audit_2026-09-29\\six_model_runs_complete\\PromptShield_stdout.txt",
+      "method_audit": "TF-IDF + LogisticRegression is fitted and scored on the same 20-row evaluation file; not the paper's detector or a held-out test.",
+      "compatibility_patch": null,
+      "error": null,
+      "result_top_level_keys": [
+        "model_name",
+        "paper",
+        "venue",
+        "upstream_repository",
+        "reference_id",
+        "hardware",
+        "threshold_calibration",
+        "evaluation_summary",
+        "latency_profile_ms",
+        "category_breakdown",
+        "sample_evaluations"
+      ]
+    },
+    {
+      "name": "ModernBERT",
+      "status": "completed_reused",
+      "python_version": "3.14.7",
+      "runner_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\ModernBERT_Warner_2024\\run_modernbert_replication.py",
+      "runner_sha256": "297748dd2c32240b470786283c79dde3dbaed7c3fb9e978613c7afc0b6be4983",
+      "input_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\ModernBERT_Warner_2024\\datasets\\modernbert_context_eval_benchmark.json",
+      "input_sha256": "27e1ca8d519b83f663bcea00985d80377b555c1659fbe005e35134a1cdb14e60",
+      "input_records": 10,
+      "output_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\reports\\experiment_reports\\reproduction_audit_2026-09-29\\six_model_runs_complete\\ModernBERT_local_harness.json",
+      "output_sha256": "5173b5139eee9dbfb7c29a89ddc66ec9985b509c67531ea9a73e0766e3d53f11",
+      "stdout_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\reports\\experiment_reports\\reproduction_audit_2026-09-29\\six_model_runs_complete\\ModernBERT_stdout.txt",
+      "method_audit": "Whitespace token split plus regex cue detection at 512/8192 words; no ModernBERT tokenizer or weights are loaded.",
+      "compatibility_patch": null,
+      "error": null,
+      "result_top_level_keys": [
+        "benchmark_title",
+        "paper",
+        "upstream_repository",
+        "upstream_config_file",
+        "architecture_parameters",
+        "models_evaluated",
+        "empirical_findings",
+        "sample_evaluations"
+      ]
+    },
+    {
+      "name": "MetaPromptGuard",
+      "status": "completed_reused_compatibility_patch",
+      "python_version": "3.14.7",
+      "runner_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\Tier1_Candidate_Meta_PromptGuard2024\\run_promptguard_replication.py",
+      "runner_sha256": "57ff611b957c8602ec5f0d331a11b7a041ecf1371caf98355e23051c01018f82",
+      "input_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\Tier1_Candidate_Meta_PromptGuard2024\\datasets\\promptguard_3class_eval.json",
+      "input_sha256": "8f00a063e184517ecf5b5a1fc813e70959803012c0f100b209c69dc2a71b77ba",
+      "input_records": 700,
+      "output_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\reports\\experiment_reports\\reproduction_audit_2026-09-29\\six_model_runs_complete\\MetaPromptGuard_local_harness.json",
+      "output_sha256": "6a98b2bdaa9c812b0906ede97058885d105a07445de1475d39c83ab33843abc5",
+      "stdout_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\reports\\experiment_reports\\reproduction_audit_2026-09-29\\six_model_runs_complete\\MetaPromptGuard_stdout.txt",
+      "method_audit": "A local TF-IDF word/character + LogisticRegression 3-class proxy is trained; the official gated checkpoint is not cached.",
+      "compatibility_patch": "Removed the sklearn 1.9 multi_class keyword in the completed local proxy run; 3+ classes with lbfgs use multinomial loss by default.",
+      "error": null,
+      "result_top_level_keys": [
+        "metadata",
+        "local_empirical_results",
+        "paper_reported_results",
+        "replication_conclusion"
+      ]
+    },
+    {
+      "name": "SmoothLLM",
+      "status": "completed_reused",
+      "python_version": "3.14.7",
+      "runner_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\SmoothLLM_Robey_NeurIPS2023\\run_smoothllm_replication.py",
+      "runner_sha256": "cca686d06bd9f67676073149406a88550dd0c90392397d2eb3989ce8c456195e",
+      "input_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\SmoothLLM_Robey_NeurIPS2023\\datasets\\smoothllm_eval_benchmark.json",
+      "input_sha256": "166a3d9f43319bcda6f8ad93965d3ba0f98ea46cc334e8a8a15f2745dc8cb4b9",
+      "input_records": 10,
+      "output_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\reports\\experiment_reports\\reproduction_audit_2026-09-29\\six_model_runs_complete\\SmoothLLM_local_harness.json",
+      "output_sha256": "1e01152e2420f4c43691530b85095da882bc06b5fe00b6be346705bc39973435",
+      "stdout_path": "D:\\Work\\Do-an\\workspaces\\truongnv\\reports\\experiment_reports\\reproduction_audit_2026-09-29\\six_model_runs_complete\\SmoothLLM_stdout.txt",
+      "method_audit": "Runs character perturbations and timing only; it does not run a victim LLM or measure jailbreak success.",
+      "compatibility_patch": null,
+      "error": null,
+      "result_top_level_keys": [
+        "paper",
+        "repo",
+        "timestamp",
+        "hardware",
+        "perturbation_benchmarks",
+        "tradeoff_analysis"
+      ]
+    }
+  ],
+  "failed_models": [],
+  "meta_official_checkpoint_cache_check": {
+    "cached": false,
+    "model_id": "meta-llama/Prompt-Guard-86M",
+    "access_note": "Official Hugging Face page requires agreeing to share contact information and review access conditions; no gated terms were accepted in this run."
+  }
+}

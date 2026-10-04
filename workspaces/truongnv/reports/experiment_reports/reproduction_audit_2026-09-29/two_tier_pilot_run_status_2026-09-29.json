@@ -1,0 +1,25 @@
+{
+  "run_type": "project two-tier pilot",
+  "status": "interrupted_incomplete",
+  "device": "CPU",
+  "tier1": {
+    "status": "fit",
+    "training_rows": 65966,
+    "validation_attack_route_recall_at_selected_threshold": 0.1717,
+    "selected_threshold_constraint": "benign FPR <= 0.015"
+  },
+  "tier2": {
+    "base_model": "microsoft/deberta-v3-base",
+    "planned_epochs": 1,
+    "planned_steps": 418,
+    "max_length": 256,
+    "batch_size": 4,
+    "learning_rate": 2e-05,
+    "seed": 42,
+    "last_progress_line_observed": "deberta_train step=1/418 loss=1.09798",
+    "exact_completed_steps": null,
+    "checkpoint_written": false,
+    "heldout_metrics_written": false,
+    "reason": "The CPU run did not reach its next periodic progress record; it was stopped before a complete epoch and evaluation. No Tier 2 performance claim is made."
+  }
+}

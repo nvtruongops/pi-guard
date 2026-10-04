@@ -15,7 +15,7 @@ Skill này hướng dẫn AI Agent cách tiếp nhận nhiệm vụ, phân tích
 Khi người dùng giao nhiệm vụ hoặc chỉ định một tệp nhiệm vụ (ví dụ: `tasks_for_meeting_6/README.md`):
 1. **Đọc tệp nhiệm vụ trước tiên**: Tuyệt đối không bắt tay vào viết mã hoặc tạo file khi chưa đọc kỹ tệp nhiệm vụ.
 2. **Trích xuất các yêu cầu cụ thể**: Lập danh sách các đầu mục bàn giao bắt buộc (Deliverables).
-3. **Đối chiếu danh mục Deprecations**: Đọc [`workspaces/truongnv/reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/ARCHITECTURAL_DEPRECATIONS_AND_OUT_OF_SCOPE.md) để biết các công nghệ/từ khóa bị cấm đưa vào (như INT8, ONNX, ZeroQuant).
+3. **Đối chiếu danh mục Deprecations**: Đọc [Rule 02](file:///d:/Work/Do-an/.agents/rules/rule-02-task-scope-and-milestone-enclosure.md), Mục 4, để biết các công nghệ/từ khóa ngoài phạm vi (như INT8, ONNX, ZeroQuant).
 
 ### Bước 2: Thiết Lập Bảng Ranh Giới (Scope Boundary Table)
 Trước khi thực hiện, Agent phải tự xác định ranh giới trong tâm thức:

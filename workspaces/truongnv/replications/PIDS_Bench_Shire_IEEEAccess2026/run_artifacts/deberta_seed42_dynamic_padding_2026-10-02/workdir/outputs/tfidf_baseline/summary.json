@@ -1,0 +1,103 @@
+{
+  "model": "tfidf_logreg",
+  "seed": 42,
+  "model_saved_to": "D:\\Work\\Do-an\\workspaces\\truongnv\\replications\\PIDS_Bench_Shire_IEEEAccess2026\\run_artifacts\\tfidf_seed42_repo_2026-10-02\\model\\tfidf_logreg.joblib",
+  "val_tuned_threshold": 0.518,
+  "test_results": {
+    "default_threshold_0.5": {
+      "n": 3918,
+      "f1": 0.9656,
+      "precision": 0.9551,
+      "recall": 0.9763,
+      "fpr": 0.0514,
+      "fnr": 0.0237,
+      "threshold": 0.5
+    },
+    "val_tuned_threshold": {
+      "n": 3918,
+      "f1": 0.9672,
+      "precision": 0.9587,
+      "recall": 0.9758,
+      "fpr": 0.0471,
+      "fnr": 0.0242,
+      "threshold": 0.518
+    }
+  },
+  "real_src_f1": 0.9497,
+  "template_f1": 0.9956,
+  "roc_auc": 0.9941,
+  "hard_benign_test_fpr": {
+    "n": 808,
+    "omitted_redacted_text_rows": 0,
+    "fpr_default_0.5": 0.315594,
+    "fpr_tuned": 0.2908,
+    "fpr_real_origin": 0.2596,
+    "fpr_curated_origin": 0.3017,
+    "tuned_threshold": 0.518,
+    "n_flagged_default": 255,
+    "n_flagged_tuned": 235
+  },
+  "obfuscated_attacks": {
+    "overall_recall": 0.965432,
+    "overall_fnr": 0.034568
+  },
+  "balanced_subtype": {
+    "f1": 0.9668,
+    "recall": 0.9809,
+    "fpr": 0.0442
+  },
+  "domain_ood": {
+    "aggregate": {
+      "n": 2000,
+      "f1": 0.9508,
+      "precision": 0.9352,
+      "recall": 0.967,
+      "fpr": 0.067,
+      "fnr": 0.033,
+      "threshold": 0.518
+    },
+    "per_domain": {
+      "code": {
+        "fpr": 0.004,
+        "recall": 0.916
+      },
+      "finance": {
+        "fpr": 0.012,
+        "recall": 0.996
+      },
+      "legal": {
+        "fpr": 0.252,
+        "recall": 0.968
+      },
+      "medical": {
+        "fpr": 0.0,
+        "recall": 0.988
+      }
+    }
+  },
+  "structural_ood": {
+    "aggregate": {
+      "n": 1998,
+      "f1": 0.6891,
+      "precision": 0.5433,
+      "recall": 0.9419,
+      "fpr": 0.7918,
+      "fnr": 0.0581,
+      "threshold": 0.518
+    },
+    "per_transform": {
+      "instruction_prefix_mimic": {
+        "fpr": 0.7748,
+        "recall": 0.955
+      },
+      "json_wrap": {
+        "fpr": 0.7598,
+        "recall": 0.9459
+      },
+      "prompt_dilute": {
+        "fpr": 0.8408,
+        "recall": 0.9249
+      }
+    }
+  }
+}

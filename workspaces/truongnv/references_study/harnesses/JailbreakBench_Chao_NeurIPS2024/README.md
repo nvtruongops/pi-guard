@@ -444,4 +444,4 @@ This codebase is released under [MIT License](https://github.com/JailbreakBench/
 
 ## Contributing
 
-We welcome contributions to the benchmark! Please see the [contributing guide](CONTRIBUTING.md) for more information.
+We welcome contributions to the benchmark! Please see the [contributing guide](upstream/CONTRIBUTING.md) for more information.

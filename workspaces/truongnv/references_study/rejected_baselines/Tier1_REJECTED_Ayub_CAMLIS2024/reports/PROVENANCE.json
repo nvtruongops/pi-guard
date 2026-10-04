@@ -1,53 +1,30 @@
 {
-  "model_id": "Ayub_CAMLIS2024_Rejected",
-  "display_name": "Towards Robust Detection of Prompt Injection Attacks on Large Language Models",
-  "role": "Rejected Candidate (CAMLIS 2024 - 58.4% Overdefense FPR)",
-  "tier_1_paper_provenance": {
-    "title": "Towards Robust Detection of Prompt Injection Attacks on Large Language Models",
-    "paper_url": "https://arxiv.org/abs/2402.15570",
-    "local_pdf": "papers\\Ayub_2024_Towards_Robust_Detection_Prompt_Injection_CAMLIS.pdf"
+  "package": "Ayub paper and author-code reference",
+  "audit_date": "2026-09-30",
+  "experiment_status": "withdrawn",
+  "paper": {
+    "title": "Embedding-based classifiers can detect prompt injection attacks",
+    "authors": "Md. Ahsan Ayub and Subhabrata Majumdar",
+    "url": "https://arxiv.org/abs/2410.22284"
   },
-  "tier_2_code_provenance": {
-    "upstream_code_url": "https://github.com/AhsanAyub/malicious-prompt-detection",
-    "upstream_directory": "upstream/"
+  "author_code": {
+    "url": "https://github.com/AhsanAyub/malicious-prompt-detection",
+    "local_snapshot": "../upstream/",
+    "upstream_commit_pinned": false,
+    "content_identity_claim": false
   },
-  "tier_3_dataset_provenance": {
-    "datasets_url": "https://github.com/AhsanAyub/malicious-prompt-detection/tree/main/dataset",
-    "local_datasets": [
-      {
-        "filename": "NotInject_one.json",
-        "sha256": "c77abbf3de71f99f0e12809a29d8468401285ef5353b53daa6d65131c866586c",
-        "size_bytes": 26909
-      },
-      {
-        "filename": "NotInject_three.json",
-        "sha256": "bc18f3ad38ad2380e57ae96d102b884af477989e2f3ff85fbc2271ed16b8db55",
-        "size_bytes": 36783
-      },
-      {
-        "filename": "NotInject_two.json",
-        "sha256": "325559cd1204fd3bdf0be82599fbf8ebbacdcd4949ae8b5bf67b399193d57c03",
-        "size_bytes": 30807
-      },
-      {
-        "filename": "train.json",
-        "sha256": "6b3078e69a15c60620a004fbfdd2ad81ac56676a6c247e8d51decd0fc865086e",
-        "size_bytes": 116149
-      },
-      {
-        "filename": "valid.json",
-        "sha256": "e273fd455baac8785aa15bdc058adfd609f62ed0a3022963a5395ba95efe110e",
-        "size_bytes": 91222
-      },
-      {
-        "filename": "wildguard.json",
-        "sha256": "62a0f7331af19abdb43b027b815272777aac4c311b7fad25e4150618c5289f9b",
-        "size_bytes": 472515
-      }
-    ]
+  "former_training_data": {
+    "path": "../datasets/train.json",
+    "rows_observed_before_removal": 344,
+    "rows_without_source_observed_before_removal": 200,
+    "sha256_before_removal": "6b3078e69a15c60620a004fbfdd2ad81ac56676a6c247e8d51decd0fc865086e",
+    "disposition": "removed; row-level source lineage and paper-split equivalence not established"
   },
-  "tier_4_verification": {
-    "status": "PASS",
-    "checked_by": "workspaces/truongnv/scripts/check_replication_origin_urls.py"
+  "retained_data": {
+    "path": "../datasets/",
+    "disposition": "five JSON files are exact byte copies of corresponding files in the local PIGuard dataset bundle; they do not form an Ayub experiment split"
+  },
+  "local_scores": {
+    "disposition": "removed because their training data provenance was incomplete; do not cite"
   }
 }

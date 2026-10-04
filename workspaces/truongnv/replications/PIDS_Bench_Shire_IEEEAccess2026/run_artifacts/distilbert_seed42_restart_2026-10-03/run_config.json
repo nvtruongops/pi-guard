@@ -1,0 +1,37 @@
+{
+  "status": "not_run_user_scope_limit",
+  "upstream_commit": "87dc835566b930ee921240874a4939b2c266c2fe",
+  "training_source_blob": "19af6a01ac1e97df0b627edabbd90be8af5c6b03",
+  "model_id": "distilbert-base-uncased",
+  "model_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+  "license": "Apache-2.0",
+  "seed": 42,
+  "epochs": 2,
+  "learning_rate": 5E-05,
+  "max_length": 256,
+  "batch_size": 16,
+  "precision": "FP32",
+  "input_hashes_original": {
+    "train.csv": "859124bfffe20483b337956efcb11c6bdaf6191835150f51a5e6da272ee5a2eb",
+    "val.csv": "1445c0b33c220078d967fa34bb4da5e2981842ce288925b8f2542a4f9352cc64",
+    "test.csv": "149092dc6a7a83d3da73e8c7b413ea5e215e3f96c5565767b6db56b3b7835d96",
+    "eval_subsets/balanced_subtype_test.csv": "210e339329081b97ce95d2dfe4f4581e19bc83dd16a23b86cd36bd15b9ff2023",
+    "eval_subsets/obfuscated_attacks.csv": "b151322f05ef83922c734c589804fc7eab53331b61b5ad153c72aaf683f7c691",
+    "ood/domain_ood.csv": "d14acb99a69ac10559fde9ee22d0f20aa7a5816c4f48f279838d12ed0a6944f0",
+    "ood/structural_ood.csv": "63d56a8ebbd0639404158b51b35863fc87b02e9869ee2526f5f90eaa48108dad"
+  },
+  "staged_hashes_verified": {
+    "train.csv": "859124bfffe20483b337956efcb11c6bdaf6191835150f51a5e6da272ee5a2eb",
+    "val.csv": "1445c0b33c220078d967fa34bb4da5e2981842ce288925b8f2542a4f9352cc64",
+    "test.csv": "149092dc6a7a83d3da73e8c7b413ea5e215e3f96c5565767b6db56b3b7835d96",
+    "eval_subsets/balanced_subtype_test.csv": "210e339329081b97ce95d2dfe4f4581e19bc83dd16a23b86cd36bd15b9ff2023",
+    "eval_subsets/obfuscated_attacks.csv": "b151322f05ef83922c734c589804fc7eab53331b61b5ad153c72aaf683f7c691",
+    "ood/domain_ood.csv": "d14acb99a69ac10559fde9ee22d0f20aa7a5816c4f48f279838d12ed0a6944f0",
+    "ood/structural_ood.csv": "63d56a8ebbd0639404158b51b35863fc87b02e9869ee2526f5f90eaa48108dad"
+  },
+  "hard_benign_staged_rows": 808,
+  "hard_benign_original_sha256": "e3ddb1e6e9e04e1097b7bcf9a6f5e05b0a8d73e8d71b8d867f7ed85b89472cee",
+  "hard_benign_staged_sha256": "9e5dc7812b406cad68bb71d3d0ad6975c0e2971c8f42fb97e5e68bd064ea7cd3",
+  "hard_benign_adjustment": "Same 808 nonblank records used by the matched-axis matrix; removed 664 blank/license-redacted records from the original 1,472-row file.",
+  "status_reason": "User requested no transformer training and only TF-IDF local execution."
+}

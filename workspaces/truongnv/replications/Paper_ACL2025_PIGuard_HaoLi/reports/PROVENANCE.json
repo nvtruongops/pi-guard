@@ -1,15 +1,43 @@
 {
   "model_id": "PIGuard_HaoLi_ACL2025",
-  "display_name": "PIGuard: Protecting Language Models against Prompt Injection with MOF",
+  "display_name": "PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free",
   "role": "Foundation Reference (ACL 2025)",
   "tier_1_paper_provenance": {
-    "title": "PIGuard: Protecting Language Models against Prompt Injection with MOF",
-    "paper_url": "https://arxiv.org/abs/2410.22770",
-    "local_pdf": "papers\\PIGuard_2025_Prompt_Injection_Guardrail_ACL.pdf"
+    "title": "PIGuard: Prompt Injection Guardrail via Mitigating Overdefense for Free",
+    "authors": [
+      "Hao Li",
+      "Xiaogeng Liu",
+      "Ning Zhang",
+      "Chaowei Xiao"
+    ],
+    "venue": "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025), pp. 30420–30437",
+    "doi": "10.18653/v1/2025.acl-long.1468",
+    "paper_url": "https://aclanthology.org/2025.acl-long.1468/",
+    "preprint_url": "https://arxiv.org/abs/2410.22770",
+    "preprint_title": "InjecGuard: Benchmarking and Mitigating Over-defense in Prompt Injection Guardrail Models",
+    "local_pdf": "papers\\PIGuard_2025_Prompt_Injection_Guardrail_ACL.pdf",
+    "local_pdf_sha256": "f633ed9c777ba802a35359f4d68e932ecb7b1743b81400f25f0a1b05cd9d5ea6",
+    "archived_preprint_pdf": "papers\\Li_2024_InjecGuard_arXiv_2410.22770.pdf",
+    "archived_preprint_sha256": "7413fa3b10c12fa4fac659b177aaf37281230388165e787c4ffce77cacd47503"
   },
   "tier_2_code_provenance": {
     "upstream_code_url": "https://github.com/leolee99/PIGuard",
-    "upstream_directory": "upstream/"
+    "upstream_directory": "upstream/",
+    "upstream_revision": "1b5751e88bf7475acbedfc8eda795ce060307c84",
+    "source_snapshot": "PIGuard_ACL2025/",
+    "key_files": [
+      {
+        "filename": "train.py",
+        "bytes": 6066,
+        "git_blob_sha1": "21abf84816bf56a2947e38a4bcdc44c055331515",
+        "sha256": "8fb5c96a4f59f0987fcd24dae3fa211e54f1c35851b609d4be1bfc16ce239e82"
+      },
+      {
+        "filename": "logs/log.out",
+        "bytes": 94673,
+        "sha256": "3de0aaaf6d26c51d53589a0e5369bb60d323f831c2e395fa31dad63380f80fc6"
+      }
+    ]
   },
   "tier_3_dataset_provenance": {
     "datasets_url": "https://github.com/leolee99/PIGuard/tree/main/datasets",
@@ -48,8 +76,16 @@
         "filename": "wildguard.json",
         "sha256": "62a0f7331af19abdb43b027b815272777aac4c311b7fad25e4150618c5289f9b",
         "size_bytes": 472515
+      },
+      {
+        "filename": "train.json",
+        "sha256": "806ded8bd85782a53d34faffe4fd92b3f2e0b3b431c43578ce77faea6b9ed911",
+        "size_bytes": 43398735,
+        "rows": 76735,
+        "source": "official PIGuard repository snapshot"
       }
-    ]
+    ],
+    "source_revision": "1b5751e88bf7475acbedfc8eda795ce060307c84"
   },
   "tier_4_verification": {
     "status": "PASS",

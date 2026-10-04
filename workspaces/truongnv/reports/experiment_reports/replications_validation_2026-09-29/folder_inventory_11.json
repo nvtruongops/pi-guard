@@ -1,0 +1,165 @@
+{
+  "audit_date": "2026-09-29",
+  "workspace": "workspaces/truongnv",
+  "folder_count": 11,
+  "breakdown": {
+    "replications_direct": 9,
+    "references_study_support": 2
+  },
+  "deletion_performed": false,
+  "folders": [
+    {
+      "path": "replications/Paper_ACL2025_PIGuard_HaoLi",
+      "kind": "published_checkpoint_inference",
+      "model_or_pipeline_runs": true,
+      "training_from_scratch_required_for_existing_run": false,
+      "report_use": "checkpoint inference by dataset/protocol; do not call full reproduction",
+      "uses_tfidf": false,
+      "candidate_disposition": "active_checkpoint_candidate_limited",
+      "disposition_reason": "Binary injection checkpoint; evaluate direct and indirect slices separately; current DAN-wrapped probe is not jailbreak-class recall."
+    },
+    {
+      "path": "replications/ProtectAI_DeBERTa_v3_v2",
+      "kind": "published_checkpoint_inference",
+      "model_or_pipeline_runs": true,
+      "training_from_scratch_required_for_existing_run": false,
+      "report_use": "binary prompt-injection comparator; not jailbreak detection",
+      "uses_tfidf": false,
+      "candidate_disposition": "active_checkpoint_candidate_limited",
+      "disposition_reason": "Binary English prompt-injection checkpoint; not a jailbreak classifier; current per-variant sample counts are small."
+    },
+    {
+      "path": "replications/Tier1_Candidate_Jain_NeurIPS2023",
+      "kind": "project_local_tfidf_logistic_regression",
+      "model_or_pipeline_runs": true,
+      "training_from_scratch_required_for_existing_run": false,
+      "report_use": "local baseline already fitted/evaluated; not a Jain paper reproduction",
+      "uses_tfidf": true,
+      "candidate_disposition": "active_local_tfidf_baseline",
+      "disposition_reason": "Project-fit char TF-IDF + Logistic Regression; not Jain paper reproduction and no per-vector recall yet."
+    },
+    {
+      "path": "replications/Tier1_Candidate_Meta_PromptGuard2024",
+      "kind": "project_local_tfidf_proxy",
+      "model_or_pipeline_runs": true,
+      "training_from_scratch_required_for_existing_run": false,
+      "report_use": "local pilot only; do not attribute score to Meta checkpoint; data provenance unresolved",
+      "uses_tfidf": true,
+      "candidate_disposition": "reference_proxy_not_checkpoint",
+      "disposition_reason": "Local TF-IDF proxy, not official Meta weights; provenance unresolved."
+    },
+    {
+      "path": "replications/DataSentinel_Liu_SP2025",
+      "kind": "local_regex_canary_heuristic",
+      "model_or_pipeline_runs": true,
+      "training_from_scratch_required_for_existing_run": false,
+      "report_use": "heuristic pilot only; not the paper's minimax detector",
+      "uses_tfidf": false,
+      "candidate_disposition": "reference_heuristic_pilot",
+      "disposition_reason": "Local regex/canary pilot, not the paper minimax detector."
+    },
+    {
+      "path": "replications/PromptShield_Jacob_CCS2024",
+      "kind": "project_local_tfidf_proxy",
+      "model_or_pipeline_runs": true,
+      "training_from_scratch_required_for_existing_run": false,
+      "report_use": "do not use 20-row resubstitution metrics as independent performance",
+      "uses_tfidf": true,
+      "candidate_disposition": "reference_proxy_pilot",
+      "disposition_reason": "Local TF-IDF proxy fit/calibrated/tested on the same 20 rows; upstream paper code remains reference."
+    },
+    {
+      "path": "replications/Tier1_Candidate_InstructDetector_EMNLP2024",
+      "kind": "project_local_tfidf_proxy",
+      "model_or_pipeline_runs": true,
+      "training_from_scratch_required_for_existing_run": false,
+      "report_use": "local proxy only; not the paper's hidden-state/gradient method",
+      "uses_tfidf": true,
+      "candidate_disposition": "reference_proxy_not_paper_method",
+      "disposition_reason": "Local TF-IDF proxy, not hidden-state/gradient InstructDetector."
+    },
+    {
+      "path": "replications/SmoothLLM_Robey_NeurIPS2023",
+      "kind": "character_perturbation_component",
+      "model_or_pipeline_runs": true,
+      "training_from_scratch_required_for_existing_run": false,
+      "report_use": "perturbation microbenchmark only; no victim LLM or defense recall",
+      "uses_tfidf": false,
+      "candidate_disposition": "reference_component_only",
+      "disposition_reason": "Character perturbation runner has no victim LLM; no defense detection recall."
+    },
+    {
+      "path": "replications/ModernBERT_Warner_2024",
+      "kind": "length_simulation",
+      "model_or_pipeline_runs": true,
+      "training_from_scratch_required_for_existing_run": false,
+      "report_use": "simulation only; no ModernBERT tokenizer/checkpoint inference",
+      "uses_tfidf": false,
+      "candidate_disposition": "reference_simulation_only",
+      "disposition_reason": "Split/regex simulation; no ModernBERT tokenizer/checkpoint inference."
+    },
+    {
+      "path": "references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024",
+      "kind": "project_local_minilm_embedding_classifier_baseline",
+      "model_or_pipeline_runs": true,
+      "training_from_scratch_required_for_existing_run": false,
+      "report_use": "local baseline run exists; provenance partial, 344 train rows (296/48), 200 missing source; not a full paper reproduction",
+      "uses_tfidf": false,
+      "candidate_disposition": "secondary_local_embedding_baseline",
+      "disposition_reason": "Local MiniLM classifier baseline with partial dataset provenance; retain as optional comparison."
+    },
+    {
+      "path": "references_study/harnesses/JailbreakBench_Chao_NeurIPS2024",
+      "kind": "benchmark_harness_and_dataset",
+      "model_or_pipeline_runs": true,
+      "training_from_scratch_required_for_existing_run": false,
+      "report_use": "supporting harmful/benign behavior probe with ProtectAI; not jailbreak-variant recall or jailbreak success rate",
+      "uses_tfidf": false,
+      "candidate_disposition": "supporting_dataset_harness",
+      "disposition_reason": "Keep as source/harness; current Goal-field run is not jailbreak-prompt detection."
+    }
+  ],
+  "decision": {
+    "physical_delete_recommended": [
+      "replications/Tier1_Candidate_Meta_PromptGuard2024"
+    ],
+    "active_comparison_shortlist": [
+      "replications/Paper_ACL2025_PIGuard_HaoLi",
+      "replications/ProtectAI_DeBERTa_v3_v2",
+      "replications/Tier1_Candidate_Jain_NeurIPS2023"
+    ],
+    "support_resources": [
+      "references_study/harnesses/JailbreakBench_Chao_NeurIPS2024"
+    ],
+    "secondary_or_reference_only": [
+      "replications/Tier1_Candidate_Meta_PromptGuard2024",
+      "replications/DataSentinel_Liu_SP2025",
+      "replications/PromptShield_Jacob_CCS2024",
+      "replications/Tier1_Candidate_InstructDetector_EMNLP2024",
+      "replications/SmoothLLM_Robey_NeurIPS2023",
+      "replications/ModernBERT_Warner_2024",
+      "references_study/rejected_baselines/Tier1_REJECTED_Ayub_CAMLIS2024"
+    ],
+    "taxonomy": {
+      "primary_vectors": [
+        "direct_prompt_injection",
+        "indirect_prompt_injection",
+        "jailbreak"
+      ],
+      "cross_cutting_test_axes": [
+        "encoding_obfuscation",
+        "adversarial_suffix",
+        "language",
+        "long_context"
+      ],
+      "benign_control_axis": "benign_overdefense",
+      "n_equals_1_interpretation": "single-probe observation only; not evidence of broad coverage"
+    },
+    "two_tier_feasibility": "plausible experimental architecture; no end-to-end cascade run on a shared split is present in this inventory",
+    "meta_checkpoint_gap": "the local Meta folder runs TF-IDF/LogisticRegression rather than the official checkpoint; Prompt Guard 1 has three labels but gated access, while Prompt Guard 2 is binary malicious/benign without an injection sub-label",
+    "local_probe_cleanup_manifest": "cleanup_manifest_2026-09-29.json"
+  },
+  "cleanup_execution_status": "execution_rejected_by_tool_policy",
+  "cleanup_manifest": "cleanup_manifest_2026-09-29.json",
+  "remaining_folder_count": 11
+}

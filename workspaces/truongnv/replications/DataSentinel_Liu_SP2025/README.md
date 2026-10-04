@@ -1,28 +1,7 @@
-# DataSentinel (IEEE S&P 2025) Replication Package
+# DataSentinel SOTA candidate package
 
-> **Paper**: *DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks*  
-> **Authors**: Yupei Liu, Yuqi Jia, Jinyuan Jia, Dawn Song, Neil Zhenqiang Gong  
-> **Venue**: 46th IEEE Symposium on Security and Privacy (S&P 2025) — **Distinguished Paper Award**  
-> **Upstream Repository**: [https://github.com/liu00222/Open-Prompt-Injection](https://github.com/liu00222/Open-Prompt-Injection)  
-> **Paper Anchor**: `[[32]](#ref32)`  
+**Status (2026-09-30): candidate source retained; no local empirical result is reportable.** The upstream repository provides public task/data loaders and points to the detector checkpoint, but this local package has no frozen DataSentinel-specific evaluation split. Pin the source tasks and protocol before a new run.
 
-## 🔬 Directory Structure
-```
-DataSentinel_Liu_SP2025/
-├── README.md                                          # This documentation
-├── DATASENTINEL_REPLICATION_BENCHMARK_RESULTS.json     # Empirical results
-├── papers/
-│   └── Liu_2025_DataSentinel_Game_Theoretic_Detection_Prompt_Injection.pdf
-├── datasets/
-│   ├── METADATA.json                                 # Rigorous dataset provenance
-│   ├── DATASET_CARD.md                               # Schema & class distribution
-│   └── datasentinel_eval_benchmark.json              # 20 curated benchmark samples
-├── lib/
-│   └── minimax_detector.py                           # Minimax detector implementation
-└── run_datasentinel_replication.py                    # Independent execution runner
-```
+Paper: *DataSentinel: A Game-Theoretic Detection of Prompt Injection Attacks*, IEEE S&P 2025.
 
-## 🚀 Reproduction Command
-```bash
-python workspaces/truongnv/replications/DataSentinel_Liu_SP2025/run_datasentinel_replication.py
-```
+Upstream source: https://github.com/liu00222/Open-Prompt-Injection. The former 20-row project probe had no verified row-level provenance and was scored by a local regex/canary heuristic, not the paper’s minimax detector. That probe and its dependent results were withdrawn; the local runner is fail-closed. The adapter in `src/models/replications_adapters.py` also remains a local heuristic, not DataSentinel.

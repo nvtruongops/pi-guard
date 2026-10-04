@@ -117,7 +117,7 @@ def generate_report():
             'w1': 'Khởi động, Papers & Thiết kế Slide:\n- Tham gia Meeting 1 (29/08), Meeting 2 (01/09) & Meeting 3 (08/09).\n- Cùng Đức trực tiếp thiết kế đồ họa, biên soạn nội dung và hoàn thiện bộ Slide 22 trang (PI-GUARD-Present-109.pptx) báo cáo tiến độ gặp GVHD ngày 10/09.\n- Đọc & sàng lọc 10 papers, cập nhật cơ sở lý thuyết Chapter 1&2.',
             'w2': 'Bối cảnh & Phân loại:\n- Soạn thảo Chapter 1 (Introduction).\n- Phân loại Threat Taxonomy (OWASP).\n- Lỗ hổng Von Neumann NLP.',
             'w3': 'Báo cáo Meeting 6 (26/09) & Docs:\n- Hoàn thiện toàn văn Report No.1 (Chapter 1) & Report No.2 (Chapter 2).\n- Cùng Đức trực tiếp tạo bộ slide báo cáo tiến độ Meeting 6 (SLIDE_DECK_MEETING_6.md).\n- Ngày 26/09: Báo cáo trực tiếp tại trường với GVHD ThS. Trần Văn Ninh; cùng Phương thuyết trình Phần 4 (Đề xuất kiến trúc Two-Tier Cascade của đồ án).',
-            'w4': 'BẢO VỆ REVIEW 1 (THỨ 4: 30/09/2026):\n- Tóm gọn toàn bộ nội dung báo cáo ngày 26/09 thành hồ sơ nghiệm thu chính thức Review 1.\n- Đóng gói toàn văn Report No.1 (Chapter 1) & Report No.2 (Chapter 2) nộp cho GVHD.\n- Điều phối diễn tập thuyết trình 15 phút và bảo vệ thành công mốc Review 1.',
+            'w4': 'REVIEW 1 HOÀN TẤT (04/10/2026, theo xác nhận của người dùng).\n- Báo cáo tổng kết Review 1: workspaces/truongnv/reports/report_for_review1/REVIEW_1_COMPLETION_REPORT_2026-10-04.md.\n- Trạng thái này không xác nhận nghiệm thu mô hình hoặc cascade.',
             'w5': 'Data Engineering:\n- Tải 5 datasets từ Hugging Face.\n- Cài đặt Group-Aware Split.\n- Làm sạch & khử trùng lặp dữ liệu.',
             'w6': 'Hỗ trợ Baseline ML:\n- Phân tích phân phối nhãn dữ liệu.\n- Đo lường độ rò rỉ Inter-cluster.\n- Hỗ trợ xây dựng baseline TF-IDF.',
             'w7': 'Soạn thảo & Cập nhật Docs:\n- Soạn thảo Chapter 3 (Methodology).\n- Tổng hợp cấu trúc Report No.3.\n- Chuẩn bị tài liệu & slide Review 2.',
@@ -140,7 +140,7 @@ def generate_report():
             'w1': 'Khảo sát ML & Thiết kế Slide:\n- Tham gia Meeting 1 (29/08), Meeting 2 (01/09) & Meeting 3 (08/09).\n- Cùng Trường trực tiếp thiết kế đồ họa, biên soạn nội dung và hoàn thiện bộ Slide 22 trang (PI-GUARD-Present-109.pptx) báo cáo tiến độ gặp GVHD ngày 10/09.\n- Phân tích TOSEM 2025 và nghiên cứu cơ chế TF-IDF Character N-Grams.',
             'w2': 'Threat Model & Attack Surface:\n- Xây dựng sơ đồ NIST AI 100-2e2025.\n- Khóa chặt Attack Surface /v1/chat.\n- Thiết kế kiến trúc bảo vệ 3 lớp.',
             'w3': 'Slide & Thuyết trình Meeting 6 (26/09):\n- Cùng Trường trực tiếp thiết kế cấu trúc và hoàn thiện bộ slide báo cáo tiến độ Meeting 6.\n- Ngày 26/09: Báo cáo trực tiếp tại trường với GVHD ThS. Trần Văn Ninh; thuyết trình Phần 1 (Lỗ hổng ranh giới phẳng & phân loại tấn công) và Phần 2 (Cơ sở lý thuyết, SOTA, Guardrail Trilemma).',
-            'w4': 'BẢO VỆ REVIEW 1 (THỨ 4: 30/09/2026):\n- Cùng Phương tóm gọn nội dung báo cáo ngày 26/09 và hoàn thiện bộ Slide thuyết trình 15 phút Review 1.\n- Phụ trách thuyết trình Phần 1 & Phần 2 trong buổi bảo vệ Review 1 trước GVHD.\n- Nghiệm thu thành công cột mốc Review 1.',
+            'w4': 'REVIEW 1 HOÀN TẤT (04/10/2026, theo xác nhận của người dùng).\n- Báo cáo tổng kết Review 1: workspaces/truongnv/reports/report_for_review1/REVIEW_1_COMPLETION_REPORT_2026-10-04.md.\n- Trạng thái này không xác nhận nghiệm thu mô hình hoặc cascade.',
             'w5': 'Trích xuất đặc trưng:\n- Xây dựng Word+Char TF-IDF pipeline.\n- Tối ưu hóa sublinear_tf, max_features.\n- Xử lý bộ tiền lọc Base64/Leet.',
             'w6': 'Huấn luyện Baseline ML:\n- Huấn luyện LR, LinearSVC, XGBoost.\n- Đánh giá F1, FPR, độ trễ CPU.\n- So sánh hiệu năng các mô hình.',
             'w7': 'Methodology & Baseline ML:\n- Soạn thảo chi tiết Chapter 3.\n- Tổng hợp số liệu F1/FPR Baseline.\n- Cập nhật tài liệu kỹ thuật TF-IDF.',
@@ -163,7 +163,7 @@ def generate_report():
             'w1': 'Khảo sát Mô hình & Rà soát Slide:\n- Tham gia Meeting 1 (29/08), Meeting 2 (01/09) & Meeting 3 (08/09).\n- Rà soát toàn bộ bộ slide do Trường & Đức chuẩn bị, thống nhất 100% và không có ý kiến bổ sung.\n- Khảo sát RAP-ID, BIPIA và cơ chế Disentangled Attention DeBERTa-v3.',
             'w2': 'Khảo sát Y văn Guardrail:\n- Đối sánh các trường phái Guardrail.\n- Khảo sát các dòng Target LLMs.\n- Soạn thảo luận giải chọn mô hình.',
             'w3': 'Thực nghiệm & Báo cáo Meeting 6 (26/09):\n- Chạy thực nghiệm đo đạc độc lập 6 mô hình y văn trên bộ benchmark cross-dataset D1–D6 trong sandbox.\n- Ngày 26/09: Báo cáo trực tiếp tại trường với GVHD ThS. Trần Văn Ninh; thuyết trình Phần 3 (Kết quả thực nghiệm đối chuẩn chéo D1–D6 chỉ ra các failure modes y văn).',
-            'w4': 'BẢO VỆ REVIEW 1 (THỨ 4: 30/09/2026):\n- Tóm gọn số liệu thực nghiệm D1–D6 vào Mục 2.3 (Research Gaps) của Report No.2.\n- Phụ trách báo cáo phần thực nghiệm đối chuẩn (Phần 3) trong buổi bảo vệ Review 1 trước GVHD.\n- Nghiệm thu thành công cột mốc Review 1.',
+            'w4': 'REVIEW 1 HOÀN TẤT (04/10/2026, theo xác nhận của người dùng).\n- Báo cáo tổng kết Review 1: workspaces/truongnv/reports/report_for_review1/REVIEW_1_COMPLETION_REPORT_2026-10-04.md.\n- Trạng thái này không xác nhận nghiệm thu mô hình hoặc cascade.',
             'w5': 'Chuẩn bị Fine-Tuning:\n- Chuẩn bị dataloader cho Transformer.\n- Thiết lập pipeline tokenize độ dài 512.\n- Cấu hình hyperparameters AdamW/Cosine.',
             'w6': 'Khảo sát Baseline & Transformer:\n- Hỗ trợ đánh giá Baseline ML.\n- Khảo sát Disentangled Attention.\n- Chuẩn bị cấu trúc Chapter 3.',
             'w7': 'Hỗ trợ Thực nghiệm & Docs:\n- Soạn thảo cấu trúc Chapter 3.\n- Chuẩn bị ma trận đánh giá đối chuẩn.\n- Kiểm tra tính nhất quán dữ liệu.',
@@ -186,7 +186,7 @@ def generate_report():
             'w1': 'Khảo sát Y văn & Rà soát Slide:\n- Tham gia Meeting 1 (29/08), Meeting 2 (01/09) & Meeting 3 (08/09).\n- Rà soát toàn bộ bộ slide do Trường & Đức chuẩn bị, thống nhất 100% và không có ý kiến bổ sung.\n- Khảo sát Do-Not-Answer và xây dựng cấu trúc 3 câu hỏi nghiên cứu IEEE (RQ1-RQ3).',
             'w2': 'Research Questions & Gaps:\n- Soạn thảo 3 Câu hỏi IEEE (RQ1-RQ3).\n- Xác định 3 Gaps & 4 Đóng góp mới.\n- Định vị ranh giới In-scope/Out-of-scope.',
             'w3': 'Đề xuất Mô hình & Báo cáo Meeting 6 (26/09):\n- Phân tích giải pháp xử lý văn bản dài 200k ký tự và chống prompt giấu ở đuôi (Head-and-Tail Priority Scanning).\n- Ngày 26/09: Báo cáo trực tiếp tại trường với GVHD ThS. Trần Văn Ninh; cùng Trường thuyết trình Phần 4 (Đề xuất kiến trúc Two-Tier Cascade của đồ án).\n- Hỗ trợ rà soát docs Chapter 1 & 2.',
-            'w4': 'BẢO VỆ REVIEW 1 (THỨ 4: 30/09/2026):\n- Cùng Đức hoàn thiện bộ slide PowerPoint 15 phút Review 1 theo chuẩn ĐH FPT.\n- Cùng Trường phụ trách thuyết trình phần đề xuất kiến trúc (Phần 4) tại Review 1.\n- Nghiệm thu thành công cột mốc Review 1.',
+            'w4': 'REVIEW 1 HOÀN TẤT (04/10/2026, theo xác nhận của người dùng).\n- Báo cáo tổng kết Review 1: workspaces/truongnv/reports/report_for_review1/REVIEW_1_COMPLETION_REPORT_2026-10-04.md.\n- Trạng thái này không xác nhận nghiệm thu mô hình hoặc cascade.',
             'w5': 'Xây dựng API Core:\n- Viết endpoint POST /v1/chat/completions.\n- Xây dựng tầng tiền xử lý regex & decoding.\n- Tích hợp cấu trúc phản hồi chuẩn RFC.',
             'w6': 'Tích hợp Baseline vào API:\n- Kết nối mô hình TF-IDF vào middleware.\n- Ghi log request/response vào JSONL.\n- Xử lý bất đồng bộ async/await.',
             'w7': 'Kiến trúc Middleware & Docs:\n- Soạn thảo kiến trúc API Chapter 3.\n- Thiết kế bộ slide báo cáo Review 2.\n- Hoàn thiện bản thảo Report No.3.',
@@ -266,7 +266,7 @@ def generate_report():
         ('T13', 'Tuần 3 (21/09 - 27/09)', 'Báo cáo Meeting 6 trực tiếp tại trường với GVHD (26/09): Trường & Đức làm slide; Đức thuyết trình P1-P2; Việt P3; Trường & Phương P4', 'Hoàn thành', 'Cả 4 thành viên', 'Final-Report/Meeting/Meeting 6_26_09_26.md', '26/09/2026'),
         ('T14', 'Tuần 4 (28/09 - 04/10)', 'Tóm gọn toàn bộ báo cáo ngày 26/9 thành hồ sơ Review 1 & Hoàn thiện slide PPTX 15 phút', 'Đang thực hiện', 'Cả 4 thành viên', 'Slide PPTX Review 1', '30/09/2026'),
         ('T15', 'Tuần 4 (28/09 - 04/10)', 'Họp tổng kết tuần, cập nhật Process Report Excel & Nộp Report 1 & 2 cho GVHD', 'Đang thực hiện', 'Trường (Leader)', 'PI_GUARD_PROCESS_REPORT.xlsx', '03/10/2026'),
-        ('T16', 'Tuần 4 (28/09 - 04/10)', 'CỘT MỐC 1 — BẢO VỆ REVIEW 1 TRƯỚC GVHD (CHAPTERS 1 & 2 - THỨ 4: 30/09/2026)', 'Đang thực hiện', 'Cả 4 thành viên', 'Biên bản nghiệm thu Review 1', '30/09/2026'),
+        ('T16', 'Tuần 4 (28/09 - 04/10)', 'CỘT MỐC 1 — REVIEW 1 HOÀN TẤT NGÀY 04/10/2026 (theo xác nhận của người dùng)', 'Hoàn thành', 'Cả 4 thành viên', 'workspaces/truongnv/reports/report_for_review1/REVIEW_1_COMPLETION_REPORT_2026-10-04.md (báo cáo tiến độ, không phải biên bản nghiệm thu mô hình)', '30/09/2026'),
         ('T17', 'Tuần 5 - 6 (05/10 - 18/10)', 'Thu thập Dataset đa nguồn, Group-Aware Split & Huấn luyện Baseline ML', 'Chưa bắt đầu', 'Trường & Đức', 'data/processed/ & models/baseline/', '18/10/2026'),
         ('T18', 'Tuần 7 (19/10 - 25/10)', 'Soạn thảo, cập nhật docs Chapter 3 (Methodology - Report No.3) & Chuẩn bị Slide Review 2', 'Chưa bắt đầu', 'Đức & Trường', 'docs/thesis/chapters/03_Methodology.md & Slide Review 2', '25/10/2026'),
         ('T19', 'Tuần 8 (26/10 - 01/11)', 'CỘT MỐC 2 — BẢO VỆ REVIEW 2 TRƯỚC GVHD (CHAPTER 3), Nộp Report No.3 & Cập nhật Docs hoàn chỉnh', 'Chưa bắt đầu', 'Cả 4 thành viên', 'Biên bản nghiệm thu Review 2 & Chapter 3 final', '01/11/2026'),
@@ -329,6 +329,7 @@ def generate_report():
     ws_check.row_dimensions[4].height = 25
     for r in range(5, len(tasks) + 5):
         ws_check.row_dimensions[r].height = 25
+    ws_check.row_dimensions[20].height = 60
 
     # ==========================================
     # SHEET 3: NHẬT KÝ HỌP (MEETINGS LOG)

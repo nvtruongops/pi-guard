@@ -1,0 +1,31 @@
+{
+  "device": "cuda",
+  "single_prompt_no_http": true,
+  "iid_test_stratified_rows": 200,
+  "iid_test_stratified_label_counts": {
+    "0": 100,
+    "1": 100
+  },
+  "warmups_per_method": 10,
+  "TF-IDF + LR": {
+    "p50_ms": 1.6224500031967182,
+    "p95_ms": 3.005420004046755,
+    "p99_ms": 3.658350999830866,
+    "mean_ms": 1.804357500259357,
+    "runs": 200
+  },
+  "DeBERTa-v3-FT": {
+    "p50_ms": 109.76304999712738,
+    "p95_ms": 169.50551999871092,
+    "p99_ms": 241.98819000659566,
+    "mean_ms": 116.8938429996706,
+    "runs": 200
+  },
+  "TF-IDF \u2192 DeBERTa cascade": {
+    "p50_ms": 3.1792999980098102,
+    "p95_ms": 155.03362500348882,
+    "p99_ms": 184.87141200203035,
+    "mean_ms": 50.36928099991201,
+    "runs": 200
+  }
+}

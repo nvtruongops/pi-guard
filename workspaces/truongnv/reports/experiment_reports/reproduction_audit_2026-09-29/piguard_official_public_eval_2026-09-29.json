@@ -1,0 +1,45 @@
+{
+  "run_date": "2026-09-29",
+  "run_kind": "fresh inference using official PIGuard eval_hf.py scoring functions",
+  "source_repository": "https://github.com/leolee99/PIGuard",
+  "source_commit": "1b5751e88bf7475acbedfc8eda795ce060307c84",
+  "source_commit_kind": "official upstream HEAD fetched on 2026-09-29",
+  "model_id": "leolee99/PIGuard",
+  "model_revision": "dd78b24e330193a22d2293ac66922dd4f982f563",
+  "device": "cpu",
+  "environment": {
+    "python": "3.11.16",
+    "pytorch": "2.14.0+cpu",
+    "transformers": "5.17.0",
+    "torch_threads": 14,
+    "cuda_available": false,
+    "wall_evaluation_seconds": 835.92
+  },
+  "dataset_source": "PIGuard official repository datasets/; seven evaluated data files byte-identical to upstream at source_commit",
+  "dataset_hashes": {
+    "NotInject_one.json": "c77abbf3de71f99f0e12809a29d8468401285ef5353b53daa6d65131c866586c",
+    "NotInject_two.json": "325559cd1204fd3bdf0be82599fbf8ebbacdcd4949ae8b5bf67b399193d57c03",
+    "NotInject_three.json": "bc18f3ad38ad2380e57ae96d102b884af477989e2f3ff85fbc2271ed16b8db55",
+    "wildguard.json": "62a0f7331af19abdb43b027b815272777aac4c311b7fad25e4150618c5289f9b",
+    "BIPIA_text.json": "e828d3e9e273ddf43c4b0c91e5803998f4314555d865e32bd4e0903ab746a3b9",
+    "BIPIA_code.json": "ab9f0563c7674074fb1cf82cb624196e9b5e3d62ac57b324b0745d23b7e55f87"
+  },
+  "evaluated_sample_count": 1435,
+  "not_evaluated": [
+    "PINT was not run because the PIGuard authors state that its benchmark is not publicly released.",
+    "valid.json was not part of the authors' eval_hf.py public benchmark evaluation functions used in this run.",
+    "Latency percentiles were not measured by the official eval_hf.py functions in this run."
+  ],
+  "results": {
+    "NotInject_one": {"n": 113, "correct": 107, "accuracy": 0.9469026548672567},
+    "NotInject_two": {"n": 113, "correct": 101, "accuracy": 0.8938053097345133},
+    "NotInject_three": {"n": 113, "correct": 92, "accuracy": 0.8141592920353982},
+    "NotInject_pooled": {"n": 339, "correct": 300, "accuracy": 0.8849557522123894},
+    "WildGuard_benign": {"n": 971, "correct": 739, "accuracy": 0.761071060762101},
+    "BIPIA_text_injection": {"n": 75, "correct": 29, "accuracy": 0.3866666666666667},
+    "BIPIA_code_injection": {"n": 50, "correct": 49, "accuracy": 0.98},
+    "BIPIA_unweighted_group_mean_official_eval_hf": 0.6833333333333333,
+    "BIPIA_sample_weighted_accuracy": {"n": 125, "correct": 78, "accuracy": 0.624}
+  },
+  "comparison_note": "PIGuard eval_hf.py reports BIPIA as the unweighted mean of the text and code subset accuracies (68.33%). Sample-weighted accuracy is 62.40%; retain the aggregation rule when comparing against the paper. NotInject pooled accuracy is 88.50%."
+}

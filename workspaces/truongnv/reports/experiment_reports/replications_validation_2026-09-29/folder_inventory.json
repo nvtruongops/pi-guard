@@ -1,0 +1,269 @@
+[
+  {
+    "folder": "DataSentinel_Liu_SP2025",
+    "file_count": 143,
+    "required_components": {
+      "README.md": true,
+      "papers": true,
+      "upstream": true,
+      "datasets": true,
+      "reports": true
+    },
+    "paper_pdfs": [
+      "papers\\Liu_2025_DataSentinel_Game_Theoretic_Detection_Prompt_Injection.pdf"
+    ],
+    "runner_scripts": [
+      "run_datasentinel_replication.py"
+    ],
+    "result_json": [
+      "DATASENTINEL_REPLICATION_BENCHMARK_RESULTS.json",
+      "reports\\DATASENTINEL_REPLICATION_BENCHMARK_RESULTS.json"
+    ],
+    "dataset_metadata": [
+      "datasets\\METADATA.json"
+    ],
+    "provenance_docs": [
+      "datasets\\DATASET_PROVENANCE.md",
+      "reports\\URL_AND_PROVENANCE_REPORT.md"
+    ]
+  },
+  {
+    "folder": "ModernBERT_Warner_2024",
+    "file_count": 145,
+    "required_components": {
+      "README.md": true,
+      "papers": true,
+      "upstream": true,
+      "datasets": true,
+      "reports": true
+    },
+    "paper_pdfs": [
+      "papers\\Warner_2024_ModernBERT_Brings_Modern_Transformers_To_Encoders.pdf"
+    ],
+    "runner_scripts": [
+      "run_modernbert_replication.py",
+      "ModernBERT\\run_evals.py"
+    ],
+    "result_json": [
+      "MODERNBERT_REPLICATION_BENCHMARK_RESULTS.json",
+      "reports\\MODERNBERT_REPLICATION_BENCHMARK_RESULTS.json"
+    ],
+    "dataset_metadata": [
+      "datasets\\METADATA.json"
+    ],
+    "provenance_docs": [
+      "datasets\\DATASET_PROVENANCE.md",
+      "reports\\URL_AND_PROVENANCE_REPORT.md"
+    ]
+  },
+  {
+    "folder": "Paper_ACL2025_PIGuard_HaoLi",
+    "file_count": 61,
+    "required_components": {
+      "README.md": true,
+      "papers": true,
+      "upstream": true,
+      "datasets": true,
+      "reports": true
+    },
+    "paper_pdfs": [
+      "papers\\Li_2024_InjecGuard_arXiv_2410.22770.pdf",
+      "papers\\PIGuard_2025_Prompt_Injection_Guardrail_ACL.pdf",
+      "papers\\PIGuard_ACL2025_arXiv2410.22770.pdf"
+    ],
+    "runner_scripts": [
+      "eval_piguard_replication.py",
+      "run_piguard_replication.py",
+      "PIGuard_ACL2025\\eval_hf.py"
+    ],
+    "result_json": [
+      "PIGUARD_REPLICATION_BENCHMARK_RESULTS.json",
+      "reports\\PIGUARD_REPLICATION_BENCHMARK_RESULTS.json"
+    ],
+    "dataset_metadata": [
+      "datasets\\METADATA.json"
+    ],
+    "provenance_docs": [
+      "datasets\\DATASET_PROVENANCE.md",
+      "reports\\URL_AND_PROVENANCE_REPORT.md"
+    ]
+  },
+  {
+    "folder": "PromptShield_Jacob_CCS2024",
+    "file_count": 261,
+    "required_components": {
+      "README.md": true,
+      "papers": true,
+      "upstream": true,
+      "datasets": true,
+      "reports": true
+    },
+    "paper_pdfs": [
+      "papers\\Jacob_2025_PromptShield_Deployable_Detection_CODASPY.pdf"
+    ],
+    "runner_scripts": [
+      "run_promptshield_replication.py",
+      "PromptShield\\eval_baselines.py",
+      "PromptShield\\eval_general_finetune copy.py",
+      "PromptShield\\eval_general_finetune.py",
+      "PromptShield\\eval_mdebertav3.py",
+      "PromptShield\\eval_predibase_model.py",
+      "PromptShield\\eval_promptguard.py",
+      "PromptShield\\libs\\InjecGuard\\eval_benchmark.py"
+    ],
+    "result_json": [
+      "PROMPTSHIELD_REPLICATION_BENCHMARK_RESULTS.json",
+      "reports\\PROMPTSHIELD_REPLICATION_BENCHMARK_RESULTS.json"
+    ],
+    "dataset_metadata": [
+      "datasets\\METADATA.json"
+    ],
+    "provenance_docs": [
+      "datasets\\DATASET_PROVENANCE.md",
+      "reports\\URL_AND_PROVENANCE_REPORT.md"
+    ]
+  },
+  {
+    "folder": "ProtectAI_DeBERTa_v3_v2",
+    "file_count": 13,
+    "required_components": {
+      "README.md": true,
+      "papers": true,
+      "upstream": true,
+      "datasets": true,
+      "reports": true
+    },
+    "paper_pdfs": [
+      "papers\\He_2023_DeBERTaV3_Disentangled_Attention_ICLR.pdf"
+    ],
+    "runner_scripts": [
+      "run_protectai_replication.py"
+    ],
+    "result_json": [
+      "PROTECTAI_REPLICATION_BENCHMARK_RESULTS.json",
+      "reports\\PROTECTAI_REPLICATION_BENCHMARK_RESULTS.json"
+    ],
+    "dataset_metadata": [
+      "datasets\\METADATA.json"
+    ],
+    "provenance_docs": [
+      "datasets\\DATASET_PROVENANCE.md",
+      "reports\\URL_AND_PROVENANCE_REPORT.md"
+    ]
+  },
+  {
+    "folder": "SmoothLLM_Robey_NeurIPS2023",
+    "file_count": 30,
+    "required_components": {
+      "README.md": true,
+      "papers": true,
+      "upstream": true,
+      "datasets": true,
+      "reports": true
+    },
+    "paper_pdfs": [
+      "papers\\Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf"
+    ],
+    "runner_scripts": [
+      "run_smoothllm_replication.py"
+    ],
+    "result_json": [
+      "SMOOTHLLM_REPLICATION_BENCHMARK_RESULTS.json",
+      "reports\\SMOOTHLLM_REPLICATION_BENCHMARK_RESULTS.json"
+    ],
+    "dataset_metadata": [
+      "datasets\\METADATA.json"
+    ],
+    "provenance_docs": [
+      "datasets\\DATASET_PROVENANCE.md",
+      "reports\\URL_AND_PROVENANCE_REPORT.md"
+    ]
+  },
+  {
+    "folder": "Tier1_Candidate_InstructDetector_EMNLP2024",
+    "file_count": 35,
+    "required_components": {
+      "README.md": true,
+      "papers": true,
+      "upstream": true,
+      "datasets": true,
+      "reports": true
+    },
+    "paper_pdfs": [
+      "papers\\Zhao_2024_InstructDetector_arXiv2402.06774.pdf",
+      "papers\\Zhao_2024_InstructDetector_Instruction_Tuned_Attack_EMNLP.pdf"
+    ],
+    "runner_scripts": [
+      "run_instructdetector_replication.py"
+    ],
+    "result_json": [
+      "INSTRUCTDETECTOR_EMNLP2024_REPLICATION_BENCHMARK_RESULTS.json",
+      "reports\\INSTRUCTDETECTOR_EMNLP2024_REPLICATION_BENCHMARK_RESULTS.json"
+    ],
+    "dataset_metadata": [
+      "datasets\\METADATA.json"
+    ],
+    "provenance_docs": [
+      "datasets\\DATASET_PROVENANCE.md",
+      "reports\\URL_AND_PROVENANCE_REPORT.md"
+    ]
+  },
+  {
+    "folder": "Tier1_Candidate_Jain_NeurIPS2023",
+    "file_count": 28,
+    "required_components": {
+      "README.md": true,
+      "papers": true,
+      "upstream": true,
+      "datasets": true,
+      "reports": true
+    },
+    "paper_pdfs": [
+      "papers\\Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf",
+      "papers\\Jain_2023_Baseline_Defenses_arXiv2309.00614.pdf"
+    ],
+    "runner_scripts": [
+      "run_jain_replication.py"
+    ],
+    "result_json": [
+      "JAIN_NEURIPS2023_REPLICATION_BENCHMARK_RESULTS.json",
+      "reports\\JAIN_NEURIPS2023_REPLICATION_BENCHMARK_RESULTS.json"
+    ],
+    "dataset_metadata": [
+      "datasets\\METADATA.json"
+    ],
+    "provenance_docs": [
+      "datasets\\DATASET_PROVENANCE.md",
+      "reports\\URL_AND_PROVENANCE_REPORT.md"
+    ]
+  },
+  {
+    "folder": "Tier1_Candidate_Meta_PromptGuard2024",
+    "file_count": 31,
+    "required_components": {
+      "README.md": true,
+      "papers": true,
+      "upstream": true,
+      "datasets": true,
+      "reports": true
+    },
+    "paper_pdfs": [
+      "papers\\Meta_2024_Prompt_Guard_86M_Input_Guardrail.pdf",
+      "papers\\Meta_2024_PurpleLlama_PromptGuard.pdf"
+    ],
+    "runner_scripts": [
+      "run_promptguard_replication.py"
+    ],
+    "result_json": [
+      "META_PROMPTGUARD_REPLICATION_BENCHMARK_RESULTS.json",
+      "reports\\META_PROMPTGUARD_REPLICATION_BENCHMARK_RESULTS.json"
+    ],
+    "dataset_metadata": [
+      "datasets\\METADATA.json"
+    ],
+    "provenance_docs": [
+      "datasets\\DATASET_PROVENANCE.md",
+      "reports\\URL_AND_PROVENANCE_REPORT.md"
+    ]
+  }
+]

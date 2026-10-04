@@ -14,7 +14,7 @@ if os.path.exists("test_perez.pdf"):
     print(f"[✔] Replaced Perez PDF with authentic paper: {perez_dest}")
 
 # 2. Replace InstructDetector
-instruct_dest = os.path.join(ref_dir, "Zhao_2024_InstructDetector_Instruction_Tuned_Attack_EMNLP.pdf")
+instruct_dest = os.path.join(ref_dir, "Wen_2025_InstructDetector_Findings_EMNLP.pdf")
 if os.path.exists("test_instructdetector.pdf"):
     shutil.copyfile("test_instructdetector.pdf", instruct_dest)
     print(f"[✔] Replaced InstructDetector PDF with authentic paper: {instruct_dest}")
