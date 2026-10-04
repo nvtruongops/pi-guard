@@ -28,7 +28,7 @@ Mọi câu văn trong luận văn, tài liệu nghiên cứu chuyên đề, slid
 ### Cấu Trúc 2: Khẳng Định Dựa Trên Số Liệu Thực Nghiệm (Empirical Grounded Claim)
 - **Quy chuẩn**: Mọi số liệu đo đạc (Recall %, FPR %, F1, CPU Latency ms) phải trỏ rõ ràng tới tệp kết quả JSON un-mocked trong thư mục `04_benchmarks_and_data/` hoặc tập dữ liệu kiểm thử D1–D6.
 - **Ví dụ đúng**:
-  > *"Kết quả đo đạc thực nghiệm độc lập trên tập D6 (mã nguồn code lành tính) tại [`cross_dataset_empirical_matrix.json`](file:///d:/Work/Do-an/workspaces/truongnv/reports/tasks_for_meeting_6/04_benchmarks_and_data/cross_dataset_empirical_matrix.json) cho thấy mô hình Meta Prompt-Guard dính tỷ lệ chặn nhầm nghiêm trọng lên tới $99.1\%$."*
+  > Chỉ nêu số liệu thực nghiệm khi có tệp kết quả và provenance trong deliverable được phép chia sẻ; kết quả còn trong workspace local-only không được trích dẫn như bằng chứng chung.
 - **Ví dụ sai (BỊ CẤM)**:
   > ❌ *"Meta Prompt Guard chặn nhầm rất nhiều code lành tính."* (Không có định lượng và không có tệp dẫn chứng).
   > ❌ *"PI-Guard đạt độ trễ 12ms và F1 0.98."* (Làm giả số liệu khi chưa huấn luyện chính thức).

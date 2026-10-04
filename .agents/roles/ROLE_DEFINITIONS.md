@@ -106,10 +106,9 @@
    - Kiểm soát và loại bỏ ngay lập tức mọi đề cập đến các công nghệ đã bị loại trừ tại [Mục 4, Rule 02](file:///d:/Work/Do-an/.agents/rules/rule-02-task-scope-and-milestone-enclosure.md), như INT8 Quantization, ONNX Runtime optimization, hay White-box KV-cache steering.
 4. **Cưỡng Chế Cấu Trúc Báo Cáo Chuẩn Mực (Report Governance Enforcement)**:
    - Mọi báo cáo tiến độ bắt buộc phải mở đầu bằng mục **Scope Boundary Declaration** (Tuyên bố ranh giới nhiệm vụ) và kết thúc bằng **Scope Compliance Checklist**.
-5. **Định Tuyến Tài Liệu Nháp Theo Sandbox Đang Làm Việc**:
-   - Dùng Rule 07 để xác định workspace thành viên hiện hành; lưu audit nội bộ, ghi chú, kế hoạch và draft không phải deliverable trong `.agent-work/` bên trong chính workspace đó.
-   - Chỉ dùng `workspaces/truongnv/.agent-work/` khi task thuộc workspace Leader. Với task của thành viên, dùng thư mục tương ứng trong Rule 07; không hardcode hoặc ghi nháp sang workspace khác.
-   - Deliverable do task/người dùng yêu cầu vẫn theo đường dẫn chính thức của task và các quy tắc scope; không đưa deliverable vào thư mục bị ignore.
+5. **Định Tuyến Tài Liệu Nháp**:
+   - Lưu audit nội bộ, ghi chú, kế hoạch và bản nháp không phải deliverable trong `workspaces/truongnv/.agent-work/`, thuộc workspace local-only được Rule 07 ignore.
+   - Deliverable do task/người dùng yêu cầu phải theo đường dẫn chính thức của task và các quy tắc scope; không ghi deliverable vào thư mục bị ignore.
 
 ---
 

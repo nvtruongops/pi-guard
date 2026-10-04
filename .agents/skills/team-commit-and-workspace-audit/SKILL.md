@@ -1,94 +1,52 @@
 ---
 name: team-commit-and-workspace-audit
-description: >-
-  Kiểm toán tự động lịch sử commit, git diff, staging area và Pull Requests để phát hiện và ngăn chặn
-  các vi phạm phân quyền Workspace (thành viên tạo/sửa file ngoài workspaces/ hoặc xâm phạm file bất biến).
+description: Audits changed repository paths against the protected academic records in the single-maintainer PI-Guard repository.
 ---
 
-# Team Commit & Workspace Boundary Audit Guide
+# Repository change and workspace audit
 
-Skill này cung cấp cơ chế và công cụ tự động để **kiểm toán (audit) toàn bộ commit, staging area và pull request** của các thành viên trong nhóm đồ án **PI-Guard**, bảo vệ tính toàn vẹn của repository.
+This check protects immutable academic records. It no longer assigns file permissions by team member: Nguyễn Văn Trường (`nvtruongops`) is the sole repository maintainer, while the capstone team roster remains in academic records.
 
----
+## Protected paths
 
-## 🛡️ 1. Nguyên Tắc Kiểm Toán Ranh Giới (Boundary Audit Rules)
+Changes to either path are rejected:
 
-### Quy Tắc 1: Phân Quyền Theo Workspace Cá Nhân
-- Mỗi thành viên (Đức, Việt, Phương) chỉ được phép tạo, sửa, xóa file trong đúng thư mục workspace của mình:
-  - `workspaces/ducnq/` $\rightarrow$ Chỉ `ducnq`
-  - `workspaces/vietpmh/` $\rightarrow$ Chỉ `vietpmh`
-  - `workspaces/phuongddd/` $\rightarrow$ Chỉ `phuongddd`
-- Bất kỳ commit nào của thành viên chứa file nằm ngoài thư mục workspace của họ (ví dụ sửa trực tiếp `src/`, `docs/`, `Meeting/`, `reports/`, `models/`, `data/`) đều bị đánh dấu là **🚨 VIOLATION: WORKSPACE_BOUNDARY_VIOLATION**.
+- `CAPSTONE PROJECT REGISTER.md`
+- `docs/fpt_capstone_guide/`
 
-### Quy Tắc 2: Độc Quyền Quản Trị Của Leader (Trường)
-- Chỉ có Trưởng nhóm (`nvtruongops` / Nguyễn Văn Trường) mới có quyền chỉnh sửa các file thuộc cây thư mục gốc ngoài `workspaces/`.
+Personal files under `workspaces/truongnv/` are ignored by Git. Do not force-add them. Put deliverables intended for review or publication in tracked locations outside `workspaces/`.
 
-### Quy Tắc 3: Bất Biến Tuyệt Đối (Strictly Read-Only) Cho Tất Cả Mọi Người
-- Bất kỳ ai (kể cả Leader) có commit chỉnh sửa vào các file sau đều bị chặn với mức độ nghiêm trọng **🚨 CRITICAL**:
-  - `CAPSTONE PROJECT REGISTER.md`
-  - `docs/fpt_capstone_guide/` (Toàn bộ thư mục)
+## Run the audit
 
----
+Check all working-tree and staged changes:
 
-## 💻 2. Công Cụ Kiểm Toán: `Final-Report/scripts/audit_workspace_boundaries.py`
-
-Nhóm đã trang bị script Python [`Final-Report/scripts/audit_workspace_boundaries.py`](file:///d:/Work/Do-an/Final-Report/scripts/audit_workspace_boundaries.py) để tự động hóa toàn bộ việc kiểm tra.
-
-### 📌 Các Lệnh Thực Thi Phổ Biến:
-
-#### 1. Kiểm tra toàn bộ thay đổi hiện tại (Working Tree + Staging Area):
-```bash
+```sh
 python Final-Report/scripts/audit_workspace_boundaries.py --mode all
 ```
 
-#### 2. Kiểm tra các file đã `git add` trước khi commit (Staged Only):
-```bash
+Check only staged changes before committing:
+
+```sh
 python Final-Report/scripts/audit_workspace_boundaries.py --mode staged
 ```
 
-#### 3. Kiểm tra commit vừa tạo gần nhất:
-```bash
+Check the last commit or a commit range:
+
+```sh
 python Final-Report/scripts/audit_workspace_boundaries.py --mode last_commit
+python Final-Report/scripts/audit_workspace_boundaries.py --mode commit_range --commit-range origin/main..HEAD
 ```
 
-#### 4. Kiểm tra một dải commit / Pull Request của thành viên:
-```bash
-# Kiểm tra PR của Đức
-python Final-Report/scripts/audit_workspace_boundaries.py --commit-range origin/main..HEAD --author ducnq
+Install the local pre-commit validation hook when needed:
 
-# Kiểm tra PR của Việt
-python Final-Report/scripts/audit_workspace_boundaries.py --commit-range origin/main..HEAD --author vietpmh
-
-# Kiểm tra PR của Phương
-python Final-Report/scripts/audit_workspace_boundaries.py --commit-range origin/main..HEAD --author phuongddd
+```sh
+python Final-Report/scripts/audit_workspace_boundaries.py --install-hook
 ```
 
-#### 5. Xem chi tiết danh sách file (Verbose):
-```bash
-python Final-Report/scripts/audit_workspace_boundaries.py --mode all --verbose
-```
+The normal repository pre-commit workflow calls `Final-Report/scripts/validate_local.py --mode pre-commit`. Before submitting a commit, run `python Final-Report/scripts/validate_local.py --mode fast`.
 
----
+## Failure handling
 
-## 🔒 3. Tự Động Hóa Bằng Git Pre-Commit Hook
+If the audit reports `IMMUTABLE_FILE_VIOLATION`, restore the protected path and rerun the audit. Other changed paths are allowed by this audit; task scope, academic evidence, and content validation still apply.
 
-Để ngăn chặn commit sai quy tắc ngay từ máy của thành viên, mỗi thành viên chỉ cần chạy lệnh cài đặt 1 lần duy nhất:
-
-```bash
-python Final-Report/scripts/validate_local.py --install-hook
-```
-
-Sau khi cài đặt:
-- Mỗi khi thành viên gõ `git commit`, Git sẽ tự động gọi `Final-Report/scripts/validate_local.py --mode pre-commit`.
-- Nếu phát hiện vi phạm: Git sẽ **tự động hủy bỏ commit (Abort)** và in ra hướng dẫn sửa file.
-- Nếu hợp lệ: Git cho phép commit tiếp tục bình thường.
-
----
-
-## 🚨 4. Bảng Tra Cứu Mã Lỗi & Cách Khắc Phục
-
-| Mã Lỗi (Violation Type) | Mức Độ | Nguyên Nhân | Cách Khắc Phục |
-| :--- | :---: | :--- | :--- |
-| `IMMUTABLE_FILE_VIOLATION` | 🔴 **CRITICAL** | Chỉnh sửa `CAPSTONE REGISTER` hoặc `docs/fpt_capstone_guide/` | Chạy `git restore <file>` hoặc `git checkout -- <file>` để hủy thay đổi ngay lập tức. |
-| `WORKSPACE_BOUNDARY_VIOLATION` | 🟠 **ERROR** | Thành viên sửa/tạo file ngoài thư mục workspace của mình | Di chuyển file vào `workspaces/<tên_workspace>/` và bỏ file cũ khỏi Git (`git reset HEAD <file>`). |
-| `UNAUTHORIZED_ROOT_EDIT` | 🟠 **ERROR** | Tài khoản không xác định sửa trực tiếp vào `src/` hoặc `docs/` | Đảm bảo cấu hình đúng `git config user.name` hoặc đẩy code qua workspace. |
+Ignoring `workspaces/truongnv/` affects future Git additions only. Existing copies in repository history are unaffected unless the history is separately rewritten.

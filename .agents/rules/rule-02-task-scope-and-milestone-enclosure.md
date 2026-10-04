@@ -50,7 +50,7 @@ Trước khi Agent viết bất kỳ dòng mã nào hoặc tạo bất kỳ tệ
 ```
 
 ### Bảng Ranh Giới Chuẩn Mực Bắt Buộc Xác Định:
-- **Tệp nguồn tham chiếu**: Ghi rõ đường dẫn tệp task (ví dụ: `workspaces/truongnv/reports/tasks_for_meeting_6/README.md`).
+- **Tệp nguồn tham chiếu**: Ghi rõ task được người dùng giao hoặc tài liệu task đã được đặt trong vị trí deliverable chính thức, bên ngoài workspace local-only.
 - **Phạm vi trong ranh giới (In-Scope Deliverables)**: Liệt kê đúng các câu hỏi/mục tiêu mà GVHD hoặc task file chỉ định.
 - **Phạm vi ngoài ranh giới (Strictly Out-of-Scope)**:
   - Các công nghệ được liệt kê tại Mục 4 của quy tắc này.

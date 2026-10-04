@@ -11,7 +11,6 @@ Quy tắc bảo vệ:
 """
 
 import re
-import shutil
 import sys
 from pathlib import Path
 
@@ -97,7 +96,15 @@ def sanitize_content(content: str) -> str:
     return content
 
 def copy_doc(src_path: Path, dest_path: Path, title_prefix: str = ""):
-    """Đọc file nguồn, chuẩn hóa link và ghi vào thư mục docs."""
+    """Đọc nguồn tracked, chuẩn hóa link và ghi vào thư mục docs."""
+    try:
+        source_relative = src_path.resolve().relative_to(ROOT_DIR.resolve())
+    except ValueError:
+        source_relative = None
+    if source_relative and source_relative.parts[0].lower() == "workspaces":
+        print(f"🔒 [PRIVATE] Giữ nguyên trang đã kiểm tra; không đồng bộ trực tiếp từ workspace: {src_path}")
+        return False
+
     if not src_path.exists():
         print(f"⚠️ [SKIP] Không tìm thấy file: {src_path}")
         return False
@@ -129,13 +136,13 @@ def create_homepage():
 
 def create_static_assets():
     """Tạo các file hỗ trợ MathJax và Custom CSS tối giản."""
-    source_image = ROOT_DIR / "workspaces" / "truongnv" / "reports" / "report for review 1 lan 2" / "REVIEW1_INGRESS_ARCHITECTURE_PAGE_02_SUMMARY_VERTICAL.png"
     image_dir = DOCS_DIR / "assets"
     image_dir.mkdir(parents=True, exist_ok=True)
-    if source_image.is_file():
-        shutil.copy2(source_image, image_dir / "ingress_architecture_review1_summary_vertical.png")
+    published_image = image_dir / "ingress_architecture_review1_summary_vertical.png"
+    if published_image.is_file():
+        print(f"✅ [ASSETS] Preserved checked-in portal image: {published_image}")
     else:
-        print(f"⚠️ [ASSETS] Architecture image source was not found: {source_image}")
+        print(f"⚠️ [ASSETS] Checked-in architecture image is missing: {published_image}")
     mathjax_js = """window.MathJax = {
   tex: {
     inlineMath: [["\\\\(", "\\\\)"]],
@@ -333,7 +340,7 @@ def create_src_architecture_doc(dest_path: Path):
     """Create a status-only description if no shared source README exists."""
     content = """# Shared source scaffold
 
-This folder is a module scaffold. It is not the integrated Review 2 ingress cascade. The current seed-42 experiment is documented in the lead workspace and does not establish final KPI acceptance or a deployed service.
+This folder is a module scaffold. Personal Review 2 runs remain local-only and are not shared evidence. This scaffold does not establish final KPI acceptance or a deployed service.
 
 The proposed flow separates L1 input handling, L2 per-chunk route candidates, L3 REVIEW scoring, and API request aggregation. L2 ALLOW/BLOCK are candidates; only API aggregation emits final request ALLOW/BLOCK. Symbolic thresholds are not established service settings.
 """

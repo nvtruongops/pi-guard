@@ -1,8 +1,0 @@
-{
-  "origin_git_url": "https://github.com/AhsanAyub/malicious-prompt-detection",
-  "local_path": "../Ayub_CAMLIS2024/",
-  "snapshot_status": "retained reference snapshot",
-  "upstream_commit_pinned": false,
-  "file_by_file_content_comparison": false,
-  "note": "The repository URL identifies the public project, but this local copy has no recorded upstream commit or complete content-hash comparison. Do not describe the local directory as verified pristine upstream code."
-}

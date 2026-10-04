@@ -34,4 +34,4 @@ Khi nhóm bổ sung các bài thuyết trình hoặc tài liệu báo cáo mới
 1. [`PI-GUARD-Present-109/`](file:///d:/Work/Do-an/reports/figures/PI-GUARD-Present-109/):
    - **Tài liệu nguồn**: [`reports/PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/reports/PI-GUARD-Present-109.pptx)
    - **Nội dung**: 12 hình ảnh minh họa cơ chế tấn công (Prompt Injection, Jailbreak), 4 tầng thiệt hại, mô hình đe dọa (Threat Model) và kiến trúc phòng thủ 2 tầng (Two-Tier Cascaded Guardrail).
-   - **Bản mô tả chi tiết**: Xem tại [`workspaces/truongnv/reports/figures/README.md`](file:///d:/Work/Do-an/workspaces/truongnv/reports/figures/README.md).
+   - **Bản mô tả chi tiết**: Nguồn làm việc cá nhân không thuộc repository; các hình ảnh đã chọn để chia sẻ được lưu trong thư mục này.

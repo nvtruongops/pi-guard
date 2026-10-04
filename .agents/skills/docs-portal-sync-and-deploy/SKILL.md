@@ -31,15 +31,15 @@ Mọi AI Agent và thành viên nhóm khi vận hành đồng bộ tài liệu B
 
 ### Invariant 4: REVIEW 1 ZERO-CODE INVARIANT TRONG `Final-Report/`
 - Theo quy chuẩn học thuật FPT University (IAP491), tại cột mốc **Review 1 (Tuần 1–4)**, phân hệ `Final-Report/` tuân thủ nguyên tắc **100% Nghiên cứu lý thuyết & y văn**.
-- Tuyệt đối không đưa mã nguồn nháp, pipeline hay file thử nghiệm sớm vào `Final-Report/src/`, `Final-Report/tests/` hay `Final-Report/notebooks/`. Toàn bộ hoạt động code của 4 thành viên diễn ra trong `workspaces/<thành_viên>/`.
+- Không đưa mã nguồn nháp, pipeline hay file thử nghiệm sớm vào `Final-Report/src/`, `Final-Report/tests/` hay `Final-Report/notebooks/`. Nguyễn Văn Trường giữ nghiên cứu nháp trong local-only `workspaces/truongnv/`; deliverables được yêu cầu đặt ở vị trí được chỉ định ngoài `workspaces/`.
 
 ### Invariant 5: PROHIBITION OF "THỜI GIAN THỰC" (REAL-TIME) TERMINOLOGY
 - Tuyệt đối không sử dụng cụm từ *"vận hành thời gian thực"* hoặc *"thời gian thực" (Real-Time)* để miêu tả độ trễ hay hiệu năng suy luận của Guardrail API.
 - Thuật ngữ bắt buộc: *"Độ trễ thấp" / "Low-Latency"* (ví dụ: $P95 < 22\text{ms}$ trên CPU), *"Bảo vệ trực tuyến" / "Inline Guardrail Proxy"*, *"Độ trễ suy luận"*.
 
-### Invariant 6: STRICT WORKSPACE BOUNDARY & LEADER MERGE GOVERNANCE
-- Thành viên nhóm (Đức, Việt, Phương) chỉ được thao tác trong sandbox `workspaces/<member>/`.
-- Chỉ duy nhất Leader (`nvtruongops` / Nguyễn Văn Trường) có thẩm quyền chạy script đồng bộ, merge tài liệu vào `Final-Report/` và `Github-Page/`, và xuất bản lên nhánh `main` / `gh-pages`.
+### Invariant 6: PRIVATE WORKSPACE & SINGLE-MAINTAINER GOVERNANCE
+- Repository này có một maintainer Git: Nguyễn Văn Trường (`nvtruongops`). Danh sách thành viên trong hồ sơ capstone là hồ sơ học thuật, không phải danh sách quyền truy cập repo.
+- Maintainer chịu trách nhiệm cập nhật tài liệu nguồn, chạy script đồng bộ, rà soát thay đổi tại `Final-Report/` và `Github-Page/`, và xuất bản khi cần.
 
 ---
 
@@ -49,7 +49,7 @@ Mọi AI Agent và thành viên nhóm khi vận hành đồng bộ tài liệu B
 | :--- | :--- | :--- |
 | **Build Docs Portal** | [`Final-Report/scripts/build_docs_portal.py`](file:///d:/Work/Do-an/Final-Report/scripts/build_docs_portal.py) | Quét và tổng hợp 8 chuyên đề khoa học, luận văn (`FINAL_THESIS.md`), Review 1, sơ đồ kiến trúc vào `Github-Page/` |
 | **Local QA Suite** | [`Final-Report/scripts/validate_local.py`](file:///d:/Work/Do-an/Final-Report/scripts/validate_local.py) | Bộ kiểm định chất lượng toàn diện: Ranh giới thư mục, JSON manifest, linting, MkDocs strict build |
-| **Audit Boundaries** | [`Final-Report/scripts/audit_workspace_boundaries.py`](file:///d:/Work/Do-an/Final-Report/scripts/audit_workspace_boundaries.py) | Kiểm toán phân quyền Git và bảo vệ file bất biến (`CAPSTONE PROJECT REGISTER.md`, `docs/fpt_capstone_guide/`) |
+| **Audit Boundaries** | [`Final-Report/scripts/audit_workspace_boundaries.py`](file:///d:/Work/Do-an/Final-Report/scripts/audit_workspace_boundaries.py) | Kiểm tra các đường dẫn bất biến (`CAPSTONE PROJECT REGISTER.md`, `docs/fpt_capstone_guide/`) |
 | **Verify URL & DOI** | [`Final-Report/scripts/verify_resource_url.py`](file:///d:/Work/Do-an/Final-Report/scripts/verify_resource_url.py) | Kiểm tra HTTP status của URL, verify YouTube oEmbed và tự động tra cứu Open-Access PDF từ DOI |
 
 ---
