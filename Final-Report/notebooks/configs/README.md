@@ -1,8 +1,5 @@
-# THƯ MỤC CẤU HÌNH THỰC NGHIỆM (EXPERIMENT CONFIGURATIONS)
-## ⚙️ Declarative YAML Configurations for Reproducibility
+# Notebook configuration files
 
-Thư mục này chứa các tệp cấu hình siêu tham số và pipeline chuẩn hóa:
-- `data.yaml`: Cấu hình nguồn dữ liệu Hugging Face, nhãn và group-aware split.
-- `evaluation.yaml`: Ngưỡng chặn an toàn, lát cắt đối kháng và latency profiling budget.
-- `models.yaml`: Đặc tả kiến trúc Baseline (TF-IDF) và DeBERTa-v3 Transformer.
-- `training.yaml`: Siêu tham số huấn luyện (learning rate, epochs, batch size, weight decay).
+This folder contains declarative YAML configuration files intended for research organization. They are templates, not evidence that a dataset, model, threshold, or notebook pipeline has been adopted for the current experiment.
+
+Any numeric evaluation gates in these files must be read with their own source and scope. The seed-42 cascade used validation-selected gates recorded in its [experiment report](../../../workspaces/truongnv/reports/experiment_reports/tfidf_deberta_cascade_2026-10-04/REPORT.md); those settings are run-specific and are not service policy.

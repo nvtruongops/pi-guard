@@ -1,24 +1,7 @@
-# Workspace Cá Nhân — Phạm Minh Hoàng Việt
-## Không Gian Thử Nghiệm Song Song Toàn Trình (Full-Pipeline Exploration Sandbox)
+# Phạm Minh Hoàng Việt — PI-Guard workspace
 
-> [!IMPORTANT]
-> **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  
-> Đây là không gian làm việc nháp (Sandbox) riêng của bạn để tự do thử nghiệm độc lập toàn bộ các mắt xích của hệ thống PI-Guard (từ tiền xử lý dữ liệu, mô hình Baseline TF-IDF, Transformer DeBERTa-v3, kiểm thử đối kháng Evasion cho đến API/Dashboard và viết báo cáo). Không bị bó buộc vào một phần việc cô lập, cả nhóm cùng làm song song, đối chiếu chéo kết quả và họp chốt phương án tối ưu nhất.
+This folder preserves member notes and exploratory work. The contents are not automatically integrated into the current proposal or accepted as project metrics.
 
-### 📌 Lộ trình thực hành toàn trình của bạn:
-1. **Khảo sát & Tiền xử lý dữ liệu**: Nghiên cứu tokenizer, các kiểu nhiễu cú pháp (Leetspeak, Spacing, Base64) và tiền xử lý chuẩn hóa.
-2. **Baseline ML & Thử nghiệm mô hình**: Chạy thử nghiệm trích xuất đặc trưng TF-IDF n-grams và các bộ phân loại cơ sở.
-3. **Transformer Fine-Tuning & Native FP32 Optimization**: Fine-tuning mô hình `microsoft/deberta-v3-base` (Native FP32), áp dụng cơ chế Masked Overlap Fraction (MOF Invariance) và benchmark độ trễ P95 trên CPU.
-4. **Kiểm thử đối kháng & API**: Đo đạc độ bền trước các tấn công Evasion/Obfuscation, kiểm thử endpoint FastAPI và Streamlit UI.
-5. **Biên soạn & Phản biện Báo cáo**: Tham gia viết, đọc chéo và phản biện cả 6 báo cáo (Report No.1 $\rightarrow$ No.6), đồng chủ biên Report No.4 (Experimental and Results).
+Review 2 remains active as of 4 October 2026. The authoritative task and current local experiment are indexed in the lead workspace: [Review 2 task](../truongnv/reports/tasks_for_review2/README.md) and [seed-42 cascade report](../truongnv/reports/experiment_reports/tfidf_deberta_cascade_2026-10-04/REPORT.md).
 
-### 📂 Bạn có thể để file thử nghiệm tại đây:
-- `scratch_transformer_eval.py`: Thử nghiệm đánh giá mô hình DeBERTa-v3 Native FP32 và đo latency P95 trên CPU.
-- `scratch_evasion_test.py`: Thử nghiệm các payload Base64/Cipher độc hại.
-- `scratch_transformer.py`: Thử nghiệm huấn luyện và đánh giá mô hình.
-- Khi hoàn thiện thử nghiệm $\rightarrow$ Trao đổi cùng nhóm trong buổi họp tuần để Leader merge giải pháp tối ưu ra thư mục chung `Final-Report/` (`Final-Report/src/`, `Final-Report/notebooks/`, `Final-Report/thesis/`).
-
-### 📚 Tài liệu nghiên cứu cục bộ:
-- [`References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/workspaces/vietpmh/References/REFERENCES_LOG.md): Nhật ký các bài báo khoa học thẩm định trong Meeting 2 và đối chiếu cùng nhóm.
-- Thư mục lưu trữ PDF: [`References/`](file:///d:/Work/Do-an/workspaces/vietpmh/References/).
-
+Older Meeting 5 work under Task Completed and the preprocessing demo remain historical references. Do not present their earlier metrics or performance claims as current service results.

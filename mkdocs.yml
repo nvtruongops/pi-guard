@@ -112,8 +112,9 @@ nav:
       - "Tuyển Chọn Dữ Liệu & Phân Loại 3 Lớp": dataset_study/data_curation.md
       - "Phân Chia Group-Aware & Đánh Giá OOD": dataset_study/group_aware_splitting.md
       - "Tài Liệu, Benchmark & Nguồn Dữ Liệu": dataset_study/resources_and_papers.md
-  - "5. Model Study (Kiến Trúc Hai Tầng)":
-      - "Tổng Quan Kiến Trúc 2 Tầng": models/two_tier_architecture.md
+  - "5. Model Study (Đề Xuất Ingress)":
+      - "Kiến Trúc Ingress Hiện Hành (Đề Xuất)": models/ingress_architecture.md
+      - "Lược Đồ Hai Bộ Chấm Điểm Trước Đây (Tham Khảo)": models/two_tier_architecture.md
       - "Tier 1: Syntactic Baseline (TF-IDF)":
           - "Lý Thuyết & Toán Học": models/tfidf_theory_and_math.md
           - "Hướng Dẫn & Sử Dụng": models/tfidf_usage.md
@@ -122,11 +123,11 @@ nav:
           - "Lý Thuyết & Disentangled Attention": models/deberta_theory_and_math.md
           - "Hướng Dẫn Fine-Tuning & Triển Khai": models/deberta_usage.md
           - "Tài Liệu & Video Tham Khảo": models/deberta_resources.md
-      - "Phối Hợp 2 Tầng & Latency Tradeoffs": models/two_tier_tradeoffs.md
+      - "Earlier model tradeoff notes (background)": models/two_tier_tradeoffs.md
       - "Khảo Sát Các Guardrail SOTA": research/sota_guardrail_benchmarks.md
       - "Khảo Sát 5 Target LLM APIs": research/target_llm_vulnerabilities.md
       - "Phân Tích Bài Báo Tencent 2026": research/tencent2026_paper_analysis.md
-      - "Luận Giải Kiến Trúc Kết Hợp": research/why_dual_model_architecture.md
+      - "Earlier architecture rationale (historical)": research/why_dual_model_architecture.md
   - "6. Robustness & Evasion Study":
       - "Cơ Sở Lý Thuyết & Phân Mảnh Token": robustness/theory_and_evasion_mechanisms.md
       - "Kiến Trúc Phòng Thủ Đa Tầng": robustness/defense_architecture_and_mitigation.md

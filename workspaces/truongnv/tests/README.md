@@ -1,21 +1,5 @@
-# THƯ MỤC BỘ KIỂM THỬ TỰ ĐỘNG (AUTOMATED TEST SUITE)
-## 🧪 PI-Guard Unit, Integration & Adversarial Robustness Tests
+# Lead workspace tests
 
-> [!IMPORTANT]
-> **QUY TẮC CHẠY KIỂM THỬ (TESTING RULES)**:
-> 1. Mọi Pull Request trước khi được duyệt merge vào `Final-Report/src/` phải vượt qua 100% các bài test tự động:
->    ```powershell
->    pytest Final-Report/tests/
->    ```
-> 2. Các test suite đối kháng (Adversarial Tests) dùng để đo khả năng phát hiện khi hacker tấn công mã hóa Base64, Leetspeak và chèn khoảng trắng.
+This directory contains tests associated with code in the lead workspace. Test results apply only to the invoked files and environment; they do not establish benchmark provenance, model acceptance, or production readiness.
 
----
-
-### 📂 CẤU TRÚC:
-
-```
-tests/
-├── unit/                          # Kiểm thử đơn vị các hàm tiền xử lý, bóc tách Base64, Tokenizer
-├── integration/                   # Kiểm thử tích hợp luồng: Request -> Guardrail -> LLM Proxy -> Response
-└── adversarial/                   # Bộ 400+ payload tấn công đối kháng để đo Robustness Score
-```
+Run tests using the task-specific environment and commands documented alongside the relevant source. The Review 2 experiment has its own validation and held-out evidence in [the experiment report](../reports/experiment_reports/tfidf_deberta_cascade_2026-10-04/REPORT.md). It is not a service-level acceptance test.

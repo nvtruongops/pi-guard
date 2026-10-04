@@ -1,12 +1,5 @@
-# THƯ MỤC MANIFESTS DỮ LIỆU CHÍNH THỨC (CANONICAL DATA MANIFESTS)
-## 📋 Trạng Thái Quản Lý Manifests Cấp Gốc (Root Level)
+# Data manifests
 
-> ✔️ **Trạng thái**: *Đã xuất bản và đồng bộ các file manifests dữ liệu chính thức của đề tài:*
-> - [`attack_taxonomy.json`](file:///d:/Work/Do-an/Final-Report/notebooks/data/manifests/attack_taxonomy.json): Phân loại chi tiết các loại tấn công theo OWASP LLM01:2025 & NIST AI 100-2e2025.
-> - [`dataset_versions.json`](file:///d:/Work/Do-an/Final-Report/notebooks/data/manifests/dataset_versions.json): Metadata, phiên bản và URL nguồn dữ liệu Hugging Face.
+The JSON files in this directory describe dataset taxonomy and source metadata. They are repository metadata; they do not by themselves certify that a dataset was downloaded, finalized, or used by the current Review 2 experiment.
 
----
-
-### 📌 QUY TẮC QUẢN TRỊ DỮ LIỆU:
-1. Toàn bộ các định nghĩa phân loại đe dọa (Taxonomy) và phiên bản dữ liệu chuẩn được quản lý tập trung tại thư mục này.
-2. Mọi script kiểm định chất lượng (`validate_local.py`) tự động kiểm tra cú pháp và tính toàn vẹn của các file JSON manifests này.
+For the active seed-42 experiment’s exact source pairing and split, use the [experiment report](../../../../workspaces/truongnv/reports/experiment_reports/tfidf_deberta_cascade_2026-10-04/REPORT.md) and its linked provenance files.

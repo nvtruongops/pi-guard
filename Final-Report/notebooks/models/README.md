@@ -1,18 +1,5 @@
-# THƯ MỤC TRỌNG SỐ MÔ HÌNH THỰC NGHIỆM (TRAINED MODEL CHECKPOINTS)
-## 🧠 PI-Guard Model Artifacts (`notebooks/models/`)
+# Shared model artifact scaffold
 
-> [!IMPORTANT]
-> **QUY TẮC QUẢN LÝ MÔ HÌNH (MODEL ARTIFACTS RULE)**:
-> 1. Thư mục này chứa các trọng số mô hình **ĐÃ HUẤN LUYỆN VÀ TỐI ƯU HÓA HOÀN CHỈNH** phục vụ notebook thực nghiệm và kiểm thử suy luận.
-> 2. Các file nhị phân lớn (`.bin`, `.safetensors`, `.onnx`, `.joblib`) được bỏ qua bởi `.gitignore` để không làm phình dung lượng repo Git.
-> 3. Để tải hoặc xuất mô hình chuẩn, chạy pipeline trong `src/models/` hoặc `scripts/`.
+This directory provides baseline, transformer, and legacy onnx subdirectories for organizing future shared artifacts. The tracked contents are a scaffold; they do not include the active Review 2 model checkpoints or establish a released model.
 
----
-
-### 📂 CẤU TRÚC LƯU TRỮ MÔ HÌNH:
-
-```
-notebooks/models/
-├── baseline/                      # Trọng số mô hình Scikit-Learn TF-IDF (`.joblib`, `.pkl`)
-└── transformer/                   # Checkpoint PyTorch / Hugging Face DeBERTa-v3 (`best_model/`)
-```
+The seed-42 experiment artifacts and model provenance are documented in the lead workspace [experiment report](../../../workspaces/truongnv/reports/experiment_reports/tfidf_deberta_cascade_2026-10-04/REPORT.md). ONNX and quantization remain outside the current project scope under Rule 02.

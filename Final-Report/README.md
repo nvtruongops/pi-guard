@@ -1,75 +1,26 @@
-# THƯ MỤC BÁO CÁO TỔNG, LUẬN VĂN & TÀI NGUYÊN THỰC NGHIỆM (`Final-Report/`)
-## 📈 PI-Guard Final Report, Thesis & Experimentation Deliverables Hub
+# Final-Report — shared academic deliverables
 
-> [!NOTE]
-> Thư mục `Final-Report/` là **phân hệ Báo Cáo Tổng** của dự án PI-Guard. Đây là nơi lưu trữ tập trung toàn bộ sản phẩm học thuật, hồ sơ bảo vệ, tài liệu luận văn và tài nguyên thực nghiệm phục vụ việc nghiệm thu với Giáo viên Hướng dẫn và Hội đồng Chấm Đồ án ĐH FPT (IAP491).
+This folder holds shared capstone materials, the official progress workbook, thesis files, and QA/documentation tools. It is separate from each member’s active workspace.
 
----
+## Project status — 4 October 2026
 
-### 📂 CẤU TRÚC PHÂN HỆ BÁO CÁO TỔNG & NGHIỆM THU (`Final-Report/`):
+Review 1 progress is recorded as complete. Review 2 is now active and its umbrella task remains open. The completed seed-42 cascade experiment and raw provenance are currently in the lead workspace; they have not been consolidated into this shared deliverable. See the [active Review 2 task](../workspaces/truongnv/reports/tasks_for_review2/TASK.md) and [experiment report](../workspaces/truongnv/reports/experiment_reports/tfidf_deberta_cascade_2026-10-04/REPORT.md).
 
-> [!IMPORTANT]
-> **QUY CHUẨN GIAI ĐOẠN REVIEW 1 (ZERO-CODE INVARIANT TRONG FINAL-REPORT)**:
-> - Theo quy chế học thuật ĐH FPT (IAP491), giai đoạn **Review 1 (Tuần 1–4)** là giai đoạn **100% Nghiên cứu lý thuyết, Khảo sát y văn, Mô hình hóa đe dọa (Threat Modeling) và Thiết kế kiến trúc**.
-> - Thư mục `Final-Report/` duy trì đầy đủ khung cấu trúc chuẩn (scaffolding gồm `README.md`, `.gitkeep`, cấu hình `configs/`), nhưng **tuyệt đối không chứa mã nguồn chưa qua kiểm duyệt hoặc code thử nghiệm dang dở**.
-> - Toàn bộ quá trình code thử nghiệm, chạy notebook phân tích dữ liệu và huấn luyện mô hình diễn ra độc lập trong không gian làm việc của 4 thành viên (`workspaces/<thành_viên>/`) và chỉ được Leader đồng quy tích hợp vào `Final-Report/` sau khi họp chốt kết quả tại cột mốc **Review 2 & Hội đồng Giữa kỳ**.
+The experiment is one local run on one pinned PIDS-Bench split. Its validation-selected gates are run-specific; high hard-benign and structural-OOD false-positive rates and model-only P95 of 155.03 ms remain reported limitations. It does not constitute final KPI acceptance or service implementation.
 
-```
-Final-Report/
-├── thesis/                        # Toàn bộ hồ sơ Luận văn tốt nghiệp chính thức (Single Source of Truth)
-│   ├── FINAL_THESIS.md            # Toàn văn Khóa luận tốt nghiệp (Chapters 1-6 + References)
-│   ├── Review1_Problem_Definition_and_Threat_Model.md # Báo cáo Chuyên đề Đợt 1 (Định nghĩa bài toán & Threat Model)
-│   ├── FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md # Tóm tắt quy chế & tiêu chí chấm điểm IAP491
-│   ├── chapters/                  # Các chương riêng biệt (01_Introduction, 02_Literature_Review)
-│   └── README.md                  # Quy chuẩn viết và biên dịch Luận văn
-├── notebooks/                     # Tài nguyên thực nghiệm & kế hoạch 5 Jupyter Notebooks tái lập
-│   ├── README.md                  # Kế hoạch thực nghiệm và quy chế vận hành 5 notebooks
-│   ├── configs/                   # Cấu hình siêu tham số (data.yaml, evaluation.yaml, models.yaml, training.yaml)
-│   ├── data/                      # Khung lưu trữ dữ liệu thực nghiệm (raw, processed, splits, augmentation, manifests)
-│   └── models/                    # Khung lưu trữ trọng số mô hình đã huấn luyện (baseline, transformer)
-├── src/                           # Khung mã nguồn thực nghiệm chính thức (Research & PoC Scaffolding sẵn sàng cho Review 2/3)
-│   ├── README.md                  # Kiến trúc các module nghiên cứu & quy chuẩn tái lập khoa học
-│   └── [api, dashboard, datasets, evaluation, llm, models, policy, preprocessing, training, utils]/
-├── tests/                         # Bộ kiểm thử tự động (Automated Test Suites Scaffolding)
-│   ├── README.md                  # Quy chuẩn kiểm thử (pytest, unit, integration, adversarial)
-│   └── [unit, integration, adversarial]/
-├── Meeting/                       # Biên bản các cuộc họp tiến độ với GVHD & nội bộ nhóm (Meeting 1, 2, 3)
-│   ├── Meeting 1_29_08_26.md      # Họp khởi động đề tài & phân công Sprint 1
-│   ├── Meeting 2_01_09_26.md      # Khảo sát & sàng lọc 10 bài báo khoa học, định hướng 2 mô hình
-│   ├── Meeting 3_08_09_26.md      # Thống nhất nội dung & thiết kế Slide báo cáo tiến độ GVHD ngày 10/09
-│   └── README.md
-├── References/                    # Toàn bộ 18 bài báo khoa học toàn văn PDF & sổ nhật ký tra cứu
-│   ├── *.pdf                      # 18 file PDF toàn văn các bài báo học thuật chuẩn IEEE/ACM/NeurIPS/ICLR
-│   ├── REFERENCES_LOG.md          # Bảng tra cứu & ma trận ánh xạ 18 bài báo vào các module trong đề tài
-│   └── README.md
-├── reports/                       # [PERIODIC REPORTS & METRICS] Sổ tiến độ, slide trình chiếu & benchmark
-│   ├── PI-GUARD-Present-109.pptx  # Slide báo cáo tiến độ gặp GVHD ngày 10/09/2026 (22 slides, Dark Slate Navy)
-│   ├── PI_GUARD_PROCESS_REPORT.xlsx # Sổ theo dõi tiến độ công việc chính thức (FPT IAP491 Process Report)
-│   ├── experiment_reports/        # Thư mục lưu trữ kết quả thực nghiệm tự động (khi hoàn thành Review 2/3)
-│   └── README.md                  # Hướng dẫn chi tiết phân hệ báo cáo định kỳ
-├── figures/                       # Sơ đồ kiến trúc, biểu đồ ROC-AUC, biểu đồ độ trễ dạng PNG chất lượng cao
-│   └── PI-GUARD-Present-109/      # 12 ảnh sơ đồ, biểu đồ trích xuất từ slide trình chiếu ngày 10/09/2026
-├── tables/                        # Bảng số liệu đối chuẩn định dạng Markdown và LaTeX
-├── scripts/                       # [TOOLING & QA] Bộ công cụ kiểm định Local QA, xuất bản tài liệu & quy trình
-│   ├── validate_local.py          # Unified Local QA Suite (Boundaries, Manifests, Lint, Pytest, Docs)
-│   ├── audit_workspace_boundaries.py # Kiểm toán phân quyền workspace & commit
-│   ├── build_docs_portal.py       # Tự động tổng hợp và biên dịch tài liệu MkDocs
-│   ├── compile_thesis.py          # Biên dịch các chương thành luận văn hoàn chỉnh
-│   ├── verify_resource_url.py     # Công cụ kiểm định URL, video YouTube và tra cứu Open-Access PDF
-│   ├── audit_urls.py              # Quét toàn diện tính hợp lệ của tất cả URL trong repo
-│   ├── generate_process_report.py # Sinh sổ theo dõi tiến độ chính thức PI_GUARD_PROCESS_REPORT.xlsx
-│   ├── generate_personal_process_report.py # Sinh báo cáo tiến độ cá nhân hóa từng thành viên
-│   └── sync_google_sheet.py       # Đồng bộ dữ liệu tiến độ lên Google Sheet phục vụ GVHD
-├── requirements.txt               # Master Core & Research Dependencies
-├── requirements-dev.txt           # Master Dev Dependencies (Pytest, Ruff, Pre-commit, MkDocs)
-└── .env.example                   # Master Environment Configuration Template
-```
+## Final ingress architecture for the report
 
+The final architecture package selected for this report is available as an editable [Draw.io source](PI_GUARD_INGRESS_ARCHITECTURE.drawio) and [PNG preview](PI_GUARD_INGRESS_ARCHITECTURE.png). The Draw.io file is the canonical source; the PNG previews its request-level UML Activity Diagram.
 
----
+This is the report's final **proposed architecture artifact**. It does not claim that every component is implemented or that project KPIs have been accepted. L2 emits per-chunk ALLOW/REVIEW/BLOCK candidates; the API routes REVIEW chunks to L3, retains the other candidates, verifies coverage, and alone emits the final request ALLOW/BLOCK decision. Only final ALLOW reaches the target LLM. The `τ` values remain proposal assumptions, and validation-selected gates from seed-42 apply only to that run.
 
-### 📢 LƯU Ý VỀ TÀI LIỆU TRÌNH CHIẾU:
-> [!IMPORTANT]
-> - Tệp [`PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/Final-Report/reports/PI-GUARD-Present-109.pptx) là **SLIDE BÁO CÁO TIẾN ĐỘ ĐỊNH KỲ VỚI GIÁO VIÊN HƯỚNG DẪN (GVHD) TRONG BUỔI GẶP NGÀY 10/09/2026**.
-> - Tài liệu này được nhóm sử dụng để báo cáo tình hình nghiên cứu, cơ sở lý thuyết chọn mô hình và kiến trúc đề xuất nhằm xin ý kiến chỉ đạo, định hướng chuyên môn từ GVHD.
-> - **ĐÂY KHÔNG PHẢI LÀ SLIDE BÁO CÁO REVIEW 1 TRƯỚC HỘI ĐỒNG**: Buổi bảo vệ Review 1 chính thức trước Hội đồng FPT University sẽ diễn ra ở cột mốc sau; slide Review 1 chính thức sẽ được nhóm hoàn thiện và đóng gói riêng sau khi tiếp thu các nhận xét của GVHD.
+## Contents
+
+- [Thesis and chapter files](thesis/README.md): shared academic deliverable drafts.
+- [References](References/README.md): literature index and local reference collection.
+- [Reports](reports/README.md): official process workbook and supervisor presentation.
+- [Research notebooks](notebooks/README.md): current template/scaffold status and configuration boundaries.
+- [Source scaffold](src/README.md) and [test scaffold](tests/README.md).
+- [Scripts](scripts/): local validation, report generation, and documentation portal tooling.
+
+The shared source, test, notebook, data, and model directories are not the active location of the Review 2 cascade artifacts. Consolidate only through the project’s task and workspace governance. Do not edit the immutable project register or the FPT capstone guide.

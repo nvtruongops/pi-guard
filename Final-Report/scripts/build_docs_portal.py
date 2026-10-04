@@ -1,7 +1,7 @@
 """
 scripts/build_docs_portal.py
 -----------------------------
-PI-Guard Documentation Portal Aggregator (8-Pillar Academic Architecture)
+PI-Guard documentation portal builder
 Tự động thu thập, chuẩn hóa và cấu trúc tài liệu toàn dự án PI-Guard
 thành thư mục 'docs/' để phục vụ xuất bản Web UI qua GitHub Pages (MkDocs Material).
 
@@ -27,41 +27,18 @@ ROOT_DIR = FINAL_REPORT_DIR.parent
 DOCS_DIR = ROOT_DIR / "Github-Page"
 
 def clean_and_prepare_dir():
-    """Khởi tạo và làm sạch các thư mục chuyên đề trong docs/ phục vụ MkDocs (BẢO VỆ TUYỆT ĐỐI docs/fpt_capstone_guide/)."""
+    """Create portal folders without deleting existing checked-in pages or assets."""
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
-
-    # Tạo và làm sạch các thư mục con theo kiến trúc thông tin 7 Chuyên Đề Khoa Học
     subdirs = [
-        "work", "prompt_study", "attacks", "threat_defense", 
-        "dataset_study", "models", "robustness", 
-        "evaluation_study", "research", "thesis", "references", 
-        "dev", "javascripts", "stylesheets"
+        "work", "prompt_study", "attacks", "threat_defense",
+        "dataset_study", "models", "robustness",
+        "evaluation_study", "research", "thesis", "references",
+        "dev", "javascripts", "stylesheets", "assets",
     ]
     for sub in subdirs:
-        sub_path = DOCS_DIR / sub
-        if sub_path.exists():
-            shutil.rmtree(sub_path)
-        sub_path.mkdir(parents=True, exist_ok=True)
+        (DOCS_DIR / sub).mkdir(parents=True, exist_ok=True)
 
-    # Loại bỏ thư mục optimization nếu còn tồn tại từ bản build trước
-    if (DOCS_DIR / "optimization").exists():
-        shutil.rmtree(DOCS_DIR / "optimization")
-
-    # Xóa index.md cũ nếu có để tạo mới
-    if (DOCS_DIR / "index.md").exists():
-        (DOCS_DIR / "index.md").unlink()
-
-    # Dọn dẹp các thư mục rỗng cũ không còn dùng trong docs nếu có
-    for old_dir in ["api", "architecture", "experiments", "methodology"]:
-        old_p = DOCS_DIR / old_dir
-        if old_p.exists():
-            try:
-                if not any(old_p.iterdir()):
-                    old_p.rmdir()
-            except Exception:
-                pass
-
-    print(f"📁 [INIT] Đã khởi tạo cấu trúc thư mục tài liệu GitHub Pages tại: {DOCS_DIR}")
+    print(f"📁 [INIT] Portal folders ready; existing pages are preserved: {DOCS_DIR}")
 
 def sanitize_content(content: str) -> str:
     """
@@ -83,6 +60,7 @@ def sanitize_content(content: str) -> str:
     # Chuyển đổi link PDF nội bộ và link file ngoài thành inline code hoặc text đậm
     content = re.sub(r"\[([^\]]+)\]\((?:file:///[^)]*|Final-Report(?:/[^)]*)?|workspaces(?:/[^)]*)?|reports/(?:References|Meeting)/[^)]*|References/[^)]*|Meeting/[^)]*|CAPSTONE%20PROJECT%20REGISTER\.md|Github-Page/[^)]*|docs/[^)]*)\)", r"**\1**", content)
 
+    content = re.sub(r"\[([^\]]+)\]\((?!https?://|mailto:|#)[^)]*\.pdf(?:#[^)]*)?\)", r"**\1** (local PDF; not packaged with portal)", content, flags=re.IGNORECASE)
     # Thay thế file:///... còn lại
     content = re.sub(r"\(file:///[^)]+\)", r"(#)", content)
     content = re.sub(r"file:///[^\s\)\"\'>]+", "#", content)
@@ -142,98 +120,22 @@ def copy_doc(src_path: Path, dest_path: Path, title_prefix: str = ""):
         return False
 
 def create_homepage():
-    """Tạo trang chủ (index.md) chuẩn mực học thuật, tối giản, thuần Markdown."""
-    index_content = """# PI-Guard: LLM Security Guardrail
-## Hệ Thống 7 Chuyên Đề Nghiên Cứu Khoa Học & Báo Cáo Khóa Luận
-
-> **Đồ án Khóa luận Tốt nghiệp Đại học FPT** — Chuyên ngành An toàn Thông tin (IA)<br>
-> **Mã đề tài**: `IAP491_FA26_PI_GUARD` | **Học kỳ**: Fall 2026<br>
-> **Chủ đề**: A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications
-
----
-
-## Giới Thiệu & Mục Tiêu Đề Tài
-
-**PI-Guard** là hệ thống bảo vệ (guardrail) độc lập đặt trước các ứng dụng mô hình ngôn ngữ lớn (LLM), hoạt động theo cơ chế **hai tầng bảo vệ (Two-Tier Cascade Architecture)**:
-
-1. **Tier 1 (Bộ lọc Cú pháp - Syntactic Baseline)**: Sử dụng phương pháp vector hóa TF-IDF kết hợp mô hình phân loại tuyến tính siêu nhẹ (Linear Classifier) nhằm nhận diện các mẫu prompt injection phổ biến với độ trễ cực thấp (**P95 < 1.0 ms**).
-2. **Tier 2 (Bộ lọc Ngữ nghĩa Sâu - Semantic Transformer)**: Sử dụng Transformer tiên tiến (**DeBERTa-v3**) với cơ chế Disentangled Attention nhằm phát hiện các biến thể tấn công tinh vi, jailbreak ẩn ngữ cảnh với độ trễ tối ưu trên CPU (**P95 < 25 ms**).
-
----
-
-## Kiến Trúc Luồng Phòng Thủ Hai Tầng (Two-Tier Cascade)
-
-```mermaid
-flowchart TD
-    subgraph Ingress["1. Ingress & Preprocessing"]
-        UserPrompt(["User Prompt (x)"]) --> P1["Tiền xử lý & Chuẩn hóa Unicode NFKC"]
-    end
-
-    subgraph Tier1["2. Tier 1: Syntactic Baseline (TF-IDF)"]
-        P1 --> T1{"TF-IDF Syntactic Classifier"}
-        T1 -- "Nguy hiểm (Score >= 0.85)" --> Block1["Chặn sớm (P95 < 1ms)"]
-        T1 -- "Lành tính tin cậy (Score <= 0.15)" --> Pass1["Fast Pass trực tiếp tới LLM"]
-    end
-
-    subgraph Tier2["3. Tier 2: Semantic Transformer (DeBERTa-v3)"]
-        T1 -- "Vùng nghi vấn (0.15 < Score < 0.85)" --> T2{"DeBERTa-v3 Transformer"}
-        T2 -- "Phát hiện Injection / Jailbreak" --> Block2["Chặn tấn công ngữ nghĩa"]
-        T2 -- "Độ tin cậy lành tính cao" --> Pass2["Chấp thuận cho phép"]
-    end
-
-    subgraph TargetLLM["4. Downstream Application"]
-        Pass1 --> LLM["Target Downstream LLM"]
-        Pass2 --> LLM
-        LLM --> OutFilter["Output Guardrail & Filter"]
-        OutFilter --> SafeResponse(["Phản hồi an toàn đến người dùng"])
-    end
-
-    style Block1 fill:#c62828,color:#fff,stroke:#b71c1c,stroke-width:1.5px;
-    style Block2 fill:#c62828,color:#fff,stroke:#b71c1c,stroke-width:1.5px;
-    style Pass1 fill:#2e7d32,color:#fff,stroke:#1b5e20,stroke-width:1.5px;
-    style Pass2 fill:#2e7d32,color:#fff,stroke:#1b5e20,stroke-width:1.5px;
-    style T1 fill:#1565c0,color:#fff,stroke:#0d47a1,stroke-width:1.5px;
-    style T2 fill:#4527a0,color:#fff,stroke:#311b92,stroke-width:1.5px;
-    style LLM fill:#37474f,color:#fff,stroke:#263238,stroke-width:1.5px;
-```
-
----
-
-## Hệ Thống 7 Chuyên Đề Nghiên Cứu Khoa Học Trọng Điểm
-
-| Chuyên Đề Khoa Học | Trọng Tâm Nghiên Cứu | Đường Dẫn Tra Cứu |
-| :--- | :--- | :--- |
-| **1. Prompt Study** | Bản chất LLM, Attention, Ranh giới phẳng và Thất bại Phân cấp Chỉ thị (Instruction Hierarchy) | [Xem Prompt Study](prompt_study/llm_foundations.md) |
-| **2. Attack Study** | Phân loại toàn diện Prompt Injection & 4 trường phái Jailbreak (DAN, Roleplay, VM, Cipher) | [Xem Attack Study](attacks/history_and_evolution.md) |
-| **3. Threat & Defense** | Mô hình hóa đe dọa NIST AI 100-2e2025, STRIDE, Kiến trúc phòng thủ đa tầng (Defense-in-Depth) | [Xem Threat & Defense](threat_defense/threat_model_and_attack_surface.md) |
-| **4. Dataset & Benchmark** | Tuyển chọn dữ liệu 3 lớp, Khử trùng lặp MinHash, Group-Aware Splitting & Đánh giá OOD | [Xem Dataset Study](dataset_study/data_curation.md) |
-| **5. Model Study** | Toán học TF-IDF, Transformer DeBERTa-v3 Disentangled Attention & Định tuyến bất định 2 tầng | [Xem Model Study](models/two_tier_architecture.md) |
-| **6. Robustness Study** | Chống chịu kỹ thuật làm mờ (Leetspeak, Homoglyphs, Base64) & Tiền xử lý chuẩn hóa 4 bước | [Xem Robustness Study](robustness/theory_and_evasion_mechanisms.md) |
-| **7. Evaluation & Trade-offs** | Kinh tế học cảnh báo sai (FPR Economics), Điểm hoạt động Recall@FPR1% & Đường cong biên Pareto | [Xem Evaluation Study](evaluation_study/false_positive_economics.md) |
-
----
-
-## Đội Ngũ Thực Hiện Đề Tài
-
-> **Phương châm làm việc toàn đội**: **Ai cũng làm $\rightarrow$ Tham khảo nhau $\rightarrow$ Chốt kết quả**  
-> Cả 4 thành viên đều trực tiếp thực hiện toàn trình (Full-Pipeline Hands-on) từ tiền xử lý dữ liệu, thử nghiệm Baseline ML, huấn luyện Transformer, đo đạc độ bền Evasion đến tích hợp API/Dashboard và bảo vệ Luận văn.
-
-| STT | Thành Viên | Mã Sinh Viên | Khám Phá Toàn Trình & Đầu Mối Điều Phối |
-| :---: | :--- | :--- :---: | :--- |
-| 1 | **Nguyễn Văn Trường (Leader)** | `SE182034` | **Toàn trình Full-Pipeline** — Điều phối chung, Chuẩn hóa dữ liệu & Kiến trúc |
-| 2 | **Nguyễn Quí Đức** | `SE182087` | **Toàn trình Full-Pipeline** — Đối sánh mô hình Baseline ML & Threat Model |
-| 3 | **Phạm Minh Hoàng Việt** | `SE181851` | **Toàn trình Full-Pipeline** — Tối ưu Transformer & Thực nghiệm Robustness |
-| 4 | **Đỗ Đoàn Duy Phương** | `SE180235` | **Toàn trình Full-Pipeline** — Tích hợp hệ thống API/Dashboard & Luận văn |
-
-**Giảng viên hướng dẫn**: ThS. Trần Văn Ninh — Đại học FPT.
-"""
+    """Preserve the checked-in portal home page maintained at Github-Page/index.md."""
     dest = DOCS_DIR / "index.md"
-    with open(dest, "w", encoding="utf-8") as f:
-        f.write(index_content)
-    print("✅ [HOMEPAGE] Đã sinh trang chủ index.md thành công.")
+    if not dest.is_file():
+        raise FileNotFoundError(f"Required checked-in portal homepage is missing: {dest}")
+    print("✅ [HOMEPAGE] Preserved checked-in Github-Page/index.md.")
+
 
 def create_static_assets():
     """Tạo các file hỗ trợ MathJax và Custom CSS tối giản."""
+    source_image = ROOT_DIR / "workspaces" / "truongnv" / "reports" / "report for review 1 lan 2" / "REVIEW1_INGRESS_ARCHITECTURE_PAGE_02_SUMMARY_VERTICAL.png"
+    image_dir = DOCS_DIR / "assets"
+    image_dir.mkdir(parents=True, exist_ok=True)
+    if source_image.is_file():
+        shutil.copy2(source_image, image_dir / "ingress_architecture_review1_summary_vertical.png")
+    else:
+        print(f"⚠️ [ASSETS] Architecture image source was not found: {source_image}")
     mathjax_js = """window.MathJax = {
   tex: {
     inlineMath: [["\\\\(", "\\\\)"]],
@@ -428,41 +330,17 @@ def aggregate_all():
     print("\n🎉 [HOÀN TẤT] Toàn bộ 7 chuyên đề khoa học đã được chuẩn hóa và sẵn sàng cho MkDocs build!")
 
 def create_src_architecture_doc(dest_path: Path):
-    """Tạo tài liệu kiến trúc mã nguồn chuẩn cho giai đoạn Review 1 (Zero-Code in Final-Report)."""
-    content = """# THƯ MỤC MÃ NGUỒN THỰC NGHIỆM CHÍNH THỨC (ACADEMIC RESEARCH & PoC PROTOTYPE)
-## PI-Guard Research Codebase & Evaluation Testbed Architecture
+    """Create a status-only description if no shared source README exists."""
+    content = """# Shared source scaffold
 
-> [!IMPORTANT]
-> **QUY CHUẨN MÃ NGUỒN NGHIÊN CỨU KHOA HỌC (RESEARCH ARTIFACT INVARIANTS)**:
-> 1. Thư mục `Final-Report/src/` là **NƠI LƯU TRỮ MÃ NGUỒN THỰC NGHIỆM ĐÃ QUA KIỂM ĐỊNH (VERIFIED RESEARCH ARTIFACTS & PoC PROTOTYPE)** phục vụ tính tái lập khoa học (Research Reproducibility) theo chuẩn Papers with Code.
-> 2. Theo quy chuẩn học thuật FPT IAP491, trong giai đoạn **Review 1 (Problem Definition & Threat Modeling)**, dự án tuân thủ nghiêm ngặt **Quy tắc 100% Nghiên cứu lý thuyết & y văn (Zero Code in Final-Report)**.
-> 3. Toàn bộ quá trình thử nghiệm, tiền xử lý dữ liệu, huấn luyện mô hình (TF-IDF Baseline, DeBERTa-v3) và xây dựng API proxy được 4 thành viên thực hiện song song trong các không gian làm việc độc lập (`workspaces/<thành_viên>/`).
-> 4. **CHỈ KHI HOÀN THÀNH XONG VÀ NGHIỆM THU**, mã nguồn xuất sắc nhất mới được Leader đồng quy và tích hợp vào `Final-Report/src/` tại các cột mốc Review 2 và Review 3.
-> 5. **Bản chất đề tài Nghiên cứu Khoa học (Research-Based Thesis IAP491)**: Lớp `api/` (FastAPI) và `dashboard/` (Streamlit) được thiết kế như một **Nguyên Mẫu Thực Nghiệm (Proof-of-Concept Prototype)** và **Môi Trường Đo Đạc Độ Trễ (Inference Latency Testbed)** nhằm phục vụ đánh giá thực nghiệm (RQ3: P95 < 20ms) và bảo vệ trước Hội đồng chấm FPT theo đúng bản đăng ký **CAPSTONE PROJECT REGISTER.md**.
-> 6. **Cam kết chống phình phạm vi (Anti-Scope Creep Blacklist)**: Đề tài **TUYỆT ĐỐI KHÔNG** mở rộng sang các bài toán hạ tầng phần mềm thương mại / enterprise production (không làm cơ sở dữ liệu tài khoản người dùng, không làm OAuth2/JWT/RBAC, không làm kiểm thử tải phân tán 100k RPS, không triển khai Kubernetes hay Cloud CI/CD phức tạp).
+This folder is a module scaffold. It is not the integrated Review 2 ingress cascade. The current seed-42 experiment is documented in the lead workspace and does not establish final KPI acceptance or a deployed service.
 
----
-
-### Cấu Trúc Các Module Dự Kiến Trong `src/`
-
-| Thư Mục / Module | Chức Năng & Nhiệm Vụ |
-| :--- | :--- |
-| `src/preprocessing/` | Tiền xử lý: Làm sạch, chuẩn hóa Unicode, bóc tách Base64 |
-| `src/datasets/` | Pipeline thu thập dữ liệu, semantic deduplication & Group-Aware Split |
-| `src/models/baseline/` | Bộ phân loại TF-IDF (Word/Char N-Grams) + LogisticRegression / LinearSVC |
-| `src/models/classifier.py` | Wrapper chạy suy luận PyTorch / Hugging Face Transformers |
-| `src/training/` | Pipeline huấn luyện tự động (Trainer, Callbacks, Loss) |
-| `src/evaluation/` | Bộ đo lường chuẩn: F1, Precision, Recall, FPR, Latency |
-| `src/policy/` | Bộ quy tắc định tuyến bảo vệ (3-Tier Layered Defense) |
-| `src/api/` | Dịch vụ FastAPI Middleware & LLM Proxy (/v1/chat) |
-| `src/dashboard/` | Giao diện Streamlit giám sát & kiểm thử trực quan |
-| `src/llm/` | Kết nối Target LLM Cloud APIs (Groq, OpenAI, Gemini) |
-| `src/utils/` | Logging, cấu hình, metrics tracker & helpers |
+The proposed flow separates L1 input handling, L2 per-chunk route candidates, L3 REVIEW scoring, and API request aggregation. L2 ALLOW/BLOCK are candidates; only API aggregation emits final request ALLOW/BLOCK. Symbolic thresholds are not established service settings.
 """
     dest_path.parent.mkdir(parents=True, exist_ok=True)
     with open(dest_path, "w", encoding="utf-8") as f:
         f.write(content)
-    print(f"✅ [GEN] Đã sinh tài liệu kiến trúc {dest_path.relative_to(ROOT_DIR)}")
+    print(f"✅ [GEN] Wrote source scaffold status to {dest_path.relative_to(ROOT_DIR)}")
 
 if __name__ == "__main__":
     aggregate_all()
