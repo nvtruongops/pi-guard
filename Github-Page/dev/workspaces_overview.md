@@ -1,7 +1,7 @@
 # Local research workspace
 
-The repository no longer tracks member workspaces. The local directory `workspaces/truongnv/` is ignored by Git and holds private working notes, experiments, and drafts on the maintainer's machine.
+`workspaces/truongnv/` is Nguyễn Văn Trường's private research workspace and is ignored by Git. He works on research notes, experiments, and drafts there; they are not shared evidence until reviewed and published in a tracked deliverable.
 
-Place results intended for review or publication in their task-designated tracked location outside `workspaces/`, such as `Final-Report/` or `Github-Page/`. A local artifact is not shared evidence until its provenance, method, validation, and limitations are documented in a tracked deliverable.
+Nguyễn Văn Trường is the sole current maintainer and publisher of the repository. `Final-Report/` and `Github-Page/` contain the group's capstone progress reports and research outcomes that he consolidates and publishes. Member names record project activity; they do not indicate current repository access or contributions. Published research results must include their sources, provenance, validation, and limitations.
 
-The academic capstone roster and historical contribution records remain in the official reports. They are separate from current repository access.
+The academic capstone roster and historical contribution records remain in the official reports. Historical Git commit records are also preserved.

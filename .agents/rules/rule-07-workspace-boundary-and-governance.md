@@ -1,10 +1,11 @@
 # Rule 07: Single Maintainer & Local Workspace Privacy
 
-> This rule defines repository access and working-file placement. It does not change the academic capstone roster or historical contribution records.
+> This rule defines current repository ownership and working-file placement. Tracked capstone reports may describe the progress of all team members while being maintained and published by the leader. The rule does not rewrite academic or historical Git records.
 
 ## Repository ownership
 
-- Nguyễn Văn Trường (`nvtruongops`) is the sole maintainer of this Git repository.
+- Nguyễn Văn Trường (`nvtruongops`) is the sole current maintainer and publisher of this Git repository.
+- He consolidates and publishes the group's progress reports and research outcomes. Member names in those reports are project records, not current repository contributors.
 - GitHub write/admin access is limited to `nvtruongops`; keep repository collaborator permissions aligned with this rule.
 - The former member workspaces `workspaces/ducnq/`, `workspaces/vietpmh/`, and `workspaces/phuongddd/` are retired. Do not recreate them.
 - The academic team roster in the project register and capstone reports remains an academic record; it does not define current Git access.

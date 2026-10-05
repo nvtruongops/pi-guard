@@ -1,6 +1,6 @@
 # Shared progress reports
 
-This folder contains tracked academic progress deliverables, including the official FPT progress workbook and the earlier supervisor presentation. The academic workbook records capstone progress; it does not determine Git repository access or maintainer permissions.
+This folder contains tracked academic progress deliverables, including the official FPT progress workbook and the earlier supervisor presentation. Nguyễn Văn Trường (`nvtruongops`) maintains and publishes these reports, which consolidate progress and research outcomes for the capstone group. The member entries record project activity; they do not indicate current Git repository access or contributions.
 
 Review 2 is active. Personal research notes and runs under `workspaces/truongnv/` remain local-only and are not linked as shared evidence here. To publish a result, place the task-approved report and its required provenance in the appropriate tracked deliverable location outside `workspaces/`.
 

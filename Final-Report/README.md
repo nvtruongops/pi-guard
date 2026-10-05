@@ -1,6 +1,6 @@
 # Final-Report — shared academic deliverables
 
-This folder holds tracked capstone materials, the official progress workbook, thesis files, and QA/documentation tools. The academic team history belongs to the project record; this repository itself has one maintainer.
+This folder holds tracked capstone materials, the official progress workbook, thesis files, and QA/documentation tools. Nguyễn Văn Trường (`nvtruongops`) is the sole current maintainer and publisher of these files. The progress reports summarize the group project and its research outcomes as consolidated by the leader; team names and assignments are project records, not current repository contributions. Historical Git records remain unchanged.
 
 ## Project status — 5 October 2026
 

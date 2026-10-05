@@ -2,7 +2,7 @@
 
 ## Maintainer
 
-Nguyễn Văn Trường (`nvtruongops`) is the sole maintainer of this Git repository. The academic capstone roster and historical contribution records are preserved separately and do not define repository access.
+Nguyễn Văn Trường (`nvtruongops`) is the sole current maintainer and publisher of this Git repository. Tracked reports in `Final-Report/` and `Github-Page/` summarize the capstone group's progress and research outcomes as consolidated by the leader. Names and assignments in those reports describe project activity; they do not indicate current Git contributors. Historical Git commit records remain unchanged.
 
 ## Working files and deliverables
 

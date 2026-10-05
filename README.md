@@ -23,7 +23,7 @@ The diagram uses symbolic tau_allow and tau_block parameters. They are assumptio
 
 ## Repository maintainer
 
-The Git repository is maintained by Nguyễn Văn Trường (`nvtruongops`). `workspaces/truongnv/` is ignored and remains local; place deliverables intended for review or publication in their official locations outside `workspaces/`. The academic capstone roster is recorded separately and does not define Git repository access.
+Nguyễn Văn Trường (`nvtruongops`) is the sole current maintainer and publisher of this repository. `Final-Report/` and `Github-Page/` contain the group capstone progress reports and research outcomes that he consolidates and publishes. Member names in those reports record project progress; they do not mean those members currently maintain or contribute to this Git repository. His research notes, experiments, and drafts stay in the ignored local workspace `workspaces/truongnv/`. Historical Git commit records remain part of the repository history.
 
 ## Documentation portal
 

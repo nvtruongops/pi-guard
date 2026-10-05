@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Removed the completed README and ingress architecture plan/spec from `docs/superpowers/`.
 - Set GitHub code ownership to the sole repository maintainer.
+- Clarified that Nguyễn Văn Trường maintains and publishes the repository's group progress reports and research outcomes, while `workspaces/truongnv/` remains his private research workspace.
 
 ### Fixed
 - Normalize source-relative report links during portal generation so the strict MkDocs Pages build resolves them.

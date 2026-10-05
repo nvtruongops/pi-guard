@@ -10,7 +10,7 @@ Welcome to the **PI-Guard** Capstone Project repository. This file serves as the
 - **Academic Program**: Bachelor of Science in Information Assurance (IA), FPT University (Course Code: `IAP491`, Fall 2026 Semester)
 - **Supervisor**: ThS. Trần Văn Ninh | **Lead Student**: Nguyễn Văn Trường (`nvtruongops` / `SE182034`)
 - **Academic Team Roster**: Nguyễn Quí Đức (`SE182087`), Phạm Minh Hoàng Việt (`SE181851`), Đỗ Đoàn Duy Phương (`SE180235`). This roster records the capstone team and is separate from repository access.
-- **Git Repository Maintainer**: Nguyễn Văn Trường (`nvtruongops` / `SE182034`) is the sole maintainer of this repository.
+- **Git Repository Maintainer & Report Owner**: Nguyễn Văn Trường (`nvtruongops` / `SE182034`) is the sole current maintainer and publisher of this repository. Tracked reports record group progress and research outcomes as consolidated by the leader; listed members are project participants, not current repository contributors.
 - **Primary Objective**: Design, implement, and benchmark an external, API-driven, Machine-Learning and Transformer-based protective guardrail placed in front of downstream LLM applications to classify incoming user prompts (*Benign* vs. *Prompt Injection* vs. *Jailbreak*) with low latency (P95 < 30ms) and low false-positive rate (FPR < 1.5%).
 - **Architectural Paradigm**: **External Guardrail Proxy** (Text-level inspection before forwarding to downstream black-box LLMs; zero access to internal model weights or KV-cache).
 - **Tech Stack**: Python 3.11+, PyTorch, Hugging Face Transformers (`microsoft/deberta-v3-base` Native FP32), Scikit-Learn (Dual TF-IDF Baseline), FastAPI (PoC Proxy), Streamlit (Demo UI), Docker.
@@ -59,7 +59,7 @@ Whenever an agent is instructed to perform a task or generate a report:
 
 ## 🔒 5. Repository Maintenance & Workspace Privacy
 
-1. Nguyễn Văn Trường (`nvtruongops`) is the sole Git repository maintainer and the only account with GitHub write/admin access. The academic team roster above remains an academic record and does not grant repository access.
+1. Nguyễn Văn Trường (`nvtruongops`) is the sole current Git repository maintainer and the only account with GitHub write/admin access. He maintains and publishes the tracked repository updates, including reports that consolidate progress for the capstone group. Member names in those reports describe project participation, not current Git contributions. Historical commit records remain unchanged.
 2. `workspaces/truongnv/` is local-only and ignored by Git. Do not force-add its contents. Put deliverables intended for review or publication in their official tracked locations outside `workspaces/`.
 3. The former `workspaces/ducnq/`, `workspaces/vietpmh/`, and `workspaces/phuongddd/` directories are retired and must not be recreated as repository workspaces.
 4. Preserve the read-only requirements in Rule 01 for `CAPSTONE PROJECT REGISTER.md` and `docs/fpt_capstone_guide/`.
