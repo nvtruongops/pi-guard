@@ -10,6 +10,8 @@ Review 2 is active. Research runs and drafts in `workspaces/truongnv/` are local
 
 ![Review 1 proposed ingress architecture, vertical summary](Github-Page/assets/ingress_architecture_review1_summary_vertical.png)
 
+This is the page 2 vertical-summary export from the canonical eight-page [editable Draw.io source](Final-Report/PI_GUARD_INGRESS_ARCHITECTURE.drawio). The standalone export is [PI_GUARD_INGRESS_ARCHITECTURE.png](Final-Report/PI_GUARD_INGRESS_ARCHITECTURE.png); the portal copy above is kept in sync with it.
+
 The figure is a Review 1 proposal. L1 validates, normalizes, and splits input into identified chunks/views. L2 emits one route candidate per chunk: ALLOW candidate, REVIEW, or BLOCK candidate. The API sends REVIEW chunks to L3 and combines L2 candidates with L3 predictions by IDs and coverage. Only the API aggregation/policy stage produces a final request-level ALLOW or BLOCK; only final ALLOW is forwarded to a downstream LLM.
 
 The diagram uses symbolic tau_allow and tau_block parameters. They are assumptions in the proposal, not established project-wide or service cutoffs. The architecture remains a proposal, not an implementation claim.

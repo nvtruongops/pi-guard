@@ -1,6 +1,8 @@
 # Proposed PI-Guard ingress architecture
 
-> The visual preview is pending re-export. The text below reflects the current editable proposal.
+![Review 1 proposed ingress architecture, vertical summary](../assets/ingress_architecture_review1_summary_vertical.png)
+
+This is the vertical-summary export from page 2 of the canonical eight-page [Draw.io source](https://github.com/nvtruongops/pi-guard/blob/main/Final-Report/PI_GUARD_INGRESS_ARCHITECTURE.drawio). The corresponding standalone PNG is [PI_GUARD_INGRESS_ARCHITECTURE.png](https://github.com/nvtruongops/pi-guard/blob/main/Final-Report/PI_GUARD_INGRESS_ARCHITECTURE.png).
 
 This diagram summarizes the Review 1 architecture proposal. It is not evidence that an end-to-end service has been integrated or accepted.
 

@@ -12,6 +12,8 @@ Review 2 is active and its umbrella task remains open. A separate seed-42 TF-IDF
 
 ![Review 1 proposed ingress architecture, vertical summary](assets/ingress_architecture_review1_summary_vertical.png)
 
+This is the vertical-summary export from page 2 of the canonical eight-page [Draw.io source](https://github.com/nvtruongops/pi-guard/blob/main/Final-Report/PI_GUARD_INGRESS_ARCHITECTURE.drawio). The corresponding standalone PNG is [PI_GUARD_INGRESS_ARCHITECTURE.png](https://github.com/nvtruongops/pi-guard/blob/main/Final-Report/PI_GUARD_INGRESS_ARCHITECTURE.png).
+
 L1 validates, normalizes, and splits input into identified chunks/views. L2 scores each chunk and emits an ALLOW candidate, REVIEW, or BLOCK candidate. The API sends REVIEW chunks to L3 and joins all results by IDs and coverage. Only API aggregation/policy emits the final request-level ALLOW or BLOCK; only final ALLOW reaches the downstream LLM.
 
 The diagram is a Review 1 proposal. Its tau_allow and tau_block are symbolic assumptions, not established project-wide or service cutoffs. A separate experiment selected gates on its validation split; those gates apply to that run alone. The proposed service flow has not been accepted as a deployed system.

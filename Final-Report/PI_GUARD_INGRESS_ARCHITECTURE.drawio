@@ -291,7 +291,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="minimal_three_tier_architecture" name="Architecture Summary — Vertical">
-    <mxGraphModel dx="2060" dy="1054" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1800" math="0" shadow="0">
+    <mxGraphModel dx="1717" dy="878" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1800" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -326,28 +326,22 @@
           <mxGeometry height="100" width="660" x="420" y="1010" as="geometry" />
         </mxCell>
         <mxCell id="mini_final_decision" parent="1" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#475569;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=17;fontStyle=1;" value="&lt;b&gt;FINAL REQUEST DECISION&lt;/b&gt;&lt;br&gt;API emits ALLOW or BLOCK only" vertex="1">
-          <mxGeometry height="115" width="320" x="590" y="1175" as="geometry" />
+          <mxGeometry height="145" width="400" x="550" y="1175" as="geometry" />
         </mxCell>
         <mxCell id="mini_allow" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#16A34A;strokeWidth=2;fillColor=#F0FDF4;fontFamily=Arial;fontSize=17;fontStyle=1;" value="&lt;b&gt;FINAL ALLOW&lt;/b&gt;&lt;br&gt;Forward approved request" vertex="1">
-          <mxGeometry height="65" width="270" x="215" y="1340" as="geometry" />
+          <mxGeometry height="65" width="270" x="350" y="1340" as="geometry" />
         </mxCell>
         <mxCell id="mini_block" parent="1" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#DC2626;strokeWidth=2;fillColor=#FEF2F2;fontFamily=Arial;fontSize=17;fontStyle=1;" value="&lt;b&gt;FINAL BLOCK&lt;/b&gt;&lt;br&gt;Reject; no LLM call" vertex="1">
-          <mxGeometry height="65" width="270" x="1015" y="1340" as="geometry" />
+          <mxGeometry height="65" width="270" x="880" y="1340" as="geometry" />
         </mxCell>
         <mxCell id="mini_external_region" parent="1" style="shape=rect;rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=12;fontColor=#334155;strokeColor=#64748B;strokeWidth=2;fillColor=#FFFFFF;dashed=1;dashPattern=8 4;fontFamily=Arial;fontSize=15;" value="&lt;b&gt;EXTERNAL SYSTEMS · POST-ALLOW&lt;/b&gt;" vertex="1">
           <mxGeometry height="300" width="1300" x="100" y="1490" as="geometry" />
         </mxCell>
         <mxCell id="mini_llm" parent="1" style="shape=rect;rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=15;fontStyle=0;dashed=1;dashPattern=8 4;" value="&lt;b&gt;TARGET LLM · BLACK BOX&lt;/b&gt;&lt;br&gt;Called only after final ALLOW" vertex="1">
-          <mxGeometry height="75" width="360" x="170" y="1535" as="geometry" />
+          <mxGeometry height="75" width="360" x="305" y="1535" as="geometry" />
         </mxCell>
         <mxCell id="mini_dashboard" parent="1" style="shape=rect;rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=12;fontColor=#0F172A;strokeColor=#64748B;strokeWidth=2;fillColor=#F8FAFC;fontFamily=Arial;fontSize=15;fontStyle=0;dashed=1;dashPattern=8 4;" value="&lt;b&gt;DASHBOARD&lt;/b&gt;&lt;br&gt;Final status; answer only after ALLOW" vertex="1">
-          <mxGeometry height="75" width="360" x="970" y="1535" as="geometry" />
-        </mxCell>
-        <mxCell id="uml_final_outer" parent="1" style="ellipse;aspect=fixed;fillColor=#FFFFFF;strokeColor=#0F172A;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="30" width="30" x="1135" y="1645" as="geometry" />
-        </mxCell>
-        <mxCell id="uml_final_dot" parent="1" style="ellipse;aspect=fixed;fillColor=#0F172A;strokeColor=#0F172A;strokeWidth=1;" value="" vertex="1">
-          <mxGeometry height="12" width="12" x="1144" y="1654" as="geometry" />
+          <mxGeometry height="75" width="360" x="835" y="1535" as="geometry" />
         </mxCell>
         <mxCell id="uml_start_input" edge="1" parent="1" source="uml_start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="mini_input" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -382,31 +376,33 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="mini_e_final_allow" edge="1" parent="1" source="mini_final_decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#16A34A;strokeWidth=2;endArrow=block;endFill=1;exitX=0;exitY=0.5;entryX=0.5;entryY=0;" target="mini_allow" value="[ALLOW]">
-          <mxGeometry relative="1" as="geometry">
+          <mxGeometry relative="1" x="0.5885" as="geometry">
+            <mxPoint as="offset" />
             <Array as="points">
-              <mxPoint x="470" y="1232" />
-              <mxPoint x="350" y="1232" />
+              <mxPoint x="485" y="1247.5" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="mini_e_final_block" edge="1" parent="1" source="mini_final_decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#DC2626;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" target="mini_block" value="[BLOCK]">
-          <mxGeometry relative="1" as="geometry">
+          <mxGeometry relative="1" x="0.3651" as="geometry">
+            <mxPoint y="-1" as="offset" />
             <Array as="points">
-              <mxPoint x="1030" y="1232" />
-              <mxPoint x="1150" y="1232" />
+              <mxPoint x="1015" y="1247.5" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="mini_e_allow_llm" edge="1" parent="1" source="mini_allow" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#16A34A;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="mini_llm" value="">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="mini_e_allow_llm" edge="1" parent="1" source="mini_allow" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#16A34A;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="mini_llm" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="485" y="1510" />
+              <mxPoint x="485" y="1510" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="mini_e_block_dashboard" edge="1" parent="1" source="mini_block" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="mini_dashboard" value="Final status">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="mini_e_llm_dashboard" edge="1" parent="1" source="mini_llm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="mini_dashboard" value="Response">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="uml_dashboard_final" edge="1" parent="1" source="mini_dashboard" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="uml_final_outer" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
