@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Removed the completed README and ingress architecture plan/spec from `docs/superpowers/`.
+- Set GitHub code ownership to the sole repository maintainer.
 
 ### Fixed
 - Normalize source-relative report links during portal generation so the strict MkDocs Pages build resolves them.
