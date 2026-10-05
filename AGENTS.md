@@ -64,3 +64,13 @@ Whenever an agent is instructed to perform a task or generate a report:
 3. The former `workspaces/ducnq/`, `workspaces/vietpmh/`, and `workspaces/phuongddd/` directories are retired and must not be recreated as repository workspaces.
 4. Preserve the read-only requirements in Rule 01 for `CAPSTONE PROJECT REGISTER.md` and `docs/fpt_capstone_guide/`.
 5. Before a commit, run `python Final-Report/scripts/validate_local.py --mode fast`.
+
+---
+
+## ⚙️ 6. Safe Check Execution & Script Lifecycle
+
+- Use a focused `scripts/<action>_<scope>.py` or `.ps1` for complex, repeated, or batch logic when it makes the inputs, path checks, dry-run, and logs easier to review. Short read-only commands may run directly.
+- A script is an auditability aid; it does **not** bypass command review, approval policy, sandbox limits, or Windows execution policy. Never hide a destructive operation behind `python script.py`, another shell/language, an encoded payload, or a subprocess to evade a review decision. Review the script's effects as well as its launcher command.
+- Before a destructive or batch operation, list the exact targets and expected scope, resolve paths and confirm they remain inside the authorized root, check for unexpected symlinks/reparse points, and provide a dry-run or equivalent preflight. Execute only when the task authorizes the action and the execution channel permits it.
+- If command review blocks an operation, stop. Report the refusal and the verified remaining paths; do not retry through another wrapper or tool to get around the block. Continue only after the execution policy changes or the user completes the blocked action through an authorized route.
+- After an operation, verify filesystem state and run the task's relevant validators before claiming success. Remove temporary scripts only after successful verification; preserve logs/manifests needed to reproduce the result.

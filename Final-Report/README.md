@@ -6,7 +6,7 @@ This folder holds tracked capstone materials, the official progress workbook, th
 
 Review 1 progress is recorded as complete. Review 2 is active and its umbrella task remains open. Personal experiment reports and run artifacts under `workspaces/truongnv/` are local-only and are not part of these shared deliverables. No Review 2 metrics are asserted here without a tracked, provenance-backed report.
 
-The ingress architecture available as an editable [Draw.io source](PI_GUARD_INGRESS_ARCHITECTURE.drawio) and [PNG preview](PI_GUARD_INGRESS_ARCHITECTURE.png) is a proposal. It does not claim that every component is implemented or that project KPIs have been accepted. L2 emits per-chunk ALLOW/REVIEW/BLOCK candidates; the API routes REVIEW chunks to L3, retains the other candidates, verifies coverage, and alone emits the final request ALLOW/BLOCK decision. Only final ALLOW reaches the target LLM. The `τ` values remain proposal assumptions.
+The ingress architecture available as an editable [Draw.io source](PI_GUARD_INGRESS_ARCHITECTURE.drawio) and [PNG preview](PI_GUARD_INGRESS_ARCHITECTURE.png) is a proposal. It does not claim that every component is implemented or that project KPIs have been accepted. L2 emits per-chunk ALLOW/REVIEW/BLOCK candidates; the API routes REVIEW chunks to L3, retains the other candidates, verifies coverage, and alone emits the final request ALLOW/BLOCK decision. Only final ALLOW reaches the target LLM. The linked PNG is an older export and does not reflect the updated route labels; use the editable source for the current architecture.
 
 ## Contents
 
