@@ -1,0 +1,47 @@
+{
+  "dataset_id": "dronefreak/PromptScreen",
+  "upstream_repository": "https://github.com/dronefreak/PromptScreen",
+  "pinned_revision": "496653aba7a39ae6bdcb775c067a3bdb2471acc7",
+  "download_urls": [
+    "https://raw.githubusercontent.com/dronefreak/PromptScreen/496653aba7a39ae6bdcb775c067a3bdb2471acc7/offence/metrics_train_set.json",
+    "https://raw.githubusercontent.com/dronefreak/PromptScreen/496653aba7a39ae6bdcb775c067a3bdb2471acc7/offence/metrics_test_set.json"
+  ],
+  "paper": {
+    "title": "Efficient Jailbreak Mitigation Using Semantic Linear Classification in a Multi-Staged Pipeline",
+    "version": "arXiv:2512.19011v1",
+    "url": "https://arxiv.org/abs/2512.19011",
+    "local_pdf": "paper/PromptScreen_arXiv_2512.19011v1.pdf",
+    "label_rationale_section": "\u00a73.3 Dataset"
+  },
+  "labels": {
+    "benign": "No attempt to bypass safety or alter application/system instructions.",
+    "jailbreak": "Attempts to make a model violate safety policy or produce prohibited content.",
+    "prompt-injection": "Attempts to manipulate application logic, system instructions, tool use, or downstream execution."
+  },
+  "labeling_as_reported_by_paper": "Combines source-provided annotations, rule-based validation, and manual verification; classes are described as mutually exclusive.",
+  "license_status": "The code repository has a license, but the aggregated raw prompt files do not establish a single data license; check source-level terms before reuse.",
+  "files": [
+    {
+      "path": "source_datasets/promptscreen_raw/data/metrics_test_set.json",
+      "bytes": 1905888,
+      "sha256": "9edb2beb91215fb90b5fbf80c66058897ac66af730d3948dbca50943a69a01cc"
+    },
+    {
+      "path": "source_datasets/promptscreen_raw/data/metrics_train_set.json",
+      "bytes": 23661526,
+      "sha256": "19de32a35efb417e42992897b2fe38dbd10480650eee55765b69a313c46da650"
+    },
+    {
+      "path": "source_datasets/promptscreen_raw/download_manifest.json",
+      "bytes": 1446,
+      "sha256": "dcbf2dbcc38d03206b5d4aac9ffdfb4a36f3f7992adf9df67e5ca186b9f7c944"
+    },
+    {
+      "path": "source_datasets/promptscreen_raw/paper/PromptScreen_arXiv_2512.19011v1.pdf",
+      "bytes": 315146,
+      "sha256": "6cd5ecb0f74f20e69927ee16dcb35f9eaae34512bb6398baeee1d84c41b88809"
+    }
+  ],
+  "audit_reference": "../../project_training/audit/three_label_candidate_audit.json",
+  "training_or_inference_performed": false
+}

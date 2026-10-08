@@ -1,0 +1,903 @@
+{
+  "created_at_utc": "2026-10-07T15:30:51.942759+00:00",
+  "current_balanced_corpus": {
+    "dataset_version": "3.0.0",
+    "label_counts": {
+      "JB": 9329,
+      "PI": 9329,
+      "benign": 9329
+    },
+    "rows": 27987,
+    "target_rows_per_class": 9329
+  },
+  "jailbreakdb_audit": {
+    "comparison_field": "user_prompt only; system_prompt context remains in raw files but is not included in overlap keys",
+    "cross_native_label_conflict_groups": 14,
+    "duplicate_rows_beyond_first": 11412,
+    "files": [
+      {
+        "duplicate_rows_beyond_first": 6235,
+        "native_label": "ambiguous_attack",
+        "path": "source_datasets/youbin2014_jailbreakdb/raw_snapshot/text_jailbreak_unique.csv",
+        "physical_newline_count": 6565678,
+        "rows": 445752,
+        "sha256": "fac95fd66e1c1669f0ed673018dd8ba22bab422c9b4663f92faf4912892e6885",
+        "unique_normalized_user_prompts": 439517
+      },
+      {
+        "duplicate_rows_beyond_first": 5163,
+        "native_label": "benign",
+        "path": "source_datasets/youbin2014_jailbreakdb/raw_snapshot/text_regular_unique.csv",
+        "physical_newline_count": 5651873,
+        "rows": 1094122,
+        "sha256": "868f3cb83ca060eeada1200779f36c76ff2eba79fae0540086f4305d6c3945e1",
+        "unique_normalized_user_prompts": 1088959
+      }
+    ],
+    "native_row_counts": {
+      "ambiguous_attack": 445752,
+      "benign": 1094122
+    },
+    "pairwise_prompt_overlap": {
+      "JailBreakV-28K": {
+        "distinct_shared_normalized_user_prompts": 1,
+        "existing_source_unique_coverage_percent": 0.02,
+        "jailbreakdb_unique_coverage_percent": 0.0001,
+        "regular_prompts_with_nonbenign_source_label": 0,
+        "shared_jailbreakdb_ambiguous_attack_prompts": 1,
+        "shared_jailbreakdb_regular_prompts": 0
+      },
+      "PromptScreen": {
+        "distinct_shared_normalized_user_prompts": 6457,
+        "existing_source_unique_coverage_percent": 20.9446,
+        "jailbreakdb_unique_coverage_percent": 0.4225,
+        "regular_prompts_with_nonbenign_source_label": 5467,
+        "shared_jailbreakdb_ambiguous_attack_prompts": 716,
+        "shared_jailbreakdb_regular_prompts": 5751
+      },
+      "PromptSentinel": {
+        "distinct_shared_normalized_user_prompts": 14348,
+        "existing_source_unique_coverage_percent": 9.8422,
+        "jailbreakdb_unique_coverage_percent": 0.9387,
+        "regular_prompts_with_nonbenign_source_label": 1,
+        "shared_jailbreakdb_ambiguous_attack_prompts": 909,
+        "shared_jailbreakdb_regular_prompts": 13441
+      },
+      "PromptShield": {
+        "distinct_shared_normalized_user_prompts": 3953,
+        "existing_source_unique_coverage_percent": 9.1685,
+        "jailbreakdb_unique_coverage_percent": 0.2586,
+        "regular_prompts_with_nonbenign_source_label": 0,
+        "shared_jailbreakdb_ambiguous_attack_prompts": 2,
+        "shared_jailbreakdb_regular_prompts": 3951
+      },
+      "SPML": {
+        "distinct_shared_normalized_user_prompts": 2,
+        "existing_source_unique_coverage_percent": 0.0126,
+        "jailbreakdb_unique_coverage_percent": 0.0001,
+        "regular_prompts_with_nonbenign_source_label": 0,
+        "shared_jailbreakdb_ambiguous_attack_prompts": 0,
+        "shared_jailbreakdb_regular_prompts": 2
+      },
+      "ShieldLM": {
+        "distinct_shared_normalized_user_prompts": 5618,
+        "existing_source_unique_coverage_percent": 10.3743,
+        "jailbreakdb_unique_coverage_percent": 0.3676,
+        "regular_prompts_with_nonbenign_source_label": 13,
+        "shared_jailbreakdb_ambiguous_attack_prompts": 1525,
+        "shared_jailbreakdb_regular_prompts": 4103
+      },
+      "TrustAIRLab": {
+        "distinct_shared_normalized_user_prompts": 15064,
+        "existing_source_unique_coverage_percent": 100.0,
+        "jailbreakdb_unique_coverage_percent": 0.9856,
+        "regular_prompts_with_nonbenign_source_label": 10,
+        "shared_jailbreakdb_ambiguous_attack_prompts": 1435,
+        "shared_jailbreakdb_regular_prompts": 13640
+      },
+      "VerazuoGitHub": {
+        "distinct_shared_normalized_user_prompts": 15064,
+        "existing_source_unique_coverage_percent": 100.0,
+        "jailbreakdb_unique_coverage_percent": 0.9856,
+        "regular_prompts_with_nonbenign_source_label": 10,
+        "shared_jailbreakdb_ambiguous_attack_prompts": 1435,
+        "shared_jailbreakdb_regular_prompts": 13640
+      },
+      "WUSTL_LLMJailbreak": {
+        "distinct_shared_normalized_user_prompts": 445,
+        "existing_source_unique_coverage_percent": 99.5526,
+        "jailbreakdb_unique_coverage_percent": 0.0291,
+        "regular_prompts_with_nonbenign_source_label": 3,
+        "shared_jailbreakdb_ambiguous_attack_prompts": 445,
+        "shared_jailbreakdb_regular_prompts": 3
+      },
+      "WhatFeatures": {
+        "distinct_shared_normalized_user_prompts": 3,
+        "existing_source_unique_coverage_percent": 0.0304,
+        "jailbreakdb_unique_coverage_percent": 0.0002,
+        "regular_prompts_with_nonbenign_source_label": 0,
+        "shared_jailbreakdb_ambiguous_attack_prompts": 3,
+        "shared_jailbreakdb_regular_prompts": 0
+      }
+    },
+    "physical_newline_counts": {
+      "text_jailbreak_unique.csv": 6565678,
+      "text_regular_unique.csv": 5651873
+    },
+    "rows": 1539874,
+    "unique_normalized_user_prompts": 1528462,
+    "unique_prompts_by_native_label": {
+      "ambiguous_attack": 439517,
+      "benign": 1088959
+    },
+    "unusable_user_prompt_rows": 0
+  },
+  "model_ready_input_subset": {
+    "conflicting_label_groups": 42,
+    "duplicate_groups": 532,
+    "duplicate_rows_beyond_first": 786,
+    "input_rows": 34049,
+    "label_counts_before_deduplication": {
+      "JB": 1405,
+      "PI": 9452,
+      "benign": 23192
+    },
+    "max_to_min_class_ratio": 17.1826,
+    "metadata": {},
+    "retained_label_counts_if_conflicts_excluded": {
+      "JB": 1314,
+      "PI": 9329,
+      "benign": 22578
+    },
+    "retained_unique_rows_if_conflicts_excluded": 33221,
+    "rows_in_conflicting_groups": 115,
+    "same_label_duplicate_groups": 490,
+    "same_label_duplicate_rows_collapsible": 713,
+    "skipped_rows": 0,
+    "unique_normalized_texts": 33263,
+    "usable_rows": 34049
+  },
+  "normalization": "Unicode NFKC, casefold, and whitespace collapse; SHA-256 used internally for grouping.",
+  "pairwise_overlap": {
+    "JailBreakV-28K <> WUSTL_LLMJailbreak": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "JailBreakV-28K <> WhatFeatures": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "PromptScreen <> JailBreakV-28K": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "PromptScreen <> PromptSentinel": {
+      "cross_source_label_disagreement_groups": 5111,
+      "distinct_shared_normalized_prompts": 5887,
+      "jaccard_percent": 3.4483,
+      "left_rows_in_shared_groups": 5912,
+      "left_unique_coverage_percent": 19.0957,
+      "right_rows_in_shared_groups": 5887,
+      "right_unique_coverage_percent": 4.0382
+    },
+    "PromptScreen <> ShieldLM": {
+      "cross_source_label_disagreement_groups": 546,
+      "distinct_shared_normalized_prompts": 1718,
+      "jaccard_percent": 2.0633,
+      "left_rows_in_shared_groups": 1764,
+      "left_unique_coverage_percent": 5.5727,
+      "right_rows_in_shared_groups": 1726,
+      "right_unique_coverage_percent": 3.1725
+    },
+    "PromptScreen <> WUSTL_LLMJailbreak": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 203,
+      "jaccard_percent": 0.6533,
+      "left_rows_in_shared_groups": 227,
+      "left_unique_coverage_percent": 0.6585,
+      "right_rows_in_shared_groups": 204,
+      "right_unique_coverage_percent": 45.4139
+    },
+    "PromptScreen <> WhatFeatures": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "PromptSentinel <> JailBreakV-28K": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "PromptSentinel <> ShieldLM": {
+      "cross_source_label_disagreement_groups": 104,
+      "distinct_shared_normalized_prompts": 17377,
+      "jaccard_percent": 9.5187,
+      "left_rows_in_shared_groups": 17377,
+      "left_unique_coverage_percent": 11.9199,
+      "right_rows_in_shared_groups": 17378,
+      "right_unique_coverage_percent": 32.0887
+    },
+    "PromptSentinel <> WUSTL_LLMJailbreak": {
+      "cross_source_label_disagreement_groups": 1,
+      "distinct_shared_normalized_prompts": 39,
+      "jaccard_percent": 0.0267,
+      "left_rows_in_shared_groups": 39,
+      "left_unique_coverage_percent": 0.0268,
+      "right_rows_in_shared_groups": 39,
+      "right_unique_coverage_percent": 8.7248
+    },
+    "PromptSentinel <> WhatFeatures": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "PromptShield <> JailBreakV-28K": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "PromptShield <> PromptScreen": {
+      "cross_source_label_disagreement_groups": 4,
+      "distinct_shared_normalized_prompts": 1432,
+      "jaccard_percent": 1.9748,
+      "left_rows_in_shared_groups": 1465,
+      "left_unique_coverage_percent": 3.3213,
+      "right_rows_in_shared_groups": 1433,
+      "right_unique_coverage_percent": 4.645
+    },
+    "PromptShield <> PromptSentinel": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 57,
+      "jaccard_percent": 0.0302,
+      "left_rows_in_shared_groups": 69,
+      "left_unique_coverage_percent": 0.1322,
+      "right_rows_in_shared_groups": 57,
+      "right_unique_coverage_percent": 0.0391
+    },
+    "PromptShield <> SPML": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "PromptShield <> ShieldLM": {
+      "cross_source_label_disagreement_groups": 1,
+      "distinct_shared_normalized_prompts": 458,
+      "jaccard_percent": 0.4731,
+      "left_rows_in_shared_groups": 463,
+      "left_unique_coverage_percent": 1.0623,
+      "right_rows_in_shared_groups": 458,
+      "right_unique_coverage_percent": 0.8458
+    },
+    "PromptShield <> TrustAIRLab": {
+      "cross_source_label_disagreement_groups": 1,
+      "distinct_shared_normalized_prompts": 6,
+      "jaccard_percent": 0.0103,
+      "left_rows_in_shared_groups": 12,
+      "left_unique_coverage_percent": 0.0139,
+      "right_rows_in_shared_groups": 35,
+      "right_unique_coverage_percent": 0.0398
+    },
+    "PromptShield <> VerazuoGitHub": {
+      "cross_source_label_disagreement_groups": 1,
+      "distinct_shared_normalized_prompts": 6,
+      "jaccard_percent": 0.0103,
+      "left_rows_in_shared_groups": 12,
+      "left_unique_coverage_percent": 0.0139,
+      "right_rows_in_shared_groups": 35,
+      "right_unique_coverage_percent": 0.0398
+    },
+    "PromptShield <> WUSTL_LLMJailbreak": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "PromptShield <> WhatFeatures": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "SPML <> JailBreakV-28K": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "SPML <> PromptScreen": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "SPML <> PromptSentinel": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 15909,
+      "jaccard_percent": 10.9126,
+      "left_rows_in_shared_groups": 16004,
+      "left_unique_coverage_percent": 99.9749,
+      "right_rows_in_shared_groups": 15909,
+      "right_unique_coverage_percent": 10.9129
+    },
+    "SPML <> ShieldLM": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 15913,
+      "jaccard_percent": 29.3853,
+      "left_rows_in_shared_groups": 16011,
+      "left_unique_coverage_percent": 100.0,
+      "right_rows_in_shared_groups": 15913,
+      "right_unique_coverage_percent": 29.3853
+    },
+    "SPML <> WUSTL_LLMJailbreak": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "SPML <> WhatFeatures": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "ShieldLM <> JailBreakV-28K": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "ShieldLM <> WUSTL_LLMJailbreak": {
+      "cross_source_label_disagreement_groups": 136,
+      "distinct_shared_normalized_prompts": 205,
+      "jaccard_percent": 0.3769,
+      "left_rows_in_shared_groups": 206,
+      "left_unique_coverage_percent": 0.3786,
+      "right_rows_in_shared_groups": 206,
+      "right_unique_coverage_percent": 45.8613
+    },
+    "ShieldLM <> WhatFeatures": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "TrustAIRLab <> JailBreakV-28K": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "TrustAIRLab <> PromptScreen": {
+      "cross_source_label_disagreement_groups": 5482,
+      "distinct_shared_normalized_prompts": 6111,
+      "jaccard_percent": 15.3612,
+      "left_rows_in_shared_groups": 12338,
+      "left_unique_coverage_percent": 40.5669,
+      "right_rows_in_shared_groups": 6180,
+      "right_unique_coverage_percent": 19.8222
+    },
+    "TrustAIRLab <> PromptSentinel": {
+      "cross_source_label_disagreement_groups": 11,
+      "distinct_shared_normalized_prompts": 13387,
+      "jaccard_percent": 9.0785,
+      "left_rows_in_shared_groups": 18861,
+      "left_unique_coverage_percent": 88.8675,
+      "right_rows_in_shared_groups": 13387,
+      "right_unique_coverage_percent": 9.183
+    },
+    "TrustAIRLab <> SPML": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "TrustAIRLab <> ShieldLM": {
+      "cross_source_label_disagreement_groups": 444,
+      "distinct_shared_normalized_prompts": 1544,
+      "jaccard_percent": 2.2816,
+      "left_rows_in_shared_groups": 2317,
+      "left_unique_coverage_percent": 10.2496,
+      "right_rows_in_shared_groups": 1552,
+      "right_unique_coverage_percent": 2.8512
+    },
+    "TrustAIRLab <> VerazuoGitHub": {
+      "cross_source_label_disagreement_groups": 43,
+      "distinct_shared_normalized_prompts": 15064,
+      "jaccard_percent": 100.0,
+      "left_rows_in_shared_groups": 21527,
+      "left_unique_coverage_percent": 100.0,
+      "right_rows_in_shared_groups": 21527,
+      "right_unique_coverage_percent": 100.0
+    },
+    "TrustAIRLab <> WUSTL_LLMJailbreak": {
+      "cross_source_label_disagreement_groups": 10,
+      "distinct_shared_normalized_prompts": 206,
+      "jaccard_percent": 1.346,
+      "left_rows_in_shared_groups": 419,
+      "left_unique_coverage_percent": 1.3675,
+      "right_rows_in_shared_groups": 207,
+      "right_unique_coverage_percent": 46.085
+    },
+    "TrustAIRLab <> WhatFeatures": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "VerazuoGitHub <> JailBreakV-28K": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "VerazuoGitHub <> PromptScreen": {
+      "cross_source_label_disagreement_groups": 5482,
+      "distinct_shared_normalized_prompts": 6111,
+      "jaccard_percent": 15.3612,
+      "left_rows_in_shared_groups": 12338,
+      "left_unique_coverage_percent": 40.5669,
+      "right_rows_in_shared_groups": 6180,
+      "right_unique_coverage_percent": 19.8222
+    },
+    "VerazuoGitHub <> PromptSentinel": {
+      "cross_source_label_disagreement_groups": 11,
+      "distinct_shared_normalized_prompts": 13387,
+      "jaccard_percent": 9.0785,
+      "left_rows_in_shared_groups": 18861,
+      "left_unique_coverage_percent": 88.8675,
+      "right_rows_in_shared_groups": 13387,
+      "right_unique_coverage_percent": 9.183
+    },
+    "VerazuoGitHub <> SPML": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "VerazuoGitHub <> ShieldLM": {
+      "cross_source_label_disagreement_groups": 444,
+      "distinct_shared_normalized_prompts": 1544,
+      "jaccard_percent": 2.2816,
+      "left_rows_in_shared_groups": 2317,
+      "left_unique_coverage_percent": 10.2496,
+      "right_rows_in_shared_groups": 1552,
+      "right_unique_coverage_percent": 2.8512
+    },
+    "VerazuoGitHub <> WUSTL_LLMJailbreak": {
+      "cross_source_label_disagreement_groups": 10,
+      "distinct_shared_normalized_prompts": 206,
+      "jaccard_percent": 1.346,
+      "left_rows_in_shared_groups": 419,
+      "left_unique_coverage_percent": 1.3675,
+      "right_rows_in_shared_groups": 207,
+      "right_unique_coverage_percent": 46.085
+    },
+    "VerazuoGitHub <> WhatFeatures": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    },
+    "WUSTL_LLMJailbreak <> WhatFeatures": {
+      "cross_source_label_disagreement_groups": 0,
+      "distinct_shared_normalized_prompts": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0
+    }
+  },
+  "report_privacy": "No prompt text or per-prompt hashes are written.",
+  "scope_notes": [
+    "Candidate input is PromptShield train plus TrustAIRLab jailbreak_2023_12_25 and regular_2023_12_25 only.",
+    "PromptScreen, PromptSentinel, ShieldLM, and SPML are audited for overlap but excluded from the model-ready corpus.",
+    "WildJailbreak has no downloaded rows in this snapshot; its gated access was not bypassed.",
+    "Qualifire and OR-Bench are held-out evaluation folders outside this source-overlap audit.",
+    "SPML compares the User Prompt column; its System Prompt context is not part of this text-overlap key.",
+    "The three additional papered JB snapshots are retained in raw folders and sampled into the current label-balanced corpus.",
+    "VerazuoGitHub is a second raw distribution of the TrustAIRLab in-the-wild data and must not be counted as an independent source.",
+    "JailbreakDB was excluded from this pairwise matrix. Follow-up review of SoK arXiv:2510.15476 supports positive as a JB candidate, not PI; its 14 same-user-prompt label conflicts and context/overlap review remain pending, so no rows enter the corpus.",
+    "JailBreakV image-oriented formats and harmful-request seed fields are excluded from text JB mapping.",
+    "WhatFeatures rows are labeled by attack intent, not target-model success; source grouping fields must be retained for future splits."
+  ],
+  "source_label_mapping": {
+    "JailBreakV-28K": {
+      "jailbreak_query in Template/Persuade/Logic": "JB",
+      "redteam_query": "excluded harmful-request seed"
+    },
+    "PromptScreen": {
+      "benign": "benign",
+      "jailbreak": "JB",
+      "prompt-injection": "PI"
+    },
+    "PromptSentinel": {
+      "benign": "benign",
+      "injection": "PI",
+      "jailbreak": "JB"
+    },
+    "PromptShield": {
+      "0": "benign",
+      "1": "PI"
+    },
+    "SPML": {
+      "Prompt injection=0": "benign",
+      "Prompt injection=1": "PI"
+    },
+    "ShieldLM": {
+      "benign": "benign",
+      "direct_injection/indirect_injection": "PI",
+      "jailbreak": "JB"
+    },
+    "TrustAIRLab": {
+      "jailbreak=false": "benign",
+      "jailbreak=true": "JB"
+    },
+    "VerazuoGitHub": {
+      "jailbreak=false": "benign",
+      "jailbreak=true": "JB"
+    },
+    "WUSTL_LLMJailbreak": {
+      "JailbreakPrompts.xlsx Prompt column": "JB",
+      "MaliciousQueries": "excluded harmful-request seeds"
+    },
+    "WhatFeatures": {
+      "jailbreak_prompt_text": "JB",
+      "original_prompt_text": "excluded harmful-request seed"
+    }
+  },
+  "source_summaries": {
+    "JailBreakV-28K": {
+      "conflicting_label_groups": 0,
+      "duplicate_groups": 5000,
+      "duplicate_rows_beyond_first": 15000,
+      "input_rows": 28000,
+      "label_counts_before_deduplication": {
+        "JB": 20000,
+        "PI": 0,
+        "benign": 0
+      },
+      "metadata": {
+        "RedTeam_2K_used": false,
+        "format_counts": {
+          "Logic": 296,
+          "Persuade": 1368,
+          "SD": 2000,
+          "SD_typo": 2000,
+          "Template": 18336,
+          "figstep": 2000,
+          "typo": 2000
+        },
+        "redteam_query_used": false,
+        "text_formats_mapped_to_jb": [
+          "Template",
+          "Persuade",
+          "Logic"
+        ]
+      },
+      "retained_label_counts_if_conflicts_excluded": {
+        "JB": 5000,
+        "PI": 0,
+        "benign": 0
+      },
+      "retained_unique_rows_if_conflicts_excluded": 5000,
+      "rows_in_conflicting_groups": 0,
+      "same_label_duplicate_groups": 5000,
+      "same_label_duplicate_rows_collapsible": 15000,
+      "skipped_rows": 8000,
+      "unique_normalized_texts": 5000,
+      "usable_rows": 20000
+    },
+    "PromptScreen": {
+      "conflicting_label_groups": 0,
+      "duplicate_groups": 101,
+      "duplicate_rows_beyond_first": 108,
+      "input_rows": 30937,
+      "label_counts_before_deduplication": {
+        "JB": 18701,
+        "PI": 2100,
+        "benign": 10136
+      },
+      "metadata": {},
+      "retained_label_counts_if_conflicts_excluded": {
+        "JB": 18596,
+        "PI": 2100,
+        "benign": 10133
+      },
+      "retained_unique_rows_if_conflicts_excluded": 30829,
+      "rows_in_conflicting_groups": 0,
+      "same_label_duplicate_groups": 101,
+      "same_label_duplicate_rows_collapsible": 108,
+      "skipped_rows": 0,
+      "unique_normalized_texts": 30829,
+      "usable_rows": 30937
+    },
+    "PromptSentinel": {
+      "conflicting_label_groups": 0,
+      "duplicate_groups": 0,
+      "duplicate_rows_beyond_first": 0,
+      "input_rows": 145781,
+      "label_counts_before_deduplication": {
+        "JB": 1264,
+        "PI": 62059,
+        "benign": 82458
+      },
+      "metadata": {},
+      "retained_label_counts_if_conflicts_excluded": {
+        "JB": 1264,
+        "PI": 62059,
+        "benign": 82458
+      },
+      "retained_unique_rows_if_conflicts_excluded": 145781,
+      "rows_in_conflicting_groups": 0,
+      "same_label_duplicate_groups": 0,
+      "same_label_duplicate_rows_collapsible": 0,
+      "skipped_rows": 0,
+      "unique_normalized_texts": 145781,
+      "usable_rows": 145781
+    },
+    "PromptShield": {
+      "conflicting_label_groups": 0,
+      "duplicate_groups": 159,
+      "duplicate_rows_beyond_first": 310,
+      "input_rows": 43425,
+      "label_counts_before_deduplication": {
+        "JB": 0,
+        "PI": 16441,
+        "benign": 26984
+      },
+      "metadata": {},
+      "retained_label_counts_if_conflicts_excluded": {
+        "JB": 0,
+        "PI": 16302,
+        "benign": 26813
+      },
+      "retained_unique_rows_if_conflicts_excluded": 43115,
+      "rows_in_conflicting_groups": 0,
+      "same_label_duplicate_groups": 159,
+      "same_label_duplicate_rows_collapsible": 310,
+      "skipped_rows": 0,
+      "unique_normalized_texts": 43115,
+      "usable_rows": 43425
+    },
+    "SPML": {
+      "conflicting_label_groups": 0,
+      "duplicate_groups": 60,
+      "duplicate_rows_beyond_first": 98,
+      "input_rows": 16012,
+      "label_counts_before_deduplication": {
+        "JB": 0,
+        "PI": 12541,
+        "benign": 3470
+      },
+      "metadata": {},
+      "retained_label_counts_if_conflicts_excluded": {
+        "JB": 0,
+        "PI": 12541,
+        "benign": 3372
+      },
+      "retained_unique_rows_if_conflicts_excluded": 15913,
+      "rows_in_conflicting_groups": 0,
+      "same_label_duplicate_groups": 60,
+      "same_label_duplicate_rows_collapsible": 98,
+      "skipped_rows": 1,
+      "unique_normalized_texts": 15913,
+      "usable_rows": 16011
+    },
+    "ShieldLM": {
+      "conflicting_label_groups": 3,
+      "duplicate_groups": 7,
+      "duplicate_rows_beyond_first": 9,
+      "input_rows": 54162,
+      "label_counts_before_deduplication": {
+        "JB": 1018,
+        "PI": 17947,
+        "benign": 35197
+      },
+      "metadata": {},
+      "retained_label_counts_if_conflicts_excluded": {
+        "JB": 1011,
+        "PI": 17943,
+        "benign": 35196
+      },
+      "retained_unique_rows_if_conflicts_excluded": 54150,
+      "rows_in_conflicting_groups": 8,
+      "same_label_duplicate_groups": 4,
+      "same_label_duplicate_rows_collapsible": 4,
+      "skipped_rows": 0,
+      "unique_normalized_texts": 54153,
+      "usable_rows": 54162
+    },
+    "TrustAIRLab": {
+      "conflicting_label_groups": 43,
+      "duplicate_groups": 5727,
+      "duplicate_rows_beyond_first": 6463,
+      "input_rows": 21527,
+      "label_counts_before_deduplication": {
+        "JB": 2071,
+        "PI": 0,
+        "benign": 19456
+      },
+      "metadata": {},
+      "retained_label_counts_if_conflicts_excluded": {
+        "JB": 1391,
+        "PI": 0,
+        "benign": 13630
+      },
+      "retained_unique_rows_if_conflicts_excluded": 15021,
+      "rows_in_conflicting_groups": 153,
+      "same_label_duplicate_groups": 5684,
+      "same_label_duplicate_rows_collapsible": 6353,
+      "skipped_rows": 0,
+      "unique_normalized_texts": 15064,
+      "usable_rows": 21527
+    },
+    "VerazuoGitHub": {
+      "conflicting_label_groups": 43,
+      "duplicate_groups": 5727,
+      "duplicate_rows_beyond_first": 6463,
+      "input_rows": 21527,
+      "label_counts_before_deduplication": {
+        "JB": 2071,
+        "PI": 0,
+        "benign": 19456
+      },
+      "metadata": {
+        "cross_repository_role": "Original GitHub snapshot corresponding to TrustAIRLab HF snapshot; not an independent dataset source.",
+        "license": "MIT",
+        "upstream_commit": "4f4031bf8be187f4478c7f94f42b08714722c12e"
+      },
+      "retained_label_counts_if_conflicts_excluded": {
+        "JB": 1391,
+        "PI": 0,
+        "benign": 13630
+      },
+      "retained_unique_rows_if_conflicts_excluded": 15021,
+      "rows_in_conflicting_groups": 153,
+      "same_label_duplicate_groups": 5684,
+      "same_label_duplicate_rows_collapsible": 6353,
+      "skipped_rows": 0,
+      "unique_normalized_texts": 15064,
+      "usable_rows": 21527
+    },
+    "WUSTL_LLMJailbreak": {
+      "conflicting_label_groups": 0,
+      "duplicate_groups": 1,
+      "duplicate_rows_beyond_first": 1,
+      "input_rows": 448,
+      "label_counts_before_deduplication": {
+        "JB": 448,
+        "PI": 0,
+        "benign": 0
+      },
+      "metadata": {
+        "malicious_query_seed_file_used": false,
+        "prompt_column": "Prompt",
+        "worksheet_physical_rows_including_header": 995
+      },
+      "retained_label_counts_if_conflicts_excluded": {
+        "JB": 447,
+        "PI": 0,
+        "benign": 0
+      },
+      "retained_unique_rows_if_conflicts_excluded": 447,
+      "rows_in_conflicting_groups": 0,
+      "same_label_duplicate_groups": 1,
+      "same_label_duplicate_rows_collapsible": 1,
+      "skipped_rows": 0,
+      "unique_normalized_texts": 447,
+      "usable_rows": 448
+    },
+    "WhatFeatures": {
+      "conflicting_label_groups": 0,
+      "duplicate_groups": 301,
+      "duplicate_rows_beyond_first": 916,
+      "input_rows": 10800,
+      "label_counts_before_deduplication": {
+        "JB": 10800,
+        "PI": 0,
+        "benign": 0
+      },
+      "metadata": {
+        "attack_outcome_label_present": false,
+        "original_prompt_text_used": false,
+        "text_field_mapped_to_jb": "jailbreak_prompt_text",
+        "unique_attack_method_names": 35,
+        "unique_base_prompt_ids": 300
+      },
+      "retained_label_counts_if_conflicts_excluded": {
+        "JB": 9884,
+        "PI": 0,
+        "benign": 0
+      },
+      "retained_unique_rows_if_conflicts_excluded": 9884,
+      "rows_in_conflicting_groups": 0,
+      "same_label_duplicate_groups": 301,
+      "same_label_duplicate_rows_collapsible": 916,
+      "skipped_rows": 0,
+      "unique_normalized_texts": 9884,
+      "usable_rows": 10800
+    }
+  },
+  "tool": {
+    "duckdb_version": "1.5.6",
+    "name": "DuckDB + Python stdlib"
+  }
+}

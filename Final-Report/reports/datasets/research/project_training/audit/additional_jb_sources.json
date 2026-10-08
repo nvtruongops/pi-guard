@@ -1,0 +1,234 @@
+{
+  "combined_projection": {
+    "already_present_as_jb_in_v2": 178,
+    "current_label_counts": {
+      "JB": 1314,
+      "PI": 9329,
+      "benign": 22578
+    },
+    "current_rows": 33221,
+    "model_ready_v2_modified": false,
+    "new_source_union_unique_prompts": 15331,
+    "new_unique_jb_not_in_v2": 15151,
+    "projected_label_counts_if_all_new_jb_sources_are_added": {
+      "JB": 16465,
+      "PI": 9329,
+      "benign": 22578
+    },
+    "projected_max_to_min_ratio": 2.4202,
+    "projected_rows_if_all_new_jb_sources_are_added": 48372,
+    "shared_with_conflicting_v2_label": 2
+  },
+  "created_at_utc": "2026-10-07T10:28:38.318822+00:00",
+  "current_balanced_corpus": {
+    "dataset_version": "3.0.0",
+    "label_counts": {
+      "JB": 9329,
+      "PI": 9329,
+      "benign": 9329
+    },
+    "rows": 27987,
+    "target_rows_per_class": 9329
+  },
+  "label_policy": {
+    "new_source_rows": "JB attack intent; not dependent on attack success",
+    "quarantine": "Exact matches to benign or PI rows in the reconstructed base pool are not added as JB."
+  },
+  "model_ready_v2": {
+    "duplicate_groups": 0,
+    "duplicate_rows_beyond_first": 0,
+    "files": [
+      {
+        "bytes": 12239651,
+        "path": "source_datasets/promptshield_hendzh/train.json",
+        "sha256": "aa33c3ffcc27bd07c0a233b52f1b8c3cbdb30606ce2412da06a88b5290cdc7b6"
+      },
+      {
+        "bytes": 1871641,
+        "path": "source_datasets/trustairlab_in_the_wild_jailbreak_prompts/jailbreak_2023_12_25/train-00000-of-00001.parquet",
+        "sha256": "55bbc5e2be771ee16ed67aed4edb5ecef5f44ac69cea317a67e5405c5c6057a4"
+      },
+      {
+        "bytes": 12560543,
+        "path": "source_datasets/trustairlab_in_the_wild_jailbreak_prompts/regular_2023_12_25/train-00000-of-00001.parquet",
+        "sha256": "23e90010ccbc85574bf46678528cddce5b02abc86d9a047209218af65cb37c68"
+      }
+    ],
+    "input_rows": 33221,
+    "label_counts_before_deduplication": {
+      "JB": 1314,
+      "PI": 9329,
+      "benign": 22578
+    },
+    "metadata": {
+      "historical_candidate_label_counts": {
+        "JB": 1314,
+        "PI": 9329,
+        "benign": 22578
+      },
+      "reconstructed_from_pinned_raw_sources": true,
+      "version_folder_removed": true
+    },
+    "skipped_rows": 0,
+    "unique_normalized_texts": 33221,
+    "usable_rows": 33221
+  },
+  "normalization": "Unicode NFKC, casefold, whitespace collapse; SHA-256 used internally only.",
+  "pairwise_overlap": {
+    "JailBreakV-28K_text <> WUSTL_LLMJailbreak": {
+      "cross_source_label_disagreement_groups": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0,
+      "shared_unique_normalized_prompts": 0
+    },
+    "JailBreakV-28K_text <> WhatFeatures_jailbreak_success": {
+      "cross_source_label_disagreement_groups": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0,
+      "shared_unique_normalized_prompts": 0
+    },
+    "JailBreakV-28K_text <> historical_base_v2": {
+      "cross_source_label_disagreement_groups": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0,
+      "shared_unique_normalized_prompts": 0
+    },
+    "WUSTL_LLMJailbreak <> WhatFeatures_jailbreak_success": {
+      "cross_source_label_disagreement_groups": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0,
+      "shared_unique_normalized_prompts": 0
+    },
+    "WUSTL_LLMJailbreak <> historical_base_v2": {
+      "cross_source_label_disagreement_groups": 2,
+      "jaccard_percent": 0.5375,
+      "left_rows_in_shared_groups": 181,
+      "left_unique_coverage_percent": 40.2685,
+      "right_rows_in_shared_groups": 180,
+      "right_unique_coverage_percent": 0.5418,
+      "shared_unique_normalized_prompts": 180
+    },
+    "WhatFeatures_jailbreak_success <> historical_base_v2": {
+      "cross_source_label_disagreement_groups": 0,
+      "jaccard_percent": 0.0,
+      "left_rows_in_shared_groups": 0,
+      "left_unique_coverage_percent": 0.0,
+      "right_rows_in_shared_groups": 0,
+      "right_unique_coverage_percent": 0.0,
+      "shared_unique_normalized_prompts": 0
+    }
+  },
+  "privacy": "No prompt text or per-prompt hashes are written.",
+  "source_summaries": {
+    "JailBreakV-28K_text": {
+      "duplicate_groups": 5000,
+      "duplicate_rows_beyond_first": 15000,
+      "files": [
+        {
+          "bytes": 23153101,
+          "path": "source_datasets/jailbreakv28k_colm2024/JailBreakV_28K/JailBreakV_28K.csv",
+          "sha256": "72fb8beb9eb1c1a23745f4bd56430da9dff36ba42c6f5d699e68a47e14fc87c5"
+        }
+      ],
+      "input_rows": 20000,
+      "label_counts_before_deduplication": {
+        "JB": 20000,
+        "PI": 0,
+        "benign": 0
+      },
+      "metadata": {
+        "all_csv_rows_by_format": {
+          "Logic": 296,
+          "Persuade": 1368,
+          "SD": 2000,
+          "SD_typo": 2000,
+          "Template": 18336,
+          "figstep": 2000,
+          "typo": 2000
+        },
+        "excluded_image_or_other_formats": {
+          "SD": 2000,
+          "SD_typo": 2000,
+          "figstep": 2000,
+          "typo": 2000
+        },
+        "redteam_2k_file_used": false,
+        "redteam_query_field_used": false,
+        "text_attack_formats_used": [
+          "Template",
+          "Persuade",
+          "Logic"
+        ]
+      },
+      "skipped_rows": 0,
+      "unique_normalized_texts": 5000,
+      "usable_rows": 20000
+    },
+    "WUSTL_LLMJailbreak": {
+      "duplicate_groups": 1,
+      "duplicate_rows_beyond_first": 1,
+      "files": [
+        {
+          "bytes": 279232,
+          "path": "source_datasets/wustl_llm_jailbreak_usenix2024/JailbreakPrompts.xlsx",
+          "sha256": "93863bcfd217f8a47c694e5d57ed4cb6bba43f30d596ccaf6eacebb65c14051a"
+        }
+      ],
+      "input_rows": 448,
+      "label_counts_before_deduplication": {
+        "JB": 448,
+        "PI": 0,
+        "benign": 0
+      },
+      "metadata": {
+        "paper_reports_jailbreak_prompts": 448,
+        "prompt_column": "Prompt",
+        "prompt_column_rows": 448,
+        "worksheet_physical_rows_including_header": 995
+      },
+      "skipped_rows": 0,
+      "unique_normalized_texts": 447,
+      "usable_rows": 448
+    },
+    "WhatFeatures_jailbreak_success": {
+      "duplicate_groups": 301,
+      "duplicate_rows_beyond_first": 916,
+      "files": [
+        {
+          "bytes": 16587794,
+          "path": "source_datasets/jailbreak_features_blackboxnlp2025/latest.csv",
+          "sha256": "0ce7838e56f4e4f292e0c74a742d26a911c7cec2da7436d2ae387204db348922"
+        }
+      ],
+      "input_rows": 10800,
+      "label_counts_before_deduplication": {
+        "JB": 10800,
+        "PI": 0,
+        "benign": 0
+      },
+      "metadata": {
+        "attack_outcome_label_column_present": false,
+        "candidate_text_column": "jailbreak_prompt_text",
+        "label_policy": "All rows are attack attempts; JB means attack intent, regardless of target-model success.",
+        "original_prompt_text_used": false,
+        "unique_attack_method_names": 35,
+        "unique_base_prompt_ids": 300
+      },
+      "skipped_rows": 0,
+      "unique_normalized_texts": 9884,
+      "usable_rows": 10800
+    }
+  }
+}

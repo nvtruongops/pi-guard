@@ -1,0 +1,31 @@
+{
+  "dataset_id": "dronefreak/PromptScreen",
+  "revision": "496653aba7a39ae6bdcb775c067a3bdb2471acc7",
+  "retrieved_at_utc": "2026-10-06T11:10:37.272346+00:00",
+  "files": [
+    {
+      "name": "train",
+      "url": "https://raw.githubusercontent.com/dronefreak/PromptScreen/496653aba7a39ae6bdcb775c067a3bdb2471acc7/offence/metrics_train_set.json",
+      "relative_path": "promptscreen_raw/data/metrics_train_set.json",
+      "bytes": 23661526,
+      "sha256": "19de32a35efb417e42992897b2fe38dbd10480650eee55765b69a313c46da650",
+      "git_blob_sha1": "29891462382d90b84d60c337c0952f265fed6d14"
+    },
+    {
+      "name": "reported_test",
+      "url": "https://raw.githubusercontent.com/dronefreak/PromptScreen/496653aba7a39ae6bdcb775c067a3bdb2471acc7/offence/metrics_test_set.json",
+      "relative_path": "promptscreen_raw/data/metrics_test_set.json",
+      "bytes": 1905888,
+      "sha256": "9edb2beb91215fb90b5fbf80c66058897ac66af730d3948dbca50943a69a01cc",
+      "git_blob_sha1": "c5b128864589065ad533df8600b285399405e859"
+    },
+    {
+      "name": "paper_pdf",
+      "url": "https://arxiv.org/pdf/2512.19011v1",
+      "relative_path": "promptscreen_raw/papers/PromptScreen_arXiv_2512.19011v1.pdf",
+      "bytes": 315146,
+      "sha256": "6cd5ecb0f74f20e69927ee16dcb35f9eaae34512bb6398baeee1d84c41b88809"
+    }
+  ],
+  "note": "Original source labels preserved; this retrieval does not fit or relabel data."
+}

@@ -1,0 +1,117 @@
+{
+  "created_at_utc": "2026-10-07T00:34:26.573891+00:00",
+  "method": "Python csv.DictReader; NFKC, casefold, collapse-whitespace for exact text checks; no prompt text stored.",
+  "or_bench": {
+    "dataset_id": "bench-llm/or-bench",
+    "files": {
+      "or-bench-80k.csv": {
+        "blank_text_rows": 0,
+        "bytes": 11108548,
+        "category_counts": {
+          "deception": 8040,
+          "harassment": 3295,
+          "harmful": 16083,
+          "hate": 6160,
+          "illegal": 9349,
+          "privacy": 9146,
+          "self-harm": 5094,
+          "sexual": 3844,
+          "unethical": 12513,
+          "violence": 6835
+        },
+        "columns": [
+          "prompt",
+          "category"
+        ],
+        "file": "or-bench-80k.csv",
+        "normalized_duplicate_rows": 0,
+        "normalized_unique_texts": 80359,
+        "rows": 80359,
+        "sha256": "22e956020cdfdd43c328f02441f003c933ee4e7083d02d9d24e414e4b42ae2e6"
+      },
+      "or-bench-hard-1k.csv": {
+        "blank_text_rows": 0,
+        "bytes": 169255,
+        "category_counts": {
+          "deception": 72,
+          "harassment": 41,
+          "harmful": 106,
+          "hate": 54,
+          "illegal": 527,
+          "privacy": 199,
+          "self-harm": 63,
+          "sexual": 66,
+          "unethical": 125,
+          "violence": 66
+        },
+        "columns": [
+          "prompt",
+          "category"
+        ],
+        "file": "or-bench-hard-1k.csv",
+        "normalized_duplicate_rows": 0,
+        "normalized_unique_texts": 1319,
+        "rows": 1319,
+        "sha256": "a6e2f1166416efe5901f3bb05c47dc92ab3aca3acfe143693d38b8057d841e6d"
+      },
+      "or-bench-toxic.csv": {
+        "blank_text_rows": 0,
+        "bytes": 64721,
+        "category_counts": {
+          "deception": 83,
+          "harassment": 76,
+          "harmful": 30,
+          "hate": 58,
+          "illegal": 50,
+          "privacy": 61,
+          "self-harm": 92,
+          "sexual": 73,
+          "unethical": 61,
+          "violence": 71
+        },
+        "columns": [
+          "prompt",
+          "category"
+        ],
+        "file": "or-bench-toxic.csv",
+        "normalized_duplicate_rows": 0,
+        "normalized_unique_texts": 655,
+        "rows": 655,
+        "sha256": "3be45901faae3b4b2b51bf7f8a2784c1650a1cc8c631dbc8b171d5312d4e0057"
+      }
+    },
+    "license": "CC-BY-4.0",
+    "normalized_exact_cross_file_overlap": {
+      "or-bench-80k.csv__or-bench-hard-1k.csv": 1318,
+      "or-bench-80k.csv__or-bench-toxic.csv": 0,
+      "or-bench-hard-1k.csv__or-bench-toxic.csv": 0
+    },
+    "paper": "Cui et al., OR-Bench, ICML 2025, PMLR 267.",
+    "revision": "e36d8b80e81837c8a8f264bbb2a49f1b32c7e272"
+  },
+  "qualifire": {
+    "dataset_id": "rogue-security/prompt-injections-benchmark",
+    "files": {
+      "test.csv": {
+        "blank_text_rows": 0,
+        "bytes": 3624921,
+        "category_counts": {
+          "benign": 3001,
+          "jailbreak": 1999
+        },
+        "columns": [
+          "text",
+          "label"
+        ],
+        "file": "test.csv",
+        "normalized_duplicate_rows": 0,
+        "normalized_unique_texts": 5000,
+        "rows": 5000,
+        "sha256": "b8ba6d26959621c7f96148ea5169f7aee9953a7a3e6551dd0dcae9f09b2dd28a"
+      }
+    },
+    "license": "CC-BY-NC-4.0",
+    "paper_note": "Hub card does not identify a separate peer-reviewed paper.",
+    "revision": "9ef1aa46a7e5eedb096be0481be8011ede1e72e8"
+  }
+}

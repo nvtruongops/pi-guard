@@ -1,0 +1,205 @@
+{
+  "dataset_id": "nuhmanpk/prompt-sentinel",
+  "dataset_url": "https://huggingface.co/datasets/nuhmanpk/prompt-sentinel",
+  "pinned_revision": "f5218824e24fbb6cd383b55aee61c71b1919a6c8",
+  "pinned_snapshot_url": "https://huggingface.co/datasets/nuhmanpk/prompt-sentinel/tree/f5218824e24fbb6cd383b55aee61c71b1919a6c8",
+  "download_method": "hf CLI (hf download); hf datasets info and parquet download succeeded for the authenticated account",
+  "access": "Gated by the Hub; dataset card requires sharing contact information. Local access was verified by metadata and snapshot download.",
+  "hub_license_field": "other",
+  "source_datasets_listed_by_card": [
+    {
+      "dataset_id": "TrustAIRLab/in-the-wild-jailbreak-prompts",
+      "url": "https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts",
+      "license_as_listed_by_card": "MIT",
+      "paper_arxiv_id_listed_by_card": "2308.03825"
+    },
+    {
+      "dataset_id": "lmsys/toxic-chat",
+      "url": "https://huggingface.co/datasets/lmsys/toxic-chat",
+      "license_as_listed_by_card": "CC-BY-NC-4.0",
+      "paper_arxiv_id_listed_by_card": "2310.17389"
+    },
+    {
+      "dataset_id": "jackhhao/jailbreak-classification",
+      "url": "https://huggingface.co/datasets/jackhhao/jailbreak-classification",
+      "license_as_listed_by_card": "Apache-2.0",
+      "paper_arxiv_id_listed_by_card": null
+    },
+    {
+      "dataset_id": "reshabhs/SPML_Chatbot_Prompt_Injection",
+      "url": "https://huggingface.co/datasets/reshabhs/SPML_Chatbot_Prompt_Injection",
+      "license_as_listed_by_card": "MIT",
+      "paper_arxiv_id_listed_by_card": "2402.11755"
+    },
+    {
+      "dataset_id": "jayavibhav/prompt-injection",
+      "url": "https://huggingface.co/datasets/jayavibhav/prompt-injection",
+      "license_as_listed_by_card": "unspecified",
+      "paper_arxiv_id_listed_by_card": null
+    },
+    {
+      "dataset_id": "S-Labs/prompt-injection-dataset",
+      "url": "https://huggingface.co/datasets/S-Labs/prompt-injection-dataset",
+      "license_as_listed_by_card": "MIT",
+      "paper_arxiv_id_listed_by_card": null
+    },
+    {
+      "dataset_id": "neuralchemy/Prompt-injection-dataset",
+      "url": "https://huggingface.co/datasets/neuralchemy/Prompt-injection-dataset",
+      "license_as_listed_by_card": "Apache-2.0",
+      "paper_arxiv_id_listed_by_card": null
+    },
+    {
+      "dataset_id": "Lakera/gandalf_ignore_instructions",
+      "url": "https://huggingface.co/datasets/Lakera/gandalf_ignore_instructions",
+      "license_as_listed_by_card": "MIT",
+      "paper_arxiv_id_listed_by_card": "2501.07927"
+    },
+    {
+      "dataset_id": "fka/awesome-chatgpt-prompts",
+      "url": "https://huggingface.co/datasets/fka/awesome-chatgpt-prompts",
+      "license_as_listed_by_card": "CC0-1.0",
+      "paper_arxiv_id_listed_by_card": null
+    },
+    {
+      "dataset_id": "OpenAssistant/oasst2",
+      "url": "https://huggingface.co/datasets/OpenAssistant/oasst2",
+      "license_as_listed_by_card": "Apache-2.0",
+      "paper_arxiv_id_listed_by_card": "2304.07327"
+    },
+    {
+      "dataset_id": "leolee99/NotInject",
+      "url": "https://huggingface.co/datasets/leolee99/NotInject",
+      "license_as_listed_by_card": "MIT",
+      "paper_arxiv_id_listed_by_card": "2410.22770"
+    },
+    {
+      "dataset_id": "deepset/prompt-injections",
+      "url": "https://huggingface.co/datasets/deepset/prompt-injections",
+      "license_as_listed_by_card": "Apache-2.0",
+      "paper_arxiv_id_listed_by_card": null
+    },
+    {
+      "dataset_id": "xTRam1/safe-guard-prompt-injection",
+      "url": "https://huggingface.co/datasets/xTRam1/safe-guard-prompt-injection",
+      "license_as_listed_by_card": "unspecified",
+      "paper_arxiv_id_listed_by_card": null
+    }
+  ],
+  "paper_references": [
+    {
+      "arxiv_id": "2308.03825",
+      "title": "\"Do Anything Now\": Characterizing and Evaluating In-The-Wild Jailbreak Prompts on Large Language Models",
+      "url": "https://arxiv.org/abs/2308.03825",
+      "local_pdf": "paper/arxiv_2308.03825.pdf",
+      "source_dataset": "TrustAIRLab/in-the-wild-jailbreak-prompts"
+    },
+    {
+      "arxiv_id": "2310.17389",
+      "title": "ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation",
+      "url": "https://arxiv.org/abs/2310.17389",
+      "local_pdf": "paper/arxiv_2310.17389.pdf",
+      "source_dataset": "lmsys/toxic-chat"
+    },
+    {
+      "arxiv_id": "2402.11755",
+      "title": "SPML: A DSL for Defending Language Models Against Prompt Attacks",
+      "url": "https://arxiv.org/abs/2402.11755",
+      "local_pdf": "paper/arxiv_2402.11755.pdf",
+      "source_dataset": "reshabhs/SPML_Chatbot_Prompt_Injection"
+    },
+    {
+      "arxiv_id": "2501.07927",
+      "title": "Gandalf the Red: Adaptive Security for LLMs",
+      "url": "https://arxiv.org/abs/2501.07927",
+      "local_pdf": "paper/arxiv_2501.07927.pdf",
+      "source_dataset": "Lakera/gandalf_ignore_instructions"
+    },
+    {
+      "arxiv_id": "2304.07327",
+      "title": "OpenAssistant Conversations -- Democratizing Large Language Model Alignment",
+      "url": "https://arxiv.org/abs/2304.07327",
+      "local_pdf": "paper/arxiv_2304.07327.pdf",
+      "source_dataset": "OpenAssistant/oasst2"
+    },
+    {
+      "arxiv_id": "2410.22770",
+      "title": "InjecGuard: Benchmarking and Mitigating Over-defense in Prompt Injection Guardrail Models",
+      "url": "https://arxiv.org/abs/2410.22770",
+      "local_pdf": "paper/arxiv_2410.22770.pdf",
+      "source_dataset": "leolee99/NotInject"
+    }
+  ],
+  "source_citation_issue": {
+    "claim": "The PromptSentinel and xTRam1 dataset cards associate xTRam1/safe-guard-prompt-injection with arXiv:2402.13064.",
+    "finding": "arXiv:2402.13064 is Synthetic Data (Almost) from Scratch: Generalized Instruction Tuning for Language Models (GLAN); the xTRam1 card describes GLAN as inspiration for its synthetic data, not a paper about the Safe-Guard dataset.",
+    "glan_url": "https://arxiv.org/abs/2402.13064",
+    "evidence_url": "https://huggingface.co/datasets/xTRam1/safe-guard-prompt-injection"
+  },
+  "label_map_proposal_preserving_source": {
+    "benign": "benign",
+    "injection": "PI",
+    "jailbreak": "JB"
+  },
+  "snapshot_files": [
+    {
+      "path": "source_datasets/prompt_sentinel/source_snapshot/data/test-00000-of-00001.parquet",
+      "bytes": 4555778,
+      "sha256": "dc4f2f59c719c09348a66ad7800e52b4327ddfd5c88975cecff8125c6c418b71"
+    },
+    {
+      "path": "source_datasets/prompt_sentinel/source_snapshot/data/train-00000-of-00001.parquet",
+      "bytes": 36136524,
+      "sha256": "415116ec8c38540eb20b2d404db27ca9ea7ed8eb2c437e8db129c87475f70ec0"
+    },
+    {
+      "path": "source_datasets/prompt_sentinel/source_snapshot/data/validation-00000-of-00001.parquet",
+      "bytes": 4511394,
+      "sha256": "54056cf7259d5c09a38d833589e0add8cb97c53d53ffd59abb43f722489db0e9"
+    },
+    {
+      "path": "source_datasets/prompt_sentinel/source_snapshot/README.md",
+      "bytes": 8620,
+      "sha256": "77e4d0bf41b209a6bf9d5697ff6b4de5c6c29798b126212816e3eb4f63593dd4"
+    }
+  ],
+  "paper_files": [
+    {
+      "path": "source_datasets/prompt_sentinel/paper/arxiv_2304.07327.pdf",
+      "bytes": 2199088,
+      "sha256": "5ab012e9839b32efacd7eb1bca89ca7c6d29e49d9a6b8d23d23ea97a6916d62f"
+    },
+    {
+      "path": "source_datasets/prompt_sentinel/paper/arxiv_2308.03825.pdf",
+      "bytes": 2624350,
+      "sha256": "0f50aa08140ca8c0c3d803a3d6d34cf006cf22456c967987839262d6a2a43154"
+    },
+    {
+      "path": "source_datasets/prompt_sentinel/paper/arxiv_2310.17389.pdf",
+      "bytes": 1080887,
+      "sha256": "9c114d94f347e6d5808bc733ae800f77dfb9abc851d5bc384f949a7ee84b1c7e"
+    },
+    {
+      "path": "source_datasets/prompt_sentinel/paper/arxiv_2402.11755.pdf",
+      "bytes": 699698,
+      "sha256": "504a8561c7bf727bb6bde556558bce99cbc8fbec23e9fd4439135ac1c6d52b37"
+    },
+    {
+      "path": "source_datasets/prompt_sentinel/paper/arxiv_2410.22770.pdf",
+      "bytes": 2166293,
+      "sha256": "7413fa3b10c12fa4fac659b177aaf37281230388165e787c4ffce77cacd47503"
+    },
+    {
+      "path": "source_datasets/prompt_sentinel/paper/arxiv_2501.07927.pdf",
+      "bytes": 1439471,
+      "sha256": "ecd559ee057028594319198088a0337be5126f4db1cc587d3824b6bf7eff96d2"
+    },
+    {
+      "path": "source_datasets/prompt_sentinel/paper/download_manifest.json",
+      "bytes": 2337,
+      "sha256": "6be6989c6f049648bafafeec40b438342e5e7df1d16959dc95808a87f9c798d1"
+    }
+  ],
+  "audit_reference": "../../project_training/audit/three_label_candidate_audit.json",
+  "training_or_inference_performed": false
+}

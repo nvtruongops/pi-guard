@@ -109,6 +109,7 @@ nav:
       - "Bảng So Sánh & Phân Tích Đánh Đổi": threat_defense/comparative_matrix_and_tradeoffs.md
       - "Tài Liệu Học Thuật, Video & Mã Nguồn Mẫu": threat_defense/resources_and_papers.md
   - "4. Dataset & Benchmark Study":
+      - "Khởi tạo bộ dữ liệu PI-Guard v5": dataset_study/dataset_initialization_v5.md
       - "Tuyển Chọn Dữ Liệu & Phân Loại 3 Lớp": dataset_study/data_curation.md
       - "Phân Chia Group-Aware & Đánh Giá OOD": dataset_study/group_aware_splitting.md
       - "Tài Liệu, Benchmark & Nguồn Dữ Liệu": dataset_study/resources_and_papers.md
