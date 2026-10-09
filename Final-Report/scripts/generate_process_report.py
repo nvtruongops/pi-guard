@@ -252,7 +252,7 @@ def generate_report():
 
     tasks = [
         ('T01', 'Tuần 1 (07/09 - 13/09)', 'Họp định hướng & Sàng lọc Y văn (Meeting 1: 29/08, Meeting 2: 01/09, Meeting 3: 08/09)', 'Hoàn thành', 'Cả 4 thành viên', 'Biên bản Meeting 1, 2, 3.md', '08/09/2026'),
-        ('T02', 'Tuần 1 (07/09 - 13/09)', 'Thiết kế, biên soạn nội dung và hoàn thiện bộ Slide 22 trang báo cáo tiến độ gặp GVHD ngày 10/09 (PI-GUARD-Present-109.pptx)', 'Hoàn thành', 'Trường & Đức', 'reports/PI-GUARD-Present-109.pptx', '09/09/2026'),
+        ('T02', 'Tuần 1 (07/09 - 13/09)', 'Thiết kế, biên soạn nội dung và hoàn thiện bộ Slide 22 trang báo cáo tiến độ gặp GVHD ngày 10/09 (PI-GUARD-Present-109.pptx)', 'Hoàn thành', 'Trường & Đức', 'Final-Report/Meeting/Meeting 3_08_09_26.md', '09/09/2026'),
         ('T03', 'Tuần 1 (07/09 - 13/09)', 'Thu thập & thẩm định 17 papers chuẩn IEEE >= 2022 theo CAPSTONE REGISTER', 'Hoàn thành', 'Trường (Leader)', 'reports/References/ & REFERENCES_LOG.md', '13/09/2026'),
         ('T04', 'Tuần 2 (14/09 - 20/09)', 'Soạn thảo Chapter 1: Background & Problem Statement (Lỗ hổng Von Neumann NLP)', 'Hoàn thành', 'Trường', 'workspaces/truongnv/docs/', '16/09/2026'),
         ('T05', 'Tuần 2 (14/09 - 20/09)', 'Phân loại Threat Taxonomy (Direct/Indirect Injection vs Jailbreak theo OWASP)', 'Hoàn thành', 'Trường & Đức', 'workspaces/truongnv/docs/', '17/09/2026'),
@@ -380,8 +380,8 @@ def generate_report():
             'Trực tuyến qua Discord',
             'Cả 4 thành viên (Trường, Đức, Việt, Phương)',
             'Đánh giá kết quả nghiên cứu và thống nhất slide báo cáo tiến độ gặp GVHD ngày 10/09/2026.',
-            'Trường và Đức trực tiếp tạo slide, biên soạn nội dung và hoàn thiện toàn bộ bộ Slide 22 trang (PI-GUARD-Present-109.pptx); Việt và Phương rà soát, thống nhất hoàn toàn và không có ý kiến bổ sung.\nĐầu ra: Meeting 3_08_09_26.md & Final-Report/PI-GUARD-Present-109.pptx.',
-            'Hoàn thành (100%)\nFinal-Report/Meeting/Meeting 3_08_09_26.md\nFinal-Report/PI-GUARD-Present-109.pptx'
+            'Trường và Đức hoàn thiện bộ slide 22 trang; Việt và Phương rà soát, không có ý kiến bổ sung.\nĐầu ra: Meeting 3_08_09_26.md; slide đã gỡ ngày 08/10/2026.',
+            'Hoàn thành (100%)\nFinal-Report/Meeting/Meeting 3_08_09_26.md'
         ),
         (
             'Meet 04',

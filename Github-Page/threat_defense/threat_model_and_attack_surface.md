@@ -2,8 +2,8 @@
 ## CƠ SỞ KHOA HỌC & MÔ HÌNH HÓA CHI TIẾT THEO CHUẨN NIST AI 100-2e2025 & OWASP LLM01:2025
 
 > **Căn cứ chỉ đạo**: Mục 3 Biên bản họp **`Meeting/Meeting 1_29_08_26.md`**: *"Xác định threat model (mô hình mối đe dọa), attacker, target và attack surface."*  
-> **Chủ biên**: Nguyễn Văn Trường (Leader) & Nguyễn Quí Đức  
-> **Áp dụng cho**: Khóa luận tốt nghiệp FPT University IAP491 — Đề tài PI-Guard  
+> **Chủ biên**: repository maintainer (Leader) & project participant<br>
+> **Áp dụng cho**: Nội dung nghiên cứu PI-Guard.
 
 ---
 
@@ -157,7 +157,7 @@ graph LR
 
 ## V. PHÂN TÍCH MA TRẬN RỦI RO ĐỊNH LƯỢNG STRIDE & DREAD
 
-Để lượng hóa mức độ rủi ro phục vụ báo cáo khoa học và thẩm định của Hội đồng Khóa luận FPT IAP491, đề tài áp dụng mô hình **STRIDE** kết hợp phương pháp tính điểm **DREAD** (Damage, Reproducibility, Exploitability, Affected Users, Discoverability) với thang điểm từ 1 đến 10 cho từng kịch bản:
+Để lượng hóa mức độ rủi ro phục vụ báo cáo khoa học và thẩm định của Hội đồng Khóa luận FPT course, đề tài áp dụng mô hình **STRIDE** kết hợp phương pháp tính điểm **DREAD** (Damage, Reproducibility, Exploitability, Affected Users, Discoverability) với thang điểm từ 1 đến 10 cho từng kịch bản:
 
 $$\text{DREAD Score} = \frac{D + R + E + A + D}{5}$$
 

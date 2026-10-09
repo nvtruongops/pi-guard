@@ -86,7 +86,7 @@ Thiết kế, huấn luyện và triển khai hệ thống **PI-Guard** — Lớ
 ---
 
 ## 1.6. Thesis Structure (Bố Cục 6 Chương Của Toàn Văn Luận Văn)
-Tuân thủ nghiêm ngặt theo Hướng dẫn Khóa luận Tốt nghiệp FPT University IAP491:
+Tuân thủ nghiêm ngặt theo Hướng dẫn Khóa luận Tốt nghiệp the university capstone course:
 - **Chapter 1: Introduction** *(Bối cảnh, Bài toán, Mục tiêu, Ý nghĩa, Phạm vi, Cấu trúc).*
 - **Chapter 2: Literature Review** *(Khảo sát nghiên cứu liên quan, SOTA Guardrails, Đóng góp mới của nhóm).*
 - **Chapter 3: Methodology** *(Thiết kế nghiên cứu, Thu thập dữ liệu, Group-Aware Splitting, Baseline ML & DeBERTa-v3).*

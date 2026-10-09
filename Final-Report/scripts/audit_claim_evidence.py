@@ -36,6 +36,7 @@ if sys.platform == "win32":
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 REFERENCES_LOG_PATH = REPO_ROOT / "Final-Report" / "References" / "REFERENCES_LOG.md"
+PRIVATE_REFERENCES_LOG_PATH = REPO_ROOT / "workspaces" / "truongnv" / "References" / "REFERENCES_LOG.md"
 
 # ANSI Colors
 GREEN = "\033[92m"
@@ -200,23 +201,20 @@ def pass2_check_technical_grounding(md_files: List[Path]) -> List[str]:
 # ==============================================================================
 # PASS 3: REFERENCE CATALOG INTEGRITY
 # ==============================================================================
-def get_approved_catalog_references() -> Set[str]:
-    """Trích xuất danh mục các mã neo ref hợp lệ từ REFERENCES_LOG.md."""
+def get_approved_catalog_references(catalog_path: Path = REFERENCES_LOG_PATH) -> Set[str]:
+    """Extract valid reference IDs from the selected catalog."""
     approved_refs: Set[str] = set()
-    if not REFERENCES_LOG_PATH.exists():
+    if not catalog_path.exists():
         return approved_refs
 
     try:
-        with open(REFERENCES_LOG_PATH, "r", encoding="utf-8", errors="ignore") as f:
+        with open(catalog_path, "r", encoding="utf-8", errors="ignore") as f:
             content = f.read()
 
-        # Tìm các mã neo dạng id="refN" hoặc href="#refN" hoặc `[N]`
         matches = re.findall(r'<a\s+id=[\'"]ref(\d+)[\'"]', content)
         approved_refs.update(matches)
-        # Các anchor href
         matches_href = re.findall(r'href=[\'"]#ref(\d+)[\'"]', content)
         approved_refs.update(matches_href)
-        # Bổ sung các mã số từ 1 đến 50 thường dùng trong đề tài
         for i in range(1, 45):
             approved_refs.add(str(i))
     except Exception:
@@ -226,34 +224,44 @@ def get_approved_catalog_references() -> Set[str]:
 
 
 def pass3_check_reference_catalog_integrity(md_files: List[Path]) -> List[str]:
-    """Kiểm tra mọi mã neo [[N]] trong văn bản phải nằm trong danh mục REFERENCES_LOG.md."""
+    """Check citations against the catalog that owns each document."""
     violations: List[str] = []
-    approved_refs = get_approved_catalog_references()
-
-    if not approved_refs:
-        return violations
-
+    catalog_cache: Dict[Path, Set[str]] = {}
     anchor_pattern = re.compile(r"\[\[(\d+)\]\]\(#ref\1\)")
 
     for md_file in md_files:
         try:
+            rel_p = md_file.relative_to(REPO_ROOT)
+            rel_parts = rel_p.parts
+            catalog_path = REFERENCES_LOG_PATH
+            if (len(rel_parts) >= 2
+                    and rel_parts[0].lower() == "workspaces"
+                    and rel_parts[1].lower() == "truongnv"
+                    and PRIVATE_REFERENCES_LOG_PATH.exists()):
+                catalog_path = PRIVATE_REFERENCES_LOG_PATH
+            if catalog_path not in catalog_cache:
+                approved_refs = get_approved_catalog_references(catalog_path)
+                if catalog_path == PRIVATE_REFERENCES_LOG_PATH:
+                    approved_refs.update(get_approved_catalog_references(REFERENCES_LOG_PATH))
+                catalog_cache[catalog_path] = approved_refs
+            approved_refs = catalog_cache[catalog_path]
+            if not approved_refs:
+                continue
+
             with open(md_file, "r", encoding="utf-8", errors="ignore") as f:
                 content = f.read()
-
-            rel_p = md_file.relative_to(REPO_ROOT)
             content_no_code = re.sub(r"```[\s\S]*?```", "", content)
 
             found_refs = anchor_pattern.findall(content_no_code)
             for r_id in found_refs:
                 if r_id not in approved_refs:
                     violations.append(
-                        f"[CE-03:PHANTOM_REFERENCE] Neo trích dẫn [[{r_id}]] không tồn tại trong REFERENCES_LOG.md tại {rel_p}"
+                        f"[CE-03:PHANTOM_REFERENCE] Citation [[{r_id}]] is missing from the catalog for {rel_p}"
                     )
         except Exception as e:
-            violations.append(f"[CE-03:READ_ERROR] Không thể đọc {md_file}: {e}")
+            violations.append(f"[CE-03:READ_ERROR] Could not read {md_file}: {e}")
 
     return violations
-
 
 # ==============================================================================
 # PASS 4: ON-PAGE ANCHOR MATCH INTEGRITY

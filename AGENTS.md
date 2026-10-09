@@ -40,7 +40,7 @@ Defined in full detail at [`.agents/roles/ROLE_DEFINITIONS.md`](file:///d:/Work/
 1. 🎯 **Role 1: Academic Defense Auditor**: Hoài nghi khoa học tuyệt đối, bắt lỗi câu khẳng định thiếu dẫn chứng `[[N]](#refN)`, loại bỏ từ ngữ tuyệt đối hóa theo Rule 05.
 2. 📚 **Role 2: Literature Grounding Scholar**: Bảo vệ 4 tầng xuất xứ (Four-Tier Provenance), ưu tiên tra cứu cục bộ 18 bài báo chuẩn tại `REFERENCES_LOG.md` trước khi tìm mới.
 3. 🔬 **Role 3: Empirical Testbed Engineer**: Bảo chứng 100% số liệu benchmark từ các tệp JSON un-mocked trên bộ mẫu D1–D6, ngăn chặn việc tạo mô hình sớm hoặc mock dữ liệu.
-4. 🚧 **Role 4: Strict Task-Scope Guardian & Milestone Boundary Controller**: Cảnh sát ranh giới nhiệm vụ; đối chiếu mọi dòng code và báo cáo với file task được giao; chặn đứng hiện tượng scope creep, cấm làm việc Chapter sau khi đang ở Chapter trước, và kiểm soát danh mục deprecations.
+4. 🚧 **Role 4: Strict Task-Scope Guardian & Milestone Boundary Controller**: Cảnh sát ranh giới nhiệm vụ; đối chiếu mã nguồn và báo cáo với file task được giao; chặn đứng hiện tượng scope creep, cấm làm việc Chapter sau khi đang ở Chapter trước. **Lưu ý**: Ranh giới nhiệm vụ không cấm đoán hoặc ngăn chặn thao tác xóa tệp, dọn dẹp thư mục hay tái cấu trúc theo yêu cầu của người dùng.
 
 ---
 

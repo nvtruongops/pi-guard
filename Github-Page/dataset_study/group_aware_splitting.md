@@ -1,8 +1,10 @@
 # CHUYÊN ĐỀ 02: PHÂN CHIA DỮ LIỆU THEO NHÓM (GROUP-AWARE SPLITTING) & ĐÁNH GIÁ NGOẠI PHÂN PHỐI (OOD)
+> **Trạng thái split hiện tại:** xem [khởi tạo bộ dữ liệu PI-Guard v5](dataset_initialization_v5.md). Các ví dụ và bảng minh họa trong chuyên đề này không phải kết quả đánh giá trên corpus v5.
+
 ## PHÒNG NGỪA RÒ RỈ DỮ LIỆU & ĐO LƯỜNG NĂNG LỰC PHÁT HIỆN TẤN CÔNG CHƯA TỪNG GẶP (ZERO-DAY)
 
-> **Chủ biên**: Nguyễn Văn Trường (Leader)  
-> **Áp dụng cho**: Khóa luận tốt nghiệp FPT University IAP491 — Đề tài PI-Guard  
+> **Chủ biên**: repository maintainer (Leader)<br>
+> **Áp dụng cho**: Nội dung nghiên cứu PI-Guard.
 > **Khung quy chuẩn**: IEEE S&P, ACM CCS, NeurIPS Benchmarks  
 
 ---

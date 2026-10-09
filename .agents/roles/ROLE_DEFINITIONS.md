@@ -109,7 +109,6 @@
 5. **Định Tuyến Tài Liệu Nháp**:
    - Lưu audit nội bộ, ghi chú, kế hoạch và bản nháp không phải deliverable trong `workspaces/truongnv/.agent-work/`, thuộc workspace local-only được Rule 07 ignore.
    - Deliverable do task/người dùng yêu cầu phải theo đường dẫn chính thức của task và các quy tắc scope; không ghi deliverable vào thư mục bị ignore.
-
 ---
 
 ## ⚡ HƯỚNG DẪN KÍCH HOẠT VAI TRÒ TRONG PROMPT

@@ -107,7 +107,7 @@ graph TD
 
 ## 4. Chiến Lược Dữ Liệu Đa Nguồn Của Đồ Án PI-Guard
 
-Để đảm bảo mô hình phân loại 3 nhãn của PI-Guard (`Benign`, `Prompt Injection`, `Jailbreak`) có khả năng khái quát hóa vượt trội, nhóm áp dụng quy trình 4 bước nghiêm ngặt:
+Đối với bài toán ba nhãn dự kiến của PI-Guard (`Benign`, `Prompt Injection`, `Jailbreak`), đồ án đề xuất quy trình dữ liệu bốn bước dưới đây. Đây là kế hoạch nghiên cứu, chưa phải bằng chứng mô hình ba nhãn đã được huấn luyện hoặc đạt khả năng khái quát hóa:
 1. **Tổng hợp Đa nguồn (Multi-Source Synthesis)**: Kết hợp các mẫu Benign từ LMSYS Chatbot Arena và Alpaca với các mẫu Jailbreak thực tế của Shen et al. và Prompt Injection của Deepset/BIPIA.
 2. **Khử Trùng Lặp Cận Biên (MinHash LSH Deduplication)**: Loại bỏ các biến thể sao chép của cùng một prompt DAN để ngăn ngừa việc mô hình học tủ theo tần suất.
 3. **Phân Cụm Ngăn Rò Rỉ (Group-Aware Splitting)**: Toàn bộ các biến thể thuộc cùng một họ (ví dụ họ DAN 1.0 đến 15.0) bắt buộc phải nằm trọn vẹn ở tập Train HOẶC tập Test, tuyệt đối không được rò rỉ chéo.

@@ -1,8 +1,8 @@
 # CHUYÊN ĐỀ 02: ĐƯỜNG CONG BIÊN PARETO & PHÂN TÍCH ĐÁNH ĐỔI HỆ THỐNG
 ## TỐI ƯU HÓA ĐA MỤC TIÊU: ĐỘ TRỄ THẤP, CHI PHÍ BỘ NHỚ & ĐỘ BỀN VỮNG AN NINH
 
-> **Chủ biên**: Nguyễn Văn Trường (Leader)  
-> **Áp dụng cho**: Khóa luận tốt nghiệp FPT University IAP491 — Đề tài PI-Guard  
+> **Chủ biên**: repository maintainer (Leader)<br>
+> **Áp dụng cho**: Nội dung nghiên cứu PI-Guard.
 > **Khung quy chuẩn**: Chuẩn kỹ nghệ IEEE S&P, ACM CCS, NVIDIA NeMo Guardrails  
 
 ---

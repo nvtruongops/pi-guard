@@ -1,8 +1,10 @@
 # CHUYÊN ĐỀ 01: KỸ THUẬT TUYỂN CHỌN DỮ LIỆU, PHÂN LOẠI 3 LỚP & CÂN BẰNG MẪU AN NINH
+> **Trạng thái corpus hiện tại:** xem [khởi tạo bộ dữ liệu PI-Guard v5](dataset_initialization_v5.md). Chuyên đề này trình bày phương pháp và bối cảnh, không thay thế số liệu artifact v5.
+
 ## PHƯƠNG PHÁP LUẬN THU THẬP VÀ CHUẨN HÓA DỮ LIỆU HUẤN LUYỆN GUARDRAIL
 
-> **Chủ biên**: Nguyễn Văn Trường (Leader)  
-> **Áp dụng cho**: Khóa luận tốt nghiệp FPT University IAP491 — Đề tài PI-Guard  
+> **Chủ biên**: repository maintainer (Leader)<br>
+> **Áp dụng cho**: Nội dung nghiên cứu PI-Guard.
 > **Khung quy chuẩn**: Chuẩn học thuật ACM CCS, NeurIPS, NIST AI 100-2e2025  
 
 ---

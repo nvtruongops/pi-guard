@@ -2,14 +2,14 @@
 ## SO SÁNH THỰC NGHIỆM ĐỘ TRỄ, CHI PHÍ, HIỆU NĂNG VÀ ĐỘ BỀN GIỮA CÁC HƯỚNG TIẾP CẬN
 
 > **Căn cứ chỉ đạo**: Mục 3 & 4 Biên bản họp **`Meeting/Meeting 1_29_08_26.md`**  
-> **Chủ biên**: Nguyễn Văn Trường (Leader) & Phạm Minh Hoàng Việt  
-> **Áp dụng cho**: Khóa luận tốt nghiệp FPT University IAP491 — Đề tài PI-Guard  
+> **Chủ biên**: repository maintainer (Leader) & project participant<br>
+> **Áp dụng cho**: Nội dung nghiên cứu PI-Guard.
 
 ---
 
 ## I. Bảng So Sánh Định Lượng 6 Phương Pháp Phòng Thủ
 
-Để chứng minh tính ưu việt và sự cần thiết của kiến trúc **PI-Guard** trước Hội đồng Khóa luận FPT IAP491, bảng đối sánh dưới đây tổng hợp các thông số kỹ thuật thực nghiệm dựa trên các công trình nghiên cứu đã công bố quốc tế:
+Để chứng minh tính ưu việt và sự cần thiết của kiến trúc **PI-Guard** trước Hội đồng Khóa luận FPT course, bảng đối sánh dưới đây tổng hợp các thông số kỹ thuật thực nghiệm dựa trên các công trình nghiên cứu đã công bố quốc tế:
 
 | Tiêu Chí Đánh Giá | 1. Regex / Blacklist Từ Khóa [[1]](#ref1) | 2. XML Prompt Hardening (Chỉ Lớp 2) [[2]](#ref2) | 3. Output Redactor (Chỉ Lớp 3) [[3]](#ref3) | 4. LLM-as-a-Judge (Llama Guard 3 8B) [[4]](#ref4) | 5. Single DeBERTa-v3 FP32 [[5]](#ref5) | 6. PI-Guard Hybrid Pipeline *(Đề xuất)* |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |

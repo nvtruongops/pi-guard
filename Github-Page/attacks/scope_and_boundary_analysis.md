@@ -46,7 +46,7 @@ flowchart TD
 
 ## 2. Ma Trận Phân Định Ranh Giới (In-Scope vs. Out-of-Scope)
 
-Căn cứ vào mục tiêu đăng ký đề tài tại Đại học FPT (**`CAPSTONE PROJECT REGISTER.md`**) và biên bản hội ý học thuật **`Meeting 2`**, ranh giới đồ án được xác lập rõ ràng:
+Căn cứ vào mục tiêu đăng ký đề tài tại the university (**`CAPSTONE PROJECT REGISTER.md`**) và biên bản hội ý học thuật **`Meeting 2`**, ranh giới đồ án được xác lập rõ ràng:
 
 | Nhóm Phạm Vi | Hạng Mục Kỹ Thuật | Luận Giải Khoa Học & Ranh Giới Thiết Kế |
 | :--- | :--- | :--- |

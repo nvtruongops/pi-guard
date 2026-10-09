@@ -2,14 +2,14 @@
 ## HỆ THỐNG TÀI NGUYÊN KIỂM CHỨNG THEO TIÊU CHUẨN ZERO DEAD LINKS & OPEN-ACCESS PDF
 
 > **Căn cứ chỉ đạo**: Mục 3 & 4 Biên bản họp **`Meeting/Meeting 1_29_08_26.md`**  
-> **Chủ biên**: Nguyễn Văn Trường (Leader) & Đỗ Đoàn Duy Phương  
-> **Áp dụng cho**: Khóa luận tốt nghiệp FPT University IAP491 — Đề tài PI-Guard  
+> **Chủ biên**: repository maintainer (Leader) & project participant<br>
+> **Áp dụng cho**: Nội dung nghiên cứu PI-Guard.
 
 ---
 
 ## I. BẢNG TỔNG HỢP CÁC CÔNG TRÌNH KHOA HỌC BÌNH DUYỆT (PEER-REVIEWED PAPERS)
 
-Toàn bộ các tài liệu tham khảo dưới đây đều tuân thủ nghiêm ngặt quy định học thuật của Đại học FPT: được xuất bản tại các hội nghị bảo mật và AI hàng đầu thế giới (ACM CCS, NeurIPS, ICLR, NAACL) hoặc tiêu chuẩn an toàn quốc tế (NIST, OWASP):
+Toàn bộ các tài liệu tham khảo dưới đây đều tuân thủ nghiêm ngặt quy định học thuật của the university: được xuất bản tại các hội nghị bảo mật và AI hàng đầu thế giới (ACM CCS, NeurIPS, ICLR, NAACL) hoặc tiêu chuẩn an toàn quốc tế (NIST, OWASP):
 
 | STT | Tác Giả & Năm | Tên Công Trình Khoa Học | Hội Nghị / Nguồn | Liên Kết Bản Mở (Open-Access PDF) | Đóng Góp Cho Đề Tài PI-Guard |
 | :---: | :--- | :--- | :---: | :---: | :--- |

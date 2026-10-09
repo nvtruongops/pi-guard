@@ -1,8 +1,8 @@
 # CHUYÊN ĐỀ 01: KINH TẾ HỌC CẢNH BÁO SAI (FALSE POSITIVE ECONOMICS) & TRẢI NGHIỆM NGƯỜI DÙNG
 ## PHÂN TÍCH TỔN THẤT KINH TẾ, NGHỊCH LÝ GUARDRAIL & HIỆU CHUẨN NGƯỠNG AN TOÀN
 
-> **Chủ biên**: Nguyễn Văn Trường (Leader)  
-> **Áp dụng cho**: Khóa luận tốt nghiệp FPT University IAP491 — Đề tài PI-Guard  
+> **Chủ biên**: repository maintainer (Leader)<br>
+> **Áp dụng cho**: Nội dung nghiên cứu PI-Guard.
 > **Khung quy chuẩn**: Chuẩn đo lường thực tế OpenAI (AAAI HCOMP 2023), Meta Llama Guard, NIST AI 100-2e2025  
 
 ---

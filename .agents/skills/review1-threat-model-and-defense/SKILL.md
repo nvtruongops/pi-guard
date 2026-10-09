@@ -53,7 +53,6 @@ This skill guides the PI-Guard capstone project team (**Nguyễn Văn Trường,
 | **6** | **Model Selection Matrix** | So sánh 4 giải pháp Guardrail + Khung đánh giá 5 Target LLM qua Cloud API (GPT-4o, Gemini, LLaMA-3.1...) | [`Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md`](file:///d:/Work/Do-an/Final-Report/thesis/Review1_Problem_Definition_and_Threat_Model.md) |
 | **7** | **3 Research Questions** | Hệ thống 3 RQs chuẩn IEEE (RQ1: Data Leakage, RQ2: Robustness, RQ3: Low-FPR & Latency) | [`Final-Report/thesis/chapters/01_Introduction.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/01_Introduction.md) |
 | **8** | **Literature Review Survey** | Khảo sát sâu các công trình nghiên cứu quốc tế, ma trận SOTA, 3 Research Gaps, 4 Đóng góp mới | [`Final-Report/thesis/chapters/02_Literature_Review.md`](file:///d:/Work/Do-an/Final-Report/thesis/chapters/02_Literature_Review.md) |
-| **9** | **Slide PPT Review 1** | Kịch bản trình bày báo cáo Review 1 gặp GVHD ngày 10/09/2026 | [`Final-Report/reports/PI-GUARD-Present-109.pptx`](file:///d:/Work/Do-an/Final-Report/reports/PI-GUARD-Present-109.pptx) |
 
 
 ---

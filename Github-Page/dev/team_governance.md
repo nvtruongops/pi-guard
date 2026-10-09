@@ -7,10 +7,10 @@ Welcome to the **PI-Guard** Capstone Project repository. This file serves as the
 ## 1. Project Identity & Academic Scope
 
 - **Project Title**: A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (**PI-Guard**)
-- **Academic Program**: Bachelor of Science in Information Assurance (IA), FPT University (Course Code: `IAP491`, Fall 2026 Semester)
-- **Supervisor**: ThS. Trần Văn Ninh | **Lead Student**: Nguyễn Văn Trường (`nvtruongops` / `SE182034`)
-- **Academic Team Roster**: Nguyễn Quí Đức (`SE182087`), Phạm Minh Hoàng Việt (`SE181851`), Đỗ Đoàn Duy Phương (`SE180235`). This roster records the capstone team and is separate from repository access.
-- **Git Repository Maintainer & Report Owner**: Nguyễn Văn Trường (`nvtruongops` / `SE182034`) is the sole current maintainer and publisher of this repository. Tracked reports record group progress and research outcomes as consolidated by the leader; listed members are project participants, not current repository contributors.
+- **Academic Program**: Information Assurance capstone research.
+- **Supervisor**: project supervisor | **Lead Student**: repository maintainer
+- **Academic Team Roster**: project participant (`student identifier`), project participant (`student identifier`), project participant (`student identifier`). This roster records the capstone team and is separate from repository access.
+- **Git Repository Maintainer & Report Owner**: repository maintainer (`repository account` / `student identifier`) is the sole current maintainer and publisher of this repository. Tracked reports record group progress and research outcomes as consolidated by the leader; listed members are project participants, not current repository contributors.
 - **Primary Objective**: Design, implement, and benchmark an external, API-driven, Machine-Learning and Transformer-based protective guardrail placed in front of downstream LLM applications to classify incoming user prompts (*Benign* vs. *Prompt Injection* vs. *Jailbreak*) with low latency (P95 < 30ms) and low false-positive rate (FPR < 1.5%).
 - **Architectural Paradigm**: **External Guardrail Proxy** (Text-level inspection before forwarding to downstream black-box LLMs; zero access to internal model weights or KV-cache).
 - **Tech Stack**: Python 3.11+, PyTorch, Hugging Face Transformers (`microsoft/deberta-v3-base` Native FP32), Scikit-Learn (Dual TF-IDF Baseline), FastAPI (PoC Proxy), Streamlit (Demo UI), Docker.
@@ -39,7 +39,7 @@ Defined in full detail at **`.agents/roles/ROLE_DEFINITIONS.md`**:
 1. 🎯 **Role 1: Academic Defense Auditor**: Hoài nghi khoa học tuyệt đối, bắt lỗi câu khẳng định thiếu dẫn chứng `[[N]](#refN)`, loại bỏ từ ngữ tuyệt đối hóa theo Rule 05.
 2. 📚 **Role 2: Literature Grounding Scholar**: Bảo vệ 4 tầng xuất xứ (Four-Tier Provenance), ưu tiên tra cứu cục bộ 18 bài báo chuẩn tại `REFERENCES_LOG.md` trước khi tìm mới.
 3. 🔬 **Role 3: Empirical Testbed Engineer**: Bảo chứng 100% số liệu benchmark từ các tệp JSON un-mocked trên bộ mẫu D1–D6, ngăn chặn việc tạo mô hình sớm hoặc mock dữ liệu.
-4. 🚧 **Role 4: Strict Task-Scope Guardian & Milestone Boundary Controller**: Cảnh sát ranh giới nhiệm vụ; đối chiếu mọi dòng code và báo cáo với file task được giao; chặn đứng hiện tượng scope creep, cấm làm việc Chapter sau khi đang ở Chapter trước, và kiểm soát danh mục deprecations.
+4. 🚧 **Role 4: Strict Task-Scope Guardian & Milestone Boundary Controller**: Cảnh sát ranh giới nhiệm vụ; đối chiếu mã nguồn và báo cáo với file task được giao; chặn đứng hiện tượng scope creep, cấm làm việc Chapter sau khi đang ở Chapter trước. **Lưu ý**: Ranh giới nhiệm vụ không cấm đoán hoặc ngăn chặn thao tác xóa tệp, dọn dẹp thư mục hay tái cấu trúc theo yêu cầu của người dùng.
 
 ---
 
@@ -58,7 +58,17 @@ Whenever an agent is instructed to perform a task or generate a report:
 
 ## 5. Repository Maintenance & Workspace Privacy
 
-1. Nguyễn Văn Trường (`nvtruongops`) is the sole current Git repository maintainer and the only account with GitHub write/admin access. He maintains and publishes the tracked repository updates, including reports that consolidate progress for the capstone group. Member names in those reports describe project participation, not current Git contributions. Historical commit records remain unchanged.
-2. `workspaces/truongnv/` is local-only and ignored by Git. Do not force-add its contents. Put deliverables intended for review or publication in their official tracked locations outside `workspaces/`.
-3. The former `workspaces/ducnq/`, `workspaces/vietpmh/`, and `workspaces/phuongddd/` directories are retired and must not be recreated as repository workspaces.
+1. repository maintainer (`repository account`) is the sole current Git repository maintainer and the only account with GitHub write/admin access. He maintains and publishes the tracked repository updates, including reports that consolidate progress for the capstone group. Member names in those reports describe project participation, not current Git contributions. Historical commit records remain unchanged.
+2. `private workspace is local-only and ignored by Git. Do not force-add its contents. Put deliverables intended for review or publication in their official tracked locations outside `private workspace
+3. The former `private workspace `private workspace and `private workspace directories are retired and must not be recreated as repository workspaces.
 5. Before a commit, run `python Final-Report/scripts/validate_local.py --mode fast`.
+
+---
+
+## 6. Safe Check Execution & Script Lifecycle
+
+- Use a focused `scripts/<action>_<scope>.py` or `.ps1` for complex, repeated, or batch logic when it makes the inputs, path checks, dry-run, and logs easier to review. Short read-only commands may run directly.
+- A script is an auditability aid; it does **not** bypass command review, approval policy, sandbox limits, or Windows execution policy. Never hide a destructive operation behind `python script.py`, another shell/language, an encoded payload, or a subprocess to evade a review decision. Review the script's effects as well as its launcher command.
+- Before a destructive or batch operation, list the exact targets and expected scope, resolve paths and confirm they remain inside the authorized root, check for unexpected symlinks/reparse points, and provide a dry-run or equivalent preflight. Execute only when the task authorizes the action and the execution channel permits it.
+- If command review blocks an operation, stop. Report the refusal and the verified remaining paths; do not retry through another wrapper or tool to get around the block. Continue only after the execution policy changes or the user completes the blocked action through an authorized route.
+- After an operation, verify filesystem state and run the task's relevant validators before claiming success. Remove temporary scripts only after successful verification; preserve logs/manifests needed to reproduce the result.

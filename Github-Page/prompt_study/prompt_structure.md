@@ -97,7 +97,7 @@ def sanitize_chat_tokens(text: str) -> str:
 
 <a id="ref1"></a>**[1]** OpenAI, "OpenAI ChatML Specification and Best Practices," *OpenAI Developer Documentation*, 2023. Link: [https://github.com/openai/openai-python](https://github.com/openai/openai-python).
 
-<a id="ref2"></a>**[2]** Meta AI, "Llama 3 Model Architecture and Prompt Format Guidelines," *Meta AI Documentation*, 2024. Link: [https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-3/](https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-3/).
+<a id="ref2"></a>**[2]** Meta AI, "Llama 3 Model Architecture and Prompt Format Guidelines," *Meta AI Documentation*, 2024. Link: [https://llama.meta.com/private documentation/meta-llama-3/](https://llama.meta.com/private documentation/meta-llama-3/).
 
 <a id="ref3"></a>**[3]** R. Taori et al., "Stanford Alpaca: An Instruction-following LLaMA model," *Stanford Center for Research on Foundation Models (CRFM)*, 2023. Link: [https://github.com/tatsu-lab/stanford_alpaca](https://github.com/tatsu-lab/stanford_alpaca).
 

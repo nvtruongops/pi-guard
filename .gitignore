@@ -121,3 +121,10 @@ site/
 # Hugging Face cache directories
 **/hf-cache/
 **/hf-cache/**
+
+# Private school-provided source documents; keep originals local and untracked.
+/docs/
+
+# Public, project-authored summaries may be tracked separately.
+!/docs-public/
+!/docs-public/**

@@ -2,12 +2,13 @@
 scripts/build_docs_portal.py
 -----------------------------
 PI-Guard documentation portal builder
-Tự động thu thập, chuẩn hóa và cấu trúc tài liệu toàn dự án PI-Guard
-thành thư mục 'docs/' để phục vụ xuất bản Web UI qua GitHub Pages (MkDocs Material).
+Tự động thu thập, chuẩn hóa và cấu trúc tài liệu PI-Guard đã được phép công bố
+thành thư mục 'Github-Page/' để phục vụ xuất bản Web UI qua GitHub Pages (MkDocs Material).
 
 Quy tắc bảo vệ:
-- KHÔNG BAO GIỜ chỉnh sửa hoặc xóa tài liệu nội bộ trong docs/fpt_capstone_guide/.
-- Giữ nguyên vẹn file gốc trong reports/Meeting/, workspaces/, reports/References/, docs/.
+- Không đọc, sửa hoặc đồng bộ tài liệu riêng tư trong docs/.
+- Không sửa hồ sơ nghiên cứu gốc; chỉ khử định danh ở bản được sinh trong Github-Page/.
+- Chỉ dùng docs-public/ làm nguồn cho các trang khái quát hóa.
 """
 
 import re
@@ -24,6 +25,76 @@ if sys.stderr and hasattr(sys.stderr, "reconfigure"):
 FINAL_REPORT_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = FINAL_REPORT_DIR.parent
 DOCS_DIR = ROOT_DIR / "Github-Page"
+PUBLIC_DOCS_DIR = ROOT_DIR / "docs-public"
+PUBLIC_REPOSITORY_ACCOUNT = "nvtruongops"
+
+# These labels identify individual students, staff, or institution-specific
+# course records. Keep the source records intact and remove those details only
+# from the generated public portal.
+PUBLIC_REDACTIONS = (
+    (re.compile(r"(?i)\bIAP\d{3}(?:_[A-Z0-9]+)+\b"), "capstone identifier"),
+    (re.compile(r"(?i)\b(?:ThS\.?\s*)?Trần Văn Ninh\b"), "project supervisor"),
+    (re.compile(r"(?i)\bNguyễn Văn Trường\b|\bNguyen Van Truong\b"), "repository maintainer"),
+    (re.compile(r"(?i)\bNguyễn Quí Đức\b|\bNguyễn Quý Đức\b|\bNguyen Qui Duc\b"), "project participant"),
+    (re.compile(r"(?i)\bPhạm Minh Hoàng Việt\b|\bPham Minh Hoang Viet\b"), "project participant"),
+    (re.compile(r"(?i)\bĐỗ Đoàn Duy Phương\b|\bDo Doan Duy Phuong\b"), "project participant"),
+    (re.compile(r"(?i)(?<![/.])\b(?:nvtruongops|truongnv|ducnq|vietpmh|phuongddd)\b"), "repository account"),
+    (re.compile(r"\bSE\d{6}\b", re.IGNORECASE), "student identifier"),
+    (re.compile(r"\bIAP\d{3}\b", re.IGNORECASE), "capstone course"),
+    (re.compile(r"(?i)\b(?:FPT\s+University|Đại học FPT)\b"), "the university"),
+    (re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.IGNORECASE), "[redacted email]"),
+    (re.compile(r"(?i)\bFall\s+2026(?:\s+Semester)?\b"), "academic term"),
+    (re.compile(r"\b(?:29/08/2026|01/09/2026|08/09/2026)\b"), "project meeting date"),
+    (re.compile(r"(?i)project meeting date(?:\s*\([^)]*\))?"), "project meeting date"),
+)
+
+PRIVATE_REFERENCE_REDACTIONS = (
+    (re.compile(r"(?i)(?<![\w-])workspaces[\\/][^\s)\]]+"), "private workspace"),
+    (re.compile(r"(?i)\b[A-Z]:\\Users\\[^\\\s)\]]+"), "[local path]"),
+    (re.compile(r"(?i)\b[A-Z]:[\\/](?:[^\\/\s)\]]+[\\/])*docs[\\/][^\s)\]]+"), "[private documentation reference]"),
+    (re.compile(r"(?i)(?<![\w-])docs[\\/](?!public[\\/])[\w.-]+"), "private documentation"),
+)
+
+PUBLIC_LINE_REDACTIONS = (
+    (re.compile(r"^(\s*>?\s*\*\*Áp dụng cho\*\*:).*$", re.IGNORECASE), r"\1 Nội dung nghiên cứu PI-Guard."),
+    (re.compile(r"^(\s*>?\s*\*\*Applicable to\*\*:).*$", re.IGNORECASE), r"\1 PI-Guard research."),
+    (re.compile(r"^(\s*#{1,6})\s*the university\s*$", re.IGNORECASE), r"\1 Capstone Research"),
+    (re.compile(r"^(\s*#{1,6})\s+.*Information Assurance Capstone.*$", re.IGNORECASE), r"\1 PI-Guard Capstone Research"),
+    (re.compile(r"^\s*#{1,6}\s*(?:MINISTRY OF EDUCATION AND TRAINING|BỘ GIÁO DỤC VÀ ĐÀO TẠO)\s*$", re.IGNORECASE), ""),
+    (re.compile(r"^\s*\*\*Capstone Code\*\*:.*$", re.IGNORECASE), ""),
+    (re.compile(r"^(\s*-\s*\*\*Academic Program\*\*:).*$", re.IGNORECASE), r"\1 Information Assurance capstone research."),
+    (re.compile(r"^(\s*-\s*\*\*Supervisor\*\*:).*$", re.IGNORECASE), r"\1 project supervisor | **Lead Student**: repository maintainer"),
+    (re.compile(r"^(\s*\*\*Academic Term\*\*:).*$", re.IGNORECASE), r"\1 capstone term"),
+)
+
+LEGACY_PUBLIC_PLACEHOLDERS = (
+    (re.compile(r"(?i)\bproject account\b"), "repository account"),
+    (re.compile(r"(?i)\bthe course\b"), "capstone course"),
+    (re.compile(r"(?i)\bthe institution\b"), "the university"),
+    (re.compile(r"(?i)\bthe project period\b"), "academic term"),
+)
+
+PUBLIC_REDACTION_MARKERS = (
+    "project supervisor", "repository maintainer", "project participant", "repository account",
+    "student identifier", "capstone course", "the university", "[redacted email]",
+    "capstone identifier", "academic term", "project meeting date", "private workspace", "[local path]",
+)
+
+PUBLIC_SENSITIVE_PATTERNS = (
+    re.compile(r"(?i)\bSE\d{6}\b"),
+    re.compile(r"(?i)\bIAP\d{3}(?:_[A-Z0-9]+)+\b"),
+    re.compile(r"(?i)\bIAP\d{3}\b"),
+    re.compile(r"(?i)\bSP26IA04\b"),
+    re.compile(r"(?i)\b(?:FPT\s+University|Đại học FPT)\b"),
+    re.compile(r"(?i)\bMINISTRY OF EDUCATION AND TRAINING\b|\bBỘ GIÁO DỤC VÀ ĐÀO TẠO\b"),
+    re.compile(r"(?i)(?<![\w-])docs[\\/](?!public[\\/])[\w.-]+"),
+    re.compile(r"(?i)(?<![\w-])workspaces[\\/][^\s)\]]+"),
+    re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.IGNORECASE),
+    re.compile(r"(?i)\bFall\s+2026(?:\s+Semester)?\b"),
+    re.compile(r"\b(?:29/08/2026|01/09/2026|08/09/2026)\b"),
+    re.compile(r"(?i)project meeting date\s*\("),
+    *(pattern for pattern, _ in PUBLIC_REDACTIONS[:6]),
+)
 
 def clean_and_prepare_dir():
     """Create portal folders without deleting existing checked-in pages or assets."""
@@ -49,7 +120,7 @@ def sanitize_content(content: str) -> str:
     """
     sanitized_lines = []
     for line in content.splitlines():
-        if "fpt_capstone_guide" in line or "SP26IA04" in line:
+        if "fpt_capstone_guide" in line.casefold() or "sp26ia04" in line.casefold():
             continue
         # Loại bỏ emoji trang trí ở đầu tiêu đề markdown (# 🛡️ -> # )
         line = re.sub(r'^(#{1,6})\s*[\U00010000-\U0010ffff\u2600-\u27bf\u2300-\u23ff\u2b00-\u2bff\ufe00-\ufe0f\s]*[\U00010000-\U0010ffff\u2600-\u27bf\u2300-\u23ff\u2b00-\u2bff\ufe00-\ufe0f]\s*', r'\1 ', line)
@@ -61,7 +132,7 @@ def sanitize_content(content: str) -> str:
     content = content.replace("(../../Github-Page/", "(../")
 
     # Chuyển đổi link PDF nội bộ và link file ngoài thành inline code hoặc text đậm
-    content = re.sub(r"\[([^\]]+)\]\((?:file:///[^)]*|Final-Report(?:/[^)]*)?|workspaces(?:/[^)]*)?|reports/(?:References|Meeting)/[^)]*|References/[^)]*|Meeting/[^)]*|CAPSTONE%20PROJECT%20REGISTER\.md|Github-Page/[^)]*|docs/[^)]*)\)", r"**\1**", content)
+    content = re.sub(r"\[([^\]]+)\]\((?:file:///[^)]*|(?:\.\./)*(?:Final-Report|workspaces|reports|References|Meeting|Github-Page|docs)/[^)]*|CAPSTONE%20PROJECT%20REGISTER\.md)\)", r"**\1**", content)
 
     content = re.sub(r"\[([^\]]+)\]\((?!https?://|mailto:|#)[^)]*\.pdf(?:#[^)]*)?\)", r"**\1** (local PDF; not packaged with portal)", content, flags=re.IGNORECASE)
     # Thay thế file:///... còn lại
@@ -84,8 +155,6 @@ def sanitize_content(content: str) -> str:
     content = re.sub(r"DeBERTa-v3\s*\(đã lượng hóa INT8\)", "DeBERTa-v3 (Native FP32 CPU)", content)
     content = re.sub(r"Fine-tuned DeBERTa-v3 Base \(ONNX INT8\)", "Fine-tuned DeBERTa-v3 Base (Native FP32)", content)
     content = re.sub(r"ONNX Runtime INT8 \(Yao et al\., NeurIPS 2022\)", "PyTorch Native FP32 CPU Inference (He et al., ICLR 2023)", content)
-    content = re.sub(r"\|\s*`Final-Report/src/models/classifier\.py`\s*\|\s*Mô hình phân loại 2 tầng:\s*Hybrid TF-IDF \+ DeBERTa INT8\s*\|\s*He et al\. \(ICLR 2023\) & Yao et al\. \(NeurIPS 2022\)\s*\|",
-                     "| `Final-Report/src/models/classifier.py` | Mô hình phân loại 2 tầng: Hybrid TF-IDF + DeBERTa FP32 | He et al. (ICLR 2023) |", content)
     content = re.sub(r"ONNX Runtime INT8 đóng vai trò là giải pháp kỹ thuật phụ trợ triển khai giúp hệ thống chạy mượt trên CPU thông thường\.",
                      "PyTorch Native FP32 đóng vai trò là giải pháp kiến trúc cốt lõi giúp hệ thống chạy mượt trên CPU thông thường với độ trễ thấp.", content)
     content = re.sub(r"lượng hóa động ONNX INT8 Runtime chạy tối ưu trên CPU", "tối ưu phân bổ luồng PyTorch Native FP32 chạy hiệu quả trên CPU", content)
@@ -97,16 +166,122 @@ def sanitize_content(content: str) -> str:
     content = re.sub(r"~15 MB \(TF\) \+ 140 MB \(INT8\)", "~15 MB (TF) + ~440 MB (FP32)", content)
     content = re.sub(r"<\s*150\s*MB\s*\(ONNX INT8\)", "< 500MB (Native FP32)", content)
 
+    redacted_lines = []
+    for line in content.splitlines():
+        original_line = line
+        changed = False
+        for pattern, replacement in PRIVATE_REFERENCE_REDACTIONS + PUBLIC_REDACTIONS:
+            line, count = pattern.subn(replacement, line)
+            changed = changed or count > 0
+        for pattern, replacement in LEGACY_PUBLIC_PLACEHOLDERS:
+            line, count = pattern.subn(replacement, line)
+            changed = changed or count > 0
+        for pattern, replacement in PUBLIC_LINE_REDACTIONS:
+            line, count = pattern.subn(replacement, line)
+            changed = changed or count > 0
+        if changed or any(marker in original_line.casefold() for marker in PUBLIC_REDACTION_MARKERS):
+            hard_break = line.endswith("  ")
+            line = line.rstrip()
+            if hard_break:
+                line += "<br>"
+        redacted_lines.append(line)
+    content = "\n".join(redacted_lines)
+
+    # Keep canonical public repository links usable while removing handles from prose.
+    content = re.sub(
+        r"(?i)(https?://(?:www\.)?github\.com/)repository account(?=/|[)\s]|$)",
+        rf"\g<1>{PUBLIC_REPOSITORY_ACCOUNT}",
+        content,
+    )
+    content = re.sub(
+        r"(?i)(https?://)repository account(\.github\.io/)",
+        rf"\g<1>{PUBLIC_REPOSITORY_ACCOUNT}\g<2>",
+        content,
+    )
+    content = re.sub(
+        r"(?i)(https?://raw\.githubusercontent\.com/)repository account(?=/)",
+        rf"\g<1>{PUBLIC_REPOSITORY_ACCOUNT}",
+        content,
+    )
+
     return content
 
+
+def validate_public_content(content: str, source: Path) -> None:
+    """Fail closed if a generated Markdown page retains known private markers."""
+    for pattern in PUBLIC_SENSITIVE_PATTERNS:
+        if pattern.search(content):
+            raise ValueError(f"Public content contains a restricted identifier: {source}")
+
+
+def publish_public_derivative(src_path: Path, dest_path: Path) -> None:
+    """Publish only an authored, generalized source from docs-public/."""
+    if not src_path.is_file():
+        raise FileNotFoundError(f"Required public derivative is missing: {src_path}")
+    source = src_path.resolve()
+    if not source.is_relative_to(PUBLIC_DOCS_DIR.resolve()):
+        raise ValueError(f"Public derivative source must be inside docs-public/: {src_path}")
+    if dest_path.is_symlink() or not dest_path.resolve().is_relative_to(DOCS_DIR.resolve()):
+        raise RuntimeError(f"Refusing an unsafe public output path: {dest_path}")
+
+    content = src_path.read_text(encoding="utf-8")
+    validate_public_content(content, src_path)
+    content = sanitize_content(content)
+    validate_public_content(content, dest_path)
+    dest_path.parent.mkdir(parents=True, exist_ok=True)
+    dest_path.write_text(content, encoding="utf-8")
+    print(f"✅ [PUBLIC] {src_path.relative_to(ROOT_DIR)} -> {dest_path.relative_to(ROOT_DIR)}")
+
+
+def remove_legacy_public_page(relative_path: str) -> None:
+    """Remove a superseded portal page at one explicit, repository-local path."""
+    target = DOCS_DIR / relative_path
+    if not target.exists() and not target.is_symlink():
+        return
+    if target.is_symlink() or not target.is_file():
+        raise RuntimeError(f"Refusing to remove a non-regular legacy portal page: {target}")
+    if not target.resolve().is_relative_to(DOCS_DIR.resolve()):
+        raise RuntimeError(f"Refusing to remove a path outside Github-Page/: {target}")
+    target.unlink()
+    print(f"🧹 [PUBLIC] Removed superseded portal page: {target.relative_to(ROOT_DIR)}")
+
+
+def sanitize_existing_portal_pages() -> None:
+    """Apply the public redaction policy to existing and newly copied Markdown."""
+    for path in DOCS_DIR.rglob("*.md"):
+        if path.is_symlink() or not path.resolve().is_relative_to(DOCS_DIR.resolve()):
+            raise RuntimeError(f"Refusing to edit a portal page outside Github-Page/: {path}")
+        content = path.read_text(encoding="utf-8")
+        sanitized = sanitize_content(content)
+        validate_public_content(sanitized, path)
+        if sanitized != content:
+            path.write_text(sanitized, encoding="utf-8")
+            print(f"🔒 [PUBLIC] Redacted identifying details in {path.relative_to(ROOT_DIR)}")
+
+
+def apply_publication_boundary() -> None:
+    """Publish the two curated replacements, retire stale copies, and redact portal pages."""
+    publish_public_derivative(PUBLIC_DOCS_DIR / "README.md",
+                              DOCS_DIR / "work" / "capstone_research_guide.md")
+    publish_public_derivative(PUBLIC_DOCS_DIR / "project_overview.md",
+                              DOCS_DIR / "thesis" / "project_overview.md")
+    remove_legacy_public_page("work/fpt_guidelines_and_rubrics.md")
+    remove_legacy_public_page("work/meeting_1.md")
+    remove_legacy_public_page("work/meeting_2.md")
+    remove_legacy_public_page("work/meeting_3.md")
+    remove_legacy_public_page("thesis/capstone_register.md")
+    sanitize_existing_portal_pages()
+
 def copy_doc(src_path: Path, dest_path: Path, title_prefix: str = ""):
-    """Đọc nguồn tracked, chuẩn hóa link và ghi vào thư mục docs."""
+    """Read an approved source, sanitize it, and write a public portal copy."""
     try:
         source_relative = src_path.resolve().relative_to(ROOT_DIR.resolve())
     except ValueError:
         source_relative = None
+    if source_relative and source_relative.parts[0].lower() == "docs":
+        raise RuntimeError("Refusing to read or sync private docs/.")
     if source_relative and source_relative.parts[0].lower() == "workspaces":
-        print(f"🔒 [PRIVATE] Giữ nguyên trang đã kiểm tra; không đồng bộ trực tiếp từ workspace: {src_path}")
+        print(f"🔒 [PRIVATE] Skipped private workspace input; kept public destination: {dest_path.relative_to(ROOT_DIR)}")
         return False
 
     if not src_path.exists():
@@ -142,11 +317,6 @@ def create_static_assets():
     """Tạo các file hỗ trợ MathJax và Custom CSS tối giản."""
     image_dir = DOCS_DIR / "assets"
     image_dir.mkdir(parents=True, exist_ok=True)
-    published_image = image_dir / "ingress_architecture_review1_summary_vertical.png"
-    if published_image.is_file():
-        print(f"✅ [ASSETS] Preserved checked-in portal image: {published_image}")
-    else:
-        print(f"⚠️ [ASSETS] Checked-in architecture image is missing: {published_image}")
     mathjax_js = """window.MathJax = {
   tex: {
     inlineMath: [["\\\\(", "\\\\)"]],
@@ -197,22 +367,12 @@ document$.subscribe(() => {
     print("✅ [ASSETS] Đã sinh MathJax script và custom CSS tối giản.")
 
 def aggregate_all():
-    """Thu thập toàn bộ tài nguyên vào docs/."""
+    """Synchronize approved project material into Github-Page/."""
     clean_and_prepare_dir()
     create_homepage()
     create_static_assets()
 
-    # 1. Quản lý công việc & Tiến độ
-    copy_doc(ROOT_DIR / "Final-Report" / "thesis" / "FPT_IAP491_Capstone_Guidelines_and_Rubrics_Summary.md",
-             DOCS_DIR / "work" / "fpt_guidelines_and_rubrics.md")
-    copy_doc(ROOT_DIR / "Final-Report" / "Meeting" / "Meeting 1_29_08_26.md",
-             DOCS_DIR / "work" / "meeting_1.md")
-    copy_doc(ROOT_DIR / "Final-Report" / "Meeting" / "Meeting 2_01_09_26.md",
-             DOCS_DIR / "work" / "meeting_2.md")
-    copy_doc(ROOT_DIR / "Final-Report" / "Meeting" / "Meeting 3_08_09_26.md",
-             DOCS_DIR / "work" / "meeting_3.md")
-
-    # 2. Chuyên Đề 1: Prompt Study
+    # 1. Chuyên Đề 1: Prompt Study
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "prompt_study" / "01_llm_foundations_and_token_generation.md",
              DOCS_DIR / "prompt_study" / "llm_foundations.md")
     copy_doc(ROOT_DIR / "workspaces" / "truongnv" / "docs" / "research" / "prompt_study" / "02_prompt_structure_and_chat_formats.md",
@@ -307,8 +467,6 @@ def aggregate_all():
              DOCS_DIR / "research" / "why_dual_model_architecture.md")
 
     # Luận văn & Báo cáo Review
-    copy_doc(ROOT_DIR / "CAPSTONE PROJECT REGISTER.md",
-             DOCS_DIR / "thesis" / "capstone_register.md")
     copy_doc(ROOT_DIR / "Final-Report" / "thesis" / "Review1_Problem_Definition_and_Threat_Model.md",
              DOCS_DIR / "thesis" / "review1_threat_model.md")
     copy_doc(ROOT_DIR / "Final-Report" / "thesis" / "chapters" / "01_Introduction.md",
@@ -338,7 +496,9 @@ def aggregate_all():
     else:
         create_src_architecture_doc(DOCS_DIR / "dev" / "src_architecture.md")
 
-    print("\n🎉 [HOÀN TẤT] Toàn bộ 7 chuyên đề khoa học đã được chuẩn hóa và sẵn sàng cho MkDocs build!")
+    apply_publication_boundary()
+
+    print("\n🎉 [HOÀN TẤT] Portal pages were synchronized with the public redaction policy.")
 
 def create_src_architecture_doc(dest_path: Path):
     """Create a status-only description if no shared source README exists."""

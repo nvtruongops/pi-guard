@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-audit_workspace_boundaries.py
+ audit_workspace_boundaries.py
 -----------------------------
 Kiểm tra các đường dẫn hồ sơ học thuật bất biến của PI-Guard.
 

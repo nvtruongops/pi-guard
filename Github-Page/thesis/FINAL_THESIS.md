@@ -1,22 +1,22 @@
-# MINISTRY OF EDUCATION AND TRAINING
-# FPT UNIVERSITY
-## CAPSTONE PROJECT THESIS (IAP491)
+
+# Capstone Research
+## CAPSTONE PROJECT THESIS (capstone course)
 
 # PI-GUARD: A MACHINE-LEARNING GUARDRAIL FOR DETECTING PROMPT INJECTION AND JAILBREAK ATTACKS ON LLM APPLICATIONS
 
 **Academic Program**: IA  
-**Academic Term**: Fall 2026  
-**Capstone Code**: `IAP491_FA26_PI_GUARD`  
+**Academic Term**: capstone term
+
 
 ---
 
 ### GROUP MEMBERS:
-1. **Nguyễn Văn Trường (Leader)** — Student ID: `SE182034`
-2. **Nguyễn Quí Đức** — Student ID: `SE182087`
-3. **Phạm Minh Hoàng Việt** — Student ID: `SE181851`
-4. **Đỗ Đoàn Duy Phương** — Student ID: `SE180235`
+1. **repository maintainer (Leader)** — Student ID: `student identifier`
+2. **project participant** — Student ID: `student identifier`
+3. **project participant** — Student ID: `student identifier`
+4. **project participant** — Student ID: `student identifier`
 
-**Supervisor**: Trần Văn Ninh  
+**Supervisor**: project supervisor<br>
 
 ---
 
@@ -108,7 +108,7 @@ Thiết kế, huấn luyện và triển khai hệ thống **PI-Guard** — Lớ
 ---
 
 ## 1.6. Thesis Structure (Bố Cục 6 Chương Của Toàn Văn Luận Văn)
-Tuân thủ nghiêm ngặt theo Hướng dẫn Khóa luận Tốt nghiệp FPT University IAP491:
+Tuân thủ nghiêm ngặt theo Hướng dẫn Khóa luận Tốt nghiệp the university capstone course:
 - **Chapter 1: Introduction** *(Bối cảnh, Bài toán, Mục tiêu, Ý nghĩa, Phạm vi, Cấu trúc).*
 - **Chapter 2: Literature Review** *(Khảo sát nghiên cứu liên quan, SOTA Guardrails, Đóng góp mới của nhóm).*
 - **Chapter 3: Methodology** *(Thiết kế nghiên cứu, Thu thập dữ liệu, Group-Aware Splitting, Baseline ML & DeBERTa-v3).*
@@ -160,7 +160,7 @@ Tuân thủ nghiêm ngặt theo Hướng dẫn Khóa luận Tốt nghiệp FPT U
 
 # CHAPTER 2: LITERATURE REVIEW
 
-> 👥 **Thành viên phụ trách chính**: Nguyễn Văn Trường (Leader) & Đỗ Đoàn Duy Phương  
+> 👥 **Thành viên phụ trách chính**: repository maintainer (Leader) & project participant<br>
 > 📑 **Báo cáo tiến độ tương ứng**: **Report No. 2** (Literature Review — Trọng số 25% Process Mark)  
 > 🏆 **Cột mốc nghiệm thu**: **REVIEW 1: Xác Định Bài Toán & Khảo Sát Nghiên Cứu (Bao gồm Chapter 1 & Chapter 2)**  
 
@@ -390,7 +390,7 @@ Các luận điểm trong Chương 2 được bảo chứng bởi 17 tài liệu
 
 ```
 ========================================================================================================================
-DANH MỤC 17 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI-GUARD (IAP491 FALL 2026)
+DANH MỤC 17 CÔNG TRÌNH KHOA HỌC CỐT LÕI — ĐỒ ÁN TỐT NGHIỆP PI-GUARD (capstone course academic term)
 (Đã kiểm tra chéo 100% qua PyMuPDF text trích xuất trực tiếp từ file PDF, Crossref DOI và arXiv metadata)
 ========================================================================================================================
 ```
@@ -625,7 +625,7 @@ Ngoài 17 bài báo cốt lõi, thư mục `References/` còn lưu trữ 7 tài 
    - *Đóng góp gốc*: Framework phát hiện jailbreak dựa trên kỹ thuật đột biến prompt và phân tích độ phân kỳ phản hồi (behavioral divergence).
    - *Ứng dụng PI-Guard*: Dùng làm đối chuẩn so sánh kỹ thuật đột biến và cơ chế đánh chặn.
 
-4. **Phân Tích Loại Trừ `RAP-ID`** (**`Viet_2026_RAP_ID_Robust_Alignment_Preservation_Injection_Defense.pdf`**):
+4. **Phân Tích Loại Trừ `RAP-ID`** ([RAP-ID, Findings of ACL 2026](https://aclanthology.org/2026.findings-acl.738/)):
    - *Tên bài báo*: *RAP-ID: Mechanistic Prompt Injection Detection via Impostor Behavior Analysis*
    - *Tác giả*: Yuchen Yang, Lei Peng, Yujie He, Yang Yu, Zhongxin Wu, Yanlei Shi (Lenovo)
    - *Venue*: Findings of ACL 2026, pp. 15008–15019

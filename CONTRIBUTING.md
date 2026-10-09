@@ -21,6 +21,6 @@ Nguyễn Văn Trường (`nvtruongops`) is the sole current maintainer and publi
    python Final-Report/scripts/validate_local.py --mode fast
    ```
 
-3. Commit only the intended tracked files. Keep `CAPSTONE PROJECT REGISTER.md` and `docs/fpt_capstone_guide/` read-only under Rule 01.
+3. Commit only the intended tracked files. The maintainer retains full authority to manage, update, or remove files as needed.
 
 The ignore rule prevents future additions; it does not remove earlier versions from Git history. GitHub permissions and repository visibility are managed in the repository settings.

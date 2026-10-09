@@ -2,7 +2,7 @@
 ## Target Downstream LLM API Benchmark & Vulnerability Analysis for PI-Guard Layered Defense
 
 > **Dự án**: PI-Guard — A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications  
-> **Tài liệu tham chiếu liên kết**: **`docs/thesis/Review1_Problem_Definition_and_Threat_Model.md`** (Mục 6.3)  
+> **Tài liệu tham chiếu liên kết**: **`private documentation/Review1_Problem_Definition_and_Threat_Model.md`** (Mục 6.3)<br>
 > **Cập nhật lần cuối**: 2026-09-01  
 > **Tiêu chuẩn tài liệu tham khảo**: 100% bài báo và báo cáo kỹ thuật xuất bản chính thức từ năm 2022 đến 2026 ($\ge 2022$).
 

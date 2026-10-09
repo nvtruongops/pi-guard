@@ -1,6 +1,6 @@
 # CHAPTER 2: LITERATURE REVIEW
 
-> 👥 **Thành viên phụ trách chính**: Nguyễn Văn Trường (Leader) & Đỗ Đoàn Duy Phương  
+> 👥 **Thành viên phụ trách chính**: repository maintainer (Leader) & project participant<br>
 > 📑 **Báo cáo tiến độ tương ứng**: **Report No. 2** (Literature Review — Trọng số 25% Process Mark)  
 > 🏆 **Cột mốc nghiệm thu**: **REVIEW 1: Xác Định Bài Toán & Khảo Sát Nghiên Cứu (Bao gồm Chapter 1 & Chapter 2)**  
 

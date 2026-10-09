@@ -2,8 +2,8 @@
 ## INPUT FILTERING, TARGET LLM GUARDRAIL & OUTPUT FILTERING THEO NGUYÊN LÝ DEFENSE-IN-DEPTH
 
 > **Căn cứ chỉ đạo**: Mục 4 Biên bản họp **`Meeting/Meeting 1_29_08_26.md`**: *"Phân tích các lớp bảo vệ: input filtering, guardrail và output filtering."*  
-> **Chủ biên**: Nguyễn Văn Trường (Leader) & Nguyễn Quí Đức  
-> **Áp dụng cho**: Khóa luận tốt nghiệp FPT University IAP491 — Đề tài PI-Guard  
+> **Chủ biên**: repository maintainer (Leader) & project participant<br>
+> **Áp dụng cho**: Nội dung nghiên cứu PI-Guard.
 
 ---
 

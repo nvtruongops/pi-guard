@@ -1,10 +1,12 @@
 # HƯỚNG DẪN CÁCH HOẠT ĐỘNG & TRIỂN KHAI: DEBERTA-V3 TRONG PI-GUARD
 
+Tài liệu này mô tả **thiết kế nghiên cứu và mã minh họa**, không xác nhận PI-Guard đã huấn luyện hoặc triển khai mô hình ba nhãn. Ví dụ huấn luyện bên dưới cấu hình **hai nhãn** (`BENIGN`/`INJECTION`); không dùng nó làm bằng chứng cho đầu ra `Benign`/`Prompt Injection`/`Jailbreak` trong sơ đồ kiến trúc đề xuất.
+
 ---
 
 ## 1. Kiến Trúc Mô Hình Và Luồng Dữ Liệu Từng Tầng
 
-Trong PI-Guard, mô hình phân loại ngữ nghĩa sâu sử dụng checkpoint `microsoft/deberta-v3-base` (hoặc `mDeBERTa-v3-base` nếu đa ngôn ngữ):
+Thiết kế L3 dự kiến bắt đầu từ backbone tiền huấn luyện `microsoft/deberta-v3-base` (hoặc `mDeBERTa-v3-base` nếu đa ngôn ngữ); classification head ba nhãn của đồ án còn cần huấn luyện và kiểm định riêng:
 
 ```mermaid
 flowchart TD

@@ -185,5 +185,5 @@ flowchart LR
    - Viện Tiêu chuẩn và Công nghệ Quốc gia Hoa Kỳ (NIST) chính thức ban hành hướng dẫn đánh giá rủi ro Adversarial Machine Learning trên LLM.
 3. **Năm 2026 — Mô Hình Đe Dọa 26 Toán Tử Tấn Công (Tencent Zhuque Lab)**:
    - Công bố báo cáo khoa học *AI Infrastructure Guard*, hệ thống hóa **26 toán tử tấn công (26 Attack Operators)** và khẳng định nguyên lý "Không có một giải pháp đơn lẻ nào có thể phòng vệ toàn bộ".
-4. **Năm 2026 — Đề Tài PI-Guard (FPT University Capstone)**:
+4. **Năm 2026 — Đề Tài PI-Guard (the university Capstone)**:
    - Hiện thực hóa kiến trúc phòng thủ phân tầng kép (Two-Tier Guardrail): Tier-1 Syntactic Baseline (TF-IDF < 3ms) lọc sạch 80% lưu lượng + Tier-2 Deep Semantic Transformer (DeBERTa-v3 Native FP32 < 25ms) bắt trọn các cuộc tấn công ngữ nghĩa phức tạp với tỷ lệ báo động giả $\text{FPR} < 1.5\%$.

@@ -1,8 +1,8 @@
 # CHUYÊN ĐỀ 03: DANH MỤC TÀI LIỆU HỌC THUẬT, BENCHMARK & BÀI BÁO ĐÁNH GIÁ ĐÁNH ĐỔI
 ## HỆ THỐNG NGUỒN TÀI NGUYÊN KIỂM ĐỊNH (ZERO DEAD LINKS & OPEN-ACCESS PDF)
 
-> **Chủ biên**: Nguyễn Văn Trường (Leader)  
-> **Áp dụng cho**: Khóa luận tốt nghiệp FPT University IAP491 — Đề tài PI-Guard  
+> **Chủ biên**: repository maintainer (Leader)<br>
+> **Áp dụng cho**: Nội dung nghiên cứu PI-Guard.
 > **Khung quy chuẩn**: Chuẩn học thuật AAAI HCOMP, EMNLP, NeurIPS  
 
 ---

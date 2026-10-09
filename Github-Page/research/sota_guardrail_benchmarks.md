@@ -102,7 +102,7 @@ Dựa trên bản đăng ký đề tài chính thức **`CAPSTONE PROJECT REGIST
   - Đây là một *Model Card / Technical Report* mã nguồn mở nhằm cung cấp một checkpoint nền tảng mở siêu nhẹ cho cộng đồng, không phải giải pháp toàn diện độc lập.
   - Meta đánh giá chủ yếu trên tập dữ liệu nội bộ tổng hợp (In-distribution), bỏ qua các tập câu lệnh code phức tạp như `NotInject`.
   - Meta khuyến nghị Prompt-Guard chỉ là một mắt xích lọc thô sơ bộ, bắt buộc phải dùng trong chuỗi phòng thủ đa tầng (Defense-in-Depth) với Llama Guard (7B/8B).
-- **Giá trị bảo chứng cho PI-Guard**: Khẳng định sự thất bại của mô hình đơn khối gộp nhãn và chứng minh tính ưu việt của **Kiến trúc Ghép tầng (Two-Tier Cascade)** kết hợp **hàm mất mát MOF Invariance** của PI-Guard.
+- **Giá trị tham khảo cho PI-Guard**: Model card Prompt Guard nêu ba tên loại `benign`, `injection`, `jailbreak`; đó là tiền lệ thuật ngữ cho bộ nhãn dự kiến của đồ án. Hiệu quả của kiến trúc ghép tầng hoặc hàm mất mát đề xuất phải được kiểm định bằng thực nghiệm PI-Guard riêng; model card không chứng minh các kết quả đó.
 
 ---
 
@@ -159,27 +159,14 @@ Dựa trên bản đăng ký đề tài chính thức **`CAPSTONE PROJECT REGIST
 
 ---
 
-## 5. BẢNG TỔNG HỢP ÁNH XẠ VÀO MÃ NGUỒN DỰ ÁN PI-GUARD
+## 5. TRẠNG THÁI MÃ NGUỒN ĐỒ ÁN
 
-| Cấu Trúc File / Thư Mục | Vai Trò Kỹ Thuật Trong Hệ Thống PI-Guard | Bằng Chứng & Tài Liệu Học Thuật Bảo Chứng |
-| :--- | :--- | :--- |
-| `Final-Report/References/` | Lưu trữ các bài báo khoa học chuẩn (PDF) | 18 bài báo cốt lõi được định danh trong `REFERENCES_LOG.md` |
-| `Final-Report/src/preprocessing/cleaner.py` | Chuẩn hóa Unicode NFKC & lọc ký tự điều khiển | Kế thừa logic Scanner từ Protect AI (2024) |
-| `Final-Report/src/preprocessing/obfuscation.py` | Sinh nhiễu biến dị kiểm thử (Leetspeak, Base64, Spacing) | Jain et al. (2023) & EasyJailbreak (Zhou et al. 2024) |
-| `Final-Report/src/datasets/splitter.py` | Phân chia dữ liệu Group-Aware Split chống rò rỉ | Shen et al. (ACM CCS 2024) |
-| `Final-Report/src/models/classifier.py` | Mô hình phân loại 2 tầng: Hybrid TF-IDF + DeBERTa Native FP32 | He et al. (ICLR 2023) & Yao et al. (NeurIPS 2022) |
-| `Final-Report/src/policy/policy_engine.py` | Động cơ chính sách an toàn 3 trạng thái (ALLOW / REVIEW / BLOCK) | IBM Granite Guardrails & Markov et al. (2023) |
-| `Final-Report/src/api/middleware.py` | Guardrail Proxy Middleware bất đồng bộ độ trễ thấp | NVIDIA NeMo Guardrails (EMNLP 2023) |
-| `Final-Report/tests/adversarial/` | Bộ kiểm thử đánh giá độ bền đối kháng thực nghiệm | Tencent Multi-Layer Red Teaming (2026) & GCG (Zou et al. 2023) |
+`Final-Report/src/` hiện chỉ có [ghi chú trạng thái](../dev/src_architecture.md); chưa có dashboard, classifier ba nhãn, API router hay pipeline thực nghiệm được công bố tại đây. Các công trình trong [danh mục tham khảo](../references/references_log.md) là nguồn nghiên cứu cho thiết kế đề xuất, không phải bằng chứng đã triển khai hoặc đạt KPI.
 
 ---
 
 ## 6. KẾT LUẬN & ĐÁNH GIÁ CHUNG
 
-1. **Tài liệu tham khảo hiện đại & chuẩn mực**: Toàn bộ các tài liệu học thuật tham chiếu đều nằm trong danh mục 18 bài báo cốt lõi đã được kiểm định của đề tài, phản ánh chính xác thực trạng an toàn LLM hiện nay.
-2. **Cơ sở khoa học vững chắc về An toàn Thông tin**: Cả 3 Trụ cột an toàn cốt lõi của PI-Guard:
-   - **Kháng phân mảnh cú pháp & Leetspeak (Hybrid TF-IDF)**: Đã được chứng minh bằng Jain et al. (2023).
-   - **Nhận diện ngữ nghĩa sâu & Vị trí đòn tấn công (DeBERTa-v3 Disentangled Attention)**: Đã được chứng minh bằng He et al. (ICLR 2023) & Protect AI (2024).
-   - **Phòng thủ đa tầng & Khống chế Báo động giả (Two-Tier Cascade Defense)**: Đảm bảo cân bằng an ninh và khả năng vận hành thực tế (FPR < 1.5%).
-   - *PyTorch Native FP32 đóng vai trò là giải pháp kiến trúc cốt lõi giúp hệ thống chạy mượt trên CPU thông thường với độ trễ thấp.*
-3. **Đóng góp học thuật**: Tài liệu đóng vai trò làm cơ sở đối sánh vững chắc cho Review 1 và Luận văn tốt nghiệp.
+1. Các bài báo nêu phương pháp và kết quả trong giao thức của tác giả; chúng không xác nhận hiệu năng của PI-Guard.
+2. Kiến trúc TF-IDF, DeBERTa-v3, API và dashboard là thiết kế đề xuất. Chỉ công bố FPR, độ trễ và chất lượng ba nhãn khi có đầu ra thực nghiệm truy xuất được.
+3. Tài liệu này phục vụ đối chiếu nguồn cho Review 1 và các bước nghiên cứu tiếp theo.

@@ -482,7 +482,7 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 
 <a id="ref3"></a>**[3]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in _NeurIPS 2022 Workshop on ML Safety_, 2022.
 
-- 📖 **Local PDF**: [`References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf`](file:///d:/Work/Do-an/Final-Report/References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf)
+- 📖 **Local PDF**: [`References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf`](file:///d:/Work/Do-an/Final-Report/References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf)
 - 🔗 **Online URL**: [https://arxiv.org/abs/2206.05600](https://arxiv.org/abs/2206.05600)
 
 <a id="ref4"></a>**[4]** K. Greshake, S. Abdelnabi, S. Mishra, C. Endres, T. Holz, and M. Fritz, "Not what you've signed up for: Compromising Real-World LLM Applications with Indirect Prompt Injection," in _Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISEC)_, pp. 79–90, 2023.

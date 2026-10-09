@@ -14,19 +14,19 @@ This skill guides research, taxonomy classification, and literature review for t
 
 ---
 
-## 1. Local References Archive & Application Log (18 Verified Papers)
+## 1. Reference Index and Local PDF Archive
 
 > [!IMPORTANT]
 > **LOCAL REFERENCES FIRST PROTOCOL**:
-> Before querying external databases (arXiv, OpenAlex, Semantic Scholar), all researchers and agents **MUST inspect [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md)**. If a claim or attack/defense mechanism is already covered by the 18 archived papers, reuse the existing reference.
+> Before querying external databases (arXiv, OpenAlex, Semantic Scholar), all researchers and agents **MUST inspect [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md)**. If a claim or attack/defense mechanism is already covered by an indexed source, reuse that source.
 
-All 18 core academic papers (17 modern $\ge 2022$ + 1 classic foundational work) are downloaded and cataloged in [`Final-Report/References/`](file:///d:/Work/Do-an/Final-Report/References/). Always refer to [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md) for full metadata, taxonomy matrix, BibTeX citations, and thesis mapping:
+The table below indexes local core PDFs and one online-only, out-of-scope ZeroQuant paper. Always refer to [`Final-Report/References/REFERENCES_LOG.md`](file:///d:/Work/Do-an/Final-Report/References/REFERENCES_LOG.md) for full metadata, taxonomy matrix, BibTeX citations, and thesis mapping:
 
 | File PDF (`References/`) | Authors & Year | Publication Venue | Role & Applied Section |
 | :--- | :--- | :---: | :--- |
 | [`Zhao_2023_A_Survey_of_Large_Language_Models.pdf`](file:///d:/Work/Do-an/Final-Report/References/Zhao_2023_A_Survey_of_Large_Language_Models.pdf) | Zhao et al. (2023) | *IJCAI / arXiv 2023* | LLM Architecture Survey & Flat Code/Data Boundary (Ch. 1, 2) |
 | [`Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf`](file:///d:/Work/Do-an/Final-Report/References/Ouyang_2022_InstructGPT_Training_Language_Models_Follow_Instructions.pdf) | Ouyang et al. (2022) | *NeurIPS 2022* | Instruction Tuning, RLHF & System Prompt Processing (Ch. 1, 2) |
-| [`Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf`](file:///d:/Work/Do-an/Final-Report/References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf) | Perez & Ribeiro (2022) | *NeurIPS 2022* | Direct Prompt Injection Foundation (Ch. 1, 2, 3) |
+| [`Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf`](file:///d:/Work/Do-an/Final-Report/References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf) | Perez & Ribeiro (2022) | *NeurIPS 2022* | Direct Prompt Injection Foundation (Ch. 1, 2, 3) |
 | [`Greshake_2023_Indirect_Prompt_Injection.pdf`](file:///d:/Work/Do-an/Final-Report/References/Greshake_2023_Indirect_Prompt_Injection.pdf) | Greshake et al. (2023) | *ACM AISEC 2023* | Indirect Prompt Injection & RAG Security (Ch. 1, 2) |
 | [`Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf`](file:///d:/Work/Do-an/Final-Report/References/Wei_2024_Jailbroken_How_LLM_Safety_Training_Fails.pdf) | Wei et al. (2023) | *NeurIPS 2023* | Jailbreak Mechanisms & Safety Training Failure (Ch. 1, 4) |
 | [`Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf`](file:///d:/Work/Do-an/Final-Report/References/Tencent_2026_AI_Infra_Guard_MultiLayer_Agent_RedTeaming.pdf) | Tencent Zhuque Lab (2026) | *arXiv 2026* | Multi-Layer Threat Model & 26+ Attack Operators (Ch. 1, 3, 4) |
@@ -39,7 +39,7 @@ All 18 core academic papers (17 modern $\ge 2022$ + 1 classic foundational work)
 | [`Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf`](file:///d:/Work/Do-an/Final-Report/References/Zou_2023_Universal_Transferable_Adversarial_Attacks_GCG.pdf) | Zou et al. (2023) | *arXiv 2023* | GCG Adversarial Suffix Attacks & Token Perturbations (Ch. 4) |
 | [`Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf`](file:///d:/Work/Do-an/Final-Report/References/Robey_2023_SmoothLLM_Defending_LLMs_Random_Perturbation.pdf) | Robey et al. (2023) | *arXiv 2023* | Randomized Smoothing Defense Comparison (Ch. 4) |
 | [`Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf`](file:///d:/Work/Do-an/Final-Report/References/Jain_2023_Baseline_Defenses_Adversarial_Attacks_LLMs.pdf) | Jain et al. (2023) | *arXiv 2023* | **KEY 1**: Baseline Defenses & Simple Classifier Benchmarks (Ch. 3, 4) |
-| [`Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf`](file:///d:/Work/Do-an/Final-Report/References/Yao_2022_ZeroQuant_Efficient_Post_Training_Quantization_Transformers.pdf) | Yao et al. (2022) | *NeurIPS 2022* | **BASELINE / OUT-OF-SCOPE**: INT8 Post-Training Quantization (PTQ) for Transformers (Evaluated Reference) |
+| [ZeroQuant PDF](https://arxiv.org/pdf/2206.01861.pdf) | Yao et al. (2022) | *NeurIPS 2022* | **BASELINE / OUT-OF-SCOPE**: INT8 Post-Training Quantization (PTQ) for Transformers (Evaluated Reference) |
 | [`Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf`](file:///d:/Work/Do-an/Final-Report/References/Yuan_2024_GPT4_Too_Smart_To_Be_Safe_Cipher_Jailbreak.pdf) | Yuan et al. (2024) | *ICLR 2024* | **CIPHER KEY**: GPT-4 Safety Failure under Cipher & Obfuscation (Ch. 1, 4) |
 | [`Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf`](file:///d:/Work/Do-an/Final-Report/References/Saltzer_1975_The_Protection_of_Information_in_Computer_Systems.pdf) | Saltzer & Schroeder (1975) | *Proc. IEEE 1975* | **FOUNDATION**: Complete Mediation, Defense-in-Depth Principles (Ch. 2, 3) |
 

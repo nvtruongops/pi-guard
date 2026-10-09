@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed the completed README and ingress architecture plan/spec from `docs/superpowers/`.
 - Set GitHub code ownership to the sole repository maintainer.
 - Clarified that Nguyễn Văn Trường maintains and publishes the repository's group progress reports and research outcomes, while `workspaces/truongnv/` remains his private research workspace.
+- Consolidated the editable ingress architecture and PNG in `Final-Report/reports/`; README and portal pages now reference those canonical files.
+
+### Removed
+- Removed the superseded `PI-GUARD-Present-109.pptx` deck and its 12 extracted presentation figures from shared reports.
 
 ### Fixed
 - Normalize source-relative report links during portal generation so the strict MkDocs Pages build resolves them.
@@ -26,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `evaluation.yaml`: Safety thresholds, adversarial test slices, and latency budgets ($P95 < 30\text{ ms}$).
   - `models.yaml`: Architecture specifications for TF-IDF Baseline and DeBERTa-v3 ONNX INT8 Engine.
   - `training.yaml`: Hyperparameters for baseline classifiers and transformer fine-tuning.
-- **Supervisor Presentation & Process Tracking**: Added the official 22-slide deck [`PI-GUARD-Present-109.pptx`](Final-Report/reports/PI-GUARD-Present-109.pptx) and the official semester tracking ledger [`PI_GUARD_PROCESS_REPORT.xlsx`](Final-Report/reports/PI_GUARD_PROCESS_REPORT.xlsx) in `Final-Report/reports/`.
+- **Supervisor Presentation & Process Tracking**: Added a 22-slide supervisor deck (later removed; see Unreleased) and the official semester tracking ledger [`PI_GUARD_PROCESS_REPORT.xlsx`](Final-Report/reports/PI_GUARD_PROCESS_REPORT.xlsx) in `Final-Report/reports/`.
 - **Supervisor & Internal Meeting Minutes**: Archived official meeting records for Sprint 1 kick-off, literature screening, and presentation preparation in [`Final-Report/Meeting/`](Final-Report/Meeting/) (`Meeting 1`, `Meeting 2`, `Meeting 3`).
 - **Docs Portal Synchronization Skill**: Registered `.agents/skills/docs-portal-sync-and-deploy/` and updated `AGENTS.md` to automate documentation aggregation and GitHub Pages continuous deployment.
 

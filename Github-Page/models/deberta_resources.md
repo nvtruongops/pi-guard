@@ -33,7 +33,7 @@
 1. **Microsoft Research & GitHub Official**:
    - [Microsoft DeBERTa Official Repository & Documentation](https://github.com/microsoft/DeBERTa) — *Kho mã nguồn chính thức của Microsoft cung cấp code pre-training, fine-tuning và benchmark của DeBERTa-v1/v2/v3*.
 2. **Hugging Face Transformers Documentation**:
-   - [DeBERTa-v2 / DeBERTa-v3 Architecture and API](https://huggingface.co/docs/transformers/model_doc/deberta-v2) — *Hướng dẫn sử dụng lớp `DebertaV2ForSequenceClassification`*.
+   - [DeBERTa-v2 / DeBERTa-v3 Architecture and API](https://huggingface.co/private documentation/model_doc/deberta-v2) — *Hướng dẫn sử dụng lớp `DebertaV2ForSequenceClassification`*.
 3. **Towards Data Science**:
    - [DeBERTa Explained: Disentangled Attention & Enhanced Mask Decoder](https://towardsdatascience.com/) — *Trực quan hóa cấu trúc từng tầng Attention*.
 

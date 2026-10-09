@@ -1,9 +1,9 @@
 site_name: "PI-Guard: LLM Security Guardrail"
 site_description: "A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications"
-site_author: "PI-Guard Capstone Team (FPT University)"
+site_author: "PI-Guard Research Project"
 site_url: "https://nvtruongops.github.io/pi-guard/"
 repo_url: "https://github.com/nvtruongops/pi-guard"
-repo_name: "nvtruongops/pi-guard"
+repo_name: "PI-Guard"
 
 docs_dir: "Github-Page"
 site_dir: "site"
@@ -80,11 +80,7 @@ extra_css:
 nav:
   - "Trang Chủ": index.md
   - "Quản Lý Công Việc & Tiến Độ":
-      - "Lộ Trình & Tiêu Chuẩn FPT": work/fpt_guidelines_and_rubrics.md
-      - "Biên Bản Họp Nhóm":
-          - "Biên Bản Họp 1 & Kế Hoạch Sprint 1 (29/08/2026)": work/meeting_1.md
-          - "Biên Bản Họp 2 & Nghiên Cứu Mô Hình (01/09/2026)": work/meeting_2.md
-          - "Biên Bản Họp 3 & Chốt Slide Báo Cáo GVHD (08/09/2026)": work/meeting_3.md
+      - "Hướng Dẫn Nghiên Cứu Capstone (Bản Khái Quát)": work/capstone_research_guide.md
   - "1. Prompt Study (Bản Chất LLM)":
       - "Nền Tảng LLM & Token Generation": prompt_study/llm_foundations.md
       - "Cấu Trúc Prompt & Chat Formats": prompt_study/prompt_structure.md
@@ -139,7 +135,7 @@ nav:
       - "Đường Cong Biên Pareto & Đánh Đổi Hệ Thống": evaluation_study/pareto_frontier.md
       - "Tài Liệu, Benchmark & Bài Báo Đánh Đổi": evaluation_study/resources_and_papers.md
   - "Luận Văn & Báo Cáo Milestone":
-      - "Đăng Ký Đề Tài (Register)": thesis/capstone_register.md
+      - "Tổng Quan Đề Tài (Bản Công Khai)": thesis/project_overview.md
       - "Review 1: Threat Model & Defense": thesis/review1_threat_model.md
       - "Chương 1: Giới Thiệu (Introduction)": thesis/chapter_01_introduction.md
       - "Chương 2: Tổng Quan Tài Liệu (Literature Review)": thesis/chapter_02_literature_review.md

@@ -625,7 +625,7 @@ Ngoài 17 bài báo cốt lõi, thư mục `References/` còn lưu trữ 7 tài 
    - *Đóng góp gốc*: Framework phát hiện jailbreak dựa trên kỹ thuật đột biến prompt và phân tích độ phân kỳ phản hồi (behavioral divergence).
    - *Ứng dụng PI-Guard*: Dùng làm đối chuẩn so sánh kỹ thuật đột biến và cơ chế đánh chặn.
 
-4. **Phân Tích Loại Trừ `RAP-ID`** ([`Viet_2026_RAP_ID_Robust_Alignment_Preservation_Injection_Defense.pdf`](file:///d:/Work/Do-an/Final-Report/References/Viet_2026_RAP_ID_Robust_Alignment_Preservation_Injection_Defense.pdf)):
+4. **Phân Tích Loại Trừ `RAP-ID`** ([RAP-ID, Findings of ACL 2026](https://aclanthology.org/2026.findings-acl.738/)):
    - *Tên bài báo*: *RAP-ID: Mechanistic Prompt Injection Detection via Impostor Behavior Analysis*
    - *Tác giả*: Yuchen Yang, Lei Peng, Yujie He, Yang Yu, Zhongxin Wu, Yanlei Shi (Lenovo)
    - *Venue*: Findings of ACL 2026, pp. 15008–15019

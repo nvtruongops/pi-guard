@@ -1,6 +1,6 @@
-# MINISTRY OF EDUCATION AND TRAINING
 
-# FPT UNIVERSITY
+
+# Capstone Research
 
 ---
 
@@ -11,20 +11,20 @@
 ### REPORT NO. 1: INTRODUCTION & REPORT NO. 2: LITERATURE REVIEW & THREAT MODELING
 
 **Project Title**: A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications (**PI-Guard**)
-**Capstone Project Code**: `IAP491_FA26_PI_GUARD`
+**Capstone Project Code**: `capstone identifier`
 **Academic Program**: IA
-**Academic Term**: Fall 2026
+**Academic Term**: capstone term
 
 ---
 
 ### Group Members (Collaborative Full-Pipeline Paradigm: "Ai cũng làm -> Tham khảo nhau -> Chốt kết quả"):
 
-1. **Nguyễn Văn Trường (Leader)** — Student ID: `SE182034` _(Architecture & Full-Pipeline Exploration)_
-2. **Nguyễn Quí Đức** — Student ID: `SE182087` _(Machine Learning & Full-Pipeline Exploration)_
-3. **Phạm Minh Hoàng Việt** — Student ID: `SE181851` _(Deep Learning & Full-Pipeline Exploration)_
-4. **Đỗ Đoàn Duy Phương** — Student ID: `SE180235` _(System Engineering & Full-Pipeline Exploration)_
+1. **repository maintainer (Leader)** — Student ID: `student identifier` _(Architecture & Full-Pipeline Exploration)_
+2. **project participant** — Student ID: `student identifier` _(Machine Learning & Full-Pipeline Exploration)_
+3. **project participant** — Student ID: `student identifier` _(Deep Learning & Full-Pipeline Exploration)_
+4. **project participant** — Student ID: `student identifier` _(System Engineering & Full-Pipeline Exploration)_
 
-**Supervisor**: Trần Văn Ninh
+**Supervisor**: project supervisor
 
 ---
 
@@ -177,7 +177,7 @@ Các cuộc tấn công Prompt Injection và Jailbreak gây ra 4 tầng thiệt 
 
 ## 1.6. Thesis Structure (Bố Cục 6 Chương Của Toàn Văn Luận Văn)
 
-Tuân thủ nghiêm ngặt theo Hướng dẫn Khóa luận Tốt nghiệp FPT University IAP491:
+Tuân thủ nghiêm ngặt theo Hướng dẫn Khóa luận Tốt nghiệp the university capstone course:
 
 - **Chapter 1: Introduction** _(Bối cảnh, Bài toán, Mục tiêu, Ý nghĩa, Phạm vi, Cấu trúc)._
 - **Chapter 2: Literature Review** _(Khảo sát nghiên cứu liên quan, SOTA Guardrails, Đóng góp mới của nhóm)._
@@ -410,7 +410,7 @@ _(Ghi chú: Toàn bộ 4 thành viên cùng tham gia nghiên cứu, huấn luy�
 
 ## 6.3. Khảo Sát Y Văn Về Lỗ Hổng Của Các Dòng LLM Phổ Biến & Thiết Kế Khung Thử Nghiệm API (Chapter 4)
 
-> 📑 **Báo cáo nghiên cứu chuyên sâu & Khảo sát chi tiết**: Xem toàn văn tại **`docs/research/Target_LLM_API_Benchmark_and_Vulnerability_Analysis.md`**
+> 📑 **Báo cáo nghiên cứu chuyên sâu & Khảo sát chi tiết**: Xem toàn văn tại **`private documentation/Target_LLM_API_Benchmark_and_Vulnerability_Analysis.md`**
 
 Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc lập với mô hình (Model-Agnostic Guardrail Layer)**, đồ án **không chạy suy luận LLM nặng nề trên máy cục bộ (Local GPU)** mà sử dụng giao thức **Cloud REST API** để kết nối và đánh giá trong giai đoạn thực nghiệm (Chương 4). Nhóm tiến hành khảo sát mức độ dễ tổn thương trong y văn của **5 Mô hình Ngôn ngữ Lớn tiêu chuẩn trong các nghiên cứu bảo mật quốc tế**:
 
@@ -482,7 +482,7 @@ Do PI-Guard được thiết kế dưới dạng **API Proxy Middleware độc l
 
 <a id="ref3"></a>**[3]** F. Perez and I. Ribeiro, "Ignore Previous Prompt: Attack Techniques For Language Models," in _NeurIPS 2022 Workshop on ML Safety_, 2022.
 
-- 📖 **Local PDF**: **`References/Perez_2022_Ignore_Previous_Prompt_Attack_Techniques.pdf`**
+- 📖 **Local PDF**: **`References/Perez_2022_Ignore_This_Title_Hack_This_Paper_Prompt_Injection.pdf`**
 - 🔗 **Online URL**: [https://arxiv.org/abs/2206.05600](https://arxiv.org/abs/2206.05600)
 
 <a id="ref4"></a>**[4]** K. Greshake, S. Abdelnabi, S. Mishra, C. Endres, T. Holz, and M. Fritz, "Not what you've signed up for: Compromising Real-World LLM Applications with Indirect Prompt Injection," in _Proceedings of the 16th ACM Workshop on Artificial Intelligence and Security (AISEC)_, pp. 79–90, 2023.
