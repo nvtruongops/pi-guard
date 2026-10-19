@@ -55,7 +55,7 @@ The [ISO 5807:1985 symbol audit](Final-Report/reports/ISO_5807_1985_SYMBOL_AUDIT
 
 ## Repository maintainer
 
-Nguyễn Văn Trường (`nvtruongops`) is the sole current maintainer and publisher of this repository. `Final-Report/` and `Github-Page/` contain the group capstone progress reports and research outcomes that he consolidates and publishes. Member names in those reports record project progress; they do not mean those members currently maintain or contribute to this Git repository. Ongoing model research, notes, experiments, and drafts stay in the ignored local workspace `workspaces/truongnv/pi_guard_l2_deberta_gate_tfidf_subtype/`. The original Git history and its author records are preserved on `archive/pre-single-contributor-main-20261019`; `main` is a single-maintainer snapshot pointing to the current repository contents.
+Nguyễn Văn Trường (`nvtruongops`) is the sole current maintainer and publisher of this repository. `Final-Report/` and `Github-Page/` contain the group capstone progress reports and research outcomes that he consolidates and publishes. Member names in those reports record project progress; they do not mean those members currently maintain or contribute to this Git repository. Ongoing model research, notes, experiments, and drafts stay in the ignored local workspace `workspaces/truongnv/pi_guard_l2_deberta_gate_tfidf_subtype/`. The default branch `main` is a single-maintainer snapshot of the current repository contents.
 
 ## Documentation portal
 
