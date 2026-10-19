@@ -1,0 +1,150 @@
+site_name: "PI-Guard: LLM Security Guardrail"
+site_description: "A Machine-Learning Guardrail for Detecting Prompt Injection and Jailbreak Attacks on LLM Applications"
+site_author: "PI-Guard Research Project"
+site_url: "https://nvtruongops.github.io/pi-guard/"
+repo_url: "https://github.com/nvtruongops/pi-guard"
+repo_name: "PI-Guard"
+
+docs_dir: "Github-Page"
+site_dir: "site"
+
+exclude_docs: |
+  README.md
+  **/*.docx
+  **/*.xlsx
+  **/*.zip
+  **/*.pdf
+  **/.gitkeep
+
+theme:
+  name: material
+  language: en
+  palette:
+    # Mode sáng (Default Light)
+    - scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Chuyển sang Dark Mode
+    # Mode tối (Dark Mode)
+    - scheme: slate
+      primary: indigo
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: Chuyển sang Light Mode
+  features:
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - tables
+  - attr_list
+  - def_list
+  - footnotes
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - "Trang Chủ": index.md
+  - "Quản Lý Công Việc & Tiến Độ":
+      - "Hướng Dẫn Nghiên Cứu Capstone (Bản Khái Quát)": work/capstone_research_guide.md
+  - "1. Prompt Study (Bản Chất LLM)":
+      - "Nền Tảng LLM & Token Generation": prompt_study/llm_foundations.md
+      - "Cấu Trúc Prompt & Chat Formats": prompt_study/prompt_structure.md
+      - "Thất Bại Phân Cấp Chỉ Thị (Instruction Hierarchy)": prompt_study/instruction_hierarchy.md
+      - "Tài Liệu, Bài Báo & Video": prompt_study/resources_and_papers.md
+  - "2. Attack Study (Tấn Công)":
+      - "Tổng Quan & Ranh Giới Đề Tài":
+          - "Biên Niên Sử Tiến Hóa (2022-2026)": attacks/history_and_evolution.md
+          - "Phân Tích Ranh Giới In/Out-Scope": attacks/scope_and_boundary_analysis.md
+      - "Prompt Injection (OWASP LLM01)":
+          - "Bản Chất & Cơ Chế Hoạt Động": attacks/pi_how_it_works.md
+          - "Phân Loại & Các Biến Thể": attacks/pi_taxonomy_and_variants.md
+          - "Tài Liệu, Bài Báo & Video": attacks/pi_resources_and_papers.md
+      - "Modern Jailbreak Attacks":
+          - "4 Trường Phái (DAN, Roleplay, VM, Cipher)": attacks/jb_archetypes_and_mechanisms.md
+          - "Cơ Sở Dữ Liệu & 10 Họ Chiến Thuật": attacks/jb_datasets_and_benchmarks.md
+          - "Biến Thể Nâng Cao & 26 Toán Tử (Tencent 2026)": attacks/jb_advanced_variants_and_operators.md
+          - "Tài Liệu, Bài Báo & Video": attacks/jb_resources_and_papers.md
+  - "3. Threat & Defense (Phòng Thủ Đa Tầng)":
+      - "Mô Hình Hóa Đe Dọa & Bề Mặt Tấn Công": threat_defense/threat_model_and_attack_surface.md
+      - "Kiến Trúc Phòng Thủ 3 Lớp (Defense-in-Depth)": threat_defense/multi_layer_defense_architecture.md
+      - "Bảng So Sánh & Phân Tích Đánh Đổi": threat_defense/comparative_matrix_and_tradeoffs.md
+      - "Tài Liệu Học Thuật, Video & Mã Nguồn Mẫu": threat_defense/resources_and_papers.md
+  - "4. Dataset & Benchmark Study":
+      - "Khởi tạo bộ dữ liệu PI-Guard v5": dataset_study/dataset_initialization_v5.md
+      - "Tuyển Chọn Dữ Liệu & Phân Loại 3 Lớp": dataset_study/data_curation.md
+      - "Phân Chia Group-Aware & Đánh Giá OOD": dataset_study/group_aware_splitting.md
+      - "Tài Liệu, Benchmark & Nguồn Dữ Liệu": dataset_study/resources_and_papers.md
+  - "5. Model Study (Đề Xuất Ingress)":
+      - "Kiến Trúc Ingress Hiện Hành (Đề Xuất)": models/ingress_architecture.md
+      - "Lược Đồ Hai Bộ Chấm Điểm Trước Đây (Tham Khảo)": models/two_tier_architecture.md
+      - "Tier 1: Syntactic Baseline (TF-IDF)":
+          - "Lý Thuyết & Toán Học": models/tfidf_theory_and_math.md
+          - "Hướng Dẫn & Sử Dụng": models/tfidf_usage.md
+          - "Tài Liệu & Video Tham Khảo": models/tfidf_resources.md
+      - "Tier 2: Deep Transformer (DeBERTa-v3)":
+          - "Lý Thuyết & Disentangled Attention": models/deberta_theory_and_math.md
+          - "Hướng Dẫn Fine-Tuning & Triển Khai": models/deberta_usage.md
+          - "Tài Liệu & Video Tham Khảo": models/deberta_resources.md
+      - "Earlier model tradeoff notes (background)": models/two_tier_tradeoffs.md
+      - "Khảo Sát Các Guardrail SOTA": research/sota_guardrail_benchmarks.md
+      - "Khảo Sát 5 Target LLM APIs": research/target_llm_vulnerabilities.md
+      - "Phân Tích Bài Báo Tencent 2026": research/tencent2026_paper_analysis.md
+      - "Earlier architecture rationale (historical)": research/why_dual_model_architecture.md
+  - "6. Robustness & Evasion Study":
+      - "Cơ Sở Lý Thuyết & Phân Mảnh Token": robustness/theory_and_evasion_mechanisms.md
+      - "Kiến Trúc Phòng Thủ Đa Tầng": robustness/defense_architecture_and_mitigation.md
+      - "Chỉ Số Đánh Giá & Đối Sánh Thực Nghiệm": robustness/benchmarks_metrics_and_tradeoffs.md
+      - "Tài Liệu, Bài Báo & Video Tham Khảo": robustness/resources_and_papers.md
+  - "7. Evaluation & FPR Economics Study":
+      - "Kinh Tế Học FPR & Trải Nghiệm Người Dùng": evaluation_study/false_positive_economics.md
+      - "Đường Cong Biên Pareto & Đánh Đổi Hệ Thống": evaluation_study/pareto_frontier.md
+      - "Tài Liệu, Benchmark & Bài Báo Đánh Đổi": evaluation_study/resources_and_papers.md
+  - "Luận Văn & Báo Cáo Milestone":
+      - "Tổng Quan Đề Tài (Bản Công Khai)": thesis/project_overview.md
+      - "Review 1: Threat Model & Defense": thesis/review1_threat_model.md
+      - "Chương 1: Giới Thiệu (Introduction)": thesis/chapter_01_introduction.md
+      - "Chương 2: Tổng Quan Tài Liệu (Literature Review)": thesis/chapter_02_literature_review.md
+      - "Luận Văn Tổng Hợp Đầy Đủ": thesis/final_thesis.md
+  - "Thư Viện Bài Báo Khoa Học":
+      - "Tổng Quan 8 Bài Báo Slide & 17 Papers": references/references_overview.md
+      - "Nhật Ký 17 Bài Báo Học Thuật": references/references_log.md
+  - "Đội Ngũ & Hướng Dẫn":
+      - "Phân Quyền Git & Workspace Rules": dev/team_governance.md
+      - "Quy Chuẩn Đóng Góp (Contributing)": dev/contributing_guide.md
+      - "Tổng Quan Không Gian Thành Viên": dev/workspaces_overview.md
+      - "Kiến Trúc Source Code": dev/src_architecture.md

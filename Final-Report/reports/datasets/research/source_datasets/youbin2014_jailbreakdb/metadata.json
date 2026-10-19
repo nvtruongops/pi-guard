@@ -1,0 +1,76 @@
+{
+  "dataset_id": "youbin2014/JailbreakDB",
+  "upstream_repository": "https://huggingface.co/datasets/youbin2014/JailbreakDB",
+  "pinned_revision": "63912b8f9e66e87d8fdffde340391b79503c8e0d",
+  "download_urls": [
+    "https://huggingface.co/datasets/youbin2014/JailbreakDB/tree/63912b8f9e66e87d8fdffde340391b79503c8e0d"
+  ],
+  "license_status": "CC-BY-4.0 as declared by the Hugging Face dataset card.",
+  "paper": {
+    "title": "SoK: Taxonomy and Evaluation of Prompt Security in Large Language Models",
+    "authors": "Hanbin Hong et al.",
+    "version": "arXiv:2510.15476",
+    "url": "https://arxiv.org/abs/2510.15476",
+    "local_pdf": "paper/Hong_et_al_2025_SoK_arXiv_2510.15476.pdf",
+    "hf_readme_venue_claim": "README at pinned revision says accepted at 2027 IEEE Symposium on Security and Privacy, to appear; proceedings are future-dated relative to this audit (2026-10-07)."
+  },
+  "native_labels": {
+    "jailbreak=0": "regular/benign",
+    "jailbreak=1": "jailbreak/adversarial; SoK paper supports JB candidate, not PI"
+  },
+  "proposed_pi_guard_mapping": {
+    "jailbreak=0": "Benign candidate",
+    "jailbreak=1": "JB candidate based on the SoK paper's jailbreak system-user prompt description",
+    "PI": "not provided by this dataset",
+    "status": "candidate only; resolve 14 cross-label user_prompt groups, context, and cross-source overlap before corpus inclusion"
+  },
+  "audit": {
+    "physical_rows": 1539874,
+    "native_row_counts": {
+      "regular_benign": 1094122,
+      "jailbreak_or_adversarial_unmapped": 445752
+    },
+    "unique_normalized_user_prompt_count": 1528462,
+    "duplicate_rows_beyond_first": 11412,
+    "cross_native_label_conflict_groups": 14,
+    "dataset_card_approximate_counts_claimed": {
+      "jailbreak": 6600000,
+      "regular": 5700000
+    },
+    "notes": "The README approximate 6.6M/5.7M figures align with physical newline counts. Python csv.DictReader and DuckDB agree on logical CSV record counts; quoted prompt fields contain embedded line breaks. Raw files match pinned LFS SHA-256 values.",
+    "physical_newline_counts": {
+      "text_jailbreak_unique.csv": 6565678,
+      "text_regular_unique.csv": 5651873
+    }
+  },
+  "files": [
+    {
+      "path": "source_datasets/youbin2014_jailbreakdb/raw_snapshot/text_jailbreak_unique.csv",
+      "bytes": 598493153,
+      "sha256": "fac95fd66e1c1669f0ed673018dd8ba22bab422c9b4663f92faf4912892e6885",
+      "physical_newline_count": 6565678
+    },
+    {
+      "path": "source_datasets/youbin2014_jailbreakdb/raw_snapshot/text_regular_unique.csv",
+      "bytes": 745423829,
+      "sha256": "868f3cb83ca060eeada1200779f36c76ff2eba79fae0540086f4305d6c3945e1",
+      "physical_newline_count": 5651873
+    }
+  ],
+  "snapshot_files": [
+    {
+      "path": "source_datasets/youbin2014_jailbreakdb/raw_snapshot/README.md",
+      "bytes": 3053,
+      "sha256": "d7877023f3026da50e7d4e1cdecf235c9e4c5638155b1979cc79ef810b48e6ef"
+    }
+  ],
+  "paper_files": [
+    {
+      "path": "source_datasets/youbin2014_jailbreakdb/paper/Hong_et_al_2025_SoK_arXiv_2510.15476.pdf",
+      "bytes": 761385,
+      "sha256": "5ed1ea89108158bd4a6de54699c487f49e1ac385226905f2d19741a156a3b378"
+    }
+  ],
+  "corpus_status": "audit-only; no rows added to balanced_three_label.jsonl",
+  "training_or_inference_performed": false
+}

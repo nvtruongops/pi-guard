@@ -1,0 +1,130 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Model checkpoints & weights
+models/**/*.bin
+models/**/*.safetensors
+models/**/*.pt
+models/**/*.onnx
+models/**/*.joblib
+!models/**/.gitkeep
+notebooks/models/**/*.bin
+notebooks/models/**/*.safetensors
+notebooks/models/**/*.pt
+notebooks/models/**/*.onnx
+notebooks/models/**/*.joblib
+!notebooks/models/**/.gitkeep
+Final-Report/notebooks/models/**/*.bin
+Final-Report/notebooks/models/**/*.safetensors
+Final-Report/notebooks/models/**/*.pt
+Final-Report/notebooks/models/**/*.onnx
+Final-Report/notebooks/models/**/*.joblib
+!Final-Report/notebooks/models/**/.gitkeep
+
+# Data artifacts (downloaded or generated during Step 1)
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/splits/*
+!data/splits/.gitkeep
+data/augmentation/*
+!data/augmentation/.gitkeep
+notebooks/data/raw/*
+!notebooks/data/raw/.gitkeep
+notebooks/data/interim/*
+!notebooks/data/interim/.gitkeep
+notebooks/data/processed/*
+!notebooks/data/processed/.gitkeep
+notebooks/data/splits/*
+!notebooks/data/splits/.gitkeep
+notebooks/data/augmentation/*
+!notebooks/data/augmentation/.gitkeep
+Final-Report/notebooks/data/raw/*
+!Final-Report/notebooks/data/raw/.gitkeep
+Final-Report/notebooks/data/interim/*
+!Final-Report/notebooks/data/interim/.gitkeep
+Final-Report/notebooks/data/processed/*
+!Final-Report/notebooks/data/processed/.gitkeep
+Final-Report/notebooks/data/splits/*
+!Final-Report/notebooks/data/splits/.gitkeep
+Final-Report/notebooks/data/augmentation/*
+!Final-Report/notebooks/data/augmentation/.gitkeep
+tests/adversarial/*.jsonl
+tests/adversarial/**/*.jsonl
+!tests/adversarial/**/.gitkeep
+Final-Report/tests/adversarial/*.jsonl
+Final-Report/tests/adversarial/**/*.jsonl
+!Final-Report/tests/adversarial/**/.gitkeep
+# Local-only research workspace. Put deliverables intended for Git outside this tree.
+workspaces/truongnv/
+workspaces/ducnq/
+workspaces/vietpmh/
+workspaces/phuongddd/
+
+# Environment & Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# IDE & OS
+.vscode/*
+!.vscode/mcp.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Test & Coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Experiment reports & logs
+Final-Report/reports/experiment_reports/*.json
+Final-Report/experiment_reports/*.json
+!Final-Report/**/.gitkeep
+reports/experiment_reports/*.json
+!reports/**/.gitkeep
+
+# Internal University Documents & References (Confidential / Non-public)
+Github-Page/fpt_capstone_guide/
+Github-Page/fpt_capstone_guide/**
+docs/fpt_capstone_guide/
+docs/fpt_capstone_guide/**
+**/fpt_capstone_guide/
+**/fpt_capstone_guide/**
+
+# MkDocs Documentation Portal Build Artifacts
+site/
+.cache/
+.playwright-mcp/
+# CodeGraph Index Cache
+.codegraph/
+
+# Hugging Face cache directories
+**/hf-cache/
+**/hf-cache/**
+
+# Private school-provided source documents; keep originals local and untracked.
+/docs/
+
+# Public, project-authored summaries may be tracked separately.
+!/docs-public/
+!/docs-public/**

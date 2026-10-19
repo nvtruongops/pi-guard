@@ -1,0 +1,329 @@
+{
+  "artifact_files": {
+    "balanced_three_label.jsonl": {
+      "bytes": 58649314,
+      "sha256": "2b6588e9aa091d536a25a878102df866090a2539f1bf5dbbd05d6ca6a7d09bfe"
+    },
+    "label_conflicts.jsonl": {
+      "bytes": 4062095,
+      "sha256": "76e0fdfee7f37d1f72223c4f281fa6ea704c4c1c47a552d78bb5a15d752f1619"
+    }
+  },
+  "balancing": {
+    "final_label_counts": {
+      "JB": 10000,
+      "PI": 10000,
+      "benign": 20000
+    },
+    "final_rows": 40000,
+    "method": "deterministic capped-equal source-stratified undersampling without replacement",
+    "natural_pool_label_counts": {
+      "JB": 28593,
+      "PI": 11282,
+      "benign": 27376
+    },
+    "natural_pool_rows": 67251,
+    "rows_removed_by_label": {
+      "JB": 18593,
+      "PI": 1282,
+      "benign": 7376
+    },
+    "sampling_seeds": {
+      "JB:JailBreakV-28K": 4106626148,
+      "JB:PromptScreen": 1768027966,
+      "JB:TrustAIRLab+WUSTL": 66219333,
+      "JB:WhatFeatures": 1280362835,
+      "PI:PromptScreen": 1609035908,
+      "PI:PromptShield": 3452770764,
+      "benign:PromptScreen": 1769128186,
+      "benign:PromptShield": 3563290207,
+      "benign:TrustAIRLab": 2143186069
+    },
+    "source_strata_definition": {
+      "JB": {
+        "JailBreakV-28K": [
+          "JailBreakV-28K"
+        ],
+        "PromptScreen": [
+          "dronefreak/PromptScreen"
+        ],
+        "TrustAIRLab+WUSTL": [
+          "TrustAIRLab/in-the-wild-jailbreak-prompts",
+          "WUSTL-CSPL/LLMJailbreak"
+        ],
+        "WhatFeatures": [
+          "sevdeawesome/jailbreak_success"
+        ]
+      },
+      "PI": {
+        "PromptScreen": [
+          "dronefreak/PromptScreen"
+        ],
+        "PromptShield": [
+          "hendzh/PromptShield"
+        ]
+      },
+      "benign": {
+        "PromptScreen": [
+          "dronefreak/PromptScreen"
+        ],
+        "PromptShield": [
+          "hendzh/PromptShield"
+        ],
+        "TrustAIRLab": [
+          "TrustAIRLab/in-the-wild-jailbreak-prompts"
+        ]
+      }
+    },
+    "source_stratum_allocations": {
+      "JB": {
+        "JailBreakV-28K": 2809,
+        "PromptScreen": 2809,
+        "TrustAIRLab+WUSTL": 1573,
+        "WhatFeatures": 2809
+      },
+      "PI": {
+        "PromptScreen": 1953,
+        "PromptShield": 8047
+      },
+      "benign": {
+        "PromptScreen": 6667,
+        "PromptShield": 6667,
+        "TrustAIRLab": 6666
+      }
+    },
+    "source_stratum_capacities": {
+      "JB": {
+        "JailBreakV-28K": 5000,
+        "PromptScreen": 12136,
+        "TrustAIRLab+WUSTL": 1573,
+        "WhatFeatures": 9884
+      },
+      "PI": {
+        "PromptScreen": 1953,
+        "PromptShield": 9329
+      },
+      "benign": {
+        "PromptScreen": 9424,
+        "PromptShield": 9436,
+        "TrustAIRLab": 8516
+      }
+    },
+    "source_stratum_counts_in_corpus": {
+      "JB": {
+        "JailBreakV-28K": 2809,
+        "PromptScreen": 2809,
+        "TrustAIRLab+WUSTL": 1573,
+        "WhatFeatures": 2809
+      },
+      "PI": {
+        "PromptScreen": 1953,
+        "PromptShield": 8047
+      },
+      "benign": {
+        "PromptScreen": 6667,
+        "PromptShield": 6667,
+        "TrustAIRLab": 6666
+      }
+    },
+    "target_rows_by_label": {
+      "JB": 10000,
+      "PI": 10000,
+      "benign": 20000
+    }
+  },
+  "builder": "tools/build_balanced_corpus.py",
+  "created_at_utc": "2026-10-08T03:12:16.265866+00:00",
+  "dataset_version": "5.0.0",
+  "deduplication": {
+    "added_jb_rows": {
+      "conflict_groups_excluded": 0,
+      "conflict_source_rows_excluded": 0,
+      "duplicate_rows_beyond_first": 15917,
+      "input_rows": 31248,
+      "retained_rows": 15331,
+      "same_label_duplicate_groups_collapsed": 5302,
+      "same_label_duplicate_rows_collapsed": 15917,
+      "unique_normalized_text_groups": 15331
+    },
+    "conflict_file_rows": 4656,
+    "cross_source_label_conflicts": 10,
+    "initial_promptshield_trustairlab_rows": {
+      "conflict_groups_excluded": 42,
+      "conflict_source_rows_excluded": 115,
+      "duplicate_rows_beyond_first": 786,
+      "input_rows": 34049,
+      "retained_rows": 33221,
+      "same_label_duplicate_groups_collapsed": 490,
+      "same_label_duplicate_rows_collapsed": 713,
+      "unique_normalized_text_groups": 33263
+    },
+    "promptscreen_integrated_rows": {
+      "conflict_groups_excluded": 4646,
+      "conflict_source_rows_excluded": 9698,
+      "duplicate_rows_beyond_first": 6050,
+      "input_rows": 62820,
+      "retained_rows": 52124,
+      "same_label_duplicate_groups_collapsed": 837,
+      "same_label_duplicate_rows_collapsed": 998,
+      "unique_normalized_text_groups": 56770
+    }
+  },
+  "label_to_id": {
+    "JB": 2,
+    "PI": 1,
+    "benign": 0
+  },
+  "limitations": [
+    "Labels describe source-task mapping; they do not establish universal PI/JB boundaries.",
+    "WhatFeatures labels indicate attack intent; the released CSV has no success/outcome label.",
+    "Exact normalized duplicates are removed; semantic near-duplicates are not automatically removed.",
+    "PromptScreen is an arXiv preprint; aggregated rows lack row-level source/license provenance. Keep this corpus local and confirm source terms before redistribution or formal training claims.",
+    "Cross-source label-conflict groups are excluded; the conflict file contains source metadata and prompt hashes, not raw prompt text.",
+    "The 2:1:1 class ratio is a project candidate, not an empirically proven optimum; the source proportions within PI remain PromptScreen 19.53% and PromptShield 80.47% because only 1,953 PromptScreen PI rows are available.",
+    "The corpus is a source-stratified sampling view and omits rows from the natural pool; an independent benign FPR holdout is not included.",
+    "Keep all raw source snapshots separately and review source-content rights before redistribution."
+  ],
+  "normalization_for_exact_deduplication": "Unicode NFKC, casefold, collapse whitespace",
+  "purpose": "single three-label corpus with 2:1:1 class ratio; no train/validation/test split",
+  "seed": 42,
+  "source_files": [
+    {
+      "bytes": 16587794,
+      "path": "source_datasets/jailbreak_features_blackboxnlp2025/latest.csv",
+      "sha256": "0ce7838e56f4e4f292e0c74a742d26a911c7cec2da7436d2ae387204db348922"
+    },
+    {
+      "bytes": 23153101,
+      "path": "source_datasets/jailbreakv28k_colm2024/JailBreakV_28K/JailBreakV_28K.csv",
+      "sha256": "72fb8beb9eb1c1a23745f4bd56430da9dff36ba42c6f5d699e68a47e14fc87c5"
+    },
+    {
+      "bytes": 23661526,
+      "path": "source_datasets/promptscreen_raw/data/metrics_train_set.json",
+      "sha256": "19de32a35efb417e42992897b2fe38dbd10480650eee55765b69a313c46da650"
+    },
+    {
+      "bytes": 12239651,
+      "path": "source_datasets/promptshield_hendzh/train.json",
+      "sha256": "aa33c3ffcc27bd07c0a233b52f1b8c3cbdb30606ce2412da06a88b5290cdc7b6"
+    },
+    {
+      "bytes": 1871641,
+      "path": "source_datasets/trustairlab_in_the_wild_jailbreak_prompts/jailbreak_2023_12_25/train-00000-of-00001.parquet",
+      "sha256": "55bbc5e2be771ee16ed67aed4edb5ecef5f44ac69cea317a67e5405c5c6057a4"
+    },
+    {
+      "bytes": 12560543,
+      "path": "source_datasets/trustairlab_in_the_wild_jailbreak_prompts/regular_2023_12_25/train-00000-of-00001.parquet",
+      "sha256": "23e90010ccbc85574bf46678528cddce5b02abc86d9a047209218af65cb37c68"
+    },
+    {
+      "bytes": 279232,
+      "path": "source_datasets/wustl_llm_jailbreak_usenix2024/JailbreakPrompts.xlsx",
+      "sha256": "93863bcfd217f8a47c694e5d57ed4cb6bba43f30d596ccaf6eacebb65c14051a"
+    }
+  ],
+  "source_memberships_in_balanced_corpus": {
+    "JailBreakV-28K": 2809,
+    "TrustAIRLab/in-the-wild-jailbreak-prompts": 7981,
+    "WUSTL-CSPL/LLMJailbreak": 437,
+    "dronefreak/PromptScreen": 11961,
+    "hendzh/PromptShield": 14727,
+    "sevdeawesome/jailbreak_success": 2809
+  },
+  "source_metadata": {
+    "JailBreakV-28K": {
+      "excluded_rows": 8000,
+      "file_rows": 28000,
+      "formats": {
+        "Logic": 296,
+        "Persuade": 1368,
+        "SD": 2000,
+        "SD_typo": 2000,
+        "Template": 18336,
+        "figstep": 2000,
+        "typo": 2000
+      },
+      "used_rows": 20000
+    },
+    "TrustAIRLab/in-the-wild-jailbreak-prompts": {
+      "jailbreak_2023_12_25": {
+        "file_rows": 1405,
+        "used_rows": 1405
+      },
+      "regular_2023_12_25": {
+        "file_rows": 13735,
+        "used_rows": 13735
+      }
+    },
+    "WUSTL-CSPL/LLMJailbreak": {
+      "file_rows": 448,
+      "prompt_column": "Prompt",
+      "used_rows": 448
+    },
+    "dronefreak/PromptScreen": {
+      "excluded_source_split_file": "metrics_test_set.json",
+      "file_rows": 28771,
+      "files": {
+        "metrics_train_set.json": {
+          "file_rows": 28771,
+          "native_label_counts": {
+            "benign": 9426,
+            "jailbreak": 17392,
+            "prompt-injection": 1953
+          },
+          "skipped_rows": 0,
+          "used_rows": 28771
+        }
+      },
+      "used_rows": 28771
+    },
+    "hendzh/PromptShield": {
+      "file_rows": 18909,
+      "skipped_rows": 0,
+      "used_rows": 18909
+    },
+    "sevdeawesome/jailbreak_success": {
+      "file_rows": 10800,
+      "outcome_label_present": false,
+      "text_column": "jailbreak_prompt_text",
+      "unique_attack_method_names": 35,
+      "unique_base_prompt_ids": 300,
+      "used_rows": 10800
+    }
+  },
+  "source_pool": {
+    "added_jb_input_rows": 31248,
+    "added_jb_same_label_duplicates_collapsed": 15917,
+    "added_jb_unique_groups": 15331,
+    "base_after_dedup_rows": 33221,
+    "base_conflict_groups_before_promptscreen": 42,
+    "base_label_counts": {
+      "JB": 1314,
+      "PI": 9329,
+      "benign": 22578
+    },
+    "base_promptshield_trustairlab_rows": 34049,
+    "conflict_groups_with_added_JB_excluded": 10,
+    "matches_to_existing_JB_groups_merged": 194,
+    "natural_pool_label_counts": {
+      "JB": 28593,
+      "PI": 11282,
+      "benign": 27376
+    },
+    "net_new_JB_rows": 15127,
+    "new_jb_conflict_groups": 0,
+    "promptscreen_input_rows": 28771,
+    "promptscreen_integrated_pool": {
+      "conflict_groups_excluded": 4646,
+      "conflict_source_rows_excluded": 9698,
+      "duplicate_rows_beyond_first": 6050,
+      "input_rows": 62820,
+      "retained_rows": 52124,
+      "same_label_duplicate_groups_collapsed": 837,
+      "same_label_duplicate_rows_collapsed": 998,
+      "unique_normalized_text_groups": 56770
+    }
+  }
+}

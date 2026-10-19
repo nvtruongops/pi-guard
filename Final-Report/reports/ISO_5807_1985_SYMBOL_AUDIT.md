@@ -1,0 +1,55 @@
+# Đối chiếu ký hiệu sơ đồ PI-Guard với ISO 5807:1985
+
+Ngày kiểm tra: 2026-10-08. Đối tượng: `Final-Report/reports/PI_GUARD_INGRESS_ARCHITECTURE.drawio`, đủ 8 trang, và PNG xem trước của trang 2.
+
+## Scope Boundary Declaration
+
+- **Trong phạm vi:** hình dạng, đường nối, nhãn trên sơ đồ và ý nghĩa luồng có thể đối chiếu trực tiếp với [bản xem trước ISO 5807:1985 do iTeh cung cấp](https://cdn.standards.iteh.ai/samples/11955/1b7dd254a2a54fd7a89d616dc0570e18/ISO-5807-1985.pdf). Số trang ISO bên dưới là **số trang in trên tiêu chuẩn**; trang PDF tương ứng được ghi trong ngoặc.
+- **Ngoài phạm vi:** xác nhận tuân thủ toàn bộ ISO, chứng nhận UML, tính đúng của thuật toán PI-Guard, kết quả huấn luyện ba nhãn, giấy phép dùng lại hình tiêu chuẩn hoặc quyền phân phối PDF.
+
+## Nguồn và giới hạn chứng cứ
+
+[Trang ISO chính thức](https://www.iso.org/standard/11955.html) định danh ISO 5807:1985 là tiêu chuẩn 25 trang về ký hiệu và quy ước cho data/program/system flowcharts, program network charts và system resources charts. URL iTeh ở trên cung cấp **12 trang PDF**, gồm bìa, trang đầu và nội dung chỉ đến **trang in 8**. Mục lục bản xem trước đặt **§10 Conventions ở trang 11**, **bảng ký hiệu tổng hợp ở trang 17** và các phụ lục sau đó; các phần này không có trong PDF đang xét. Bản PDF lưu trong `workspaces/truongnv/references/ISO_5807_1985_iTeh_preview.pdf` là bản tra cứu **local-only/ignored**, không phải tài liệu toàn văn hay liên kết công khai của repo. Tệp đã kiểm tra có 1.472.012 byte, SHA-256 `43f4cf04063772a159848e3a882bd7a37047a098af14257e51b2db7eeab7552c`.
+
+ISO 5807:1985 ở đây là **cơ sở tham chiếu cho một số ký hiệu sơ đồ luồng**. Bản preview không thể chứng minh toàn bộ sơ đồ "đạt chuẩn ISO". Tiêu chuẩn này cũng không xác nhận icon minh họa, bảng màu, nhãn Benign/Prompt Injection/Jailbreak, mô hình TF-IDF/DeBERTa, API, ngưỡng định tuyến hay quyết định an toàn của PI-Guard; các yếu tố đó phải được giải thích bằng thiết kế đồ án và nguồn kỹ thuật riêng. [Chính sách bản quyền ISO](https://www.iso.org/copyright.html) không cấp quyền phân phối lại bản PDF trong repo công khai; bản tải xuống chỉ dùng tra cứu nội bộ.
+
+## Bảng đối chiếu
+
+| Trang sơ đồ / thành phần | Căn cứ ISO có trong preview | Đánh giá | Lý do và chỉnh sửa cần làm |
+| --- | --- | --- | --- |
+| 1: `USER INPUT`; 2: `USER PROMPT/FILE UPLOAD`, `RoutedChunk[]`; 3: input/`CanonicalTextEnvelope`; 4: input và `ChunkRouteResult` — các ô hình bình hành | §9.1.1.1 **Data**, trang in 2 (PDF 6): hình bình hành biểu diễn dữ liệu, chưa định rõ môi trường lưu trữ. | **Phù hợp về hình dạng và chức năng dữ liệu** | Ghi rõ đó là dữ liệu/DTO hoặc kết quả trả về, không đồng nhất với một bước xử lý. |
+| 2, 3–8: hình chữ nhật cho L1, L2, L3, API router/aggregator, tokenizer và các bước xử lý | §9.2.1 **Process**, trang in 3 (PDF 7): hình chữ nhật biểu diễn chức năng xử lý. | **Phù hợp** | Sơ đồ đang dùng hình chữ nhật cho phần lớn công đoạn xử lý. |
+| 3–4: các ô có hai vạch bên (`shape=process`) cho hàm/module được đặt tên | §9.2.2.1 **Predefined process**, trang in 4 (PDF 8): quy trình có tên, các bước được mô tả ở nơi khác. | **Phù hợp có điều kiện** | Chỉ gọi là *predefined* nếu đặc tả của hàm/module có nơi tham chiếu rõ. Nhãn `PROPOSED` không chứng minh hàm đã được hiện thực. Nếu chỉ là ý tưởng chưa đặc tả, dùng hình process cơ bản. |
+| 2, 3, 4, 5, 6, 8: hình thoi với các lối ra có nhãn (`ALLOW/BLOCK`, `ALLOW/REVIEW/BLOCK`, `YES/NO`) | §9.2.2.4 **Decision**, trang in 4 (PDF 8): một lối vào, các lối ra thay thế và chỉ một lối ra được kích hoạt theo điều kiện. | **Phù hợp về diễn đạt nhánh** | Giữ nhãn rõ cạnh nhánh; chú giải rằng ALLOW/REVIEW/BLOCK tại L2 là **ứng viên theo chunk**, còn API mới ra ALLOW/BLOCK cuối cùng. |
+| 1: `PER-CHUNK ROUTE POLICY` và 7: `ROUTE POLICY`, mỗi bước chỉ xuất một DTO | §9.2.1 **Process**, trang in 3 (PDF 7), và §9.2.2.4 **Decision**, trang in 4 (PDF 8). | **Đã chỉnh về hình process** | Bản trước dùng hình thoi với một cạnh ra. Bản hiện tại dùng hình chữ nhật cho chính sách tạo một `ChunkRouteResult`; không ngụ ý ba nhánh đồ họa chưa được vẽ. |
+| 3: `FILE UPLOAD` dùng hình document viền đáy lượn sóng | §9.1.2.4 **Document**, trang in 3 (PDF 7): dữ liệu con người đọc được dưới dạng tài liệu. | **Phù hợp có điều kiện** | Khi upload là nhiều định dạng `TXT/MD/JSON/PY/PDF/DOCX`, icon document là ẩn dụ tổng quát. Nếu muốn biểu diễn dữ liệu vào không phụ thuộc loại tệp, hình Data cơ bản chính xác hơn. |
+| Các trang: mũi tên liền có chiều và nhãn dữ liệu/điều khiển | §9.3.1 **Line**, trang in 6 (PDF 10): đường cho luồng dữ liệu hoặc điều khiển, có thể thêm đầu mũi tên để rõ chiều. | **Phù hợp** | Nên duy trì mũi tên liền cho luồng thực thi, DTO và dashboard event. |
+| 2: đường tím từ API aggregation sang dashboard, ghi `Three class scores per window`; các đường error/event thực khác | §9.3.1 **Line**, trang in 6 (PDF 10), và §9.3.2.3 **Dashed line**, trang in 7 (PDF 11). | **Đã chỉnh về mũi tên liền** | Cả 17 đường nối chở dữ liệu/điều khiển thực từng dùng nét đứt đã chuyển thành liền; màu tím vẫn tách riêng score khỏi quyết định API. |
+| 1, 2, 5–8: vùng nét đứt để phân nhóm L1/L2/L3/API hoặc khoanh vùng external system | §9.3.2.3, trang in 7 (PDF 11): nét đứt có thể bao một vùng chú giải; **Introduction**, trang in 1 (PDF 5), đề cao tính dễ đọc. | **Phù hợp như chú giải/boundary của đồ án; chưa phải ký hiệu vai trò hệ thống do ISO định nghĩa** | Legend: **nét đứt bao vùng = phạm vi chú giải/hệ thống ngoài theo quy ước PI-Guard**; nét liền có mũi tên = luồng dữ liệu hoặc điều khiển. |
+| 1: 5 pictogram SVG tự nhúng; 3: lặp lại SVG người dùng; các màu xanh/cam/tím/đỏ | §1 **Scope**, trang in 1 (PDF 5), và danh mục ký hiệu §9.1–9.3, trang in 2–7 (PDF 6–11). | **Không phải ký hiệu ISO** | Icon và màu hỗ trợ nhận diện; nghĩa luồng do hình cơ bản, nhãn và mũi tên xác định. Icon AWS `end_user_messaging` ở bản trước đã thay bằng SVG người dùng chung, tránh ngụ ý có AWS trong kiến trúc. Nguồn sáng tạo ban đầu của 5 SVG trong bản Downloads chưa có metadata, nên không gán chúng cho ISO hay bên thứ ba. |
+| 2: phụ đề `Proposed system flowchart · selected ISO 5807:1985 symbols` và ô START bo góc | §1 chỉ nêu các loại flowchart; phần ký hiệu đặc biệt §9.4 và conventions §10 không có đủ trong preview. | **Phụ đề đã chỉnh; START chưa xác nhận** | Bản trước ghi `UML Activity view` mà không có nguồn UML. Bản hiện tại viện dẫn có giới hạn; không khẳng định START bo góc là terminal ISO khi §9.4 vắng mặt. |
+| 1, 2 và 5: vùng external systems chứa dashboard nhận cả `FINAL BLOCK` | Kiểm tra ngữ nghĩa **trên sơ đồ**, không phải yêu cầu trực tiếp của ISO. | **Đã chỉnh tên vùng** | Trang 2 dùng nhãn ngắn `EXTERNAL SYSTEMS` để chừa khoảng cho mũi tên ALLOW; hai thẻ con ghi rõ target LLM và dashboard. Dashboard có thể nhận trạng thái BLOCK, còn target LLM chỉ được gọi sau ALLOW. |
+| 1–2: `FINAL ALLOW — Forward...` và `FINAL BLOCK — Reject...` | §9.2.1 **Process**, trang in 3 (PDF 7). | **Đã chỉnh về hình process khi là hành động** | Trang 2 dùng hình chữ nhật cho cả forward và reject; trang 1 cũng dùng hình chữ nhật cho forward. Quyết định ALLOW/BLOCK vẫn tách ở API. |
+| 2: `DASHBOARD` là thành phần giao diện bên ngoài | §9.2.1 **Process**, trang in 3 (PDF 7); §9.1.2.8 **Display**, trang in 3 (PDF 7), là ký hiệu khác khi mô tả dữ liệu hiển thị. | **Đã chỉnh về hình chữ nhật thành phần** | Bản trước dùng hình bình hành Data. Bản mới dùng chữ nhật cho dashboard như thành phần hoạt động; score/event đi vào qua mũi tên có nhãn. Không gọi đây là ký hiệu Display đặc thù của ISO. |
+
+## Căn cứ cho nội dung kiến trúc và icon
+
+| Yếu tố trong hình | Nguồn và giới hạn viện dẫn |
+| --- | --- |
+| Data/process/decision, mũi tên, vùng chú giải | ISO 5807:1985 theo các mục và trang ở bảng trên; chỉ là **ngữ pháp trình bày lưu đồ**. |
+| Ba tên nhãn Benign / Prompt Injection / Jailbreak | [Model card Prompt Guard 86M của Meta](https://huggingface.co/meta-llama/Prompt-Guard-86M) nêu `benign`/`injection`/`jailbreak` và ghi nhận injection với jailbreak có thể chồng lấn. `Prompt Injection` là cách gọi đầy đủ trong đồ án. Đây là **tiền lệ thuật ngữ cho bộ nhãn dự kiến nghiên cứu**, không xác nhận cách gán nhãn khi chồng lấn, dạng score/head, checkpoint hoặc kết quả huấn luyện của PI-Guard. |
+| L1 tiền xử lý, L2 TF-IDF + Logistic Regression, L3 DeBERTa, API tổng hợp và chính sách ALLOW/BLOCK | [Luồng yêu cầu được mô tả trong tài liệu đồ án](../../Github-Page/models/ingress_architecture.md) và chính nguồn Draw.io. Đây là **kiến trúc đề xuất để nghiên cứu**; hiệu năng, ngưỡng định tuyến và tính đúng của tổ hợp ba tầng cần được đặc tả, huấn luyện và kiểm định riêng. Các nguồn lý thuyết thành phần được chỉ mục trong [references log](../References/REFERENCES_LOG.md). |
+| 5 SVG minh họa ở trang 1, dùng lại icon người dùng ở trang 3 | SVG được nhúng sẵn trong tệp Draw.io ở `Downloads` do người dùng cung cấp: hình người (đầu vào), trang/tìm kiếm (L1), cột thống kê (L2), mạng nút (L3), khiên (API). Chúng là **pictogram khái niệm**, không phải ký hiệu ISO, chứng cứ thuật toán hay biểu tượng hạ tầng triển khai. Tệp không chứa metadata tác giả/giấy phép của SVG; không suy đoán nguồn sáng tạo ban đầu. |
+| Màu | Xanh ngọc = L1, cam = L2, tím = L3/score, xanh lam/xám = API, xanh lá = ALLOW, đỏ = BLOCK/lỗi; đây là chú giải trực quan do PI-Guard đặt ra. Nhãn văn bản và mũi tên vẫn là nguồn xác định nghĩa khi in đen trắng. |
+
+## Đánh giá bố cục để đưa vào báo cáo
+
+Trang 2 có trục đọc từ trên xuống, tách rõ ba score theo window khỏi quyết định cuối của API và có hai nhánh ALLOW/BLOCK có nhãn. Đây là trang phù hợp làm hình kiến trúc chính. Trang 1 và các trang 6–8 có nhiều chữ nhỏ, đường nối sát vùng và các luồng lỗi chạy ngang; dùng chúng như hình chi tiết/phụ lục ở độ phân giải cao, kèm phần giải thích văn bản. Mức độ dễ đọc này là đánh giá thiết kế của đồ án, không phải chứng nhận ISO.
+
+## Kết luận có thể dùng trong báo cáo
+
+> Sơ đồ ingress PI-Guard là **kiến trúc đề xuất để nghiên cứu**, với ba nhãn mục tiêu Benign, Prompt Injection và Jailbreak; sơ đồ không báo cáo một mô hình ba nhãn đã huấn luyện hay kết quả đánh giá của mô hình đó. Cách vẽ chỉ **tham chiếu một số ký hiệu lưu đồ** trong ISO 5807:1985. Tệp tra cứu là bản xem trước 12 trang, còn hồ sơ ISO ghi tiêu chuẩn 25 trang, nên không kết luận sơ đồ tuân thủ toàn bộ tiêu chuẩn. Icon, màu, tổ hợp ba tầng và quy tắc quyết định của API là lựa chọn thiết kế của đồ án. Model card Prompt Guard 86M chỉ là nguồn tham khảo thuật ngữ ba loại; việc xử lý nhãn chồng lấn và kiểm định PI-Guard cần tài liệu riêng.
+
+Các lệch nghĩa rõ ràng trong ký hiệu đã sửa ở nguồn Draw.io và xuất lại ảnh trang 2. Khi đưa vào báo cáo, dùng đoạn kết luận trên cùng legend ở bảng; nếu muốn tuyên bố tuân thủ **toàn bộ** ISO 5807:1985, cần tra cứu bản được cấp phép đầy đủ và kiểm tra thêm §9.4, §10 cùng các trang còn thiếu. Kiến trúc ba tầng và các nhãn là đề xuất riêng của đồ án, không suy ra từ tiêu chuẩn ký hiệu.
+
+Kiểm tra hồi quy sơ đồ và hai PNG đồng bộ: `python Final-Report/scripts/validate_ingress_symbols.py`.

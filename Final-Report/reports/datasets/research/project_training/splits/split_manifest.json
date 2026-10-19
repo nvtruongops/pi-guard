@@ -1,0 +1,142 @@
+{
+  "corpus_file": "balanced_three_label.jsonl",
+  "corpus_manifest_sha256": "b9b42558aa1f4328380b008be7f57c6703565ee06fd05f60d8ce0f235f695ad2",
+  "corpus_sha256": "2b6588e9aa091d536a25a878102df866090a2539f1bf5dbbd05d6ca6a7d09bfe",
+  "dataset_version": "5.0.0",
+  "exclusions_from_v5": 0,
+  "files": {
+    "test.ids": {
+      "rows": 5862,
+      "sha256": "c221c330930cc517159e5b72073debfd01854983fc67a3aac9083a80c0b9b297"
+    },
+    "test.jsonl": {
+      "rows": 5862,
+      "sha256": "6114f589e73217393c5936f1613b4d1259953ba4518764c026428ec938435a37"
+    },
+    "train.ids": {
+      "rows": 28280,
+      "sha256": "6d7863a60c0aa4b6d82b3be6d34cff546d79d860897af4514708ac2d366c004d"
+    },
+    "train.jsonl": {
+      "rows": 28280,
+      "sha256": "cb731d3e4392ca71a9fcd931949fd2f6ea38cb5a0ae0364d6aa261402ed260b2"
+    },
+    "validation.ids": {
+      "rows": 5858,
+      "sha256": "d3eae9ae325baee64ec9bf74b1f856964f82e0d623ad8d4a5ad93b3cc403d9f6"
+    },
+    "validation.jsonl": {
+      "rows": 5858,
+      "sha256": "f449b92c74fd17e35ede07ce61dd8706e0965e733865226fff49364a963dfd10"
+    }
+  },
+  "grouping": {
+    "candidate_pairs_compared": 531975,
+    "explicit_family": "WhatFeatures prompt_name",
+    "explicit_family_joins": 2509,
+    "groups": 33937,
+    "largest_group_rows": 2834,
+    "limits": "Approximate candidate search is not an exhaustive semantic duplicate audit; sources without native family IDs use text similarity only.",
+    "mixed_label_groups": 105,
+    "rows_in_non_singleton_groups": 6848,
+    "similar_pairs_at_or_above_0_85": 124140,
+    "text": "Unicode NFKC/casefold/whitespace; five-word shingles; 12 smallest stable 64-bit hashes; four 3-hash candidate bands; exact shingle Jaccard >= 0.85"
+  },
+  "limitations": [
+    "Split uses all v5 candidate rows for local research; it does not approve source rights, row-level PromptScreen provenance, or final label policy.",
+    "No independent benign FPR holdout was created outside v5.",
+    "Do not fit thresholds or select models on test rows."
+  ],
+  "method": "deterministic greedy label-and-source-stratified assignment of text-family groups",
+  "ratios": {
+    "test": 0.15,
+    "train": 0.7,
+    "validation": 0.15
+  },
+  "seed": 42,
+  "source_membership_semantics": "Count each dataset at most once per row; a multisource row contributes once to each source dataset.",
+  "splits": {
+    "test": {
+      "labels": {
+        "JB": 1311,
+        "PI": 1517,
+        "benign": 3034
+      },
+      "primary_source_strata": {
+        "JB:JailBreakV-28K": 484,
+        "JB:PromptScreen": 484,
+        "JB:TrustAIRLab+WUSTL": 271,
+        "JB:WhatFeatures": 72,
+        "PI:PromptScreen": 296,
+        "PI:PromptShield": 1221,
+        "benign:PromptScreen": 1011,
+        "benign:PromptShield": 1011,
+        "benign:TrustAIRLab": 1012
+      },
+      "rows": 5862,
+      "source_dataset_memberships": {
+        "JailBreakV-28K": 484,
+        "TrustAIRLab/in-the-wild-jailbreak-prompts": 1242,
+        "WUSTL-CSPL/LLMJailbreak": 65,
+        "dronefreak/PromptScreen": 1880,
+        "hendzh/PromptShield": 2236,
+        "sevdeawesome/jailbreak_success": 72
+      }
+    },
+    "train": {
+      "labels": {
+        "JB": 7383,
+        "PI": 6966,
+        "benign": 13931
+      },
+      "primary_source_strata": {
+        "JB:JailBreakV-28K": 1839,
+        "JB:PromptScreen": 1839,
+        "JB:TrustAIRLab+WUSTL": 1030,
+        "JB:WhatFeatures": 2675,
+        "PI:PromptScreen": 1361,
+        "PI:PromptShield": 5605,
+        "benign:PromptScreen": 4644,
+        "benign:PromptShield": 4644,
+        "benign:TrustAIRLab": 4643
+      },
+      "rows": 28280,
+      "source_dataset_memberships": {
+        "JailBreakV-28K": 1839,
+        "TrustAIRLab/in-the-wild-jailbreak-prompts": 5500,
+        "WUSTL-CSPL/LLMJailbreak": 293,
+        "dronefreak/PromptScreen": 8178,
+        "hendzh/PromptShield": 10257,
+        "sevdeawesome/jailbreak_success": 2675
+      }
+    },
+    "validation": {
+      "labels": {
+        "JB": 1306,
+        "PI": 1517,
+        "benign": 3035
+      },
+      "primary_source_strata": {
+        "JB:JailBreakV-28K": 486,
+        "JB:PromptScreen": 486,
+        "JB:TrustAIRLab+WUSTL": 272,
+        "JB:WhatFeatures": 62,
+        "PI:PromptScreen": 296,
+        "PI:PromptShield": 1221,
+        "benign:PromptScreen": 1012,
+        "benign:PromptShield": 1012,
+        "benign:TrustAIRLab": 1011
+      },
+      "rows": 5858,
+      "source_dataset_memberships": {
+        "JailBreakV-28K": 486,
+        "TrustAIRLab/in-the-wild-jailbreak-prompts": 1239,
+        "WUSTL-CSPL/LLMJailbreak": 79,
+        "dronefreak/PromptScreen": 1903,
+        "hendzh/PromptShield": 2234,
+        "sevdeawesome/jailbreak_success": 62
+      }
+    }
+  },
+  "status": "frozen_local_research_split"
+}

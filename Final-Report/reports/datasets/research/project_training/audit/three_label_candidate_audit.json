@@ -1,0 +1,1146 @@
+{
+  "audit": "row counts, source/category cross-tabs, class balance, and exact split overlap; no raw prompt text is stored",
+  "created_at_utc": "2026-10-07T09:45:56.831186+00:00",
+  "tool": {
+    "name": "DuckDB",
+    "version": "1.5.6",
+    "execution": "temporary uv environment; no project dependency added"
+  },
+  "promptscreen": {
+    "dataset_id": "dronefreak/PromptScreen",
+    "revision": "496653aba7a39ae6bdcb775c067a3bdb2471acc7",
+    "source_label_counts": {
+      "train": {
+        "rows": 28771,
+        "unique_normalized_texts": 28672,
+        "duplicate_rows_after_normalization": 99,
+        "label_counts": {
+          "benign": 9426,
+          "jailbreak": 17392,
+          "prompt-injection": 1953
+        },
+        "bytes": 23661526,
+        "sha256": "19de32a35efb417e42992897b2fe38dbd10480650eee55765b69a313c46da650"
+      },
+      "reported_test": {
+        "rows": 2166,
+        "unique_normalized_texts": 2166,
+        "duplicate_rows_after_normalization": 0,
+        "label_counts": {
+          "benign": 710,
+          "jailbreak": 1309,
+          "prompt-injection": 147
+        },
+        "bytes": 1905888,
+        "sha256": "9edb2beb91215fb90b5fbf80c66058897ac66af730d3948dbca50943a69a01cc"
+      }
+    },
+    "observed_row_fields": [
+      "classification",
+      "prompt",
+      "type"
+    ],
+    "normalized_exact_overlap": {
+      "train_vs_reported_test_distinct_normalized_texts": 9,
+      "train_rows_with_match": 10,
+      "reported_test_rows_with_match": 9,
+      "matched_texts_with_different_label_sets": 0,
+      "matched_distinct_text_label_pairs": {
+        "benign -> benign": 1,
+        "jailbreak -> jailbreak": 8
+      },
+      "within_file_duplicate_texts_with_label_conflict": {
+        "train": 0,
+        "reported_test": 0
+      }
+    },
+    "license_note": "Source JSON is public, but data-specific terms for all aggregated prompts remain to be reviewed."
+  },
+  "prompt_sentinel": {
+    "dataset_id": "nuhmanpk/prompt-sentinel",
+    "revision": "f5218824e24fbb6cd383b55aee61c71b1919a6c8",
+    "label_map": {
+      "benign": "benign",
+      "injection": "PI",
+      "jailbreak": "JB"
+    },
+    "counts": {
+      "train": {
+        "rows": 116854,
+        "source_label_counts": {
+          "benign": 66024,
+          "injection": 49811,
+          "jailbreak": 1019
+        },
+        "mapped_label_counts": {
+          "JB": 1019,
+          "PI": 49811,
+          "benign": 66024
+        },
+        "mapped_label_percent": {
+          "JB": 0.872,
+          "PI": 42.6267,
+          "benign": 56.5013
+        }
+      },
+      "validation": {
+        "rows": 14335,
+        "source_label_counts": {
+          "benign": 8168,
+          "injection": 6056,
+          "jailbreak": 111
+        },
+        "mapped_label_counts": {
+          "JB": 111,
+          "PI": 6056,
+          "benign": 8168
+        },
+        "mapped_label_percent": {
+          "JB": 0.7743,
+          "PI": 42.2463,
+          "benign": 56.9794
+        }
+      },
+      "test": {
+        "rows": 14592,
+        "source_label_counts": {
+          "benign": 8266,
+          "injection": 6192,
+          "jailbreak": 134
+        },
+        "mapped_label_counts": {
+          "JB": 134,
+          "PI": 6192,
+          "benign": 8266
+        },
+        "mapped_label_percent": {
+          "JB": 0.9183,
+          "PI": 42.4342,
+          "benign": 56.6475
+        }
+      }
+    },
+    "source_audit": {
+      "unique_source_values": 10,
+      "unique_all_sources_values": 11,
+      "all_source_names": [
+        "Lakera/gandalf_ignore_instructions",
+        "OpenAssistant/oasst2",
+        "S-Labs/prompt-injection-dataset",
+        "TrustAIRLab/in-the-wild-jailbreak-prompts",
+        "fka/awesome-chatgpt-prompts",
+        "jackhhao/jailbreak-classification",
+        "jayavibhav/prompt-injection",
+        "lmsys/toxic-chat",
+        "neuralchemy/Prompt-injection-dataset",
+        "reshabhs/SPML_Chatbot_Prompt_Injection",
+        "rubend18/ChatGPT-Jailbreak-Prompts"
+      ],
+      "source_label_counts": [
+        {
+          "split": "train",
+          "source": "Lakera/gandalf_ignore_instructions",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 801
+        },
+        {
+          "split": "train",
+          "source": "OpenAssistant/oasst2",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 4138
+        },
+        {
+          "split": "train",
+          "source": "S-Labs/prompt-injection-dataset",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 6642
+        },
+        {
+          "split": "train",
+          "source": "S-Labs/prompt-injection-dataset",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 5489
+        },
+        {
+          "split": "train",
+          "source": "TrustAIRLab/in-the-wild-jailbreak-prompts",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 10044
+        },
+        {
+          "split": "train",
+          "source": "TrustAIRLab/in-the-wild-jailbreak-prompts",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 606
+        },
+        {
+          "split": "train",
+          "source": "fka/awesome-chatgpt-prompts",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 1576
+        },
+        {
+          "split": "train",
+          "source": "jackhhao/jailbreak-classification",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 508
+        },
+        {
+          "split": "train",
+          "source": "jayavibhav/prompt-injection",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 30782
+        },
+        {
+          "split": "train",
+          "source": "jayavibhav/prompt-injection",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 30999
+        },
+        {
+          "split": "train",
+          "source": "lmsys/toxic-chat",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 7583
+        },
+        {
+          "split": "train",
+          "source": "lmsys/toxic-chat",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 116
+        },
+        {
+          "split": "train",
+          "source": "neuralchemy/Prompt-injection-dataset",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 2067
+        },
+        {
+          "split": "train",
+          "source": "neuralchemy/Prompt-injection-dataset",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 2445
+        },
+        {
+          "split": "train",
+          "source": "neuralchemy/Prompt-injection-dataset",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 297
+        },
+        {
+          "split": "train",
+          "source": "reshabhs/SPML_Chatbot_Prompt_Injection",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 2684
+        },
+        {
+          "split": "train",
+          "source": "reshabhs/SPML_Chatbot_Prompt_Injection",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 10077
+        },
+        {
+          "split": "validation",
+          "source": "Lakera/gandalf_ignore_instructions",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 103
+        },
+        {
+          "split": "validation",
+          "source": "OpenAssistant/oasst2",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 511
+        },
+        {
+          "split": "validation",
+          "source": "S-Labs/prompt-injection-dataset",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 857
+        },
+        {
+          "split": "validation",
+          "source": "S-Labs/prompt-injection-dataset",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 642
+        },
+        {
+          "split": "validation",
+          "source": "TrustAIRLab/in-the-wild-jailbreak-prompts",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 1275
+        },
+        {
+          "split": "validation",
+          "source": "TrustAIRLab/in-the-wild-jailbreak-prompts",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 69
+        },
+        {
+          "split": "validation",
+          "source": "fka/awesome-chatgpt-prompts",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 208
+        },
+        {
+          "split": "validation",
+          "source": "jackhhao/jailbreak-classification",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 70
+        },
+        {
+          "split": "validation",
+          "source": "jayavibhav/prompt-injection",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 3812
+        },
+        {
+          "split": "validation",
+          "source": "jayavibhav/prompt-injection",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 3820
+        },
+        {
+          "split": "validation",
+          "source": "lmsys/toxic-chat",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 878
+        },
+        {
+          "split": "validation",
+          "source": "lmsys/toxic-chat",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 15
+        },
+        {
+          "split": "validation",
+          "source": "neuralchemy/Prompt-injection-dataset",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 220
+        },
+        {
+          "split": "validation",
+          "source": "neuralchemy/Prompt-injection-dataset",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 308
+        },
+        {
+          "split": "validation",
+          "source": "neuralchemy/Prompt-injection-dataset",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 27
+        },
+        {
+          "split": "validation",
+          "source": "reshabhs/SPML_Chatbot_Prompt_Injection",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 337
+        },
+        {
+          "split": "validation",
+          "source": "reshabhs/SPML_Chatbot_Prompt_Injection",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 1183
+        },
+        {
+          "split": "test",
+          "source": "Lakera/gandalf_ignore_instructions",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 92
+        },
+        {
+          "split": "test",
+          "source": "OpenAssistant/oasst2",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 526
+        },
+        {
+          "split": "test",
+          "source": "S-Labs/prompt-injection-dataset",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 834
+        },
+        {
+          "split": "test",
+          "source": "S-Labs/prompt-injection-dataset",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 629
+        },
+        {
+          "split": "test",
+          "source": "TrustAIRLab/in-the-wild-jailbreak-prompts",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 1316
+        },
+        {
+          "split": "test",
+          "source": "TrustAIRLab/in-the-wild-jailbreak-prompts",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 77
+        },
+        {
+          "split": "test",
+          "source": "fka/awesome-chatgpt-prompts",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 186
+        },
+        {
+          "split": "test",
+          "source": "jackhhao/jailbreak-classification",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 57
+        },
+        {
+          "split": "test",
+          "source": "jayavibhav/prompt-injection",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 3852
+        },
+        {
+          "split": "test",
+          "source": "jayavibhav/prompt-injection",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 3912
+        },
+        {
+          "split": "test",
+          "source": "lmsys/toxic-chat",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 905
+        },
+        {
+          "split": "test",
+          "source": "lmsys/toxic-chat",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 17
+        },
+        {
+          "split": "test",
+          "source": "neuralchemy/Prompt-injection-dataset",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 243
+        },
+        {
+          "split": "test",
+          "source": "neuralchemy/Prompt-injection-dataset",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 278
+        },
+        {
+          "split": "test",
+          "source": "neuralchemy/Prompt-injection-dataset",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 40
+        },
+        {
+          "split": "test",
+          "source": "reshabhs/SPML_Chatbot_Prompt_Injection",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 347
+        },
+        {
+          "split": "test",
+          "source": "reshabhs/SPML_Chatbot_Prompt_Injection",
+          "source_label": "injection",
+          "mapped_label": "PI",
+          "rows": 1281
+        }
+      ],
+      "license_counts_by_split": [
+        {
+          "split": "train",
+          "source_license": "apache-2.0",
+          "rows": 9455
+        },
+        {
+          "split": "train",
+          "source_license": "cc-by-nc-4.0",
+          "rows": 7699
+        },
+        {
+          "split": "train",
+          "source_license": "cc0-1.0",
+          "rows": 1576
+        },
+        {
+          "split": "train",
+          "source_license": "mit",
+          "rows": 36343
+        },
+        {
+          "split": "train",
+          "source_license": "unspecified",
+          "rows": 61781
+        },
+        {
+          "split": "validation",
+          "source_license": "apache-2.0",
+          "rows": 1136
+        },
+        {
+          "split": "validation",
+          "source_license": "cc-by-nc-4.0",
+          "rows": 893
+        },
+        {
+          "split": "validation",
+          "source_license": "cc0-1.0",
+          "rows": 208
+        },
+        {
+          "split": "validation",
+          "source_license": "mit",
+          "rows": 4466
+        },
+        {
+          "split": "validation",
+          "source_license": "unspecified",
+          "rows": 7632
+        },
+        {
+          "split": "test",
+          "source_license": "apache-2.0",
+          "rows": 1144
+        },
+        {
+          "split": "test",
+          "source_license": "cc-by-nc-4.0",
+          "rows": 922
+        },
+        {
+          "split": "test",
+          "source_license": "cc0-1.0",
+          "rows": 186
+        },
+        {
+          "split": "test",
+          "source_license": "mit",
+          "rows": 4576
+        },
+        {
+          "split": "test",
+          "source_license": "unspecified",
+          "rows": 7764
+        }
+      ]
+    },
+    "split_integrity": {
+      "exact_text_overlap": {
+        "train_vs_validation": 0,
+        "train_vs_test": 0,
+        "validation_vs_test": 0
+      },
+      "split_rows_and_unique_text": {
+        "train": {
+          "rows": 116854,
+          "unique_text": 116854
+        },
+        "validation": {
+          "rows": 14335,
+          "unique_text": 14335
+        },
+        "test": {
+          "rows": 14592,
+          "unique_text": 14592
+        }
+      },
+      "group_overlap": {
+        "train_vs_validation": 0,
+        "train_vs_test": 0,
+        "validation_vs_test": 0
+      }
+    },
+    "source_split_counts": {
+      "train": {
+        "test": 37169,
+        "train": 76981,
+        "validation": 2704
+      },
+      "validation": {
+        "test": 4597,
+        "train": 9431,
+        "validation": 307
+      },
+      "test": {
+        "test": 4546,
+        "train": 9716,
+        "validation": 330
+      }
+    },
+    "card_claimed_counts": {
+      "total_rows": 156802,
+      "benign": 90175,
+      "jailbreak": 1766,
+      "injection": 64861,
+      "claimed_source_datasets": 13
+    },
+    "notes": [
+      "The HF card reports exact deduplication and a template-family split; the audit independently checks cross-split exact text and template_group overlap.",
+      "Source labels are preserved; mapping injection to PI and jailbreak to JB is a project-facing proposed mapping."
+    ],
+    "card_vs_snapshot": {
+      "snapshot_total_rows": 145781,
+      "card_total_minus_snapshot_rows": 11021
+    },
+    "imbalance": {
+      "train": {
+        "max_to_min_class_ratio": 64.7929,
+        "pi_to_jb_ratio": 48.8822
+      },
+      "validation": {
+        "max_to_min_class_ratio": 73.5856,
+        "pi_to_jb_ratio": 54.5586
+      },
+      "test": {
+        "max_to_min_class_ratio": 61.6866,
+        "pi_to_jb_ratio": 46.209
+      }
+    }
+  },
+  "shieldlm": {
+    "dataset_id": "Abdennebi/shieldlm-prompt-injection",
+    "revision": "23330588198f0143120e93b7d7b31cc164cd5403",
+    "label_map": {
+      "benign": "benign",
+      "direct_injection": "PI",
+      "indirect_injection": "PI",
+      "jailbreak": "JB"
+    },
+    "counts": {
+      "train": {
+        "rows": 37913,
+        "source_label_counts": {
+          "benign": 24638,
+          "direct_injection": 11825,
+          "indirect_injection": 738,
+          "jailbreak": 712
+        },
+        "mapped_label_counts": {
+          "JB": 712,
+          "PI": 12563,
+          "benign": 24638
+        },
+        "mapped_label_percent": {
+          "JB": 1.878,
+          "PI": 33.1364,
+          "benign": 64.9856
+        }
+      },
+      "validation": {
+        "rows": 8124,
+        "source_label_counts": {
+          "benign": 5279,
+          "direct_injection": 2534,
+          "indirect_injection": 158,
+          "jailbreak": 153
+        },
+        "mapped_label_counts": {
+          "JB": 153,
+          "PI": 2692,
+          "benign": 5279
+        },
+        "mapped_label_percent": {
+          "JB": 1.8833,
+          "PI": 33.1364,
+          "benign": 64.9803
+        }
+      },
+      "test": {
+        "rows": 8125,
+        "source_label_counts": {
+          "benign": 5280,
+          "direct_injection": 2534,
+          "indirect_injection": 158,
+          "jailbreak": 153
+        },
+        "mapped_label_counts": {
+          "JB": 153,
+          "PI": 2692,
+          "benign": 5280
+        },
+        "mapped_label_percent": {
+          "JB": 1.8831,
+          "PI": 33.1323,
+          "benign": 64.9846
+        }
+      }
+    },
+    "source_audit": {
+      "unique_source_values": 13,
+      "unique_all_sources_values": null,
+      "all_source_names": null,
+      "source_label_counts": [
+        {
+          "split": "train",
+          "source": "alespalla/chatbot-instruction-prompts",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 17368
+        },
+        {
+          "split": "train",
+          "source": "deepset/prompt-injections",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 232
+        },
+        {
+          "split": "train",
+          "source": "deepset/prompt-injections",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 143
+        },
+        {
+          "split": "train",
+          "source": "harelix/mixed-techniques-2024",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 187
+        },
+        {
+          "split": "train",
+          "source": "harelix/mixed-techniques-2024",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 515
+        },
+        {
+          "split": "train",
+          "source": "injecagent/clean_response/direct_harm",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 13
+        },
+        {
+          "split": "train",
+          "source": "injecagent/full_response/data_stealing/base",
+          "source_label": "indirect_injection",
+          "mapped_label": "PI",
+          "rows": 387
+        },
+        {
+          "split": "train",
+          "source": "injecagent/full_response/direct_harm/base",
+          "source_label": "indirect_injection",
+          "mapped_label": "PI",
+          "rows": 351
+        },
+        {
+          "split": "train",
+          "source": "injecagent/user_instructions",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 11
+        },
+        {
+          "split": "train",
+          "source": "jackhhao/jailbreak-classification",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 366
+        },
+        {
+          "split": "train",
+          "source": "jackhhao/jailbreak-classification",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 10
+        },
+        {
+          "split": "train",
+          "source": "jailbreakbench/jbb-behaviors",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 135
+        },
+        {
+          "split": "train",
+          "source": "safeguard/prompt-injection",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 3985
+        },
+        {
+          "split": "train",
+          "source": "safeguard/prompt-injection",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 1699
+        },
+        {
+          "split": "train",
+          "source": "spml/chatbot-prompt-injection",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 2341
+        },
+        {
+          "split": "train",
+          "source": "spml/chatbot-prompt-injection",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 8798
+        },
+        {
+          "split": "train",
+          "source": "trustailab/in-the-wild-jailbreak-prompts",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 702
+        },
+        {
+          "split": "train",
+          "source": "yanismiraoui/prompt-injections",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 670
+        },
+        {
+          "split": "validation",
+          "source": "alespalla/chatbot-instruction-prompts",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 3704
+        },
+        {
+          "split": "validation",
+          "source": "deepset/prompt-injections",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 58
+        },
+        {
+          "split": "validation",
+          "source": "deepset/prompt-injections",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 29
+        },
+        {
+          "split": "validation",
+          "source": "harelix/mixed-techniques-2024",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 22
+        },
+        {
+          "split": "validation",
+          "source": "harelix/mixed-techniques-2024",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 106
+        },
+        {
+          "split": "validation",
+          "source": "injecagent/clean_response/direct_harm",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 2
+        },
+        {
+          "split": "validation",
+          "source": "injecagent/full_response/data_stealing/base",
+          "source_label": "indirect_injection",
+          "mapped_label": "PI",
+          "rows": 78
+        },
+        {
+          "split": "validation",
+          "source": "injecagent/full_response/direct_harm/base",
+          "source_label": "indirect_injection",
+          "mapped_label": "PI",
+          "rows": 80
+        },
+        {
+          "split": "validation",
+          "source": "injecagent/user_instructions",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 4
+        },
+        {
+          "split": "validation",
+          "source": "jackhhao/jailbreak-classification",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 86
+        },
+        {
+          "split": "validation",
+          "source": "jackhhao/jailbreak-classification",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 4
+        },
+        {
+          "split": "validation",
+          "source": "jailbreakbench/jbb-behaviors",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 38
+        },
+        {
+          "split": "validation",
+          "source": "safeguard/prompt-injection",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 822
+        },
+        {
+          "split": "validation",
+          "source": "safeguard/prompt-injection",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 337
+        },
+        {
+          "split": "validation",
+          "source": "spml/chatbot-prompt-injection",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 543
+        },
+        {
+          "split": "validation",
+          "source": "spml/chatbot-prompt-injection",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 1903
+        },
+        {
+          "split": "validation",
+          "source": "trustailab/in-the-wild-jailbreak-prompts",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 149
+        },
+        {
+          "split": "validation",
+          "source": "yanismiraoui/prompt-injections",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 159
+        },
+        {
+          "split": "test",
+          "source": "alespalla/chatbot-instruction-prompts",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 3732
+        },
+        {
+          "split": "test",
+          "source": "deepset/prompt-injections",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 53
+        },
+        {
+          "split": "test",
+          "source": "deepset/prompt-injections",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 31
+        },
+        {
+          "split": "test",
+          "source": "harelix/mixed-techniques-2024",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 43
+        },
+        {
+          "split": "test",
+          "source": "harelix/mixed-techniques-2024",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 114
+        },
+        {
+          "split": "test",
+          "source": "injecagent/clean_response/direct_harm",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 1
+        },
+        {
+          "split": "test",
+          "source": "injecagent/full_response/data_stealing/base",
+          "source_label": "indirect_injection",
+          "mapped_label": "PI",
+          "rows": 79
+        },
+        {
+          "split": "test",
+          "source": "injecagent/full_response/direct_harm/base",
+          "source_label": "indirect_injection",
+          "mapped_label": "PI",
+          "rows": 79
+        },
+        {
+          "split": "test",
+          "source": "injecagent/user_instructions",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 2
+        },
+        {
+          "split": "test",
+          "source": "jackhhao/jailbreak-classification",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 63
+        },
+        {
+          "split": "test",
+          "source": "jackhhao/jailbreak-classification",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 2
+        },
+        {
+          "split": "test",
+          "source": "jailbreakbench/jbb-behaviors",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 27
+        },
+        {
+          "split": "test",
+          "source": "safeguard/prompt-injection",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 871
+        },
+        {
+          "split": "test",
+          "source": "safeguard/prompt-injection",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 404
+        },
+        {
+          "split": "test",
+          "source": "spml/chatbot-prompt-injection",
+          "source_label": "benign",
+          "mapped_label": "benign",
+          "rows": 488
+        },
+        {
+          "split": "test",
+          "source": "spml/chatbot-prompt-injection",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 1840
+        },
+        {
+          "split": "test",
+          "source": "trustailab/in-the-wild-jailbreak-prompts",
+          "source_label": "jailbreak",
+          "mapped_label": "JB",
+          "rows": 151
+        },
+        {
+          "split": "test",
+          "source": "yanismiraoui/prompt-injections",
+          "source_label": "direct_injection",
+          "mapped_label": "PI",
+          "rows": 145
+        }
+      ],
+      "license_counts_by_split": []
+    },
+    "split_integrity": {
+      "exact_text_overlap": {
+        "train_vs_validation": 0,
+        "train_vs_test": 0,
+        "validation_vs_test": 0
+      },
+      "split_rows_and_unique_text": {
+        "train": {
+          "rows": 37913,
+          "unique_text": 37913
+        },
+        "validation": {
+          "rows": 8124,
+          "unique_text": 8124
+        },
+        "test": {
+          "rows": 8125,
+          "unique_text": 8125
+        }
+      }
+    },
+    "card_claimed_source_datasets": 11,
+    "notes": [
+      "The HF card reports a random stratified split; the audit checks cross-split exact text and source/category concentration.",
+      "direct_injection and indirect_injection are grouped as PI for this comparison proposal; original category values remain preserved in source files.",
+      "Source-specific license review is still needed even though the dataset card lists MIT for the curation."
+    ],
+    "imbalance": {
+      "train": {
+        "max_to_min_class_ratio": 34.6039,
+        "pi_to_jb_ratio": 17.6447
+      },
+      "validation": {
+        "max_to_min_class_ratio": 34.5033,
+        "pi_to_jb_ratio": 17.5948
+      },
+      "test": {
+        "max_to_min_class_ratio": 34.5098,
+        "pi_to_jb_ratio": 17.5948
+      }
+    }
+  },
+  "fit_or_inference_performed": false
+}
