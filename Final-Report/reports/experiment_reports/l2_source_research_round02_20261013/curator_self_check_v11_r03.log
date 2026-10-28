@@ -1,0 +1,12 @@
+{
+  "self_check": "PASS",
+  "checks": [
+    "real blank pilot stays blocked",
+    "partial decision rejected",
+    "nonboolean review flag rejected",
+    "source sidecar cannot substitute for annotation CSV",
+    "no fit/test/L3"
+  ],
+  "dataset_manifest_sha256": "94f4a2a79f76682be16feaf35d8074b66a9f5d11c8e08962b7781ea9949b838a",
+  "script_sha256": "dba8576a66669a4fc6a6b43f93bcc98aa09aab87217ab0a18849c25c437d7b48"
+}

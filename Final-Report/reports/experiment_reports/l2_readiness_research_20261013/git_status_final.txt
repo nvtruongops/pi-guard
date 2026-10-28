@@ -1,0 +1,17 @@
+ M .agents/roles/ROLE_DEFINITIONS.md
+ M .agents/rules/rule-01-core-capstone-invariants.md
+ M .agents/rules/rule-02-task-scope-and-milestone-enclosure.md
+ M .agents/rules/rule-07-workspace-boundary-and-governance.md
+ M .agents/skills/team-commit-and-workspace-audit/SKILL.md
+ M .agents/skills/team-git-sync-and-merge/SKILL.md
+ M .vscode/mcp.json
+ M AGENTS.md
+ M Final-Report/reports/PI_GUARD_PROCESS_REPORT.xlsx
+ M Final-Report/reports/datasets/research/project_training/audit/additional_jb_sources.md
+ M Final-Report/reports/datasets/research/project_training/audit/cross_dataset_overlap.md
+ M Final-Report/scripts/build_docs_portal.py
+ M Github-Page/dev/team_governance.md
+ M mkdocs.yml
+?? Final-Report/reports/experiment_reports/l2_readiness_research_20261013/
+?? Final-Report/reports/experiment_reports/l2_v9_health_check_20261013/
+?? mcp.json

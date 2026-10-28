@@ -1,0 +1,45 @@
+# L2 independent-source qualification — round 15
+
+## Scope Boundary Declaration
+
+- Task: continue English-only L2 source and data-coverage research based on the round12 source/family OOF diagnosis.
+- In scope: first-party publication/repository metadata, source and observation-unit compatibility, class role, declared license, split role, and updating prior-run lessons.
+- Out of scope: L3/cascade, smoke tasks, parameter sweeps on the unchanged package, downloading or using external test rows, and opening PI-Guard's sealed final-test payload. The approved test contract remains family-level metadata only.
+- No dataset file was downloaded or opened. No external prompt text, identifier, or preview-derived feature was used in source selection or model evidence.
+
+## Candidate findings
+
+| Candidate | First-party evidence | L2 role | Disposition |
+| --- | --- | --- | --- |
+| [XSTest paper](https://arxiv.org/abs/2308.01263), [authors' repository](https://github.com/paul-rottger/xstest) | The authors describe 250 manually written, English safe prompts across ten types and 200 unsafe contrast prompts. The repository calls `xstest_prompts.csv` the test prompts and licenses the prompts CC-BY-4.0. Its target is exaggerated safety/over-refusal, not PI/JB classification. | Potential independent benign-hard-case evaluation source, with a narrow safe-prompt role. | **Do not train on or import it in this round.** It is an openly published test suite rather than a training source; the unsafe contrast class is not a jailbreak label. Keep it as a metadata-only lead for a separately scoped L2 external-validation design that preserves benchmark integrity and the no-test-row boundary. |
+| [JailbreakHub paper](https://arxiv.org/abs/2308.03825), [authors' repository](https://github.com/TrustAIRLab/JailbreakLLMs) | The authors report 15,140 prompts from Reddit, Discord, prompt-sharing websites, and open-source data, with 1,405 marked jailbreak and the remainder regular. The source-family/community metadata and license are documented in the release. | JB plus regular-prompt source in principle. | **Not independent for this package.** The current L2 package already uses the TrustAIRLab in-the-wild jailbreak release; a mirror or separately hosted card of the same collection does not add a new source collection or independent evidence. Do not count it as source diversity or ingest a second copy. |
+| [JailbreakBench paper](https://arxiv.org/abs/2404.01318), [official repository](https://github.com/JailbreakBench/jailbreakbench) | The project distinguishes 100 behavior seeds from its separately maintained submitted jailbreak-artifact collection. | Conditional JB-only lead for a future source-held-out screen. | **Not admitted.** The artifact collection could supply attack strings, but this metadata screen did not establish prompt-level license scope, privacy review, attack-family ancestry, or an appropriate non-test train/validation role. Behavior seeds are not attack artifacts and must not be relabeled as observed jailbreak prompts. |
+| [Microsoft `Jailbreak:³` paper](https://www.microsoft.com/en-us/research/uploads/prod/2023/05/2305.03495.pdf) | The paper defines a user-input jailbreak detection task and reports 452 multilingual, human-labeled examples, but explicitly marks the data release as forthcoming. | Strong task-semantic fit for JB. | **Unavailable for package qualification.** The paper does not provide a released, pinned English train/validation corpus that can be audited under this task. No access request or data reconstruction was attempted. |
+| [WildJailbreak paper](https://arxiv.org/abs/2406.18510), [AI2 release account](https://allenai.org/blog/the-ai2-safety-toolkit-datasets-and-models-for-safe-and-responsible-llms-development-10abc05f6c80) | AI2 describes WildJailbreak as 262K prompt-response pairs with benign and harmful/adversarial categories. The authors explicitly call the training resource synthetic and describe constructing attacks by composing mined tactics. | Superficially offers multiple classes at scale. | **Exclude from this real-data package.** Its construction violates the task's non-synthetic input constraint; the source's aggregate size does not cure that incompatibility. |
+| [BIPIA official repository](https://github.com/microsoft/BIPIA) | BIPIA evaluates indirect injections embedded in external contexts; its builders combine context files and attack files and keep task-specific train/test context files. The project documents distinct upstream data and usage terms. | Contextual indirect-injection benchmark, not standalone message classification data. | **Do not import into this L2 package.** Its observation unit includes external context and attack placement, unlike the current single-input classifier contract; source-specific terms and upstream test partitions also prevent treating the repository as one cleared train source. |
+| [AgentDojo official repository](https://github.com/ethz-spylab/agentdojo), [paper](https://arxiv.org/abs/2406.13352) | The publisher describes a dynamic tool-using agent environment with user tasks and attacks placed into environment data. The code repository is MIT licensed. | Agent-context security evaluation. | **Do not import as prompt rows.** Attack success and benign utility depend on tool/environment state; the repository is an evaluation environment, not a source-labeled corpus of standalone user inputs for this L2 task. |
+| [deepset prompt-injections hosted card](https://huggingface.co/datasets/deepset/prompt-injections) | The hosted card metadata reports 546 train and 116 test rows, but its top-level license says Apache-2.0 while embedded dataset metadata says CC-BY-4.0; the dataset README requests more information. | Candidate PI/benign binary set. | **Keep unqualified.** The conflicting license declarations, absent construction/lineage detail, and lack of JB labels remain unresolved. The test split stays unopened. |
+
+## Source implications for the L2 diagnosis
+
+The round12 concentration finding is not resolved by parameter changes on the same frozen package. This screen found no released, non-synthetic, independently lineaged source that clears the missing class and source-coverage needs. XSTest is a useful benign hard-case lead but is a test suite; JailbreakHub is the same TrustAIR collection already represented; the strongest new multi-class safety corpus found is synthetic; and the remaining candidates either do not match the single-input task or lack usable release evidence.
+
+The next useful L2 action is a bounded publisher-level qualification of a genuinely independent JB source and a non-test benign training source, plus completion of the existing LLMail PI-source privacy/language/duplicate review. Admit nothing until lineage, rights, privacy, native-label meaning, duplicate groups, and train/validation roles are documented. Once an eligible source is available, freeze a versioned train/validation package first and then compare it against the existing C=2 JB-moderated diagnostic baseline with full L2 runs and source-aware held-out evidence. Do not run another sweep on the unchanged package.
+
+`GATE_UNSPECIFIED` remains the formal status because the owner declaration still lacks official L2 selection and acceptance criteria. That does not stop the source research or reference-label experiments authorized by the user, but it prevents reporting an official L2 PASS.
+
+## Preview exposure and containment
+
+Opening the hosted JailbreakHub dataset page automatically rendered an example row. Its contents were excluded from this analysis and were not copied into reports, packages, selection evidence, or runs. No other external dataset page was opened for row inspection. PI-Guard's sealed final-test payload remains unopened. Future source screening should use publisher papers, repositories, or metadata APIs that do not render dataset rows.
+
+## Sources
+
+- [XSTest paper](https://arxiv.org/abs/2308.01263) and [authors' repository/CC-BY-4.0 statement](https://github.com/paul-rottger/xstest)
+- [JailbreakHub paper](https://arxiv.org/abs/2308.03825) and [authors' repository](https://github.com/TrustAIRLab/JailbreakLLMs)
+- [JailbreakBench paper](https://arxiv.org/abs/2404.01318) and [official repository](https://github.com/JailbreakBench/jailbreakbench)
+- [Microsoft Research `Jailbreak:³` paper](https://www.microsoft.com/en-us/research/uploads/prod/2023/05/2305.03495.pdf)
+- [WildJailbreak paper](https://arxiv.org/abs/2406.18510) and [AI2 release account](https://allenai.org/blog/the-ai2-safety-toolkit-datasets-and-models-for-safe-and-responsible-llms-development-10abc05f6c80)
+- [BIPIA official repository](https://github.com/microsoft/BIPIA)
+- [AgentDojo official repository](https://github.com/ethz-spylab/agentdojo) and [paper](https://arxiv.org/abs/2406.13352)
+- [deepset hosted dataset card](https://huggingface.co/datasets/deepset/prompt-injections)
+- [Prior round13 source screen](source_search_round13.md), [round14 source screen](source_search_round14.md), and [round12 source/family OOF diagnostic](l2_family_source_oof_diagnostic_round12.md)

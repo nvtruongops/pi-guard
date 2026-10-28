@@ -139,7 +139,7 @@ nav:
       - "Review 1: Threat Model & Defense": thesis/review1_threat_model.md
       - "Chương 1: Giới Thiệu (Introduction)": thesis/chapter_01_introduction.md
       - "Chương 2: Tổng Quan Tài Liệu (Literature Review)": thesis/chapter_02_literature_review.md
-      - "Luận Văn Tổng Hợp Đầy Đủ": thesis/final_thesis.md
+      - "Luận Văn Tổng Hợp Đầy Đủ": thesis/FINAL_THESIS.md
   - "Thư Viện Bài Báo Khoa Học":
       - "Tổng Quan 8 Bài Báo Slide & 17 Papers": references/references_overview.md
       - "Nhật Ký 17 Bài Báo Học Thuật": references/references_log.md

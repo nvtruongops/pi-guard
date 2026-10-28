@@ -1,0 +1,2 @@
+{"phase": "deduplicate_parent_and_new_candidates", "parent_rows": 56498, "new_rows": 492}
+{"package": "D:\\Work\\Do-an\\workspaces\\truongnv\\pi_guard_pipeline\\training_bases\\datasets\\project_training\\versions\\pi_guard_v11_english_gandalf_20261013", "manifest_sha256": "94f4a2a79f76682be16feaf35d8074b66a9f5d11c8e08962b7781ea9949b838a", "parent_rows": 56498, "new_rows": 492, "excluded": {"not_english_or_confidence_below_0.95": 285}, "total_candidate_rows": 56990, "cross_family_groups": 25, "cross_family_groups_with_new_source": 0, "canonical_rows": 0, "trainable": false}

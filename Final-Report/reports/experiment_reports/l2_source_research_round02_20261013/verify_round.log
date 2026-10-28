@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\Work\Do-an\Final-Report\reports\experiment_reports\l2_source_research_round02_20261013\verify_round.py", line 264, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "D:\Work\Do-an\Final-Report\reports\experiment_reports\l2_source_research_round02_20261013\verify_round.py", line 241, in main
+    assert (doc.parent / unquote(parsed.path)).is_file(), target
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ../../../../workspaces/truongnv/pi_guard_pipeline/training_bases/datasets/project_training/versions/pi_guard_v12_english_rights_overlay_20261013/provenance/RIGHTS_EVIDENCE.json

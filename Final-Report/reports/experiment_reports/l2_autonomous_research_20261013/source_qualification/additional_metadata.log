@@ -1,0 +1,4 @@
+{"dataset_id": "jackhhao/jailbreak-classification", "revision": "2f2ceeb39658696fd3f462403562b6eea5306287", "license_field": "apache-2.0", "gated": false, "error": null}
+{"dataset_id": "Simsonsun/JailbreakPrompts", "revision": "eba9f8c492e5fdad7c753766aedb60fdd4a64bc8", "license_field": "mit", "gated": false, "error": null}
+{"dataset_id": "yanismiraoui/prompt_injections", "revision": "bd55359f2f332afc35f277ac3dd08f7111b024c9", "license_field": "apache-2.0", "gated": false, "error": null}
+{"repository": "mirzaakhi/prompt-injection-detection-dataset", "revision": "011a9ae25b31feb48d23f837fdcbc3a6a4ee3b4e", "error": null}

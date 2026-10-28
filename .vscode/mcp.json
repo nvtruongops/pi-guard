@@ -44,6 +44,10 @@
       "type": "stdio",
       "command": "npx",
       "args": ["-y", "@officecli/officecli", "mcp"]
+    },
+    "colab-mcp": {
+      "type": "stdio",
+      "command": "colab-mcp"
     }
   }
 }

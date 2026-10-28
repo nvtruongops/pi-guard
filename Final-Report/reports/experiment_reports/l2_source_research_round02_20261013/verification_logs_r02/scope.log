@@ -1,0 +1,9 @@
+
+[1m[96m================================================================================[0m
+[1m[96m🔍 [AUDIT-TASK-SCOPE] KIỂM TOÁN RANH GIỚI NHIỆM VỤ & DEPRECATIONS[0m
+[1m[96m================================================================================[0m
+
+[1m[92m✅ 100% TUÂN THỦ RANH GIỚI NHIỆM VỤ:[0m
+  - Dung lượng rules & AGENTS.md nằm trong ngưỡng an toàn (< 10000 bytes)
+  - Không phát hiện từ khóa kiến trúc bị loại trừ (INT8, ONNX, ZeroQuant)
+  - Không phát hiện tuyên bố mô hình nhóm sớm trong các báo cáo baseline

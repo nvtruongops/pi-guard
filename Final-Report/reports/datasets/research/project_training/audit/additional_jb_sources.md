@@ -56,8 +56,4 @@ Pool tự nhiên được khử trùng lặp trước khi lấy mẫu. Corpus v5
 
 ## Tái chạy
 
-Từ thư mục gốc repository:
-
-~~~powershell
-uv run --no-project python workspaces/truongnv/training_bases/datasets/project_training/tools/audit_additional_jb_sources.py
-~~~
+Audit được tái chạy từ script và raw snapshots trong workspace nghiên cứu riêng của người duy trì. Gói báo cáo công khai chỉ giữ kết quả tổng hợp và provenance; script cùng dữ liệu thô không nằm trong repository được phát hành.

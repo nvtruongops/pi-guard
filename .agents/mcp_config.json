@@ -72,6 +72,13 @@
         "mcp"
       ],
       "description": "OfficeCLI MCP server for reading, editing, and automating Office documents (.docx, .xlsx, .pptx)"
+    },
+    "colab-mcp": {
+      "type": "stdio",
+      "command": "colab-mcp",
+      "args": [],
+      "timeout": 30000,
+      "description": "Google Colab MCP server for interacting with Colab notebooks and browser sessions"
     }
   }
 }

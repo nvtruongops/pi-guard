@@ -1,0 +1,26 @@
+# Task 1 — Version-aware native-reference L2 adapter
+
+Read AUTONOMOUS_PROTOCOL.json in this directory first. The user removed waiting for approval; no human receipt or approved criteria gate may remain in this new adapter. Still require verifiable source, label, privacy, independence, split and duplicate evidence. Native reference mappings are not human gold.
+
+Create only:
+- `D:/Work/Do-an/workspaces/truongnv/pi_guard_pipeline/training_bases/pi_guard_tfidf_tier1/fit_l2_curated.py`
+- `D:/Work/Do-an/Final-Report/reports/experiment_reports/l2_autonomous_research_20261013/check_adapter.py`
+- Logs/JSON/report inside this report directory under `adapter_runs/`.
+
+Do not edit fit_l2_v8.py or any old dataset/report. No commits, publication, L3, synthetic corpus rows or fake metrics. Python -B -X utf8 and sys.dont_write_bytecode=True before imports. Pure import fit_l2_v8 is safe; do not call its historical preflight, fit or load functions. No nested subagents.
+
+## Implementation requirements
+
+Add a thin adapter, reusing `fit_l2_v8.build_model(config)`, `evaluate(model, rows, provenance)`, labels/config/cutoff policy. Keep new orchestration minimal; do not duplicate model or routing implementation. CLI requires `--package`, `--protocol`, `--output`; default metadata-only preflight, explicit `--fit`. Output must be a new run directory outside all dataset versions/history; no overwrites. Reject any package outside active `datasets/project_training/versions` and all symlink/reparse escapes. Do not scan old row payloads or test files to reject paths.
+
+Preflight checks DATASET_MANIFEST.json and STATUS.json, their identities, explicit trainable=true, English, schema `pi_guard_autonomous_l2_v1`, baseline exact protocol/legacy config equality, label status `documented_native_reference_mapping_not_human_gold`, source/lineage/privacy evidence refs, independent source-family counts 2/1/1 per class, duplicate grouping, frozen split and access declarations. Existing V9/V10/V11/V12 must return BLOCKED with fit_started=false and row_payloads_opened=[]; never load their large candidate indexes as preflight. Emit missing evidence precisely; no human approval blockers.
+
+For a future qualifying package define a small documented contract: manifest refs `{path,sha256}` for protocol, split, source review/label mapping evidence; split metadata assigns IDs, labels, family, collection, prompt and duplicate groups for train/validation only. Test is a closed metadata object with schema `pi_guard_sealed_test_families_v1`; each family has only source repository/revision/family identity, collection lineage and aggregate benign/PI/JB support. The manifest test partition is exactly `{"sealed_contract":"split.partitions.test"}`. Reject test IDs, text, per-row provenance, payload paths and hashes. Validate source-family/lineage disjointness and source-review identity from metadata. Manifest points to hashed train/validation row/provenance JSONL, canonical fields id,text,label,label_id, sidecars source IDs/revision/split/record/hash, source family and parent groups, native label, mapping rule and language. All refs are package-contained and hashed. Reject history/old V8 lineage or unknown rights holds. Only after all metadata gates pass and --fit is supplied load/hash/train/validation, verify alignments, source/label mappings, text hashes, row IDs exactly match split, groups identical and canonical fields exclude provenance. Source reviews/mapping evidence must be machine-readable, not pass booleans alone. Test payload remains unopened.
+
+On fit reuse fixed helper, no config search. Save model, train/validation IDs hashes, validation predictions, per-class confusion/PRF supports from helper, weighted PRF summary added with real support weights, exact early-ALLOW/early-BLOCK/REVIEW counts from existing 49-pair sweep, unique run manifest with data/code/protocol/split hashes/environment/seed and full console log. Measure local batch-size-one predict_proba latency P50/P95/P99 over real validation rows after documented warmup. Select one pair by predeclared criteria and tie-breaking only if all limits pass; otherwise selected_pair=null and NOT_READY. Never call selected-pair evidence L2 PASS or ready for L3 without independent out-of-fold train REVIEW support and required L1/input contract. If that part is not implemented, explicitly report remaining evidence, not completion. Do not run future fit path on invented data for tests.
+
+## Verification
+
+Check actual V9-12 preflight and --fit each: all BLOCKED, no row payload opened, no fit/test/L3. Assert default cannot fit, rejects history path and existing output, expected fixed model config and absence of fitted vocabulary (construct only, no training). Test malformed protocol/cross-partition group or IDs using metadata of existing real candidates in memory; never materialize fake labeled corpus. Syntax/import checks. Record actual command arrays, code/data hashes, UTC, exit codes and full outputs. Make clear positive fit path remains unexercised until qualifying real data exist.
+
+Write `adapter_report.md` with exact implemented interface/schema, evidence paths, tests and limitations. Return only status, files, one-line test result and concerns.

@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "D:\Work\Do-an\Final-Report\reports\experiment_reports\l2_readiness_research_20261013\screen_source_followup.py", line 46, in <module>
+    main()
+  File "D:\Work\Do-an\Final-Report\reports\experiment_reports\l2_readiness_research_20261013\screen_source_followup.py", line 30, in main
+    card_bytes = helper.fetch(url)
+                 ^^^^^^^^^^^^^^^^^
+  File "D:\Work\Do-an\Final-Report\reports\experiment_reports\l2_v9_health_check_20261013\screen_public_sources.py", line 18, in fetch
+    with urllib.request.urlopen(request, timeout=45) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nvt\AppData\Roaming\uv\python\cpython-3.11.16-windows-x86_64-none\Lib\urllib\request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nvt\AppData\Roaming\uv\python\cpython-3.11.16-windows-x86_64-none\Lib\urllib\request.py", line 525, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nvt\AppData\Roaming\uv\python\cpython-3.11.16-windows-x86_64-none\Lib\urllib\request.py", line 634, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nvt\AppData\Roaming\uv\python\cpython-3.11.16-windows-x86_64-none\Lib\urllib\request.py", line 563, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nvt\AppData\Roaming\uv\python\cpython-3.11.16-windows-x86_64-none\Lib\urllib\request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "C:\Users\nvt\AppData\Roaming\uv\python\cpython-3.11.16-windows-x86_64-none\Lib\urllib\request.py", line 643, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 401: Unauthorized

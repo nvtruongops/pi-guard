@@ -1,0 +1,10 @@
+{"dataset_id": "wambosec/prompt-injections", "revision": "071ee17a60112b7f9f808398156b430aadfaf1d2", "card_license_field": "mit", "gated": false, "error": null}
+{"dataset_id": "wambosec/prompt-injections-subtle", "revision": "cd789a6e362aa72624d7f835c5270c8c3bdaf524", "card_license_field": "mit", "gated": false, "error": null}
+{"dataset_id": "rgeada/tool-response-injections", "revision": "39050de797f2694f0d72e1086003154de1919379", "card_license_field": "apache-2.0", "gated": false, "error": null}
+{"dataset_id": "S-Labs/prompt-injection-dataset", "revision": "002a9dd18514abd021869823d6b0429b38606d99", "card_license_field": "mit", "gated": false, "error": null}
+{"dataset_id": "allenai/wildjailbreak", "revision": "5ddc12a7894f842b0619b8e1c7ee496b198af009", "card_license_field": "odc-by", "gated": "auto", "error": null}
+{"dataset_id": "3nesdeniz/english-prompt-injection-3k", "revision": "87f017347aff7887b1de0d9457c9ec01bf7ba8b5", "card_license_field": "cc-by-4.0", "gated": false, "error": null}
+{"dataset_id": "3nesdeniz/agentic-prompt-injection-5k", "revision": "e658d94dcafc133e3a4483f9f9aa13507f3848c4", "card_license_field": "cc-by-4.0", "gated": false, "error": null}
+{"dataset_id": "3nesdeniz/agentic-prompt-injection-boundary-pairs", "revision": "a5682e7573e1c7bc4b12e64d49c0dcd90ca776cf", "card_license_field": "cc-by-4.0", "gated": false, "error": null}
+{"dataset_id": "3nesdeniz/guardrail-hard-negatives", "revision": "638188743abb089708163b2408a0ef6279721869", "card_license_field": "cc-by-4.0", "gated": false, "error": null}
+{"dataset_id": "neuralchemy/Prompt-injection-dataset", "revision": "7d70432dfcf47a821612cbf9d34e9d9e3ad20e75", "card_license_field": "apache-2.0", "gated": false, "error": null}

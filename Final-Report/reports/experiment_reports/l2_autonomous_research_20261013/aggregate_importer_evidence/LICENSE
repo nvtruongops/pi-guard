@@ -1,0 +1,56 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+================================================================================
+
+This license applies to the DATASET content (data/core/) in this repository.
+
+The code (scripts/, notebooks/) is licensed under MIT — see LICENSE-CODE.
+
+The extended dataset (data/extended/) inherits stricter licenses from upstream
+sources; see data/extended/README.md and docs/license_matrix.md.
+
+--------------------------------------------------------------------------------
+
+You are free to:
+
+  Share — copy and redistribute the material in any medium or format
+  Adapt — remix, transform, and build upon the material
+  for any purpose, even commercially.
+
+Under the following terms:
+
+  Attribution — You must give appropriate credit, provide a link to the license,
+  and indicate if changes were made. You may do so in any reasonable manner,
+  but not in any way that suggests the licensor endorses you or your use.
+
+  No additional restrictions — You may not apply legal terms or technological
+  measures that legally restrict others from doing anything the license permits.
+
+Notices:
+
+  You do not have to comply with the license for elements of the material in
+  the public domain or where your use is permitted by an applicable exception
+  or limitation.
+
+  No warranties are given. The license may not give you all of the permissions
+  necessary for your intended use. For example, other rights such as publicity,
+  privacy, or moral rights may limit how you use the material.
+
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+--------------------------------------------------------------------------------
+
+Attribution instructions
+========================
+
+When using this dataset, please cite:
+
+    llm-redteam-corpus-taxonomy contributors. (2026).
+    LLM Red-Team Corpus + Taxonomy (Core).
+    https://github.com/rubyglask/llm-redteam-corpus-taxonomy
+    DOI: (Zenodo DOI to be issued in Phase 1 Week 8)
+
+See CITATION.cff for machine-readable citation metadata.
+
+Upstream sources retain their own licenses; see docs/license_matrix.md for the
+per-source attribution table. When redistributing subsets, preserve upstream
+citations as recorded in data/core/sources.json.

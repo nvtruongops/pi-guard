@@ -474,7 +474,7 @@ def aggregate_all():
     copy_doc(ROOT_DIR / "Final-Report" / "thesis" / "chapters" / "02_Literature_Review.md",
              DOCS_DIR / "thesis" / "chapter_02_literature_review.md")
     copy_doc(ROOT_DIR / "Final-Report" / "thesis" / "FINAL_THESIS.md",
-             DOCS_DIR / "thesis" / "final_thesis.md")
+             DOCS_DIR / "thesis" / "FINAL_THESIS.md")
 
     # Thư viện bài báo khoa học
     copy_doc(ROOT_DIR / "Final-Report" / "References" / "README.md",

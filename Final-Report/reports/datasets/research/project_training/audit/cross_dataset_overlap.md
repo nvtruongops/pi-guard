@@ -131,7 +131,7 @@ Corpus hiện hành được cân bằng nhãn trên một file duy nhất; đâ
 Đã xóa folder `source_datasets/wildjailbreak_allenai/` theo yêu cầu. Folder chỉ chứa README, cache và PDF paper, không có payload; URL card và paper vẫn được ghi trong `urldata.md`. Tổng số dòng dữ liệu tải về không đổi. PromptSentinel vẫn là audit-only: JB ít là một hạn chế, nhưng lý do không dùng còn gồm gated access, license chưa rõ và thiếu paper riêng cho bộ tổng hợp.
 ## Tái tạo audit
 
-Từ repository root: `uv run --no-project --with duckdb python workspaces/truongnv/training_bases/datasets/project_training/tools/audit_cross_dataset_overlap.py`.
+Audit được tái chạy bằng script và raw snapshots trong workspace nghiên cứu riêng của người duy trì; gói báo cáo công khai giữ bảng tổng hợp, manifest và giới hạn phương pháp.
 
 Chạy builder và verifier riêng để tái tạo corpus; audit overlap không tải thêm dữ liệu và không huấn luyện mô hình.
 

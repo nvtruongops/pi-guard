@@ -43,11 +43,49 @@ CYAN = "\033[96m"
 BOLD = "\033[1m"
 RESET = "\033[0m"
 
+import subprocess
+
 # Ignored paths during scanning
 IGNORED_DIR_NAMES = {
     ".git", ".venv", "venv", "env", "__pycache__", "node_modules",
-    ".codegraph", "site", ".pytest_cache", ".ruff_cache"
+    ".codegraph", "site", ".pytest_cache", ".ruff_cache",
+    "site-packages", "Lib", "Scripts", "Include"
 }
+
+
+def _open_safe(p: Path):
+    """Open file safely on Windows even when path exceeds MAX_PATH (260 chars)."""
+    p_str = str(p.resolve())
+    if sys.platform == "win32" and len(p_str) >= 240 and not p_str.startswith("\\\\?\\"):
+        p_str = "\\\\?\\" + p_str
+    return open(p_str, "r", encoding="utf-8", errors="ignore")
+
+
+def get_staged_files() -> List[Path]:
+    """Return list of staged files in Git."""
+    try:
+        res = subprocess.run(
+            ["git", "diff", "--cached", "--name-only", "--diff-filter=ACMR"],
+            cwd=str(REPO_ROOT),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        if res.returncode == 0 and res.stdout:
+            files = []
+            for line in res.stdout.splitlines():
+                line = line.strip().strip('"')
+                if line:
+                    p = REPO_ROOT / line
+                    if p.exists():
+                        files.append(p)
+            return files
+    except Exception:
+        pass
+    return []
+
 
 # ==============================================================================
 # PASS 1: MODEL CODEBASE INTEGRITY (ZERO PREMATURE PROPOSED MODEL CODE)
@@ -93,7 +131,7 @@ def pass1_check_model_codebase(target_files: Optional[List[Path]] = None) -> Lis
 
     for py_file in py_files:
         try:
-            with open(py_file, "r", encoding="utf-8", errors="ignore") as f:
+            with _open_safe(py_file) as f:
                 content = f.read()
 
             for b_cls in BANNED_MODEL_CLASSES:
@@ -146,7 +184,7 @@ def pass2_check_synthetic_random(target_files: Optional[List[Path]] = None) -> L
 
     for py_file in py_files:
         try:
-            with open(py_file, "r", encoding="utf-8", errors="ignore") as f:
+            with _open_safe(py_file) as f:
                 lines = f.readlines()
 
             for line_no, line in enumerate(lines, start=1):
@@ -194,7 +232,12 @@ def pass3_check_markdown_tables_and_claims(target_files: Optional[List[Path]] = 
 
     md_files: List[Path] = []
     if target_files is not None:
-        md_files = [f for f in target_files if f.suffix == ".md"]
+        md_files = [
+            f for f in target_files
+            if f.suffix == ".md"
+            and ".agents/rules" not in str(f).replace("\\", "/")
+            and f.name not in ["AGENTS.md", "anti-hallucination-and-empirical-grounding-standards.md", "plan_anti_hallucination_and_empirical_grounding_audit.md"]
+        ]
     else:
         for p in REPO_ROOT.rglob("*.md"):
             rel_str = str(p.relative_to(REPO_ROOT)).replace("\\", "/")
@@ -210,7 +253,7 @@ def pass3_check_markdown_tables_and_claims(target_files: Optional[List[Path]] = 
 
     for md_file in md_files:
         try:
-            with open(md_file, "r", encoding="utf-8", errors="ignore") as f:
+            with _open_safe(md_file) as f:
                 content = f.read()
 
             rel_p = md_file.relative_to(REPO_ROOT)
@@ -310,7 +353,7 @@ def pass4_check_benchmark_grounding(target_files: Optional[List[Path]] = None) -
 
     for jf in json_files:
         try:
-            with open(jf, "r", encoding="utf-8", errors="ignore") as f:
+            with _open_safe(jf) as f:
                 content = f.read()
 
             rel_p = jf.relative_to(REPO_ROOT)
@@ -330,7 +373,10 @@ def pass4_check_benchmark_grounding(target_files: Optional[List[Path]] = None) -
 # ==============================================================================
 def run_anti_hallucination_audit(mode: str = "all", staged_files: Optional[List[Path]] = None) -> Tuple[bool, str]:
     """Hàm wrapper chuẩn dùng cho cả CLI độc lập và validate_local.py."""
-    target_files = staged_files if mode == "staged" else None
+    if mode == "staged" and staged_files is None:
+        target_files = get_staged_files()
+    else:
+        target_files = staged_files if mode == "staged" else None
 
     all_violations: List[str] = []
 

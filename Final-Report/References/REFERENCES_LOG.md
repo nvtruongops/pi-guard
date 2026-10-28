@@ -1,9 +1,9 @@
 # REFERENCES LOG & APPLICATION MAPPING MATRIX
 ## Hệ Thống Quản Lý & Định Vị Tài Liệu Tham Khảo — Đề Tài PI-Guard (COMPREHENSIVE VERIFIED LITERATURE MATRIX)
 
-> **Local source archive**: 38 PDF files; the portal shows metadata and source links.
+> **Local source archive**: 40 PDF files; the portal shows metadata and source links.
 > **Tiêu chuẩn học thuật**: 16 công trình khoa học đỉnh cao kỷ nguyên LLM hiện đại (2022–2026) + 1 công trình kinh điển đặt nền móng kiến trúc bảo vệ phân tầng (Saltzer & Schroeder, IEEE 1975) + 12 tài liệu chuyên đề, mô hình đối chuẩn SOTA Meeting 5 (PIGuard ACL 2025, InstructDetector, Prompt Guard, Ayub CAMLIS, ZeroQuant, BIPIA, Do-Not-Answer, v.v.) + các công trình nền tảng toán học & thông tin (Luhn 1958, Spärck Jones 1972, fastText TACL 2017, Attention NeurIPS 2017, BERT NAACL 2019).
-> **Total locally archived PDFs**: **38 full-text PDFs**.
+> **Total locally archived PDFs**: **40 full-text PDFs**.
 > **Last normalized**: 2026-09-30 (verified source metadata and provenance levels).
 > **Mục đích**: Lưu trữ, lập chỉ mục siêu dữ liệu chuẩn xác, phân định rạch ròi 4 tầng xuất xứ học thuật và ánh xạ toàn diện vào cấu trúc luận văn, chuyên đề nghiên cứu và mã nguồn đồ án PI-Guard.
 
@@ -104,7 +104,32 @@
 | <a id="ref41"></a>**41. CASCADE Against Jailbreaks (arXiv 2026)** | [arXiv-CASCADE] | Luo & Han (2026) | [Luo_2026_CASCADE_Against_Jailbreaks_Evaluation.pdf](./Luo_2026_CASCADE_Against_Jailbreaks_Evaluation.pdf) | Preprint đánh giá thực nghiệm các kết hợp tấn công/phòng thủ trong các thiết lập được mô tả; kết luận thực nghiệm không phải định lý tổng quát. | **Ứng dụng PI-Guard**: Cung cấp một điểm tham chiếu thực nghiệm cho nghiên cứu kết hợp nhiều giai đoạn; không bảo chứng kiến trúc hay KPI cụ thể của đồ án. |
 | <a id="ref42"></a>**42. Hồ sơ audit thực nghiệm cục bộ (2026)** | [Local-Audit-2026] | Tài liệu nội bộ, 2026-09-29 | Tài liệu thuộc workspace cá nhân bị loại khỏi repository; không có bản chia sẻ tại đây. | Đây là hồ sơ nội bộ, không phải nguồn học thuật. Nội dung và kết quả trong đó không được viện dẫn như bằng chứng của repository. |
 | <a id="ref43"></a>**43. Metadata pilot cục bộ (2026)** | [Local-Pilot-Status-2026] | Metadata nội bộ, 2026-09-29 | Metadata thuộc workspace cá nhân bị loại khỏi repository; không có bản chia sẻ tại đây. | Không nêu trạng thái chạy hay metric cục bộ trong tài liệu tham khảo được chia sẻ. |
+| <a id="ref68"></a>**68. Chunk Encoding với max-pooling cho tài liệu dài (EACL 2024)** | [EACL-Chunk-MaxPool-2024] | Gomes, Coutinho & Martins (2024) | [Gomes_2024_Accurate_Well_Calibrated_ICD_Chunk_Encoding_EACL.pdf](./Gomes_2024_Accurate_Well_Calibrated_ICD_Chunk_Encoding_EACL.pdf) · [ACL Anthology](https://aclanthology.org/2024.eacl-long.141/) | Chia hồ sơ y khoa thành chunk tối đa 512 token, max-pool logits theo chunk và dùng overlap 255 token; CE tốt hơn baseline 512 token đầu trên các metric F1 của hai split được báo cáo. Tác giả cũng nêu rủi ro max-pooling làm xác suất quá cao và giảm calibration. | Bằng chứng gần cho tính khả thi của chunk-level max pooling trên văn bản dài; khác miền ICD, không bảo chứng hiệu quả PI-Guard hoặc threshold hiện tại. |
+| <a id="ref69"></a>**69. So sánh Max và Noisy-or trong multiple-instance learning (Interspeech 2018)** | [ISCA-Max-NoisyOr-2018] | Wang, Li & Metze (2018) | [Wang_Li_Metze_2018_Max_Noisy_Or_Pooling_Interspeech.pdf](./Wang_Li_Metze_2018_Max_Noisy_Or_Pooling_Interspeech.pdf) · [ISCA Archive](https://www.isca-archive.org/interspeech_2018/wang18_interspeech.html) | Trong nhận dạng lời nói và phát hiện sự kiện âm thanh, max pooling định vị được sự kiện còn noisy-or thất bại trong các thiết lập nghiên cứu; tác giả phân tích tương quan giữa các bước chuỗi và giả định độc lập của noisy-or. | Nguồn nền tảng để so sánh phép gộp kiểu multiple-instance; miền âm thanh, không phải bằng chứng thực nghiệm cho văn bản hay PI-Guard. |
+| <a id="ref70"></a>**70. Prompt Injection Mechanisms Dataset (Hugging Face, 2026)** | [HF-Cyberec-Mechanisms] | cyberec (2026 snapshot) | [Dataset card](https://huggingface.co/datasets/cyberec/llm-prompt-injection-attacks) | Card mô tả các nhãn cơ chế BENIGN, JAILBREAK, INSTRUCTION_OVERRIDE, ROLE_HIJACK và DATA_EXFILTRATION; nhãn heuristic. | Metadata-only screen: không có hai trục source-label PI/JB độc lập; không dùng làm BOTH. |
+| <a id="ref71"></a>**71. LLM Prompt Safety Benchmark 100K (Kaggle, 2026)** | [Kaggle-Prompt-Safety-100K] | Goutam Sharma (Kaggle metadata, 2026) | [Dataset page](https://www.kaggle.com/datasets/goutamsharma12/prompt-safety-classifier-100k) | Metadata mô tả sáu lớp đơn gồm Prompt Injection, Jailbreak Attempt, Harmful Content, Social Engineering và Ambiguous Borderline. | Không có đồng nhãn PI+JB; metadata API báo CC0-1.0 nhưng mô tả nói MIT; loại khỏi L3. |
+| <a id="ref72"></a>**72. LLM Prompt-Injection & Jailbreak Detection (Kaggle, 2026)** | [Kaggle-Synthetic-PI-JB] | Ahmad Zulfiqar (Kaggle metadata, 2026) | [Dataset page](https://www.kaggle.com/datasets/ahmadzulfiqar001/llm-prompt-injection-and-jailbreak-detection) | Metadata mô tả dữ liệu tổng hợp, nhãn benign hoặc một trong các kỹ thuật tấn công, cùng cờ malicious. | Kỹ thuật/cờ nhị phân không xác nhận riêng PI, JB hay BOTH; payload chưa tải. |
+| <a id="ref73"></a>**73. LLM Jailbreak & Prompt-Injection Dataset (Hugging Face, 2026)** | [HF-Necent-Guardrails] | Necent (2026 snapshot) | [Dataset card](https://huggingface.co/datasets/Necent/llm-jailbreak-prompt-injection-dataset) | Card mô tả `prompt_harmful`, `prompt_adversarial` và một `prompt_type`; gated, các nguồn gốc giữ license riêng. | Không có cặp nhãn đồng thời PI+JB; prompt adversarial/harmful không tương đương taxonomy L3; không tải payload. |
+| <a id="ref74"></a>**74. SALAD-Data (OpenSafetyLab, 2024)** | [HF-Salad-Data] | OpenSafetyLab (2024) | [Dataset card](https://huggingface.co/datasets/OpenSafetyLab/Salad-Data) · [paper](https://arxiv.org/abs/2402.05044) | Card mô tả base/attack-enhanced safety questions với taxonomy harm và trường phương pháp tạo tấn công. | Không có nhãn riêng PI/JB; không dùng cho subtype BOTH hoặc OTHER_ATTACK. |
 
+| <a id="ref75"></a>**75. AgentHarm (UK AI Safety Institute, 2024)** | [HF-AgentHarm] | Andriushchenko et al. (2024; v3 2025) | [Dataset card](https://huggingface.co/datasets/ai-safety-institute/AgentHarm) · [paper](https://arxiv.org/abs/2410.09024) | Benchmark cho harmful tasks của LLM agents; card yêu cầu chỉ dùng để đánh giá và có điều khoản license bổ sung. | Không dùng train; không có source label PI+JB phù hợp L3. |
+| <a id="ref76"></a>**76. LLM Jailbreak & Prompt-Injection Dataset (Hugging Face, 2026)** | [HF-Necent-Guardrails] | Necent (2026 snapshot) | [Dataset card](https://huggingface.co/datasets/Necent/llm-jailbreak-prompt-injection-dataset) | Metadata mô tả prompt_type đơn, các trục prompt_harmful/prompt_adversarial và gate yêu cầu thông tin liên hệ/người dùng. | Không có nhãn đồng thời PI+JB; không chấp thuận gate hoặc tải payload. |
+| <a id="ref77"></a>**77. ToolSafe / TS-Bench (ACL Findings 2026)** | [ACL-ToolSafe] | Mou et al. (2026) | [Paper](https://aclanthology.org/2026.findings-acl.1850.pdf) · [official repo](https://github.com/MurrayTom/ToolSafe) | Benchmark gán nhãn an toàn theo bước gọi tool, kèm lịch sử tương tác và hành động dự kiến. | Không áp vào L3 prompt-only; quyền dữ liệu chưa được xác minh. |
+| <a id="ref78"></a>**78. AEGINEL Guard (AEGIS Research, 2026)** | [AEGIS-AEGINEL] | Kim and AEGIS Research Team (2026) | [Technical report](https://aegis-research.yatavent.net/en/publications/aegis-tr-2026-002) · [repository](https://github.com/kwangilkimkenny/AEGINEL) | Báo cáo mô tả một bộ dữ liệu đa nhãn tự xây dựng và mô hình prompt-security. | Không có bản ghi dataset và license/provenance theo dòng được tìm thấy; không dùng dữ liệu. |
+| <a id="ref79"></a>**79. ILION-Bench v2 (Zenodo, 2026)** | [Zenodo-ILION-Bench] | Chitan (2026) | [Zenodo record](https://zenodo.org/records/18929841) | Benchmark execution safety có role, trigger, proposed action, quyết định BLOCK/ALLOW và category. | Không phải tác vụ phân loại prompt PI/JB; quyền và overlap chưa kiểm toán. |
+| <a id="ref80"></a>**80. L3 v0.2.1 package and trainer preflight evidence (local, 2026-10-23)** | [L3-v021-Evidence] | PI-Guard local verifier and trainer | [JSON evidence](D:/Work/Do-an/workspaces/truongnv/reports/experiment_reports/training_lessons/L3_V0_2_1_SCREENING_AND_PREFLIGHT_2026-10-23.json) | Integrity verifier passed; preflight reports train BOTH 49/100, validation BOTH 0/30, candidate BOTH 15/30. | Fit remains blocked; no candidate payload scoring or model training. |
+| <a id="ref81"></a>**81. L3 v0.2.1 source-label/group support (local, 2026-10-23)** | [L3-v021-Group-Support] | PI-Guard local JSONL metadata audit | [JSON evidence](D:/Work/Do-an/workspaces/truongnv/reports/experiment_reports/training_lessons/L3_V0_2_1_SOURCE_LABEL_DISTRIBUTION_2026-10-23.json) | Counts source-mapped label rows and distinct group IDs in train/validation only. | OTHER_ATTACK validation has 36 rows from 2 CiberIA groups; row support does not imply source-diverse groups. |
+| <a id="ref82"></a>**82. Bordair Multimodal Prompt Injection Dataset (Hugging Face, 2026)** | [HF-Bordair-Multimodal] | Bordair (2026 snapshot) | [Dataset card](https://huggingface.co/datasets/Bordair/bordair-multimodal) | Card describes a large multi-version corpus with binary `expected_detection` labels across PI, jailbreak, agent and multimodal scenarios. | No row-level BOTH/OTHER_ATTACK target; viewer reports incompatible columns across files and upstream component rights are not itemized per row. |
+| <a id="ref83"></a>**83. AI Mitra Prompt Injection Dataset (Hugging Face, 2026)** | [HF-AIMitra-PI] | ai-mitra (2026 snapshot) | [Dataset card](https://huggingface.co/datasets/ai-mitra/prompt-injection-dataset) | Card describes a small English text corpus with binary benign/PI labels and attack-type metadata. | No separate JB or BOTH target; the card lists synthetic/template phrasing and incomplete real-world coverage as limitations. |
+| <a id="ref84"></a>**84. PromptSentinel (Hugging Face, 2026)** | [HF-PromptSentinel] | Nuhman PK (2026 snapshot) | [Dataset card](https://huggingface.co/datasets/nuhmanpk/prompt-sentinel) | Card maps source datasets to mutually exclusive benign, jailbreak, and injection labels and exposes per-row source/license fields. | No BOTH class; gated access, mixed/unspecified component rights, and card-versus-split count discrepancy prevent aggregate use. |
+| <a id="ref85"></a>**85. NeurAlchemy Prompt Injection and Jailbreak Dataset (Hugging Face, 2026)** | [HF-NeurAlchemy-PI-JB] | NeurAlchemy (2026 snapshot) | [Dataset card](https://huggingface.co/datasets/neuralchemy/Prompt-injection-dataset) | Card describes binary benign/malicious labels plus a single attack category such as `direct_injection` or `jailbreak`. | Existing local core train/validation audit found 13 original-source JB train rows and none in validation; mixed component rights remain unresolved. |
+| <a id="ref86"></a>**86. PraneshJs Prompt_injection_safe (Hugging Face, 2026)** | [HF-Pranesh-PI-Safe] | PraneshJs (2026 snapshot) | [Dataset card](https://huggingface.co/datasets/PraneshJs/Prompt_injection_safe) | Pinned revision MIT metadata; train schema includes `label`, `topic`, `intent`; local train-only audit finds 24 PI+jailbreak pairs. | README has no collection/label method or source/group ID; validation later confirmed 9 BOTH and 21 OTHER_ATTACK candidates; test not downloaded. Used as v0.2.3 source-label proxy; support remains too low to fit. |
+| <a id="ref87"></a>**87. AIDataFdn Prompt Injection Dataset (Hugging Face, 2026)** | [HF-AIDataFdn-PI] | AIDataFdn (2026 snapshot) | [Dataset card](https://huggingface.co/datasets/AIDataFdn/promptinjection) | Card reports Apache-2.0, about 734k rows, and one categorical `categories` field. | No PI+JB co-label and no tool-abuse label in the displayed taxonomy; no row-level lineage in displayed schema. |
+| <a id="ref88"></a>**88. ToolSafety (EMNLP 2025)** | [ACL-ToolSafety-2025] | Xie et al. (2025) | [ACL Anthology](https://aclanthology.org/2025.emnlp-main.714/) | Dataset addresses direct harm, indirect harm, and multi-step safety in tool invocation. | Context-aware agent tool-safety task, not standalone PI/JB subtype labels. |
+| <a id="ref89"></a>**89. ToolMisuseBench (arXiv, 2026)** | [arXiv-ToolMisuseBench] | Sigdel and Baral (2026) | [Paper](https://arxiv.org/abs/2604.01508) | 6,800 structured agent tasks include tool schemas, state, success criteria, fault plan, and recovery metrics. | Execution/recovery benchmark, not prompt-only attack classification. |
+| <a id="ref90"></a>**90. Turkish Prompt Injection and Jailbreak Dataset (Hugging Face, 2026)** | [HF-OnerAYTAS-PI-JB] | OnerAYTAS (2026 snapshot) | [Dataset card](https://huggingface.co/datasets/OnerAYTAS/Turkish_prompt_injection_jailbreak_dataset) | Declares CC-BY-NC-SA-4.0 and bundles Turkish/English source files. | HF viewer reports incompatible CSV columns and cast failure; stable co-label schema not established. |
+| <a id="ref91"></a>**91. Prompt Injection Patterns Extended (Hugging Face, 2026)** | [HF-Mukunda-Patterns] | Mukunda (2026 snapshot) | [Dataset card](https://huggingface.co/datasets/mukunda1729/prompt-injection-patterns-extended) | MIT card; 30 fixtures across labeled categories including tool-abuse and jailbreak. | Only two per category and no BOTH co-label; insufficient support. |
+| <a id="ref92"></a>**92. LLM Jailbreak and Prompt-Injection Dataset (Necent, 2026)** | [HF-Necent-Guardrails] | Necent (2026 snapshot) | [Dataset card](https://huggingface.co/datasets/Necent/llm-jailbreak-prompt-injection-dataset) | Gated aggregate exposes harmful/adversarial axes and one `prompt_type`; underlying sources retain own licenses. | No separate PI/JB co-label; access gate not accepted. |
 ---
 
 ## 📊 2. BẢNG CHI TIẾT SIÊU DỮ LIỆU HỌC THUẬT (17 BÀI BÁO CỐT LÕI)
@@ -694,8 +719,122 @@ DANH MỤC 12 CÔNG TRÌNH BỔ TRỢ & ĐỐI CHUẨN THỰC NGHIỆM — ĐỒ
 - **Pinned revision**: `12040accade4e8a0f71eabdb258fecc2e7e948be` (Apache-2.0 license as listed on the model card).
 - **Local input manifest**: thuộc workspace cá nhân và không nằm trong repository này.
 - **Provenance boundary**: đây là checkpoint khởi tạo công khai; tài liệu này không báo cáo kết quả fine-tuning cục bộ hoặc kết quả PI-Guard.
+
+### <a id="ref68"></a>[68] Accurate and Well-Calibrated ICD Code Assignment Through Attention Over Diverse Label Embeddings
+- **Tác giả**: Goncalo Gomes, Isabel Coutinho, Bruno Martins.
+- **Năm và nơi công bố**: 2024, *Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers)*, trang 2302–2315.
+- **DOI**: [10.18653/v1/2024.eacl-long.141](https://doi.org/10.18653/v1/2024.eacl-long.141).
+- **Nguồn chính thức và PDF**: [ACL Anthology](https://aclanthology.org/2024.eacl-long.141/) · [PDF Open Access](./Gomes_2024_Accurate_Well_Calibrated_ICD_Chunk_Encoding_EACL.pdf).
+- **Phạm vi phát hiện gốc**: phân loại mã ICD trên hồ sơ y khoa MIMIC-III; Chunk Encoding chạy encoder độc lập trên chunk 512 token, max-pool kết quả và dùng overlap 255 token.
+- **Kết quả và giới hạn dùng trong PI-Guard**: CE có F1 cao hơn baseline 512 token đầu trong các thiết lập được báo cáo. Thay đổi bao gồm độ phủ tài liệu dài và thành phần kiến trúc; không quy toàn bộ khác biệt cho phép pooling và không suy ra hiệu năng prompt injection. Tác giả ghi nhận max-pooling có thể làm xác suất quá cao và ảnh hưởng calibration.
+
+### <a id="ref69"></a>[69] Comparing the Max and Noisy-Or Pooling Functions in Multiple Instance Learning for Weakly Supervised Sequence Learning Tasks
+- **Tác giả**: Yun Wang, Juncheng Li, Florian Metze.
+- **Năm và nơi công bố**: 2018, *Proceedings of Interspeech 2018*, trang 1339–1343.
+- **DOI**: [10.21437/Interspeech.2018-990](https://doi.org/10.21437/Interspeech.2018-990).
+- **Nguồn chính thức và PDF**: [ISCA Archive](https://www.isca-archive.org/interspeech_2018/wang18_interspeech.html) · [PDF Open Access](./Wang_Li_Metze_2018_Max_Noisy_Or_Pooling_Interspeech.pdf).
+- **Phạm vi phát hiện gốc**: so sánh phép gộp max và noisy-or trên nhận dạng lời nói và phát hiện sự kiện âm thanh với nhãn yếu.
+- **Giới hạn dùng trong PI-Guard**: hỗ trợ thảo luận lựa chọn pooling ở mức multiple-instance, không chứng minh raw logit-margin max cho văn bản; noisy-or cần cách hiểu xác suất và các giả định về phụ thuộc cần được kiểm tra.
+### <a id="ref70"></a>[70] Prompt Injection Mechanisms Dataset — Hugging Face
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/cyberec/llm-prompt-injection-attacks); metadata revision `a3d05895270cac0e553206c95463061c9bfb899f`.
+- **Taxonomy công bố**: `BENIGN`, `JAILBREAK`, `INSTRUCTION_OVERRIDE`, `ROLE_HIJACK`, `DATA_EXFILTRATION`; card gọi đây là nhãn cơ chế được tái gán bằng heuristic.
+- **Giới hạn dùng trong L3**: Không có trường nhãn PI và JB độc lập cùng co-label; không đủ bằng chứng để gán BOTH.
+
+### <a id="ref71"></a>[71] LLM Prompt Safety Benchmark 100K — Kaggle
+- **Nguồn metadata**: [Kaggle dataset page](https://www.kaggle.com/datasets/goutamsharma12/prompt-safety-classifier-100k); Kaggle API metadata và file listing được chụp cục bộ ngày 2026-10-23.
+- **Schema mô tả**: sáu lớp prompt safety gồm Benign, Prompt Injection, Jailbreak Attempt, Harmful Content Request, Social Engineering và Ambiguous Borderline; mỗi dòng có một `label`.
+- **Giới hạn dùng trong L3**: Không có nhãn đồng xuất PI+JB. Không ánh xạ Ambiguous Borderline thành OTHER_ATTACK vì lớp đó không biểu thị tool abuse/misuse. License bất nhất: Kaggle API trả CC0-1.0, mô tả nhúng khai MIT.
+
+### <a id="ref72"></a>[72] LLM Prompt-Injection & Jailbreak Detection — Kaggle
+- **Nguồn metadata**: [Kaggle dataset page](https://www.kaggle.com/datasets/ahmadzulfiqar001/llm-prompt-injection-and-jailbreak-detection); Kaggle API metadata và file listing được chụp cục bộ ngày 2026-10-23.
+- **Schema mô tả**: dữ liệu tổng hợp với `label` benign hoặc một kỹ thuật tấn công và `is_malicious`; card liệt kê kỹ thuật như instruction override, role-play, refusal suppression, obfuscation và indirect injection.
+- **Giới hạn dùng trong L3**: Nhãn kỹ thuật và cờ malicious không định nghĩa riêng hai trục PI/JB. Payload chưa tải hoặc đánh giá; license metadata CC0-1.0.
+
+### <a id="ref73"></a>[73] LLM Jailbreak & Prompt-Injection Dataset — Hugging Face
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/Necent/llm-jailbreak-prompt-injection-dataset); metadata revision `4edfb5aeaafe58c9bf489a478a42188f239d7c1e`.
+- **Schema mô tả**: `prompt_harmful`, `prompt_adversarial`, `prompt_type` và các trường đáp ứng; repo yêu cầu đăng nhập/chấp thuận gate và card nêu từng upstream source giữ license riêng.
+- **Giới hạn dùng trong L3**: `prompt_harmful` kết hợp `prompt_adversarial` không biểu thị PI+JB đồng thời; không nhận gated payload.
+
+### <a id="ref74"></a>[74] SALAD-Data — OpenSafetyLab
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/OpenSafetyLab/Salad-Data) và [SALAD-Bench paper](https://arxiv.org/abs/2402.05044); metadata revision `d21a325e276a99bd69b1fbb8aa51a9f249486b72`.
+- **Schema mô tả**: safety question, attack/defense-enhanced question, phương pháp tạo và taxonomy harm nhiều cấp.
+- **Giới hạn dùng trong L3**: không có nhãn nguồn riêng PI, JB hoặc tool abuse; không dùng cho subtype supervision.
+
 ---
 
+### <a id="ref75"></a>[75] AgentHarm — UK AI Safety Institute
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/ai-safety-institute/AgentHarm) và [paper](https://arxiv.org/abs/2410.09024).
+- **Giới hạn dùng trong L3**: Card yêu cầu chỉ dùng cho evaluation; benchmark đo harmfulness của agent tasks, không cung cấp nhãn nguồn PI+JB phù hợp subtype prompt-only. Không tải payload.
+
+### <a id="ref76"></a>[76] LLM Jailbreak & Prompt-Injection Dataset — Necent
+- **Nguồn chính thức**: [Hugging Face card](https://huggingface.co/datasets/Necent/llm-jailbreak-prompt-injection-dataset), metadata revision 4edfb5aeaafe58c9bf489a478a42188f239d7c1e.
+- **Schema/access**: prompt_type là một category; prompt_adversarial và prompt_harmful không phân biệt PI với JB. Gate yêu cầu thông tin liên hệ và intended use. Không chấp thuận gate, không tải payload; upstream licenses khác nhau.
+
+### <a id="ref77"></a>[77] ToolSafe / TS-Bench
+- **Nguồn chính thức**: [ACL Findings paper](https://aclanthology.org/2026.findings-acl.1850.pdf) và [official repository](https://github.com/MurrayTom/ToolSafe).
+- **Giới hạn dùng trong L3**: Nhãn ở mức bước gọi tool, cần interaction history/candidate action; paper không định nghĩa JB axis. Rights của data chưa được xác minh. Không tải payload.
+
+### <a id="ref78"></a>[78] AEGINEL Guard
+- **Nguồn chính thức**: AEGIS Research [technical report](https://aegis-research.yatavent.net/en/publications/aegis-tr-2026-002) và [linked public repository](https://github.com/kwangilkimkenny/AEGINEL).
+- **Giới hạn dùng trong L3**: Report nói có custom multi-label dataset, nhưng public repo listing không có row-level corpus và không tìm thấy dataset license/provenance theo dòng. Không dùng dữ liệu.
+
+### <a id="ref79"></a>[79] ILION-Bench v2
+- **Nguồn chính thức**: [Zenodo record](https://zenodo.org/records/18929841).
+- **Giới hạn dùng trong L3**: Benchmark quyết định cho proposed agent actions (BLOCK/ALLOW), không phải subtype label cho prompt-only PI/JB. Chưa kiểm toán license và overlap; không tải payload.
+
+### <a id="ref80"></a>[80] Local L3 v0.2.1 package and trainer preflight evidence
+- **Artifact**: [JSON verification record](D:/Work/Do-an/workspaces/truongnv/reports/experiment_reports/training_lessons/L3_V0_2_1_SCREENING_AND_PREFLIGHT_2026-10-23.json).
+- **Result**: package integrity passed; support gate blocks fit because train BOTH=49/100, validation BOTH=0/30, and source-heldout candidate BOTH=15/30. Candidate remains unscored; training was not performed.
+
+### <a id="ref81"></a>[81] Local L3 v0.2.1 source-label/group support
+- **Artifact**: [Source distribution JSON](D:/Work/Do-an/workspaces/truongnv/reports/experiment_reports/training_lessons/L3_V0_2_1_SOURCE_LABEL_DISTRIBUTION_2026-10-23.json).
+- **Scope**: counts source, labels, and distinct groups in train/validation only; prompt text and the source-heldout candidate were not read.
+- **Finding**: OTHER_ATTACK has 180 train rows from 52 groups and 36 validation rows from only 2 CiberIA groups; BOTH validation support is zero.
+
+### <a id="ref82"></a>[82] Bordair Multimodal Prompt Injection Dataset
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/Bordair/bordair-multimodal).
+- **Giới hạn dùng trong L3**: target `expected_detection` chỉ có attack/benign; trang dataset hiện báo lỗi cast do các file có tập cột khác nhau. Không ánh xạ taxonomy rộng thành BOTH/OTHER_ATTACK.
+
+### <a id="ref83"></a>[83] AI Mitra Prompt Injection Dataset
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/ai-mitra/prompt-injection-dataset).
+- **Giới hạn dùng trong L3**: binary benign/prompt-injection; field `attack_type` không cung cấp nhãn JB hoặc BOTH.
+
+### <a id="ref84"></a>[84] PromptSentinel
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/nuhmanpk/prompt-sentinel).
+- **Giới hạn dùng trong L3**: nhãn benign, jailbreak, injection loại trừ nhau; không có co-label BOTH. Snapshot audit ghi quyền thành phần chưa rõ ở một số dòng và sai khác số lượng giữa card với splits.
+
+### <a id="ref85"></a>[85] NeurAlchemy Prompt Injection and Jailbreak Dataset
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/neuralchemy/Prompt-injection-dataset); snapshot local revision `7d70432dfcf47a821612cbf9d34e9d9e3ad20e75`.
+- **Giới hạn dùng trong L3**: `core` dùng binary target và một category mỗi dòng. Metadata subset `source=original` quá nhỏ để đáp ứng BOTH; các thành phần khác có điều khoản khác nhau.
+
+
+### <a id="ref86"></a>[86] PraneshJs Prompt_injection_safe
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/PraneshJs/Prompt_injection_safe), pinned revision `3ec6843a3f7ac19d039731ecd448741287757385`; card metadata declares MIT.
+- **Giới hạn dùng trong L3**: train-only audit found 24 source-labeled PI+jailbreak pairs and 93 strict tool-abuse candidates before overlap checks. README has no collection/labeling method and schema has no row or group IDs. Validation was later downloaded and screened; test was not downloaded. The 24 train and 9 validation BOTH examples plus strict tool-abuse candidates are source-label proxies, not gold. L3 v0.2.3 uses 117 train and 30 validation rows under the approved mapping; the fit gate remains closed.
+
+### <a id="ref87"></a>[87] AIDataFdn Prompt Injection Dataset
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/AIDataFdn/promptinjection).
+- **Giới hạn dùng trong L3**: one categorical field separates named categories but does not provide simultaneous PI+JB labels or a tool-abuse class in the displayed taxonomy.
+
+### <a id="ref88"></a>[88] ToolSafety
+- **Nguồn chính thức**: [ACL Anthology paper](https://aclanthology.org/2025.emnlp-main.714/).
+- **Giới hạn dùng trong L3**: direct/indirect harm and multi-step tool-invocation safety target contextual agent workflows, not standalone PI/JB subtype labels.
+
+### <a id="ref89"></a>[89] ToolMisuseBench
+- **Nguồn chính thức**: [arXiv paper](https://arxiv.org/abs/2604.01508).
+- **Giới hạn dùng trong L3**: structured records include agent instructions, tool schemas, state, success criteria, and fault plans; this measures tool execution/recovery rather than prompt-only attack labels.
+
+### <a id="ref90"></a>[90] Turkish Prompt Injection and Jailbreak Dataset
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/OnerAYTAS/Turkish_prompt_injection_jailbreak_dataset).
+- **Giới hạn dùng trong L3**: bundled files fail the HF schema cast because their columns differ; no stable shared co-label contract was established.
+
+### <a id="ref91"></a>[91] Prompt Injection Patterns Extended
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/mukunda1729/prompt-injection-patterns-extended).
+- **Giới hạn dùng trong L3**: only 30 rows total with two tool-abuse and two jailbreak examples; cannot support class minima.
+
+### <a id="ref92"></a>[92] Necent LLM Jailbreak and Prompt-Injection Dataset
+- **Nguồn chính thức**: [Hugging Face dataset card](https://huggingface.co/datasets/Necent/llm-jailbreak-prompt-injection-dataset).
+- **Giới hạn dùng trong L3**: gated; `prompt_harmful` and `prompt_adversarial` are not independent PI/JB axes, and the aggregate retains each upstream source license.
 ## 📑 4. ĐẦY ĐỦ CÁC MỤC TRÍCH DẪN BIBTEX CHUẨN IEEE (FACT-CHECKED BIBTEX REPOSITORY)
 
 ```bibtex
@@ -1062,4 +1201,279 @@ DANH MỤC 12 CÔNG TRÌNH BỔ TRỢ & ĐỐI CHUẨN THỰC NGHIỆM — ĐỒ
   publisher = {Hugging Face},
   url       = {https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2}
 }
+
+@inproceedings{gomes2024chunkmaxpool,
+  author    = {Gomes, Goncalo and Coutinho, Isabel and Martins, Bruno},
+  title     = {Accurate and Well-Calibrated {ICD} Code Assignment Through Attention Over Diverse Label Embeddings},
+  booktitle = {Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages     = {2302--2315},
+  year      = {2024},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2024.eacl-long.141},
+  url       = {https://aclanthology.org/2024.eacl-long.141/}
+}
+
+@inproceedings{wang2018maxnoisyor,
+  author    = {Wang, Yun and Li, Juncheng and Metze, Florian},
+  title     = {Comparing the Max and Noisy-Or Pooling Functions in Multiple Instance Learning for Weakly Supervised Sequence Learning Tasks},
+  booktitle = {Proceedings of Interspeech 2018},
+  pages     = {1339--1343},
+  year      = {2018},
+  doi       = {10.21437/Interspeech.2018-990},
+  url       = {https://www.isca-archive.org/interspeech_2018/wang18_interspeech.html}
+}
 ```
+
+
+## Supplementary Dataset Sources for L3 Screening (2026-10-23)
+
+These numbered dataset and benchmark sources support local round-11 screening claims. They are source cards/API metadata, not academic papers, and none was admitted to an L3 split.
+
+<a id="ref93"></a>[93] Hugging Face [AI Agent Evasion Dataset](https://huggingface.co/datasets/darkknight25/AI_Agent_Evasion_Dataset); malicious/benign and one attack-type field; MIT declared.
+
+<a id="ref94"></a>[94] Hugging Face [Rogue Security Coding-Agent Security Benchmark](https://huggingface.co/datasets/rogue-security/coding-agent-security-benchmark); mixed-role test messages; CC-BY-NC-4.0.
+
+<a id="ref95"></a>[95] Tencent/CUHK-Shenzhen [SkillTrustBench](https://matrix.tencent.com/skilltrustbench/dataset); malicious skill artifacts, not user prompts.
+
+<a id="ref96"></a>[96] GitHub [Bordair Multimodal Prompt Injection Dataset](https://github.com/n1ps/bordair-dataset); binary expected-detection target; license unresolved in this screen.
+
+<a id="ref97"></a>[97] Hugging Face [AgentInjectionBench](https://huggingface.co/datasets/sincpp/AgentInjectionBench); agentic conversation and tool-output injection benchmark.
+
+<a id="ref98"></a>[98] Hugging Face [Cyberec Prompt-injection-dataset](https://huggingface.co/datasets/cyberec/Prompt-injection-dataset); binary target and one attack-mechanism category per row.
+
+<a id="ref99"></a>[99] Hugging Face [Realistic Prompt Injections](https://huggingface.co/datasets/treycsa/realistic-prompt-injections); 17-row detector probe.
+
+<a id="ref100"></a>[100] Hugging Face [Mindgard evaded prompt-injection and jailbreak samples](https://huggingface.co/datasets/Mindgard/evaded-prompt-injection-and-jailbreak-samples); gated; CC-BY-NC-4.0.
+
+<a id="ref101"></a>[101] Hugging Face [Horizon-Labs prompt-injection-eval-suite](https://huggingface.co/datasets/Horizon-Labs/prompt-injection-eval-suite); mixed per-config license and evaluation subsets.
+
+<a id="ref102"></a>[102] Hugging Face [Rogue Security prompt-injections benchmark](https://huggingface.co/datasets/rogue-security/prompt-injections-benchmark); jailbreak/benign; CC-BY-NC-4.0.
+
+<a id="ref103"></a>[103] Kaggle [Prompt Injection & Jailbreak Detection Dataset](https://www.kaggle.com/datasets/krishnayadav456wrsty/prompt-injection-and-jailbreak-detection-dataset); Kaggle API metadata and file listing in round 11.
+
+<a id="ref104"></a>[104] Kaggle [LLM Prompt-Injection & Jailbreak Detection](https://www.kaggle.com/datasets/ahmadzulfiqar001/llm-prompt-injection-and-jailbreak-detection); round-11 metadata reconfirms the round-7 screen.
+
+<a id="ref105"></a>[105] Kaggle [AI Agent Cybersecurity Dataset 2026](https://www.kaggle.com/datasets/chuneeb/ai-agent-cybersecurity-dataset-2026); API metadata and file listing in round 11.
+
+<a id="ref106"></a>[106] Kaggle [LLM Agent Failure Analysis Benchmark](https://www.kaggle.com/datasets/sunil123kumar/ai-agent-failure-benchmark-dataset); API metadata and file listing in round 11.
+
+<a id="ref107"></a>[107] Hugging Face [SCAS](https://huggingface.co/datasets/saibhossain/SCAS) and Kaggle [SCAS](https://www.kaggle.com/datasets/saibhossain/scas-signed-context-attack-suite); context/action scenario schema; licensing evidence requires clarification.
+
+## Supplemental Dataset Sources for L3 Screening (round 12, 2026-10-23)
+
+These dataset cards, metadata snapshots, and benchmark repositories support the local round-12 screening record. One AgentExploitDB JSONL was quarantined for aggregate duplication analysis; no screened source was admitted to an L3 split.
+
+<a id="ref108"></a>[108] Kaggle [AgentExploitDB AI Agent Security Benchmark 2026](https://www.kaggle.com/datasets/beatsprom/agentexploitdb-ai-agent-security-benchmark-2026); metadata, file listing, quarantined JSONL, and template-group audit captured locally.
+
+<a id="ref109"></a>[109] Kaggle [Prompt Safety Agent Guardrail Classifier 100k](https://www.kaggle.com/datasets/goutamsharma12/prompt-safety-classifier-100k); metadata and local README/schema/annotation-guideline snapshots; Kaggle and README license statements differ.
+
+<a id="ref110"></a>[110] Kaggle [X-Guard-Bench](https://www.kaggle.com/datasets/nidalshahin/x-guard-bench); evaluation-set metadata and CC-BY-NC-SA-4.0 declaration.
+
+<a id="ref111"></a>[111] Kaggle [AI Safety Dataset](https://www.kaggle.com/datasets/mmumairkhattak/ai-safety-dataset); dataset metadata and file listing.
+
+<a id="ref112"></a>[112] Kaggle [Fine-tuning Dataset for LLM Security](https://www.kaggle.com/datasets/hilalkavas/fine-tuning-dataset-for-llm-security); dataset metadata and file listing.
+
+<a id="ref113"></a>[113] Kaggle [OpenAI Red Team Dataset](https://www.kaggle.com/datasets/jjlye6/openai-red-team-dataset); dataset metadata and file listing.
+
+<a id="ref114"></a>[114] Kaggle [Prompt Risk Dataset](https://www.kaggle.com/datasets/ziya07/prompt-risk-dataset); dataset metadata and file listing.
+
+<a id="ref115"></a>[115] Kaggle [LLM Red-Team Probes](https://www.kaggle.com/datasets/alimurtazabhutto/llm-red-team-probes); metadata, file listing, and license discrepancy captured locally.
+
+<a id="ref116"></a>[116] Kaggle [LLM Jailbreaks: Prompt Fruit Injection Analysis](https://www.kaggle.com/datasets/chrissyserb/redteam-playback-prompt-fruit-jailbreak); metadata and CC-BY-NC-4.0 declaration.
+
+<a id="ref117"></a>[117] Hugging Face [Catch the prompt injection or jailbreak or benign](https://huggingface.co/datasets/bogdanminko/Catch_the_prompt_injection_or_jailbreak_or_benign); gated card and repository file tree; access condition not accepted.
+
+<a id="ref118"></a>[118] Hugging Face [ToolMisuseBench](https://huggingface.co/datasets/sigdelakshey/ToolMisuseBench); public card and schema for tool-use task/recovery benchmark.
+
+<a id="ref119"></a>[119] Hugging Face [agent-security-datasets](https://huggingface.co/datasets/promptprotection/agent-security-datasets); public card and repository file tree for mixed-role agent-turn scenarios.
+
+<a id="ref120"></a>[120] Hugging Face [AgentHarm](https://huggingface.co/datasets/ai-safety-institute/AgentHarm); public task/card description for agent-interaction harm scenarios.
+
+<a id="ref121"></a>[121] Hugging Face [Cogensec Jailbreak Corpus](https://huggingface.co/datasets/Cogensec/jailbreak-corpus); gated dataset card, mixed-source provenance, weak technique labels, and stated limitations.
+
+<a id="ref122"></a>[122] Hugging Face [AIDataFdn promptinjection](https://huggingface.co/datasets/AIDataFdn/promptinjection); public card and repository file tree reconfirm single-category labels.
+
+<a id="ref123"></a>[123] GitHub [AgentShield Benchmark](https://github.com/doronp/agentshield-benchmark); benchmark corpus categories, Apache-2.0 license, and stated limitations.
+
+<a id="ref124"></a>[124] GitHub [Agent Security Bench](https://github.com/mattpartida/agent-security-bench); benchmark categories for prompt injection, tool misuse, exfiltration, persistence, and approval bypass.
+
+<a id="ref125"></a>[125] Local round-12 screening report, verification and checksums, together with the fresh v0.2.1 trainer preflight output and support-gate manifest.
+
+## Supplemental Dataset Sources for L3 Screening (round 13, 2026-10-23)
+
+These source cards, metadata, and schema records support the local round-13 screening report. The multilingual candidate is quarantined only; no new source was admitted to an L3 split.
+
+<a id="ref126"></a>[126] Hugging Face [Multilingual Prompt Injection](https://huggingface.co/datasets/fevziegeyurtsevenler/multilingual-prompt-injection); pinned revision `9cfe5ab6c61da76f1292f6f91cd7894a40010f55`, 217 rows, CC-BY-4.0 metadata, and quarantined screening hash.
+
+<a id="ref127"></a>[127] Kaggle [Prompt Safety Agent Guardrail Classifier 100k](https://www.kaggle.com/datasets/goutamsharma12/prompt-safety-classifier-100k); metadata, README, annotation guidelines, schema, file listing, and license discrepancy captured in round 13.
+
+<a id="ref128"></a>[128] Kaggle [SCAS: Signed Context Attack Suite](https://www.kaggle.com/datasets/saibhossain/scas-signed-context-attack-suite); metadata and schema for context/task-level authorization evaluation.
+
+<a id="ref129"></a>[129] Kaggle [LLM Prompt-Injection & Jailbreak Detection](https://www.kaggle.com/datasets/ahmadzulfiqar001/llm-prompt-injection-and-jailbreak-detection); CC0 metadata and file listing for a synthetic single-technique corpus.
+
+<a id="ref130"></a>[130] Kaggle [LLM Agent Failure Analysis Benchmark Dataset](https://www.kaggle.com/datasets/sunil123kumar/ai-agent-failure-benchmark-dataset); metadata and file listing for failure-attribution records.
+
+<a id="ref131"></a>[131] Kaggle [AI Agent Security & Real-World Incidents](https://www.kaggle.com/datasets/muhammadahmerkhan/ai-agent-security-and-real-world-incidents-2024-26); metadata and incident-file listing.
+
+<a id="ref132"></a>[132] Hugging Face [Necent LLM Jailbreak & Prompt-Injection Dataset](https://huggingface.co/datasets/Necent/llm-jailbreak-prompt-injection-dataset); gated access and source-specific license note on the official card.
+
+<a id="ref133"></a>[133] Hugging Face [Mindgard evaded prompt-injection and jailbreak samples](https://huggingface.co/datasets/Mindgard/evaded-prompt-injection-and-jailbreak-samples); gated card, CC-BY-NC-4.0 metadata, and mixed source prompts.
+
+<a id="ref134"></a>[134] GitHub [Sentinel-SLM data card](https://github.com/abdulmunimjemal/Sentinel-SLM/blob/main/DATACARD.md); combined binary Prompt Attacks rail and eight-class taxonomy.
+
+<a id="ref135"></a>[135] [Prompt Injection Techniques dataset documentation](https://prompt-injections.readthedocs.io/en/latest/dataset.html) and [MIT license page](https://prompt-injections.readthedocs.io/en/latest/license.html); linked source is the already-screened `pr1m8/prompt-injections` family.
+
+## Supplemental Dataset Sources for L3 v0.2.3 (round 14, 2026-10-23)
+
+<a id="ref136"></a>[136] WUSTL-CSPL [LLMJailbreak](https://github.com/WUSTL-CSPL/LLMJailbreak) and Yu et al., [USENIX Security 2024 paper](https://www.usenix.org/conference/usenixsecurity24/presentation/yu-zhiyuan); pinned repository snapshot and collected jailbreak-prompt source. Repository MIT metadata does not settle third-party prompt rights.
+
+<a id="ref137"></a>[137] JailBreakV-28K [Hugging Face dataset card](https://huggingface.co/datasets/JailbreakV-28K/JailBreakV-28k) and Luo et al., [COLM 2024 paper](https://arxiv.org/abs/2404.03027); source field/schema and pinned dataset snapshot. Dataset-card MIT metadata does not settle third-party prompt rights.
+
+## Supplemental Dataset Sources for L3 v0.2.5 (round 15, 2026-10-23)
+
+<a id="ref138"></a>[138] Hugging Face [CORTYX Safety Dataset](https://huggingface.co/datasets/QuantaSparkLabs/cortyx-safety-dataset/tree/abac2c21250510993025796f6f29a7b3cecf6147); pinned card and 610-row Gold Core snapshot, CC BY 4.0 card declaration, source labels and taxonomy.
+
+<a id="ref139"></a>[139] Hugging Face [Quickium Prompt Security v0](https://huggingface.co/datasets/quickium/prompt-security-v0/tree/8d67314bd5c08497ed1f20a62009bec58e7c5eb0); pinned card and `train_nc` split schema, per-row source and license posture, limitations, and class/source counts.
+
+<a id="ref140"></a>[140] Hugging Face [Governance AI Guardrail ES Dataset](https://huggingface.co/datasets/governanceai/governance-ai-guardrail-es-dataset); gated card describing Spanish label fields, source ancestry metadata, transformations, and access requirement.
+
+<a id="ref141"></a>[141] Mendeley Data [PromptShield: A Human-Annotated Dataset for Prompt Injection Safety Classification](https://data.mendeley.com/datasets/n6wdvz5n3d/1); dataset record with 3,000 samples, three annotators, risk categories, attack types, and CC BY 4.0 declaration.
+
+<a id="ref142"></a>[142] GitHub [Mirza Akhi Prompt Injection Detection Dataset](https://github.com/mirzaakhi/prompt-injection-detection-dataset); dataset card, train/test contract, synthetic category schema, and CC BY 4.0 declaration.
+
+## Supplemental Dataset Sources for L3 v0.2.5 (round 22, 2026-10-24)
+
+<a id="ref143"></a>[143] GitHub [AEGINEL Guard model research report](https://github.com/kwangilkimkenny/AEGINEL/blob/main/docs/AEGINEL_Guard_Model_Research.md); author-reported 188,109 multilingual rows, 21,544 multi-label rows, label schema, split method, example co-label and synthetic-data limitation.
+
+<a id="ref144"></a>[144] GitHub [AEGINEL repository](https://github.com/kwangilkimkenny/AEGINEL); public repository tree and Apache-2.0 project license. The reported training JSONL is absent from the inspected public tree; no separate dataset license is stated there.
+
+<a id="ref145"></a>[145] Hugging Face [AEGIS Multilingual Guard Dataset v0.1 public sample](https://huggingface.co/datasets/YATAV-ENT/aegis-multilingual-guard-dataset-v0.1-samples/tree/b91b6fbd53d255cb2c4610f888622c450395d0fe); pinned 1,200-row sample, single technique field, llm_gen provenance, split tags, native-review flag, and custom responsible-AI-use license.
+
+<a id="ref146"></a>[146] Hugging Face [Neuralchemy Prompt Injection & Jailbreak Detection Dataset](https://huggingface.co/datasets/neuralchemy/Prompt-injection-dataset); binary label plus single category schema, published category/source notes, configurations, and mixed upstream license caveat.
+
+<a id="ref147"></a>[147] Hugging Face [CORTYX full combined JSONL at pinned revision](https://huggingface.co/datasets/QuantaSparkLabs/cortyx-safety-dataset/blob/abac2c21250510993025796f6f29a7b3cecf6147/data/cortyx_combined.jsonl); complete file listing and full combined snapshot used to verify row counts and direct co-label support.
+
+## Supplemental Dataset Sources for L3 v0.2.5 (round 23, 2026-10-24)
+
+<a id="ref148"></a>[148] Hugging Face [cyberec Prompt Injection Mechanisms Dataset at pinned revision](https://huggingface.co/datasets/cyberec/llm-prompt-injection-attacks/tree/a3d05895270cac0e553206c95463061c9bfb899f); dataset card and pinned train/validation Parquet schema, labels and heuristic limitation.
+
+<a id="ref149"></a>[149] Hugging Face [Smooth-3 Prompt Injection Mechanisms Dataset](https://huggingface.co/datasets/Smooth-3/llm-prompt-injection-attacks); upstream dataset card naming the two sources and stating original datasets are not redistributed.
+
+<a id="ref150"></a>[150] Hugging Face [Qualifire Prompt Injections Benchmark](https://huggingface.co/datasets/qualifire/prompt-injections-benchmark) and [Jayavibhav Prompt Injection Safety](https://huggingface.co/datasets/jayavibhav/prompt-injection-safety); source metadata used to check gated/non-commercial access and whether a data license is declared.
+
+<a id="ref151"></a>[151] Hugging Face [Quickium Prompt Security v0 at pinned revision](https://huggingface.co/datasets/quickium/prompt-security-v0/tree/8d67314bd5c08497ed1f20a62009bec58e7c5eb0); card with per-row provenance/license, split counts, domain support and no-compound-row statement.
+
+<a id="ref152"></a>[152] Hugging Face [PromptSentinel](https://huggingface.co/datasets/nuhmanpk/prompt-sentinel); gated access notice, three-class label scheme, source/license fields and publisher-reported split counts.
+
+<a id="ref153"></a>[153] Hugging Face [Necent LLM Jailbreak & Prompt-Injection Dataset](https://huggingface.co/datasets/Necent/llm-jailbreak-prompt-injection-dataset); gated access notice, source aggregation and orthogonal prompt_harmful/prompt_adversarial schema.
+
+<a id="ref154"></a>[154] Hugging Face [Turkish Conversation Prompt-Injection Dataset v1.0.2](https://huggingface.co/datasets/3nesdeniz/turkish-conversation-prompt-injection); CC-BY-4.0 card, 750 curated synthetic rows, attack-family taxonomy, and disjoint train/validation/test counts.
+
+<a id="ref155"></a>[155] GitHub raw [AEGINEL Guard research report](https://raw.githubusercontent.com/kwangilkimkenny/AEGINEL/main/docs/AEGINEL_Guard_Model_Research.md); verified raw source URL used when the GitHub blob endpoint returned HTTP 429.
+
+
+## Supplemental Dataset Sources for L3 v0.2.5 (round 46, 2026-10-24)
+
+<a id="ref156"></a>[156] Hugging Face [JailbreakBench JBB-Behaviors at pinned revision](https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors/tree/886acc352a31533ffbcf4ef22c744658688086fc/data); official MIT release files and schema for the judge-comparison and behavior cohorts.
+
+<a id="ref157"></a>[157] Zhang et al., ACM TOSEM, “JailGuard: A Universal Detection Framework for Prompt-based Attacks on LLM Systems” (DOI 10.1145/3724393), [institutional repository PDF](https://dr.ntu.edu.sg/server/api/core/bitstreams/42a37690-2f3b-4f00-b856-605a72d1ec0f/content) and the authors' [dataset page](https://sites.google.com/view/jailguard/dataset); text attack-family coverage, reported validated attack cohorts, and 6,000 benign prompts.
+
+<a id="ref158"></a>[158] GitHub [JailGuard repository at pinned commit](https://github.com/shiningrain/JailGuard/tree/419e1d3d08f4d02998a11a687f925518d2d5dd0c); repository tree used to verify text payload filenames and absence of a declared repository license file.
+
+<a id="ref159"></a>[159] Mendeley Data [PromptShield v2: A Human-Annotated Dataset for Prompt Injection Safety Classification](https://data.mendeley.com/datasets/n6wdvz5n3d/2); publisher-reported 3,000 rows, 3-way risk labels, attack_type metadata, and CC BY 4.0.
+
+<a id="ref160"></a>[160] Mendeley Data [Lying to LLMs: A Corpus-assisted Pragmatic Study about the Linguistic Features of Deceptive Jailbreak Prompts](https://data.mendeley.com/datasets/t99msf9hbn/1); public prompt and benign text files and CC BY 4.0 release metadata.
+
+
+<a id="ref161"></a>[161] Hugging Face [Mindgard evaded prompt-injection and jailbreak samples](https://huggingface.co/datasets/Mindgard/evaded-prompt-injection-and-jailbreak-samples); public card reports gated file access, CC BY-NC-4.0, original/modified prompt pairs, an attack_name technique field, and an upstream Safe-Guard Prompt Injection source.
+
+<a id="ref162"></a>[162] Hugging Face [jackhhao jailbreak-classification](https://huggingface.co/datasets/jackhhao/jailbreak-classification) and the upstream [verazuo/jailbreak_llms repository](https://github.com/verazuo/jailbreak_llms); source lineage, label schema and pinned CSV release reviewed for round 47.
+
+<a id="ref163"></a>[163] Cogensec [Jailbreak Corpus v0.3](https://huggingface.co/datasets/Cogensec/jailbreak-corpus) and [dataset overview](https://cogensec.com/datasets); publisher-reported source composition, schema, licensing, weak-rule labeling and gated access, reviewed metadata-only for round 47.
+
+<a id="ref164"></a>[164] GitHub [Manteclaw LLM Safety and Red Teaming](https://github.com/manteclaw/llm-safety) at pinned revision `072d11c7394289707da8ecd437949e06663b0541`; public sample schema, synthetic flags, paid full-data notice, README license declaration and repository LICENSE reviewed for round 47.
+
+## Supplemental Dataset Sources for L3 v0.2.5 (round 48, 2026-10-24)
+
+<a id="ref165"></a>[165] Hugging Face [3nesdeniz Agentic Prompt-Injection Boundary Pairs](https://huggingface.co/datasets/3nesdeniz/agentic-prompt-injection-boundary-pairs/tree/a5682e7573e1c7bc4b12e64d49c0dcd90ca776cf); pinned CC BY 4.0 snapshot, row taxonomy, split counts, scenario grouping, and review-log claim.
+
+<a id="ref166"></a>[166] GitHub [pr1m8/prompt-injections](https://github.com/pr1m8/prompt-injections/tree/a0ee668c48793f40350489e34727a47d24eeb21f) at pinned commit; repository MIT declaration, source/category/target schema, and dataset/license documentation reviewed for round 48.
+
+<a id="ref167"></a>[167] Hugging Face [3nesdeniz English Prompt Injection 3K](https://huggingface.co/datasets/3nesdeniz/english-prompt-injection-3k/tree/87f017347aff7887b1de0d9457c9ec01bf7ba8b5); pinned CC BY 4.0 card, split and family counts, synthetic template construction and LFS hashes.
+
+<a id="ref168"></a>[168] Hugging Face [CISSP LLMBench](https://huggingface.co/datasets/fahadhafeezofficial/cissp-llmbench); publisher card fields for category, subcategory and safe/unsafe variants, and CC BY 4.0 metadata.
+
+<a id="ref169"></a>[169] Hugging Face [Jeff-Guard Multilingual Dataset](https://huggingface.co/datasets/RomanKudriavskii/jeff-guard-multilang-dataset); publisher card row schema, single-label classes, size, and `other` license metadata.
+
+<a id="ref170"></a>[170] Hugging Face [PromptSentinel](https://huggingface.co/datasets/nuhmanpk/prompt-sentinel); publisher card split counts, three-class label mapping, 13 source lineages, gated-access notice, source licenses, and grouping method.
+
+<a id="ref171"></a>[171] Hugging Face [Rogue Security Prompt Injections Benchmark](https://huggingface.co/datasets/rogue-security/prompt-injections-benchmark); publisher card's test-only 5,000-row jailbreak/benign schema and CC BY-NC 4.0 metadata.
+
+<a id="ref172"></a>[172] Hugging Face [Cyberec Prompt Injection Mechanisms Dataset](https://huggingface.co/datasets/cyberec/llm-prompt-injection-attacks/tree/a3d05895270cac0e553206c95463061c9bfb899f), duplicated from [Smooth-3](https://huggingface.co/datasets/Smooth-3/llm-prompt-injection-attacks/tree/main); pinned Apache 2.0 metadata, multi-label mechanism schema, split counts, source card lineage and heuristic-label caveat.
+
+
+## Supplemental Dataset Sources for L3 v0.2.5 (round 50, 2026-10-24)
+
+<a id="ref173"></a>[173] Hugging Face [Bordair Multimodal Prompt Injection Dataset at pinned revision](https://huggingface.co/datasets/Bordair/bordair-multimodal/tree/398e3f875ffd32ec2e6817a95feebfcbae41643a) and authors' [repository documentation](https://github.com/n1ps/bordair-dataset); dataset scope, category/seed taxonomy, expansion method, live cohort, source lineage, MIT card claim and review limitations.
+
+<a id="ref174"></a>[174] Hugging Face [AIDataFdn Prompt Injection v3 at pinned revision](https://huggingface.co/datasets/AIDataFdn/promptinjection/tree/99426e65f23ddfb4e19efe1984618a8c61e2d1c6); Apache-2.0 Hub metadata, publisher-reported size and exclusive attack-category schema.
+
+<a id="ref175"></a>[175] Hugging Face [CatBarks pi_c0_to_c8_sampled at pinned revision](https://huggingface.co/datasets/CatBarks/pi_c0_to_c8_sampled/tree/4d05e26c9bf3525650f43a38f52509d3db5f64df); split/schema metadata, source aggregation and absent Hub license declaration reviewed metadata-only.
+
+## Supplemental Dataset Sources for L3 v0.2.5 (round 51, 2026-10-24)
+
+<a id="ref176"></a>[176] Hugging Face [TrustAIRLab In-the-Wild Jailbreak Prompts at pinned revision](https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts/tree/a10aab8eff1c73165a442d4464dce192bd28b9c5); MIT metadata and public configuration/schema showing a `jailbreak` boolean without an explicit same-row prompt-injection co-label.
+
+<a id="ref177"></a>[177] Hugging Face [impacte/bunker-laya at pinned revision](https://huggingface.co/impacte/bunker-laya/tree/fe23fc44e9d2418371ac7ac5ec848121027a3e84); publisher-reported source/question counts, partial-gold policy, and notice that source training data are not redistributed.
+
+<a id="ref178"></a>[178] Hugging Face [QuantaSparkLabs CORTYX Safety Dataset at pinned revision](https://huggingface.co/datasets/QuantaSparkLabs/cortyx-safety-dataset/tree/abac2c21250510993025796f6f29a7b3cecf6147); CC BY 4.0 Hub metadata, Gold Core description, source field and multi-label schema.
+
+<a id="ref179"></a>[179] Hugging Face [Smooth-3 Prompt Injection Mechanisms Dataset at pinned revision](https://huggingface.co/datasets/Smooth-3/llm-prompt-injection-attacks/tree/dd47798b64ebf0e833ecdbff6b1d73be3e440581), its [Cyberec duplicate](https://huggingface.co/datasets/cyberec/llm-prompt-injection-attacks/tree/a3d05895270cac0e553206c95463061c9bfb899f), and upstream [Qualifire](https://huggingface.co/datasets/qualifire/prompt-injections-benchmark) and [Jayavibhav](https://huggingface.co/datasets/jayavibhav/prompt-injection-safety) cards; pinned label schema, rule-based reannotation, source lineage and license declarations.
+
+<a id="ref180"></a>[180] Hugging Face [Goutam112 Prompt Safety Classifier 100K at pinned revision](https://huggingface.co/datasets/Goutam112/prompt-safety-classifier-100k/tree/cc19496a37a02f9b97a8381c97d758c9f7f05144); MIT metadata, publisher-reported six-class schema and row count.
+
+<a id="ref181"></a>[181] Hugging Face [JailbreakDB at pinned revision](https://huggingface.co/datasets/youbin2014/JailbreakDB/tree/2c2141bf74ebbe1fd3666a4b38be8856f6e47a92) and [maintainer discussion on `tactic`](https://huggingface.co/datasets/youbin2014/JailbreakDB/discussions/2); CC BY 4.0 metadata, prompt corpus schema, and clarification that the tactic field is roughly binary rather than a specific method label.
+
+<a id="ref182"></a>[182] Hong et al., [“SoK: Taxonomy and Evaluation of Prompt Security in Large Language Models”](https://arxiv.org/abs/2510.15476); paper-reported JailbreakDB and benign corpus sizes, compared with the current Hub card during round 51.
+
+<a id="ref183"></a>[183] NVIDIA [Nemotron Safety Guard Dataset v3 at pinned revision](https://huggingface.co/datasets/nvidia/Nemotron-Safety-Guard-Dataset-v3/tree/a3f7ecb3433d1933701a83f18de16c36934a7f51); CC BY 4.0 metadata, multilingual schema, `jailbreaking` tag, publisher-reported size and synthetic-labeling disclosure.
+
+## Supplemental Dataset Sources for L3 v0.2.5 (round 52, 2026-10-24)
+
+<a id="ref184"></a>[184] ETH Zurich SPY Lab [SaTML 2024 CTF dataset at pinned revision](https://huggingface.co/datasets/ethz-spylab/ctf-satml24/tree/11426babe61ee16b0efe7b55e0430359e0fc4235); MIT metadata, 137,151 multi-turn attack chats, and the secret-extraction task description.
+
+<a id="ref185"></a>[185] Debenedetti et al., [Dataset and Lessons Learned from the 2024 SaTML LLM Capture-the-Flag Competition](https://arxiv.org/abs/2406.07954); paper description of the system-prompt secret-extraction threat model and public 137k-chat release.
+
+<a id="ref186"></a>[186] Hugging Face [PromptSentinel at pinned revision](https://huggingface.co/datasets/nuhmanpk/prompt-sentinel/tree/a932b3ef5982c97ec2c5c635bf61b9cbb4bd1a5b); gated notice, three exclusive labels, source/license fields, aggregation lineage and published class/split counts.
+
+<a id="ref187"></a>[187] GitHub [Aegis classifier v1 results at pinned commit](https://github.com/espirado/Aegis/blob/782812efcb01301d2c3acd240c4054551e2e71ff/docs/analysis/classifier-v1-results.md); five exclusive output classes, source composition and the maintainer's note on jailbreak-style samples labeled as injection.
+
+<a id="ref188"></a>[188] Hugging Face [Mindgard evaded prompt-injection and jailbreak samples at pinned revision](https://huggingface.co/datasets/Mindgard/evaded-prompt-injection-and-jailbreak-samples/tree/ec63ffb26ba6f29ca1095fabb2e9f9be5f8b9d34); CC BY-NC 4.0 metadata, mixed source description, original/modified prompt fields and technique-only attack_name.
+
+
+
+## Supplemental Dataset Sources for L3 v0.2.5 (round 53, 2026-10-24)
+
+<a id="ref189"></a>[189] Hugging Face [9mark9 LLM Red-Team OWASP Prompts at pinned revision](https://huggingface.co/datasets/9mark9/llm-redteam-owasp-prompts/tree/cac5cb5801964011295c1926b927506e81f2802d); publisher MIT metadata, train-only schema, category and OWASP tags, source/generated fields, and seed IDs.
+
+<a id="ref190"></a>[190] Hugging Face [NEPI Prompts Dataset at pinned revision](https://huggingface.co/datasets/Vaibhav-GOAT/nepi-prompts-dataset/tree/391139f74fc50d09b5593eb387505ab5844b0bc9); publisher MIT metadata, synthetic-template train description, label, attack-family and target-goal schema.
+
+<a id="ref191"></a>[191] Hugging Face [Necent jailbreak and prompt-injection dataset card](https://huggingface.co/datasets/Necent/llm-jailbreak-prompt-injection-dataset); gated access notice, aggregated-source scope, singular prompt-type schema and upstream-license caveat; metadata only.
+
+<a id="ref192"></a>[192] Hugging Face [Fujitsu ART-SafeBench v2 dataset card](https://huggingface.co/datasets/Fujitsu/agentic-rag-redteam-bench); gated access and use terms, publisher CC-BY-4.0 metadata, benchmark configurations and mixed source list; metadata only.
+
+<a id="ref193"></a>[193] Xia et al., Findings of ACL 2025, [“The Threat of PROMPTS in Large Language Models: A System and User Prompt Perspective”](https://aclanthology.org/2025.findings-acl.675/) ([open-access PDF](https://aclanthology.org/2025.findings-acl.675.pdf), DOI 10.18653/v1/2025.findings-acl.675); distinguishes prompt leakage and jailbreak goals and discusses prompt injection as an attack method that can support either.
+
+<a id="ref194"></a>[194] Muhammad Saeed Anwar, [Prompt Injection Attacks in Large Language Models benchmark repository at pinned commit](https://github.com/MuhammadSaeedAnwar/prompt-injection-llm-benchmark/tree/b44898ab1700eec850ee68eeb687a40f86406ef8) and [Zenodo dataset DOI](https://doi.org/10.5281/zenodo.19364462); publisher-reported 250-row attack benchmark, category and target_behavior schema, MIT declaration, and absence of a released split, reviewed metadata-only.
+
+<a id="ref195"></a>[195] GitHub [Mirza Akhi Prompt Injection Detection Dataset at pinned commit](https://github.com/mirzaakhi/prompt-injection-detection-dataset/tree/011a9ae25b31feb48d23f837fdcbc3a6a4ee3b4e); combined CSV train/test contract, binary labels, synthetic category schema and repository CC BY 4.0 claim; only train rows were persisted for round 54 and compared with v0.2.5 train/validation.
+
+
+
+## Supplemental Dataset Sources for L3 v0.2.5 (round 55, 2026-10-24)
+
+<a id="ref196"></a>[196] Muhammad Saeed Anwar, [Prompt Injection Attacks benchmark repository at pinned commit](https://github.com/MuhammadSaeedAnwar/prompt-injection-llm-benchmark/tree/b44898ab1700eec850ee68eeb687a40f86406ef8), [pinned CSV](https://raw.githubusercontent.com/MuhammadSaeedAnwar/prompt-injection-llm-benchmark/b44898ab1700eec850ee68eeb687a40f86406ef8/prompt_injection_dataset_250.csv), and [Zenodo record](https://doi.org/10.5281/zenodo.19364462); benchmark purpose, MIT claim, row schema, and publisher-described category counts, compared with the pinned CSV snapshot during round 55.
+
+<a id="ref197"></a>[197] ICARO Lab, [Adversarial Humanities Benchmark repository at pinned commit](https://github.com/icaro-lab/ahb/tree/36f626847d59b8c256d3e70d534f34f3c4681e81) and Galisai et al., [“Adversarial Humanities Benchmark: Results on Stylistic Robustness in Frontier Model Safety”](https://arxiv.org/abs/2604.18487); metadata-only review of its benchmark-only/canary restriction and MLCommons AILuminate prompt provenance.
+
+<a id="ref198"></a>[198] Zhang et al., [JailGuard: A Universal Detection Framework for Prompt-based Attacks on LLM Systems](https://doi.org/10.1145/3724393) and [official repository at pinned commit](https://github.com/shiningrain/JailGuard/tree/419e1d3d08f4d02998a11a687f925518d2d5dd0c); publisher-reported 11,000 text/image attack examples across 15 methods, with payload distributed by external link and no repository license file observed in the pinned tree listing.

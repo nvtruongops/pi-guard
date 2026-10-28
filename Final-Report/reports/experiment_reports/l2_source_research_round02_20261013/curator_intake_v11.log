@@ -1,0 +1,41 @@
+{
+  "status": "BLOCKED",
+  "health_check_status": "NOT_READY",
+  "pipeline_stage": "curator_annotation_intake",
+  "dataset_version": "11.0.0-candidate-english-gandalf",
+  "dataset_manifest_sha256": "94f4a2a79f76682be16feaf35d8074b66a9f5d11c8e08962b7781ea9949b838a",
+  "annotation_file_sha256": "a6fa602218801226831c17e059293f6cb0cc24a12ae19f675a8eed12feb34be2",
+  "key_sha256": "b6673db33c76062d84117a6997991c047361dea750f43f352648f63674c45090",
+  "review_counts": {
+    "unreviewed": 492
+  },
+  "per_family_review_counts": {
+    "lakera_gandalf_game": {
+      "unreviewed": 492
+    }
+  },
+  "complete_annotation_class_counts": {},
+  "human_attestation_recorded": false,
+  "attestation_limitation": "An owner-supplied human receipt records provenance; field values alone cannot prove authorship",
+  "nonconflicting_complete_annotations": 0,
+  "canonical_model_rows_emitted": 0,
+  "duplicate_conflicting_group_ids": [],
+  "blockers": [
+    "HUMAN_ANNOTATION_ATTESTATION_MISSING_OR_INVALID",
+    "HUMAN_CURATOR_DECISIONS_MISSING",
+    "SOURCE_REVIEW_NOT_APPROVED",
+    "SOURCE_INDEPENDENCE_NOT_VERIFIED",
+    "PER_CLASS_TRAIN_VAL_TEST_2_1_1_NOT_ESTABLISHED",
+    "FROZEN_SOURCE_DISJOINT_SPLIT_MISSING",
+    "L2_NUMERIC_ACCEPTANCE_GATE_UNSPECIFIED"
+  ],
+  "fit_performed": false,
+  "test_opened": false,
+  "l3_run": false,
+  "script_sha256": "dba8576a66669a4fc6a6b43f93bcc98aa09aab87217ab0a18849c25c437d7b48",
+  "environment": {
+    "python": "3.11.16",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "checked_at_utc": "2026-10-12T19:45:58.660268+00:00"
+}

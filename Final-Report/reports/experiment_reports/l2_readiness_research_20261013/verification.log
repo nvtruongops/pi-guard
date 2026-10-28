@@ -1,0 +1,84 @@
+{
+  "checked_at_utc": "2026-10-12T19:31:29.747878+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "candidate_and_parent_source_integrity",
+      "status": "PASS",
+      "v9_files_verified": 23,
+      "source_files_verified": 17
+    },
+    {
+      "name": "real_candidate_counts_bindings_and_fail_closed_intake",
+      "status": "PASS",
+      "pilot_rows": 96
+    },
+    {
+      "name": "source_metadata_and_failed_run_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "run_code_and_data_identities",
+      "status": "PASS"
+    },
+    {
+      "name": "scope",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "D:\\Work\\Do-an\\workspaces\\truongnv\\pi_guard_pipeline\\training_bases\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "Final-Report/scripts/audit_task_scope.py",
+        "--file",
+        "D:\\Work\\Do-an\\Final-Report\\reports\\experiment_reports\\l2_readiness_research_20261013\\REPORT.md",
+        "--strict"
+      ]
+    },
+    {
+      "name": "claims",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "D:\\Work\\Do-an\\workspaces\\truongnv\\pi_guard_pipeline\\training_bases\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "Final-Report/scripts/audit_claim_evidence.py",
+        "--file",
+        "D:\\Work\\Do-an\\Final-Report\\reports\\experiment_reports\\l2_readiness_research_20261013\\REPORT.md"
+      ]
+    },
+    {
+      "name": "glossary",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "D:\\Work\\Do-an\\workspaces\\truongnv\\pi_guard_pipeline\\training_bases\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "Final-Report/scripts/verify_academic_glossary.py",
+        "--file",
+        "D:\\Work\\Do-an\\Final-Report\\reports\\experiment_reports\\l2_readiness_research_20261013\\REPORT.md"
+      ]
+    },
+    {
+      "name": "boundaries",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "D:\\Work\\Do-an\\workspaces\\truongnv\\pi_guard_pipeline\\training_bases\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "Final-Report/scripts/audit_workspace_boundaries.py",
+        "--mode",
+        "working_tree"
+      ]
+    }
+  ],
+  "script_sha256": "a2cf474cb3d1ed2a49eb94f70368d7842c5cbf524c596b68f8e2950692d6e2f0",
+  "meaning": "Artifact verification only; L2 remains NOT_READY and no model was trained"
+}

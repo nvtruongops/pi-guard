@@ -1,0 +1,68 @@
+{
+  "status": "BLOCKED",
+  "health_check_status": "NOT_READY",
+  "pipeline_stage": "curator_annotation_intake",
+  "dataset_version": "10.0.0-candidate-english-lineage",
+  "dataset_manifest_sha256": "e7ec79fb79185748a9989895c45968e4386da1f5fcf722b7905453656aeaa7c6",
+  "annotation_file_sha256": "943faab3e9b89e76e83161aceddbe3f410215fb061f59f011c98805a914e1974",
+  "key_sha256": "e90cbf6c81f1aa0370aee8eec10a30a3362a44ecf47817923114b601f79ea470",
+  "review_counts": {
+    "unreviewed": 96
+  },
+  "per_family_review_counts": {
+    "rubyglask_advbench_harmbench_tdc23_cluster": {
+      "unreviewed": 10
+    },
+    "mlcommons_ailuminate_v1": {
+      "unreviewed": 10
+    },
+    "rubyglask_aart": {
+      "unreviewed": 10
+    },
+    "rubyglask_do_not_answer": {
+      "unreviewed": 10
+    },
+    "openassistant_oasst1": {
+      "unreviewed": 10
+    },
+    "microsoft_llmail_inject": {
+      "unreviewed": 6
+    },
+    "anthropic_hh_rlhf_red_team_attempts": {
+      "unreviewed": 10
+    },
+    "trustairlab_in_the_wild_jailbreaks": {
+      "unreviewed": 10
+    },
+    "rubyglask_harmfulqa": {
+      "unreviewed": 10
+    },
+    "databricks_dolly_15k": {
+      "unreviewed": 10
+    }
+  },
+  "complete_annotation_class_counts": {},
+  "human_attestation_recorded": false,
+  "attestation_limitation": "An owner-supplied human receipt records provenance; field values alone cannot prove authorship",
+  "nonconflicting_complete_annotations": 0,
+  "canonical_model_rows_emitted": 0,
+  "duplicate_conflicting_group_ids": [],
+  "blockers": [
+    "HUMAN_ANNOTATION_ATTESTATION_MISSING_OR_INVALID",
+    "HUMAN_CURATOR_DECISIONS_MISSING",
+    "SOURCE_REVIEW_NOT_APPROVED",
+    "SOURCE_INDEPENDENCE_NOT_VERIFIED",
+    "PER_CLASS_TRAIN_VAL_TEST_2_1_1_NOT_ESTABLISHED",
+    "FROZEN_SOURCE_DISJOINT_SPLIT_MISSING",
+    "L2_NUMERIC_ACCEPTANCE_GATE_UNSPECIFIED"
+  ],
+  "fit_performed": false,
+  "test_opened": false,
+  "l3_run": false,
+  "script_sha256": "0323b83954d8ea002ae52832f0338b74b9a0f886524c666582d2281305c3b824",
+  "environment": {
+    "python": "3.11.16",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "checked_at_utc": "2026-10-12T19:26:19.621957+00:00"
+}

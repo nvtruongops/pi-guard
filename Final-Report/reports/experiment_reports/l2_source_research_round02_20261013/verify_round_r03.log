@@ -1,0 +1,120 @@
+{
+  "checked_at_utc": "2026-10-12T19:57:37.439191+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "immutable_versions_and_training_boundaries",
+      "status": "PASS",
+      "parent_files_verified": 32,
+      "v11_files_verified": 11
+    },
+    {
+      "name": "pinned_primary_documents_and_train_only_acquisition",
+      "status": "PASS",
+      "sources": 9,
+      "documents": 22,
+      "payloads": 1
+    },
+    {
+      "name": "actual_source_records_annotation_bindings_and_language_partition",
+      "status": "PASS",
+      "downloaded": 777,
+      "candidates": 492,
+      "excluded": 285
+    },
+    {
+      "name": "historical_duplicate_constraints_and_joint_group_counts",
+      "status": "PASS",
+      "cross_family_groups": 25,
+      "cross_family_rows": 78,
+      "new_source_cross_family_groups": 0
+    },
+    {
+      "name": "original_ids_without_invented_splits_and_rights_quarantine",
+      "status": "PASS",
+      "original_component_rows": 4476,
+      "rights_quarantined_rows": 554,
+      "held_v10_pilot_rows": 10,
+      "other_rows_sharing_held_duplicate_groups": 3,
+      "limitation": "Nonheld duplicates require group review; no rows are declared eligible"
+    },
+    {
+      "name": "curator_intake_compatibility_and_fail_closed_overlay",
+      "status": "PASS",
+      "checked_versions": [
+        "V10",
+        "V11"
+      ],
+      "unsupported_overlay_rejected": true
+    },
+    {
+      "name": "failed_run_preservation_and_executed_code_identity",
+      "status": "PASS"
+    },
+    {
+      "name": "reported_manifest_identities_and_local_links",
+      "status": "PASS",
+      "local_links_verified": 24
+    },
+    {
+      "name": "scope",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "D:\\Work\\Do-an\\workspaces\\truongnv\\pi_guard_pipeline\\training_bases\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "D:\\Work\\Do-an\\Final-Report\\scripts\\audit_task_scope.py",
+        "--file",
+        "D:\\Work\\Do-an\\Final-Report\\reports\\experiment_reports\\l2_source_research_round02_20261013\\REPORT.md",
+        "--strict"
+      ]
+    },
+    {
+      "name": "claims",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "D:\\Work\\Do-an\\workspaces\\truongnv\\pi_guard_pipeline\\training_bases\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "D:\\Work\\Do-an\\Final-Report\\scripts\\audit_claim_evidence.py",
+        "--file",
+        "D:\\Work\\Do-an\\Final-Report\\reports\\experiment_reports\\l2_source_research_round02_20261013\\REPORT.md"
+      ]
+    },
+    {
+      "name": "glossary",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "D:\\Work\\Do-an\\workspaces\\truongnv\\pi_guard_pipeline\\training_bases\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "D:\\Work\\Do-an\\Final-Report\\scripts\\verify_academic_glossary.py",
+        "--file",
+        "D:\\Work\\Do-an\\Final-Report\\reports\\experiment_reports\\l2_source_research_round02_20261013\\REPORT.md"
+      ]
+    },
+    {
+      "name": "boundaries",
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "D:\\Work\\Do-an\\workspaces\\truongnv\\pi_guard_pipeline\\training_bases\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "D:\\Work\\Do-an\\Final-Report\\scripts\\audit_workspace_boundaries.py",
+        "--mode",
+        "working_tree"
+      ]
+    }
+  ],
+  "script_sha256": "4cb5bbcc4303c9e53102afbee940392a5b65ebd5eefad018c587cef941808cce",
+  "meaning": "Artifact checks only; L2 NOT_READY, no fit/test/L3",
+  "supersedes": "VERIFICATION.json: held V10 pilot count corrected using parent_blind_item_id crosswalk; dataset versions unchanged"
+}
